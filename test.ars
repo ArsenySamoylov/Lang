@@ -1,0 +1,32 @@
+;Mon Dec  5 19:51:31 2022
+
+push 200
+push 800
+pop  rax
+
+; condition for if 0
+push 100
+
+push 0
+je if_end_label_0
+; end of condition
+
+; if body
+push 4500
+pop  rax
+
+: if_end_label_0
+push 500
+push 400
+ADD
+push 100
+MUL
+pop  rax
+
+push 300
+push 700
+SUB
+pop  rax
+
+hlt
+;end {document}
