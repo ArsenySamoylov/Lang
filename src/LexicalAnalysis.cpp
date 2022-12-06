@@ -215,6 +215,9 @@ void PrintToken (const Token *const token)
 
     switch (TYPE(token))                                                        
     {
+    case STATEMENT:
+            printf("STATEMENT   | {%c}\n\n", OP(token));
+            break; 
     case INSTRUCTION: 
             printf("INSTRUCTION | {'%s'}\n\n",  INSTRUCTIONS[token->value.t_instruction]);
             break;             
@@ -264,7 +267,13 @@ void LogToken (const Token *const token, const char* name)
     logf("\t\t        type: ");     
 
     switch (TYPE(token))                                                        
-        {      
+        {
+        case STATEMENT:
+                    logf_ni("STATEMENT   | {%c}\n\n", OP(token));
+                    break; 
+        case INSTRUCTION: 
+                    logf_ni("INSTRUCTION | {'%s'}\n\n",  INSTRUCTIONS[token->value.t_instruction]);
+                    break;       
         case EXPRESSION_OPENING_BRACKET: 
                     logf_ni("EXPRESSION OPENING BRACKET | {%c}\n\n",  OP(token));
                     break;                                                     

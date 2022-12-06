@@ -1412,13 +1412,14 @@ enum TokenType
     UNKNOWN_TYPE = -999,
     };
 
-const int NUMBER_OF_INSTUCTIONS = 3;
-const char *const INSTRUCTIONS[] = { "if", "else", "while"};
+const int NUMBER_OF_INSTUCTIONS = 4;
+const char *const INSTRUCTIONS[] = { "if", "else", "while", "fout"};
 enum INSTUCTIONS_NUM
     {
     IF = 0,
     ELSE = 1,
     WHILE = 2,
+    FOUT = 3,
 
     NOT_A_INSTRUCTION = -666,
     };
@@ -44381,6 +44382,30 @@ static Token* GetInstruction (TokenBuffer* token_buf)
         return GetAssigment(token_buf);
 
 
+    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_instruction == FOUT)
+        {
+        Token* fout = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
+        token_buf->position++;
+
+        if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != END_OF_STATEMENT && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator != END_OF_STATEMENT)
+            {
+            printf ("Missing %c - end of statement after fout\n", END_OF_STATEMENT);
+            printf ("Current token: token_buf position : %d\n", token_buf->position);
+            PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ));
+
+            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 105), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 105, __func__, 105);
+            }
+
+        Token* statement = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
+        token_buf->position++;
+
+        statement->type = STATEMENT;
+        statement->left_child = fout;
+
+        return statement;
+        }
+
+
     Token* instruction = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
     token_buf->position++;
 
@@ -44390,7 +44415,7 @@ static Token* GetInstruction (TokenBuffer* token_buf)
         printf ("Missing openig bracket in instruction (position %d)\n", token_buf->position);
         PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ));
 
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 103), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 103, __func__, 103);
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 127), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 127, __func__, 127);
         }
 
     Token* statement = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
@@ -44406,7 +44431,7 @@ static Token* GetInstruction (TokenBuffer* token_buf)
          printf ("No condition for instruction\n");
         PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ));
 
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 119), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 119, __func__, 119);
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 143), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 143, __func__, 143);
         }
 
     if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != EXPRESSION_CLOSING_BRACKET)
@@ -44415,7 +44440,7 @@ static Token* GetInstruction (TokenBuffer* token_buf)
         printf ("Missing closing bracket in instruction (position %d)\n", token_buf->position);
         PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ));
 
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 128), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 128, __func__, 128);
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 152), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 152, __func__, 152);
         }
 
     token_buf->position++;
@@ -44428,7 +44453,27 @@ static Token* GetInstruction (TokenBuffer* token_buf)
         printf ("No condition for instruction (position %d)\n", token_buf->position);
         PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ));
 
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 141), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 141, __func__, 141);
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 165), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 165, __func__, 165);
+        }
+
+
+    if (instruction->value.t_instruction == IF && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == INSTRUCTION && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_instruction == ELSE)
+        {
+        Token* else_instr = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
+        token_buf->position++;
+
+         else_instr->left_child = instruction->right_child;
+        else_instr->right_child = GetAssigment(token_buf);
+        if (!else_instr->right_child)
+            {
+            Logger::getInstance().log("No commands for 'else' (position %d)\n" , token_buf->position);
+            printf ("No commands for 'else' (position %d)\n", token_buf->position);
+            PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ));
+
+            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 182), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 182, __func__, 182);
+            }
+
+        instruction->right_child = else_instr;
         }
 
     return statement;
@@ -44436,16 +44481,16 @@ static Token* GetInstruction (TokenBuffer* token_buf)
 
 static Token* GetAssigment (TokenBuffer* token_buf)
     {
-    FunctionLogger func_149 {2, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 150); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 150); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 150 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_193 {2, __func__};
+    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 194); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 194); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 194 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 150 "./src/SyntaxAnalysis.cpp"
+# 194 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 150 "./src/SyntaxAnalysis.cpp" 3 4
+# 194 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 150 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 150); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 150), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 150, __func__, 150); } } while (0);;
+# 194 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 194); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 194), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 194, __func__, 194); } } while (0);;
 
     if (!( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == VARIABLE ) ? true : false ))
         {
@@ -44453,7 +44498,7 @@ static Token* GetAssigment (TokenBuffer* token_buf)
         printf ("Error %d token must be variable\n", token_buf->position);
         PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ));
 
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 158), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 158, __func__, 158);
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 202), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 202, __func__, 202);
         }
 
     Token* var = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
@@ -44465,7 +44510,7 @@ static Token* GetAssigment (TokenBuffer* token_buf)
         printf ("Error %d token must be assigment (%c)\n", token_buf->position, ASSIGMENT);
         PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ));
 
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 170), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 170, __func__, 170);
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 214), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 214, __func__, 214);
         }
 
     Token* assigment = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
@@ -44484,9 +44529,9 @@ static Token* GetAssigment (TokenBuffer* token_buf)
         PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ));
 
         return 
-# 188 "./src/SyntaxAnalysis.cpp" 3 4
+# 232 "./src/SyntaxAnalysis.cpp" 3 4
               __null
-# 188 "./src/SyntaxAnalysis.cpp"
+# 232 "./src/SyntaxAnalysis.cpp"
                   ;
         }
 
@@ -44496,7 +44541,7 @@ static Token* GetAssigment (TokenBuffer* token_buf)
         printf ("Current token: token_buf position : %d\n", token_buf->position);
         PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ));
 
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 197), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 197, __func__, 197);
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 241), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 241, __func__, 241);
         }
 
     Token* statement = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
@@ -44510,16 +44555,16 @@ static Token* GetAssigment (TokenBuffer* token_buf)
 
 static Token* GetE (TokenBuffer* token_buf)
     {
-    FunctionLogger func_211 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 212); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 212); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 212 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_255 {DEBUG_ALL, __func__};
+    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 256); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 256); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 256 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 212 "./src/SyntaxAnalysis.cpp"
+# 256 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 212 "./src/SyntaxAnalysis.cpp" 3 4
+# 256 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 212 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 212); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 212), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 212, __func__, 212); } } while (0);;
+# 256 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 256); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 256), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 256, __func__, 256); } } while (0);;
 
     Token* node = GetT(token_buf);
 
@@ -44541,16 +44586,16 @@ static Token* GetE (TokenBuffer* token_buf)
 
 static Token* GetT (TokenBuffer* token_buf)
     {
-    FunctionLogger func_234 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 235); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 235); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 235 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_278 {DEBUG_ALL, __func__};
+    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 279); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 279); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 279 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 235 "./src/SyntaxAnalysis.cpp"
+# 279 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 235 "./src/SyntaxAnalysis.cpp" 3 4
+# 279 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 235 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 235); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 235), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 235, __func__, 235); } } while (0);;
+# 279 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 279); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 279), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 279, __func__, 279); } } while (0);;
 
     Token* node = GetPower(token_buf);
     LogToken(node, "node");
@@ -44573,16 +44618,16 @@ static Token* GetT (TokenBuffer* token_buf)
 
 Token* GetPower (TokenBuffer* token_buf)
     {
-    FunctionLogger func_258 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 259); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 259); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 259 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_302 {DEBUG_ALL, __func__};
+    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 303); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 303); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 303 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 259 "./src/SyntaxAnalysis.cpp"
+# 303 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 259 "./src/SyntaxAnalysis.cpp" 3 4
+# 303 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 259 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 259); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 259), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 259, __func__, 259); } } while (0);;
+# 303 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 303); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 303), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 303, __func__, 303); } } while (0);;
 
     Token* node = GetP(token_buf);
 
@@ -44604,16 +44649,16 @@ Token* GetPower (TokenBuffer* token_buf)
 
 static Token* GetP (TokenBuffer* token_buf)
     {
-    FunctionLogger func_281 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 282); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 282); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 282 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_325 {DEBUG_ALL, __func__};
+    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 326); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 326); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 326 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 282 "./src/SyntaxAnalysis.cpp"
+# 326 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 282 "./src/SyntaxAnalysis.cpp" 3 4
+# 326 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 282 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 282); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 282), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 282, __func__, 282); } } while (0);;
+# 326 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 326); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 326), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 326, __func__, 326); } } while (0);;
 
     if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == EXPRESSION_OPENING_BRACKET)
         {
@@ -44631,7 +44676,7 @@ static Token* GetP (TokenBuffer* token_buf)
         if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator != EXPRESSION_CLOSING_BRACKET)
             {
             printf("Missing closing bracket (token position %d)\n", token_buf->position);
-            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 300), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 300, __func__, 300);
+            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 344), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 344, __func__, 344);
             }
 
         token_buf->position++;
@@ -44644,19 +44689,19 @@ static Token* GetP (TokenBuffer* token_buf)
 
     return GetN(token_buf);
     }
-# 336 "./src/SyntaxAnalysis.cpp"
+# 380 "./src/SyntaxAnalysis.cpp"
 static Token* GetN (TokenBuffer* token_buf)
     {
-    FunctionLogger func_338 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 339); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 339); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 339 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_382 {DEBUG_ALL, __func__};
+    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 383); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 383); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 383 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 339 "./src/SyntaxAnalysis.cpp"
+# 383 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 339 "./src/SyntaxAnalysis.cpp" 3 4
+# 383 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 339 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 339); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 339), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 339, __func__, 339); } } while (0);;
+# 383 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 383); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 383), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 383, __func__, 383); } } while (0);;
 
     if (!( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == CONSTANT ) ? true : false ) && !( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == VARIABLE ) ? true : false ))
         {
@@ -44664,7 +44709,7 @@ static Token* GetN (TokenBuffer* token_buf)
         printf ("Cringe, this is not variable or constant node =( (token position %d)\n", token_buf->position);
         PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ));
 
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 347), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 347, __func__, 347);
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 391), LogMsgNullRet("\033[91m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 391, __func__, 391);
         }
 
     Token* result = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );

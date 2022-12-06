@@ -3,6 +3,7 @@
 #include "my_buffer.h"
 #include "LogMacroses.h"
 #include "TranslateToAsm.h"
+#include "DefGraphVis.h"
 
 // OPERATORS
 // = : EQ
@@ -53,6 +54,8 @@ int main()
         KILL(token_arr);
         return LFAILURE;
         }
+
+    MakeImg("kek", root); 
     /////// BACK   END /////////////////////////
     int status = TranslateToAsm (root, "test.ars");
     if (status != SUCCESS)

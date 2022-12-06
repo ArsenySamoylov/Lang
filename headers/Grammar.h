@@ -27,13 +27,14 @@ enum TokenType
     UNKNOWN_TYPE  = -999,
     };
 
-const int NUMBER_OF_INSTUCTIONS = 3;
-const char *const INSTRUCTIONS[] = { "if", "else", "while"};
+const int NUMBER_OF_INSTUCTIONS = 4;
+const char *const INSTRUCTIONS[] = { "if", "else", "while", "fout"};
 enum INSTUCTIONS_NUM
     {
     IF    = 0,
     ELSE  = 1,
     WHILE = 2,
+    FOUT  = 3,
 
     NOT_A_INSTRUCTION = -666,
     };

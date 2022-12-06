@@ -89,6 +89,30 @@ static Token* GetInstruction (TokenBuffer* token_buf)
 
     if (!IS_INSTRUCTION(token))
         return GetAssigment(token_buf);
+    
+    // fout
+    if (INSTR(token) == FOUT)
+        {
+        Token* fout = token;
+        POSITION(token_buf)++;
+
+        if (TYPE(token) != END_OF_STATEMENT && OP(token) != END_OF_STATEMENT)
+            {
+            printf ("Missing %c - end of statement after fout\n", END_OF_STATEMENT);
+            printf ("Current token: token_buf position : %d\n", POSITION(token_buf));
+            PrintToken(token);
+
+            return LNULL;
+            }
+        
+        Token* statement = token;
+        POSITION(token_buf)++;
+
+        TYPE(statement) = STATEMENT;
+        LEFT(statement) = fout;
+
+        return statement;
+        }
 
     // Condition
     Token* instruction = token;
@@ -139,6 +163,26 @@ static Token* GetInstruction (TokenBuffer* token_buf)
         PrintToken(token);
 
         return LNULL;
+        }
+
+    // else for if
+    if (INSTR(instruction) == IF && TYPE(token) == INSTRUCTION && INSTR(token) == ELSE)
+        {
+        Token* else_instr = token;
+        POSITION(token_buf)++;
+        
+         LEFT(else_instr) = RIGHT(instruction);
+        RIGHT(else_instr) = GetAssigment(token_buf);
+        if (!RIGHT(else_instr))
+            {
+            logf   ("No commands for 'else' (position %d)\n", POSITION(token_buf));
+            printf ("No commands for 'else' (position %d)\n", POSITION(token_buf));
+            PrintToken(token);
+
+            return LNULL;
+            }
+
+        RIGHT(instruction) = else_instr;
         }
 
     return statement;

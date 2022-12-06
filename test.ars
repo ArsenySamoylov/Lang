@@ -1,32 +1,38 @@
-;Mon Dec  5 19:51:31 2022
+;Tue Dec  6 19:57:43 2022
 
 push 200
 push 800
+POW
 pop  rax
 
-; condition for if 0
-push 100
+; condition for if_0 with else 
+push rax
 
 push 0
-je if_end_label_0
+je : else_label_0
 ; end of condition
 
 ; if body
 push 4500
 pop  rax
 
-: if_end_label_0
+jmp : else_end_label_0
+; else body
+: else_label_0
+push 2000
+pop  rax
+
+: else_end_label_0
+push rax
+FOUT
 push 500
 push 400
 ADD
 push 100
-MUL
+FMUL
 pop  rax
 
-push 300
-push 700
-SUB
-pop  rax
-
+push rax
+FOUT
 hlt
 ;end {document}

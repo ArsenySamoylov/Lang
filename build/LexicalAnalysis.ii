@@ -24246,13 +24246,14 @@ enum TokenType
     UNKNOWN_TYPE = -999,
     };
 
-const int NUMBER_OF_INSTUCTIONS = 3;
-const char *const INSTRUCTIONS[] = { "if", "else", "while"};
+const int NUMBER_OF_INSTUCTIONS = 4;
+const char *const INSTRUCTIONS[] = { "if", "else", "while", "fout"};
 enum INSTUCTIONS_NUM
     {
     IF = 0,
     ELSE = 1,
     WHILE = 2,
+    FOUT = 3,
 
     NOT_A_INSTRUCTION = -666,
     };
@@ -54777,6 +54778,9 @@ void PrintToken (const Token *const token)
 
     switch (token->type)
     {
+    case STATEMENT:
+            printf("STATEMENT   | {%c}\n\n", token->value.t_operator);
+            break;
     case INSTRUCTION:
             printf("INSTRUCTION | {'%s'}\n\n", INSTRUCTIONS[token->value.t_instruction]);
             break;
@@ -54827,6 +54831,12 @@ void LogToken (const Token *const token, const char* name)
 
     switch (token->type)
         {
+        case STATEMENT:
+                    Logger::getInstance().log_no_indent("STATEMENT   | {%c}\n\n" , token->value.t_operator);
+                    break;
+        case INSTRUCTION:
+                    Logger::getInstance().log_no_indent("INSTRUCTION | {'%s'}\n\n" , INSTRUCTIONS[token->value.t_instruction]);
+                    break;
         case EXPRESSION_OPENING_BRACKET:
                     Logger::getInstance().log_no_indent("EXPRESSION OPENING BRACKET | {%c}\n\n" , token->value.t_operator);
                     break;

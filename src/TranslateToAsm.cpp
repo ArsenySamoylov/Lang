@@ -7,6 +7,7 @@
 #include "DSL.h"
 #include "Grammar.h"
 #include "LogMacroses.h"
+#include "EasyDebug.h"
 
 static FILE* ASM_FILE = NULL;
 
@@ -55,8 +56,9 @@ const int PRECISION = 100;
                                 {                                       \
                                 case ADD:  assprint("ADD\n");  break;   \
                                 case SUB:  assprint("SUB\n");  break;   \
-                                case DIV:  assprint("DIV\n");  break;   \
-                                case MUL:  assprint("MUL\n");  break;   \
+                                case DIV:  assprint("FDIV\n"); break;   \
+                                case MUL:  assprint("FMUL\n"); break;   \
+                                case POW:  assprint("POW\n");  break;   \
                                 default: break;                         \
                                 }
 
@@ -71,21 +73,87 @@ static int AddToAsm (const Token *const token)
 
     if (IS_INSTRUCTION(token))
         {
-        static int current_instruction = 0;
-
-        assprint ("; condition for %s %d\n", INSTR_STR(token), current_instruction); 
-        CHECK(AddToAsm( LEFT(token)) == SUCCESS, return FAILURE);
-
-        assprint("\n");
-        PUSH(0);
-        assprint ("je %s_end_label_%d\n", INSTR_STR(token), current_instruction);
-        assprint ("; end of condition\n\n");
-
-        assprint("; %s body\n", INSTR_STR(token));
-        CHECK(AddToAsm(RIGHT(token)) == SUCCESS, return FAILURE);
-        assprint (": %s_end_label_%d\n", INSTR_STR(token), current_instruction);
+        static int number_of_instructions = 0;
         
-        current_instruction++;
+        int current_instruction = number_of_instructions++;
+
+        switch (INSTR(token))
+            {
+            case ELSE:
+                {
+                YOU_SHALL_NOT_PASS
+                TODO("to do else\n");
+                return LFAILURE;
+                }
+            case IF:
+                {
+                if (IS_INSTRUCTION(RIGHT(token)) && INSTR(RIGHT(token)) == ELSE)
+                    {
+                    Token*   if_body =  LEFT(RIGHT(token));
+                    Token* else_body = RIGHT(RIGHT(token));
+
+                    assprint ("; condition for %s_%d with else \n", INSTR_STR(token), current_instruction); 
+                    CHECK(AddToAsm( LEFT(token)) == SUCCESS, return FAILURE);
+
+                    assprint("\n");
+                    PUSH(0);
+                    assprint ("je : else_label_%d\n", current_instruction);
+                    assprint ("; end of condition\n\n");
+
+                    assprint("; if body\n");
+                    CHECK(AddToAsm(if_body) == SUCCESS, return FAILURE);
+                    assprint ("jmp : else_end_label_%d\n", current_instruction);
+
+                    assprint("; else body\n");
+                    assprint(": else_label_%d\n", current_instruction);
+                    CHECK(AddToAsm(else_body) == SUCCESS, return FAILURE);
+
+                    assprint (": else_end_label_%d\n", current_instruction);
+                    }
+                else
+                    {
+                    assprint ("; condition for %s_%d\n", INSTR_STR(token), current_instruction); 
+                    CHECK(AddToAsm( LEFT(token)) == SUCCESS, return FAILURE);
+
+                    assprint("\n");
+                    PUSH(0);
+                    assprint ("je : %s_end_label_%d\n", INSTR_STR(token), current_instruction);
+                    assprint ("; end of condition\n\n");
+
+                    assprint("; %s body\n", INSTR_STR(token));
+                    CHECK(AddToAsm(RIGHT(token)) == SUCCESS, return FAILURE);
+                    assprint (": %s_end_label_%d\n", INSTR_STR(token), current_instruction);
+                    }
+                
+                break;
+                }
+            case WHILE:
+                {
+                assprint ("; condition for %s_%d\n", INSTR_STR(token), current_instruction); 
+                CHECK(AddToAsm( LEFT(token)) == SUCCESS, return FAILURE);
+
+                assprint("\n");
+                PUSH(0);
+                assprint ("je : %s_end_label_%d\n", INSTR_STR(token), current_instruction);
+                assprint ("; end of condition\n\n");
+
+                assprint("; %s body\n", INSTR_STR(token));
+                CHECK(AddToAsm(RIGHT(token)) == SUCCESS, return FAILURE);
+                assprint (": %s_end_label_%d\n", INSTR_STR(token), current_instruction);
+
+                break;
+                }
+            case FOUT:
+                {
+                assprint("FOUT\n");
+                
+                return SUCCESS;
+                }
+            default:
+                YOU_SHALL_NOT_PASS
+                TODO("to do instructions default\n");
+                return LFAILURE;
+            }
 
         return SUCCESS;
         }
@@ -104,7 +172,7 @@ static int AddToAsm (const Token *const token)
     if (IS_VAR(token))
         return PUSH_REG(1), SUCCESS;
 
-    if (IS_OP(token) || IS_ASSIGMENT(token))
+    if (IS_OP(token))
         {
         switch (OP(token))
             {

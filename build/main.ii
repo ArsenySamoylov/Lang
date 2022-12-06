@@ -44210,11 +44210,41 @@ int SYSTEM(const char* format, ...);
 
 int TranslateToAsm (const Token *const root, const char *const name);
 # 6 "./src/main.cpp" 2
-# 23 "./src/main.cpp"
+# 1 "./headers/DefGraphVis.h" 1
+       
+
+# 1 "/usr/include/c++/11/stdlib.h" 1 3
+# 4 "./headers/DefGraphVis.h" 2
+
+
+
+
+# 1 "../ATC/GraphVis/GVConfig.h" 1
+       
+
+const int MAX_GRAPH_NAME_LENGTH = 128;
+const int IMAGE_NAME_LENGTH = 128;
+
+
+const char PATH_FOR_DOT[] = "./graphics/dot/";
+const char PATH_FOR_IMG[] = "./graphics/";
+const char EXTENSION[] = "png";
+
+const char RANKDIR[] = "TB";
+
+const int SYSTEM_COMMAND_LENGTH = 512;
+# 9 "./headers/DefGraphVis.h" 2
+
+FILE* OpenDotFile (const char* path);
+void CloseDotFile ();
+
+const char* MakeImg (const char* img_name, const Token *const node);
+# 7 "./src/main.cpp" 2
+# 24 "./src/main.cpp"
 #pragma GCC diagnostic ignored "-Wunused-variable"
 int main()
     {
-    FunctionLogger func_26 {RELEASE, __func__};
+    FunctionLogger func_27 {RELEASE, __func__};
 
     char path[] = "test.GARS";
 
@@ -44222,41 +44252,43 @@ int main()
     char* src_code = GetSrcFile (path);
 
     Token* token_arr = 
-# 33 "./src/main.cpp" 3 4
+# 34 "./src/main.cpp" 3 4
                       __null
-# 33 "./src/main.cpp"
+# 34 "./src/main.cpp"
                           ;
     int number_of_tokens = Tokenizer(&token_arr, src_code);
-    Logger::getInstance().FREE_LOG (src_code, "./src/main.cpp", __func__, 35);;
+    Logger::getInstance().FREE_LOG (src_code, "./src/main.cpp", __func__, 36);;
 
     if (!token_arr)
         {
         printf("\033[91m" "Can't tokenize file " "\033[0m" "%s\n", path);
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 40, __func__, 40), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 40, __func__, 40);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 41, __func__, 41), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 41, __func__, 41);
         }
 
     if (number_of_tokens < 1)
         {
         printf("\033[91m" "Wrong number of tokens " "\033[0m" "%d\n", number_of_tokens);
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 46, __func__, 46), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 46, __func__, 46);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 47, __func__, 47), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 47, __func__, 47);
         }
 
 
     Token* root = GetG(token_arr, number_of_tokens);
     if (!root)
         {
-        Logger::getInstance().FREE_LOG (token_arr, "./src/main.cpp", __func__, 53);;
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 54, __func__, 54), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 54, __func__, 54);
+        Logger::getInstance().FREE_LOG (token_arr, "./src/main.cpp", __func__, 54);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 55, __func__, 55), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 55, __func__, 55);
         }
+
+    MakeImg("kek", root);
 
     int status = TranslateToAsm (root, "test.ars");
     if (status != SUCCESS)
         {
-        Logger::getInstance().FREE_LOG (token_arr, "./src/main.cpp", __func__, 60);;
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 61, __func__, 61), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 61, __func__, 61);
+        Logger::getInstance().FREE_LOG (token_arr, "./src/main.cpp", __func__, 63);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 64, __func__, 64), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 64, __func__, 64);
         }
 
 
-    Logger::getInstance().FREE_LOG (token_arr, "./src/main.cpp", __func__, 65);;
+    Logger::getInstance().FREE_LOG (token_arr, "./src/main.cpp", __func__, 68);;
     return 0;
     }
