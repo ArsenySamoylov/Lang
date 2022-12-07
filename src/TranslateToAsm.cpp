@@ -145,6 +145,9 @@ static int AddToAsm (const Token *const token)
                 }
             case FOUT:
                 {
+                 if (LEFT(token))
+                    CHECK(AddToAsm (LEFT(token)) == SUCCESS, return FAILURE);
+                
                 assprint("FOUT\n");
                 
                 return SUCCESS;

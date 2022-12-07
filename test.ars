@@ -1,9 +1,4 @@
-;Tue Dec  6 19:57:43 2022
-
-push 200
-push 800
-POW
-pop  rax
+;Wed Dec  7 20:00:52 2022
 
 ; condition for if_0 with else 
 push rax
@@ -14,6 +9,11 @@ je : else_label_0
 
 ; if body
 push 4500
+pop  rax
+
+push 1000
+push rax
+SUB
 pop  rax
 
 jmp : else_end_label_0
@@ -32,7 +32,5 @@ push 100
 FMUL
 pop  rax
 
-push rax
-FOUT
 hlt
 ;end {document}

@@ -39,7 +39,7 @@ enum INSTUCTIONS_NUM
     NOT_A_INSTRUCTION = -666,
     };
 
-const char OPERATORS[] = "+-/*^";
+const char OPERATORS[] = "+-/*^<<";
 enum OPERATOR_NUM
     {
     ADD = '+',
@@ -47,6 +47,7 @@ enum OPERATOR_NUM
     DIV = '/',
     MUL = '*',
     POW = '^',
+    OUT = '<', // '<<' 
     };
 
 const char COMMENT = '#';

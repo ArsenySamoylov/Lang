@@ -20,22 +20,36 @@ static int IsInstruction (char* str);
 
 #define token  (arr + number_of_tokens)
 
+#define report_lexical_error(format, ...)                           \
+    do                                                              \
+        {                                                           \
+        printf(yellowcolor"Lexical Error\n"resetconsole);           \
+        logf("Lexical Error\n");                                    \
+        logf("");                                                   \
+        LOG__.log_dup_console(format __VA_OPT__(,) __VA_ARGS__);    \
+                                                                    \
+        printf("In ");                                              \
+        printl(buf->str, '\n');                                     \
+        }                                                           \
+    while(0);
+
 int Tokenizer (Token** tokens_arr, const char* buffer)
     {
     $log(1)
     assertlog (tokens_arr, EFAULT, return LFAILURE);
-    assertlog (buffer, EFAULT, return LFAILURE);
+    assertlog (buffer,     EFAULT, return LFAILURE);
 
     Token* arr = (Token*) CALLOC (START_NUMBER_OF_TOKENS, sizeof(arr[0]));
     if (!arr) return -1;
 
-    Buffer buf{};
-    CHECK (BufferCtor(&buf, buffer) == SUCCESS, return LFAILURE);
+    Buffer buf_orig{};
+    CHECK (BufferCtor(&buf_orig, buffer) == SUCCESS, return LFAILURE);
 
+    Buffer* buf = &buf_orig;
     int number_of_tokens = 0;
     int size = START_NUMBER_OF_TOKENS;
 
-    while (BufferLook(&buf) != '\0')
+    while (BufferLook(buf) != '\0')
         {
         // check for resize
         if (number_of_tokens == size)
@@ -47,12 +61,10 @@ int Tokenizer (Token** tokens_arr, const char* buffer)
             arr = fuck;
             }
         
-        TYPE(token) = GetTokenValue (&VALUE(token), &buf);
+        TYPE(token) = GetTokenValue (&VALUE(token), buf);
         if (TYPE(token) == UNKNOWN_TYPE)
             {
-            printf ("Unknown type in: ");
-            printl (buf.str, '\n');
-              logf ("Unknown type in %s\n", buf.str);
+            report_lexical_error("Unknown type\n");
 
             KILL(arr);
             
@@ -155,6 +167,14 @@ static int GetTokenValue (TokenValue* val, Buffer* buf)
         {
         val->t_operator = BufferGetCh(buf);
 
+        if (val->t_operator == OUT)
+            if (BufferGetCh(buf) != '<')
+                {
+                report_lexical_error("Missing '<' for out operator\n");
+
+                return FAILURE;
+                }
+
         return OPERATOR;        
         }
     
@@ -180,18 +200,12 @@ static int GetTokenValue (TokenValue* val, Buffer* buf)
         }
 
     // brackets
-    if (temp == EXPRESSION_OPENING_BRACKET)             
+    if (temp == OPENING_BRACKET            || temp == CLOSING_BRACKET   || 
+        temp == EXPRESSION_OPENING_BRACKET || temp == EXPRESSION_CLOSING_BRACKET)             
         {
         val->t_operator = BufferGetCh(buf);
 
-        return EXPRESSION_OPENING_BRACKET;     
-        }
-
-    if (temp == EXPRESSION_CLOSING_BRACKET)
-        {
-        val->t_operator = BufferGetCh(buf);
-
-        return EXPRESSION_CLOSING_BRACKET;        
+        return val->t_operator;     
         }
         
     // END_OF_STATEMENT

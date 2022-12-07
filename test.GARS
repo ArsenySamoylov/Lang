@@ -1,14 +1,15 @@
+    {
+    x = 1
+    if (x)
+        {
+        x = 45;
+        x = x - 10;
+        }
 
-#comment
+    else
+        x = 20;
 
-x = 8^2;
+    fout << x; # 
 
-if (x)
-    x = 45;
-else
-    x = 20;
-
-fout;
-
-x = 1 * (4 + 5);
-fout;
+    x = 1 * (4 + 5);
+    }

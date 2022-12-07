@@ -63,10 +63,10 @@ _ZL12INSTRUCTIONS:
 	.section	.rodata
 	.align 32
 	.type	_ZL9OPERATORS, @object
-	.size	_ZL9OPERATORS, 6
+	.size	_ZL9OPERATORS, 8
 _ZL9OPERATORS:
-	.string	"+-/*^"
-	.zero	58
+	.string	"+-/*^<<"
+	.zero	56
 	.align 32
 	.type	_ZL7COMMENT, @object
 	.size	_ZL7COMMENT, 1
@@ -655,50 +655,54 @@ _ZZL8AddToAsmPK5TokenE22number_of_instructions:
 	.zero	45
 	.align 32
 .LC48:
+	.string	"%s:%d::CHECK: AddToAsm (LEFT(token)) == SUCCESS is false\n"
+	.zero	38
+	.align 32
+.LC49:
 	.string	"FOUT\n"
 	.zero	58
 	.align 32
-.LC49:
+.LC50:
 	.string	"to do instructions default\n"
 	.zero	36
 	.align 32
-.LC50:
+.LC51:
 	.string	"%s:%d::CHECK: AddToAsm (RIGHT(token)) == SUCCESS is false\n"
 	.zero	37
 	.align 32
-.LC51:
+.LC52:
 	.string	"pop  r%cx\n"
 	.zero	53
 	.align 32
-.LC52:
+.LC53:
 	.string	"push r%cx\n"
 	.zero	53
 	.align 32
-.LC53:
+.LC54:
 	.string	"%s:%d::CHECK: AddToAsm ( LEFT(token)) == SUCCESS is false\n"
 	.zero	37
 	.align 32
-.LC54:
+.LC55:
 	.string	"ADD\n"
 	.zero	59
 	.align 32
-.LC55:
+.LC56:
 	.string	"SUB\n"
 	.zero	59
 	.align 32
-.LC56:
-	.string	"DIV\n"
-	.zero	59
-	.align 32
 .LC57:
-	.string	"MUL\n"
-	.zero	59
+	.string	"FDIV\n"
+	.zero	58
 	.align 32
 .LC58:
+	.string	"FMUL\n"
+	.zero	58
+	.align 32
+.LC59:
 	.string	"POW\n"
 	.zero	59
 	.align 32
-.LC59:
+.LC60:
 	.string	"Wrong operator %c\n"
 	.zero	45
 	.text
@@ -1430,7 +1434,7 @@ _ZL8AddToAsmPK5Token:
 	call	_ZL8assprintPKcz
 .LBE8:
 	.loc 1 112 21
-	jmp	.L119
+	jmp	.L121
 .L24:
 	.loc 1 115 30
 	cmpq	$0, -184(%rbp)
@@ -1857,7 +1861,7 @@ _ZL8AddToAsmPK5Token:
 .LBE7:
 	.loc 1 128 17 is_stmt 1
 	jmp	.L63
-.L119:
+.L121:
 	jmp	.L63
 .L21:
 .LBE6:
@@ -2286,80 +2290,123 @@ _ZL8AddToAsmPK5Token:
 	.loc 1 144 17 is_stmt 1
 	jmp	.L63
 .L19:
-	.loc 1 148 25
+	.loc 1 148 29
+	movq	-184(%rbp), %rax
+	movq	%rax, %rdx
+	shrq	$3, %rdx
+	addq	$2147450880, %rdx
+	movzbl	(%rdx), %edx
+	testb	%dl, %dl
+	je	.L88
+	movq	%rax, %rdi
+	call	__asan_report_load8@PLT
+.L88:
+	movq	-184(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 1 148 18
+	testq	%rax, %rax
+	je	.L89
+	.loc 1 149 48
+	movq	-184(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 1 149 40
+	movq	%rax, %rdi
+	call	_ZL8AddToAsmPK5Token
+	.loc 1 149 60
+	testl	%eax, %eax
+	setne	%al
+	.loc 1 149 26
+	testb	%al, %al
+	je	.L89
+	.loc 1 149 93 discriminator 2
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 1 149 99 discriminator 2
+	movl	$149, %ecx
+	leaq	.LC21(%rip), %rax
+	movq	%rax, %rdx
 	leaq	.LC48(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 1 149 192 discriminator 4
+	movl	$-1, %ebx
+	jmp	.L12
+.L89:
+	.loc 1 151 25
+	leaq	.LC49(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_ZL8assprintPKcz
-	.loc 1 150 24
+	.loc 1 153 24
 	movl	$0, %ebx
 	jmp	.L12
 .L20:
-	.loc 1 153 23
-	movl	$153, %r8d
+	.loc 1 156 23
+	movl	$156, %r8d
 	leaq	.LC21(%rip), %rax
 	movq	%rax, %rcx
-	movl	$153, %edx
+	movl	$156, %edx
 	leaq	.LC7(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC25(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 153 176 discriminator 1
+	.loc 1 156 176 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 153 182 discriminator 1
-	movl	$153, %r9d
+	.loc 1 156 182 discriminator 1
+	movl	$156, %r9d
 	leaq	.LC21(%rip), %r8
-	movl	$153, %ecx
+	movl	$156, %ecx
 	leaq	.LC7(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC26(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 154 23
-	leaq	.LC49(%rip), %rax
+	.loc 1 157 23
+	leaq	.LC50(%rip), %rax
 	movq	%rax, %rcx
-	movl	$154, %edx
+	movl	$157, %edx
 	leaq	.LC7(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC28(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 154 183 discriminator 1
+	.loc 1 157 183 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 154 189 discriminator 1
-	leaq	.LC49(%rip), %r8
-	movl	$154, %ecx
+	.loc 1 157 189 discriminator 1
+	leaq	.LC50(%rip), %r8
+	movl	$157, %ecx
 	leaq	.LC7(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC29(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 154 328 discriminator 3
+	.loc 1 157 328 discriminator 3
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
-	.loc 1 154 334 discriminator 3
-	leaq	.LC49(%rip), %rax
+	.loc 1 157 334 discriminator 3
+	leaq	.LC50(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 155 43
+	.loc 1 158 43
 	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 155 65
+	.loc 1 158 65
 	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 155 65 is_stmt 0 discriminator 1
+	.loc 1 158 65 is_stmt 0 discriminator 1
 	movq	%rax, %rbx
-	.loc 1 155 78 is_stmt 1 discriminator 1
-	movl	$155, %r9d
+	.loc 1 158 78 is_stmt 1 discriminator 1
+	movl	$158, %r9d
 	leaq	.LC21(%rip), %r8
-	movl	$155, %ecx
+	movl	$158, %ecx
 	leaq	.LC7(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC13(%rip), %rax
@@ -2367,12 +2414,12 @@ _ZL8AddToAsmPK5Token:
 	movl	$-1, %edi
 	movl	$0, %eax
 	call	_Z6MsgRetiPKcz@PLT
-	.loc 1 155 78 is_stmt 0 discriminator 2
+	.loc 1 158 78 is_stmt 0 discriminator 2
 	movl	%eax, %esi
 	subq	$8, %rsp
-	pushq	$155
+	pushq	$158
 	leaq	.LC21(%rip), %r9
-	movl	$155, %r8d
+	movl	$158, %r8d
 	leaq	.LC7(%rip), %rax
 	movq	%rax, %rcx
 	leaq	.LC14(%rip), %rax
@@ -2381,24 +2428,24 @@ _ZL8AddToAsmPK5Token:
 	movl	$0, %eax
 	.cfi_escape 0x2e,0x10
 	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
-	.loc 1 155 78 discriminator 3
+	.loc 1 158 78 discriminator 3
 	addq	$16, %rsp
 	movl	%eax, %ebx
-	.loc 1 155 263 is_stmt 1 discriminator 3
+	.loc 1 158 263 is_stmt 1 discriminator 3
 	jmp	.L12
 .L63:
 .LBE5:
 .LBE4:
-	.loc 1 158 16
+	.loc 1 161 16
 	movl	$0, %ebx
 	jmp	.L12
 .L16:
 .LBE3:
 .LBE2:
-	.loc 1 161 5
+	.loc 1 164 5
 	cmpq	$0, -184(%rbp)
-	je	.L88
-	.loc 1 161 30 discriminator 1
+	je	.L90
+	.loc 1 164 30 discriminator 1
 	movq	-184(%rbp), %rax
 	addq	$16, %rax
 	movq	%rax, %rdx
@@ -2412,18 +2459,18 @@ _ZL8AddToAsmPK5Token:
 	setle	%al
 	andl	%ecx, %eax
 	testb	%al, %al
-	je	.L89
-	.loc 1 161 30 is_stmt 0
+	je	.L91
+	.loc 1 164 30 is_stmt 0
 	movq	%rdx, %rdi
 	call	__asan_report_load4@PLT
-.L89:
-	.loc 1 161 30 discriminator 1
+.L91:
+	.loc 1 164 30 discriminator 1
 	movq	-184(%rbp), %rax
 	movl	16(%rax), %eax
-	.loc 1 161 49 is_stmt 1 discriminator 1
+	.loc 1 164 49 is_stmt 1 discriminator 1
 	cmpl	$61, %eax
-	jne	.L88
-	.loc 1 163 36
+	jne	.L90
+	.loc 1 166 36
 	movq	-184(%rbp), %rax
 	addq	$8, %rax
 	movq	%rax, %rdx
@@ -2431,90 +2478,52 @@ _ZL8AddToAsmPK5Token:
 	addq	$2147450880, %rdx
 	movzbl	(%rdx), %edx
 	testb	%dl, %dl
-	je	.L90
+	je	.L92
 	movq	%rax, %rdi
 	call	__asan_report_load8@PLT
-.L90:
+.L92:
 	movq	-184(%rbp), %rax
 	movq	8(%rax), %rax
-	.loc 1 163 28
+	.loc 1 166 28
 	movq	%rax, %rdi
 	.cfi_escape 0x2e,0
 	call	_ZL8AddToAsmPK5Token
-	.loc 1 163 49
+	.loc 1 166 49
 	testl	%eax, %eax
 	setne	%al
-	.loc 1 163 14
+	.loc 1 166 14
 	testb	%al, %al
-	je	.L91
-	.loc 1 163 82 discriminator 2
+	je	.L93
+	.loc 1 166 82 discriminator 2
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 163 88 discriminator 2
-	movl	$163, %ecx
+	.loc 1 166 88 discriminator 2
+	movl	$166, %ecx
 	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC50(%rip), %rax
+	leaq	.LC51(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 163 182 discriminator 4
+	.loc 1 166 182 discriminator 4
 	movl	$-1, %ebx
 	jmp	.L12
-.L91:
-	.loc 1 165 17
-	movl	$97, %esi
-	leaq	.LC51(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_ZL8assprintPKcz
-	.loc 1 166 17
-	leaq	.LC33(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_ZL8assprintPKcz
-	.loc 1 168 16
-	movl	$0, %ebx
-	jmp	.L12
-.L88:
-	.loc 1 172 5
-	cmpq	$0, -184(%rbp)
-	je	.L92
-	.loc 1 172 30 discriminator 1
-	movq	-184(%rbp), %rax
-	addq	$16, %rax
-	movq	%rax, %rdx
-	movq	%rdx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%cl
-	cmpb	$3, %al
-	setle	%al
-	andl	%ecx, %eax
-	testb	%al, %al
-	je	.L93
-	.loc 1 172 30 is_stmt 0
-	movq	%rdx, %rdi
-	call	__asan_report_load4@PLT
 .L93:
-	.loc 1 172 30 discriminator 1
-	movq	-184(%rbp), %rax
-	movl	16(%rax), %eax
-	.loc 1 172 49 is_stmt 1 discriminator 1
-	cmpl	$64, %eax
-	jne	.L92
-	.loc 1 173 24
+	.loc 1 168 17
 	movl	$97, %esi
 	leaq	.LC52(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_ZL8assprintPKcz
-	.loc 1 173 54 discriminator 1
+	.loc 1 169 17
+	leaq	.LC33(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_ZL8assprintPKcz
+	.loc 1 171 16
 	movl	$0, %ebx
 	jmp	.L12
-.L92:
+.L90:
 	.loc 1 175 5
 	cmpq	$0, -184(%rbp)
 	je	.L94
@@ -2541,275 +2550,22 @@ _ZL8AddToAsmPK5Token:
 	movq	-184(%rbp), %rax
 	movl	16(%rax), %eax
 	.loc 1 175 49 is_stmt 1 discriminator 1
-	cmpl	$62, %eax
+	cmpl	$64, %eax
 	jne	.L94
-	.loc 1 177 30
-	movq	-184(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdx
-	movq	%rdx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%cl
-	testb	%al, %al
-	setle	%al
-	andl	%ecx, %eax
-	testb	%al, %al
-	je	.L96
-	movq	%rdx, %rdi
-	call	__asan_report_load1@PLT
-.L96:
-	movq	-184(%rbp), %rax
-	movzbl	24(%rax), %eax
-	movsbl	%al, %eax
-	.loc 1 177 9
-	subl	$42, %eax
-	cmpl	$52, %eax
-	seta	%dl
-	testb	%dl, %dl
-	jne	.L97
-	movabsq	$4503599627370539, %rdx
-	movl	%eax, %ecx
-	shrq	%cl, %rdx
-	movq	%rdx, %rax
-	andl	$1, %eax
-	testq	%rax, %rax
-	setne	%al
-	testb	%al, %al
-	je	.L97
-	.loc 1 185 44
-	movq	-184(%rbp), %rax
-	addq	$8, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L98
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L98:
-	movq	-184(%rbp), %rax
-	movq	8(%rax), %rax
-	.loc 1 185 36
-	movq	%rax, %rdi
-	call	_ZL8AddToAsmPK5Token
-	.loc 1 185 57
-	testl	%eax, %eax
-	setne	%al
-	.loc 1 185 22
-	testb	%al, %al
-	je	.L99
-	.loc 1 185 90 discriminator 2
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 185 96 discriminator 2
-	movl	$185, %ecx
-	leaq	.LC21(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC50(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 185 190 discriminator 4
-	movl	$-1, %ebx
-	jmp	.L12
-.L99:
-	.loc 1 186 45
-	movq	-184(%rbp), %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L100
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L100:
-	movq	-184(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 186 36
-	movq	%rax, %rdi
-	call	_ZL8AddToAsmPK5Token
-	.loc 1 186 57
-	testl	%eax, %eax
-	setne	%al
-	.loc 1 186 22
-	testb	%al, %al
-	je	.L101
-	.loc 1 186 90 discriminator 2
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 186 96 discriminator 2
-	movl	$186, %ecx
-	leaq	.LC21(%rip), %rax
-	movq	%rax, %rdx
+	.loc 1 176 24
+	movl	$97, %esi
 	leaq	.LC53(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 186 190 discriminator 4
-	movl	$-1, %ebx
-	jmp	.L12
-.L101:
-	.loc 1 187 38
-	movq	-184(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdx
-	movq	%rdx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%cl
-	testb	%al, %al
-	setle	%al
-	andl	%ecx, %eax
-	testb	%al, %al
-	je	.L102
-	movq	%rdx, %rdi
-	call	__asan_report_load1@PLT
-.L102:
-	movq	-184(%rbp), %rax
-	movzbl	24(%rax), %eax
-	movsbl	%al, %eax
-	cmpl	$94, %eax
-	je	.L103
-	cmpl	$94, %eax
-	jg	.L121
-	cmpl	$47, %eax
-	je	.L105
-	cmpl	$47, %eax
-	jg	.L121
-	cmpl	$45, %eax
-	je	.L106
-	cmpl	$45, %eax
-	jg	.L121
-	cmpl	$42, %eax
-	je	.L107
-	cmpl	$43, %eax
-	jne	.L121
-	.loc 1 187 70
-	leaq	.LC54(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_ZL8assprintPKcz
-	.loc 1 187 81
-	jmp	.L108
-.L106:
-	.loc 1 187 106
-	leaq	.LC55(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_ZL8assprintPKcz
-	.loc 1 187 117
-	jmp	.L108
-.L105:
-	.loc 1 187 142
-	leaq	.LC56(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_ZL8assprintPKcz
-	.loc 1 187 153
-	jmp	.L108
-.L107:
-	.loc 1 187 178
-	leaq	.LC57(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_ZL8assprintPKcz
-	.loc 1 187 189
-	jmp	.L108
-.L103:
-	.loc 1 187 214
-	leaq	.LC58(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_ZL8assprintPKcz
-	.loc 1 187 225
-	jmp	.L108
-.L121:
-	.loc 1 187 241
-	nop
-.L108:
-	.loc 1 189 24
+	.loc 1 176 54 discriminator 1
 	movl	$0, %ebx
 	jmp	.L12
-.L97:
-	.loc 1 192 60
-	movq	-184(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdx
-	movq	%rdx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%cl
-	testb	%al, %al
-	setle	%al
-	andl	%ecx, %eax
-	testb	%al, %al
-	je	.L109
-	movq	%rdx, %rdi
-	call	__asan_report_load1@PLT
-.L109:
-	movq	-184(%rbp), %rax
-	movzbl	24(%rax), %eax
-	.loc 1 192 23
-	movsbl	%al, %eax
-	movl	%eax, %esi
-	leaq	.LC59(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 193 27
-	movq	-184(%rbp), %rax
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5Token@PLT
-	.loc 1 195 43
-	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 195 65
-	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 195 65 is_stmt 0 discriminator 1
-	movq	%rax, %rbx
-	.loc 1 195 78 is_stmt 1 discriminator 1
-	movl	$195, %r9d
-	leaq	.LC21(%rip), %r8
-	movl	$195, %ecx
-	leaq	.LC7(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	movl	$-1, %edi
-	movl	$0, %eax
-	call	_Z6MsgRetiPKcz@PLT
-	.loc 1 195 78 is_stmt 0 discriminator 2
-	movl	%eax, %esi
-	subq	$8, %rsp
-	pushq	$195
-	leaq	.LC21(%rip), %r9
-	movl	$195, %r8d
-	leaq	.LC7(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC14(%rip), %rax
-	movq	%rax, %rdx
-	movq	%rbx, %rdi
-	movl	$0, %eax
-	.cfi_escape 0x2e,0x10
-	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
-	.loc 1 195 78 discriminator 3
-	addq	$16, %rsp
-	movl	%eax, %ebx
-	.loc 1 195 263 is_stmt 1 discriminator 3
-	jmp	.L12
 .L94:
-	.loc 1 199 5
+	.loc 1 178 5
 	cmpq	$0, -184(%rbp)
-	je	.L110
-	.loc 1 199 30 discriminator 1
+	je	.L96
+	.loc 1 178 30 discriminator 1
 	movq	-184(%rbp), %rax
 	addq	$16, %rax
 	movq	%rax, %rdx
@@ -2823,58 +2579,310 @@ _ZL8AddToAsmPK5Token:
 	setle	%al
 	andl	%ecx, %eax
 	testb	%al, %al
-	je	.L111
-	.loc 1 199 30 is_stmt 0
+	je	.L97
+	.loc 1 178 30 is_stmt 0
 	movq	%rdx, %rdi
 	call	__asan_report_load4@PLT
-.L111:
-	.loc 1 199 30 discriminator 1
+.L97:
+	.loc 1 178 30 discriminator 1
 	movq	-184(%rbp), %rax
 	movl	16(%rax), %eax
-	.loc 1 199 49 is_stmt 1 discriminator 1
+	.loc 1 178 49 is_stmt 1 discriminator 1
+	cmpl	$62, %eax
+	jne	.L96
+	.loc 1 180 30
+	movq	-184(%rbp), %rax
+	addq	$24, %rax
+	movq	%rax, %rdx
+	movq	%rdx, %rax
+	shrq	$3, %rax
+	addq	$2147450880, %rax
+	movzbl	(%rax), %eax
+	testb	%al, %al
+	setne	%cl
+	testb	%al, %al
+	setle	%al
+	andl	%ecx, %eax
+	testb	%al, %al
+	je	.L98
+	movq	%rdx, %rdi
+	call	__asan_report_load1@PLT
+.L98:
+	movq	-184(%rbp), %rax
+	movzbl	24(%rax), %eax
+	movsbl	%al, %eax
+	.loc 1 180 9
+	subl	$42, %eax
+	cmpl	$52, %eax
+	seta	%dl
+	testb	%dl, %dl
+	jne	.L99
+	movabsq	$4503599627370539, %rdx
+	movl	%eax, %ecx
+	shrq	%cl, %rdx
+	movq	%rdx, %rax
+	andl	$1, %eax
+	testq	%rax, %rax
+	setne	%al
+	testb	%al, %al
+	je	.L99
+	.loc 1 188 44
+	movq	-184(%rbp), %rax
+	addq	$8, %rax
+	movq	%rax, %rdx
+	shrq	$3, %rdx
+	addq	$2147450880, %rdx
+	movzbl	(%rdx), %edx
+	testb	%dl, %dl
+	je	.L100
+	movq	%rax, %rdi
+	call	__asan_report_load8@PLT
+.L100:
+	movq	-184(%rbp), %rax
+	movq	8(%rax), %rax
+	.loc 1 188 36
+	movq	%rax, %rdi
+	call	_ZL8AddToAsmPK5Token
+	.loc 1 188 57
 	testl	%eax, %eax
-	jne	.L110
-	.loc 1 201 37
+	setne	%al
+	.loc 1 188 22
+	testb	%al, %al
+	je	.L101
+	.loc 1 188 90 discriminator 2
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 1 188 96 discriminator 2
+	movl	$188, %ecx
+	leaq	.LC21(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC51(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 1 188 190 discriminator 4
+	movl	$-1, %ebx
+	jmp	.L12
+.L101:
+	.loc 1 189 45
 	movq	-184(%rbp), %rax
 	movq	%rax, %rdx
 	shrq	$3, %rdx
 	addq	$2147450880, %rdx
 	movzbl	(%rdx), %edx
 	testb	%dl, %dl
-	je	.L112
+	je	.L102
 	movq	%rax, %rdi
 	call	__asan_report_load8@PLT
-.L112:
+.L102:
 	movq	-184(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 201 28
+	.loc 1 189 36
 	movq	%rax, %rdi
-	.cfi_escape 0x2e,0
 	call	_ZL8AddToAsmPK5Token
-	.loc 1 201 49
+	.loc 1 189 57
 	testl	%eax, %eax
 	setne	%al
-	.loc 1 201 14
+	.loc 1 189 22
 	testb	%al, %al
-	je	.L113
-	.loc 1 201 82 discriminator 2
+	je	.L103
+	.loc 1 189 90 discriminator 2
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 201 88 discriminator 2
-	movl	$201, %ecx
+	.loc 1 189 96 discriminator 2
+	movl	$189, %ecx
 	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC53(%rip), %rax
+	leaq	.LC54(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 201 182 discriminator 4
+	.loc 1 189 190 discriminator 4
 	movl	$-1, %ebx
 	jmp	.L12
-.L113:
-	.loc 1 203 20
+.L103:
+	.loc 1 190 38
 	movq	-184(%rbp), %rax
-	addq	$8, %rax
+	addq	$24, %rax
+	movq	%rax, %rdx
+	movq	%rdx, %rax
+	shrq	$3, %rax
+	addq	$2147450880, %rax
+	movzbl	(%rax), %eax
+	testb	%al, %al
+	setne	%cl
+	testb	%al, %al
+	setle	%al
+	andl	%ecx, %eax
+	testb	%al, %al
+	je	.L104
+	movq	%rdx, %rdi
+	call	__asan_report_load1@PLT
+.L104:
+	movq	-184(%rbp), %rax
+	movzbl	24(%rax), %eax
+	movsbl	%al, %eax
+	cmpl	$94, %eax
+	je	.L105
+	cmpl	$94, %eax
+	jg	.L123
+	cmpl	$47, %eax
+	je	.L107
+	cmpl	$47, %eax
+	jg	.L123
+	cmpl	$45, %eax
+	je	.L108
+	cmpl	$45, %eax
+	jg	.L123
+	cmpl	$42, %eax
+	je	.L109
+	cmpl	$43, %eax
+	jne	.L123
+	.loc 1 190 70
+	leaq	.LC55(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_ZL8assprintPKcz
+	.loc 1 190 81
+	jmp	.L110
+.L108:
+	.loc 1 190 106
+	leaq	.LC56(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_ZL8assprintPKcz
+	.loc 1 190 117
+	jmp	.L110
+.L107:
+	.loc 1 190 142
+	leaq	.LC57(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_ZL8assprintPKcz
+	.loc 1 190 154
+	jmp	.L110
+.L109:
+	.loc 1 190 179
+	leaq	.LC58(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_ZL8assprintPKcz
+	.loc 1 190 191
+	jmp	.L110
+.L105:
+	.loc 1 190 216
+	leaq	.LC59(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_ZL8assprintPKcz
+	.loc 1 190 227
+	jmp	.L110
+.L123:
+	.loc 1 190 243
+	nop
+.L110:
+	.loc 1 192 24
+	movl	$0, %ebx
+	jmp	.L12
+.L99:
+	.loc 1 195 60
+	movq	-184(%rbp), %rax
+	addq	$24, %rax
+	movq	%rax, %rdx
+	movq	%rdx, %rax
+	shrq	$3, %rax
+	addq	$2147450880, %rax
+	movzbl	(%rax), %eax
+	testb	%al, %al
+	setne	%cl
+	testb	%al, %al
+	setle	%al
+	andl	%ecx, %eax
+	testb	%al, %al
+	je	.L111
+	movq	%rdx, %rdi
+	call	__asan_report_load1@PLT
+.L111:
+	movq	-184(%rbp), %rax
+	movzbl	24(%rax), %eax
+	.loc 1 195 23
+	movsbl	%al, %eax
+	movl	%eax, %esi
+	leaq	.LC60(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 1 196 27
+	movq	-184(%rbp), %rax
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5Token@PLT
+	.loc 1 198 43
+	call	_ZN6Logger11getInstanceEv@PLT
+	.loc 1 198 65
+	call	_ZN6Logger11getInstanceEv@PLT
+	.loc 1 198 65 is_stmt 0 discriminator 1
+	movq	%rax, %rbx
+	.loc 1 198 78 is_stmt 1 discriminator 1
+	movl	$198, %r9d
+	leaq	.LC21(%rip), %r8
+	movl	$198, %ecx
+	leaq	.LC7(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC13(%rip), %rax
+	movq	%rax, %rsi
+	movl	$-1, %edi
+	movl	$0, %eax
+	call	_Z6MsgRetiPKcz@PLT
+	.loc 1 198 78 is_stmt 0 discriminator 2
+	movl	%eax, %esi
+	subq	$8, %rsp
+	pushq	$198
+	leaq	.LC21(%rip), %r9
+	movl	$198, %r8d
+	leaq	.LC7(%rip), %rax
+	movq	%rax, %rcx
+	leaq	.LC14(%rip), %rax
+	movq	%rax, %rdx
+	movq	%rbx, %rdi
+	movl	$0, %eax
+	.cfi_escape 0x2e,0x10
+	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
+	.loc 1 198 78 discriminator 3
+	addq	$16, %rsp
+	movl	%eax, %ebx
+	.loc 1 198 263 is_stmt 1 discriminator 3
+	jmp	.L12
+.L96:
+	.loc 1 202 5
+	cmpq	$0, -184(%rbp)
+	je	.L112
+	.loc 1 202 30 discriminator 1
+	movq	-184(%rbp), %rax
+	addq	$16, %rax
+	movq	%rax, %rdx
+	movq	%rdx, %rax
+	shrq	$3, %rax
+	addq	$2147450880, %rax
+	movzbl	(%rax), %eax
+	testb	%al, %al
+	setne	%cl
+	cmpb	$3, %al
+	setle	%al
+	andl	%ecx, %eax
+	testb	%al, %al
+	je	.L113
+	.loc 1 202 30 is_stmt 0
+	movq	%rdx, %rdi
+	call	__asan_report_load4@PLT
+.L113:
+	.loc 1 202 30 discriminator 1
+	movq	-184(%rbp), %rax
+	movl	16(%rax), %eax
+	.loc 1 202 49 is_stmt 1 discriminator 1
+	testl	%eax, %eax
+	jne	.L112
+	.loc 1 204 37
+	movq	-184(%rbp), %rax
 	movq	%rax, %rdx
 	shrq	$3, %rdx
 	addq	$2147450880, %rdx
@@ -2885,79 +2893,118 @@ _ZL8AddToAsmPK5Token:
 	call	__asan_report_load8@PLT
 .L114:
 	movq	-184(%rbp), %rax
-	movq	8(%rax), %rax
-	.loc 1 203 9
-	testq	%rax, %rax
-	je	.L115
-	.loc 1 204 41
-	movq	-184(%rbp), %rax
-	movq	8(%rax), %rax
-	.loc 1 204 33
+	movq	(%rax), %rax
+	.loc 1 204 28
 	movq	%rax, %rdi
+	.cfi_escape 0x2e,0
 	call	_ZL8AddToAsmPK5Token
-	.loc 1 204 54
+	.loc 1 204 49
 	testl	%eax, %eax
 	setne	%al
-	.loc 1 204 19
+	.loc 1 204 14
 	testb	%al, %al
 	je	.L115
-	.loc 1 204 87 discriminator 2
+	.loc 1 204 82 discriminator 2
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 204 93 discriminator 2
+	.loc 1 204 88 discriminator 2
 	movl	$204, %ecx
 	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC50(%rip), %rax
+	leaq	.LC54(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 204 187 discriminator 4
+	.loc 1 204 182 discriminator 4
 	movl	$-1, %ebx
 	jmp	.L12
 .L115:
-	.loc 1 206 16
+	.loc 1 206 20
+	movq	-184(%rbp), %rax
+	addq	$8, %rax
+	movq	%rax, %rdx
+	shrq	$3, %rdx
+	addq	$2147450880, %rdx
+	movzbl	(%rdx), %edx
+	testb	%dl, %dl
+	je	.L116
+	movq	%rax, %rdi
+	call	__asan_report_load8@PLT
+.L116:
+	movq	-184(%rbp), %rax
+	movq	8(%rax), %rax
+	.loc 1 206 9
+	testq	%rax, %rax
+	je	.L117
+	.loc 1 207 41
+	movq	-184(%rbp), %rax
+	movq	8(%rax), %rax
+	.loc 1 207 33
+	movq	%rax, %rdi
+	call	_ZL8AddToAsmPK5Token
+	.loc 1 207 54
+	testl	%eax, %eax
+	setne	%al
+	.loc 1 207 19
+	testb	%al, %al
+	je	.L117
+	.loc 1 207 87 discriminator 2
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 1 207 93 discriminator 2
+	movl	$207, %ecx
+	leaq	.LC21(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC51(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 1 207 187 discriminator 4
+	movl	$-1, %ebx
+	jmp	.L12
+.L117:
+	.loc 1 209 16
 	movl	$0, %ebx
 	jmp	.L12
-.L110:
-	.loc 1 209 11
-	movl	$209, %r8d
+.L112:
+	.loc 1 212 11
+	movl	$212, %r8d
 	leaq	.LC21(%rip), %rax
 	movq	%rax, %rcx
-	movl	$209, %edx
+	movl	$212, %edx
 	leaq	.LC7(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC25(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 209 164 discriminator 1
+	.loc 1 212 164 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 209 170 discriminator 1
-	movl	$209, %r9d
+	.loc 1 212 170 discriminator 1
+	movl	$212, %r9d
 	leaq	.LC21(%rip), %r8
-	movl	$209, %ecx
+	movl	$212, %ecx
 	leaq	.LC7(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC26(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 210 15
+	.loc 1 213 15
 	movq	-184(%rbp), %rax
 	movq	%rax, %rdi
 	call	_Z10PrintTokenPK5Token@PLT
-	.loc 1 212 31
+	.loc 1 215 31
 	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 212 53
+	.loc 1 215 53
 	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 212 53 is_stmt 0 discriminator 1
+	.loc 1 215 53 is_stmt 0 discriminator 1
 	movq	%rax, %rbx
-	.loc 1 212 66 is_stmt 1 discriminator 1
-	movl	$212, %r9d
+	.loc 1 215 66 is_stmt 1 discriminator 1
+	movl	$215, %r9d
 	leaq	.LC21(%rip), %r8
-	movl	$212, %ecx
+	movl	$215, %ecx
 	leaq	.LC7(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC13(%rip), %rax
@@ -2965,12 +3012,12 @@ _ZL8AddToAsmPK5Token:
 	movl	$-1, %edi
 	movl	$0, %eax
 	call	_Z6MsgRetiPKcz@PLT
-	.loc 1 212 66 is_stmt 0 discriminator 2
+	.loc 1 215 66 is_stmt 0 discriminator 2
 	movl	%eax, %esi
 	subq	$8, %rsp
-	pushq	$212
+	pushq	$215
 	leaq	.LC21(%rip), %r9
-	movl	$212, %r8d
+	movl	$215, %r8d
 	leaq	.LC7(%rip), %rax
 	movq	%rax, %rcx
 	leaq	.LC14(%rip), %rax
@@ -2980,13 +3027,13 @@ _ZL8AddToAsmPK5Token:
 	.cfi_escape 0x2e,0x10
 	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
 .LEHE1:
-	.loc 1 212 66 discriminator 3
+	.loc 1 215 66 discriminator 3
 	addq	$16, %rsp
 	movl	%eax, %ebx
-	.loc 1 212 251 is_stmt 1 discriminator 3
+	.loc 1 215 251 is_stmt 1 discriminator 3
 	nop
 .L12:
-	.loc 1 213 5
+	.loc 1 216 5
 	leaq	-64(%r14), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
@@ -2994,10 +3041,10 @@ _ZL8AddToAsmPK5Token:
 	.loc 1 66 5
 	cmpq	%r12, %r15
 	je	.L8
-	jmp	.L120
-.L118:
+	jmp	.L122
+.L120:
 	endbr64
-	.loc 1 213 5
+	.loc 1 216 5
 	movq	%rax, %rbx
 	leaq	-64(%r14), %rax
 	movq	%rax, %rdi
@@ -3007,7 +3054,7 @@ _ZL8AddToAsmPK5Token:
 .LEHB2:
 	call	_Unwind_Resume@PLT
 .LEHE2:
-.L120:
+.L122:
 	.loc 1 66 5
 	movq	$1172321806, (%r12)
 	movabsq	$-723401728380766731, %rax
@@ -3020,7 +3067,7 @@ _ZL8AddToAsmPK5Token:
 	movq	$0, 2147450880(%r13)
 	movl	$0, 2147450888(%r13)
 .L9:
-	.loc 1 213 5
+	.loc 1 216 5
 	movl	%edx, %eax
 	leaq	-40(%rbp), %rsp
 	popq	%rbx
@@ -3047,7 +3094,7 @@ _ZL8AddToAsmPK5Token:
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB2866
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L118-.LFB2866
+	.uleb128 .L120-.LFB2866
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB2866
 	.uleb128 .LEHE2-.LEHB2
@@ -3057,14 +3104,14 @@ _ZL8AddToAsmPK5Token:
 	.text
 	.size	_ZL8AddToAsmPK5Token, .-_ZL8AddToAsmPK5Token
 	.section	.rodata
-.LC60:
-	.string	"1 32 24 7 ptr:217"
+.LC61:
+	.string	"1 32 24 7 ptr:220"
 	.text
 	.type	_ZL8assprintPKcz, @function
 _ZL8assprintPKcz:
 .LASANPC2867:
 .LFB2867:
-	.loc 1 216 5
+	.loc 1 219 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -3086,7 +3133,7 @@ _ZL8assprintPKcz:
 	movq	%r8, -176(%rbp)
 	movq	%r9, -168(%rbp)
 	testb	%al, %al
-	je	.L126
+	je	.L128
 	movaps	%xmm0, -160(%rbp)
 	movaps	%xmm1, -144(%rbp)
 	movaps	%xmm2, -128(%rbp)
@@ -3095,20 +3142,20 @@ _ZL8assprintPKcz:
 	movaps	%xmm5, -80(%rbp)
 	movaps	%xmm6, -64(%rbp)
 	movaps	%xmm7, -48(%rbp)
-.L126:
+.L128:
 	leaq	-304(%rbp), %rbx
 	movq	%rbx, %r13
 	cmpl	$0, __asan_option_detect_stack_use_after_return(%rip)
-	je	.L122
+	je	.L124
 	movl	$96, %edi
 	call	__asan_stack_malloc_1@PLT
 	testq	%rax, %rax
-	je	.L122
+	je	.L124
 	movq	%rax, %rbx
-.L122:
+.L124:
 	leaq	96(%rbx), %rax
 	movq	$1102416563, (%rbx)
-	leaq	.LC60(%rip), %rdx
+	leaq	.LC61(%rip), %rdx
 	movq	%rdx, 8(%rbx)
 	leaq	.LASANPC2867(%rip), %rdx
 	movq	%rdx, 16(%rbx)
@@ -3117,37 +3164,37 @@ _ZL8assprintPKcz:
 	movl	$-235802127, 2147450880(%r12)
 	movl	$-218103808, 2147450884(%r12)
 	movl	$-202116109, 2147450888(%r12)
-	.loc 1 218 22
+	.loc 1 221 22
 	movl	$8, -64(%rax)
 	movl	$48, -60(%rax)
 	leaq	16(%rbp), %rsi
 	movq	%rsi, -56(%rax)
 	leaq	-208(%rbp), %rcx
 	movq	%rcx, -48(%rax)
-	.loc 1 220 14
+	.loc 1 223 14
 	movq	_ZL8ASM_FILE(%rip), %rcx
 	leaq	-64(%rax), %rdx
 	movq	-312(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	call	vfprintf@PLT
-	.loc 1 224 5
+	.loc 1 227 5
 	nop
-	.loc 1 216 5
+	.loc 1 219 5
 	cmpq	%rbx, %r13
-	je	.L123
+	je	.L125
 	movq	$1172321806, (%rbx)
 	movabsq	$-723401728380766731, %rax
 	movq	%rax, 2147450880(%r12)
 	movl	$-168430091, 2147450888(%r12)
 	movq	120(%rbx), %rax
 	movb	$0, (%rax)
-	jmp	.L124
-.L123:
+	jmp	.L126
+.L125:
 	movq	$0, 2147450880(%r12)
 	movl	$0, 2147450888(%r12)
-.L124:
-	.loc 1 225 5
+.L126:
+	.loc 1 228 5
 	addq	$296, %rsp
 	popq	%rbx
 	popq	%r12
@@ -3160,22 +3207,22 @@ _ZL8assprintPKcz:
 	.size	_ZL8assprintPKcz, .-_ZL8assprintPKcz
 	.globl	__asan_stack_malloc_0
 	.section	.rodata
-.LC61:
+.LC62:
 	.string	"1 32 8 11 NewYorkTime"
 	.align 32
-.LC62:
+.LC63:
 	.string	"wb"
 	.zero	61
 	.align 32
-.LC63:
+.LC64:
 	.string	"Couldn't create ASM_FILE %s"
 	.zero	36
 	.align 32
-.LC64:
+.LC65:
 	.string	"OpenAsmFile"
 	.zero	52
 	.align 32
-.LC65:
+.LC66:
 	.string	";%s\n"
 	.zero	59
 	.text
@@ -3183,7 +3230,7 @@ _ZL8assprintPKcz:
 _ZL11OpenAsmFilePKc:
 .LASANPC2868:
 .LFB2868:
-	.loc 1 228 5
+	.loc 1 231 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -3204,17 +3251,17 @@ _ZL11OpenAsmFilePKc:
 	leaq	-96(%rbp), %rbx
 	movq	%rbx, %r14
 	cmpl	$0, __asan_option_detect_stack_use_after_return(%rip)
-	je	.L128
+	je	.L130
 	movl	$64, %edi
 	call	__asan_stack_malloc_0@PLT
 	testq	%rax, %rax
-	je	.L128
+	je	.L130
 	movq	%rax, %rbx
-.L128:
+.L130:
 	leaq	64(%rbx), %rax
 	movq	%rax, %r13
 	movq	$1102416563, (%rbx)
-	leaq	.LC61(%rip), %rax
+	leaq	.LC62(%rip), %rax
 	movq	%rax, 8(%rbx)
 	leaq	.LASANPC2868(%rip), %rax
 	movq	%rax, 16(%rbx)
@@ -3222,53 +3269,53 @@ _ZL11OpenAsmFilePKc:
 	shrq	$3, %r12
 	movl	$-235802127, 2147450880(%r12)
 	movl	$-202116352, 2147450884(%r12)
-	.loc 1 229 5
+	.loc 1 232 5
 	cmpq	$0, -104(%rbp)
-	jne	.L132
-	.loc 1 229 23 discriminator 1
+	jne	.L134
+	.loc 1 232 23 discriminator 1
 	movl	$0, %eax
-	jmp	.L136
-.L132:
-	.loc 1 231 22
+	jmp	.L138
+.L134:
+	.loc 1 234 22
 	movq	-104(%rbp), %rax
-	leaq	.LC62(%rip), %rdx
+	leaq	.LC63(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	fopen@PLT
-	.loc 1 231 14
+	.loc 1 234 14
 	movq	%rax, _ZL8ASM_FILE(%rip)
-	.loc 1 232 9
+	.loc 1 235 9
 	movq	_ZL8ASM_FILE(%rip), %rax
-	.loc 1 232 5
+	.loc 1 235 5
 	testq	%rax, %rax
-	jne	.L134
-	.loc 1 234 30
+	jne	.L136
+	.loc 1 237 30
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 234 36
+	.loc 1 237 36
 	movq	-104(%rbp), %rax
 	movq	%rax, %rdx
-	leaq	.LC63(%rip), %rax
+	leaq	.LC64(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 235 15
+	.loc 1 238 15
 	movq	-104(%rbp), %rax
 	movq	%rax, %rsi
-	leaq	.LC63(%rip), %rax
+	leaq	.LC64(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 236 35
+	.loc 1 239 35
 	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 236 57
+	.loc 1 239 57
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %r13
-	.loc 1 236 70
-	movl	$236, %r9d
-	leaq	.LC64(%rip), %r8
-	movl	$236, %ecx
+	.loc 1 239 70
+	movl	$239, %r9d
+	leaq	.LC65(%rip), %r8
+	movl	$239, %ecx
 	leaq	.LC7(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC13(%rip), %rax
@@ -3278,9 +3325,9 @@ _ZL11OpenAsmFilePKc:
 	call	_Z6MsgRetiPKcz@PLT
 	movl	%eax, %esi
 	subq	$8, %rsp
-	pushq	$236
-	leaq	.LC64(%rip), %r9
-	movl	$236, %r8d
+	pushq	$239
+	leaq	.LC65(%rip), %r9
+	movl	$239, %r8d
 	leaq	.LC7(%rip), %rax
 	movq	%rax, %rcx
 	leaq	.LC14(%rip), %rax
@@ -3289,66 +3336,66 @@ _ZL11OpenAsmFilePKc:
 	movl	$0, %eax
 	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
 	addq	$16, %rsp
-	.loc 1 236 255
-	jmp	.L136
-.L134:
-	.loc 1 239 30
+	.loc 1 239 255
+	jmp	.L138
+.L136:
+	.loc 1 242 30
 	movl	$0, %edi
 	call	time@PLT
-	.loc 1 239 34
+	.loc 1 242 34
 	leaq	-32(%r13), %rdx
 	movq	%rdx, %rcx
 	shrq	$3, %rcx
 	addq	$2147450880, %rcx
 	movzbl	(%rcx), %ecx
 	testb	%cl, %cl
-	je	.L135
+	je	.L137
 	movq	%rdx, %rdi
 	call	__asan_report_store8@PLT
-.L135:
+.L137:
 	movq	%rax, -32(%r13)
-	.loc 1 240 14
+	.loc 1 243 14
 	leaq	-32(%r13), %rax
 	movq	%rax, %rdi
 	call	ctime@PLT
 	movq	%rax, %rsi
-	leaq	.LC65(%rip), %rax
+	leaq	.LC66(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_ZL8assprintPKcz
-	.loc 1 242 31
+	.loc 1 245 31
 	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 242 53
+	.loc 1 245 53
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 242 66
-	movl	$242, %r8d
-	leaq	.LC64(%rip), %rax
+	.loc 1 245 66
+	movl	$245, %r8d
+	leaq	.LC65(%rip), %rax
 	movq	%rax, %rcx
 	leaq	.LC19(%rip), %rax
 	movq	%rax, %rdx
 	movl	$0, %esi
 	movl	$0, %eax
 	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
-	.loc 1 242 117
+	.loc 1 245 117
 	nop
-.L136:
-	.loc 1 243 5 discriminator 1
+.L138:
+	.loc 1 246 5 discriminator 1
 	movl	%eax, %edx
-	.loc 1 228 5 discriminator 1
+	.loc 1 231 5 discriminator 1
 	cmpq	%rbx, %r14
-	je	.L129
-	.loc 1 228 5 is_stmt 0
+	je	.L131
+	.loc 1 231 5 is_stmt 0
 	movq	$1172321806, (%rbx)
 	movabsq	$-723401728380766731, %rax
 	movq	%rax, 2147450880(%r12)
 	movq	56(%rbx), %rax
 	movb	$0, (%rax)
-	jmp	.L130
-.L129:
+	jmp	.L132
+.L131:
 	movq	$0, 2147450880(%r12)
-.L130:
-	.loc 1 243 5 is_stmt 1
+.L132:
+	.loc 1 246 5 is_stmt 1
 	movl	%edx, %eax
 	leaq	-32(%rbp), %rsp
 	popq	%rbx
@@ -3363,11 +3410,11 @@ _ZL11OpenAsmFilePKc:
 	.size	_ZL11OpenAsmFilePKc, .-_ZL11OpenAsmFilePKc
 	.section	.rodata
 	.align 32
-.LC66:
+.LC67:
 	.string	"hlt\n"
 	.zero	59
 	.align 32
-.LC67:
+.LC68:
 	.string	";end {document}\n"
 	.zero	47
 	.text
@@ -3375,7 +3422,7 @@ _ZL11OpenAsmFilePKc:
 _ZL12CloseAsmFilev:
 .LASANPC2869:
 .LFB2869:
-	.loc 1 246 5
+	.loc 1 249 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -3383,38 +3430,38 @@ _ZL12CloseAsmFilev:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	.loc 1 247 9
+	.loc 1 250 9
 	movq	_ZL8ASM_FILE(%rip), %rax
-	.loc 1 247 5
+	.loc 1 250 5
 	testq	%rax, %rax
-	je	.L140
-	.loc 1 250 13
-	leaq	.LC66(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_ZL8assprintPKcz
-	.loc 1 251 13
+	je	.L142
+	.loc 1 253 13
 	leaq	.LC67(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_ZL8assprintPKcz
-	.loc 1 252 12
+	.loc 1 254 13
+	leaq	.LC68(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_ZL8assprintPKcz
+	.loc 1 255 12
 	movq	_ZL8ASM_FILE(%rip), %rax
 	movq	%rax, %rdi
 	call	fflush@PLT
-	.loc 1 254 12
+	.loc 1 257 12
 	movq	_ZL8ASM_FILE(%rip), %rax
 	movq	%rax, %rdi
 	call	fclose@PLT
-	.loc 1 256 14
+	.loc 1 259 14
 	movq	$0, _ZL8ASM_FILE(%rip)
-	.loc 1 258 5
-	jmp	.L137
-.L140:
-	.loc 1 248 9
+	.loc 1 261 5
+	jmp	.L139
+.L142:
+	.loc 1 251 9
 	nop
-.L137:
-	.loc 1 259 5
+.L139:
+	.loc 1 262 5
 	popq	%rbp
 	.cfi_def_cfa 7, 8
 	ret
@@ -3455,7 +3502,7 @@ _ZSt5floorIiEN9__gnu_cxx11__enable_ifIXsrSt12__is_integerIT_E7__valueEdE6__typeE
 _Z41__static_initialization_and_destruction_0ii:
 .LASANPC3654:
 .LFB3654:
-	.loc 1 259 5
+	.loc 1 262 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -3466,15 +3513,15 @@ _Z41__static_initialization_and_destruction_0ii:
 	subq	$16, %rsp
 	movl	%edi, -4(%rbp)
 	movl	%esi, -8(%rbp)
-	.loc 1 259 5
+	.loc 1 262 5
 	cmpl	$1, -4(%rbp)
-	jne	.L146
-	.loc 1 259 5 is_stmt 0 discriminator 1
+	jne	.L148
+	.loc 1 262 5 is_stmt 0 discriminator 1
 	leaq	.LC7(%rip), %rax
 	movq	%rax, %rdi
 	call	__asan_before_dynamic_init@PLT
 	cmpl	$65535, -8(%rbp)
-	jne	.L145
+	jne	.L147
 	.file 3 "/usr/include/c++/11/iostream"
 	.loc 3 74 25 is_stmt 1
 	leaq	_ZStL8__ioinit(%rip), %rax
@@ -3487,11 +3534,11 @@ _Z41__static_initialization_and_destruction_0ii:
 	movq	_ZNSt8ios_base4InitD1Ev@GOTPCREL(%rip), %rax
 	movq	%rax, %rdi
 	call	__cxa_atexit@PLT
-.L145:
+.L147:
 	.loc 3 74 25 is_stmt 0 discriminator 1
 	call	__asan_after_dynamic_init@PLT
-.L146:
-	.loc 1 259 5 is_stmt 1
+.L148:
+	.loc 1 262 5 is_stmt 1
 	nop
 	leave
 	.cfi_def_cfa 7, 8
@@ -3503,7 +3550,7 @@ _Z41__static_initialization_and_destruction_0ii:
 _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 .LASANPC3655:
 .LFB3655:
-	.loc 1 259 5
+	.loc 1 262 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -3511,7 +3558,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	.loc 1 259 5
+	.loc 1 262 5
 	movl	$65535, %esi
 	movl	$1, %edi
 	call	_Z41__static_initialization_and_destruction_0ii
@@ -3547,273 +3594,275 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.long	12
 	.long	14
 	.section	.rodata
-.LC68:
+.LC69:
 	.string	"../ATC/Buffer/my_buffer.h"
 	.section	.data.rel.local
 	.align 16
 	.type	.LASANLOC4, @object
 	.size	.LASANLOC4, 16
 .LASANLOC4:
-	.quad	.LC68
+	.quad	.LC69
 	.long	32
 	.long	11
 	.section	.rodata
-.LC69:
+.LC70:
 	.string	"./headers/Grammar.h"
 	.section	.data.rel.local
 	.align 16
 	.type	.LASANLOC5, @object
 	.size	.LASANLOC5, 16
 .LASANLOC5:
-	.quad	.LC69
-	.long	55
+	.quad	.LC70
+	.long	56
 	.long	11
 	.align 16
 	.type	.LASANLOC6, @object
 	.size	.LASANLOC6, 16
 .LASANLOC6:
-	.quad	.LC69
-	.long	54
+	.quad	.LC70
+	.long	55
 	.long	11
 	.align 16
 	.type	.LASANLOC7, @object
 	.size	.LASANLOC7, 16
 .LASANLOC7:
-	.quad	.LC69
-	.long	52
+	.quad	.LC70
+	.long	53
 	.long	12
 	.align 16
 	.type	.LASANLOC8, @object
 	.size	.LASANLOC8, 16
 .LASANLOC8:
-	.quad	.LC69
+	.quad	.LC70
 	.long	42
 	.long	12
 	.align 16
 	.type	.LASANLOC9, @object
 	.size	.LASANLOC9, 16
 .LASANLOC9:
-	.quad	.LC69
+	.quad	.LC70
 	.long	31
 	.long	19
 	.align 16
 	.type	.LASANLOC10, @object
 	.size	.LASANLOC10, 16
 .LASANLOC10:
-	.quad	.LC69
+	.quad	.LC70
 	.long	30
 	.long	11
 	.section	.rodata
 	.align 8
-.LC70:
+.LC71:
 	.string	"../ATC/RandomStuff/CommonEnums.h"
 	.section	.data.rel.local
 	.align 16
 	.type	.LASANLOC11, @object
 	.size	.LASANLOC11, 16
 .LASANLOC11:
-	.quad	.LC70
+	.quad	.LC71
 	.long	3
 	.long	11
 	.section	.rodata
-.LC71:
+.LC72:
 	.string	"../ATC/Logger/LogConfig.h"
 	.section	.data.rel.local
 	.align 16
 	.type	.LASANLOC12, @object
 	.size	.LASANLOC12, 16
 .LASANLOC12:
-	.quad	.LC71
+	.quad	.LC72
 	.long	3
 	.long	12
 	.section	.rodata
-.LC72:
+.LC73:
 	.string	"/usr/include/c++/11/iostream"
 	.section	.data.rel.local
 	.align 16
 	.type	.LASANLOC13, @object
 	.size	.LASANLOC13, 16
 .LASANLOC13:
-	.quad	.LC72
+	.quad	.LC73
 	.long	74
 	.long	25
 	.section	.rodata
-.LC73:
+.LC74:
 	.string	"./headers/LexicalAnalysis.h"
 	.section	.data.rel.local
 	.align 16
 	.type	.LASANLOC14, @object
 	.size	.LASANLOC14, 16
 .LASANLOC14:
-	.quad	.LC73
+	.quad	.LC74
 	.long	3
 	.long	11
 	.section	.rodata
-.LC74:
-	.string	"number_of_instructions"
 .LC75:
-	.string	"PRECISION"
+	.string	"number_of_instructions"
 .LC76:
-	.string	"ASM_FILE"
+	.string	"PRECISION"
 .LC77:
-	.string	"INDENT_SIZE"
+	.string	"ASM_FILE"
 .LC78:
-	.string	"MAX_WORD_LENGTH"
+	.string	"INDENT_SIZE"
 .LC79:
-	.string	"MAX_FUNCTION_NAME_LENGTH"
+	.string	"MAX_WORD_LENGTH"
 .LC80:
-	.string	"COMMENT"
+	.string	"MAX_FUNCTION_NAME_LENGTH"
 .LC81:
-	.string	"OPERATORS"
+	.string	"COMMENT"
 .LC82:
-	.string	"INSTRUCTIONS"
+	.string	"OPERATORS"
 .LC83:
-	.string	"NUMBER_OF_INSTUCTIONS"
+	.string	"INSTRUCTIONS"
 .LC84:
-	.string	"CRINGE"
+	.string	"NUMBER_OF_INSTUCTIONS"
 .LC85:
-	.string	"STD_LOG_NAME"
+	.string	"CRINGE"
 .LC86:
-	.string	"__ioinit"
+	.string	"STD_LOG_NAME"
 .LC87:
-	.string	"START_NUMBER_OF_TOKENS"
+	.string	"__ioinit"
 .LC88:
-	.string	"*.LC10"
+	.string	"START_NUMBER_OF_TOKENS"
 .LC89:
-	.string	"*.LC7"
+	.string	"*.LC10"
 .LC90:
-	.string	"*.LC44"
+	.string	"*.LC7"
 .LC91:
-	.string	"*.LC22"
-.LC92:
-	.string	"*.LC64"
-.LC93:
-	.string	"*.LC57"
-.LC94:
-	.string	"*.LC42"
-.LC95:
-	.string	"*.LC39"
-.LC96:
-	.string	"*.LC36"
-.LC97:
-	.string	"*.LC59"
-.LC98:
-	.string	"*.LC3"
-.LC99:
-	.string	"*.LC45"
-.LC100:
-	.string	"*.LC55"
-.LC101:
-	.string	"*.LC2"
-.LC102:
-	.string	"*.LC13"
-.LC103:
-	.string	"*.LC53"
-.LC104:
-	.string	"*.LC19"
-.LC105:
-	.string	"*.LC25"
-.LC106:
-	.string	"*.LC43"
-.LC107:
-	.string	"*.LC12"
-.LC108:
-	.string	"*.LC40"
-.LC109:
-	.string	"*.LC41"
-.LC110:
-	.string	"*.LC35"
-.LC111:
-	.string	"*.LC11"
-.LC112:
-	.string	"*.LC54"
-.LC113:
-	.string	"*.LC15"
-.LC114:
 	.string	"*.LC58"
+.LC92:
+	.string	"*.LC44"
+.LC93:
+	.string	"*.LC22"
+.LC94:
+	.string	"*.LC65"
+.LC95:
+	.string	"*.LC42"
+.LC96:
+	.string	"*.LC39"
+.LC97:
+	.string	"*.LC36"
+.LC98:
+	.string	"*.LC60"
+.LC99:
+	.string	"*.LC3"
+.LC100:
+	.string	"*.LC45"
+.LC101:
+	.string	"*.LC57"
+.LC102:
+	.string	"*.LC56"
+.LC103:
+	.string	"*.LC2"
+.LC104:
+	.string	"*.LC13"
+.LC105:
+	.string	"*.LC54"
+.LC106:
+	.string	"*.LC19"
+.LC107:
+	.string	"*.LC25"
+.LC108:
+	.string	"*.LC43"
+.LC109:
+	.string	"*.LC12"
+.LC110:
+	.string	"*.LC40"
+.LC111:
+	.string	"*.LC41"
+.LC112:
+	.string	"*.LC35"
+.LC113:
+	.string	"*.LC11"
+.LC114:
+	.string	"*.LC55"
 .LC115:
-	.string	"*.LC67"
+	.string	"*.LC15"
 .LC116:
-	.string	"*.LC0"
+	.string	"*.LC59"
 .LC117:
-	.string	"*.LC4"
+	.string	"*.LC68"
 .LC118:
-	.string	"*.LC38"
+	.string	"*.LC0"
 .LC119:
-	.string	"*.LC52"
+	.string	"*.LC4"
 .LC120:
-	.string	"*.LC28"
+	.string	"*.LC38"
 .LC121:
-	.string	"*.LC26"
+	.string	"*.LC53"
 .LC122:
-	.string	"*.LC32"
+	.string	"*.LC28"
 .LC123:
-	.string	"*.LC24"
+	.string	"*.LC26"
 .LC124:
-	.string	"*.LC37"
+	.string	"*.LC32"
 .LC125:
-	.string	"*.LC27"
+	.string	"*.LC24"
 .LC126:
-	.string	"*.LC50"
+	.string	"*.LC37"
 .LC127:
-	.string	"*.LC33"
+	.string	"*.LC27"
 .LC128:
 	.string	"*.LC51"
 .LC129:
-	.string	"*.LC66"
+	.string	"*.LC33"
 .LC130:
-	.string	"*.LC29"
+	.string	"*.LC52"
 .LC131:
-	.string	"*.LC21"
+	.string	"*.LC67"
 .LC132:
-	.string	"*.LC65"
+	.string	"*.LC29"
 .LC133:
-	.string	"*.LC1"
+	.string	"*.LC21"
 .LC134:
-	.string	"*.LC47"
+	.string	"*.LC1"
 .LC135:
-	.string	"*.LC49"
+	.string	"*.LC47"
 .LC136:
-	.string	"*.LC6"
+	.string	"*.LC50"
 .LC137:
-	.string	"*.LC46"
+	.string	"*.LC6"
 .LC138:
-	.string	"*.LC5"
+	.string	"*.LC46"
 .LC139:
-	.string	"*.LC31"
+	.string	"*.LC5"
 .LC140:
-	.string	"*.LC48"
+	.string	"*.LC31"
 .LC141:
-	.string	"*.LC14"
+	.string	"*.LC49"
 .LC142:
-	.string	"*.LC18"
+	.string	"*.LC14"
 .LC143:
-	.string	"*.LC9"
+	.string	"*.LC48"
 .LC144:
-	.string	"*.LC17"
+	.string	"*.LC18"
 .LC145:
-	.string	"*.LC63"
+	.string	"*.LC9"
 .LC146:
-	.string	"*.LC56"
+	.string	"*.LC17"
 .LC147:
-	.string	"*.LC62"
+	.string	"*.LC66"
 .LC148:
-	.string	"*.LC34"
+	.string	"*.LC64"
 .LC149:
-	.string	"*.LC30"
+	.string	"*.LC63"
 .LC150:
-	.string	"*.LC16"
+	.string	"*.LC34"
 .LC151:
+	.string	"*.LC30"
+.LC152:
+	.string	"*.LC16"
+.LC153:
 	.string	"*.LC8"
 	.section	.data.rel.local
 	.align 32
 	.type	.LASAN0, @object
-	.size	.LASAN0, 4992
+	.size	.LASAN0, 5056
 .LASAN0:
 	.quad	_ZZL8AddToAsmPK5TokenE22number_of_instructions
 	.quad	4
 	.quad	64
-	.quad	.LC74
+	.quad	.LC75
 	.quad	.LC7
 	.quad	0
 	.quad	.LASANLOC1
@@ -3821,7 +3870,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	_ZL9PRECISION
 	.quad	4
 	.quad	64
-	.quad	.LC75
+	.quad	.LC76
 	.quad	.LC7
 	.quad	0
 	.quad	.LASANLOC2
@@ -3829,7 +3878,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	_ZL8ASM_FILE
 	.quad	8
 	.quad	64
-	.quad	.LC76
+	.quad	.LC77
 	.quad	.LC7
 	.quad	0
 	.quad	.LASANLOC3
@@ -3837,7 +3886,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	_ZL11INDENT_SIZE
 	.quad	4
 	.quad	64
-	.quad	.LC77
+	.quad	.LC78
 	.quad	.LC7
 	.quad	0
 	.quad	.LASANLOC4
@@ -3845,7 +3894,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	_ZL15MAX_WORD_LENGTH
 	.quad	4
 	.quad	64
-	.quad	.LC78
+	.quad	.LC79
 	.quad	.LC7
 	.quad	0
 	.quad	.LASANLOC5
@@ -3853,7 +3902,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	_ZL24MAX_FUNCTION_NAME_LENGTH
 	.quad	4
 	.quad	64
-	.quad	.LC79
+	.quad	.LC80
 	.quad	.LC7
 	.quad	0
 	.quad	.LASANLOC6
@@ -3861,15 +3910,15 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	_ZL7COMMENT
 	.quad	1
 	.quad	64
-	.quad	.LC80
+	.quad	.LC81
 	.quad	.LC7
 	.quad	0
 	.quad	.LASANLOC7
 	.quad	0
 	.quad	_ZL9OPERATORS
-	.quad	6
+	.quad	8
 	.quad	64
-	.quad	.LC81
+	.quad	.LC82
 	.quad	.LC7
 	.quad	0
 	.quad	.LASANLOC8
@@ -3877,7 +3926,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	_ZL12INSTRUCTIONS
 	.quad	32
 	.quad	64
-	.quad	.LC82
+	.quad	.LC83
 	.quad	.LC7
 	.quad	0
 	.quad	.LASANLOC9
@@ -3885,7 +3934,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	_ZL21NUMBER_OF_INSTUCTIONS
 	.quad	4
 	.quad	64
-	.quad	.LC83
+	.quad	.LC84
 	.quad	.LC7
 	.quad	0
 	.quad	.LASANLOC10
@@ -3893,7 +3942,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	_ZL6CRINGE
 	.quad	4
 	.quad	64
-	.quad	.LC84
+	.quad	.LC85
 	.quad	.LC7
 	.quad	0
 	.quad	.LASANLOC11
@@ -3901,7 +3950,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	_ZL12STD_LOG_NAME
 	.quad	18
 	.quad	64
-	.quad	.LC85
+	.quad	.LC86
 	.quad	.LC7
 	.quad	0
 	.quad	.LASANLOC12
@@ -3909,7 +3958,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	_ZStL8__ioinit
 	.quad	1
 	.quad	64
-	.quad	.LC86
+	.quad	.LC87
 	.quad	.LC7
 	.quad	1
 	.quad	.LASANLOC13
@@ -3917,7 +3966,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	_ZL22START_NUMBER_OF_TOKENS
 	.quad	4
 	.quad	64
-	.quad	.LC87
+	.quad	.LC88
 	.quad	.LC7
 	.quad	0
 	.quad	.LASANLOC14
@@ -3925,7 +3974,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC10
 	.quad	36
 	.quad	96
-	.quad	.LC88
+	.quad	.LC89
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -3933,20 +3982,12 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC7
 	.quad	25
 	.quad	64
-	.quad	.LC89
-	.quad	.LC7
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC44
-	.quad	22
-	.quad	64
 	.quad	.LC90
 	.quad	.LC7
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC22
+	.quad	.LC58
 	.quad	6
 	.quad	64
 	.quad	.LC91
@@ -3954,18 +3995,26 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC64
-	.quad	12
+	.quad	.LC44
+	.quad	22
 	.quad	64
 	.quad	.LC92
 	.quad	.LC7
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC57
-	.quad	5
+	.quad	.LC22
+	.quad	6
 	.quad	64
 	.quad	.LC93
+	.quad	.LC7
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC65
+	.quad	12
+	.quad	64
+	.quad	.LC94
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -3973,7 +4022,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC42
 	.quad	21
 	.quad	64
-	.quad	.LC94
+	.quad	.LC95
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -3981,7 +4030,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC39
 	.quad	13
 	.quad	64
-	.quad	.LC95
+	.quad	.LC96
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -3989,15 +4038,15 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC36
 	.quad	11
 	.quad	64
-	.quad	.LC96
+	.quad	.LC97
 	.quad	.LC7
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC59
+	.quad	.LC60
 	.quad	19
 	.quad	64
-	.quad	.LC97
+	.quad	.LC98
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4005,7 +4054,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC3
 	.quad	5
 	.quad	64
-	.quad	.LC98
+	.quad	.LC99
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4013,20 +4062,12 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC45
 	.quad	11
 	.quad	64
-	.quad	.LC99
-	.quad	.LC7
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC55
-	.quad	5
-	.quad	64
 	.quad	.LC100
 	.quad	.LC7
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC2
+	.quad	.LC57
 	.quad	6
 	.quad	64
 	.quad	.LC101
@@ -4034,18 +4075,34 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC13
-	.quad	31
+	.quad	.LC56
+	.quad	5
 	.quad	64
 	.quad	.LC102
 	.quad	.LC7
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC53
+	.quad	.LC2
+	.quad	6
+	.quad	64
+	.quad	.LC103
+	.quad	.LC7
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC13
+	.quad	31
+	.quad	64
+	.quad	.LC104
+	.quad	.LC7
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC54
 	.quad	59
 	.quad	96
-	.quad	.LC103
+	.quad	.LC105
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4053,7 +4110,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC19
 	.quad	24
 	.quad	64
-	.quad	.LC104
+	.quad	.LC106
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4061,7 +4118,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC25
 	.quad	67
 	.quad	128
-	.quad	.LC105
+	.quad	.LC107
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4069,7 +4126,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC43
 	.quad	23
 	.quad	64
-	.quad	.LC106
+	.quad	.LC108
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4077,7 +4134,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC12
 	.quad	8
 	.quad	64
-	.quad	.LC107
+	.quad	.LC109
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4085,7 +4142,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC40
 	.quad	17
 	.quad	64
-	.quad	.LC108
+	.quad	.LC110
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4093,7 +4150,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC41
 	.quad	55
 	.quad	96
-	.quad	.LC109
+	.quad	.LC111
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4101,7 +4158,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC35
 	.quad	21
 	.quad	64
-	.quad	.LC110
+	.quad	.LC112
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4109,28 +4166,12 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC11
 	.quad	33
 	.quad	96
-	.quad	.LC111
-	.quad	.LC7
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC54
-	.quad	5
-	.quad	64
-	.quad	.LC112
-	.quad	.LC7
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC15
-	.quad	5
-	.quad	64
 	.quad	.LC113
 	.quad	.LC7
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC58
+	.quad	.LC55
 	.quad	5
 	.quad	64
 	.quad	.LC114
@@ -4138,10 +4179,26 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC67
-	.quad	17
+	.quad	.LC15
+	.quad	5
 	.quad	64
 	.quad	.LC115
+	.quad	.LC7
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC59
+	.quad	5
+	.quad	64
+	.quad	.LC116
+	.quad	.LC7
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC68
+	.quad	17
+	.quad	64
+	.quad	.LC117
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4149,7 +4206,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC0
 	.quad	3
 	.quad	64
-	.quad	.LC116
+	.quad	.LC118
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4157,7 +4214,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC4
 	.quad	5
 	.quad	64
-	.quad	.LC117
+	.quad	.LC119
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4165,15 +4222,15 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC38
 	.quad	25
 	.quad	64
-	.quad	.LC118
+	.quad	.LC120
 	.quad	.LC7
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC52
+	.quad	.LC53
 	.quad	11
 	.quad	64
-	.quad	.LC119
+	.quad	.LC121
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4181,7 +4238,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC28
 	.quad	57
 	.quad	96
-	.quad	.LC120
+	.quad	.LC122
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4189,7 +4246,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC26
 	.quad	58
 	.quad	96
-	.quad	.LC121
+	.quad	.LC123
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4197,7 +4254,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC32
 	.quad	58
 	.quad	96
-	.quad	.LC122
+	.quad	.LC124
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4205,7 +4262,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC24
 	.quad	9
 	.quad	64
-	.quad	.LC123
+	.quad	.LC125
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4213,7 +4270,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC37
 	.quad	53
 	.quad	96
-	.quad	.LC124
+	.quad	.LC126
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4221,15 +4278,15 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC27
 	.quad	12
 	.quad	64
-	.quad	.LC125
+	.quad	.LC127
 	.quad	.LC7
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC50
+	.quad	.LC51
 	.quad	59
 	.quad	96
-	.quad	.LC126
+	.quad	.LC128
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4237,23 +4294,23 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC33
 	.quad	2
 	.quad	64
-	.quad	.LC127
+	.quad	.LC129
 	.quad	.LC7
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC51
+	.quad	.LC52
 	.quad	11
 	.quad	64
-	.quad	.LC128
+	.quad	.LC130
 	.quad	.LC7
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC66
+	.quad	.LC67
 	.quad	5
 	.quad	64
-	.quad	.LC129
+	.quad	.LC131
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4261,7 +4318,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC29
 	.quad	48
 	.quad	96
-	.quad	.LC130
+	.quad	.LC132
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4269,15 +4326,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC21
 	.quad	9
 	.quad	64
-	.quad	.LC131
-	.quad	.LC7
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC65
-	.quad	5
-	.quad	64
-	.quad	.LC132
+	.quad	.LC133
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4285,7 +4334,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC1
 	.quad	5
 	.quad	64
-	.quad	.LC133
+	.quad	.LC134
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4293,15 +4342,15 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC47
 	.quad	19
 	.quad	64
-	.quad	.LC134
+	.quad	.LC135
 	.quad	.LC7
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC49
+	.quad	.LC50
 	.quad	28
 	.quad	64
-	.quad	.LC135
+	.quad	.LC136
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4309,7 +4358,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC6
 	.quad	34
 	.quad	96
-	.quad	.LC136
+	.quad	.LC137
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4317,7 +4366,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC46
 	.quad	58
 	.quad	96
-	.quad	.LC137
+	.quad	.LC138
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4325,7 +4374,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC5
 	.quad	25
 	.quad	64
-	.quad	.LC138
+	.quad	.LC139
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4333,15 +4382,15 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC31
 	.quad	34
 	.quad	96
-	.quad	.LC139
+	.quad	.LC140
 	.quad	.LC7
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC48
+	.quad	.LC49
 	.quad	6
 	.quad	64
-	.quad	.LC140
+	.quad	.LC141
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4349,7 +4398,15 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC14
 	.quad	22
 	.quad	64
-	.quad	.LC141
+	.quad	.LC142
+	.quad	.LC7
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC48
+	.quad	58
+	.quad	96
+	.quad	.LC143
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4357,7 +4414,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC18
 	.quad	24
 	.quad	64
-	.quad	.LC142
+	.quad	.LC144
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4365,7 +4422,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC9
 	.quad	37
 	.quad	96
-	.quad	.LC143
+	.quad	.LC145
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4373,31 +4430,31 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC17
 	.quad	23
 	.quad	64
-	.quad	.LC144
-	.quad	.LC7
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC63
-	.quad	28
-	.quad	64
-	.quad	.LC145
-	.quad	.LC7
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC56
-	.quad	5
-	.quad	64
 	.quad	.LC146
 	.quad	.LC7
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC62
-	.quad	3
+	.quad	.LC66
+	.quad	5
 	.quad	64
 	.quad	.LC147
+	.quad	.LC7
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC64
+	.quad	28
+	.quad	64
+	.quad	.LC148
+	.quad	.LC7
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC63
+	.quad	3
+	.quad	64
+	.quad	.LC149
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4405,7 +4462,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC34
 	.quad	20
 	.quad	64
-	.quad	.LC148
+	.quad	.LC150
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4413,7 +4470,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC30
 	.quad	18
 	.quad	64
-	.quad	.LC149
+	.quad	.LC151
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4421,7 +4478,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC16
 	.quad	31
 	.quad	64
-	.quad	.LC150
+	.quad	.LC152
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4429,7 +4486,7 @@ _GLOBAL__sub_I__Z14TranslateToAsmPK5TokenPKc:
 	.quad	.LC8
 	.quad	15
 	.quad	64
-	.quad	.LC151
+	.quad	.LC153
 	.quad	.LC7
 	.quad	0
 	.quad	0
@@ -4445,7 +4502,7 @@ _sub_D_00099_0:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	movl	$78, %esi
+	movl	$79, %esi
 	leaq	.LASAN0(%rip), %rax
 	movq	%rax, %rdi
 	call	__asan_unregister_globals@PLT
@@ -4471,7 +4528,7 @@ _sub_I_00099_1:
 	.cfi_def_cfa_register 6
 	call	__asan_init@PLT
 	call	__asan_version_mismatch_check_v8@PLT
-	movl	$78, %esi
+	movl	$79, %esi
 	leaq	.LASAN0(%rip), %rax
 	movq	%rax, %rdi
 	call	__asan_register_globals@PLT
@@ -4550,7 +4607,7 @@ _sub_I_00099_1:
 	.file 60 "/usr/include/c++/11/bits/algorithmfwd.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x4100
+	.long	0x4106
 	.value	0x5
 	.byte	0x1
 	.byte	0x8
@@ -7619,7 +7676,7 @@ _sub_I_00099_1:
 	.uleb128 0x9
 	.long	0x2feb
 	.byte	0
-	.uleb128 0x18
+	.uleb128 0x19
 	.long	.LASF337
 	.byte	0x6b
 	.long	.LASF341
@@ -7628,7 +7685,7 @@ _sub_I_00099_1:
 	.uleb128 0x9
 	.long	0x2fe6
 	.byte	0
-	.uleb128 0x18
+	.uleb128 0x19
 	.long	.LASF337
 	.byte	0x6d
 	.long	.LASF342
@@ -7639,7 +7696,7 @@ _sub_I_00099_1:
 	.uleb128 0x1
 	.long	0x2ff0
 	.byte	0
-	.uleb128 0x18
+	.uleb128 0x19
 	.long	.LASF337
 	.byte	0x70
 	.long	.LASF343
@@ -7650,7 +7707,7 @@ _sub_I_00099_1:
 	.uleb128 0x1
 	.long	0x1c25
 	.byte	0
-	.uleb128 0x18
+	.uleb128 0x19
 	.long	.LASF337
 	.byte	0x74
 	.long	.LASF344
@@ -7689,7 +7746,7 @@ _sub_I_00099_1:
 	.uleb128 0x1
 	.long	0x2ff5
 	.byte	0
-	.uleb128 0x18
+	.uleb128 0x19
 	.long	.LASF348
 	.byte	0x8c
 	.long	.LASF349
@@ -7700,7 +7757,7 @@ _sub_I_00099_1:
 	.uleb128 0x9
 	.long	0x40
 	.byte	0
-	.uleb128 0x18
+	.uleb128 0x19
 	.long	.LASF350
 	.byte	0x8f
 	.long	.LASF351
@@ -10901,7 +10958,7 @@ _sub_I_00099_1:
 	.uleb128 0x1
 	.long	0xf5
 	.byte	0
-	.uleb128 0x19
+	.uleb128 0x1a
 	.long	.LASF543
 	.byte	0x23
 	.value	0x346
@@ -10930,7 +10987,7 @@ _sub_I_00099_1:
 	.value	0x1c6
 	.byte	0xc
 	.long	0x40
-	.uleb128 0x19
+	.uleb128 0x1a
 	.long	.LASF544
 	.byte	0x23
 	.value	0x1c8
@@ -11090,7 +11147,7 @@ _sub_I_00099_1:
 	.uleb128 0x1
 	.long	0x3457
 	.byte	0
-	.uleb128 0x19
+	.uleb128 0x1a
 	.long	.LASF557
 	.byte	0xe
 	.value	0x312
@@ -11272,7 +11329,7 @@ _sub_I_00099_1:
 	.value	0x208
 	.byte	0xc
 	.long	0x40
-	.uleb128 0x19
+	.uleb128 0x1a
 	.long	.LASF573
 	.byte	0xe
 	.value	0x324
@@ -11302,7 +11359,7 @@ _sub_I_00099_1:
 	.uleb128 0x1
 	.long	0x51d
 	.byte	0
-	.uleb128 0x19
+	.uleb128 0x1a
 	.long	.LASF576
 	.byte	0xe
 	.value	0x2d3
@@ -11310,7 +11367,7 @@ _sub_I_00099_1:
 	.uleb128 0x1
 	.long	0x544
 	.byte	0
-	.uleb128 0x19
+	.uleb128 0x1a
 	.long	.LASF577
 	.byte	0xe
 	.value	0x148
@@ -11664,7 +11721,7 @@ _sub_I_00099_1:
 	.byte	0x34
 	.byte	0x20
 	.long	0x3ac3
-	.uleb128 0x1a
+	.uleb128 0x18
 	.string	"IF"
 	.byte	0
 	.uleb128 0xe
@@ -11685,7 +11742,7 @@ _sub_I_00099_1:
 	.long	0x3ad3
 	.uleb128 0x14
 	.long	0x101
-	.byte	0x5
+	.byte	0x7
 	.byte	0
 	.uleb128 0xb
 	.long	0x3ac3
@@ -11704,27 +11761,30 @@ _sub_I_00099_1:
 	.long	0x162
 	.byte	0x34
 	.byte	0x2b
-	.long	0x3b1d
-	.uleb128 0x1a
+	.long	0x3b23
+	.uleb128 0x18
 	.string	"ADD"
 	.byte	0x2b
-	.uleb128 0x1a
+	.uleb128 0x18
 	.string	"SUB"
 	.byte	0x2d
-	.uleb128 0x1a
+	.uleb128 0x18
 	.string	"DIV"
 	.byte	0x2f
-	.uleb128 0x1a
+	.uleb128 0x18
 	.string	"MUL"
 	.byte	0x2a
-	.uleb128 0x1a
+	.uleb128 0x18
 	.string	"POW"
 	.byte	0x5e
+	.uleb128 0x18
+	.string	"OUT"
+	.byte	0x3c
 	.byte	0
 	.uleb128 0xd
 	.long	.LASF627
 	.byte	0x34
-	.byte	0x34
+	.byte	0x35
 	.byte	0xc
 	.long	0x9d
 	.uleb128 0x9
@@ -11733,7 +11793,7 @@ _sub_I_00099_1:
 	.uleb128 0xd
 	.long	.LASF628
 	.byte	0x34
-	.byte	0x36
+	.byte	0x37
 	.byte	0xb
 	.long	0x47
 	.uleb128 0x9
@@ -11742,7 +11802,7 @@ _sub_I_00099_1:
 	.uleb128 0xd
 	.long	.LASF629
 	.byte	0x34
-	.byte	0x37
+	.byte	0x38
 	.byte	0xb
 	.long	0x47
 	.uleb128 0x9
@@ -11936,8 +11996,8 @@ _sub_I_00099_1:
 	.uleb128 0x21
 	.long	0x1f57
 	.long	.LASF633
-	.long	0x3cb3
-	.long	0x3cbd
+	.long	0x3cb9
+	.long	0x3cc3
 	.uleb128 0x22
 	.long	.LASF635
 	.long	0x3812
@@ -11945,8 +12005,8 @@ _sub_I_00099_1:
 	.uleb128 0x21
 	.long	0x1f3e
 	.long	.LASF634
-	.long	0x3cce
-	.long	0x3cd8
+	.long	0x3cd4
+	.long	0x3cde
 	.uleb128 0x22
 	.long	.LASF635
 	.long	0x3812
@@ -11957,9 +12017,9 @@ _sub_I_00099_1:
 	.byte	0xb7
 	.byte	0xe
 	.long	0x28f
-	.long	0x3cee
+	.long	0x3cf4
 	.uleb128 0x1
-	.long	0x3cee
+	.long	0x3cf4
 	.byte	0
 	.uleb128 0x7
 	.long	0x21b1
@@ -11969,9 +12029,9 @@ _sub_I_00099_1:
 	.byte	0x4c
 	.byte	0xf
 	.long	0x21a5
-	.long	0x3d09
+	.long	0x3d0f
 	.uleb128 0x1
-	.long	0x3d09
+	.long	0x3d0f
 	.byte	0
 	.uleb128 0x7
 	.long	0x21a5
@@ -11981,7 +12041,7 @@ _sub_I_00099_1:
 	.value	0x16d
 	.byte	0xc
 	.long	0x40
-	.long	0x3d2f
+	.long	0x3d35
 	.uleb128 0x1
 	.long	0x544
 	.uleb128 0x1
@@ -11992,8 +12052,8 @@ _sub_I_00099_1:
 	.uleb128 0x21
 	.long	0x3983
 	.long	.LASF639
-	.long	0x3d40
-	.long	0x3d4a
+	.long	0x3d46
+	.long	0x3d50
 	.uleb128 0x22
 	.long	.LASF635
 	.long	0x39ab
@@ -12002,21 +12062,21 @@ _sub_I_00099_1:
 	.long	.LASF640
 	.byte	0x19
 	.long	.LASF642
-	.long	0x3d5e
+	.long	0x3d64
 	.uleb128 0x1
-	.long	0x3d5e
+	.long	0x3d64
 	.byte	0
 	.uleb128 0x7
 	.long	0xeb
 	.uleb128 0xb
-	.long	0x3d5e
+	.long	0x3d64
 	.uleb128 0x8
 	.long	.LASF170
 	.byte	0x38
 	.byte	0xa6
 	.byte	0xf
 	.long	0xa2
-	.long	0x3d7e
+	.long	0x3d84
 	.uleb128 0x1
 	.long	0xa2
 	.byte	0
@@ -12024,17 +12084,17 @@ _sub_I_00099_1:
 	.long	.LASF641
 	.byte	0x1b
 	.long	.LASF643
-	.long	0x3d97
+	.long	0x3d9d
 	.uleb128 0x1
-	.long	0x3d5e
+	.long	0x3d64
 	.uleb128 0x1
 	.long	0x51d
 	.byte	0
 	.uleb128 0x21
 	.long	0x395d
 	.long	.LASF644
-	.long	0x3da8
-	.long	0x3dca
+	.long	0x3dae
+	.long	0x3dd0
 	.uleb128 0x22
 	.long	.LASF635
 	.long	0x39ab
@@ -12053,18 +12113,18 @@ _sub_I_00099_1:
 	.byte	0
 	.uleb128 0x2e
 	.long	.LASF647
-	.long	0x3e2f
+	.long	0x3e35
 	.uleb128 0x25
 	.long	.LASF648
 	.byte	0x39
-	.byte	0x32
+	.byte	0x33
 	.byte	0xd
 	.long	.LASF649
 	.long	0x40
-	.long	0x3deb
-	.long	0x3dfc
+	.long	0x3df1
+	.long	0x3e02
 	.uleb128 0x9
-	.long	0x3e2f
+	.long	0x3e35
 	.uleb128 0x1
 	.long	0x40
 	.uleb128 0x1
@@ -12078,10 +12138,10 @@ _sub_I_00099_1:
 	.byte	0xe
 	.long	.LASF681
 	.byte	0x1
-	.long	0x3e11
-	.long	0x3e1d
+	.long	0x3e17
+	.long	0x3e23
 	.uleb128 0x9
-	.long	0x3e2f
+	.long	0x3e35
 	.uleb128 0x1
 	.long	0x51d
 	.uleb128 0x12
@@ -12092,11 +12152,11 @@ _sub_I_00099_1:
 	.byte	0x19
 	.byte	0x18
 	.long	.LASF683
-	.long	0x3e83
+	.long	0x3e89
 	.byte	0x1
 	.byte	0
 	.uleb128 0x7
-	.long	0x3dca
+	.long	0x3dd0
 	.uleb128 0xa
 	.long	.LASF650
 	.byte	0x3a
@@ -12104,7 +12164,7 @@ _sub_I_00099_1:
 	.byte	0x5
 	.long	.LASF651
 	.long	0x40
-	.long	0x3e54
+	.long	0x3e5a
 	.uleb128 0x1
 	.long	0x40
 	.uleb128 0x1
@@ -12117,7 +12177,7 @@ _sub_I_00099_1:
 	.value	0x1a3
 	.byte	0xe
 	.long	0x28f
-	.long	0x3e6b
+	.long	0x3e71
 	.uleb128 0x1
 	.long	0x40
 	.byte	0
@@ -12127,13 +12187,13 @@ _sub_I_00099_1:
 	.value	0x164
 	.byte	0xc
 	.long	0x40
-	.long	0x3e83
+	.long	0x3e89
 	.uleb128 0x1
 	.long	0x51d
 	.uleb128 0x12
 	.byte	0
 	.uleb128 0x17
-	.long	0x3dca
+	.long	0x3dd0
 	.uleb128 0x61
 	.long	.LASF684
 	.quad	.LFB3655
@@ -12146,7 +12206,7 @@ _sub_I_00099_1:
 	.quad	.LFE3654-.LFB3654
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x3ed3
+	.long	0x3ed9
 	.uleb128 0x33
 	.long	.LASF654
 	.long	0x40
@@ -12166,7 +12226,7 @@ _sub_I_00099_1:
 	.quad	.LFE3225-.LFB3225
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x3f08
+	.long	0x3f0e
 	.uleb128 0x30
 	.string	"_Tp"
 	.long	0x40
@@ -12183,7 +12243,7 @@ _sub_I_00099_1:
 	.uleb128 0x65
 	.long	.LASF686
 	.byte	0x1
-	.byte	0xf5
+	.byte	0xf8
 	.byte	0x6
 	.quad	.LFB2869
 	.quad	.LFE2869-.LFB2869
@@ -12191,16 +12251,16 @@ _sub_I_00099_1:
 	.byte	0x9c
 	.uleb128 0x34
 	.long	.LASF661
-	.byte	0xe3
+	.byte	0xe6
 	.long	0x40
 	.quad	.LFB2868
 	.quad	.LFE2868-.LFB2868
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x3f74
+	.long	0x3f7a
 	.uleb128 0x1c
 	.long	.LASF656
-	.byte	0xe3
+	.byte	0xe6
 	.byte	0x2b
 	.long	0x522
 	.uleb128 0x3
@@ -12208,14 +12268,14 @@ _sub_I_00099_1:
 	.sleb128 -120
 	.uleb128 0x29
 	.long	.LASF658
-	.long	0x3f84
+	.long	0x3f8a
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC64
+	.quad	.LC65
 	.uleb128 0xd
 	.long	.LASF659
 	.byte	0x1
-	.byte	0xef
+	.byte	0xf2
 	.byte	0xc
 	.long	0x21a5
 	.uleb128 0x2
@@ -12224,26 +12284,26 @@ _sub_I_00099_1:
 	.byte	0
 	.uleb128 0x13
 	.long	0x9d
-	.long	0x3f84
+	.long	0x3f8a
 	.uleb128 0x14
 	.long	0x101
 	.byte	0xb
 	.byte	0
 	.uleb128 0xb
-	.long	0x3f74
+	.long	0x3f7a
 	.uleb128 0x66
 	.long	.LASF687
 	.byte	0x1
-	.byte	0xd7
+	.byte	0xda
 	.byte	0xd
 	.quad	.LFB2867
 	.quad	.LFE2867-.LFB2867
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x3fc7
+	.long	0x3fcd
 	.uleb128 0x1c
 	.long	.LASF660
-	.byte	0xd7
+	.byte	0xda
 	.byte	0x23
 	.long	0x51d
 	.uleb128 0x3
@@ -12253,7 +12313,7 @@ _sub_I_00099_1:
 	.uleb128 0x67
 	.string	"ptr"
 	.byte	0x1
-	.byte	0xd9
+	.byte	0xdc
 	.byte	0xd
 	.long	0x527
 	.uleb128 0x2
@@ -12268,12 +12328,12 @@ _sub_I_00099_1:
 	.quad	.LFE2866-.LFB2866
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x4083
+	.long	0x4089
 	.uleb128 0x1c
 	.long	.LASF663
 	.byte	0x41
 	.byte	0x29
-	.long	0x3d63
+	.long	0x3d69
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -200
@@ -12288,7 +12348,7 @@ _sub_I_00099_1:
 	.sleb128 -64
 	.uleb128 0x29
 	.long	.LASF658
-	.long	0x4093
+	.long	0x4099
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC21
@@ -12339,13 +12399,13 @@ _sub_I_00099_1:
 	.byte	0
 	.uleb128 0x13
 	.long	0x9d
-	.long	0x4093
+	.long	0x4099
 	.uleb128 0x14
 	.long	0x101
 	.byte	0x8
 	.byte	0
 	.uleb128 0xb
-	.long	0x4083
+	.long	0x4089
 	.uleb128 0x68
 	.long	.LASF670
 	.byte	0x1
@@ -12357,12 +12417,12 @@ _sub_I_00099_1:
 	.quad	.LFE2865-.LFB2865
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x40ee
+	.long	0x40f4
 	.uleb128 0x1c
 	.long	.LASF673
 	.byte	0x15
 	.byte	0x28
-	.long	0x3d63
+	.long	0x3d69
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -12376,20 +12436,20 @@ _sub_I_00099_1:
 	.sleb128 -48
 	.uleb128 0x29
 	.long	.LASF658
-	.long	0x40fe
+	.long	0x4104
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC8
 	.byte	0
 	.uleb128 0x13
 	.long	0x9d
-	.long	0x40fe
+	.long	0x4104
 	.uleb128 0x14
 	.long	0x101
 	.byte	0xe
 	.byte	0
 	.uleb128 0xb
-	.long	0x40ee
+	.long	0x40f4
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
 .Ldebug_abbrev0:
@@ -12720,6 +12780,15 @@ _sub_I_00099_1:
 	.byte	0
 	.byte	0
 	.uleb128 0x18
+	.uleb128 0x28
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x1c
+	.uleb128 0xb
+	.byte	0
+	.byte	0
+	.uleb128 0x19
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -12747,7 +12816,7 @@ _sub_I_00099_1:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x19
+	.uleb128 0x1a
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -12765,15 +12834,6 @@ _sub_I_00099_1:
 	.uleb128 0x19
 	.uleb128 0x1
 	.uleb128 0x13
-	.byte	0
-	.byte	0
-	.uleb128 0x1a
-	.uleb128 0x28
-	.byte	0
-	.uleb128 0x3
-	.uleb128 0x8
-	.uleb128 0x1c
-	.uleb128 0xb
 	.byte	0
 	.byte	0
 	.uleb128 0x1b
@@ -13193,7 +13253,7 @@ _sub_I_00099_1:
 	.sleb128 1
 	.uleb128 0x3b
 	.uleb128 0x21
-	.sleb128 259
+	.sleb128 262
 	.uleb128 0x39
 	.uleb128 0x21
 	.sleb128 5
@@ -15225,6 +15285,8 @@ _sub_I_00099_1:
 	.string	"getInstance"
 .LASF29:
 	.string	"__int32_t"
+.LASF592:
+	.string	"current_indent"
 .LASF586:
 	.string	"wctrans"
 .LASF504:
@@ -15393,8 +15455,6 @@ _sub_I_00099_1:
 	.string	"mbstowcs"
 .LASF9:
 	.string	"left_child"
-.LASF592:
-	.string	"current_indent"
 .LASF451:
 	.string	"wcsncat"
 .LASF608:

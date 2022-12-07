@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdarg.h>
 
 #include "Grammar.h"
 #include "EasyDebug.h"
@@ -24,62 +25,179 @@ struct TokenBuffer
 struct Programm
     {
     Token* arr;
-    Token* root; // mb change to int - position in arr
+    Token** root; // mb change to int - position in arr
     // mb int* functions - positions of functions
 
     char** var_tabel;
     char** func_table;
     };
 
+static Token* GetFunction    (TokenBuffer* token_buf);
+static Token* GetBlock       (TokenBuffer* token_buf);
+static Token* GetStatement   (TokenBuffer* token_buf);
 static Token* GetInstruction (TokenBuffer* token_buf);
-static Token* GetAssigment (TokenBuffer* token_buf);
+static Token* GetAssigment   (TokenBuffer* token_buf);
 
 static Token* GetE     (TokenBuffer* token_buf);
 static Token* GetT     (TokenBuffer* token_buf);
 static Token* GetPower (TokenBuffer* token_buf);
 static Token* GetP     (TokenBuffer* token_buf);
-// static Token* GetF     (TokenBuffer* token_buf);
 static Token* GetN     (TokenBuffer* token_buf);
 
+// static void report_syntax_error(TokenBuffer* token_buf, const char* format, ...);
 
 #define POSITION(tokent_tree) token_buf->position
 #define SIZE(token_bud)       token_buf->size
 #define token                 ( (POSITION(token_buf) < SIZE(token_buf)) ? (token_buf->arr + token_buf->position) : nullptr )
 
+#define report_syntax_error(format, ...)                                    \
+        do                                                                  \
+            {                                                               \
+            printf(redcolor "Syntax ERORR\n"resetconsole);                  \
+            logf("Syntax ERROR\n");                                         \
+            logf("");                                                       \
+            LOG__.log_dup_console(format __VA_OPT__(,) __VA_ARGS__);        \
+            printf("%s:%d\n", __FILE__, __LINE__);                          \
+            PrintToken(token);                                              \
+            }                                                               \
+        while(0);
 
+//              Programm* proga
 Token* GetG (Token* token_arr, int number_of_tokens)
     {
     $log(DEBUG)
     assertlog(token_arr,            EFAULT, return LNULL);
     assertlog(number_of_tokens > 0, EFAULT, return LNULL);
 
-    TokenBuffer token_buf {token_arr, number_of_tokens, 0};
+    TokenBuffer token_buf_orig {token_arr, number_of_tokens, 0};
 
-    Token*  root = GetInstruction(&token_buf);
-    if (!root)
-        return LNULL;
-
-    $LOG_TOKEN(root)
-
-    Token* current_token = root;
-    while (token_buf.position < number_of_tokens)
+    /*
+    Token**  root =  (Token**) CALLOC (20, sizeof(Token*));
+    int number_of_functions = 0;
+    */
+    TokenBuffer* token_buf = &token_buf_orig;
+    
+    return GetFunction(token_buf);
+    /*
+    while (POSITION(token_buf) < number_of_tokens)
         {
-        RIGHT(current_token) = GetInstruction(&token_buf);
-        if (!RIGHT(current_token))
+        // if function
+        // if (TYPE(token) == )
+            // {
+            *(root + number_of_functions) = GetFunction(token_buf);
+            if (!(root + number_of_functions))
+                    {
+                    KILL(root);
+                    return LNULL;
+                    }
+
+            number_of_functions++;
+            continue;
+            // }
+
+        // if initialization
+
+
+        // if assigment
+
+
+        // if prototype
+        
+        }
+
+    if (POSITION(token_buf) != SIZE(token_buf))
+        {
+        report_syntax_error("Invalid number of tokens: %d (size %d)\n", POSITION(token_buf), SIZE(token_buf));
+        return LNULL;
+        }
+
+    return SUCCESS;
+    */
+    }
+
+static Token* GetFunction (TokenBuffer* token_buf)
+    {
+    $log(DEBUG)
+    assertlog(token_buf, EFAULT, return LNULL);
+
+    // get function name, parametrs and etc
+
+    // function body
+    if (TYPE(token) != OPENING_BRACKET)
+        {
+        report_syntax_error("Missing { in function body\n");
+        return LNULL;
+        }
+
+    POSITION(token_buf)++;
+
+    Token* body = GetBlock(token_buf);
+    CHECK(body, return LNULL);
+
+    if (TYPE(token) != CLOSING_BRACKET)
+       {
+       report_syntax_error("Missing { in function body\n");
+       return LNULL;
+       }
+
+    POSITION(token_buf)++;
+
+    return body;
+    }
+
+static Token* GetBlock (TokenBuffer* token_buf)
+    {
+    $log(DEBUG)
+    assertlog(token_buf, EFAULT, return LNULL);
+    
+    Token* block = GetStatement(token_buf);
+    if (!block) 
+        {
+        report_syntax_error("Empty block\n");
+        return LNULL;
+        }
+
+    Token* current_statement = block;
+    while (current_statement)
+        {
+        RIGHT(current_statement) = GetStatement(token_buf);
+
+        current_statement = RIGHT(current_statement);    
+        }
+
+    return block;
+    }
+
+static Token* GetStatement (TokenBuffer* token_buf)
+    {
+    assertlog(token_buf, EFAULT, return LNULL);
+
+    if (IS_INSTRUCTION(token))
+        return GetInstruction(token_buf);
+
+    if (IS_VAR(token))
+        return GetAssigment(token_buf);
+
+    // if initializAtion
+
+    if (TYPE(token) == OPENING_BRACKET)
+        {
+        POSITION(token_buf)++;
+
+        Token* block = GetBlock(token_buf);
+
+        if (OP(token) != CLOSING_BRACKET)
+            {
+            report_syntax_error("Missing closing bracket (token position %d)\n", POSITION(token_buf));
             return LNULL;
+            }
 
-        current_token = RIGHT(current_token);    
+        POSITION(token_buf)++;
+
+        return block;
         }
 
-    if (token_buf.position != token_buf.size)
-        {
-          logf ("Invalid number of tokens: %d (size %d)\n", token_buf.position, token_buf.size);
-        printf ("Invalid number of tokens: %d (size %d)\n", token_buf.position, token_buf.size); 
-
-        return LNULL;
-        }
-
-    return root;
+    return NULL;
     }
 
 static Token* GetInstruction (TokenBuffer* token_buf)
@@ -88,20 +206,29 @@ static Token* GetInstruction (TokenBuffer* token_buf)
     assertlog (token_buf, EFAULT, return LNULL);
 
     if (!IS_INSTRUCTION(token))
-        return GetAssigment(token_buf);
-    
+        {
+        report_syntax_error("Ebat, not a instruction token\n");
+        return LNULL;
+        }
+        
     // fout
     if (INSTR(token) == FOUT)
         {
         Token* fout = token;
         POSITION(token_buf)++;
 
-        if (TYPE(token) != END_OF_STATEMENT && OP(token) != END_OF_STATEMENT)
+        if (TYPE(token) == OPERATOR && OP(token) == OUT)
             {
-            printf ("Missing %c - end of statement after fout\n", END_OF_STATEMENT);
-            printf ("Current token: token_buf position : %d\n", POSITION(token_buf));
-            PrintToken(token);
+            POSITION(token_buf)++;
 
+            Token* output = GetE(token_buf); // add strings later
+            
+            LEFT(fout) = output;
+            }
+        
+        if (TYPE(token) != END_OF_STATEMENT && OP(token) != END_OF_STATEMENT)
+            { 
+            report_syntax_error( "Missing %c - end of statement after fout\n", END_OF_STATEMENT);
             return LNULL;
             }
         
@@ -120,10 +247,7 @@ static Token* GetInstruction (TokenBuffer* token_buf)
 
     if (TYPE(token) != EXPRESSION_OPENING_BRACKET)
         {
-          logf ("Missing openig bracket in instruction (position %d)\n", POSITION(token_buf));
-        printf ("Missing openig bracket in instruction (position %d)\n", POSITION(token_buf));
-        PrintToken(token);
-
+        report_syntax_error("Missing openig bracket in instruction \n");
         return LNULL;
         }
 
@@ -136,32 +260,23 @@ static Token* GetInstruction (TokenBuffer* token_buf)
     LEFT(instruction) = GetE(token_buf);
     if (!LEFT(instruction))
         {
-           logf ("No condition for instruction\n");
-         printf ("No condition for instruction\n");
-        PrintToken(token);
-
+        report_syntax_error("No condition for instruction\n");
         return LNULL;
         }
 
     if (TYPE(token) != EXPRESSION_CLOSING_BRACKET)
         {
-          logf ("Missing closing bracket in instruction (position %d)\n", POSITION(token_buf));
-        printf ("Missing closing bracket in instruction (position %d)\n", POSITION(token_buf));
-        PrintToken(token);
-
+        report_syntax_error("Missing closing bracket in instruction\n");
         return LNULL;
         }
 
     POSITION(token_buf)++;
 
     // Body
-    RIGHT (instruction) = GetAssigment(token_buf);
+    RIGHT (instruction) = GetStatement(token_buf);
     if (!RIGHT(instruction))
         {
-          logf ("No condition for instruction (position %d)\n", POSITION(token_buf));
-        printf ("No condition for instruction (position %d)\n", POSITION(token_buf));
-        PrintToken(token);
-
+        report_syntax_error("No condition for instruction (position %d)\n", POSITION(token_buf));
         return LNULL;
         }
 
@@ -172,13 +287,10 @@ static Token* GetInstruction (TokenBuffer* token_buf)
         POSITION(token_buf)++;
         
          LEFT(else_instr) = RIGHT(instruction);
-        RIGHT(else_instr) = GetAssigment(token_buf);
+        RIGHT(else_instr) = GetStatement(token_buf);
         if (!RIGHT(else_instr))
             {
-            logf   ("No commands for 'else' (position %d)\n", POSITION(token_buf));
-            printf ("No commands for 'else' (position %d)\n", POSITION(token_buf));
-            PrintToken(token);
-
+            report_syntax_error("No commands for 'else' (position %d)\n", POSITION(token_buf));
             return LNULL;
             }
 
@@ -195,10 +307,7 @@ static Token* GetAssigment (TokenBuffer* token_buf)
 
     if (!IS_VAR(token))
         {
-          logf ("Error %d token must be variable\n", POSITION(token_buf));
-        printf ("Error %d token must be variable\n", POSITION(token_buf));
-        PrintToken(token);
-        
+        report_syntax_error("Error %d token must be variable\n", POSITION(token_buf));
         return LNULL;
         }
     
@@ -207,10 +316,7 @@ static Token* GetAssigment (TokenBuffer* token_buf)
 
     if (TYPE(token) != ASSIGMENT && OP(token) != ASSIGMENT)
         {
-          logf ("Error %d token must be assigment (%c)\n", POSITION(token_buf), ASSIGMENT);
-        printf ("Error %d token must be assigment (%c)\n", POSITION(token_buf), ASSIGMENT);
-        PrintToken(token);
-
+        report_syntax_error("Error %d token must be assigment (%c)\n", POSITION(token_buf), ASSIGMENT);
         return LNULL;
         }
     
@@ -222,22 +328,13 @@ static Token* GetAssigment (TokenBuffer* token_buf)
 
     if (!RIGHT(assigment))
         {
-          logf ("Empty assigment!\n");
-          logf ("Current token: token_buf position: %d\n", POSITION(token_buf));
-
-        printf ("Empty assigment!\n");
-        printf ("Current token: token_buf position: %d\n", POSITION(token_buf));
-        PrintToken(token);
-
+        report_syntax_error("Empty assigment!\n");
         return NULL;
         }
     
     if (TYPE(token) != END_OF_STATEMENT && OP(token) != END_OF_STATEMENT)
         {
-        printf ("Missing %c - end of statement\n", END_OF_STATEMENT);
-        printf ("Current token: token_buf position : %d\n", POSITION(token_buf));
-        PrintToken(token);
-
+        report_syntax_error("Missing %c - end of statement\n", END_OF_STATEMENT);
         return LNULL;
         }
 
@@ -327,20 +424,13 @@ static Token* GetP (TokenBuffer* token_buf)
 
     if (TYPE(token) == EXPRESSION_OPENING_BRACKET)
         {
-        /*
-        if (OP(token) != '(')
-            {
-            printf("Missing opening bracket (token position %d)\n", POSITION(token_buf));
-            return LNULL;
-            }
-        */
         POSITION(token_buf)++;
 
         Token* expression = GetE(token_buf); 
 
         if (OP(token) != EXPRESSION_CLOSING_BRACKET)
             {
-            printf("Missing closing bracket (token position %d)\n", POSITION(token_buf));
+            report_syntax_error("Missing closing bracket (token position %d)\n", POSITION(token_buf));
             return LNULL;
             }
 
@@ -349,33 +439,8 @@ static Token* GetP (TokenBuffer* token_buf)
         return expression; 
         }
 
-    //if (IS_FUNC(token))
-      //  return GetF(token_buf);
-
     return GetN(token_buf);
     }
-/*
-static Token* GetF (TokenBuffer* token_buf)
-    {
-    assertlog (token_buf, EFAULT, return LNULL);
-    $log(DEBUG_ALL)
-
-    if (!IS_FUNC(token))
-        {
-        printf ("Ebat, bratic this is not a functor! (token position %d)\n", POSITION(token_buf));
-        return LNULL;
-        }
-    
-    Token* result = token;
-    
-    POSITION(token_buf)++;
-    
-    RIGHT(result) = GetP(token_buf);
-
-    $LOG_TOKEN(result)
-    return result;
-    }
-*/
 
 static Token* GetN (TokenBuffer* token_buf)
     {
@@ -384,10 +449,7 @@ static Token* GetN (TokenBuffer* token_buf)
 
     if (!IS_CONST(token) && !IS_VAR(token))
         {
-          logf ("Cringe, this is not variable or constant node =( (token position %d)\n", POSITION(toke_tree));
-        printf ("Cringe, this is not variable or constant node =( (token position %d)\n", POSITION(toke_tree));
-        PrintToken(token);
-
+        report_syntax_error("Cringe, this is not variable or constant node =( (token position %d)\n", POSITION(toke_tree));
         return LNULL;
         } 
     
@@ -397,3 +459,26 @@ static Token* GetN (TokenBuffer* token_buf)
     $LOG_TOKEN(result)
     return result;
     }
+
+
+
+/*
+static void report_syntax_error(TokenBuffer* token_buf, const char* format, ...)
+    {
+    assertlog(token_buf, EFAULT, return);
+    assertlog(format,    EFAULT, return);
+
+    
+    va_list ptr;
+    va_start(ptr, format);
+
+    logger(
+
+    vprintf(format, ptr);
+
+    va_end(ptr);
+
+   
+    return;
+    }
+    */

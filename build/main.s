@@ -5811,7 +5811,7 @@ _sub_I_00099_1:
 	.uleb128 0x21
 	.long	.LASF404
 	.byte	0x34
-	.byte	0x32
+	.byte	0x33
 	.byte	0xd
 	.long	.LASF405
 	.long	0x44
@@ -5828,7 +5828,7 @@ _sub_I_00099_1:
 	.uleb128 0x14
 	.long	.LASF406
 	.byte	0x34
-	.byte	0x2a
+	.byte	0x2b
 	.byte	0xe
 	.long	.LASF407
 	.long	0x25f7
