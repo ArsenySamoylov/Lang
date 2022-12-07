@@ -4,8 +4,9 @@
 #include <math.h> // for NAN only
 
 #include "Grammar.h"
-#include "LogMacroses.h"
 #include "DSL.h"
+#include "LangUtils.h"
+#include "LogMacroses.h"
 #include "my_buffer.h"
 #include "EasyDebug.h"
 #include "SomeStuff.h"
@@ -13,12 +14,15 @@
 static int GetTokenValue (TokenValue* val, Buffer* buf);
 static int BufferGetWord (Buffer*     buf, char*   word_buffer);
 
-static int IsInstruction (char* str);
+static int IsInstruction     (char* str);
+static int IsInitializator   (char* str);
+static int IsFunctionRetType (char* str);
 
 #pragma GCC diagnostic ignored "-Wconversion"
 #pragma GCC diagnostic ignored "-Wsign-conversion"
 
 #define token  (arr + number_of_tokens)
+#define current_str *(string_arr + number_of_strings)
 
 #define report_lexical_error(format, ...)                           \
     do                                                              \
@@ -33,21 +37,34 @@ static int IsInstruction (char* str);
         }                                                           \
     while(0);
 
-int Tokenizer (Token** tokens_arr, const char* buffer)
+int Tokenizer (Programm* programm, const char* buffer)
     {
     $log(1)
-    assertlog (tokens_arr, EFAULT, return LFAILURE);
-    assertlog (buffer,     EFAULT, return LFAILURE);
+    assertlog (programm, EFAULT, return LFAILURE);
+    assertlog (buffer,   EFAULT, return LFAILURE);
 
     Token* arr = (Token*) CALLOC (START_NUMBER_OF_TOKENS, sizeof(arr[0]));
-    if (!arr) return -1;
+    if (!arr) 
+        return FAILURE;
+
+    int size = START_NUMBER_OF_TOKENS;
+
+    const char** string_arr = (const char**) CALLOC (START_NUMBER_OF_STRINGS, sizeof(string_arr[0])); 
+    if (!string_arr)
+        {
+        KILL(arr);
+        return FAILURE;
+        }
+
+    int size_strings = START_NUMBER_OF_STRINGS;
 
     Buffer buf_orig{};
     CHECK (BufferCtor(&buf_orig, buffer) == SUCCESS, return LFAILURE);
 
     Buffer* buf = &buf_orig;
-    int number_of_tokens = 0;
-    int size = START_NUMBER_OF_TOKENS;
+
+    int number_of_tokens  = 0;
+    int number_of_strings = 0;
 
     while (BufferLook(buf) != '\0')
         {
@@ -56,70 +73,68 @@ int Tokenizer (Token** tokens_arr, const char* buffer)
             {
             size *= 2;
             Token* fuck = (Token*) RECALLOC(arr, size * sizeof(arr[0]));  
-            if (!fuck) return LFAILURE;
-            
+            if (!fuck) 
+                {
+                KILL(string_arr);
+                return LFAILURE;
+                }
+
             arr = fuck;
             }
-        
+
+        if (number_of_strings == size_strings)
+            {
+            size_strings *=2;
+            const char** xyu = (const char**) RECALLOC(string_arr, size_strings * sizeof(string_arr[0]));
+            if (!xyu) 
+                {
+                KILL(arr);
+                return LFAILURE;
+                }
+            
+            string_arr = xyu;
+            }
+        //
+
         TYPE(token) = GetTokenValue (&VALUE(token), buf);
         if (TYPE(token) == UNKNOWN_TYPE)
             {
             report_lexical_error("Unknown type\n");
 
             KILL(arr);
-            
+            KILL(string_arr);
             return LFAILURE;
             }
-        
+
+        if (TYPE(token) == NAME)
+            {
+            current_str = strdup(NAME(token));
+            number_of_strings++;
+            }
+
         number_of_tokens++;
         }
         
-    *tokens_arr = (Token*) RECALLOC (arr, number_of_tokens * sizeof(arr[0]));
+    programm->token_arr = (Token*) RECALLOC (arr, number_of_tokens * sizeof(arr[0]));
+    programm->number_of_tokens = number_of_tokens;
+    
+    programm->string_arr = (const char**) RECALLOC (string_arr, number_of_strings * sizeof(string_arr[0]));
+    programm->number_of_strings = number_of_strings;
 
     // for log
     $li(number_of_tokens)
     for (int i = 0; i < number_of_tokens; i++)
         {
         $li(i)
-        $LOG_TOKEN(*tokens_arr + i)
+        $LOG_TOKEN(arr + i)
         }
     //
-    return number_of_tokens; 
+    return SUCCESS; 
     }
 
 #undef token
+#undef current_str
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-static int IsInstruction (char* str)
-    {
-    assertlog(str, EFAULT, return NOT_A_INSTRUCTION)
-
-    for (int i = 0; i < NUMBER_OF_INSTUCTIONS; i++)
-        if (!stricmp(str, INSTRUCTIONS[i]))
-            return i;
-    
-    return NOT_A_INSTRUCTION;
-    }
-
-static int BufferGetWord (Buffer* buf, char* word_buffer)
-    {
-    assertlog(buf,         EFAULT, return LFAILURE);
-    assertlog(word_buffer, EFAULT, return LFAILURE);
-
-    buf->str = SkipSpaces(buf->str); 
-
-    int n = 0;
-    sscanf(buf->str, "%[a-zA-Z]%n", word_buffer, &n);
-    buf->str = SkipSpaces(buf->str + n); 
-
-    // $s(buf->str)
-    // $s(word_buffer)
-    // $i(n)
-    // $$
-
-    return n;
-    }
-
 static int GetTokenValue (TokenValue* val, Buffer* buf)
     {
     $log(1)
@@ -178,14 +193,13 @@ static int GetTokenValue (TokenValue* val, Buffer* buf)
         return OPERATOR;        
         }
     
-    // VARIABLE or INSTRUCTION
+    // NAME, INSTRUCTION, INITIALIZATOR or RET_TYPE
     if (isalpha(temp))
         {
         char word[MAX_WORD_LENGTH] = "";
         BufferGetWord (buf, word);
 
         int instruction = IsInstruction(word);
-
         if (instruction != NOT_A_INSTRUCTION)
             {
             val->t_instruction = instruction;
@@ -193,12 +207,29 @@ static int GetTokenValue (TokenValue* val, Buffer* buf)
             return INSTRUCTION;
             }
 
-        // make variable table
-        val->t_variable = *word; // for variables, save only first char
+        int initializator = IsInitializator(word);
+        if (initializator != NOT_A_INITIALIZATOR)
+            {
+            val->t_initializator = initializator;
 
-        return VARIABLE;
+            return INITIALIZATOR;
+            }
+
+        int ret_type = IsFunctionRetType(word);
+        if (ret_type != NOT_A_RET_TYPE)
+            {
+            val->t_function_ret_type = ret_type;
+
+            return FUNCTION_RET_TYPE;
+            }
+
+
+        val->t_name = word;
+
+        return NAME;
         }
 
+       
     // brackets
     if (temp == OPENING_BRACKET            || temp == CLOSING_BRACKET   || 
         temp == EXPRESSION_OPENING_BRACKET || temp == EXPRESSION_CLOSING_BRACKET)             
@@ -219,107 +250,54 @@ static int GetTokenValue (TokenValue* val, Buffer* buf)
     return UNKNOWN_TYPE;
     }
 
-#pragma GCC diagnostic ignored "-Wformat="
-void PrintToken (const Token *const token)
+static int BufferGetWord (Buffer* buf, char* word_buffer)
     {
-    if (!token) return;
+    assertlog(buf,         EFAULT, return LFAILURE);
+    assertlog(word_buffer, EFAULT, return LFAILURE);
 
-    printf("Token address %p\n", token);
-    printf("type: (%d) ", TYPE(token));    
+    buf->str = SkipSpaces(buf->str); 
 
-    switch (TYPE(token))                                                        
-    {
-    case STATEMENT:
-            printf("STATEMENT   | {%c}\n\n", OP(token));
-            break; 
-    case INSTRUCTION: 
-            printf("INSTRUCTION | {'%s'}\n\n",  INSTRUCTIONS[token->value.t_instruction]);
-            break;             
-    case EXPRESSION_OPENING_BRACKET: 
-            printf("EXPRESSION OPENING BRACKET | {%c}\n\n",  OP(token));
-            break;                                                     
-    case EXPRESSION_CLOSING_BRACKET: 
-            printf("EXPRESSION CLOSING BRACKET | {%c}\n\n",  OP(token));
-            break;                                                                                    
-    case OPENING_BRACKET: 
-            printf("OPENING BRACKET | {%c}\n\n",  OP(token));
-            break;                                                     
-    case CLOSING_BRACKET: 
-            printf("CLOSING BRACKET | {%c}\n\n",  OP(token));
-            break;                                                       
-    case ASSIGMENT:      
-            printf("ASSIGMENT | {%c}\n\n",  OP(token));
-            break;                                                       
-    case END_OF_STATEMENT: 
-            printf("END_OF_STATEMENT| {%c}\n\n",  OP(token));
-            break;                                                     
-    case OPERATOR: 
-            printf("OPERATOR | {%c}\n\n",  OP(token));
-            break;                                                      
-    case VARIABLE: 
-            printf("VARIABLE | {%c}\n\n",  VAR(token));
-            break;                                                      
-                                                                            
-    case CONSTANT: 
-            printf("CONSTANT | {%lg}\n\n", CONST(token));
-            break;                                                      
+    int n = 0;
+    sscanf(buf->str, "%[a-zA-Z]%n", word_buffer, &n);
+    buf->str = SkipSpaces(buf->str + n); 
 
-    default: printf("UNCKNOWN TYPE\n"); break;                             
-    }                                                                      
+    // $s(buf->str)
+    // $s(word_buffer)
+    // $i(n)
+    // $$
 
-    return;
+    return n;
     }
 
-void LogToken (const Token *const token, const char* name)
+static int IsInstruction (char* str)
     {
-    if (!token) return;
+    assertlog(str, EFAULT, return NOT_A_INSTRUCTION)
 
-    logf("Token %s\n", name);                                                
-    logf("(%p)::::::::::::::::\n", token);                                       
-    logf("\t\t  left_child: %p\n",  LEFT(token));                                
-    logf("\t\t right_child: %p\n", RIGHT(token));                                
-    logf("\t\t        type: ");     
+    for (int i = 0; i < NUMBER_OF_INSTUCTIONS; i++)
+        if (!stricmp(str, INSTRUCTIONS[i]))
+            return i;
+    
+    return NOT_A_INSTRUCTION;
+    }
 
-    switch (TYPE(token))                                                        
-        {
-        case STATEMENT:
-                    logf_ni("STATEMENT   | {%c}\n\n", OP(token));
-                    break; 
-        case INSTRUCTION: 
-                    logf_ni("INSTRUCTION | {'%s'}\n\n",  INSTRUCTIONS[token->value.t_instruction]);
-                    break;       
-        case EXPRESSION_OPENING_BRACKET: 
-                    logf_ni("EXPRESSION OPENING BRACKET | {%c}\n\n",  OP(token));
-                    break;                                                     
-        case EXPRESSION_CLOSING_BRACKET: 
-                    logf_ni("EXPRESSION CLOSING BRACKET | {%c}\n\n",  OP(token));
-                    break;                                                                                    
-        case OPENING_BRACKET: 
-                    logf_ni("OPENING BRACKET | {%c}\n\n",  OP(token));
-                    break;                                                     
-        case CLOSING_BRACKET: 
-                    logf_ni("CLOSING BRACKET | {%c}\n\n",  OP(token));
-                    break;                                                       
-        case ASSIGMENT:      
-                    logf_ni("ASSIGMENT | {%c}\n\n",  OP(token));
-                    break;                                                       
-        case END_OF_STATEMENT:
-                    logf_ni("END_OF_STATEMENT| {%c}\n\n",  OP(token));
-                    break;                                                     
-        case OPERATOR: 
-                    logf_ni("OPERATOR | {%c}\n\n",  OP(token));
-                    break;                                                      
-        case VARIABLE: 
-                    logf_ni("VARIABLE | {%c}\n\n",  VAR(token));
-                    break;                                                      
-                                                                                
-        case CONSTANT: logf_ni("CONSTANT | {%lg}\n\n", CONST(token));
-                    break;                                                      
-                                                                                
-        // case FUNCTION:  logf_ni("FUNCTOR | {%d}\n\n",  FUNCT(token));
-                // break;                                                      
-        default: logf_ni("UNCKNOWN TYPE\n"); break;                             
-        }                                                                      
+static int IsInitializator (char* str)
+    {
+    assertlog(str, EFAULT, return NOT_A_INITIALIZATOR)
 
-    return;
+    for (int i = 0; i < NUMBER_OF_INITIALIZATORS; i++)
+        if (!stricmp(str, INITIALIZATORS[i]))
+            return i;
+    
+    return NOT_A_INITIALIZATOR;
+    }
+
+static int IsFunctionRetType (char* str)
+    {
+    assertlog(str, EFAULT, return NOT_A_RET_TYPE)
+
+    for (int i = 0; i < NUMBER_OF_FUNCTION_RET_TYPES; i++)
+        if (!stricmp(str, FUNCTION_RET_TYPES[i]))
+            return i;
+    
+    return NOT_A_RET_TYPE;
     }

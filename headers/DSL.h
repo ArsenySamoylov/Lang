@@ -27,6 +27,10 @@
 
 #define INSTR(node)        node->value.t_instruction
 #define INSTR_STR(node)    (IS_INSTRUCTION(node) ? INSTRUCTIONS[INSTR(node)] : "NOT A INSTRUCTION")
+
+#define NAME(node)         node->value.t_name
+#define RET_TYPE(node)     node->value.t_function_ret_type
+// #define STR(node)          node->value.t_string
 /*
 #define       FUNC(node)   node->value.t_functor
 #define  LEFT_FUNC(node)   FUNC( LEFT(node))

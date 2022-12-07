@@ -1,5 +1,5 @@
 #pragma once
 
-#include "LexicalAnalysis.h"
+#include "Programm.h"
 
-int TranslateToAsm (const Token *const root, const char *const name);
+int TranslateToAsm (const Programm *const programm, const char *const name);

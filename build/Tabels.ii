@@ -1,0 +1,86 @@
+# 0 "./src/Tabels.cpp"
+# 1 "/home/arsenyfucker/Cprojects/Lang/Translator//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "./src/Tabels.cpp"
+# 1 "./headers/Tabels.h" 1
+       
+
+# 1 "./headers/Token.h" 1
+       
+
+union TokenValue
+    {
+    int t_instruction;
+    char t_operator;
+    double t_constant;
+    int t_initializator;
+    int t_function_ret_type;
+
+    char* t_name;
+    int t_variable;
+    int t_function;
+    };
+
+struct Token
+    {
+    Token* left_child;
+    Token* right_child;
+
+    int type;
+
+    TokenValue value;
+    };
+# 4 "./headers/Tabels.h" 2
+
+enum VarType
+    {
+    REGISTER,
+    RAM,
+    LOCAL,
+    };
+
+enum FuncType
+    {
+    DECLARED,
+    NOT_DECLEARED,
+    INITIALIZED,
+    };
+
+struct VarLabel
+    {
+    int name;
+    int mem_type;
+    int address;
+    };
+
+struct VarLabelTabel
+    {
+    VarLabel** label_arr;
+    int number_of_labels;
+    };
+
+struct FuncLabel
+    {
+    int name;
+    int ret_type;
+    int body_status;
+
+    VarLabelTabel local_args;
+    int number_of_arguments;
+    };
+
+struct FuncLabelTabel
+    {
+    FuncLabel** label_arr;
+    int number_of_labels;
+
+    VarLabelTabel* local_var;
+    };
+
+FuncLabel* GetFunctLabel (Token* token, FuncLabelTabel* func_tabel);
+
+int AddFuncLabel (const char* name, int return_type, int body_status, FuncLabelTabel* func_tabel);
+# 2 "./src/Tabels.cpp" 2

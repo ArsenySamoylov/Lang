@@ -1,8 +1,8 @@
-Wed Dec  7 20:00:51 2022
+Wed Dec  7 20:17:04 2022
 
 main::
   {
-  LOG CALLOC:     {0x60e000000040} = calloc (147, 1 = 147) from GetSrcFile:27, at ../ATC/Buffer/my_buffer.cpp:27
+  LOG CALLOC:     {0x60f000000040} = calloc (170, 1 = 170) from GetSrcFile:27, at ../ATC/Buffer/my_buffer.cpp:27
   Tokenizer::
     {
     LOG CALLOC:     {0x616000000080} = calloc (20, 32 = 640) from Tokenizer:42, at ./src/LexicalAnalysis.cpp:42
@@ -14,7 +14,37 @@ main::
 
     GetTokenValue::
       {
+      	temp: 'v'
+      }
+
+    GetTokenValue::
+      {
+      	temp: 'm'
+      }
+
+    GetTokenValue::
+      {
       	temp: '{'
+      }
+
+    GetTokenValue::
+      {
+      	temp: 'v'
+      }
+
+    GetTokenValue::
+      {
+      	temp: 'x'
+      }
+
+    GetTokenValue::
+      {
+      	temp: '='
+      }
+
+    GetTokenValue::
+      {
+      	temp: '1'
       }
 
     GetTokenValue::
@@ -82,6 +112,7 @@ main::
       	temp: '-'
       }
 
+    LOG REALLOC:     {0x616000000080} -> {0x61a000000080} = realloc (new size 1280, old size 640) from Tokenizer:58, at ./src/LexicalAnalysis.cpp:58
     GetTokenValue::
       {
       	temp: '1'
@@ -112,7 +143,6 @@ main::
       	temp: '='
       }
 
-    LOG REALLOC:     {0x616000000080} -> {0x61a000000080} = realloc (new size 1280, old size 640) from Tokenizer:58, at ./src/LexicalAnalysis.cpp:58
     GetTokenValue::
       {
       	temp: '2'
@@ -184,6 +214,7 @@ main::
       	temp: '5'
       }
 
+    LOG REALLOC:     {0x61a000000080} -> {0x61e000000080} = realloc (new size 2560, old size 1280) from Tokenizer:58, at ./src/LexicalAnalysis.cpp:58
     GetTokenValue::
       {
       	temp: ')'
@@ -199,91 +230,89 @@ main::
       	temp: '}'
       }
 
-    LOG REALLOC:     {0x61a000000080} -> {0x61a000000680} = realloc (new size 1184, old size 1280) from Tokenizer:77, at ./src/LexicalAnalysis.cpp:77
-    	number_of_tokens: 37
+    LOG REALLOC:     {0x61e000000080} -> {0x61a000000680} = realloc (new size 1376, old size 2560) from Tokenizer:77, at ./src/LexicalAnalysis.cpp:77
+    	number_of_tokens: 43
     	i: 0
     Token *tokens_arr + i
     (0x61a000000680)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPENING BRACKET | {{}
-
+    		        type: UNCKNOWN TYPE
     	i: 1
     Token *tokens_arr + i
     (0x61a0000006a0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INSTRUCTION | {'if'}
+    		        type: VARIABLE | {m}
 
     	i: 2
     Token *tokens_arr + i
     (0x61a0000006c0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION OPENING BRACKET | {(}
+    		        type: OPENING BRACKET | {{}
 
     	i: 3
     Token *tokens_arr + i
     (0x61a0000006e0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: VARIABLE | {x}
-
+    		        type: UNCKNOWN TYPE
     	i: 4
     Token *tokens_arr + i
     (0x61a000000700)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION CLOSING BRACKET | {)}
+    		        type: VARIABLE | {x}
 
     	i: 5
     Token *tokens_arr + i
     (0x61a000000720)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPENING BRACKET | {{}
+    		        type: ASSIGMENT | {=}
 
     	i: 6
     Token *tokens_arr + i
     (0x61a000000740)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: VARIABLE | {x}
+    		        type: CONSTANT | {1}
 
     	i: 7
     Token *tokens_arr + i
     (0x61a000000760)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {=}
+    		        type: INSTRUCTION | {'if'}
 
     	i: 8
     Token *tokens_arr + i
     (0x61a000000780)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {45}
+    		        type: EXPRESSION OPENING BRACKET | {(}
 
     	i: 9
     Token *tokens_arr + i
     (0x61a0000007a0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
+    		        type: VARIABLE | {x}
 
     	i: 10
     Token *tokens_arr + i
     (0x61a0000007c0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: VARIABLE | {x}
+    		        type: EXPRESSION CLOSING BRACKET | {)}
 
     	i: 11
     Token *tokens_arr + i
     (0x61a0000007e0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {=}
+    		        type: OPENING BRACKET | {{}
 
     	i: 12
     Token *tokens_arr + i
@@ -297,14 +326,14 @@ main::
     (0x61a000000820)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {-}
+    		        type: ASSIGMENT | {=}
 
     	i: 14
     Token *tokens_arr + i
     (0x61a000000840)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {10}
+    		        type: CONSTANT | {45}
 
     	i: 15
     Token *tokens_arr + i
@@ -318,14 +347,14 @@ main::
     (0x61a000000880)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CLOSING BRACKET | {}}
+    		        type: VARIABLE | {x}
 
     	i: 17
     Token *tokens_arr + i
     (0x61a0000008a0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INSTRUCTION | {'else'}
+    		        type: ASSIGMENT | {=}
 
     	i: 18
     Token *tokens_arr + i
@@ -339,14 +368,14 @@ main::
     (0x61a0000008e0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {=}
+    		        type: OPERATOR | {-}
 
     	i: 20
     Token *tokens_arr + i
     (0x61a000000900)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {20}
+    		        type: CONSTANT | {10}
 
     	i: 21
     Token *tokens_arr + i
@@ -360,14 +389,14 @@ main::
     (0x61a000000940)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INSTRUCTION | {'fout'}
+    		        type: CLOSING BRACKET | {}}
 
     	i: 23
     Token *tokens_arr + i
     (0x61a000000960)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {<}
+    		        type: INSTRUCTION | {'else'}
 
     	i: 24
     Token *tokens_arr + i
@@ -381,1255 +410,147 @@ main::
     (0x61a0000009a0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
+    		        type: ASSIGMENT | {=}
 
     	i: 26
     Token *tokens_arr + i
     (0x61a0000009c0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: VARIABLE | {x}
+    		        type: CONSTANT | {20}
 
     	i: 27
     Token *tokens_arr + i
     (0x61a0000009e0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {=}
+    		        type: END_OF_STATEMENT| {;}
 
     	i: 28
     Token *tokens_arr + i
     (0x61a000000a00)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {1}
+    		        type: INSTRUCTION | {'fout'}
 
     	i: 29
     Token *tokens_arr + i
     (0x61a000000a20)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {*}
+    		        type: OPERATOR | {<}
 
     	i: 30
     Token *tokens_arr + i
     (0x61a000000a40)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION OPENING BRACKET | {(}
+    		        type: VARIABLE | {x}
 
     	i: 31
     Token *tokens_arr + i
     (0x61a000000a60)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {4}
+    		        type: END_OF_STATEMENT| {;}
 
     	i: 32
     Token *tokens_arr + i
     (0x61a000000a80)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {+}
+    		        type: VARIABLE | {x}
 
     	i: 33
     Token *tokens_arr + i
     (0x61a000000aa0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {5}
+    		        type: ASSIGMENT | {=}
 
     	i: 34
     Token *tokens_arr + i
     (0x61a000000ac0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION CLOSING BRACKET | {)}
+    		        type: CONSTANT | {1}
 
     	i: 35
     Token *tokens_arr + i
     (0x61a000000ae0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
+    		        type: OPERATOR | {*}
 
     	i: 36
     Token *tokens_arr + i
     (0x61a000000b00)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
+    		        type: EXPRESSION OPENING BRACKET | {(}
+
+    	i: 37
+    Token *tokens_arr + i
+    (0x61a000000b20)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: CONSTANT | {4}
+
+    	i: 38
+    Token *tokens_arr + i
+    (0x61a000000b40)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: OPERATOR | {+}
+
+    	i: 39
+    Token *tokens_arr + i
+    (0x61a000000b60)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: CONSTANT | {5}
+
+    	i: 40
+    Token *tokens_arr + i
+    (0x61a000000b80)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: EXPRESSION CLOSING BRACKET | {)}
+
+    	i: 41
+    Token *tokens_arr + i
+    (0x61a000000ba0)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: END_OF_STATEMENT| {;}
+
+    	i: 42
+    Token *tokens_arr + i
+    (0x61a000000bc0)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
     		        type: CLOSING BRACKET | {}}
 
     }
 
-  LOG FREE(kill): {0x60e000000120} - will be freed from main:36, at ./src/main.cpp:36
+  LOG FREE(kill): {0x60f000000130} - will be freed from main:36, at ./src/main.cpp:36
   GetG::
     {
     GetFunction::
       {
-      GetBlock::
-        {
-        GetInstruction::
-          {
-          GetE::
-            {
-            GetT::
-              {
-              GetPower::
-                {
-                GetP::
-                  {
-                  GetN::
-                    {
-                    Token result
-                    (0x61a0000006e0)::::::::::::::::
-                    		  left_child: (nil)
-                    		 right_child: (nil)
-                    		        type: VARIABLE | {x}
+      Syntax ERROR
+      Missing { in function body
 
-                    }
-
-                  }
-
-                }
-
-              Token node
-              (0x61a0000006e0)::::::::::::::::
-              		  left_child: (nil)
-              		 right_child: (nil)
-              		        type: VARIABLE | {x}
-
-              }
-
-            }
-
-          GetBlock::
-            {
-            GetAssigment::
-              {
-              GetE::
-                {
-                GetT::
-                  {
-                  GetPower::
-                    {
-                    GetP::
-                      {
-                      GetN::
-                        {
-                        Token result
-                        (0x61a000000780)::::::::::::::::
-                        		  left_child: (nil)
-                        		 right_child: (nil)
-                        		        type: CONSTANT | {45}
-
-                        }
-
-                      }
-
-                    }
-
-                  Token node
-                  (0x61a000000780)::::::::::::::::
-                  		  left_child: (nil)
-                  		 right_child: (nil)
-                  		        type: CONSTANT | {45}
-
-                  }
-
-                }
-
-              }
-
-            GetAssigment::
-              {
-              GetE::
-                {
-                GetT::
-                  {
-                  GetPower::
-                    {
-                    GetP::
-                      {
-                      GetN::
-                        {
-                        Token result
-                        (0x61a000000800)::::::::::::::::
-                        		  left_child: (nil)
-                        		 right_child: (nil)
-                        		        type: VARIABLE | {x}
-
-                        }
-
-                      }
-
-                    }
-
-                  Token node
-                  (0x61a000000800)::::::::::::::::
-                  		  left_child: (nil)
-                  		 right_child: (nil)
-                  		        type: VARIABLE | {x}
-
-                  }
-
-                Token token
-                (0x61a000000820)::::::::::::::::
-                		  left_child: (nil)
-                		 right_child: (nil)
-                		        type: OPERATOR | {-}
-
-                GetT::
-                  {
-                  GetPower::
-                    {
-                    GetP::
-                      {
-                      GetN::
-                        {
-                        Token result
-                        (0x61a000000840)::::::::::::::::
-                        		  left_child: (nil)
-                        		 right_child: (nil)
-                        		        type: CONSTANT | {10}
-
-                        }
-
-                      }
-
-                    }
-
-                  Token node
-                  (0x61a000000840)::::::::::::::::
-                  		  left_child: (nil)
-                  		 right_child: (nil)
-                  		        type: CONSTANT | {10}
-
-                  }
-
-                }
-
-              }
-
-            }
-
-          GetAssigment::
-            {
-            GetE::
-              {
-              GetT::
-                {
-                GetPower::
-                  {
-                  GetP::
-                    {
-                    GetN::
-                      {
-                      Token result
-                      (0x61a000000900)::::::::::::::::
-                      		  left_child: (nil)
-                      		 right_child: (nil)
-                      		        type: CONSTANT | {20}
-
-                      }
-
-                    }
-
-                  }
-
-                Token node
-                (0x61a000000900)::::::::::::::::
-                		  left_child: (nil)
-                		 right_child: (nil)
-                		        type: CONSTANT | {20}
-
-                }
-
-              }
-
-            }
-
-          }
-
-        GetInstruction::
-          {
-          GetE::
-            {
-            GetT::
-              {
-              GetPower::
-                {
-                GetP::
-                  {
-                  GetN::
-                    {
-                    Token result
-                    (0x61a000000980)::::::::::::::::
-                    		  left_child: (nil)
-                    		 right_child: (nil)
-                    		        type: VARIABLE | {x}
-
-                    }
-
-                  }
-
-                }
-
-              Token node
-              (0x61a000000980)::::::::::::::::
-              		  left_child: (nil)
-              		 right_child: (nil)
-              		        type: VARIABLE | {x}
-
-              }
-
-            }
-
-          }
-
-        GetAssigment::
-          {
-          GetE::
-            {
-            GetT::
-              {
-              GetPower::
-                {
-                GetP::
-                  {
-                  GetN::
-                    {
-                    Token result
-                    (0x61a000000a00)::::::::::::::::
-                    		  left_child: (nil)
-                    		 right_child: (nil)
-                    		        type: CONSTANT | {1}
-
-                    }
-
-                  }
-
-                }
-
-              Token node
-              (0x61a000000a00)::::::::::::::::
-              		  left_child: (nil)
-              		 right_child: (nil)
-              		        type: CONSTANT | {1}
-
-              Token token
-              (0x61a000000a20)::::::::::::::::
-              		  left_child: (nil)
-              		 right_child: (nil)
-              		        type: OPERATOR | {*}
-
-              GetPower::
-                {
-                GetP::
-                  {
-                  GetE::
-                    {
-                    GetT::
-                      {
-                      GetPower::
-                        {
-                        GetP::
-                          {
-                          GetN::
-                            {
-                            Token result
-                            (0x61a000000a60)::::::::::::::::
-                            		  left_child: (nil)
-                            		 right_child: (nil)
-                            		        type: CONSTANT | {4}
-
-                            }
-
-                          }
-
-                        }
-
-                      Token node
-                      (0x61a000000a60)::::::::::::::::
-                      		  left_child: (nil)
-                      		 right_child: (nil)
-                      		        type: CONSTANT | {4}
-
-                      }
-
-                    Token token
-                    (0x61a000000a80)::::::::::::::::
-                    		  left_child: (nil)
-                    		 right_child: (nil)
-                    		        type: OPERATOR | {+}
-
-                    GetT::
-                      {
-                      GetPower::
-                        {
-                        GetP::
-                          {
-                          GetN::
-                            {
-                            Token result
-                            (0x61a000000aa0)::::::::::::::::
-                            		  left_child: (nil)
-                            		 right_child: (nil)
-                            		        type: CONSTANT | {5}
-
-                            }
-
-                          }
-
-                        }
-
-                      Token node
-                      (0x61a000000aa0)::::::::::::::::
-                      		  left_child: (nil)
-                      		 right_child: (nil)
-                      		        type: CONSTANT | {5}
-
-                      }
-
-                    }
-
-                  }
-
-                }
-
-              }
-
-            }
-
-          }
-
-        }
-
+      return Null ptr;Returnig null ptr (GetFunction:129)
       }
 
     }
 
-  MakeImg::
-    {
-    PrintNode::
-      {
-      Token node
-      (0x61a0000006c0)::::::::::::::::
-      		  left_child: 0x61a0000006a0
-      		 right_child: 0x61a0000009a0
-      		        type: STATEMENT   | {(}
+  LOG FREE(kill): {0x61a000000680} - will be freed from main:54, at ./src/main.cpp:54
 
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000006a0)::::::::::::::::
-      		  left_child: 0x61a0000006e0
-      		 right_child: 0x61a0000008a0
-      		        type: INSTRUCTION | {'if'}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000006a0)::::::::::::::::
-      		  left_child: 0x61a0000006e0
-      		 right_child: 0x61a0000008a0
-      		        type: INSTRUCTION | {'if'}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000006e0)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {x}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000006e0)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {x}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000008a0)::::::::::::::::
-      		  left_child: 0x61a0000007a0
-      		 right_child: 0x61a000000920
-      		        type: INSTRUCTION | {'else'}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000008a0)::::::::::::::::
-      		  left_child: 0x61a0000007a0
-      		 right_child: 0x61a000000920
-      		        type: INSTRUCTION | {'else'}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000007a0)::::::::::::::::
-      		  left_child: 0x61a000000760
-      		 right_child: 0x61a000000860
-      		        type: STATEMENT   | {;}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000007a0)::::::::::::::::
-      		  left_child: 0x61a000000760
-      		 right_child: 0x61a000000860
-      		        type: STATEMENT   | {;}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000760)::::::::::::::::
-      		  left_child: 0x61a000000740
-      		 right_child: 0x61a000000780
-      		        type: ASSIGMENT | {=}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000760)::::::::::::::::
-      		  left_child: 0x61a000000740
-      		 right_child: 0x61a000000780
-      		        type: ASSIGMENT | {=}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000740)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {x}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000740)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {x}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000780)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {45}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000780)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {45}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000860)::::::::::::::::
-      		  left_child: 0x61a0000007e0
-      		 right_child: (nil)
-      		        type: STATEMENT   | {;}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000860)::::::::::::::::
-      		  left_child: 0x61a0000007e0
-      		 right_child: (nil)
-      		        type: STATEMENT   | {;}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000007e0)::::::::::::::::
-      		  left_child: 0x61a0000007c0
-      		 right_child: 0x61a000000820
-      		        type: ASSIGMENT | {=}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000007e0)::::::::::::::::
-      		  left_child: 0x61a0000007c0
-      		 right_child: 0x61a000000820
-      		        type: ASSIGMENT | {=}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000007c0)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {x}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000007c0)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {x}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000820)::::::::::::::::
-      		  left_child: 0x61a000000800
-      		 right_child: 0x61a000000840
-      		        type: OPERATOR | {-}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000820)::::::::::::::::
-      		  left_child: 0x61a000000800
-      		 right_child: 0x61a000000840
-      		        type: OPERATOR | {-}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000800)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {x}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000800)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {x}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000840)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {10}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000840)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {10}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000920)::::::::::::::::
-      		  left_child: 0x61a0000008e0
-      		 right_child: (nil)
-      		        type: STATEMENT   | {;}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000920)::::::::::::::::
-      		  left_child: 0x61a0000008e0
-      		 right_child: (nil)
-      		        type: STATEMENT   | {;}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000008e0)::::::::::::::::
-      		  left_child: 0x61a0000008c0
-      		 right_child: 0x61a000000900
-      		        type: ASSIGMENT | {=}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000008e0)::::::::::::::::
-      		  left_child: 0x61a0000008c0
-      		 right_child: 0x61a000000900
-      		        type: ASSIGMENT | {=}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000008c0)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {x}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000008c0)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {x}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000900)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {20}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000900)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {20}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000009a0)::::::::::::::::
-      		  left_child: 0x61a000000940
-      		 right_child: 0x61a000000ae0
-      		        type: STATEMENT   | {;}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000009a0)::::::::::::::::
-      		  left_child: 0x61a000000940
-      		 right_child: 0x61a000000ae0
-      		        type: STATEMENT   | {;}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000940)::::::::::::::::
-      		  left_child: 0x61a000000980
-      		 right_child: (nil)
-      		        type: INSTRUCTION | {'fout'}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000940)::::::::::::::::
-      		  left_child: 0x61a000000980
-      		 right_child: (nil)
-      		        type: INSTRUCTION | {'fout'}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000980)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {x}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000980)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {x}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000ae0)::::::::::::::::
-      		  left_child: 0x61a0000009e0
-      		 right_child: (nil)
-      		        type: STATEMENT   | {;}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000ae0)::::::::::::::::
-      		  left_child: 0x61a0000009e0
-      		 right_child: (nil)
-      		        type: STATEMENT   | {;}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000009e0)::::::::::::::::
-      		  left_child: 0x61a0000009c0
-      		 right_child: 0x61a000000a20
-      		        type: ASSIGMENT | {=}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000009e0)::::::::::::::::
-      		  left_child: 0x61a0000009c0
-      		 right_child: 0x61a000000a20
-      		        type: ASSIGMENT | {=}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000009c0)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {x}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a0000009c0)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {x}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000a20)::::::::::::::::
-      		  left_child: 0x61a000000a00
-      		 right_child: 0x61a000000a80
-      		        type: OPERATOR | {*}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000a20)::::::::::::::::
-      		  left_child: 0x61a000000a00
-      		 right_child: 0x61a000000a80
-      		        type: OPERATOR | {*}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000a00)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {1}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000a00)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {1}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000a80)::::::::::::::::
-      		  left_child: 0x61a000000a60
-      		 right_child: 0x61a000000aa0
-      		        type: OPERATOR | {+}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000a80)::::::::::::::::
-      		  left_child: 0x61a000000a60
-      		 right_child: 0x61a000000aa0
-      		        type: OPERATOR | {+}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000a60)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {4}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000a60)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {4}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000aa0)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {5}
-
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x61a000000aa0)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {5}
-
-      }
-
-    }
-
-
-  OpenAsmFile:245 returned SUCCESS (return 0;)
-  AddToAsm::
-    {
-    Token token
-    (0x61a0000006c0)::::::::::::::::
-    		  left_child: 0x61a0000006a0
-    		 right_child: 0x61a0000009a0
-    		        type: STATEMENT   | {(}
-
-    AddToAsm::
-      {
-      Token token
-      (0x61a0000006a0)::::::::::::::::
-      		  left_child: 0x61a0000006e0
-      		 right_child: 0x61a0000008a0
-      		        type: INSTRUCTION | {'if'}
-
-      AddToAsm::
-        {
-        Token token
-        (0x61a0000006e0)::::::::::::::::
-        		  left_child: (nil)
-        		 right_child: (nil)
-        		        type: VARIABLE | {x}
-
-        }
-
-      AddToAsm::
-        {
-        Token token
-        (0x61a0000007a0)::::::::::::::::
-        		  left_child: 0x61a000000760
-        		 right_child: 0x61a000000860
-        		        type: STATEMENT   | {;}
-
-        AddToAsm::
-          {
-          Token token
-          (0x61a000000760)::::::::::::::::
-          		  left_child: 0x61a000000740
-          		 right_child: 0x61a000000780
-          		        type: ASSIGMENT | {=}
-
-          AddToAsm::
-            {
-            Token token
-            (0x61a000000780)::::::::::::::::
-            		  left_child: (nil)
-            		 right_child: (nil)
-            		        type: CONSTANT | {45}
-
-            }
-
-          }
-
-        AddToAsm::
-          {
-          Token token
-          (0x61a000000860)::::::::::::::::
-          		  left_child: 0x61a0000007e0
-          		 right_child: (nil)
-          		        type: STATEMENT   | {;}
-
-          AddToAsm::
-            {
-            Token token
-            (0x61a0000007e0)::::::::::::::::
-            		  left_child: 0x61a0000007c0
-            		 right_child: 0x61a000000820
-            		        type: ASSIGMENT | {=}
-
-            AddToAsm::
-              {
-              Token token
-              (0x61a000000820)::::::::::::::::
-              		  left_child: 0x61a000000800
-              		 right_child: 0x61a000000840
-              		        type: OPERATOR | {-}
-
-              AddToAsm::
-                {
-                Token token
-                (0x61a000000840)::::::::::::::::
-                		  left_child: (nil)
-                		 right_child: (nil)
-                		        type: CONSTANT | {10}
-
-                }
-
-              AddToAsm::
-                {
-                Token token
-                (0x61a000000800)::::::::::::::::
-                		  left_child: (nil)
-                		 right_child: (nil)
-                		        type: VARIABLE | {x}
-
-                }
-
-              }
-
-            }
-
-          }
-
-        }
-
-      AddToAsm::
-        {
-        Token token
-        (0x61a000000920)::::::::::::::::
-        		  left_child: 0x61a0000008e0
-        		 right_child: (nil)
-        		        type: STATEMENT   | {;}
-
-        AddToAsm::
-          {
-          Token token
-          (0x61a0000008e0)::::::::::::::::
-          		  left_child: 0x61a0000008c0
-          		 right_child: 0x61a000000900
-          		        type: ASSIGMENT | {=}
-
-          AddToAsm::
-            {
-            Token token
-            (0x61a000000900)::::::::::::::::
-            		  left_child: (nil)
-            		 right_child: (nil)
-            		        type: CONSTANT | {20}
-
-            }
-
-          }
-
-        }
-
-      }
-
-    AddToAsm::
-      {
-      Token token
-      (0x61a0000009a0)::::::::::::::::
-      		  left_child: 0x61a000000940
-      		 right_child: 0x61a000000ae0
-      		        type: STATEMENT   | {;}
-
-      AddToAsm::
-        {
-        Token token
-        (0x61a000000940)::::::::::::::::
-        		  left_child: 0x61a000000980
-        		 right_child: (nil)
-        		        type: INSTRUCTION | {'fout'}
-
-        AddToAsm::
-          {
-          Token token
-          (0x61a000000980)::::::::::::::::
-          		  left_child: (nil)
-          		 right_child: (nil)
-          		        type: VARIABLE | {x}
-
-          }
-
-        }
-
-      AddToAsm::
-        {
-        Token token
-        (0x61a000000ae0)::::::::::::::::
-        		  left_child: 0x61a0000009e0
-        		 right_child: (nil)
-        		        type: STATEMENT   | {;}
-
-        AddToAsm::
-          {
-          Token token
-          (0x61a0000009e0)::::::::::::::::
-          		  left_child: 0x61a0000009c0
-          		 right_child: 0x61a000000a20
-          		        type: ASSIGMENT | {=}
-
-          AddToAsm::
-            {
-            Token token
-            (0x61a000000a20)::::::::::::::::
-            		  left_child: 0x61a000000a00
-            		 right_child: 0x61a000000a80
-            		        type: OPERATOR | {*}
-
-            AddToAsm::
-              {
-              Token token
-              (0x61a000000a80)::::::::::::::::
-              		  left_child: 0x61a000000a60
-              		 right_child: 0x61a000000aa0
-              		        type: OPERATOR | {+}
-
-              AddToAsm::
-                {
-                Token token
-                (0x61a000000aa0)::::::::::::::::
-                		  left_child: (nil)
-                		 right_child: (nil)
-                		        type: CONSTANT | {5}
-
-                }
-
-              AddToAsm::
-                {
-                Token token
-                (0x61a000000a60)::::::::::::::::
-                		  left_child: (nil)
-                		 right_child: (nil)
-                		        type: CONSTANT | {4}
-
-                }
-
-              }
-
-            AddToAsm::
-              {
-              Token token
-              (0x61a000000a00)::::::::::::::::
-              		  left_child: (nil)
-              		 right_child: (nil)
-              		        type: CONSTANT | {1}
-
-              }
-
-            }
-
-          }
-
-        }
-
-      }
-
-    }
-
-
-  TranslateToAsm:44 returned SUCCESS (return 0;)
-  LOG FREE(kill): {0x61a000000680} - will be freed from main:68, at ./src/main.cpp:68
+  Failed (./src/main.cpp:55, main:55)(return -1;)
   }
 
 *********************************************************************
-		Log Successfuly ended, on Wed Dec  7 20:00:52 2022
+		Log Successfuly ended, on Wed Dec  7 20:17:04 2022
 *********************************************************************

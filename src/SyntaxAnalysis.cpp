@@ -5,12 +5,14 @@
 #include <stdarg.h>
 
 #include "Grammar.h"
+#include "DSL.h"
+#include "LangUtils.h"
+
 #include "EasyDebug.h"
 #include "LogMacroses.h"
 #include "my_buffer.h"
 #include "Utils.h"
 
-#include "DSL.h"
 #pragma GCC diagnostic ignored "-Wconversion"
 #pragma GCC diagnostic ignored "-Wsign-conversion"
 
@@ -20,17 +22,19 @@ struct TokenBuffer
 
     int size;
     int position;
+
+    FuncLabelTabel global_func_tabel;
     };
 
-struct Programm
+struct ProgrammBuffer
     {
     Token* arr;
-    Token** root; // mb change to int - position in arr
-    // mb int* functions - positions of functions
 
-    char** var_tabel;
-    char** func_table;
+    int size;
+    int position;
     };
+
+static Token* Initialization (TokenBuffer* token_buf);
 
 static Token* GetFunction    (TokenBuffer* token_buf);
 static Token* GetBlock       (TokenBuffer* token_buf);
@@ -47,8 +51,10 @@ static Token* GetN     (TokenBuffer* token_buf);
 // static void report_syntax_error(TokenBuffer* token_buf, const char* format, ...);
 
 #define POSITION(tokent_tree) token_buf->position
-#define SIZE(token_bud)       token_buf->size
+#define SIZE(token_buf)       token_buf->size
 #define token                 ( (POSITION(token_buf) < SIZE(token_buf)) ? (token_buf->arr + token_buf->position) : nullptr )
+
+#define GLOBAL_FUNC_TABEL(token_buf) &(token_buf->global_func_tabel)
 
 #define report_syntax_error(format, ...)                                    \
         do                                                                  \
@@ -62,57 +68,58 @@ static Token* GetN     (TokenBuffer* token_buf);
             }                                                               \
         while(0);
 
-//              Programm* proga
-Token* GetG (Token* token_arr, int number_of_tokens)
+#define current_token *(root + number_of_functions)
+
+
+int GetG (Programm* programm)
     {
     $log(DEBUG)
-    assertlog(token_arr,            EFAULT, return LNULL);
-    assertlog(number_of_tokens > 0, EFAULT, return LNULL);
+    assertlog(programm, EFAULT, return LFAILURE);
 
-    TokenBuffer token_buf_orig {token_arr, number_of_tokens, 0};
-
-    /*
+    TokenBuffer token_buf_orig {programm->token_arr, programm->number_of_tokens, 0};
+    
     Token**  root =  (Token**) CALLOC (20, sizeof(Token*));
     int number_of_functions = 0;
-    */
+    
     TokenBuffer* token_buf = &token_buf_orig;
     
-    return GetFunction(token_buf);
-    /*
-    while (POSITION(token_buf) < number_of_tokens)
+    while (POSITION(token_buf) < programm->number_of_tokens)
         {
-        // if function
-        // if (TYPE(token) == )
-            // {
-            *(root + number_of_functions) = GetFunction(token_buf);
-            if (!(root + number_of_functions))
-                    {
-                    KILL(root);
-                    return LNULL;
-                    }
+        switch (TYPE(token))
+            {
+            case INITIALIZATOR:
+                current_token = Initialization(token_buf);
+                break;
+
+            case NAME: // must be assigment        
+                current_token = GetAssigment(token_buf);
+                break;
+
+            case FUNCTION_RET_TYPE: 
+                current_token = GetFunction(token_buf);
+                break;
+
+            default: 
+                report_syntax_error("Unknow token\n");
+                current_token = NULL;
+            }
+
+        if (!current_token)
+            {
+            KILL(root);
+            return LFAILURE;
+            }
 
             number_of_functions++;
-            continue;
-            // }
-
-        // if initialization
-
-
-        // if assigment
-
-
-        // if prototype
-        
         }
 
     if (POSITION(token_buf) != SIZE(token_buf))
         {
         report_syntax_error("Invalid number of tokens: %d (size %d)\n", POSITION(token_buf), SIZE(token_buf));
-        return LNULL;
+        return LFAILURE;
         }
 
     return SUCCESS;
-    */
     }
 
 static Token* GetFunction (TokenBuffer* token_buf)
@@ -121,11 +128,61 @@ static Token* GetFunction (TokenBuffer* token_buf)
     assertlog(token_buf, EFAULT, return LNULL);
 
     // get function name, parametrs and etc
+    if (TYPE(token) != FUNCTION_RET_TYPE)
+        {
+        report_syntax_error("No return type in function\n");
+        return LNULL;
+        }
+
+    Token* ret_type = token;
+    
+    POSITION(token_buf)++;
+
+    if (TYPE(token) != NAME)
+        {
+        report_syntax_error("No function name\n");
+        return LNULL;
+        }
+    
+    FuncLabel* func_label = GetFunctLabel(token, GLOBAL_FUNC_TABEL(token_buf));
+    if (!func_label)
+        AddFuncLabel(NAME(token), RET_TYPE(ret_type), DECLARED, GLOBAL_FUNC_TABEL(token_buf));
+    else
+        {
+        if (func_label->ret_type != RET_TYPE(token))
+            {
+            report_syntax_error("Function has different return type than in global function tabel\n");
+            return LNULL;
+            }
+        if (func_label->body_status == DECLARED)
+            {
+            report_syntax_error("Redeclaration of function\n");
+            return LNULL;
+            }
+        }
+
+    Token* function_name = token;
+    POSITION(token_buf)++;
+
+    // argument
+    if(TYPE(token) != EXPRESSION_OPENING_BRACKET)
+        {
+        report_syntax_error("Missing '(' in function declaration\n");
+        return LNULL;
+        }
+
+    // TO_DO
+
+    if(TYPE(token) != EXPRESSION_CLOSING_BRACKET)
+       {
+       report_syntax_error("Missing ')' in function declaration\n");
+       return LNULL;
+       }
 
     // function body
     if (TYPE(token) != OPENING_BRACKET)
         {
-        report_syntax_error("Missing { in function body\n");
+        report_syntax_error("Missing '{' in function body\n");
         return LNULL;
         }
 
@@ -136,13 +193,20 @@ static Token* GetFunction (TokenBuffer* token_buf)
 
     if (TYPE(token) != CLOSING_BRACKET)
        {
-       report_syntax_error("Missing { in function body\n");
+       report_syntax_error("Missing '{' in function body\n");
        return LNULL;
        }
 
+    Token* function = token;
     POSITION(token_buf)++;
 
-    return body;
+    TYPE(function) = FUNCTION;
+    LEFT(function) = function_name;
+
+    LEFT(function_name) = NULL; // add arguments
+    RIGHT(function_name) = ret_type;
+
+    return function;
     }
 
 static Token* GetBlock (TokenBuffer* token_buf)

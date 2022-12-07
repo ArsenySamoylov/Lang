@@ -1,9 +1,12 @@
 
+#include "LexicalAnalysis.h"
 #include "SyntaxAnalysis.h"
+#include "TranslateToAsm.h"
+
+#include "DefGraphVis.h"
+
 #include "my_buffer.h"
 #include "LogMacroses.h"
-#include "TranslateToAsm.h"
-#include "DefGraphVis.h"
 
 // OPERATORS
 // = : EQ
@@ -21,6 +24,8 @@
 // num       : num
 // initialization : VAR
 
+void CloseProgramm(Programm* );
+
 #pragma GCC diagnostic ignored "-Wunused-variable"
 int main()
     {
@@ -31,40 +36,37 @@ int main()
     ////////// FRONT END ///////////////////////    
     char* src_code = GetSrcFile (path);
     
-    Token* token_arr = NULL;
-    int number_of_tokens = Tokenizer(&token_arr, src_code);
+    Programm programm{};
+
+    int status = Tokenizer(&programm, src_code);
     KILL(src_code); 
 
-    if (!token_arr)
+    if (status != SUCCESS)
         {
         printf(redcolor "Can't tokenize file " resetconsole "%s\n", path);
         return LFAILURE;
         }
 
-    if (number_of_tokens < 1)
-        {
-        printf(redcolor "Wrong number of tokens " resetconsole "%d\n", number_of_tokens);
-        return LFAILURE;
-        }
-
     //////// MIDDLE END ////////////////////////
-    Token* root = GetG(token_arr, number_of_tokens);
-    if (!root)
-        {
-        KILL(token_arr);
-        return LFAILURE;
-        }
-
-    MakeImg("kek", root); 
-    /////// BACK   END /////////////////////////
-    int status = TranslateToAsm (root, "test.ars");
+    status |= GetG(&programm);
     if (status != SUCCESS)
         {
-        KILL(token_arr);
+        CloseProgramm(&programm);
+        return LFAILURE;
+        }
+    printf("to do grapphvis\n");
+    // MakeImg("kek", TO_DO); 
+    /////// BACK   END /////////////////////////
+    // status |= TranslateToAsm (root, "test.ars");
+    if (status != SUCCESS)
+        {
+        CloseProgramm(&programm);
         return LFAILURE;
         }
 
     // FINISH
-    KILL(token_arr);
+    // KILL(token_arr);
+    CloseProgramm(&programm);
+
     return 0;
     }

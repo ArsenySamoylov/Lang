@@ -6,6 +6,8 @@
 
 #include "DSL.h"
 #include "Grammar.h"
+#include "LangUtils.h"
+
 #include "LogMacroses.h"
 #include "EasyDebug.h"
 

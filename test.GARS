@@ -1,15 +1,27 @@
+func void hellowold();
+
+var x = 15;
+x = 64;
+
+double main
     {
-    x = 1
     if (x)
         {
         x = 45;
         x = x - 10;
         }
-
     else
         x = 20;
 
     fout << x; # 
 
     x = 1 * (4 + 5);
+
+    return x;
+    }
+
+void helloworld()
+    {
+    fout << 101;
+    return;
     }

@@ -1,28 +1,8 @@
 #pragma once
 
-const int START_NUMBER_OF_TOKENS = 20;
+#include "Programm.h"
 
-union TokenValue
-    {
-    int    t_instruction;
-    char   t_operator;
-    double t_constant;
-    int    t_variable;
-    int    t_function;
-    };
+const int START_NUMBER_OF_TOKENS  = 20;
+const int START_NUMBER_OF_STRINGS = 16;
 
-struct Token
-    {
-    Token*  left_child;
-    Token* right_child;
-
-    int type; 
-
-    TokenValue value;
-    };
-
-int  Tokenizer  (Token** tokens_arr, const char* expression);
-void PrintToken (const Token *const token);
-
-void LogToken (const Token *const token, const char* name);
-#define $LOG_TOKEN(token) LogToken(token, #token);
+int  Tokenizer  (Programm* programm, const char* expression);

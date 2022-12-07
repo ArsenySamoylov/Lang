@@ -1,5 +1,5 @@
 #pragma once
 
-#include "LexicalAnalysis.h"
+#include "Programm.h"
 
-Token* GetG (Token* token_arr, int number_of_tokens);
+int GetG (Programm* programm);

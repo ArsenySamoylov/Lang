@@ -8,13 +8,21 @@
 # 1 "./headers/LexicalAnalysis.h" 1
        
 
-const int START_NUMBER_OF_TOKENS = 20;
+# 1 "./headers/Programm.h" 1
+       
+
+# 1 "./headers/Token.h" 1
+       
 
 union TokenValue
     {
     int t_instruction;
     char t_operator;
     double t_constant;
+    int t_initializator;
+    int t_function_ret_type;
+
+    char* t_name;
     int t_variable;
     int t_function;
     };
@@ -28,11 +36,82 @@ struct Token
 
     TokenValue value;
     };
+# 4 "./headers/Programm.h" 2
+# 1 "./headers/Tabels.h" 1
+       
 
-int Tokenizer (Token** tokens_arr, const char* expression);
-void PrintToken (const Token *const token);
 
-void LogToken (const Token *const token, const char* name);
+
+enum VarType
+    {
+    REGISTER,
+    RAM,
+    LOCAL,
+    };
+
+enum FuncType
+    {
+    DECLARED,
+    NOT_DECLEARED,
+    INITIALIZED,
+    };
+
+struct VarLabel
+    {
+    int name;
+    int mem_type;
+    int address;
+    };
+
+struct VarLabelTabel
+    {
+    VarLabel** label_arr;
+    int number_of_labels;
+    };
+
+struct FuncLabel
+    {
+    int name;
+    int ret_type;
+    int body_status;
+
+    VarLabelTabel local_args;
+    int number_of_arguments;
+    };
+
+struct FuncLabelTabel
+    {
+    FuncLabel** label_arr;
+    int number_of_labels;
+
+    VarLabelTabel* local_var;
+    };
+
+FuncLabel* GetFunctLabel (Token* token, FuncLabelTabel* func_tabel);
+
+int AddFuncLabel (const char* name, int return_type, int body_status, FuncLabelTabel* func_tabel);
+# 5 "./headers/Programm.h" 2
+
+struct Programm
+    {
+    Token* token_arr;
+    int number_of_tokens;
+
+    Token** functions;
+    int number_of_functions;
+
+    const char** string_arr;
+    int number_of_strings;
+
+     VarLabelTabel global_var_tabel;
+    FuncLabelTabel global_func_table;
+    };
+# 4 "./headers/LexicalAnalysis.h" 2
+
+const int START_NUMBER_OF_TOKENS = 20;
+const int START_NUMBER_OF_STRINGS = 16;
+
+int Tokenizer (Programm* programm, const char* expression);
 # 2 "./src/LexicalAnalysis.cpp" 2
 
 # 1 "/usr/include/stdio.h" 1 3 4
@@ -24225,15 +24304,22 @@ enum TokenType
 
     INSTRUCTION,
 
-    ASSIGMENT = '=',
+    INITIALIZATOR,
+
+    FUNCTION_RET_TYPE,
 
     OPERATOR,
 
-    STRING,
+
+
+    NAME,
+
     VARIABLE,
     CONSTANT,
 
     FUNCTION,
+
+    ASSIGMENT = '=',
 
     OPENING_BRACKET = '{',
     CLOSING_BRACKET = '}',
@@ -24246,16 +24332,37 @@ enum TokenType
     UNKNOWN_TYPE = -999,
     };
 
-const int NUMBER_OF_INSTUCTIONS = 4;
-const char *const INSTRUCTIONS[] = { "if", "else", "while", "fout"};
+const int NUMBER_OF_INSTUCTIONS = 5;
+const char *const INSTRUCTIONS[] = { "if", "else", "while", "fout", "return"};
 enum INSTUCTIONS_NUM
     {
     IF = 0,
     ELSE = 1,
     WHILE = 2,
     FOUT = 3,
+    RETURN = 4,
 
     NOT_A_INSTRUCTION = -666,
+    };
+
+const int NUMBER_OF_INITIALIZATORS = 2;
+const char *const INITIALIZATORS[] = {"func", "var"};
+enum INITIALIZATORS_NUM
+    {
+    FUNC = 0,
+    VAR = 1,
+
+    NOT_A_INITIALIZATOR = -111,
+    };
+
+const int NUMBER_OF_FUNCTION_RET_TYPES = 2;
+const char *const FUNCTION_RET_TYPES[] = {"double", "void"};
+enum FUNCTION_RET_TYPES_NUM
+    {
+    DOUBLE,
+    VOID,
+
+    NOT_A_RET_TYPE = -333,
     };
 
 const char OPERATORS[] = "+-/*^<<";
@@ -24274,6 +24381,8 @@ const char COMMENT = '#';
 const int MAX_FUNCTION_NAME_LENGTH = 16;
 const int MAX_WORD_LENGTH = 16;
 # 7 "./src/LexicalAnalysis.cpp" 2
+# 1 "./headers/DSL.h" 1
+       
 # 1 "../ATC/Logger/LogMacroses.h" 1
        
 
@@ -54387,10 +54496,18 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 
 int SYSTEM(const char* format, ...);
 # 13 "../ATC/Logger/LogMacroses.h" 2
+# 3 "./headers/DSL.h" 2
 # 8 "./src/LexicalAnalysis.cpp" 2
-# 1 "./headers/DSL.h" 1
+# 1 "./headers/LangUtils.h" 1
        
+
+
+
+void PrintToken (const Token *const token);
+
+void LogToken (const Token *const token, const char* name);
 # 9 "./src/LexicalAnalysis.cpp" 2
+
 # 1 "../ATC/Buffer/my_buffer.h" 1
 
 
@@ -54501,9 +54618,9 @@ int BufferGetDouble (Buffer* buf, double* val);
 int BufferPutDouble (Buffer* buf, double val);
 int BufferPutChar (Buffer* buf, char ch);
 int BufferPutString (Buffer* buf, const char* str);
-# 10 "./src/LexicalAnalysis.cpp" 2
-# 1 "../ATC/Debug/EasyDebug.h" 1
 # 11 "./src/LexicalAnalysis.cpp" 2
+# 1 "../ATC/Debug/EasyDebug.h" 1
+# 12 "./src/LexicalAnalysis.cpp" 2
 # 1 "../ATC/RandomStuff/SomeStuff.h" 1
 
 
@@ -54513,47 +54630,62 @@ int BufferPutString (Buffer* buf, const char* str);
 void ShowCharInBinary(char mask);
 
 int printl (const char *line, char terminator);
-# 12 "./src/LexicalAnalysis.cpp" 2
+# 13 "./src/LexicalAnalysis.cpp" 2
 
 static int GetTokenValue (TokenValue* val, Buffer* buf);
 static int BufferGetWord (Buffer* buf, char* word_buffer);
 
 static int IsInstruction (char* str);
+static int IsInitializator (char* str);
+static int IsFunctionRetType (char* str);
 
 #pragma GCC diagnostic ignored "-Wconversion"
 #pragma GCC diagnostic ignored "-Wsign-conversion"
-# 36 "./src/LexicalAnalysis.cpp"
-int Tokenizer (Token** tokens_arr, const char* buffer)
+# 40 "./src/LexicalAnalysis.cpp"
+int Tokenizer (Programm* programm, const char* buffer)
     {
-    FunctionLogger func_38 {1, __func__};
-    do { if (!(tokens_arr)) { Logger::getInstance().log("Condition (%s) is false\n", "tokens_arr"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "tokens_arr"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 39); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 39); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 39 "./src/LexicalAnalysis.cpp" 3 4
+    FunctionLogger func_42 {1, __func__};
+    do { if (!(programm)) { Logger::getInstance().log("Condition (%s) is false\n", "programm"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "programm"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 43); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 43); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 43 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 39 "./src/LexicalAnalysis.cpp"
+# 43 "./src/LexicalAnalysis.cpp"
    , strerror(
-# 39 "./src/LexicalAnalysis.cpp" 3 4
+# 43 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 39 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 39); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 39, __func__, 39), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 39, __func__, 39); } } while (0);;
-    do { if (!(buffer)) { Logger::getInstance().log("Condition (%s) is false\n", "buffer"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "buffer"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 40); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 40); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 40 "./src/LexicalAnalysis.cpp" 3 4
+# 43 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 43); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 43, __func__, 43), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 43, __func__, 43); } } while (0);;
+    do { if (!(buffer)) { Logger::getInstance().log("Condition (%s) is false\n", "buffer"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "buffer"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 44); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 44); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 44 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 40 "./src/LexicalAnalysis.cpp"
+# 44 "./src/LexicalAnalysis.cpp"
    , strerror(
-# 40 "./src/LexicalAnalysis.cpp" 3 4
+# 44 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 40 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 40); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 40, __func__, 40), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 40, __func__, 40); } } while (0);;
+# 44 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 44); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 44, __func__, 44), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 44, __func__, 44); } } while (0);;
 
-    Token* arr = (Token*) Logger::getInstance().CAL_LOG (START_NUMBER_OF_TOKENS, sizeof(arr[0]), "./src/LexicalAnalysis.cpp", __func__, 42);;
-    if (!arr) return -1;
+    Token* arr = (Token*) Logger::getInstance().CAL_LOG (START_NUMBER_OF_TOKENS, sizeof(arr[0]), "./src/LexicalAnalysis.cpp", __func__, 46);;
+    if (!arr)
+        return FAILURE;
+
+    int size = START_NUMBER_OF_TOKENS;
+
+    const char** string_arr = (const char**) Logger::getInstance().CAL_LOG (START_NUMBER_OF_STRINGS, sizeof(string_arr[0]), "./src/LexicalAnalysis.cpp", __func__, 52);;
+    if (!string_arr)
+        {
+        Logger::getInstance().FREE_LOG (arr, "./src/LexicalAnalysis.cpp", __func__, 55);;
+        return FAILURE;
+        }
+
+    int size_strings = START_NUMBER_OF_STRINGS;
 
     Buffer buf_orig{};
-    do { if (!BufferCtor(&buf_orig, buffer) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "BufferCtor(&buf_orig, buffer) == SUCCESS" " is false\n" , __func__, 46); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 46, __func__, 46), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 46, __func__, 46) ; } }while (0);;
+    do { if (!BufferCtor(&buf_orig, buffer) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "BufferCtor(&buf_orig, buffer) == SUCCESS" " is false\n" , __func__, 62); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 62, __func__, 62), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 62, __func__, 62) ; } }while (0);;
 
     Buffer* buf = &buf_orig;
+
     int number_of_tokens = 0;
-    int size = START_NUMBER_OF_TOKENS;
+    int number_of_strings = 0;
 
     while (BufferLook(buf) != '\0')
         {
@@ -54561,116 +54693,90 @@ int Tokenizer (Token** tokens_arr, const char* buffer)
         if (number_of_tokens == size)
             {
             size *= 2;
-            Token* fuck = (Token*) Logger::getInstance().RECAL_LOG (arr, size * sizeof(arr[0]), "./src/LexicalAnalysis.cpp", __func__, 58);;
-            if (!fuck) return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 59, __func__, 59), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 59, __func__, 59);
+            Token* fuck = (Token*) Logger::getInstance().RECAL_LOG (arr, size * sizeof(arr[0]), "./src/LexicalAnalysis.cpp", __func__, 75);;
+            if (!fuck)
+                {
+                Logger::getInstance().FREE_LOG (string_arr, "./src/LexicalAnalysis.cpp", __func__, 78);;
+                return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 79, __func__, 79), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 79, __func__, 79);
+                }
 
             arr = fuck;
             }
+
+        if (number_of_strings == size_strings)
+            {
+            size_strings *=2;
+            const char** xyu = (const char**) Logger::getInstance().RECAL_LOG (string_arr, size_strings * sizeof(string_arr[0]), "./src/LexicalAnalysis.cpp", __func__, 88);;
+            if (!xyu)
+                {
+                Logger::getInstance().FREE_LOG (arr, "./src/LexicalAnalysis.cpp", __func__, 91);;
+                return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 92, __func__, 92), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 92, __func__, 92);
+                }
+
+            string_arr = xyu;
+            }
+
 
         (arr + number_of_tokens)->type = GetTokenValue (&(arr + number_of_tokens)->value, buf);
         if ((arr + number_of_tokens)->type == UNKNOWN_TYPE)
             {
             do { printf("\033[93m""Lexical Error\n""\033[0m"); Logger::getInstance().log("Lexical Error\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Unknown type\n" ); printf("In "); printl(buf->str, '\n'); } while(0);;
 
-            Logger::getInstance().FREE_LOG (arr, "./src/LexicalAnalysis.cpp", __func__, 69);;
+            Logger::getInstance().FREE_LOG (arr, "./src/LexicalAnalysis.cpp", __func__, 104);;
+            Logger::getInstance().FREE_LOG (string_arr, "./src/LexicalAnalysis.cpp", __func__, 105);;
+            return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 106, __func__, 106), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 106, __func__, 106);
+            }
 
-            return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 71, __func__, 71), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 71, __func__, 71);
+        if ((arr + number_of_tokens)->type == NAME)
+            {
+            *(string_arr + number_of_strings) = strdup((arr + number_of_tokens)->value.t_name);
+            number_of_strings++;
             }
 
         number_of_tokens++;
         }
 
-    *tokens_arr = (Token*) Logger::getInstance().RECAL_LOG (arr, number_of_tokens * sizeof(arr[0]), "./src/LexicalAnalysis.cpp", __func__, 77);;
+    programm->token_arr = (Token*) Logger::getInstance().RECAL_LOG (arr, number_of_tokens * sizeof(arr[0]), "./src/LexicalAnalysis.cpp", __func__, 118);;
+    programm->number_of_tokens = number_of_tokens;
+
+    programm->string_arr = (const char**) Logger::getInstance().RECAL_LOG (string_arr, number_of_strings * sizeof(string_arr[0]), "./src/LexicalAnalysis.cpp", __func__, 121);;
+    programm->number_of_strings = number_of_strings;
 
 
     do { Logger::getInstance().log("\t%s: %d\n" , "number_of_tokens", number_of_tokens); } while(0);
     for (int i = 0; i < number_of_tokens; i++)
         {
         do { Logger::getInstance().log("\t%s: %d\n" , "i", i); } while(0);
-        LogToken(*tokens_arr + i, "*tokens_arr + i");
+        LogToken(arr + i, "arr + i");
         }
 
-    return number_of_tokens;
+    return SUCCESS;
     }
 
 
 
-
-static int IsInstruction (char* str)
-    {
-    do { if (!(str)) { Logger::getInstance().log("Condition (%s) is false\n", "str"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "str"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 95); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 95); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 95 "./src/LexicalAnalysis.cpp" 3 4
-   14
-# 95 "./src/LexicalAnalysis.cpp"
-   , strerror(
-# 95 "./src/LexicalAnalysis.cpp" 3 4
-   14
-# 95 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 95); system("powerof"); return NOT_A_INSTRUCTION; } } while (0);
-
-    for (int i = 0; i < NUMBER_OF_INSTUCTIONS; i++)
-        if (!stricmp(str, INSTRUCTIONS[i]))
-            return i;
-
-    return NOT_A_INSTRUCTION;
-    }
-
-static int BufferGetWord (Buffer* buf, char* word_buffer)
-    {
-    do { if (!(buf)) { Logger::getInstance().log("Condition (%s) is false\n", "buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 106); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 106); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 106 "./src/LexicalAnalysis.cpp" 3 4
-   14
-# 106 "./src/LexicalAnalysis.cpp"
-   , strerror(
-# 106 "./src/LexicalAnalysis.cpp" 3 4
-   14
-# 106 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 106); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 106, __func__, 106), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 106, __func__, 106); } } while (0);;
-    do { if (!(word_buffer)) { Logger::getInstance().log("Condition (%s) is false\n", "word_buffer"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "word_buffer"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 107); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 107); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 107 "./src/LexicalAnalysis.cpp" 3 4
-   14
-# 107 "./src/LexicalAnalysis.cpp"
-   , strerror(
-# 107 "./src/LexicalAnalysis.cpp" 3 4
-   14
-# 107 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 107); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 107, __func__, 107), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 107, __func__, 107); } } while (0);;
-
-    buf->str = SkipSpaces(buf->str);
-
-    int n = 0;
-    sscanf(buf->str, "%[a-zA-Z]%n", word_buffer, &n);
-    buf->str = SkipSpaces(buf->str + n);
-
-
-
-
-
-
-    return n;
-    }
 
 static int GetTokenValue (TokenValue* val, Buffer* buf)
     {
-    FunctionLogger func_125 {1, __func__};
-    do { if (!(val)) { Logger::getInstance().log("Condition (%s) is false\n", "val"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "val"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 126); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 126); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 126 "./src/LexicalAnalysis.cpp" 3 4
+    FunctionLogger func_140 {1, __func__};
+    do { if (!(val)) { Logger::getInstance().log("Condition (%s) is false\n", "val"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "val"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 141); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 141); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 141 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 126 "./src/LexicalAnalysis.cpp"
+# 141 "./src/LexicalAnalysis.cpp"
    , strerror(
-# 126 "./src/LexicalAnalysis.cpp" 3 4
+# 141 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 126 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 126); system("powerof"); return UNKNOWN_TYPE; } } while (0);;
-    do { if (!(buf)) { Logger::getInstance().log("Condition (%s) is false\n", "buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 127); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 127); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 127 "./src/LexicalAnalysis.cpp" 3 4
+# 141 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 141); system("powerof"); return UNKNOWN_TYPE; } } while (0);;
+    do { if (!(buf)) { Logger::getInstance().log("Condition (%s) is false\n", "buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 142); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 142); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 142 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 127 "./src/LexicalAnalysis.cpp"
+# 142 "./src/LexicalAnalysis.cpp"
    , strerror(
-# 127 "./src/LexicalAnalysis.cpp" 3 4
+# 142 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 127 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 127); system("powerof"); return UNKNOWN_TYPE; } } while (0);;
+# 142 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 142); system("powerof"); return UNKNOWN_TYPE; } } while (0);;
 
     buf->str = SkipSpaces(buf->str);
     char temp = BufferLook(buf);
@@ -54699,9 +54805,9 @@ static int GetTokenValue (TokenValue* val, Buffer* buf)
     if (isdigit(temp) || temp == '-' || temp == '+')
         {
         double const_val = 
-# 155 "./src/LexicalAnalysis.cpp" 3 4
+# 170 "./src/LexicalAnalysis.cpp" 3 4
                           (__builtin_nanf (""))
-# 155 "./src/LexicalAnalysis.cpp"
+# 170 "./src/LexicalAnalysis.cpp"
                              ;
 
         if (BufferGetDouble(buf, &const_val))
@@ -54735,7 +54841,6 @@ static int GetTokenValue (TokenValue* val, Buffer* buf)
         BufferGetWord (buf, word);
 
         int instruction = IsInstruction(word);
-
         if (instruction != NOT_A_INSTRUCTION)
             {
             val->t_instruction = instruction;
@@ -54743,11 +54848,28 @@ static int GetTokenValue (TokenValue* val, Buffer* buf)
             return INSTRUCTION;
             }
 
+        int initializator = IsInitializator(word);
+        if (initializator != NOT_A_INITIALIZATOR)
+            {
+            val->t_initializator = initializator;
 
-        val->t_variable = *word;
+            return INITIALIZATOR;
+            }
 
-        return VARIABLE;
+        int ret_type = IsFunctionRetType(word);
+        if (ret_type != NOT_A_RET_TYPE)
+            {
+            val->t_function_ret_type = ret_type;
+
+            return FUNCTION_RET_TYPE;
+            }
+
+
+        val->t_name = word;
+
+        return NAME;
         }
+
 
 
     if (temp == OPENING_BRACKET || temp == CLOSING_BRACKET ||
@@ -54769,107 +54891,94 @@ static int GetTokenValue (TokenValue* val, Buffer* buf)
     return UNKNOWN_TYPE;
     }
 
-#pragma GCC diagnostic ignored "-Wformat="
-void PrintToken (const Token *const token)
+static int BufferGetWord (Buffer* buf, char* word_buffer)
     {
-    if (!token) return;
+    do { if (!(buf)) { Logger::getInstance().log("Condition (%s) is false\n", "buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 255); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 255); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 255 "./src/LexicalAnalysis.cpp" 3 4
+   14
+# 255 "./src/LexicalAnalysis.cpp"
+   , strerror(
+# 255 "./src/LexicalAnalysis.cpp" 3 4
+   14
+# 255 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 255); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 255, __func__, 255), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 255, __func__, 255); } } while (0);;
+    do { if (!(word_buffer)) { Logger::getInstance().log("Condition (%s) is false\n", "word_buffer"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "word_buffer"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 256); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 256); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 256 "./src/LexicalAnalysis.cpp" 3 4
+   14
+# 256 "./src/LexicalAnalysis.cpp"
+   , strerror(
+# 256 "./src/LexicalAnalysis.cpp" 3 4
+   14
+# 256 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 256); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 256, __func__, 256), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 256, __func__, 256); } } while (0);;
 
-    printf("Token address %p\n", token);
-    printf("type: (%d) ", token->type);
+    buf->str = SkipSpaces(buf->str);
 
-    switch (token->type)
-    {
-    case STATEMENT:
-            printf("STATEMENT   | {%c}\n\n", token->value.t_operator);
-            break;
-    case INSTRUCTION:
-            printf("INSTRUCTION | {'%s'}\n\n", INSTRUCTIONS[token->value.t_instruction]);
-            break;
-    case EXPRESSION_OPENING_BRACKET:
-            printf("EXPRESSION OPENING BRACKET | {%c}\n\n", token->value.t_operator);
-            break;
-    case EXPRESSION_CLOSING_BRACKET:
-            printf("EXPRESSION CLOSING BRACKET | {%c}\n\n", token->value.t_operator);
-            break;
-    case OPENING_BRACKET:
-            printf("OPENING BRACKET | {%c}\n\n", token->value.t_operator);
-            break;
-    case CLOSING_BRACKET:
-            printf("CLOSING BRACKET | {%c}\n\n", token->value.t_operator);
-            break;
-    case ASSIGMENT:
-            printf("ASSIGMENT | {%c}\n\n", token->value.t_operator);
-            break;
-    case END_OF_STATEMENT:
-            printf("END_OF_STATEMENT| {%c}\n\n", token->value.t_operator);
-            break;
-    case OPERATOR:
-            printf("OPERATOR | {%c}\n\n", token->value.t_operator);
-            break;
-    case VARIABLE:
-            printf("VARIABLE | {%c}\n\n", token->value.t_variable);
-            break;
+    int n = 0;
+    sscanf(buf->str, "%[a-zA-Z]%n", word_buffer, &n);
+    buf->str = SkipSpaces(buf->str + n);
 
-    case CONSTANT:
-            printf("CONSTANT | {%lg}\n\n", token->value.t_constant);
-            break;
 
-    default: printf("UNCKNOWN TYPE\n"); break;
+
+
+
+
+    return n;
     }
 
-    return;
+static int IsInstruction (char* str)
+    {
+    do { if (!(str)) { Logger::getInstance().log("Condition (%s) is false\n", "str"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "str"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 274); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 274); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 274 "./src/LexicalAnalysis.cpp" 3 4
+   14
+# 274 "./src/LexicalAnalysis.cpp"
+   , strerror(
+# 274 "./src/LexicalAnalysis.cpp" 3 4
+   14
+# 274 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 274); system("powerof"); return NOT_A_INSTRUCTION; } } while (0);
+
+    for (int i = 0; i < NUMBER_OF_INSTUCTIONS; i++)
+        if (!stricmp(str, INSTRUCTIONS[i]))
+            return i;
+
+    return NOT_A_INSTRUCTION;
     }
 
-void LogToken (const Token *const token, const char* name)
+static int IsInitializator (char* str)
     {
-    if (!token) return;
+    do { if (!(str)) { Logger::getInstance().log("Condition (%s) is false\n", "str"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "str"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 285); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 285); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 285 "./src/LexicalAnalysis.cpp" 3 4
+   14
+# 285 "./src/LexicalAnalysis.cpp"
+   , strerror(
+# 285 "./src/LexicalAnalysis.cpp" 3 4
+   14
+# 285 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 285); system("powerof"); return NOT_A_INITIALIZATOR; } } while (0);
 
-    Logger::getInstance().log("Token %s\n" , name);
-    Logger::getInstance().log("(%p)::::::::::::::::\n" , token);
-    Logger::getInstance().log("\t\t  left_child: %p\n" , token->left_child);
-    Logger::getInstance().log("\t\t right_child: %p\n" , token->right_child);
-    Logger::getInstance().log("\t\t        type: " );
+    for (int i = 0; i < NUMBER_OF_INITIALIZATORS; i++)
+        if (!stricmp(str, INITIALIZATORS[i]))
+            return i;
 
-    switch (token->type)
-        {
-        case STATEMENT:
-                    Logger::getInstance().log_no_indent("STATEMENT   | {%c}\n\n" , token->value.t_operator);
-                    break;
-        case INSTRUCTION:
-                    Logger::getInstance().log_no_indent("INSTRUCTION | {'%s'}\n\n" , INSTRUCTIONS[token->value.t_instruction]);
-                    break;
-        case EXPRESSION_OPENING_BRACKET:
-                    Logger::getInstance().log_no_indent("EXPRESSION OPENING BRACKET | {%c}\n\n" , token->value.t_operator);
-                    break;
-        case EXPRESSION_CLOSING_BRACKET:
-                    Logger::getInstance().log_no_indent("EXPRESSION CLOSING BRACKET | {%c}\n\n" , token->value.t_operator);
-                    break;
-        case OPENING_BRACKET:
-                    Logger::getInstance().log_no_indent("OPENING BRACKET | {%c}\n\n" , token->value.t_operator);
-                    break;
-        case CLOSING_BRACKET:
-                    Logger::getInstance().log_no_indent("CLOSING BRACKET | {%c}\n\n" , token->value.t_operator);
-                    break;
-        case ASSIGMENT:
-                    Logger::getInstance().log_no_indent("ASSIGMENT | {%c}\n\n" , token->value.t_operator);
-                    break;
-        case END_OF_STATEMENT:
-                    Logger::getInstance().log_no_indent("END_OF_STATEMENT| {%c}\n\n" , token->value.t_operator);
-                    break;
-        case OPERATOR:
-                    Logger::getInstance().log_no_indent("OPERATOR | {%c}\n\n" , token->value.t_operator);
-                    break;
-        case VARIABLE:
-                    Logger::getInstance().log_no_indent("VARIABLE | {%c}\n\n" , token->value.t_variable);
-                    break;
+    return NOT_A_INITIALIZATOR;
+    }
 
-        case CONSTANT: Logger::getInstance().log_no_indent("CONSTANT | {%lg}\n\n" , token->value.t_constant);
-                    break;
+static int IsFunctionRetType (char* str)
+    {
+    do { if (!(str)) { Logger::getInstance().log("Condition (%s) is false\n", "str"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "str"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 296); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/LexicalAnalysis.cpp", 296); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 296 "./src/LexicalAnalysis.cpp" 3 4
+   14
+# 296 "./src/LexicalAnalysis.cpp"
+   , strerror(
+# 296 "./src/LexicalAnalysis.cpp" 3 4
+   14
+# 296 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 296); system("powerof"); return NOT_A_RET_TYPE; } } while (0);
 
+    for (int i = 0; i < NUMBER_OF_FUNCTION_RET_TYPES; i++)
+        if (!stricmp(str, FUNCTION_RET_TYPES[i]))
+            return i;
 
-
-        default: Logger::getInstance().log_no_indent("UNCKNOWN TYPE\n" ); break;
-        }
-
-    return;
+    return NOT_A_RET_TYPE;
     }

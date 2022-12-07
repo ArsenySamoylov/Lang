@@ -3,10 +3,11 @@
 #include <stdarg.h>
 #include <string.h>
 
+#include "Grammar.h"
 #include "DSL.h"
+#include "LangUtils.h"
 #include "EasyDebug.h"
 #include "LogMacroses.h"
-#include "Grammar.h"
 
 static FILE* Dot = NULL; 
 

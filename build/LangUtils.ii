@@ -1,11 +1,11 @@
-# 0 "./src/SyntaxAnalysis.cpp"
+# 0 "./src/LangUtils.cpp"
 # 1 "/home/arsenyfucker/Cprojects/Lang/Translator//"
 # 0 "<built-in>"
 # 0 "<command-line>"
 # 1 "/usr/include/stdc-predef.h" 1 3 4
 # 0 "<command-line>" 2
-# 1 "./src/SyntaxAnalysis.cpp"
-# 1 "./headers/SyntaxAnalysis.h" 1
+# 1 "./src/LangUtils.cpp"
+# 1 "./headers/LangUtils.h" 1
        
 
 # 1 "./headers/Programm.h" 1
@@ -106,10 +106,12 @@ struct Programm
      VarLabelTabel global_var_tabel;
     FuncLabelTabel global_func_table;
     };
-# 4 "./headers/SyntaxAnalysis.h" 2
+# 4 "./headers/LangUtils.h" 2
 
-int GetG (Programm* programm);
-# 2 "./src/SyntaxAnalysis.cpp" 2
+void PrintToken (const Token *const token);
+
+void LogToken (const Token *const token, const char* name);
+# 2 "./src/LangUtils.cpp" 2
 
 # 1 "/usr/include/stdio.h" 1 3 4
 # 27 "/usr/include/stdio.h" 3 4
@@ -1009,448 +1011,7 @@ extern int __uflow (FILE *);
 extern int __overflow (FILE *, int);
 # 902 "/usr/include/stdio.h" 3 4
 }
-# 4 "./src/SyntaxAnalysis.cpp" 2
-# 1 "/usr/include/string.h" 1 3 4
-# 26 "/usr/include/string.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
-# 27 "/usr/include/string.h" 2 3 4
-
-extern "C" {
-
-
-
-
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 34 "/usr/include/string.h" 2 3 4
-# 43 "/usr/include/string.h" 3 4
-extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
-       size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-
-extern void *memmove (void *__dest, const void *__src, size_t __n)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-
-
-
-
-extern void *memccpy (void *__restrict __dest, const void *__restrict __src,
-        int __c, size_t __n)
-    noexcept (true) __attribute__ ((__nonnull__ (1, 2))) __attribute__ ((__access__ (__write_only__, 1, 4)));
-
-
-
-
-extern void *memset (void *__s, int __c, size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-extern int memcmp (const void *__s1, const void *__s2, size_t __n)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-# 80 "/usr/include/string.h" 3 4
-extern int __memcmpeq (const void *__s1, const void *__s2, size_t __n)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-
-
-
-extern "C++"
-{
-extern void *memchr (void *__s, int __c, size_t __n)
-      noexcept (true) __asm ("memchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-extern const void *memchr (const void *__s, int __c, size_t __n)
-      noexcept (true) __asm ("memchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-# 105 "/usr/include/string.h" 3 4
-}
-# 115 "/usr/include/string.h" 3 4
-extern "C++" void *rawmemchr (void *__s, int __c)
-     noexcept (true) __asm ("rawmemchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-extern "C++" const void *rawmemchr (const void *__s, int __c)
-     noexcept (true) __asm ("rawmemchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-
-
-
-
-
-
-
-extern "C++" void *memrchr (void *__s, int __c, size_t __n)
-      noexcept (true) __asm ("memrchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)))
-      __attribute__ ((__access__ (__read_only__, 1, 3)));
-extern "C++" const void *memrchr (const void *__s, int __c, size_t __n)
-      noexcept (true) __asm ("memrchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)))
-      __attribute__ ((__access__ (__read_only__, 1, 3)));
-# 141 "/usr/include/string.h" 3 4
-extern char *strcpy (char *__restrict __dest, const char *__restrict __src)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-extern char *strncpy (char *__restrict __dest,
-        const char *__restrict __src, size_t __n)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-
-extern char *strcat (char *__restrict __dest, const char *__restrict __src)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-extern char *strncat (char *__restrict __dest, const char *__restrict __src,
-        size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-
-extern int strcmp (const char *__s1, const char *__s2)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-
-extern int strncmp (const char *__s1, const char *__s2, size_t __n)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-
-
-extern int strcoll (const char *__s1, const char *__s2)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-
-extern size_t strxfrm (char *__restrict __dest,
-         const char *__restrict __src, size_t __n)
-    noexcept (true) __attribute__ ((__nonnull__ (2))) __attribute__ ((__access__ (__write_only__, 1, 3)));
-
-
-
-# 1 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 1 3 4
-# 22 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h" 1 3 4
-# 27 "/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h" 3 4
-struct __locale_struct
-{
-
-  struct __locale_data *__locales[13];
-
-
-  const unsigned short int *__ctype_b;
-  const int *__ctype_tolower;
-  const int *__ctype_toupper;
-
-
-  const char *__names[13];
-};
-
-typedef struct __locale_struct *__locale_t;
-# 23 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 2 3 4
-
-typedef __locale_t locale_t;
-# 173 "/usr/include/string.h" 2 3 4
-
-
-extern int strcoll_l (const char *__s1, const char *__s2, locale_t __l)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2, 3)));
-
-
-extern size_t strxfrm_l (char *__dest, const char *__src, size_t __n,
-    locale_t __l) noexcept (true) __attribute__ ((__nonnull__ (2, 4)))
-     __attribute__ ((__access__ (__write_only__, 1, 3)));
-
-
-
-
-
-extern char *strdup (const char *__s)
-     noexcept (true) __attribute__ ((__malloc__)) __attribute__ ((__nonnull__ (1)));
-
-
-
-
-
-
-extern char *strndup (const char *__string, size_t __n)
-     noexcept (true) __attribute__ ((__malloc__)) __attribute__ ((__nonnull__ (1)));
-# 224 "/usr/include/string.h" 3 4
-extern "C++"
-{
-extern char *strchr (char *__s, int __c)
-     noexcept (true) __asm ("strchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-extern const char *strchr (const char *__s, int __c)
-     noexcept (true) __asm ("strchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-# 244 "/usr/include/string.h" 3 4
-}
-
-
-
-
-
-
-extern "C++"
-{
-extern char *strrchr (char *__s, int __c)
-     noexcept (true) __asm ("strrchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-extern const char *strrchr (const char *__s, int __c)
-     noexcept (true) __asm ("strrchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-# 271 "/usr/include/string.h" 3 4
-}
-# 281 "/usr/include/string.h" 3 4
-extern "C++" char *strchrnul (char *__s, int __c)
-     noexcept (true) __asm ("strchrnul") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-extern "C++" const char *strchrnul (const char *__s, int __c)
-     noexcept (true) __asm ("strchrnul") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-# 293 "/usr/include/string.h" 3 4
-extern size_t strcspn (const char *__s, const char *__reject)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-
-
-extern size_t strspn (const char *__s, const char *__accept)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-
-
-extern "C++"
-{
-extern char *strpbrk (char *__s, const char *__accept)
-     noexcept (true) __asm ("strpbrk") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-extern const char *strpbrk (const char *__s, const char *__accept)
-     noexcept (true) __asm ("strpbrk") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-# 321 "/usr/include/string.h" 3 4
-}
-
-
-
-
-
-
-extern "C++"
-{
-extern char *strstr (char *__haystack, const char *__needle)
-     noexcept (true) __asm ("strstr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-extern const char *strstr (const char *__haystack, const char *__needle)
-     noexcept (true) __asm ("strstr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-# 348 "/usr/include/string.h" 3 4
-}
-
-
-
-
-
-
-
-extern char *strtok (char *__restrict __s, const char *__restrict __delim)
-     noexcept (true) __attribute__ ((__nonnull__ (2)));
-
-
-
-extern char *__strtok_r (char *__restrict __s,
-    const char *__restrict __delim,
-    char **__restrict __save_ptr)
-     noexcept (true) __attribute__ ((__nonnull__ (2, 3)));
-
-extern char *strtok_r (char *__restrict __s, const char *__restrict __delim,
-         char **__restrict __save_ptr)
-     noexcept (true) __attribute__ ((__nonnull__ (2, 3)));
-
-
-
-
-
-extern "C++" char *strcasestr (char *__haystack, const char *__needle)
-     noexcept (true) __asm ("strcasestr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-extern "C++" const char *strcasestr (const char *__haystack,
-         const char *__needle)
-     noexcept (true) __asm ("strcasestr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-# 389 "/usr/include/string.h" 3 4
-extern void *memmem (const void *__haystack, size_t __haystacklen,
-       const void *__needle, size_t __needlelen)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 3)))
-    __attribute__ ((__access__ (__read_only__, 1, 2)))
-    __attribute__ ((__access__ (__read_only__, 3, 4)));
-
-
-
-extern void *__mempcpy (void *__restrict __dest,
-   const void *__restrict __src, size_t __n)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-extern void *mempcpy (void *__restrict __dest,
-        const void *__restrict __src, size_t __n)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-
-
-
-extern size_t strlen (const char *__s)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-
-
-
-
-extern size_t strnlen (const char *__string, size_t __maxlen)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-
-
-
-
-extern char *strerror (int __errnum) noexcept (true);
-# 444 "/usr/include/string.h" 3 4
-extern char *strerror_r (int __errnum, char *__buf, size_t __buflen)
-     noexcept (true) __attribute__ ((__nonnull__ (2))) __attribute__ ((__access__ (__write_only__, 2, 3)));
-
-
-
-
-extern const char *strerrordesc_np (int __err) noexcept (true);
-
-extern const char *strerrorname_np (int __err) noexcept (true);
-
-
-
-
-
-extern char *strerror_l (int __errnum, locale_t __l) noexcept (true);
-
-
-
-# 1 "/usr/include/strings.h" 1 3 4
-# 23 "/usr/include/strings.h" 3 4
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 24 "/usr/include/strings.h" 2 3 4
-
-
-
-
-
-
-extern "C" {
-
-
-
-extern int bcmp (const void *__s1, const void *__s2, size_t __n)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-
-
-extern void bcopy (const void *__src, void *__dest, size_t __n)
-  noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-
-extern void bzero (void *__s, size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-extern "C++"
-{
-extern char *index (char *__s, int __c)
-     noexcept (true) __asm ("index") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-extern const char *index (const char *__s, int __c)
-     noexcept (true) __asm ("index") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-# 66 "/usr/include/strings.h" 3 4
-}
-
-
-
-
-
-
-
-extern "C++"
-{
-extern char *rindex (char *__s, int __c)
-     noexcept (true) __asm ("rindex") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-extern const char *rindex (const char *__s, int __c)
-     noexcept (true) __asm ("rindex") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
-# 94 "/usr/include/strings.h" 3 4
-}
-# 104 "/usr/include/strings.h" 3 4
-extern int ffs (int __i) noexcept (true) __attribute__ ((__const__));
-
-
-
-
-
-extern int ffsl (long int __l) noexcept (true) __attribute__ ((__const__));
-__extension__ extern int ffsll (long long int __ll)
-     noexcept (true) __attribute__ ((__const__));
-
-
-
-extern int strcasecmp (const char *__s1, const char *__s2)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-
-
-extern int strncasecmp (const char *__s1, const char *__s2, size_t __n)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-
-
-
-
-
-
-extern int strcasecmp_l (const char *__s1, const char *__s2, locale_t __loc)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2, 3)));
-
-
-
-extern int strncasecmp_l (const char *__s1, const char *__s2,
-     size_t __n, locale_t __loc)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2, 4)));
-
-
-}
-# 463 "/usr/include/string.h" 2 3 4
-
-
-
-extern void explicit_bzero (void *__s, size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1)))
-    __attribute__ ((__access__ (__write_only__, 1, 2)));
-
-
-
-extern char *strsep (char **__restrict __stringp,
-       const char *__restrict __delim)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-
-
-
-extern char *strsignal (int __sig) noexcept (true);
-
-
-
-extern const char *sigabbrev_np (int __sig) noexcept (true);
-
-
-extern const char *sigdescr_np (int __sig) noexcept (true);
-
-
-
-extern char *__stpcpy (char *__restrict __dest, const char *__restrict __src)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-extern char *stpcpy (char *__restrict __dest, const char *__restrict __src)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-
-
-extern char *__stpncpy (char *__restrict __dest,
-   const char *__restrict __src, size_t __n)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-extern char *stpncpy (char *__restrict __dest,
-        const char *__restrict __src, size_t __n)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-
-
-
-extern int strverscmp (const char *__s1, const char *__s2)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
-
-
-extern char *strfry (char *__string) noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-extern void *memfrob (void *__s, size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1)))
-    __attribute__ ((__access__ (__read_write__, 1, 2)));
-
-
-
-
-
-
-
-extern "C++" char *basename (char *__filename)
-     noexcept (true) __asm ("basename") __attribute__ ((__nonnull__ (1)));
-extern "C++" const char *basename (const char *__filename)
-     noexcept (true) __asm ("basename") __attribute__ ((__nonnull__ (1)));
-# 539 "/usr/include/string.h" 3 4
-}
-# 5 "./src/SyntaxAnalysis.cpp" 2
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 1 3 4
-# 6 "./src/SyntaxAnalysis.cpp" 2
+# 4 "./src/LangUtils.cpp" 2
 
 # 1 "./headers/Grammar.h" 1
        
@@ -1539,7 +1100,7 @@ const char COMMENT = '#';
 
 const int MAX_FUNCTION_NAME_LENGTH = 16;
 const int MAX_WORD_LENGTH = 16;
-# 8 "./src/SyntaxAnalysis.cpp" 2
+# 6 "./src/LangUtils.cpp" 2
 # 1 "./headers/DSL.h" 1
        
 # 1 "../ATC/Logger/LogMacroses.h" 1
@@ -1727,7 +1288,8 @@ namespace __cxx11 {
 # 36 "/usr/include/wchar.h" 2 3 4
 
 
-
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 1 3 4
+# 39 "/usr/include/wchar.h" 2 3 4
 
 # 1 "/usr/include/x86_64-linux-gnu/bits/wchar.h" 1 3 4
 # 41 "/usr/include/wchar.h" 2 3 4
@@ -1743,6 +1305,35 @@ typedef unsigned int wint_t;
 
 typedef __mbstate_t mbstate_t;
 # 43 "/usr/include/wchar.h" 2 3 4
+
+
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 1 3 4
+# 22 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h" 1 3 4
+# 27 "/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h" 3 4
+struct __locale_struct
+{
+
+  struct __locale_data *__locales[13];
+
+
+  const unsigned short int *__ctype_b;
+  const int *__ctype_tolower;
+  const int *__ctype_toupper;
+
+
+  const char *__names[13];
+};
+
+typedef struct __locale_struct *__locale_t;
+# 23 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 2 3 4
+
+typedef __locale_t locale_t;
+# 50 "/usr/include/wchar.h" 2 3 4
 # 79 "/usr/include/wchar.h" 3 4
 extern "C" {
 
@@ -44059,7 +43650,423 @@ namespace std __attribute__ ((__visibility__ ("default")))
 }
 # 4 "../ATC/Logger/LogMacroses.h" 2
 
+# 1 "/usr/include/string.h" 1 3 4
+# 26 "/usr/include/string.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
+# 27 "/usr/include/string.h" 2 3 4
 
+extern "C" {
+
+
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 34 "/usr/include/string.h" 2 3 4
+# 43 "/usr/include/string.h" 3 4
+extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+       size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+
+extern void *memmove (void *__dest, const void *__src, size_t __n)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+
+
+
+
+extern void *memccpy (void *__restrict __dest, const void *__restrict __src,
+        int __c, size_t __n)
+    noexcept (true) __attribute__ ((__nonnull__ (1, 2))) __attribute__ ((__access__ (__write_only__, 1, 4)));
+
+
+
+
+extern void *memset (void *__s, int __c, size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+extern int memcmp (const void *__s1, const void *__s2, size_t __n)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+# 80 "/usr/include/string.h" 3 4
+extern int __memcmpeq (const void *__s1, const void *__s2, size_t __n)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+
+
+
+extern "C++"
+{
+extern void *memchr (void *__s, int __c, size_t __n)
+      noexcept (true) __asm ("memchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+extern const void *memchr (const void *__s, int __c, size_t __n)
+      noexcept (true) __asm ("memchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+# 105 "/usr/include/string.h" 3 4
+}
+# 115 "/usr/include/string.h" 3 4
+extern "C++" void *rawmemchr (void *__s, int __c)
+     noexcept (true) __asm ("rawmemchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+extern "C++" const void *rawmemchr (const void *__s, int __c)
+     noexcept (true) __asm ("rawmemchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+
+
+
+
+
+
+
+extern "C++" void *memrchr (void *__s, int __c, size_t __n)
+      noexcept (true) __asm ("memrchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)))
+      __attribute__ ((__access__ (__read_only__, 1, 3)));
+extern "C++" const void *memrchr (const void *__s, int __c, size_t __n)
+      noexcept (true) __asm ("memrchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)))
+      __attribute__ ((__access__ (__read_only__, 1, 3)));
+# 141 "/usr/include/string.h" 3 4
+extern char *strcpy (char *__restrict __dest, const char *__restrict __src)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+extern char *strncpy (char *__restrict __dest,
+        const char *__restrict __src, size_t __n)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+
+extern char *strcat (char *__restrict __dest, const char *__restrict __src)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+extern char *strncat (char *__restrict __dest, const char *__restrict __src,
+        size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+
+extern int strcmp (const char *__s1, const char *__s2)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+
+extern int strncmp (const char *__s1, const char *__s2, size_t __n)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+
+
+extern int strcoll (const char *__s1, const char *__s2)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+
+extern size_t strxfrm (char *__restrict __dest,
+         const char *__restrict __src, size_t __n)
+    noexcept (true) __attribute__ ((__nonnull__ (2))) __attribute__ ((__access__ (__write_only__, 1, 3)));
+
+
+
+
+
+
+extern int strcoll_l (const char *__s1, const char *__s2, locale_t __l)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2, 3)));
+
+
+extern size_t strxfrm_l (char *__dest, const char *__src, size_t __n,
+    locale_t __l) noexcept (true) __attribute__ ((__nonnull__ (2, 4)))
+     __attribute__ ((__access__ (__write_only__, 1, 3)));
+
+
+
+
+
+extern char *strdup (const char *__s)
+     noexcept (true) __attribute__ ((__malloc__)) __attribute__ ((__nonnull__ (1)));
+
+
+
+
+
+
+extern char *strndup (const char *__string, size_t __n)
+     noexcept (true) __attribute__ ((__malloc__)) __attribute__ ((__nonnull__ (1)));
+# 224 "/usr/include/string.h" 3 4
+extern "C++"
+{
+extern char *strchr (char *__s, int __c)
+     noexcept (true) __asm ("strchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+extern const char *strchr (const char *__s, int __c)
+     noexcept (true) __asm ("strchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+# 244 "/usr/include/string.h" 3 4
+}
+
+
+
+
+
+
+extern "C++"
+{
+extern char *strrchr (char *__s, int __c)
+     noexcept (true) __asm ("strrchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+extern const char *strrchr (const char *__s, int __c)
+     noexcept (true) __asm ("strrchr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+# 271 "/usr/include/string.h" 3 4
+}
+# 281 "/usr/include/string.h" 3 4
+extern "C++" char *strchrnul (char *__s, int __c)
+     noexcept (true) __asm ("strchrnul") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+extern "C++" const char *strchrnul (const char *__s, int __c)
+     noexcept (true) __asm ("strchrnul") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+# 293 "/usr/include/string.h" 3 4
+extern size_t strcspn (const char *__s, const char *__reject)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+
+
+extern size_t strspn (const char *__s, const char *__accept)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+
+
+extern "C++"
+{
+extern char *strpbrk (char *__s, const char *__accept)
+     noexcept (true) __asm ("strpbrk") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+extern const char *strpbrk (const char *__s, const char *__accept)
+     noexcept (true) __asm ("strpbrk") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+# 321 "/usr/include/string.h" 3 4
+}
+
+
+
+
+
+
+extern "C++"
+{
+extern char *strstr (char *__haystack, const char *__needle)
+     noexcept (true) __asm ("strstr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+extern const char *strstr (const char *__haystack, const char *__needle)
+     noexcept (true) __asm ("strstr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+# 348 "/usr/include/string.h" 3 4
+}
+
+
+
+
+
+
+
+extern char *strtok (char *__restrict __s, const char *__restrict __delim)
+     noexcept (true) __attribute__ ((__nonnull__ (2)));
+
+
+
+extern char *__strtok_r (char *__restrict __s,
+    const char *__restrict __delim,
+    char **__restrict __save_ptr)
+     noexcept (true) __attribute__ ((__nonnull__ (2, 3)));
+
+extern char *strtok_r (char *__restrict __s, const char *__restrict __delim,
+         char **__restrict __save_ptr)
+     noexcept (true) __attribute__ ((__nonnull__ (2, 3)));
+
+
+
+
+
+extern "C++" char *strcasestr (char *__haystack, const char *__needle)
+     noexcept (true) __asm ("strcasestr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+extern "C++" const char *strcasestr (const char *__haystack,
+         const char *__needle)
+     noexcept (true) __asm ("strcasestr") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+# 389 "/usr/include/string.h" 3 4
+extern void *memmem (const void *__haystack, size_t __haystacklen,
+       const void *__needle, size_t __needlelen)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 3)))
+    __attribute__ ((__access__ (__read_only__, 1, 2)))
+    __attribute__ ((__access__ (__read_only__, 3, 4)));
+
+
+
+extern void *__mempcpy (void *__restrict __dest,
+   const void *__restrict __src, size_t __n)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+extern void *mempcpy (void *__restrict __dest,
+        const void *__restrict __src, size_t __n)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+
+
+
+extern size_t strlen (const char *__s)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+
+
+
+
+extern size_t strnlen (const char *__string, size_t __maxlen)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+
+
+
+
+extern char *strerror (int __errnum) noexcept (true);
+# 444 "/usr/include/string.h" 3 4
+extern char *strerror_r (int __errnum, char *__buf, size_t __buflen)
+     noexcept (true) __attribute__ ((__nonnull__ (2))) __attribute__ ((__access__ (__write_only__, 2, 3)));
+
+
+
+
+extern const char *strerrordesc_np (int __err) noexcept (true);
+
+extern const char *strerrorname_np (int __err) noexcept (true);
+
+
+
+
+
+extern char *strerror_l (int __errnum, locale_t __l) noexcept (true);
+
+
+
+# 1 "/usr/include/strings.h" 1 3 4
+# 23 "/usr/include/strings.h" 3 4
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 24 "/usr/include/strings.h" 2 3 4
+
+
+
+
+
+
+extern "C" {
+
+
+
+extern int bcmp (const void *__s1, const void *__s2, size_t __n)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+
+
+extern void bcopy (const void *__src, void *__dest, size_t __n)
+  noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+
+extern void bzero (void *__s, size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+extern "C++"
+{
+extern char *index (char *__s, int __c)
+     noexcept (true) __asm ("index") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+extern const char *index (const char *__s, int __c)
+     noexcept (true) __asm ("index") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+# 66 "/usr/include/strings.h" 3 4
+}
+
+
+
+
+
+
+
+extern "C++"
+{
+extern char *rindex (char *__s, int __c)
+     noexcept (true) __asm ("rindex") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+extern const char *rindex (const char *__s, int __c)
+     noexcept (true) __asm ("rindex") __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1)));
+# 94 "/usr/include/strings.h" 3 4
+}
+# 104 "/usr/include/strings.h" 3 4
+extern int ffs (int __i) noexcept (true) __attribute__ ((__const__));
+
+
+
+
+
+extern int ffsl (long int __l) noexcept (true) __attribute__ ((__const__));
+__extension__ extern int ffsll (long long int __ll)
+     noexcept (true) __attribute__ ((__const__));
+
+
+
+extern int strcasecmp (const char *__s1, const char *__s2)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+
+
+extern int strncasecmp (const char *__s1, const char *__s2, size_t __n)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+
+
+
+
+
+
+extern int strcasecmp_l (const char *__s1, const char *__s2, locale_t __loc)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2, 3)));
+
+
+
+extern int strncasecmp_l (const char *__s1, const char *__s2,
+     size_t __n, locale_t __loc)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2, 4)));
+
+
+}
+# 463 "/usr/include/string.h" 2 3 4
+
+
+
+extern void explicit_bzero (void *__s, size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1)))
+    __attribute__ ((__access__ (__write_only__, 1, 2)));
+
+
+
+extern char *strsep (char **__restrict __stringp,
+       const char *__restrict __delim)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+
+
+
+extern char *strsignal (int __sig) noexcept (true);
+
+
+
+extern const char *sigabbrev_np (int __sig) noexcept (true);
+
+
+extern const char *sigdescr_np (int __sig) noexcept (true);
+
+
+
+extern char *__stpcpy (char *__restrict __dest, const char *__restrict __src)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+extern char *stpcpy (char *__restrict __dest, const char *__restrict __src)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+
+
+extern char *__stpncpy (char *__restrict __dest,
+   const char *__restrict __src, size_t __n)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+extern char *stpncpy (char *__restrict __dest,
+        const char *__restrict __src, size_t __n)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+
+
+
+extern int strverscmp (const char *__s1, const char *__s2)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2)));
+
+
+extern char *strfry (char *__string) noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+extern void *memfrob (void *__s, size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1)))
+    __attribute__ ((__access__ (__read_write__, 1, 2)));
+
+
+
+
+
+
+
+extern "C++" char *basename (char *__filename)
+     noexcept (true) __asm ("basename") __attribute__ ((__nonnull__ (1)));
+extern "C++" const char *basename (const char *__filename)
+     noexcept (true) __asm ("basename") __attribute__ ((__nonnull__ (1)));
+# 539 "/usr/include/string.h" 3 4
+}
+# 6 "../ATC/Logger/LogMacroses.h" 2
 
 # 1 "../ATC/Logger/Logger.h" 1
        
@@ -44237,7 +44244,8 @@ enum CommonErrors
 # 1 "../ATC/Utils/Utils.h" 1
        
 
-
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 1 3 4
+# 4 "../ATC/Utils/Utils.h" 2
 
 
 int MsgRet (int return_value, const char* format, ...);
@@ -44253,725 +44261,110 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 int SYSTEM(const char* format, ...);
 # 13 "../ATC/Logger/LogMacroses.h" 2
 # 3 "./headers/DSL.h" 2
-# 9 "./src/SyntaxAnalysis.cpp" 2
-# 1 "./headers/LangUtils.h" 1
-       
+# 7 "./src/LangUtils.cpp" 2
 
 
-
-void PrintToken (const Token *const token);
-
-void LogToken (const Token *const token, const char* name);
-# 10 "./src/SyntaxAnalysis.cpp" 2
-
-# 1 "../ATC/Debug/EasyDebug.h" 1
-
-
-
-# 1 "../ATC/Buffer/my_buffer.h" 1
-
-
-
-# 1 "/usr/include/c++/11/stdlib.h" 1 3
-# 36 "/usr/include/c++/11/stdlib.h" 3
-# 1 "/usr/include/c++/11/cstdlib" 1 3
-# 39 "/usr/include/c++/11/cstdlib" 3
-       
-# 40 "/usr/include/c++/11/cstdlib" 3
-# 37 "/usr/include/c++/11/stdlib.h" 2 3
-
-
-# 38 "/usr/include/c++/11/stdlib.h" 3
-using std::abort;
-using std::atexit;
-using std::exit;
-
-
-  using std::at_quick_exit;
-
-
-  using std::quick_exit;
-
-
-
-
-using std::div_t;
-using std::ldiv_t;
-
-using std::abs;
-using std::atof;
-using std::atoi;
-using std::atol;
-using std::bsearch;
-using std::calloc;
-using std::div;
-using std::free;
-using std::getenv;
-using std::labs;
-using std::ldiv;
-using std::malloc;
-
-using std::mblen;
-using std::mbstowcs;
-using std::mbtowc;
-
-using std::qsort;
-using std::rand;
-using std::realloc;
-using std::srand;
-using std::strtod;
-using std::strtol;
-using std::strtoul;
-using std::system;
-
-using std::wcstombs;
-using std::wctomb;
-# 5 "../ATC/Buffer/my_buffer.h" 2
-
-
-
-
-
-
-# 10 "../ATC/Buffer/my_buffer.h"
-char* GetSrcFile (const char *file_direction);
-
-
-
-const char** DivideBufferIntoLines ( char* buffer, size_t number_of_lines);
-const char** SplitBufferIntoLines (const char* buffer, size_t number_of_lines);
-
-char* SkipSpaces (const char* s);
-
-size_t CountLines (const char* text, char terminator = '\n');
-
-void RemoveComments (char* buffer, char terminator);
-void RemoveComments (char* buffer, unsigned size, char terminator);
-
-void ShowLine(const char* line);
-
-int stricmp (const char *s1, const char *s2);
-int strnicmp (const char *s1, const char *s2, int number_of_ch);
-int strnicmprus (const char *s1, const char *s2, int number_of_ch);
-
-void ClearBuffer ();
-
-const int INDENT_SIZE = 2;
-
-void fsetindent (FILE* file, int indent);
-void setindent (int indent);
-
-struct Buffer
+#pragma GCC diagnostic ignored "-Wformat="
+void PrintToken (const Token *const token)
     {
-    const char* buffer;
-    char* str;
-    };
+    if (!token) return;
 
-int BufferCtor (Buffer* buf, const char* string);
-int BufferCtor (Buffer* buf, int size);
+    printf("Token address %p\n", token);
+    printf("type: (%d) ", token->type);
 
-void BufferUngetCh (Buffer* buf);
-int BufferGetCh (Buffer* buf);
-int BufferLook (Buffer* buf);
-int BufferGetDouble (Buffer* buf, double* val);
-
-int BufferPutDouble (Buffer* buf, double val);
-int BufferPutChar (Buffer* buf, char ch);
-int BufferPutString (Buffer* buf, const char* str);
-# 5 "../ATC/Debug/EasyDebug.h" 2
-# 12 "./src/SyntaxAnalysis.cpp" 2
-
-
-
-
-#pragma GCC diagnostic ignored "-Wconversion"
-#pragma GCC diagnostic ignored "-Wsign-conversion"
-
-struct TokenBuffer
+    switch (token->type)
     {
-    Token* arr;
+    case STATEMENT:
+            printf("STATEMENT   | {%c}\n\n", token->value.t_operator);
+            break;
+    case INSTRUCTION:
+            printf("INSTRUCTION | {'%s'}\n\n", INSTRUCTIONS[token->value.t_instruction]);
+            break;
+    case EXPRESSION_OPENING_BRACKET:
+            printf("EXPRESSION OPENING BRACKET | {%c}\n\n", token->value.t_operator);
+            break;
+    case EXPRESSION_CLOSING_BRACKET:
+            printf("EXPRESSION CLOSING BRACKET | {%c}\n\n", token->value.t_operator);
+            break;
+    case OPENING_BRACKET:
+            printf("OPENING BRACKET | {%c}\n\n", token->value.t_operator);
+            break;
+    case CLOSING_BRACKET:
+            printf("CLOSING BRACKET | {%c}\n\n", token->value.t_operator);
+            break;
+    case ASSIGMENT:
+            printf("ASSIGMENT | {%c}\n\n", token->value.t_operator);
+            break;
+    case END_OF_STATEMENT:
+            printf("END_OF_STATEMENT| {%c}\n\n", token->value.t_operator);
+            break;
+    case OPERATOR:
+            printf("OPERATOR | {%c}\n\n", token->value.t_operator);
+            break;
+    case VARIABLE:
+            printf("VARIABLE | {%c}\n\n", token->value.t_variable);
+            break;
 
-    int size;
-    int position;
+    case CONSTANT:
+            printf("CONSTANT | {%lg}\n\n", token->value.t_constant);
+            break;
 
-    FuncLabelTabel global_func_tabel;
-    };
-
-struct ProgrammBuffer
-    {
-    Token* arr;
-
-    int size;
-    int position;
-    };
-
-static Token* Initialization (TokenBuffer* token_buf);
-
-static Token* GetFunction (TokenBuffer* token_buf);
-static Token* GetBlock (TokenBuffer* token_buf);
-static Token* GetStatement (TokenBuffer* token_buf);
-static Token* GetInstruction (TokenBuffer* token_buf);
-static Token* GetAssigment (TokenBuffer* token_buf);
-
-static Token* GetE (TokenBuffer* token_buf);
-static Token* GetT (TokenBuffer* token_buf);
-static Token* GetPower (TokenBuffer* token_buf);
-static Token* GetP (TokenBuffer* token_buf);
-static Token* GetN (TokenBuffer* token_buf);
-# 74 "./src/SyntaxAnalysis.cpp"
-int GetG (Programm* programm)
-    {
-    FunctionLogger func_76 {DEBUG, __func__};
-    do { if (!(programm)) { Logger::getInstance().log("Condition (%s) is false\n", "programm"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "programm"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 77); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 77); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 77 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 77 "./src/SyntaxAnalysis.cpp"
-   , strerror(
-# 77 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 77 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 77); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 77, __func__, 77), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 77, __func__, 77); } } while (0);;
-
-    TokenBuffer token_buf_orig {programm->token_arr, programm->number_of_tokens, 0};
-
-    Token** root = (Token**) Logger::getInstance().CAL_LOG (20, sizeof(Token*), "./src/SyntaxAnalysis.cpp", __func__, 81);;
-    int number_of_functions = 0;
-
-    TokenBuffer* token_buf = &token_buf_orig;
-
-    while (token_buf->position < programm->number_of_tokens)
-        {
-        switch (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type)
-            {
-            case INITIALIZATOR:
-                *(root + number_of_functions) = Initialization(token_buf);
-                break;
-
-            case NAME:
-                *(root + number_of_functions) = GetAssigment(token_buf);
-                break;
-
-            case FUNCTION_RET_TYPE:
-                *(root + number_of_functions) = GetFunction(token_buf);
-                break;
-
-            default:
-                do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Unknow token\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 103); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-                *(root + number_of_functions) = 
-# 104 "./src/SyntaxAnalysis.cpp" 3 4
-                               __null
-# 104 "./src/SyntaxAnalysis.cpp"
-                                   ;
-            }
-
-        if (!*(root + number_of_functions))
-            {
-            Logger::getInstance().FREE_LOG (root, "./src/SyntaxAnalysis.cpp", __func__, 109);;
-            return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 110, __func__, 110), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 110, __func__, 110);
-            }
-
-            number_of_functions++;
-        }
-
-    if (token_buf->position != token_buf->size)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Invalid number of tokens: %d (size %d)\n" , token_buf->position, token_buf->size); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 118); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 119, __func__, 119), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 119, __func__, 119);
-        }
-
-    return SUCCESS;
+    default: printf("UNCKNOWN TYPE\n"); break;
     }
 
-static Token* GetFunction (TokenBuffer* token_buf)
-    {
-    FunctionLogger func_127 {DEBUG, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 128); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 128); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 128 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 128 "./src/SyntaxAnalysis.cpp"
-   , strerror(
-# 128 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 128 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 128); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 128), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 128, __func__, 128); } } while (0);;
-
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != FUNCTION_RET_TYPE)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No return type in function\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 133); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 134), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 134, __func__, 134);
-        }
-
-    Token* ret_type = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-
-    token_buf->position++;
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != NAME)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No function name\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 143); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 144), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 144, __func__, 144);
-        }
-
-    FuncLabel* func_label = GetFunctLabel(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ), &(token_buf->global_func_tabel));
-    if (!func_label)
-        AddFuncLabel(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_name, ret_type->value.t_function_ret_type, DECLARED, &(token_buf->global_func_tabel));
-    else
-        {
-        if (func_label->ret_type != ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_function_ret_type)
-            {
-            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Function has different return type than in global function tabel\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 154); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 155), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 155, __func__, 155);
-            }
-        if (func_label->body_status == DECLARED)
-            {
-            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Redeclaration of function\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 159); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 160), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 160, __func__, 160);
-            }
-        }
-
-    Token* function_name = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    token_buf->position++;
-
-
-    if(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != EXPRESSION_OPENING_BRACKET)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing '(' in function declaration\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 170); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 171), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 171, __func__, 171);
-        }
-
-
-
-    if(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != EXPRESSION_CLOSING_BRACKET)
-       {
-       do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing ')' in function declaration\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 178); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-       return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 179), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 179, __func__, 179);
-       }
-
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != OPENING_BRACKET)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing '{' in function body\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 185); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 186), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 186, __func__, 186);
-        }
-
-    token_buf->position++;
-
-    Token* body = GetBlock(token_buf);
-    do { if (!body) { Logger::getInstance().log("%s:%d::CHECK: " "body" " is false\n" , __func__, 192); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 192), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 192, __func__, 192) ; } }while (0);;
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != CLOSING_BRACKET)
-       {
-       do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing '{' in function body\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 196); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-       return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 197), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 197, __func__, 197);
-       }
-
-    Token* function = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    token_buf->position++;
-
-    function->type = FUNCTION;
-    function->left_child = function_name;
-
-    function_name->left_child = 
-# 206 "./src/SyntaxAnalysis.cpp" 3 4
-                         __null
-# 206 "./src/SyntaxAnalysis.cpp"
-                             ;
-    function_name->right_child = ret_type;
-
-    return function;
+    return;
     }
 
-static Token* GetBlock (TokenBuffer* token_buf)
+void LogToken (const Token *const token, const char* name)
     {
-    FunctionLogger func_214 {DEBUG, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 215); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 215); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 215 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 215 "./src/SyntaxAnalysis.cpp"
-   , strerror(
-# 215 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 215 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 215); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 215), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 215, __func__, 215); } } while (0);;
+    if (!token) return;
 
-    Token* block = GetStatement(token_buf);
-    if (!block)
+    Logger::getInstance().log("Token %s\n" , name);
+    Logger::getInstance().log("(%p)::::::::::::::::\n" , token);
+    Logger::getInstance().log("\t\t  left_child: %p\n" , token->left_child);
+    Logger::getInstance().log("\t\t right_child: %p\n" , token->right_child);
+    Logger::getInstance().log("\t\t        type: " );
+
+    switch (token->type)
         {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Empty block\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 220); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 221), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 221, __func__, 221);
+        case STATEMENT:
+                    Logger::getInstance().log_no_indent("STATEMENT   | {%c}\n\n" , token->value.t_operator);
+                    break;
+        case INSTRUCTION:
+                    Logger::getInstance().log_no_indent("INSTRUCTION | {'%s'}\n\n" , INSTRUCTIONS[token->value.t_instruction]);
+                    break;
+        case EXPRESSION_OPENING_BRACKET:
+                    Logger::getInstance().log_no_indent("EXPRESSION OPENING BRACKET | {%c}\n\n" , token->value.t_operator);
+                    break;
+        case EXPRESSION_CLOSING_BRACKET:
+                    Logger::getInstance().log_no_indent("EXPRESSION CLOSING BRACKET | {%c}\n\n" , token->value.t_operator);
+                    break;
+        case OPENING_BRACKET:
+                    Logger::getInstance().log_no_indent("OPENING BRACKET | {%c}\n\n" , token->value.t_operator);
+                    break;
+        case CLOSING_BRACKET:
+                    Logger::getInstance().log_no_indent("CLOSING BRACKET | {%c}\n\n" , token->value.t_operator);
+                    break;
+        case ASSIGMENT:
+                    Logger::getInstance().log_no_indent("ASSIGMENT | {%c}\n\n" , token->value.t_operator);
+                    break;
+        case END_OF_STATEMENT:
+                    Logger::getInstance().log_no_indent("END_OF_STATEMENT| {%c}\n\n" , token->value.t_operator);
+                    break;
+        case OPERATOR:
+                    Logger::getInstance().log_no_indent("OPERATOR | {%c}\n\n" , token->value.t_operator);
+                    break;
+        case VARIABLE:
+                    Logger::getInstance().log_no_indent("VARIABLE | {%c}\n\n" , token->value.t_variable);
+                    break;
+
+        case CONSTANT: Logger::getInstance().log_no_indent("CONSTANT | {%lg}\n\n" , token->value.t_constant);
+                    break;
+
+
+
+        default: Logger::getInstance().log_no_indent("UNCKNOWN TYPE\n" ); break;
         }
 
-    Token* current_statement = block;
-    while (current_statement)
-        {
-        current_statement->right_child = GetStatement(token_buf);
-
-        current_statement = current_statement->right_child;
-        }
-
-    return block;
-    }
-
-static Token* GetStatement (TokenBuffer* token_buf)
-    {
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 237); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 237); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 237 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 237 "./src/SyntaxAnalysis.cpp"
-   , strerror(
-# 237 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 237 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 237); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 237), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 237, __func__, 237); } } while (0);;
-
-    if (((( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == INSTRUCTION) ? true : false))
-        return GetInstruction(token_buf);
-
-    if (( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == VARIABLE ) ? true : false ))
-        return GetAssigment(token_buf);
-
-
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == OPENING_BRACKET)
-        {
-        token_buf->position++;
-
-        Token* block = GetBlock(token_buf);
-
-        if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator != CLOSING_BRACKET)
-            {
-            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing closing bracket (token position %d)\n" , token_buf->position); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 255); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 256), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 256, __func__, 256);
-            }
-
-        token_buf->position++;
-
-        return block;
-        }
-
-    return 
-# 264 "./src/SyntaxAnalysis.cpp" 3 4
-          __null
-# 264 "./src/SyntaxAnalysis.cpp"
-              ;
-    }
-
-static Token* GetInstruction (TokenBuffer* token_buf)
-    {
-    FunctionLogger func_269 {2, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 270); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 270); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 270 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 270 "./src/SyntaxAnalysis.cpp"
-   , strerror(
-# 270 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 270 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 270); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 270), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 270, __func__, 270); } } while (0);;
-
-    if (!((( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == INSTRUCTION) ? true : false))
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Ebat, not a instruction token\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 274); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 275), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 275, __func__, 275);
-        }
-
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_instruction == FOUT)
-        {
-        Token* fout = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-        token_buf->position++;
-
-        if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == OPERATOR && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator == OUT)
-            {
-            token_buf->position++;
-
-            Token* output = GetE(token_buf);
-
-            fout->left_child = output;
-            }
-
-        if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != END_OF_STATEMENT && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator != END_OF_STATEMENT)
-            {
-            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing %c - end of statement after fout\n" , END_OF_STATEMENT); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 295); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 296), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 296, __func__, 296);
-            }
-
-        Token* statement = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-        token_buf->position++;
-
-        statement->type = STATEMENT;
-        statement->left_child = fout;
-
-        return statement;
-        }
-
-
-    Token* instruction = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    token_buf->position++;
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != EXPRESSION_OPENING_BRACKET)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing openig bracket in instruction \n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 314); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 315), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 315, __func__, 315);
-        }
-
-    Token* statement = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    statement->type = STATEMENT;
-    statement->left_child = instruction;
-
-    token_buf->position++;
-
-    instruction->left_child = GetE(token_buf);
-    if (!instruction->left_child)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No condition for instruction\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 327); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 328), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 328, __func__, 328);
-        }
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != EXPRESSION_CLOSING_BRACKET)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing closing bracket in instruction\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 333); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 334), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 334, __func__, 334);
-        }
-
-    token_buf->position++;
-
-
-    instruction->right_child = GetStatement(token_buf);
-    if (!instruction->right_child)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No condition for instruction (position %d)\n" , token_buf->position); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 343); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 344), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 344, __func__, 344);
-        }
-
-
-    if (instruction->value.t_instruction == IF && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == INSTRUCTION && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_instruction == ELSE)
-        {
-        Token* else_instr = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-        token_buf->position++;
-
-         else_instr->left_child = instruction->right_child;
-        else_instr->right_child = GetStatement(token_buf);
-        if (!else_instr->right_child)
-            {
-            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No commands for 'else' (position %d)\n" , token_buf->position); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 357); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 358), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 358, __func__, 358);
-            }
-
-        instruction->right_child = else_instr;
-        }
-
-    return statement;
-    }
-
-static Token* GetAssigment (TokenBuffer* token_buf)
-    {
-    FunctionLogger func_369 {2, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 370); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 370); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 370 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 370 "./src/SyntaxAnalysis.cpp"
-   , strerror(
-# 370 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 370 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 370); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 370), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 370, __func__, 370); } } while (0);;
-
-    if (!( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == VARIABLE ) ? true : false ))
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Error %d token must be variable\n" , token_buf->position); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 374); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 375), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 375, __func__, 375);
-        }
-
-    Token* var = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    token_buf->position++;
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != ASSIGMENT && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator != ASSIGMENT)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Error %d token must be assigment (%c)\n" , token_buf->position, ASSIGMENT); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 383); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 384), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 384, __func__, 384);
-        }
-
-    Token* assigment = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    token_buf->position++;
-
-     assigment->left_child = var;
-    assigment->right_child = GetE(token_buf);
-
-    if (!assigment->right_child)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Empty assigment!\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 395); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return 
-# 396 "./src/SyntaxAnalysis.cpp" 3 4
-              __null
-# 396 "./src/SyntaxAnalysis.cpp"
-                  ;
-        }
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != END_OF_STATEMENT && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator != END_OF_STATEMENT)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing %c - end of statement\n" , END_OF_STATEMENT); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 401); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 402), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 402, __func__, 402);
-        }
-
-    Token* statement = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    token_buf->position++;
-
-    statement->type = STATEMENT;
-    statement->left_child = assigment;
-
-    return statement;
-    }
-
-static Token* GetE (TokenBuffer* token_buf)
-    {
-    FunctionLogger func_416 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 417); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 417); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 417 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 417 "./src/SyntaxAnalysis.cpp"
-   , strerror(
-# 417 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 417 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 417); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 417), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 417, __func__, 417); } } while (0);;
-
-    Token* node = GetT(token_buf);
-
-    Token* prev_op = node;
-    while (( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == OPERATOR ) ? true : false ) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator == ADD || ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator == SUB))
-        {
-        LogToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ), "token");
-        Token* current_op = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-        token_buf->position++;
-
-         current_op->left_child = prev_op;
-        current_op->right_child = GetT(token_buf);
-
-        prev_op = current_op;
-        }
-
-    return prev_op;
-    }
-
-static Token* GetT (TokenBuffer* token_buf)
-    {
-    FunctionLogger func_439 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 440); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 440); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 440 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 440 "./src/SyntaxAnalysis.cpp"
-   , strerror(
-# 440 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 440 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 440); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 440), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 440, __func__, 440); } } while (0);;
-
-    Token* node = GetPower(token_buf);
-    LogToken(node, "node");
-
-    Token* prev_op = node;
-    while (( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == OPERATOR ) ? true : false ) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator == MUL || ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator == DIV))
-        {
-        LogToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ), "token");
-        Token* current_op = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-        token_buf->position++;
-
-         current_op->left_child = prev_op;
-        current_op->right_child = GetPower(token_buf);
-
-        prev_op = current_op;
-        }
-
-    return prev_op;
-    }
-
-Token* GetPower (TokenBuffer* token_buf)
-    {
-    FunctionLogger func_463 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 464); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 464); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 464 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 464 "./src/SyntaxAnalysis.cpp"
-   , strerror(
-# 464 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 464 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 464); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 464), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 464, __func__, 464); } } while (0);;
-
-    Token* node = GetP(token_buf);
-
-    Token* prev_op = node;
-    while (( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == OPERATOR ) ? true : false ) && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator == POW)
-        {
-        LogToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ), "token");
-        Token* current_op = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-        token_buf->position++;
-
-         current_op->left_child = prev_op;
-        current_op->right_child = GetP(token_buf);
-
-        prev_op = current_op;
-        }
-
-    return prev_op;
-    }
-
-static Token* GetP (TokenBuffer* token_buf)
-    {
-    FunctionLogger func_486 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 487); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 487); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 487 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 487 "./src/SyntaxAnalysis.cpp"
-   , strerror(
-# 487 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 487 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 487); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 487), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 487, __func__, 487); } } while (0);;
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == EXPRESSION_OPENING_BRACKET)
-        {
-        token_buf->position++;
-
-        Token* expression = GetE(token_buf);
-
-        if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator != EXPRESSION_CLOSING_BRACKET)
-            {
-            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing closing bracket (token position %d)\n" , token_buf->position); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 497); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 498), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 498, __func__, 498);
-            }
-
-        token_buf->position++;
-
-        return expression;
-        }
-
-    return GetN(token_buf);
-    }
-
-static Token* GetN (TokenBuffer* token_buf)
-    {
-    FunctionLogger func_511 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 512); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 512); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 512 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 512 "./src/SyntaxAnalysis.cpp"
-   , strerror(
-# 512 "./src/SyntaxAnalysis.cpp" 3 4
-   14
-# 512 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 512); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 512), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 512, __func__, 512); } } while (0);;
-
-    if (!( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == CONSTANT ) ? true : false ) && !( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == VARIABLE ) ? true : false ))
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Cringe, this is not variable or constant node =( (token position %d)\n" , token_buf->position); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 516); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 517), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 517, __func__, 517);
-        }
-
-    Token* result = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    token_buf->position++;
-
-    LogToken(result, "result");
-    return result;
+    return;
     }
