@@ -21,9 +21,14 @@ static void PrintNode     (const Token *const node);
 
 #define set_func_name   fprintf (Dot, "########################################################### %s\n", __func__);
 
-const char* MakeImg (const char* img_name, const Token *const node) 
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-function"
+
+const char* MakeImg (const char* img_name, const Program *const program) 
     {
     $log(2)
+    return NULL;
+    /*
     assert (img_name);
     assert (node);
 
@@ -57,6 +62,7 @@ const char* MakeImg (const char* img_name, const Token *const node)
     
     CloseDotFile ();
     return full_img_name;
+    */
     }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,8 +187,8 @@ static void PrintNode (const Token *const node)
         case OPERATOR: sprintf(def_data, "Operator | {%c} | {%p}", node->value.t_operator, (void*) node);
                        break;
 
-        case VARIABLE: sprintf(def_data, "Variable | {%c} | {%p}", node->value.t_variable, (void*) node);
-                       break;
+        // case VARIABLE: sprintf(def_data, "Variable | {%c} | {%p}", node->value.t_variable, (void*) node);
+                    //    break;
 
         case CONSTANT: sprintf(def_data, "Constant | {%lg} | {%p}", node->value.t_constant, (void*) node);
                        break;

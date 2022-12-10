@@ -20,6 +20,8 @@ static int  AddToAsm (const Token *const token);
 
 static void assprint(const char* format, ...);
 
+#pragma GCC diagnostic ignored "-Wmissing-declarations"
+
 int TranslateToAsm (const Token *const root, const char *const name)
     {
     assertlog(root, EFAULT, return LFAILURE);
@@ -195,7 +197,8 @@ static int AddToAsm (const Token *const token)
 
             default:
                 printf("Wrong operator %c\n", OP(token));
-                PrintToken(token);
+                TODO("nill ptr\n");
+                PrintToken(token, NULL); // be carefull !!!!
 
                 return LFAILURE;
             }
@@ -212,7 +215,7 @@ static int AddToAsm (const Token *const token)
         }
 
     YOU_SHALL_NOT_PASS
-    PrintToken(token);
+    PrintToken(token, NULL);
 
     return LFAILURE;
     }

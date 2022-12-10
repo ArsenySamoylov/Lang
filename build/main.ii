@@ -9,7 +9,7 @@
 # 1 "./headers/LexicalAnalysis.h" 1
        
 
-# 1 "./headers/Programm.h" 1
+# 1 "./headers/Program.h" 1
        
 
 # 1 "./headers/Token.h" 1
@@ -23,9 +23,10 @@ union TokenValue
     int t_initializator;
     int t_function_ret_type;
 
-    char* t_name;
-    int t_variable;
-    int t_function;
+    char* t_name_ptr;
+    int t_name_id;
+
+
     };
 
 struct Token
@@ -36,8 +37,15 @@ struct Token
     int type;
 
     TokenValue value;
+
+    const char* ptr_to_src_code;
     };
-# 4 "./headers/Programm.h" 2
+
+Token* NewToken (int type = 0, TokenValue value = {0},
+                Token* left_child = nullptr, Token* right_child = nullptr);
+
+int DeleteBranch (Token* def_node);
+# 4 "./headers/Program.h" 2
 # 1 "./headers/Tabels.h" 1
        
 
@@ -52,21 +60,21 @@ enum VarType
 
 enum FuncType
     {
+    NOT_DECLARED,
     DECLARED,
-    NOT_DECLEARED,
     INITIALIZED,
     };
 
 struct VarLabel
     {
     int name;
-    int mem_type;
-    int address;
     };
 
-struct VarLabelTabel
+struct VarTabel
     {
     VarLabel** label_arr;
+    int arr_size;
+
     int number_of_labels;
     };
 
@@ -75,58 +83,68 @@ struct FuncLabel
     int name;
     int ret_type;
     int body_status;
-
-    VarLabelTabel local_args;
     int number_of_arguments;
+
+    VarTabel local_args;
     };
 
-struct FuncLabelTabel
+struct FuncTabel
     {
     FuncLabel** label_arr;
-    int number_of_labels;
+    int arr_size;
 
-    VarLabelTabel* local_var;
+    int number_of_labels;
     };
 
-FuncLabel* GetFunctLabel (Token* token, FuncLabelTabel* func_tabel);
+int FuncTabelCtor (FuncTabel* tabel);
+FuncLabel* IsFuncLabel (int name_id, FuncTabel* func_tabel);
 
-int AddFuncLabel (const char* name, int return_type, int body_status, FuncLabelTabel* func_tabel);
-# 5 "./headers/Programm.h" 2
+int AddFuncLabel (int name_id, int return_type, int body_status, FuncTabel* func_tabel);
+int AddFuncLabel (FuncLabel* label, FuncTabel* tabel);
 
-struct Programm
+int CompareFuncLabels (FuncLabel* label1, FuncLabel* label2);
+
+
+
+int VarTabelCtor (VarTabel* tabel);
+VarLabel* IsVarLabel (int name_id, VarTabel* tabel);
+
+int AddVarLabel (VarLabel* label, VarTabel* tabel);
+# 5 "./headers/Program.h" 2
+
+struct Program
     {
     Token* token_arr;
     int number_of_tokens;
 
-    Token** functions;
-    int number_of_functions;
+    Token* root;
 
     const char** string_arr;
     int number_of_strings;
 
-     VarLabelTabel global_var_tabel;
-    FuncLabelTabel global_func_table;
+
+
     };
 # 4 "./headers/LexicalAnalysis.h" 2
 
 const int START_NUMBER_OF_TOKENS = 20;
 const int START_NUMBER_OF_STRINGS = 16;
 
-int Tokenizer (Programm* programm, const char* expression);
+int Tokenizer (Program* program, const char* expression);
 # 3 "./src/main.cpp" 2
 # 1 "./headers/SyntaxAnalysis.h" 1
        
 
 
 
-int GetG (Programm* programm);
+int GetG (Program* program);
 # 4 "./src/main.cpp" 2
 # 1 "./headers/TranslateToAsm.h" 1
        
 
 
 
-int TranslateToAsm (const Programm *const programm, const char *const name);
+int TranslateToAsm (const Program *const program, const char *const name);
 # 5 "./src/main.cpp" 2
 
 # 1 "./headers/DefGraphVis.h" 1
@@ -2654,7 +2672,7 @@ const int SYSTEM_COMMAND_LENGTH = 512;
 FILE* OpenDotFile (const char* path);
 void CloseDotFile ();
 
-const char* MakeImg (const char* img_name, const Programm *const programm);
+const char* MakeImg (const char* img_name, const Program *const program);
 # 7 "./src/main.cpp" 2
 
 # 1 "../ATC/Buffer/my_buffer.h" 1
@@ -44324,49 +44342,106 @@ int SYSTEM(const char* format, ...);
 # 13 "../ATC/Logger/LogMacroses.h" 2
 # 10 "./src/main.cpp" 2
 # 27 "./src/main.cpp"
-void CloseProgramm(Programm* );
+void CloseProgram(Program* );
+
+int ProgramCtor(Program* program);
+int ProgramCtor(Program* program)
+    {
+    do { if (!(program)) { Logger::getInstance().log("Condition (%s) is false\n", "program"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/main.cpp", 32); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/main.cpp", 32); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 32 "./src/main.cpp" 3 4
+   14
+# 32 "./src/main.cpp"
+   , strerror(
+# 32 "./src/main.cpp" 3 4
+   14
+# 32 "./src/main.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 32); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 32, __func__, 32), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 32, __func__, 32); } } while (0);
+
+    program->token_arr = 
+# 34 "./src/main.cpp" 3 4
+                               __null
+# 34 "./src/main.cpp"
+                                   ;
+    program->number_of_tokens = 0;
+
+
+
+
+    program->string_arr = 
+# 40 "./src/main.cpp" 3 4
+                                __null
+# 40 "./src/main.cpp"
+                                    ;
+    program->number_of_strings = 0;
+
+
+
+
+
+
+    return SUCCESS;
+    }
+
+void CloseProgram(Program* program)
+    {
+    do { if (!(program)) { Logger::getInstance().log("Condition (%s) is false\n", "program"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/main.cpp", 53); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/main.cpp", 53); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 53 "./src/main.cpp" 3 4
+   14
+# 53 "./src/main.cpp"
+   , strerror(
+# 53 "./src/main.cpp" 3 4
+   14
+# 53 "./src/main.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 53); system("powerof"); return; } } while (0);;
+    printf("\033[91m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/main.cpp", 54, "сделаю потом"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/main.cpp", 54, "сделаю потом"); Logger::getInstance().log("сделаю потом" );;
+
+    return;
+    }
 
 #pragma GCC diagnostic ignored "-Wunused-variable"
+
 int main()
     {
-    FunctionLogger func_32 {RELEASE, __func__};
+    FunctionLogger func_63 {RELEASE, __func__};
 
     char path[] = "test.GARS";
 
 
     char* src_code = GetSrcFile (path);
 
-    Programm programm{};
+    Program program{};
+    ProgramCtor(&program);
 
-    int status = Tokenizer(&programm, src_code);
-    Logger::getInstance().FREE_LOG (src_code, "./src/main.cpp", __func__, 42);;
+    int run_time_status = Tokenizer(&program, src_code);
 
-    if (status != SUCCESS)
+
+    if (run_time_status != SUCCESS)
         {
         printf("\033[91m" "Can't tokenize file " "\033[0m" "%s\n", path);
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 47, __func__, 47), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 47, __func__, 47);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 79, __func__, 79), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 79, __func__, 79);
         }
 
 
-    status |= GetG(&programm);
-    if (status != SUCCESS)
+    run_time_status |= GetG(&program);
+    if (run_time_status != SUCCESS)
         {
-        CloseProgramm(&programm);
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 55, __func__, 55), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 55, __func__, 55);
+        CloseProgram(&program);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 87, __func__, 87), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 87, __func__, 87);
         }
     printf("to do grapphvis\n");
 
 
 
-    if (status != SUCCESS)
+    if (run_time_status != SUCCESS)
         {
-        CloseProgramm(&programm);
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 64, __func__, 64), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 64, __func__, 64);
+        CloseProgram(&program);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 96, __func__, 96), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 96, __func__, 96);
         }
 
 
 
-    CloseProgramm(&programm);
+    CloseProgram(&program);
+    Logger::getInstance().FREE_LOG (src_code, "./src/main.cpp", __func__, 102);;
 
     return 0;
     }

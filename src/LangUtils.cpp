@@ -7,7 +7,7 @@
 #include "LogMacroses.h"
 
 #pragma GCC diagnostic ignored "-Wformat="
-void PrintToken (const Token *const token)
+void PrintToken (const Token *const token, const char** string_arr)
     {
     if (!token) return;
 
@@ -21,7 +21,17 @@ void PrintToken (const Token *const token)
             break; 
     case INSTRUCTION: 
             printf("INSTRUCTION | {'%s'}\n\n",  INSTRUCTIONS[token->value.t_instruction]);
-            break;             
+            break;
+    case INITIALIZATOR: 
+            printf("INITIALIZATOR | {'%s'}\n\n",  INITIALIZATORS[token->value.t_instruction]);
+            break;     
+    case FUNCTION_RET_TYPE: 
+            printf("FUNCTION RET TYPE | {'%s'}\n\n",  FUNCTION_RET_TYPES[token->value.t_instruction]);
+            break;            
+   case NAME: 
+            printf("NAME | {%d}\n\n",  string_arr[NAME_ID(token)]);
+            break;  
+
     case EXPRESSION_OPENING_BRACKET: 
             printf("EXPRESSION OPENING BRACKET | {%c}\n\n",  OP(token));
             break;                                                     
@@ -44,7 +54,7 @@ void PrintToken (const Token *const token)
             printf("OPERATOR | {%c}\n\n",  OP(token));
             break;                                                      
     case VARIABLE: 
-            printf("VARIABLE | {%c}\n\n",  VAR(token));
+            printf("VARIABLE | {%s}\n\n",  string_arr[NAME_ID(token)]);
             break;                                                      
                                                                             
     case CONSTANT: 
@@ -74,7 +84,16 @@ void LogToken (const Token *const token, const char* name)
                     break; 
         case INSTRUCTION: 
                     logf_ni("INSTRUCTION | {'%s'}\n\n",  INSTRUCTIONS[token->value.t_instruction]);
-                    break;       
+                    break; 
+        case INITIALIZATOR: 
+            logf_ni("INITIALIZATOR | {'%s'}\n\n",  INITIALIZATORS[token->value.t_instruction]);
+            break;     
+        case FUNCTION_RET_TYPE: 
+            logf_ni("FUNCTION RET TYPE | {'%s'}\n\n",  FUNCTION_RET_TYPES[token->value.t_instruction]);
+            break;            
+         case NAME: 
+            logf_ni("NAME | {%d}\n\n",  NAME_ID(token));
+            break;        
         case EXPRESSION_OPENING_BRACKET: 
                     logf_ni("EXPRESSION OPENING BRACKET | {%c}\n\n",  OP(token));
                     break;                                                     
@@ -97,7 +116,7 @@ void LogToken (const Token *const token, const char* name)
                     logf_ni("OPERATOR | {%c}\n\n",  OP(token));
                     break;                                                      
         case VARIABLE: 
-                    logf_ni("VARIABLE | {%c}\n\n",  VAR(token));
+                //     logf_ni("VARIABLE | {%c}\n\n",  VAR(token));
                     break;                                                      
                                                                                 
         case CONSTANT: logf_ni("CONSTANT | {%lg}\n\n", CONST(token));

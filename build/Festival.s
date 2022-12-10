@@ -3,42 +3,28 @@
 .Ltext0:
 	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/Festival/Festival.cpp"
 	.section	.rodata
-	.align 32
+	.align 4
 	.type	_ZL23FESTIVAL_COMMAND_LENGHT, @object
 	.size	_ZL23FESTIVAL_COMMAND_LENGHT, 4
 _ZL23FESTIVAL_COMMAND_LENGHT:
 	.long	1024
-	.zero	60
 	.align 32
 	.type	_ZL15FESTIVAL_ZALUPA, @object
 	.size	_ZL15FESTIVAL_ZALUPA, 46
 _ZL15FESTIVAL_ZALUPA:
 	.string	"echo \"%s\" | festival --language russian --tts"
-	.zero	50
-	.bss
-	.align 32
-	.type	_ZZ7festsayPKcE7FestCMD, @object
-	.size	_ZZ7festsayPKcE7FestCMD, 1024
-_ZZ7festsayPKcE7FestCMD:
-	.zero	1056
-	.section	.rodata
-	.align 32
+	.local	_ZZ7festsayPKcE7FestCMD
+	.comm	_ZZ7festsayPKcE7FestCMD,1024,32
 .LC0:
 	.string	"void festsay(const char*)"
-	.zero	38
-	.align 32
 .LC1:
 	.string	"../ATC/Festival/Festival.cpp"
-	.zero	35
-	.align 32
 .LC2:
 	.string	"text"
-	.zero	59
 	.text
 	.globl	_Z7festsayPKc
 	.type	_Z7festsayPKc, @function
 _Z7festsayPKc:
-.LASANPC13:
 .LFB13:
 	.file 1 "../ATC/Festival/Festival.cpp"
 	.loc 1 9 5
@@ -55,7 +41,6 @@ _Z7festsayPKc:
 	cmpq	$0, -8(%rbp)
 	jne	.L2
 	.loc 1 10 33 discriminator 1
-	call	__asan_handle_no_return@PLT
 	leaq	.LC0(%rip), %rax
 	movq	%rax, %rcx
 	movl	$10, %edx
@@ -93,149 +78,6 @@ _Z7festsayPKc:
 	.cfi_endproc
 .LFE13:
 	.size	_Z7festsayPKc, .-_Z7festsayPKc
-	.section	.data.rel.local,"aw"
-	.align 16
-	.type	.LASANLOC1, @object
-	.size	.LASANLOC1, 16
-.LASANLOC1:
-	.quad	.LC1
-	.long	12
-	.long	17
-	.section	.rodata
-.LC3:
-	.string	"../ATC/Festival/Festival.h"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC2, @object
-	.size	.LASANLOC2, 16
-.LASANLOC2:
-	.quad	.LC3
-	.long	4
-	.long	12
-	.align 16
-	.type	.LASANLOC3, @object
-	.size	.LASANLOC3, 16
-.LASANLOC3:
-	.quad	.LC3
-	.long	3
-	.long	11
-	.section	.rodata
-.LC4:
-	.string	"FestCMD"
-.LC5:
-	.string	"FESTIVAL_ZALUPA"
-.LC6:
-	.string	"FESTIVAL_COMMAND_LENGHT"
-.LC7:
-	.string	"*.LC0"
-.LC8:
-	.string	"*.LC2"
-.LC9:
-	.string	"*.LC1"
-	.section	.data.rel.local
-	.align 32
-	.type	.LASAN0, @object
-	.size	.LASAN0, 384
-.LASAN0:
-	.quad	_ZZ7festsayPKcE7FestCMD
-	.quad	1024
-	.quad	1056
-	.quad	.LC4
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC1
-	.quad	0
-	.quad	_ZL15FESTIVAL_ZALUPA
-	.quad	46
-	.quad	96
-	.quad	.LC5
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC2
-	.quad	0
-	.quad	_ZL23FESTIVAL_COMMAND_LENGHT
-	.quad	4
-	.quad	64
-	.quad	.LC6
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC3
-	.quad	0
-	.quad	.LC0
-	.quad	26
-	.quad	64
-	.quad	.LC7
-	.quad	.LC1
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC2
-	.quad	5
-	.quad	64
-	.quad	.LC8
-	.quad	.LC1
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC1
-	.quad	29
-	.quad	64
-	.quad	.LC9
-	.quad	.LC1
-	.quad	0
-	.quad	0
-	.quad	0
-	.text
-	.type	_sub_D_00099_0, @function
-_sub_D_00099_0:
-.LFB14:
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movl	$6, %esi
-	leaq	.LASAN0(%rip), %rax
-	movq	%rax, %rdi
-	call	__asan_unregister_globals@PLT
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE14:
-	.size	_sub_D_00099_0, .-_sub_D_00099_0
-	.section	.fini_array.00099,"aw"
-	.align 8
-	.quad	_sub_D_00099_0
-	.text
-	.type	_sub_I_00099_1, @function
-_sub_I_00099_1:
-.LFB15:
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	call	__asan_init@PLT
-	call	__asan_version_mismatch_check_v8@PLT
-	movl	$6, %esi
-	leaq	.LASAN0(%rip), %rax
-	movq	%rax, %rdi
-	call	__asan_register_globals@PLT
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE15:
-	.size	_sub_I_00099_1, .-_sub_I_00099_1
-	.section	.init_array.00099,"aw"
-	.align 8
-	.quad	_sub_I_00099_1
-	.text
 .Letext0:
 	.file 2 "../ATC/Festival/Festival.h"
 	.file 3 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h"
@@ -1896,8 +1738,6 @@ _sub_I_00099_1:
 	.string	"_ZSt3absl"
 .LASF58:
 	.string	"atoll"
-.LASF67:
-	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fsanitize=address,leak -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF17:
 	.string	"quot"
 .LASF18:
@@ -1944,6 +1784,8 @@ _sub_I_00099_1:
 	.string	"mbtowc"
 .LASF46:
 	.string	"qsort"
+.LASF67:
+	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF12:
 	.string	"__unknown__"
 .LASF6:

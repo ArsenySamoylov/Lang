@@ -11,7 +11,7 @@
 #define NewOpNode(op, left, right)         NewDefNode (OPERATOR, {.t_operator = op}, left, right)
 #define NewFunctNode(functor, left, right) NewDefNode (FUNCTOR,  {.t_operator = functor}, left, right)
 //////////////////////////////////////////////////////////////////
-#define TYPE_IS(node, type) ((node) && (node->type == type) ? true : false) 
+#define TYPE_IS(node, t_type) ((node) && (node->type == t_type) ? true : false) 
 
 #define       CONST(node)  node->value.t_constant
 #define  LEFT_CONST(node)  CONST( LEFT(node))
@@ -28,8 +28,11 @@
 #define INSTR(node)        node->value.t_instruction
 #define INSTR_STR(node)    (IS_INSTRUCTION(node) ? INSTRUCTIONS[INSTR(node)] : "NOT A INSTRUCTION")
 
-#define NAME(node)         node->value.t_name
-#define RET_TYPE(node)     node->value.t_function_ret_type
+#define NAME_PTR(node)     VALUE(node).t_name_ptr
+#define NAME_ID(node)      VALUE(node).t_name_id
+#define RET_TYPE(node)     VALUE(node).t_function_ret_type
+
+#define INITIALIZATOR(node) VALUE(node).t_initializator
 // #define STR(node)          node->value.t_string
 /*
 #define       FUNC(node)   node->value.t_functor
@@ -49,7 +52,7 @@
 #define IS_OP(node)         ( (node) && (node->type == OPERATOR ) ? true : false )
 #define IS_CONST(node)      ( (node) && (node->type == CONSTANT ) ? true : false )
 #define IS_VAR(node)        ( (node) && (node->type == VARIABLE ) ? true : false )
-#define IS_FUNC(node)       ( (node) && (node->type == FUNCTOR  ) ? true : false )
+#define IS_FUNC(node)       ( (node) && (node->type == FUNCTION ) ? true : false )
 #define IS_STATEMENT(node)  ( (node) && (node->type == STATEMENT) ? true : false )
 #define IS_ASSIGMENT(node)  ( (node) && (node->type == ASSIGMENT) ? true : false )
 #define IS_INSTRUCTION(node) ((node) && (node->type == INSTRUCTION) ? true : false)

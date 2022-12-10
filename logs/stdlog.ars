@@ -1,30 +1,16 @@
-Wed Dec  7 20:17:04 2022
+Sun Dec 11 01:51:33 2022
 
 main::
   {
-  LOG CALLOC:     {0x60f000000040} = calloc (170, 1 = 170) from GetSrcFile:27, at ../ATC/Buffer/my_buffer.cpp:27
+  LOG CALLOC:     {0x562110817310} = calloc (266, 1 = 266) from GetSrcFile:27, at ../ATC/Buffer/my_buffer.cpp:27
   Tokenizer::
     {
-    LOG CALLOC:     {0x616000000080} = calloc (20, 32 = 640) from Tokenizer:42, at ./src/LexicalAnalysis.cpp:42
+    LOG CALLOC:     {0x562110817430} = calloc (20, 40 = 800) from Tokenizer:56, at ./src/LexicalAnalysis.cpp:56
+    LOG CALLOC:     {0x562110817760} = calloc (16, 8 = 128) from Tokenizer:62, at ./src/LexicalAnalysis.cpp:62
     BufferCtor::
       {
 
       BufferCtor:299 returned SUCCESS (return 0;)
-      }
-
-    GetTokenValue::
-      {
-      	temp: 'v'
-      }
-
-    GetTokenValue::
-      {
-      	temp: 'm'
-      }
-
-    GetTokenValue::
-      {
-      	temp: '{'
       }
 
     GetTokenValue::
@@ -49,6 +35,36 @@ main::
 
     GetTokenValue::
       {
+      	temp: ';'
+      }
+
+    GetTokenValue::
+      {
+      	temp: 'd'
+      }
+
+    GetTokenValue::
+      {
+      	temp: 'm'
+      }
+
+    GetTokenValue::
+      {
+      	temp: '('
+      }
+
+    GetTokenValue::
+      {
+      	temp: ')'
+      }
+
+    GetTokenValue::
+      {
+      	temp: '{'
+      }
+
+    GetTokenValue::
+      {
       	temp: 'i'
       }
 
@@ -59,7 +75,7 @@ main::
 
     GetTokenValue::
       {
-      	temp: 'x'
+      	temp: '4'
       }
 
     GetTokenValue::
@@ -97,22 +113,12 @@ main::
       	temp: 'x'
       }
 
+    LOG REALLOC:     {0x562110817430} -> {0x562110817830} = realloc (new size 1600, old size 808) from Tokenizer:97, at ./src/LexicalAnalysis.cpp:97
     GetTokenValue::
       {
       	temp: '='
       }
 
-    GetTokenValue::
-      {
-      	temp: 'x'
-      }
-
-    GetTokenValue::
-      {
-      	temp: '-'
-      }
-
-    LOG REALLOC:     {0x616000000080} -> {0x61a000000080} = realloc (new size 1280, old size 640) from Tokenizer:58, at ./src/LexicalAnalysis.cpp:58
     GetTokenValue::
       {
       	temp: '1'
@@ -175,7 +181,6 @@ main::
 
     GetTokenValue::
       {
-      	temp: '#'
       	temp: 'x'
       }
 
@@ -209,12 +214,12 @@ main::
       	temp: '+'
       }
 
+    LOG REALLOC:     {0x562110817830} -> {0x562110818320} = realloc (new size 3200, old size 1608) from Tokenizer:97, at ./src/LexicalAnalysis.cpp:97
     GetTokenValue::
       {
       	temp: '5'
       }
 
-    LOG REALLOC:     {0x61a000000080} -> {0x61e000000080} = realloc (new size 2560, old size 1280) from Tokenizer:58, at ./src/LexicalAnalysis.cpp:58
     GetTokenValue::
       {
       	temp: ')'
@@ -227,330 +232,1091 @@ main::
 
     GetTokenValue::
       {
+      	temp: 'r'
+      }
+
+    GetTokenValue::
+      {
+      	temp: 'x'
+      }
+
+    GetTokenValue::
+      {
+      	temp: ';'
+      }
+
+    GetTokenValue::
+      {
       	temp: '}'
       }
 
-    LOG REALLOC:     {0x61e000000080} -> {0x61a000000680} = realloc (new size 1376, old size 2560) from Tokenizer:77, at ./src/LexicalAnalysis.cpp:77
-    	number_of_tokens: 43
+    GetTokenValue::
+      {
+      	temp: 'f'
+      }
+
+    GetTokenValue::
+      {
+      	temp: 'v'
+      }
+
+    GetTokenValue::
+      {
+      	temp: 'h'
+      }
+
+    GetTokenValue::
+      {
+      	temp: '('
+      }
+
+    GetTokenValue::
+      {
+      	temp: ')'
+      }
+
+    GetTokenValue::
+      {
+      	temp: ';'
+      }
+
+    GetTokenValue::
+      {
+      	temp: 'v'
+      }
+
+    GetTokenValue::
+      {
+      	temp: 'h'
+      }
+
+    GetTokenValue::
+      {
+      	temp: '('
+      }
+
+    GetTokenValue::
+      {
+      	temp: ')'
+      }
+
+    GetTokenValue::
+      {
+      	temp: '{'
+      }
+
+    GetTokenValue::
+      {
+      	temp: 'f'
+      }
+
+    GetTokenValue::
+      {
+      	temp: '<'
+      }
+
+    GetTokenValue::
+      {
+      	temp: '1'
+      }
+
+    GetTokenValue::
+      {
+      	temp: ';'
+      }
+
+    GetTokenValue::
+      {
+      	temp: 'r'
+      }
+
+    GetTokenValue::
+      {
+      	temp: ';'
+      }
+
+    GetTokenValue::
+      {
+      	temp: '}'
+      }
+
+    LOG REALLOC:     {0x562110818320} -> {0x562110818320} = realloc (new size 2600, old size 3208) from Tokenizer:153, at ./src/LexicalAnalysis.cpp:153
+    LOG REALLOC:     {0x562110817760} -> {0x562110817760} = realloc (new size 32, old size 136) from Tokenizer:156, at ./src/LexicalAnalysis.cpp:156
+    	number_of_tokens: 65
     	i: 0
-    Token *tokens_arr + i
-    (0x61a000000680)::::::::::::::::
+    Token program->token_arr + i
+    (0x562110818320)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: UNCKNOWN TYPE
+    		        type: INITIALIZATOR | {'var'}
+
     	i: 1
-    Token *tokens_arr + i
-    (0x61a0000006a0)::::::::::::::::
+    Token program->token_arr + i
+    (0x562110818348)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: VARIABLE | {m}
+    		        type: NAME | {0}
 
     	i: 2
-    Token *tokens_arr + i
-    (0x61a0000006c0)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: OPENING BRACKET | {{}
-
-    	i: 3
-    Token *tokens_arr + i
-    (0x61a0000006e0)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: UNCKNOWN TYPE
-    	i: 4
-    Token *tokens_arr + i
-    (0x61a000000700)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: VARIABLE | {x}
-
-    	i: 5
-    Token *tokens_arr + i
-    (0x61a000000720)::::::::::::::::
+    Token program->token_arr + i
+    (0x562110818370)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: ASSIGMENT | {=}
 
-    	i: 6
-    Token *tokens_arr + i
-    (0x61a000000740)::::::::::::::::
+    	i: 3
+    Token program->token_arr + i
+    (0x562110818398)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {1}
+    		        type: CONSTANT | {15}
+
+    	i: 4
+    Token program->token_arr + i
+    (0x5621108183c0)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: END_OF_STATEMENT| {;}
+
+    	i: 5
+    Token program->token_arr + i
+    (0x5621108183e8)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: FUNCTION RET TYPE | {'double'}
+
+    	i: 6
+    Token program->token_arr + i
+    (0x562110818410)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: NAME | {1}
 
     	i: 7
-    Token *tokens_arr + i
-    (0x61a000000760)::::::::::::::::
+    Token program->token_arr + i
+    (0x562110818438)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: EXPRESSION OPENING BRACKET | {(}
+
+    	i: 8
+    Token program->token_arr + i
+    (0x562110818460)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: EXPRESSION CLOSING BRACKET | {)}
+
+    	i: 9
+    Token program->token_arr + i
+    (0x562110818488)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: OPENING BRACKET | {{}
+
+    	i: 10
+    Token program->token_arr + i
+    (0x5621108184b0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: INSTRUCTION | {'if'}
 
-    	i: 8
-    Token *tokens_arr + i
-    (0x61a000000780)::::::::::::::::
+    	i: 11
+    Token program->token_arr + i
+    (0x5621108184d8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: EXPRESSION OPENING BRACKET | {(}
 
-    	i: 9
-    Token *tokens_arr + i
-    (0x61a0000007a0)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: VARIABLE | {x}
-
-    	i: 10
-    Token *tokens_arr + i
-    (0x61a0000007c0)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: EXPRESSION CLOSING BRACKET | {)}
-
-    	i: 11
-    Token *tokens_arr + i
-    (0x61a0000007e0)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: OPENING BRACKET | {{}
-
     	i: 12
-    Token *tokens_arr + i
-    (0x61a000000800)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: VARIABLE | {x}
-
-    	i: 13
-    Token *tokens_arr + i
-    (0x61a000000820)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: ASSIGMENT | {=}
-
-    	i: 14
-    Token *tokens_arr + i
-    (0x61a000000840)::::::::::::::::
+    Token program->token_arr + i
+    (0x562110818500)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: CONSTANT | {45}
 
-    	i: 15
-    Token *tokens_arr + i
-    (0x61a000000860)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
-    	i: 16
-    Token *tokens_arr + i
-    (0x61a000000880)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: VARIABLE | {x}
-
-    	i: 17
-    Token *tokens_arr + i
-    (0x61a0000008a0)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: ASSIGMENT | {=}
-
-    	i: 18
-    Token *tokens_arr + i
-    (0x61a0000008c0)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: VARIABLE | {x}
-
-    	i: 19
-    Token *tokens_arr + i
-    (0x61a0000008e0)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: OPERATOR | {-}
-
-    	i: 20
-    Token *tokens_arr + i
-    (0x61a000000900)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: CONSTANT | {10}
-
-    	i: 21
-    Token *tokens_arr + i
-    (0x61a000000920)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
-    	i: 22
-    Token *tokens_arr + i
-    (0x61a000000940)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: CLOSING BRACKET | {}}
-
-    	i: 23
-    Token *tokens_arr + i
-    (0x61a000000960)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: INSTRUCTION | {'else'}
-
-    	i: 24
-    Token *tokens_arr + i
-    (0x61a000000980)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: VARIABLE | {x}
-
-    	i: 25
-    Token *tokens_arr + i
-    (0x61a0000009a0)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: ASSIGMENT | {=}
-
-    	i: 26
-    Token *tokens_arr + i
-    (0x61a0000009c0)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: CONSTANT | {20}
-
-    	i: 27
-    Token *tokens_arr + i
-    (0x61a0000009e0)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
-    	i: 28
-    Token *tokens_arr + i
-    (0x61a000000a00)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: INSTRUCTION | {'fout'}
-
-    	i: 29
-    Token *tokens_arr + i
-    (0x61a000000a20)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: OPERATOR | {<}
-
-    	i: 30
-    Token *tokens_arr + i
-    (0x61a000000a40)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: VARIABLE | {x}
-
-    	i: 31
-    Token *tokens_arr + i
-    (0x61a000000a60)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
-    	i: 32
-    Token *tokens_arr + i
-    (0x61a000000a80)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: VARIABLE | {x}
-
-    	i: 33
-    Token *tokens_arr + i
-    (0x61a000000aa0)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: ASSIGMENT | {=}
-
-    	i: 34
-    Token *tokens_arr + i
-    (0x61a000000ac0)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: CONSTANT | {1}
-
-    	i: 35
-    Token *tokens_arr + i
-    (0x61a000000ae0)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: OPERATOR | {*}
-
-    	i: 36
-    Token *tokens_arr + i
-    (0x61a000000b00)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: EXPRESSION OPENING BRACKET | {(}
-
-    	i: 37
-    Token *tokens_arr + i
-    (0x61a000000b20)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: CONSTANT | {4}
-
-    	i: 38
-    Token *tokens_arr + i
-    (0x61a000000b40)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: OPERATOR | {+}
-
-    	i: 39
-    Token *tokens_arr + i
-    (0x61a000000b60)::::::::::::::::
-    		  left_child: (nil)
-    		 right_child: (nil)
-    		        type: CONSTANT | {5}
-
-    	i: 40
-    Token *tokens_arr + i
-    (0x61a000000b80)::::::::::::::::
+    	i: 13
+    Token program->token_arr + i
+    (0x562110818528)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: EXPRESSION CLOSING BRACKET | {)}
 
-    	i: 41
-    Token *tokens_arr + i
-    (0x61a000000ba0)::::::::::::::::
+    	i: 14
+    Token program->token_arr + i
+    (0x562110818550)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: OPENING BRACKET | {{}
+
+    	i: 15
+    Token program->token_arr + i
+    (0x562110818578)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: NAME | {0}
+
+    	i: 16
+    Token program->token_arr + i
+    (0x5621108185a0)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: ASSIGMENT | {=}
+
+    	i: 17
+    Token program->token_arr + i
+    (0x5621108185c8)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: CONSTANT | {45}
+
+    	i: 18
+    Token program->token_arr + i
+    (0x5621108185f0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: END_OF_STATEMENT| {;}
 
+    	i: 19
+    Token program->token_arr + i
+    (0x562110818618)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: NAME | {0}
+
+    	i: 20
+    Token program->token_arr + i
+    (0x562110818640)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: ASSIGMENT | {=}
+
+    	i: 21
+    Token program->token_arr + i
+    (0x562110818668)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: CONSTANT | {10}
+
+    	i: 22
+    Token program->token_arr + i
+    (0x562110818690)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: END_OF_STATEMENT| {;}
+
+    	i: 23
+    Token program->token_arr + i
+    (0x5621108186b8)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: CLOSING BRACKET | {}}
+
+    	i: 24
+    Token program->token_arr + i
+    (0x5621108186e0)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: INSTRUCTION | {'else'}
+
+    	i: 25
+    Token program->token_arr + i
+    (0x562110818708)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: NAME | {0}
+
+    	i: 26
+    Token program->token_arr + i
+    (0x562110818730)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: ASSIGMENT | {=}
+
+    	i: 27
+    Token program->token_arr + i
+    (0x562110818758)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: CONSTANT | {20}
+
+    	i: 28
+    Token program->token_arr + i
+    (0x562110818780)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: END_OF_STATEMENT| {;}
+
+    	i: 29
+    Token program->token_arr + i
+    (0x5621108187a8)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: INSTRUCTION | {'fout'}
+
+    	i: 30
+    Token program->token_arr + i
+    (0x5621108187d0)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: OPERATOR | {<}
+
+    	i: 31
+    Token program->token_arr + i
+    (0x5621108187f8)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: NAME | {0}
+
+    	i: 32
+    Token program->token_arr + i
+    (0x562110818820)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: END_OF_STATEMENT| {;}
+
+    	i: 33
+    Token program->token_arr + i
+    (0x562110818848)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: NAME | {0}
+
+    	i: 34
+    Token program->token_arr + i
+    (0x562110818870)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: ASSIGMENT | {=}
+
+    	i: 35
+    Token program->token_arr + i
+    (0x562110818898)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: CONSTANT | {1}
+
+    	i: 36
+    Token program->token_arr + i
+    (0x5621108188c0)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: OPERATOR | {*}
+
+    	i: 37
+    Token program->token_arr + i
+    (0x5621108188e8)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: EXPRESSION OPENING BRACKET | {(}
+
+    	i: 38
+    Token program->token_arr + i
+    (0x562110818910)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: CONSTANT | {4}
+
+    	i: 39
+    Token program->token_arr + i
+    (0x562110818938)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: OPERATOR | {+}
+
+    	i: 40
+    Token program->token_arr + i
+    (0x562110818960)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: CONSTANT | {5}
+
+    	i: 41
+    Token program->token_arr + i
+    (0x562110818988)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: EXPRESSION CLOSING BRACKET | {)}
+
     	i: 42
-    Token *tokens_arr + i
-    (0x61a000000bc0)::::::::::::::::
+    Token program->token_arr + i
+    (0x5621108189b0)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: END_OF_STATEMENT| {;}
+
+    	i: 43
+    Token program->token_arr + i
+    (0x5621108189d8)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: INSTRUCTION | {'return'}
+
+    	i: 44
+    Token program->token_arr + i
+    (0x562110818a00)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: NAME | {0}
+
+    	i: 45
+    Token program->token_arr + i
+    (0x562110818a28)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: END_OF_STATEMENT| {;}
+
+    	i: 46
+    Token program->token_arr + i
+    (0x562110818a50)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: CLOSING BRACKET | {}}
+
+    	i: 47
+    Token program->token_arr + i
+    (0x562110818a78)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: INITIALIZATOR | {'func'}
+
+    	i: 48
+    Token program->token_arr + i
+    (0x562110818aa0)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: FUNCTION RET TYPE | {'void'}
+
+    	i: 49
+    Token program->token_arr + i
+    (0x562110818ac8)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: NAME | {2}
+
+    	i: 50
+    Token program->token_arr + i
+    (0x562110818af0)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: EXPRESSION OPENING BRACKET | {(}
+
+    	i: 51
+    Token program->token_arr + i
+    (0x562110818b18)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: EXPRESSION CLOSING BRACKET | {)}
+
+    	i: 52
+    Token program->token_arr + i
+    (0x562110818b40)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: END_OF_STATEMENT| {;}
+
+    	i: 53
+    Token program->token_arr + i
+    (0x562110818b68)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: FUNCTION RET TYPE | {'void'}
+
+    	i: 54
+    Token program->token_arr + i
+    (0x562110818b90)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: NAME | {3}
+
+    	i: 55
+    Token program->token_arr + i
+    (0x562110818bb8)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: EXPRESSION OPENING BRACKET | {(}
+
+    	i: 56
+    Token program->token_arr + i
+    (0x562110818be0)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: EXPRESSION CLOSING BRACKET | {)}
+
+    	i: 57
+    Token program->token_arr + i
+    (0x562110818c08)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: OPENING BRACKET | {{}
+
+    	i: 58
+    Token program->token_arr + i
+    (0x562110818c30)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: INSTRUCTION | {'fout'}
+
+    	i: 59
+    Token program->token_arr + i
+    (0x562110818c58)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: OPERATOR | {<}
+
+    	i: 60
+    Token program->token_arr + i
+    (0x562110818c80)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: CONSTANT | {101}
+
+    	i: 61
+    Token program->token_arr + i
+    (0x562110818ca8)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: END_OF_STATEMENT| {;}
+
+    	i: 62
+    Token program->token_arr + i
+    (0x562110818cd0)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: INSTRUCTION | {'return'}
+
+    	i: 63
+    Token program->token_arr + i
+    (0x562110818cf8)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: END_OF_STATEMENT| {;}
+
+    	i: 64
+    Token program->token_arr + i
+    (0x562110818d20)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: CLOSING BRACKET | {}}
 
     }
 
-  LOG FREE(kill): {0x60f000000130} - will be freed from main:36, at ./src/main.cpp:36
   GetG::
     {
-    GetFunction::
+    LOG CALLOC:     {0x5621108178b0} = calloc (10, 8 = 80) from VarTabelCtor:130, at ./src/Tabels.cpp:130
+    LOG CALLOC:     {0x562110817910} = calloc (10, 8 = 80) from FuncTabelCtor:20, at ./src/Tabels.cpp:20
+    MakeVarLabel::
       {
-      Syntax ERROR
-      Missing { in function body
-
-      return Null ptr;Returnig null ptr (GetFunction:129)
+      LOG CALLOC:     {0x562110817970} = calloc (1, 4 = 4) from MakeVarLabel:837, at ./src/SyntaxAnalysis.cpp:837
       }
 
+    GetE::
+      {
+      GetT::
+        {
+        GetPower::
+          {
+          GetP::
+            {
+            GetN::
+              {
+              Token result
+              (0x562110818398)::::::::::::::::
+              		  left_child: (nil)
+              		 right_child: (nil)
+              		        type: CONSTANT | {15}
+
+              }
+
+            }
+
+          }
+
+        Token node
+        (0x562110818398)::::::::::::::::
+        		  left_child: (nil)
+        		 right_child: (nil)
+        		        type: CONSTANT | {15}
+
+        }
+
+      }
+
+    GetFunction::
+      {
+      LOG CALLOC:     {0x562110817990} = calloc (1, 32 = 32) from MakeFuncLabel:792, at ./src/SyntaxAnalysis.cpp:792
+      GetBlock::
+        {
+        GetStatement::
+          {
+          GetInstruction::
+            {
+            GetE::
+              {
+              GetT::
+                {
+                GetPower::
+                  {
+                  GetP::
+                    {
+                    GetN::
+                      {
+                      Token result
+                      (0x562110818500)::::::::::::::::
+                      		  left_child: (nil)
+                      		 right_child: (nil)
+                      		        type: CONSTANT | {45}
+
+                      }
+
+                    }
+
+                  }
+
+                Token node
+                (0x562110818500)::::::::::::::::
+                		  left_child: (nil)
+                		 right_child: (nil)
+                		        type: CONSTANT | {45}
+
+                }
+
+              }
+
+            GetStatement::
+              {
+              GetBlock::
+                {
+                GetStatement::
+                  {
+                  GetStatement::
+                    {
+                    GetAssigment::
+                      {
+                      GetE::
+                        {
+                        GetT::
+                          {
+                          GetPower::
+                            {
+                            GetP::
+                              {
+                              GetN::
+                                {
+                                Token result
+                                (0x5621108185c8)::::::::::::::::
+                                		  left_child: (nil)
+                                		 right_child: (nil)
+                                		        type: CONSTANT | {45}
+
+                                }
+
+                              }
+
+                            }
+
+                          Token node
+                          (0x5621108185c8)::::::::::::::::
+                          		  left_child: (nil)
+                          		 right_child: (nil)
+                          		        type: CONSTANT | {45}
+
+                          }
+
+                        }
+
+                      }
+
+                    }
+
+                  }
+
+                GetStatement::
+                  {
+                  GetStatement::
+                    {
+                    GetAssigment::
+                      {
+                      GetE::
+                        {
+                        GetT::
+                          {
+                          GetPower::
+                            {
+                            GetP::
+                              {
+                              GetN::
+                                {
+                                Token result
+                                (0x562110818668)::::::::::::::::
+                                		  left_child: (nil)
+                                		 right_child: (nil)
+                                		        type: CONSTANT | {10}
+
+                                }
+
+                              }
+
+                            }
+
+                          Token node
+                          (0x562110818668)::::::::::::::::
+                          		  left_child: (nil)
+                          		 right_child: (nil)
+                          		        type: CONSTANT | {10}
+
+                          }
+
+                        }
+
+                      }
+
+                    }
+
+                  }
+
+                GetStatement::
+                  {
+                  }
+
+                }
+
+              }
+
+            GetStatement::
+              {
+              GetStatement::
+                {
+                GetAssigment::
+                  {
+                  GetE::
+                    {
+                    GetT::
+                      {
+                      GetPower::
+                        {
+                        GetP::
+                          {
+                          GetN::
+                            {
+                            Token result
+                            (0x562110818758)::::::::::::::::
+                            		  left_child: (nil)
+                            		 right_child: (nil)
+                            		        type: CONSTANT | {20}
+
+                            }
+
+                          }
+
+                        }
+
+                      Token node
+                      (0x562110818758)::::::::::::::::
+                      		  left_child: (nil)
+                      		 right_child: (nil)
+                      		        type: CONSTANT | {20}
+
+                      }
+
+                    }
+
+                  }
+
+                }
+
+              }
+
+            }
+
+          }
+
+        GetStatement::
+          {
+          GetInstruction::
+            {
+            GetE::
+              {
+              GetT::
+                {
+                GetPower::
+                  {
+                  GetP::
+                    {
+                    GetN::
+                      {
+                      Token result
+                      (0x5621108187f8)::::::::::::::::
+                      		  left_child: (nil)
+                      		 right_child: (nil)
+                      		        type:                       }
+
+                    }
+
+                  }
+
+                Token node
+                (0x5621108187f8)::::::::::::::::
+                		  left_child: (nil)
+                		 right_child: (nil)
+                		        type:                 }
+
+              }
+
+            }
+
+          }
+
+        GetStatement::
+          {
+          GetStatement::
+            {
+            GetAssigment::
+              {
+              GetE::
+                {
+                GetT::
+                  {
+                  GetPower::
+                    {
+                    GetP::
+                      {
+                      GetN::
+                        {
+                        Token result
+                        (0x562110818898)::::::::::::::::
+                        		  left_child: (nil)
+                        		 right_child: (nil)
+                        		        type: CONSTANT | {1}
+
+                        }
+
+                      }
+
+                    }
+
+                  Token node
+                  (0x562110818898)::::::::::::::::
+                  		  left_child: (nil)
+                  		 right_child: (nil)
+                  		        type: CONSTANT | {1}
+
+                  Token token
+                  (0x5621108188c0)::::::::::::::::
+                  		  left_child: (nil)
+                  		 right_child: (nil)
+                  		        type: OPERATOR | {*}
+
+                  GetPower::
+                    {
+                    GetP::
+                      {
+                      GetE::
+                        {
+                        GetT::
+                          {
+                          GetPower::
+                            {
+                            GetP::
+                              {
+                              GetN::
+                                {
+                                Token result
+                                (0x562110818910)::::::::::::::::
+                                		  left_child: (nil)
+                                		 right_child: (nil)
+                                		        type: CONSTANT | {4}
+
+                                }
+
+                              }
+
+                            }
+
+                          Token node
+                          (0x562110818910)::::::::::::::::
+                          		  left_child: (nil)
+                          		 right_child: (nil)
+                          		        type: CONSTANT | {4}
+
+                          }
+
+                        Token token
+                        (0x562110818938)::::::::::::::::
+                        		  left_child: (nil)
+                        		 right_child: (nil)
+                        		        type: OPERATOR | {+}
+
+                        GetT::
+                          {
+                          GetPower::
+                            {
+                            GetP::
+                              {
+                              GetN::
+                                {
+                                Token result
+                                (0x562110818960)::::::::::::::::
+                                		  left_child: (nil)
+                                		 right_child: (nil)
+                                		        type: CONSTANT | {5}
+
+                                }
+
+                              }
+
+                            }
+
+                          Token node
+                          (0x562110818960)::::::::::::::::
+                          		  left_child: (nil)
+                          		 right_child: (nil)
+                          		        type: CONSTANT | {5}
+
+                          }
+
+                        }
+
+                      }
+
+                    }
+
+                  }
+
+                }
+
+              }
+
+            }
+
+          }
+
+        GetStatement::
+          {
+          GetInstruction::
+            {
+            }
+
+          }
+
+        }
+
+      GetE::
+        {
+        GetT::
+          {
+          GetPower::
+            {
+            GetP::
+              {
+              GetN::
+                {
+                Token result
+                (0x562110818a00)::::::::::::::::
+                		  left_child: (nil)
+                		 right_child: (nil)
+                		        type:                 }
+
+              }
+
+            }
+
+          Token node
+          (0x562110818a00)::::::::::::::::
+          		  left_child: (nil)
+          		 right_child: (nil)
+          		        type:           }
+
+        }
+
+      NewToken::
+        {
+        LOG CALLOC:     {0x5621108179c0} = calloc (1, 40 = 40) from NewToken:10, at ./src/Token.cpp:10
+        }
+
+      NewToken::
+        {
+        LOG CALLOC:     {0x5621108179f0} = calloc (1, 40 = 40) from NewToken:10, at ./src/Token.cpp:10
+        }
+
+      }
+
+    LOG CALLOC:     {0x562110817a20} = calloc (1, 32 = 32) from MakeFuncLabel:792, at ./src/SyntaxAnalysis.cpp:792
+    GetFunction::
+      {
+      LOG CALLOC:     {0x562110817a50} = calloc (1, 32 = 32) from MakeFuncLabel:792, at ./src/SyntaxAnalysis.cpp:792
+      GetBlock::
+        {
+        GetStatement::
+          {
+          GetInstruction::
+            {
+            GetE::
+              {
+              GetT::
+                {
+                GetPower::
+                  {
+                  GetP::
+                    {
+                    GetN::
+                      {
+                      Token result
+                      (0x562110818c80)::::::::::::::::
+                      		  left_child: (nil)
+                      		 right_child: (nil)
+                      		        type: CONSTANT | {101}
+
+                      }
+
+                    }
+
+                  }
+
+                Token node
+                (0x562110818c80)::::::::::::::::
+                		  left_child: (nil)
+                		 right_child: (nil)
+                		        type: CONSTANT | {101}
+
+                }
+
+              }
+
+            }
+
+          }
+
+        GetStatement::
+          {
+          GetInstruction::
+            {
+            }
+
+          }
+
+        }
+
+      NewToken::
+        {
+        LOG CALLOC:     {0x562110817a80} = calloc (1, 40 = 40) from NewToken:10, at ./src/Token.cpp:10
+        }
+
+      NewToken::
+        {
+        LOG CALLOC:     {0x562110817ab0} = calloc (1, 40 = 40) from NewToken:10, at ./src/Token.cpp:10
+        }
+
+      }
+
+    #TODO Check this place to improve it (./src/SyntaxAnalysis.cpp:164)
+set programm
+    set programm
     }
 
-  LOG FREE(kill): {0x61a000000680} - will be freed from main:54, at ./src/main.cpp:54
-
-  Failed (./src/main.cpp:55, main:55)(return -1;)
+  #TODO Check this place to improve it (./src/main.cpp:54)
+сделаю потом  сделаю потом  LOG FREE(kill): {0x562110817310} - will be freed from main:102, at ./src/main.cpp:102
   }
 
 *********************************************************************
-		Log Successfuly ended, on Wed Dec  7 20:17:04 2022
+		Log Successfuly ended, on Sun Dec 11 01:51:33 2022
 *********************************************************************

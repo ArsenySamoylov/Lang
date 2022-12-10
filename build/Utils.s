@@ -3,20 +3,15 @@
 .Ltext0:
 	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/Utils/Utils.cpp"
 	.section	.rodata
-	.align 32
+	.align 4
 	.type	_ZL11INDENT_SIZE, @object
 	.size	_ZL11INDENT_SIZE, 4
 _ZL11INDENT_SIZE:
 	.long	2
-	.zero	60
-	.globl	__asan_stack_malloc_1
-.LC0:
-	.string	"1 32 24 5 ptr:8"
 	.text
 	.globl	_Z6MsgRetiPKcz
 	.type	_Z6MsgRetiPKcz, @function
 _Z6MsgRetiPKcz:
-.LASANPC13:
 .LFB13:
 	.file 1 "../ATC/Utils/Utils.cpp"
 	.loc 1 7 5
@@ -27,101 +22,49 @@ _Z6MsgRetiPKcz:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	pushq	%r13
-	pushq	%r12
-	pushq	%rbx
-	subq	$296, %rsp
-	.cfi_offset 13, -24
-	.cfi_offset 12, -32
-	.cfi_offset 3, -40
-	movl	%edi, -308(%rbp)
-	movq	%rsi, -320(%rbp)
-	movq	%rdx, -192(%rbp)
-	movq	%rcx, -184(%rbp)
-	movq	%r8, -176(%rbp)
-	movq	%r9, -168(%rbp)
+	subq	$224, %rsp
+	movl	%edi, -212(%rbp)
+	movq	%rsi, -224(%rbp)
+	movq	%rdx, -160(%rbp)
+	movq	%rcx, -152(%rbp)
+	movq	%r8, -144(%rbp)
+	movq	%r9, -136(%rbp)
 	testb	%al, %al
-	je	.L5
-	movaps	%xmm0, -160(%rbp)
-	movaps	%xmm1, -144(%rbp)
-	movaps	%xmm2, -128(%rbp)
-	movaps	%xmm3, -112(%rbp)
-	movaps	%xmm4, -96(%rbp)
-	movaps	%xmm5, -80(%rbp)
-	movaps	%xmm6, -64(%rbp)
-	movaps	%xmm7, -48(%rbp)
-.L5:
-	leaq	-304(%rbp), %rbx
-	movq	%rbx, %r13
-	cmpl	$0, __asan_option_detect_stack_use_after_return(%rip)
-	je	.L1
-	movl	$96, %edi
-	call	__asan_stack_malloc_1@PLT
-	testq	%rax, %rax
-	je	.L1
-	movq	%rax, %rbx
-.L1:
-	leaq	96(%rbx), %rax
-	movq	$1102416563, (%rbx)
-	leaq	.LC0(%rip), %rdx
-	movq	%rdx, 8(%rbx)
-	leaq	.LASANPC13(%rip), %rdx
-	movq	%rdx, 16(%rbx)
-	movq	%rbx, %r12
-	shrq	$3, %r12
-	movl	$-235802127, 2147450880(%r12)
-	movl	$-218103808, 2147450884(%r12)
-	movl	$-202116109, 2147450888(%r12)
+	je	.L4
+	movaps	%xmm0, -128(%rbp)
+	movaps	%xmm1, -112(%rbp)
+	movaps	%xmm2, -96(%rbp)
+	movaps	%xmm3, -80(%rbp)
+	movaps	%xmm4, -64(%rbp)
+	movaps	%xmm5, -48(%rbp)
+	movaps	%xmm6, -32(%rbp)
+	movaps	%xmm7, -16(%rbp)
+.L4:
 	.loc 1 9 22
-	movl	$16, -64(%rax)
-	movl	$48, -60(%rax)
-	leaq	16(%rbp), %rcx
-	movq	%rcx, -56(%rax)
-	leaq	-208(%rbp), %rsi
-	movq	%rsi, -48(%rax)
+	movl	$16, -200(%rbp)
+	movl	$48, -196(%rbp)
+	leaq	16(%rbp), %rax
+	movq	%rax, -192(%rbp)
+	leaq	-176(%rbp), %rax
+	movq	%rax, -184(%rbp)
 	.loc 1 11 13
-	leaq	-64(%rax), %rdx
-	movq	-320(%rbp), %rax
+	leaq	-200(%rbp), %rdx
+	movq	-224(%rbp), %rax
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	vprintf@PLT
 	.loc 1 15 12
-	movl	-308(%rbp), %eax
-	movl	%eax, %edx
-	.loc 1 7 5
-	cmpq	%rbx, %r13
-	je	.L2
-	movq	$1172321806, (%rbx)
-	movabsq	$-723401728380766731, %rax
-	movq	%rax, 2147450880(%r12)
-	movl	$-168430091, 2147450888(%r12)
-	movq	120(%rbx), %rax
-	movb	$0, (%rax)
-	jmp	.L3
-.L2:
-	movq	$0, 2147450880(%r12)
-	movl	$0, 2147450888(%r12)
-.L3:
+	movl	-212(%rbp), %eax
 	.loc 1 16 5
-	movl	%edx, %eax
-	addq	$296, %rsp
-	popq	%rbx
-	popq	%r12
-	popq	%r13
-	popq	%rbp
+	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE13:
 	.size	_Z6MsgRetiPKcz, .-_Z6MsgRetiPKcz
-	.section	.rodata
-.LC1:
-	.string	"1 32 24 6 ptr:20"
-	.text
 	.globl	_Z8MsgNoRetPKcz
 	.type	_Z8MsgNoRetPKcz, @function
 _Z8MsgNoRetPKcz:
-.LASANPC14:
 .LFB14:
 	.loc 1 19 5
 	.cfi_startproc
@@ -131,119 +74,63 @@ _Z8MsgNoRetPKcz:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	pushq	%r13
-	pushq	%r12
-	pushq	%rbx
-	subq	$296, %rsp
-	.cfi_offset 13, -24
-	.cfi_offset 12, -32
-	.cfi_offset 3, -40
-	movq	%rdi, -312(%rbp)
-	movq	%rsi, -200(%rbp)
-	movq	%rdx, -192(%rbp)
-	movq	%rcx, -184(%rbp)
-	movq	%r8, -176(%rbp)
-	movq	%r9, -168(%rbp)
+	subq	$224, %rsp
+	movq	%rdi, -216(%rbp)
+	movq	%rsi, -168(%rbp)
+	movq	%rdx, -160(%rbp)
+	movq	%rcx, -152(%rbp)
+	movq	%r8, -144(%rbp)
+	movq	%r9, -136(%rbp)
 	testb	%al, %al
-	je	.L11
-	movaps	%xmm0, -160(%rbp)
-	movaps	%xmm1, -144(%rbp)
-	movaps	%xmm2, -128(%rbp)
-	movaps	%xmm3, -112(%rbp)
-	movaps	%xmm4, -96(%rbp)
-	movaps	%xmm5, -80(%rbp)
-	movaps	%xmm6, -64(%rbp)
-	movaps	%xmm7, -48(%rbp)
-.L11:
-	leaq	-304(%rbp), %rbx
-	movq	%rbx, %r13
-	cmpl	$0, __asan_option_detect_stack_use_after_return(%rip)
-	je	.L7
-	movl	$96, %edi
-	call	__asan_stack_malloc_1@PLT
-	testq	%rax, %rax
-	je	.L7
-	movq	%rax, %rbx
-.L7:
-	leaq	96(%rbx), %rax
-	movq	$1102416563, (%rbx)
-	leaq	.LC1(%rip), %rdx
-	movq	%rdx, 8(%rbx)
-	leaq	.LASANPC14(%rip), %rdx
-	movq	%rdx, 16(%rbx)
-	movq	%rbx, %r12
-	shrq	$3, %r12
-	movl	$-235802127, 2147450880(%r12)
-	movl	$-218103808, 2147450884(%r12)
-	movl	$-202116109, 2147450888(%r12)
+	je	.L8
+	movaps	%xmm0, -128(%rbp)
+	movaps	%xmm1, -112(%rbp)
+	movaps	%xmm2, -96(%rbp)
+	movaps	%xmm3, -80(%rbp)
+	movaps	%xmm4, -64(%rbp)
+	movaps	%xmm5, -48(%rbp)
+	movaps	%xmm6, -32(%rbp)
+	movaps	%xmm7, -16(%rbp)
+.L8:
 	.loc 1 21 22
-	movl	$8, -64(%rax)
-	movl	$48, -60(%rax)
-	leaq	16(%rbp), %rcx
-	movq	%rcx, -56(%rax)
-	leaq	-208(%rbp), %rsi
-	movq	%rsi, -48(%rax)
+	movl	$8, -200(%rbp)
+	movl	$48, -196(%rbp)
+	leaq	16(%rbp), %rax
+	movq	%rax, -192(%rbp)
+	leaq	-176(%rbp), %rax
+	movq	%rax, -184(%rbp)
 	.loc 1 23 13
-	leaq	-64(%rax), %rdx
-	movq	-312(%rbp), %rax
+	leaq	-200(%rbp), %rdx
+	movq	-216(%rbp), %rax
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	vprintf@PLT
 	.loc 1 27 5
 	nop
-	.loc 1 19 5
-	cmpq	%rbx, %r13
-	je	.L8
-	movq	$1172321806, (%rbx)
-	movabsq	$-723401728380766731, %rax
-	movq	%rax, 2147450880(%r12)
-	movl	$-168430091, 2147450888(%r12)
-	movq	120(%rbx), %rax
-	movb	$0, (%rax)
-	jmp	.L9
-.L8:
-	movq	$0, 2147450880(%r12)
-	movl	$0, 2147450888(%r12)
-.L9:
 	.loc 1 28 5
-	addq	$296, %rsp
-	popq	%rbx
-	popq	%r12
-	popq	%r13
-	popq	%rbp
+	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE14:
 	.size	_Z8MsgNoRetPKcz, .-_Z8MsgNoRetPKcz
 	.section	.rodata
-	.align 32
+	.align 4
 	.type	_ZL21SYSTEM_COMMAND_LENGTH, @object
 	.size	_ZL21SYSTEM_COMMAND_LENGTH, 4
 _ZL21SYSTEM_COMMAND_LENGTH:
 	.long	256
-	.zero	60
-	.globl	__asan_stack_malloc_3
+.LC0:
+	.string	"format"
+.LC1:
+	.string	"SYSTEM"
 	.align 8
 .LC2:
-	.string	"2 48 24 6 ptr:36 112 272 14 system_command"
-	.align 32
-.LC3:
-	.string	"format"
-	.zero	57
-	.align 32
-.LC4:
-	.string	"SYSTEM"
-	.zero	57
-	.align 32
-.LC5:
 	.string	"\033[91mASSERT\033[0m %s: Dyrachok, (%s) - is wrong condition (in line %d)\n"
-	.zero	58
 	.text
 	.globl	_Z6SYSTEMPKcz
 	.type	_Z6SYSTEMPKcz, @function
 _Z6SYSTEMPKcz:
-.LASANPC15:
 .LFB15:
 	.loc 1 33 5
 	.cfi_startproc
@@ -253,182 +140,83 @@ _Z6SYSTEMPKcz:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	pushq	%r14
-	pushq	%r13
-	pushq	%r12
-	pushq	%rbx
-	subq	$672, %rsp
-	.cfi_offset 14, -24
-	.cfi_offset 13, -32
-	.cfi_offset 12, -40
-	.cfi_offset 3, -48
-	movq	%rdi, -696(%rbp)
-	movq	%rsi, -200(%rbp)
-	movq	%rdx, -192(%rbp)
-	movq	%rcx, -184(%rbp)
-	movq	%r8, -176(%rbp)
-	movq	%r9, -168(%rbp)
+	subq	$512, %rsp
+	movq	%rdi, -504(%rbp)
+	movq	%rsi, -168(%rbp)
+	movq	%rdx, -160(%rbp)
+	movq	%rcx, -152(%rbp)
+	movq	%r8, -144(%rbp)
+	movq	%r9, -136(%rbp)
 	testb	%al, %al
-	je	.L17
-	movaps	%xmm0, -160(%rbp)
-	movaps	%xmm1, -144(%rbp)
-	movaps	%xmm2, -128(%rbp)
-	movaps	%xmm3, -112(%rbp)
-	movaps	%xmm4, -96(%rbp)
-	movaps	%xmm5, -80(%rbp)
-	movaps	%xmm6, -64(%rbp)
-	movaps	%xmm7, -48(%rbp)
-.L17:
-	leaq	-688(%rbp), %r12
-	movq	%r12, %r14
-	cmpl	$0, __asan_option_detect_stack_use_after_return(%rip)
-	je	.L13
-	movl	$448, %edi
-	call	__asan_stack_malloc_3@PLT
-	testq	%rax, %rax
-	je	.L13
-	movq	%rax, %r12
-.L13:
-	leaq	480(%r12), %rax
-	movq	%rax, %r13
-	movq	$1102416563, (%r12)
-	leaq	.LC2(%rip), %rax
-	movq	%rax, 8(%r12)
-	leaq	.LASANPC15(%rip), %rax
-	movq	%rax, 16(%r12)
-	movq	%r12, %rbx
-	shrq	$3, %rbx
-	movl	$-235802127, 2147450880(%rbx)
-	movl	$61937, 2147450884(%rbx)
-	movl	$-218959360, 2147450888(%rbx)
-	movl	$62194, 2147450892(%rbx)
-	movl	$-202116109, 2147450928(%rbx)
-	movl	$-202116109, 2147450932(%rbx)
+	je	.L10
+	movaps	%xmm0, -128(%rbp)
+	movaps	%xmm1, -112(%rbp)
+	movaps	%xmm2, -96(%rbp)
+	movaps	%xmm3, -80(%rbp)
+	movaps	%xmm4, -64(%rbp)
+	movaps	%xmm5, -48(%rbp)
+	movaps	%xmm6, -32(%rbp)
+	movaps	%xmm7, -16(%rbp)
+.L10:
 	.loc 1 33 5
 	movq	%fs:40, %rax
-	movq	%rax, -216(%rbp)
+	movq	%rax, -184(%rbp)
 	xorl	%eax, %eax
 	.loc 1 34 10
-	cmpq	$0, -696(%rbp)
-	jne	.L18
+	cmpq	$0, -504(%rbp)
+	jne	.L11
 	.loc 1 34 32 discriminator 1
 	movl	$34, %ecx
-	leaq	.LC3(%rip), %rax
+	leaq	.LC0(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC4(%rip), %rax
+	leaq	.LC1(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC5(%rip), %rax
+	leaq	.LC2(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-.L18:
+.L11:
 	.loc 1 37 22
-	movl	$8, -432(%r13)
-	movl	$48, -428(%r13)
+	movl	$8, -488(%rbp)
+	movl	$48, -484(%rbp)
 	leaq	16(%rbp), %rax
-	movq	%rax, -424(%r13)
-	leaq	-208(%rbp), %rax
-	movq	%rax, -416(%r13)
+	movq	%rax, -480(%rbp)
+	leaq	-176(%rbp), %rax
+	movq	%rax, -472(%rbp)
 	.loc 1 39 10
-	leaq	-368(%r13), %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	setne	%cl
-	testb	%dl, %dl
-	setle	%dl
-	andl	%edx, %ecx
-	movl	%ecx, %esi
-	movl	$272, %edx
-	subq	$1, %rdx
-	leaq	(%rax,%rdx), %rcx
-	movq	%rcx, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	setne	%dil
-	andl	$7, %ecx
-	cmpb	%dl, %cl
-	setge	%dl
-	andl	%edi, %edx
-	orl	%esi, %edx
-	testb	%dl, %dl
-	je	.L19
-	movl	$272, %esi
-	movq	%rax, %rdi
-	call	__asan_report_store_n@PLT
-.L19:
-	movq	$0, -368(%r13)
-	movq	$0, -360(%r13)
-	leaq	-352(%r13), %rdx
+	movq	$0, -464(%rbp)
+	movq	$0, -456(%rbp)
+	leaq	-448(%rbp), %rdx
 	movl	$0, %eax
 	movl	$32, %ecx
 	movq	%rdx, %rdi
 	rep stosq
 	.loc 1 40 15
-	leaq	-432(%r13), %rcx
-	movq	-696(%rbp), %rdx
-	leaq	-368(%r13), %rax
+	leaq	-488(%rbp), %rcx
+	movq	-504(%rbp), %rdx
+	leaq	-464(%rbp), %rax
 	movl	$256, %esi
 	movq	%rax, %rdi
 	call	vsnprintf@PLT
 	.loc 1 45 19
-	leaq	-368(%r13), %rax
+	leaq	-464(%rbp), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 45 34
-	movl	%eax, %edx
-	.loc 1 33 5
-	cmpq	%r12, %r14
-	je	.L14
-	movq	$1172321806, (%r12)
-	movabsq	$-723401728380766731, %rsi
-	movabsq	$-723401728380766731, %rdi
-	movq	%rsi, 2147450880(%rbx)
-	movq	%rdi, 2147450888(%rbx)
-	movq	%rsi, 2147450896(%rbx)
-	movq	%rdi, 2147450904(%rbx)
-	movq	%rsi, 2147450912(%rbx)
-	movq	%rdi, 2147450920(%rbx)
-	movabsq	$-723401728380766731, %rax
-	movq	%rax, 2147450928(%rbx)
-	movq	504(%r12), %rax
-	movb	$0, (%rax)
-	jmp	.L15
-.L14:
-	movq	$0, 2147450880(%rbx)
-	movq	$0, 2147450888(%rbx)
-	movq	$0, 2147450928(%rbx)
-.L15:
 	.loc 1 46 5
-	movq	-216(%rbp), %rax
-	subq	%fs:40, %rax
-	je	.L21
+	movq	-184(%rbp), %rdx
+	subq	%fs:40, %rdx
+	je	.L13
 	call	__stack_chk_fail@PLT
-.L21:
-	movl	%edx, %eax
-	addq	$672, %rsp
-	popq	%rbx
-	popq	%r12
-	popq	%r13
-	popq	%r14
-	popq	%rbp
+.L13:
+	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE15:
 	.size	_Z6SYSTEMPKcz, .-_Z6SYSTEMPKcz
-	.section	.rodata
-.LC6:
-	.string	"1 32 24 6 ptr:50"
-	.text
 	.globl	_Z13LogMsgNullRetPKcz
 	.type	_Z13LogMsgNullRetPKcz, @function
 _Z13LogMsgNullRetPKcz:
-.LASANPC16:
 .LFB16:
 	.loc 1 49 5
 	.cfi_startproc
@@ -438,222 +226,46 @@ _Z13LogMsgNullRetPKcz:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	pushq	%r13
-	pushq	%r12
-	pushq	%rbx
-	subq	$296, %rsp
-	.cfi_offset 13, -24
-	.cfi_offset 12, -32
-	.cfi_offset 3, -40
-	movq	%rdi, -312(%rbp)
-	movq	%rsi, -200(%rbp)
-	movq	%rdx, -192(%rbp)
-	movq	%rcx, -184(%rbp)
-	movq	%r8, -176(%rbp)
-	movq	%r9, -168(%rbp)
+	subq	$224, %rsp
+	movq	%rdi, -216(%rbp)
+	movq	%rsi, -168(%rbp)
+	movq	%rdx, -160(%rbp)
+	movq	%rcx, -152(%rbp)
+	movq	%r8, -144(%rbp)
+	movq	%r9, -136(%rbp)
 	testb	%al, %al
-	je	.L26
-	movaps	%xmm0, -160(%rbp)
-	movaps	%xmm1, -144(%rbp)
-	movaps	%xmm2, -128(%rbp)
-	movaps	%xmm3, -112(%rbp)
-	movaps	%xmm4, -96(%rbp)
-	movaps	%xmm5, -80(%rbp)
-	movaps	%xmm6, -64(%rbp)
-	movaps	%xmm7, -48(%rbp)
-.L26:
-	leaq	-304(%rbp), %rbx
-	movq	%rbx, %r13
-	cmpl	$0, __asan_option_detect_stack_use_after_return(%rip)
-	je	.L22
-	movl	$96, %edi
-	call	__asan_stack_malloc_1@PLT
-	testq	%rax, %rax
-	je	.L22
-	movq	%rax, %rbx
-.L22:
-	leaq	96(%rbx), %rax
-	movq	$1102416563, (%rbx)
-	leaq	.LC6(%rip), %rdx
-	movq	%rdx, 8(%rbx)
-	leaq	.LASANPC16(%rip), %rdx
-	movq	%rdx, 16(%rbx)
-	movq	%rbx, %r12
-	shrq	$3, %r12
-	movl	$-235802127, 2147450880(%r12)
-	movl	$-218103808, 2147450884(%r12)
-	movl	$-202116109, 2147450888(%r12)
+	je	.L17
+	movaps	%xmm0, -128(%rbp)
+	movaps	%xmm1, -112(%rbp)
+	movaps	%xmm2, -96(%rbp)
+	movaps	%xmm3, -80(%rbp)
+	movaps	%xmm4, -64(%rbp)
+	movaps	%xmm5, -48(%rbp)
+	movaps	%xmm6, -32(%rbp)
+	movaps	%xmm7, -16(%rbp)
+.L17:
 	.loc 1 51 22
-	movl	$8, -64(%rax)
-	movl	$48, -60(%rax)
-	leaq	16(%rbp), %rcx
-	movq	%rcx, -56(%rax)
-	leaq	-208(%rbp), %rsi
-	movq	%rsi, -48(%rax)
+	movl	$8, -200(%rbp)
+	movl	$48, -196(%rbp)
+	leaq	16(%rbp), %rax
+	movq	%rax, -192(%rbp)
+	leaq	-176(%rbp), %rax
+	movq	%rax, -184(%rbp)
 	.loc 1 53 13
-	leaq	-64(%rax), %rdx
-	movq	-312(%rbp), %rax
+	leaq	-200(%rbp), %rdx
+	movq	-216(%rbp), %rax
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	vprintf@PLT
 	.loc 1 57 12
 	movl	$0, %eax
-	movq	%rax, %rdx
-	.loc 1 49 5
-	cmpq	%rbx, %r13
-	je	.L23
-	movq	$1172321806, (%rbx)
-	movabsq	$-723401728380766731, %rax
-	movq	%rax, 2147450880(%r12)
-	movl	$-168430091, 2147450888(%r12)
-	movq	120(%rbx), %rax
-	movb	$0, (%rax)
-	jmp	.L24
-.L23:
-	movq	$0, 2147450880(%r12)
-	movl	$0, 2147450888(%r12)
-.L24:
 	.loc 1 58 5
-	movq	%rdx, %rax
-	addq	$296, %rsp
-	popq	%rbx
-	popq	%r12
-	popq	%r13
-	popq	%rbp
+	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE16:
 	.size	_Z13LogMsgNullRetPKcz, .-_Z13LogMsgNullRetPKcz
-	.section	.rodata
-.LC7:
-	.string	"../ATC/Utils/Utils.cpp"
-	.section	.data.rel.local,"aw"
-	.align 16
-	.type	.LASANLOC1, @object
-	.size	.LASANLOC1, 16
-.LASANLOC1:
-	.quad	.LC7
-	.long	30
-	.long	11
-	.section	.rodata
-.LC8:
-	.string	"../ATC/Buffer/my_buffer.h"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC2, @object
-	.size	.LASANLOC2, 16
-.LASANLOC2:
-	.quad	.LC8
-	.long	32
-	.long	11
-	.section	.rodata
-.LC9:
-	.string	"SYSTEM_COMMAND_LENGTH"
-.LC10:
-	.string	"INDENT_SIZE"
-.LC11:
-	.string	"*.LC3"
-.LC12:
-	.string	"*.LC4"
-.LC13:
-	.string	"*.LC5"
-	.section	.data.rel.local
-	.align 32
-	.type	.LASAN0, @object
-	.size	.LASAN0, 320
-.LASAN0:
-	.quad	_ZL21SYSTEM_COMMAND_LENGTH
-	.quad	4
-	.quad	64
-	.quad	.LC9
-	.quad	.LC7
-	.quad	0
-	.quad	.LASANLOC1
-	.quad	0
-	.quad	_ZL11INDENT_SIZE
-	.quad	4
-	.quad	64
-	.quad	.LC10
-	.quad	.LC7
-	.quad	0
-	.quad	.LASANLOC2
-	.quad	0
-	.quad	.LC3
-	.quad	7
-	.quad	64
-	.quad	.LC11
-	.quad	.LC7
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC4
-	.quad	7
-	.quad	64
-	.quad	.LC12
-	.quad	.LC7
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC5
-	.quad	70
-	.quad	128
-	.quad	.LC13
-	.quad	.LC7
-	.quad	0
-	.quad	0
-	.quad	0
-	.text
-	.type	_sub_D_00099_0, @function
-_sub_D_00099_0:
-.LFB17:
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movl	$5, %esi
-	leaq	.LASAN0(%rip), %rax
-	movq	%rax, %rdi
-	call	__asan_unregister_globals@PLT
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE17:
-	.size	_sub_D_00099_0, .-_sub_D_00099_0
-	.section	.fini_array.00099,"aw"
-	.align 8
-	.quad	_sub_D_00099_0
-	.text
-	.type	_sub_I_00099_1, @function
-_sub_I_00099_1:
-.LFB18:
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	call	__asan_init@PLT
-	call	__asan_version_mismatch_check_v8@PLT
-	movl	$5, %esi
-	leaq	.LASAN0(%rip), %rax
-	movq	%rax, %rdi
-	call	__asan_register_globals@PLT
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE18:
-	.size	_sub_I_00099_1, .-_sub_I_00099_1
-	.section	.init_array.00099,"aw"
-	.align 8
-	.quad	_sub_I_00099_1
-	.text
 .Letext0:
 	.file 2 "<built-in>"
 	.file 3 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h"
@@ -667,7 +279,7 @@ _sub_I_00099_1:
 	.file 11 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x9cb
+	.long	0x9ce
 	.value	0x5
 	.byte	0x1
 	.byte	0x8
@@ -1725,7 +1337,7 @@ _sub_I_00099_1:
 	.quad	.LFE16-.LFB16
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x8b2
+	.long	0x8b3
 	.uleb128 0xa
 	.long	.LASF76
 	.byte	0x30
@@ -1733,15 +1345,15 @@ _sub_I_00099_1:
 	.long	0xf0
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -328
+	.sleb128 -232
 	.uleb128 0x9
 	.uleb128 0xd
 	.string	"ptr"
 	.byte	0x32
 	.long	0x98
-	.uleb128 0x2
-	.byte	0x70
-	.sleb128 -64
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -216
 	.byte	0
 	.uleb128 0x16
 	.long	.LASF73
@@ -1753,7 +1365,7 @@ _sub_I_00099_1:
 	.quad	.LFE15-.LFB15
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x919
+	.long	0x91a
 	.uleb128 0xa
 	.long	.LASF76
 	.byte	0x20
@@ -1761,43 +1373,43 @@ _sub_I_00099_1:
 	.long	0xf0
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -712
+	.sleb128 -520
 	.uleb128 0x9
 	.uleb128 0x27
 	.long	.LASF88
-	.long	0x929
+	.long	0x92a
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC4
+	.quad	.LC1
 	.uleb128 0xd
 	.string	"ptr"
 	.byte	0x24
 	.long	0x98
 	.uleb128 0x3
-	.byte	0x7d
-	.sleb128 -432
+	.byte	0x91
+	.sleb128 -504
 	.uleb128 0x12
 	.long	.LASF77
 	.byte	0x1
 	.byte	0x27
 	.byte	0xa
-	.long	0x92e
+	.long	0x92f
 	.uleb128 0x3
-	.byte	0x7d
-	.sleb128 -368
+	.byte	0x91
+	.sleb128 -480
 	.byte	0
 	.uleb128 0xe
 	.long	0xeb
-	.long	0x929
+	.long	0x92a
 	.uleb128 0x13
 	.long	0x53
 	.byte	0x6
 	.byte	0
 	.uleb128 0xc
-	.long	0x919
+	.long	0x91a
 	.uleb128 0xe
 	.long	0xe4
-	.long	0x93f
+	.long	0x940
 	.uleb128 0x28
 	.long	0x53
 	.value	0x10f
@@ -1812,7 +1424,7 @@ _sub_I_00099_1:
 	.quad	.LFE14-.LFB14
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x97f
+	.long	0x981
 	.uleb128 0xa
 	.long	.LASF76
 	.byte	0x12
@@ -1820,15 +1432,15 @@ _sub_I_00099_1:
 	.long	0xf0
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -328
+	.sleb128 -232
 	.uleb128 0x9
 	.uleb128 0xd
 	.string	"ptr"
 	.byte	0x14
 	.long	0x98
-	.uleb128 0x2
-	.byte	0x70
-	.sleb128 -64
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -216
 	.byte	0
 	.uleb128 0x2a
 	.long	.LASF79
@@ -1848,7 +1460,7 @@ _sub_I_00099_1:
 	.long	0xcc
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -324
+	.sleb128 -228
 	.uleb128 0xa
 	.long	.LASF76
 	.byte	0x6
@@ -1856,15 +1468,15 @@ _sub_I_00099_1:
 	.long	0xf0
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -336
+	.sleb128 -240
 	.uleb128 0x9
 	.uleb128 0xd
 	.string	"ptr"
 	.byte	0x8
 	.long	0x98
-	.uleb128 0x2
-	.byte	0x70
-	.sleb128 -64
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -216
 	.byte	0
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
@@ -2582,8 +2194,6 @@ _sub_I_00099_1:
 	.string	"getenv"
 .LASF86:
 	.string	"rand"
-.LASF83:
-	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fsanitize=address,leak -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF13:
 	.string	"signed char"
 .LASF19:
@@ -2686,6 +2296,8 @@ _sub_I_00099_1:
 	.string	"double"
 .LASF4:
 	.string	"overflow_arg_area"
+.LASF83:
+	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF68:
 	.string	"SYSTEM_COMMAND_LENGTH"
 .LASF29:

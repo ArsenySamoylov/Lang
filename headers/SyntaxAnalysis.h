@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Programm.h"
+#include "Program.h"
 
-int GetG (Programm* programm);
+int GetG (Program* program);

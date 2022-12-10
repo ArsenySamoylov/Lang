@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Programm.h"
+#include "Program.h"
 
-int TranslateToAsm (const Programm *const programm, const char *const name);
+int TranslateToAsm (const Program *const program, const char *const name);

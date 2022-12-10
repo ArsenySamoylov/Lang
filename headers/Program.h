@@ -3,17 +3,16 @@
 #include "Token.h"
 #include "Tabels.h"
 
-struct Programm
+struct Program
     {
     Token* token_arr;
     int number_of_tokens;
 
-    Token** functions;
-    int number_of_functions;
-
+    Token* root;
+    
     const char** string_arr;
     int number_of_strings;
     
-     VarLabelTabel  global_var_tabel;
-    FuncLabelTabel global_func_table;
+    //  VarTabel global_vars;
+    // FuncTabel func_tabel;
     };

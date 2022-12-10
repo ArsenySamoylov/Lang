@@ -45096,23 +45096,24 @@ int BufferLook (Buffer* buf)
 
 
 
+
     return *(buf->str + n);
     }
 
 int BufferGetDouble (Buffer* buf, double* val)
     {
     
-# 356 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 357 "../ATC/Buffer/my_buffer.cpp" 3 4
    (static_cast <bool> (
-# 356 "../ATC/Buffer/my_buffer.cpp"
+# 357 "../ATC/Buffer/my_buffer.cpp"
    buf
-# 356 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 357 "../ATC/Buffer/my_buffer.cpp" 3 4
    ) ? void (0) : __assert_fail (
-# 356 "../ATC/Buffer/my_buffer.cpp"
+# 357 "../ATC/Buffer/my_buffer.cpp"
    "buf"
-# 356 "../ATC/Buffer/my_buffer.cpp" 3 4
-   , "../ATC/Buffer/my_buffer.cpp", 356, __extension__ __PRETTY_FUNCTION__))
-# 356 "../ATC/Buffer/my_buffer.cpp"
+# 357 "../ATC/Buffer/my_buffer.cpp" 3 4
+   , "../ATC/Buffer/my_buffer.cpp", 357, __extension__ __PRETTY_FUNCTION__))
+# 357 "../ATC/Buffer/my_buffer.cpp"
               ;
 
     int n = 0;
@@ -45131,17 +45132,17 @@ int BufferGetDouble (Buffer* buf, double* val)
 int BufferPutDouble (Buffer* buf, double val)
     {
     
-# 373 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 374 "../ATC/Buffer/my_buffer.cpp" 3 4
    (static_cast <bool> (
-# 373 "../ATC/Buffer/my_buffer.cpp"
+# 374 "../ATC/Buffer/my_buffer.cpp"
    buf
-# 373 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 374 "../ATC/Buffer/my_buffer.cpp" 3 4
    ) ? void (0) : __assert_fail (
-# 373 "../ATC/Buffer/my_buffer.cpp"
+# 374 "../ATC/Buffer/my_buffer.cpp"
    "buf"
-# 373 "../ATC/Buffer/my_buffer.cpp" 3 4
-   , "../ATC/Buffer/my_buffer.cpp", 373, __extension__ __PRETTY_FUNCTION__))
-# 373 "../ATC/Buffer/my_buffer.cpp"
+# 374 "../ATC/Buffer/my_buffer.cpp" 3 4
+   , "../ATC/Buffer/my_buffer.cpp", 374, __extension__ __PRETTY_FUNCTION__))
+# 374 "../ATC/Buffer/my_buffer.cpp"
               ;
 
     int n = 0;
@@ -45156,62 +45157,62 @@ int BufferPutDouble (Buffer* buf, double val)
 int BufferPutChar (Buffer* buf, char ch)
     {
     
-# 386 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 387 "../ATC/Buffer/my_buffer.cpp" 3 4
    (static_cast <bool> (
-# 386 "../ATC/Buffer/my_buffer.cpp"
+# 387 "../ATC/Buffer/my_buffer.cpp"
    buf
-# 386 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 387 "../ATC/Buffer/my_buffer.cpp" 3 4
    ) ? void (0) : __assert_fail (
-# 386 "../ATC/Buffer/my_buffer.cpp"
+# 387 "../ATC/Buffer/my_buffer.cpp"
    "buf"
-# 386 "../ATC/Buffer/my_buffer.cpp" 3 4
-   , "../ATC/Buffer/my_buffer.cpp", 386, __extension__ __PRETTY_FUNCTION__))
-# 386 "../ATC/Buffer/my_buffer.cpp"
+# 387 "../ATC/Buffer/my_buffer.cpp" 3 4
+   , "../ATC/Buffer/my_buffer.cpp", 387, __extension__ __PRETTY_FUNCTION__))
+# 387 "../ATC/Buffer/my_buffer.cpp"
               ;
 
     int n = 0;
     if ((sprintf(buf->str, "%c%n", ch, &n) == 0) && n == 0)
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../ATC/Buffer/my_buffer.cpp", 390, __func__, 390), "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 390, __func__, 390);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../ATC/Buffer/my_buffer.cpp", 391, __func__, 391), "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 391, __func__, 391);
 
     buf->str += n;
 
-    return Logger::getInstance().Logger::getInstance().LogMsgRet (SUCCESS, "%s:%d returned SUCCESS " , __func__, 394);
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (SUCCESS, "%s:%d returned SUCCESS " , __func__, 395);
     }
 
 int BufferPutString (Buffer* buf, const char* str)
     {
     
-# 399 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 400 "../ATC/Buffer/my_buffer.cpp" 3 4
    (static_cast <bool> (
-# 399 "../ATC/Buffer/my_buffer.cpp"
+# 400 "../ATC/Buffer/my_buffer.cpp"
    buf
-# 399 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 400 "../ATC/Buffer/my_buffer.cpp" 3 4
    ) ? void (0) : __assert_fail (
-# 399 "../ATC/Buffer/my_buffer.cpp"
+# 400 "../ATC/Buffer/my_buffer.cpp"
    "buf"
-# 399 "../ATC/Buffer/my_buffer.cpp" 3 4
-   , "../ATC/Buffer/my_buffer.cpp", 399, __extension__ __PRETTY_FUNCTION__))
-# 399 "../ATC/Buffer/my_buffer.cpp"
-              ;
-    
-# 400 "../ATC/Buffer/my_buffer.cpp" 3 4
-   (static_cast <bool> (
-# 400 "../ATC/Buffer/my_buffer.cpp"
-   str
-# 400 "../ATC/Buffer/my_buffer.cpp" 3 4
-   ) ? void (0) : __assert_fail (
-# 400 "../ATC/Buffer/my_buffer.cpp"
-   "str"
 # 400 "../ATC/Buffer/my_buffer.cpp" 3 4
    , "../ATC/Buffer/my_buffer.cpp", 400, __extension__ __PRETTY_FUNCTION__))
 # 400 "../ATC/Buffer/my_buffer.cpp"
               ;
+    
+# 401 "../ATC/Buffer/my_buffer.cpp" 3 4
+   (static_cast <bool> (
+# 401 "../ATC/Buffer/my_buffer.cpp"
+   str
+# 401 "../ATC/Buffer/my_buffer.cpp" 3 4
+   ) ? void (0) : __assert_fail (
+# 401 "../ATC/Buffer/my_buffer.cpp"
+   "str"
+# 401 "../ATC/Buffer/my_buffer.cpp" 3 4
+   , "../ATC/Buffer/my_buffer.cpp", 401, __extension__ __PRETTY_FUNCTION__))
+# 401 "../ATC/Buffer/my_buffer.cpp"
+              ;
 
     int n = 0;
     if ((sprintf(buf->str, "%s%n", str, &n) == 0) && n == 0)
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../ATC/Buffer/my_buffer.cpp", 404, __func__, 404), "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 404, __func__, 404);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../ATC/Buffer/my_buffer.cpp", 405, __func__, 405), "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 405, __func__, 405);
 
     buf->str += n;
 
-    return Logger::getInstance().Logger::getInstance().LogMsgRet (SUCCESS, "%s:%d returned SUCCESS " , __func__, 408);
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (SUCCESS, "%s:%d returned SUCCESS " , __func__, 409);
     }

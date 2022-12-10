@@ -3,42 +3,32 @@
 .Ltext0:
 	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/Logger/tostring.cpp"
 	.section	.rodata
-	.align 32
+	.align 4
 	.type	_ZL11INDENT_SIZE, @object
 	.size	_ZL11INDENT_SIZE, 4
 _ZL11INDENT_SIZE:
 	.long	2
-	.zero	60
-	.bss
-	.align 32
-	.type	_ZStL8__ioinit, @object
-	.size	_ZStL8__ioinit, 1
-_ZStL8__ioinit:
-	.zero	64
-	.section	.rodata
-	.align 32
+	.local	_ZStL8__ioinit
+	.comm	_ZStL8__ioinit,1,1
+	.align 16
 	.type	_ZL12STD_LOG_NAME, @object
 	.size	_ZL12STD_LOG_NAME, 18
 _ZL12STD_LOG_NAME:
 	.string	"./logs/stdlog.ars"
-	.zero	46
-	.align 32
+	.align 4
 	.type	_ZL6CRINGE, @object
 	.size	_ZL6CRINGE, 4
 _ZL6CRINGE:
 	.long	3565
-	.zero	60
-	.align 32
+	.align 4
 	.type	_ZL14MAX_LENGTH_INT, @object
 	.size	_ZL14MAX_LENGTH_INT, 4
 _ZL14MAX_LENGTH_INT:
 	.long	10
-	.zero	60
 	.text
 	.globl	_Z8tostringPKc
 	.type	_Z8tostringPKc, @function
 _Z8tostringPKc:
-.LASANPC2270:
 .LFB2270:
 	.file 1 "../ATC/Logger/tostring.cpp"
 	.loc 1 13 5
@@ -63,39 +53,25 @@ _Z8tostringPKc:
 .LFE2270:
 	.size	_Z8tostringPKc, .-_Z8tostringPKc
 	.section	.rodata
-	.align 32
 .LC0:
 	.string	"tostring"
-	.zero	55
-	.align 32
 .LC1:
 	.string	"../ATC/Logger/tostring.cpp"
-	.zero	37
-	.align 32
 .LC2:
 	.string	"PRINTF BESIT CALLOC (%s)\n"
-	.zero	38
-	.align 32
 .LC3:
 	.string	"%d"
-	.zero	61
-	.align 32
+	.align 8
 .LC4:
 	.string	"Enter any key to continue (line %d, func %s)\n"
-	.zero	50
-	.align 32
 .LC5:
 	.string	"buffer"
-	.zero	57
-	.align 32
 .LC6:
 	.string	"\t%s: "
-	.zero	58
 	.text
 	.globl	_Z8tostringi
 	.type	_Z8tostringi, @function
 _Z8tostringi:
-.LASANPC2271:
 .LFB2271:
 	.loc 1 18 5
 	.cfi_startproc
@@ -178,7 +154,6 @@ _Z8tostringi:
 	.size	_Z8tostringi, .-_Z8tostringi
 	.type	_Z41__static_initialization_and_destruction_0ii, @function
 _Z41__static_initialization_and_destruction_0ii:
-.LASANPC2938:
 .LFB2938:
 	.loc 1 33 5
 	.cfi_startproc
@@ -193,11 +168,8 @@ _Z41__static_initialization_and_destruction_0ii:
 	movl	%esi, -8(%rbp)
 	.loc 1 33 5
 	cmpl	$1, -4(%rbp)
-	jne	.L9
+	jne	.L8
 	.loc 1 33 5 is_stmt 0 discriminator 1
-	leaq	.LC1(%rip), %rax
-	movq	%rax, %rdi
-	call	__asan_before_dynamic_init@PLT
 	cmpl	$65535, -8(%rbp)
 	jne	.L8
 	.file 2 "/usr/include/c++/11/iostream"
@@ -213,10 +185,7 @@ _Z41__static_initialization_and_destruction_0ii:
 	movq	%rax, %rdi
 	call	__cxa_atexit@PLT
 .L8:
-	.loc 2 74 25 is_stmt 0 discriminator 1
-	call	__asan_after_dynamic_init@PLT
-.L9:
-	.loc 1 33 5 is_stmt 1
+	.loc 1 33 5
 	nop
 	leave
 	.cfi_def_cfa 7, 8
@@ -226,7 +195,6 @@ _Z41__static_initialization_and_destruction_0ii:
 	.size	_Z41__static_initialization_and_destruction_0ii, .-_Z41__static_initialization_and_destruction_0ii
 	.type	_GLOBAL__sub_I__Z8tostringPKc, @function
 _GLOBAL__sub_I__Z8tostringPKc:
-.LASANPC2939:
 .LFB2939:
 	.loc 1 33 5
 	.cfi_startproc
@@ -249,235 +217,6 @@ _GLOBAL__sub_I__Z8tostringPKc:
 	.section	.init_array,"aw"
 	.align 8
 	.quad	_GLOBAL__sub_I__Z8tostringPKc
-	.section	.data.rel.local,"aw"
-	.align 16
-	.type	.LASANLOC1, @object
-	.size	.LASANLOC1, 16
-.LASANLOC1:
-	.quad	.LC1
-	.long	10
-	.long	11
-	.section	.rodata
-	.align 8
-.LC7:
-	.string	"../ATC/RandomStuff/CommonEnums.h"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC2, @object
-	.size	.LASANLOC2, 16
-.LASANLOC2:
-	.quad	.LC7
-	.long	3
-	.long	11
-	.section	.rodata
-.LC8:
-	.string	"../ATC/Logger/LogConfig.h"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC3, @object
-	.size	.LASANLOC3, 16
-.LASANLOC3:
-	.quad	.LC8
-	.long	3
-	.long	12
-	.section	.rodata
-.LC9:
-	.string	"/usr/include/c++/11/iostream"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC4, @object
-	.size	.LASANLOC4, 16
-.LASANLOC4:
-	.quad	.LC9
-	.long	74
-	.long	25
-	.section	.rodata
-.LC10:
-	.string	"../ATC/Buffer/my_buffer.h"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC5, @object
-	.size	.LASANLOC5, 16
-.LASANLOC5:
-	.quad	.LC10
-	.long	32
-	.long	11
-	.section	.rodata
-.LC11:
-	.string	"MAX_LENGTH_INT"
-.LC12:
-	.string	"CRINGE"
-.LC13:
-	.string	"STD_LOG_NAME"
-.LC14:
-	.string	"__ioinit"
-.LC15:
-	.string	"INDENT_SIZE"
-.LC16:
-	.string	"*.LC6"
-.LC17:
-	.string	"*.LC2"
-.LC18:
-	.string	"*.LC5"
-.LC19:
-	.string	"*.LC1"
-.LC20:
-	.string	"*.LC3"
-.LC21:
-	.string	"*.LC0"
-.LC22:
-	.string	"*.LC4"
-	.section	.data.rel.local
-	.align 32
-	.type	.LASAN0, @object
-	.size	.LASAN0, 768
-.LASAN0:
-	.quad	_ZL14MAX_LENGTH_INT
-	.quad	4
-	.quad	64
-	.quad	.LC11
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC1
-	.quad	0
-	.quad	_ZL6CRINGE
-	.quad	4
-	.quad	64
-	.quad	.LC12
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC2
-	.quad	0
-	.quad	_ZL12STD_LOG_NAME
-	.quad	18
-	.quad	64
-	.quad	.LC13
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC3
-	.quad	0
-	.quad	_ZStL8__ioinit
-	.quad	1
-	.quad	64
-	.quad	.LC14
-	.quad	.LC1
-	.quad	1
-	.quad	.LASANLOC4
-	.quad	0
-	.quad	_ZL11INDENT_SIZE
-	.quad	4
-	.quad	64
-	.quad	.LC15
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC5
-	.quad	0
-	.quad	.LC6
-	.quad	6
-	.quad	64
-	.quad	.LC16
-	.quad	.LC1
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC2
-	.quad	26
-	.quad	64
-	.quad	.LC17
-	.quad	.LC1
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC5
-	.quad	7
-	.quad	64
-	.quad	.LC18
-	.quad	.LC1
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC1
-	.quad	27
-	.quad	64
-	.quad	.LC19
-	.quad	.LC1
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC3
-	.quad	3
-	.quad	64
-	.quad	.LC20
-	.quad	.LC1
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC0
-	.quad	9
-	.quad	64
-	.quad	.LC21
-	.quad	.LC1
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC4
-	.quad	46
-	.quad	96
-	.quad	.LC22
-	.quad	.LC1
-	.quad	0
-	.quad	0
-	.quad	0
-	.text
-	.type	_sub_D_00099_0, @function
-_sub_D_00099_0:
-.LFB2940:
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movl	$12, %esi
-	leaq	.LASAN0(%rip), %rax
-	movq	%rax, %rdi
-	call	__asan_unregister_globals@PLT
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2940:
-	.size	_sub_D_00099_0, .-_sub_D_00099_0
-	.section	.fini_array.00099,"aw"
-	.align 8
-	.quad	_sub_D_00099_0
-	.text
-	.type	_sub_I_00099_1, @function
-_sub_I_00099_1:
-.LFB2941:
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	call	__asan_init@PLT
-	call	__asan_version_mismatch_check_v8@PLT
-	movl	$12, %esi
-	leaq	.LASAN0(%rip), %rax
-	movq	%rax, %rdi
-	call	__asan_register_globals@PLT
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2941:
-	.size	_sub_I_00099_1, .-_sub_I_00099_1
-	.section	.init_array.00099,"aw"
-	.align 8
-	.quad	_sub_I_00099_1
 	.text
 .Letext0:
 	.file 3 "<built-in>"
@@ -6477,6 +6216,8 @@ _sub_I_00099_1:
 	.string	"wcscpy"
 .LASF37:
 	.string	"__count"
+.LASF378:
+	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF219:
 	.string	"wcscat"
 .LASF294:
@@ -6829,8 +6570,6 @@ _sub_I_00099_1:
 	.string	"short int"
 .LASF139:
 	.string	"__detail"
-.LASF378:
-	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fsanitize=address,leak -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF240:
 	.string	"wcsrtombs"
 .LASF298:

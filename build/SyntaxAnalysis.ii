@@ -8,7 +8,7 @@
 # 1 "./headers/SyntaxAnalysis.h" 1
        
 
-# 1 "./headers/Programm.h" 1
+# 1 "./headers/Program.h" 1
        
 
 # 1 "./headers/Token.h" 1
@@ -22,9 +22,10 @@ union TokenValue
     int t_initializator;
     int t_function_ret_type;
 
-    char* t_name;
-    int t_variable;
-    int t_function;
+    char* t_name_ptr;
+    int t_name_id;
+
+
     };
 
 struct Token
@@ -35,8 +36,15 @@ struct Token
     int type;
 
     TokenValue value;
+
+    const char* ptr_to_src_code;
     };
-# 4 "./headers/Programm.h" 2
+
+Token* NewToken (int type = 0, TokenValue value = {0},
+                Token* left_child = nullptr, Token* right_child = nullptr);
+
+int DeleteBranch (Token* def_node);
+# 4 "./headers/Program.h" 2
 # 1 "./headers/Tabels.h" 1
        
 
@@ -51,21 +59,21 @@ enum VarType
 
 enum FuncType
     {
+    NOT_DECLARED,
     DECLARED,
-    NOT_DECLEARED,
     INITIALIZED,
     };
 
 struct VarLabel
     {
     int name;
-    int mem_type;
-    int address;
     };
 
-struct VarLabelTabel
+struct VarTabel
     {
     VarLabel** label_arr;
+    int arr_size;
+
     int number_of_labels;
     };
 
@@ -74,41 +82,51 @@ struct FuncLabel
     int name;
     int ret_type;
     int body_status;
-
-    VarLabelTabel local_args;
     int number_of_arguments;
+
+    VarTabel local_args;
     };
 
-struct FuncLabelTabel
+struct FuncTabel
     {
     FuncLabel** label_arr;
-    int number_of_labels;
+    int arr_size;
 
-    VarLabelTabel* local_var;
+    int number_of_labels;
     };
 
-FuncLabel* GetFunctLabel (Token* token, FuncLabelTabel* func_tabel);
+int FuncTabelCtor (FuncTabel* tabel);
+FuncLabel* IsFuncLabel (int name_id, FuncTabel* func_tabel);
 
-int AddFuncLabel (const char* name, int return_type, int body_status, FuncLabelTabel* func_tabel);
-# 5 "./headers/Programm.h" 2
+int AddFuncLabel (int name_id, int return_type, int body_status, FuncTabel* func_tabel);
+int AddFuncLabel (FuncLabel* label, FuncTabel* tabel);
 
-struct Programm
+int CompareFuncLabels (FuncLabel* label1, FuncLabel* label2);
+
+
+
+int VarTabelCtor (VarTabel* tabel);
+VarLabel* IsVarLabel (int name_id, VarTabel* tabel);
+
+int AddVarLabel (VarLabel* label, VarTabel* tabel);
+# 5 "./headers/Program.h" 2
+
+struct Program
     {
     Token* token_arr;
     int number_of_tokens;
 
-    Token** functions;
-    int number_of_functions;
+    Token* root;
 
     const char** string_arr;
     int number_of_strings;
 
-     VarLabelTabel global_var_tabel;
-    FuncLabelTabel global_func_table;
+
+
     };
 # 4 "./headers/SyntaxAnalysis.h" 2
 
-int GetG (Programm* programm);
+int GetG (Program* program);
 # 2 "./src/SyntaxAnalysis.cpp" 2
 
 # 1 "/usr/include/stdio.h" 1 3 4
@@ -1478,6 +1496,8 @@ enum TokenType
 
     FUNCTION,
 
+    CALL,
+
     ASSIGMENT = '=',
 
     OPENING_BRACKET = '{',
@@ -1500,18 +1520,14 @@ enum INSTUCTIONS_NUM
     WHILE = 2,
     FOUT = 3,
     RETURN = 4,
-
-    NOT_A_INSTRUCTION = -666,
     };
 
 const int NUMBER_OF_INITIALIZATORS = 2;
 const char *const INITIALIZATORS[] = {"func", "var"};
 enum INITIALIZATORS_NUM
     {
-    FUNC = 0,
-    VAR = 1,
-
-    NOT_A_INITIALIZATOR = -111,
+    FUNCTION_INITIALIZATOR = 0,
+    VARIABLE_INITIALIZATOR = 1,
     };
 
 const int NUMBER_OF_FUNCTION_RET_TYPES = 2;
@@ -1520,8 +1536,6 @@ enum FUNCTION_RET_TYPES_NUM
     {
     DOUBLE,
     VOID,
-
-    NOT_A_RET_TYPE = -333,
     };
 
 const char OPERATORS[] = "+-/*^<<";
@@ -44259,10 +44273,169 @@ int SYSTEM(const char* format, ...);
 
 
 
-void PrintToken (const Token *const token);
+void PrintToken (const Token *const token, const char** string_arr);
 
 void LogToken (const Token *const token, const char* name);
 # 10 "./src/SyntaxAnalysis.cpp" 2
+
+
+# 1 "../ATC/SuperStack/SuperStack.h" 1
+
+
+
+#pragma GCC diagnostic ignored "-Wconversion"
+
+
+
+# 1 "../ATC/SuperStack/SuperStackConfig.h" 1
+
+
+
+
+
+
+
+typedef VarTabel* element_t;
+# 9 "../ATC/SuperStack/SuperStack.h" 2
+# 1 "../ATC/my_safety/my_safety.h" 1
+
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 5 "../ATC/my_safety/my_safety.h" 2
+# 1 "/usr/include/inttypes.h" 1 3 4
+# 266 "/usr/include/inttypes.h" 3 4
+
+# 266 "/usr/include/inttypes.h" 3 4
+extern "C" {
+
+
+
+
+typedef struct
+  {
+    long int quot;
+    long int rem;
+  } imaxdiv_t;
+# 290 "/usr/include/inttypes.h" 3 4
+extern intmax_t imaxabs (intmax_t __n) noexcept (true) __attribute__ ((__const__));
+
+
+extern imaxdiv_t imaxdiv (intmax_t __numer, intmax_t __denom)
+      noexcept (true) __attribute__ ((__const__));
+
+
+extern intmax_t strtoimax (const char *__restrict __nptr,
+      char **__restrict __endptr, int __base) noexcept (true);
+
+
+extern uintmax_t strtoumax (const char *__restrict __nptr,
+       char ** __restrict __endptr, int __base) noexcept (true);
+
+
+extern intmax_t wcstoimax (const wchar_t *__restrict __nptr,
+      wchar_t **__restrict __endptr, int __base)
+     noexcept (true);
+
+
+extern uintmax_t wcstoumax (const wchar_t *__restrict __nptr,
+       wchar_t ** __restrict __endptr, int __base)
+     noexcept (true);
+
+}
+# 6 "../ATC/my_safety/my_safety.h" 2
+
+
+# 7 "../ATC/my_safety/my_safety.h"
+typedef long long CANARY;
+
+const int _CANARY_SIZE_ = sizeof(CANARY);
+
+const int _OPENING_CANARY_ = 0xABCDEF;
+const int _CLOSING_CANARY_ = 0xFEDCBA;
+
+
+void* canary_calloc ( size_t numbers_of_elements, size_t size_of_element);
+void* canary_realloc (void* ptr, size_t new_numbers_of_elements, size_t size_of_element);
+void canary_free (void* ptr);
+
+int generateHash(const void *start, const void *end);
+# 10 "../ATC/SuperStack/SuperStack.h" 2
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 13 "../ATC/SuperStack/SuperStack.h" 2
+# 21 "../ATC/SuperStack/SuperStack.h"
+const size_t _HEAP_MIN_CAPACITY_ = 10;
+const size_t _ELEMENT_T_SIZE_ = sizeof(element_t);
+
+enum super_stack_status
+    {
+    UNINITIALIZED,
+
+    INITIALIZATION_ERR,
+
+    DESTRUCTOR_ERR,
+    };
+
+enum SuperStackCtorErr
+    {
+    NULL_STK_PTR_CTR = -2,
+    WRONG_CAPACITY = -3,
+    INITIALIZED_STACK = -4,
+
+    ERROR_INITIALIZATION = -1,
+    SUCCESS_INITIALIZATION = 1,
+    };
+
+typedef long long CANARY;
+struct SuperStack
+    {
+
+    CANARY opening_canary;
+
+
+    element_t* heap;
+    size_t capacity;
+    ssize_t top;
+
+    int status;
+
+
+
+
+
+
+    int heapHash;
+    int hash;
+
+
+
+    CANARY closing_canary;
+
+    };
+
+int SuperStackCtor (SuperStack* stk, size_t capacity
+                     );
+
+void SuperStackDtor (SuperStack* stk
+                     );
+
+void SSpush (SuperStack* stk, element_t value
+                    );
+
+element_t SSpop (SuperStack* stk
+                    );
+
+element_t SStop (SuperStack* stk
+                    );
+# 101 "../ATC/SuperStack/SuperStack.h"
+void SSdump (SuperStack* negoden, unsigned flag_err
+                         );
+
+unsigned MedComissionSS (SuperStack* prezyvnik);
+# 13 "./src/SyntaxAnalysis.cpp" 2
+
 
 # 1 "../ATC/Debug/EasyDebug.h" 1
 
@@ -44379,232 +44552,410 @@ int BufferPutDouble (Buffer* buf, double val);
 int BufferPutChar (Buffer* buf, char ch);
 int BufferPutString (Buffer* buf, const char* str);
 # 5 "../ATC/Debug/EasyDebug.h" 2
-# 12 "./src/SyntaxAnalysis.cpp" 2
+# 16 "./src/SyntaxAnalysis.cpp" 2
 
 
 
+# 1 "../ATC/RandomStuff/SomeStuff.h" 1
+
+
+
+
+
+void ShowCharInBinary(char mask);
+
+int printl (const char *line, char terminator);
+# 20 "./src/SyntaxAnalysis.cpp" 2
 
 #pragma GCC diagnostic ignored "-Wconversion"
 #pragma GCC diagnostic ignored "-Wsign-conversion"
 
-struct TokenBuffer
+const int GROWTH_RATE = 2;
+
+const int START_NUMBER_OF_MAIN_PROCESSES = 20;
+
+struct ProgramBuffer
     {
-    Token* arr;
+    Program* program;
 
-    int size;
     int position;
+    int current_func_tabel;
 
-    FuncLabelTabel global_func_tabel;
+    FuncTabel* global_func;
+    SuperStack* var_tabels;
     };
 
-struct ProgrammBuffer
+static Token* GetProcess (ProgramBuffer* program_buf);
+
+static Token* GetFunction (ProgramBuffer* program_buf);
+static Token* GetBlock (ProgramBuffer* program_buf);
+static Token* GetStatement (ProgramBuffer* program_buf);
+
+static Token* GetCall (ProgramBuffer* ptogram_buf);
+static Token* GetInstruction (ProgramBuffer* program_buf);
+static Token* GetAssigment (ProgramBuffer* program_buf);
+
+static Token* GetE (ProgramBuffer* program_buf);
+static Token* GetT (ProgramBuffer* program_buf);
+static Token* GetPower (ProgramBuffer* program_buf);
+static Token* GetP (ProgramBuffer* program_buf);
+static Token* GetN (ProgramBuffer* program_buf);
+
+
+static Token* VarInitialization (ProgramBuffer* program_buf);
+static int FuncInitialization (ProgramBuffer* program_buf);
+
+
+static FuncLabel* MakeFuncLabel(ProgramBuffer* program_buf);
+static VarLabel* MakeVarLabel(ProgramBuffer* program_buf);
+
+static VarLabel* GetVarLabel (int name_id, SuperStack* var_tabels);
+
+static int DefineName(ProgramBuffer* program_buf);
+
+static Token* FuncLabelToTokens (FuncLabel* label);
+# 107 "./src/SyntaxAnalysis.cpp"
+int GetG (Program* program)
     {
-    Token* arr;
-
-    int size;
-    int position;
-    };
-
-static Token* Initialization (TokenBuffer* token_buf);
-
-static Token* GetFunction (TokenBuffer* token_buf);
-static Token* GetBlock (TokenBuffer* token_buf);
-static Token* GetStatement (TokenBuffer* token_buf);
-static Token* GetInstruction (TokenBuffer* token_buf);
-static Token* GetAssigment (TokenBuffer* token_buf);
-
-static Token* GetE (TokenBuffer* token_buf);
-static Token* GetT (TokenBuffer* token_buf);
-static Token* GetPower (TokenBuffer* token_buf);
-static Token* GetP (TokenBuffer* token_buf);
-static Token* GetN (TokenBuffer* token_buf);
-# 74 "./src/SyntaxAnalysis.cpp"
-int GetG (Programm* programm)
-    {
-    FunctionLogger func_76 {DEBUG, __func__};
-    do { if (!(programm)) { Logger::getInstance().log("Condition (%s) is false\n", "programm"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "programm"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 77); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 77); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 77 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_109 {DEBUG, __func__};
+    do { if (!(program)) { Logger::getInstance().log("Condition (%s) is false\n", "program"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 110); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 110); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 110 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 77 "./src/SyntaxAnalysis.cpp"
+# 110 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 77 "./src/SyntaxAnalysis.cpp" 3 4
+# 110 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 77 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 77); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 77, __func__, 77), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 77, __func__, 77); } } while (0);;
+# 110 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 110); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 110, __func__, 110), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 110, __func__, 110); } } while (0);;
 
-    TokenBuffer token_buf_orig {programm->token_arr, programm->number_of_tokens, 0};
-
-    Token** root = (Token**) Logger::getInstance().CAL_LOG (20, sizeof(Token*), "./src/SyntaxAnalysis.cpp", __func__, 81);;
-    int number_of_functions = 0;
-
-    TokenBuffer* token_buf = &token_buf_orig;
-
-    while (token_buf->position < programm->number_of_tokens)
+    if (program->root)
         {
-        switch (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type)
-            {
-            case INITIALIZATOR:
-                *(root + number_of_functions) = Initialization(token_buf);
-                break;
-
-            case NAME:
-                *(root + number_of_functions) = GetAssigment(token_buf);
-                break;
-
-            case FUNCTION_RET_TYPE:
-                *(root + number_of_functions) = GetFunction(token_buf);
-                break;
-
-            default:
-                do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Unknow token\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 103); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-                *(root + number_of_functions) = 
-# 104 "./src/SyntaxAnalysis.cpp" 3 4
-                               __null
-# 104 "./src/SyntaxAnalysis.cpp"
-                                   ;
-            }
-
-        if (!*(root + number_of_functions))
-            {
-            Logger::getInstance().FREE_LOG (root, "./src/SyntaxAnalysis.cpp", __func__, 109);;
-            return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 110, __func__, 110), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 110, __func__, 110);
-            }
-
-            number_of_functions++;
+        { printf("\t%s: ", __func__); printf("Program root must be NULL, %p\n", (void*) program->root); };
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 115, __func__, 115), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 115, __func__, 115);
         }
 
-    if (token_buf->position != token_buf->size)
+    ProgramBuffer program_buf_ = {program, 0};
+    ProgramBuffer* program_buf = &program_buf_;
+
+    SuperStack var_tabels_ {};
+    SuperStack* var_tabels = &var_tabels_;
+    SuperStackCtor (var_tabels, 5 );
+
+    VarTabel global_var_tabel_{};
+    VarTabel* global_var_tabel = &global_var_tabel_;
+    VarTabelCtor(global_var_tabel);
+
+
+    SSpush (var_tabels, global_var_tabel );
+
+
+    ((program_buf)->var_tabels) = var_tabels;
+
+
+
+    FuncTabel global_functions_{};
+    FuncTabel* global_functions = &global_functions_;
+    FuncTabelCtor(global_functions);
+
+    ((program_buf)->global_func) = global_functions;
+
+    program->root = GetProcess(program_buf);
+    if (!program->root)
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 145, __func__, 145), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 145, __func__, 145);
+
+    Token* current_process = program->root;
+
+    while ((program_buf->position) < ((program_buf->program)->number_of_tokens))
         {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Invalid number of tokens: %d (size %d)\n" , token_buf->position, token_buf->size); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 118); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 119, __func__, 119), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 119, __func__, 119);
+        current_process->right_child = GetProcess(program_buf);
+
+        if (!current_process->right_child)
+            return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 154, __func__, 154), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 154, __func__, 154);
         }
+
+    if ((program_buf->position) != ((program_buf->program)->number_of_tokens))
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Invalid number of tokens: %d (size %d)\n" , (program_buf->position), ((program_buf->program)->number_of_tokens)); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 159); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 160, __func__, 160), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 160, __func__, 160);
+        }
+
+
+    printf("\033[91m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/SyntaxAnalysis.cpp", 164, "set programm\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/SyntaxAnalysis.cpp", 164, "set programm\n"); Logger::getInstance().log("set programm\n" );;
 
     return SUCCESS;
     }
 
-static Token* GetFunction (TokenBuffer* token_buf)
+static Token* GetProcess (ProgramBuffer* program_buf)
     {
-    FunctionLogger func_127 {DEBUG, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 128); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 128); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 128 "./src/SyntaxAnalysis.cpp" 3 4
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 171); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 171); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 171 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 128 "./src/SyntaxAnalysis.cpp"
+# 171 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 128 "./src/SyntaxAnalysis.cpp" 3 4
+# 171 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 128 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 128); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 128), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 128, __func__, 128); } } while (0);;
+# 171 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 171); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 171), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 171, __func__, 171); } } while (0);;
 
+    switch ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type)
+    {
+    case INITIALIZATOR:
 
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != FUNCTION_RET_TYPE)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No return type in function\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 133); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 134), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 134, __func__, 134);
-        }
-
-    Token* ret_type = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-
-    token_buf->position++;
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != NAME)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No function name\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 143); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 144), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 144, __func__, 144);
-        }
-
-    FuncLabel* func_label = GetFunctLabel(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ), &(token_buf->global_func_tabel));
-    if (!func_label)
-        AddFuncLabel(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_name, ret_type->value.t_function_ret_type, DECLARED, &(token_buf->global_func_tabel));
-    else
-        {
-        if (func_label->ret_type != ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_function_ret_type)
+        if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_initializator == FUNCTION_INITIALIZATOR)
             {
-            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Function has different return type than in global function tabel\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 154); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 155), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 155, __func__, 155);
+            if (FuncInitialization(program_buf) != SUCCESS)
+                return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 180), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 180, __func__, 180);
+
+            return GetProcess(program_buf);
             }
-        if (func_label->body_status == DECLARED)
-            {
-            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Redeclaration of function\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 159); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 160), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 160, __func__, 160);
-            }
-        }
 
-    Token* function_name = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    token_buf->position++;
+        if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_initializator == VARIABLE_INITIALIZATOR)
+            return VarInitialization(program_buf);
+
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Unknow Initializator type\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 188); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 189), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 189, __func__, 189);
+
+    case NAME:
+
+        if (DefineName(program_buf) == NOT_DECLARED)
+            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 194), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 194, __func__, 194);
+
+        return GetProcess(program_buf);
 
 
-    if(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != EXPRESSION_OPENING_BRACKET)
+
+
+
+    case FUNCTION_RET_TYPE:
+
+        return GetFunction(program_buf);
+
+    default:
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("This token can't be in global scope\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 207); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 208), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 208, __func__, 208);
+    }
+
+    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/SyntaxAnalysis.cpp", 211, __func__, 211); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/SyntaxAnalysis.cpp", 211, __func__, 211);;
+
+    return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 213), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 213, __func__, 213);
+    }
+
+static int FuncInitialization (ProgramBuffer* program_buf)
+    {
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 218); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 218); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 218 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 218 "./src/SyntaxAnalysis.cpp"
+   , strerror(
+# 218 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 218 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 218); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 218, __func__, 218), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 218, __func__, 218); } } while (0);;
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != INITIALIZATOR || (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_initializator != FUNCTION_INITIALIZATOR)
         {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing '(' in function declaration\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 170); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 171), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 171, __func__, 171);
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Wrong token type for function initialization\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 222); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 223, __func__, 223), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 223, __func__, 223);
+        }
+    (program_buf->position)++;
+
+    FuncLabel* label = MakeFuncLabel(program_buf);
+    if (IsFuncLabel(label->name, ((program_buf)->global_func)))
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Ebat, %s shadows previous declaration\n" , ((program_buf->program)->string_arr)[label->name]); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 230); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 231, __func__, 231), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 231, __func__, 231);
+        }
+
+    AddFuncLabel(label, ((program_buf)->global_func));
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != END_OF_STATEMENT)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing '%c'\n" , END_OF_STATEMENT); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 238); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 239, __func__, 239), "Failed (%s:%d, %s:%d)" , "./src/SyntaxAnalysis.cpp", 239, __func__, 239);
+        }
+    (program_buf->position)++;
+
+    return SUCCESS;
+    }
+
+static Token* VarInitialization (ProgramBuffer* program_buf)
+    {
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 248); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 248); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 248 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 248 "./src/SyntaxAnalysis.cpp"
+   , strerror(
+# 248 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 248 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 248); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 248), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 248, __func__, 248); } } while (0);;
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != INITIALIZATOR || (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_initializator != VARIABLE_INITIALIZATOR)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Wrong token type for variable initialization\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 252); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 253), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 253, __func__, 253);
+        }
+
+    Token* initializator = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
+    (program_buf->position)++;
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != NAME)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("not a name\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 261); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 262), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 262, __func__, 262);
+        }
+
+    Token* var_name = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
+
+    VarLabel* label = MakeVarLabel(program_buf);
+
+    if (GetVarLabel(label->name, ((program_buf)->var_tabels)))
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Ebat, %s shadows previous declaration\n" , ((program_buf->program)->string_arr)[(((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_name_id]); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 271); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+
+        Logger::getInstance().FREE_LOG (label, "./src/SyntaxAnalysis.cpp", __func__, 273);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 274), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 274, __func__, 274);
         }
 
 
 
-    if(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != EXPRESSION_CLOSING_BRACKET)
+
+    AddVarLabel(label, (SStop (((program_buf)->var_tabels) )));
+
+    (program_buf->position)++;
+
+    var_name->type = VARIABLE;
+
+     initializator->left_child = var_name;
+    initializator->right_child = nullptr;
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == END_OF_STATEMENT)
+        return initializator;
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != ASSIGMENT)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Must be assigment\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 294); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 295), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 295, __func__, 295);
+        }
+
+    (program_buf->position)++;
+
+    initializator->right_child = GetE (program_buf);
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != END_OF_STATEMENT)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing ';'\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 304); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 305), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 305, __func__, 305);
+        }
+
+    (program_buf->position)++;
+
+    if (!initializator->right_child)
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 311), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 311, __func__, 311);
+
+    return initializator;
+    }
+
+static Token* GetFunction (ProgramBuffer* program_buf)
+    {
+    FunctionLogger func_318 {DEBUG, __func__};
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 319); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 319); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 319 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 319 "./src/SyntaxAnalysis.cpp"
+   , strerror(
+# 319 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 319 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 319); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 319), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 319, __func__, 319); } } while (0);;
+
+
+    FuncLabel* label = MakeFuncLabel(program_buf);
+    AddFuncLabel(label, ((program_buf)->global_func));
+
+    FuncLabel* prev_declaration = IsFuncLabel(label->name, ((program_buf)->global_func));
+    if (prev_declaration)
+        {
+        if (!CompareFuncLabels (label, prev_declaration))
+            {
+            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Conflict with prev declaration\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 330); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 331), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 331, __func__, 331);
+            }
+        }
+
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != OPENING_BRACKET)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing '{' in function body\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 338); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 339), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 339, __func__, 339);
+        }
+
+    (program_buf->position)++;
+
+    Token* body = GetBlock(program_buf);
+    do { if (!body) { Logger::getInstance().log("%s:%d::CHECK: " "body" " is false\n" , __func__, 345); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 345), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 345, __func__, 345) ; } }while (0);;
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != INSTRUCTION && (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_instruction != RETURN)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No return in function\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 349); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 350), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 350, __func__, 350);
+        }
+
+    (program_buf->position)++;
+
+
+    if (label->ret_type != VOID)
+        {
+        GetE(program_buf);
+        }
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != END_OF_STATEMENT)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing '%c'\n" , END_OF_STATEMENT); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 363); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 364), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 364, __func__, 364);
+        }
+
+    (program_buf->position)++;
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != CLOSING_BRACKET)
        {
-       do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing ')' in function declaration\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 178); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-       return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 179), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 179, __func__, 179);
+       do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing '}' in function body\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 371); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+       return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 372), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 372, __func__, 372);
        }
 
+    (program_buf->position)++;
 
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != OPENING_BRACKET)
-        {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing '{' in function body\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 185); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 186), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 186, __func__, 186);
-        }
+    Token* function = FuncLabelToTokens(label);
 
-    token_buf->position++;
-
-    Token* body = GetBlock(token_buf);
-    do { if (!body) { Logger::getInstance().log("%s:%d::CHECK: " "body" " is false\n" , __func__, 192); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 192), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 192, __func__, 192) ; } }while (0);;
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != CLOSING_BRACKET)
-       {
-       do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing '{' in function body\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 196); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-       return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 197), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 197, __func__, 197);
-       }
-
-    Token* function = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    token_buf->position++;
-
-    function->type = FUNCTION;
-    function->left_child = function_name;
-
-    function_name->left_child = 
-# 206 "./src/SyntaxAnalysis.cpp" 3 4
-                         __null
-# 206 "./src/SyntaxAnalysis.cpp"
-                             ;
-    function_name->right_child = ret_type;
+    label->body_status = DECLARED;
 
     return function;
     }
 
-static Token* GetBlock (TokenBuffer* token_buf)
+static Token* GetBlock (ProgramBuffer* program_buf)
     {
-    FunctionLogger func_214 {DEBUG, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 215); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 215); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 215 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_386 {DEBUG, __func__};
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 387); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 387); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 387 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 215 "./src/SyntaxAnalysis.cpp"
+# 387 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 215 "./src/SyntaxAnalysis.cpp" 3 4
+# 387 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 215 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 215); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 215), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 215, __func__, 215); } } while (0);;
+# 387 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 387); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 387), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 387, __func__, 387); } } while (0);;
 
-    Token* block = GetStatement(token_buf);
+    Token* block = GetStatement(program_buf);
     if (!block)
         {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Empty block\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 220); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 221), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 221, __func__, 221);
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Empty block\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 392); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 393), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 393, __func__, 393);
         }
 
     Token* current_statement = block;
     while (current_statement)
         {
-        current_statement->right_child = GetStatement(token_buf);
+        current_statement->right_child = GetStatement(program_buf);
 
         current_statement = current_statement->right_child;
         }
@@ -44612,92 +44963,162 @@ static Token* GetBlock (TokenBuffer* token_buf)
     return block;
     }
 
-static Token* GetStatement (TokenBuffer* token_buf)
+static Token* GetStatement (ProgramBuffer* program_buf)
     {
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 237); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 237); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 237 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_409 {1, __func__};
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 410); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 410); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 410 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 237 "./src/SyntaxAnalysis.cpp"
+# 410 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 237 "./src/SyntaxAnalysis.cpp" 3 4
+# 410 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 237 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 237); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 237), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 237, __func__, 237); } } while (0);;
+# 410 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 410); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 410), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 410, __func__, 410); } } while (0);;
 
-    if (((( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == INSTRUCTION) ? true : false))
-        return GetInstruction(token_buf);
+    if ((((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == INSTRUCTION) ? true : false))
+        return GetInstruction(program_buf);
 
-    if (( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == VARIABLE ) ? true : false ))
-        return GetAssigment(token_buf);
+    if (( ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == VARIABLE ) ? true : false ))
+        return GetAssigment(program_buf);
 
-
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == OPENING_BRACKET)
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == NAME)
         {
-        token_buf->position++;
+        if (DefineName(program_buf) == NOT_DECLARED)
+            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 421), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 421, __func__, 421);
 
-        Token* block = GetBlock(token_buf);
+        return GetStatement(program_buf);
+        }
 
-        if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator != CLOSING_BRACKET)
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == INITIALIZATOR)
+        return VarInitialization(program_buf);
+
+    if(( ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == FUNCTION ) ? true : false ))
+        return GetCall(program_buf);
+
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == OPENING_BRACKET)
+        {
+        (program_buf->position)++;
+
+        Token* block = GetBlock(program_buf);
+
+        if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator != CLOSING_BRACKET)
             {
-            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing closing bracket (token position %d)\n" , token_buf->position); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 255); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 256), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 256, __func__, 256);
+            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing closing bracket (token position %d)\n" , (program_buf->position)); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 441); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 442), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 442, __func__, 442);
             }
 
-        token_buf->position++;
+        (program_buf->position)++;
 
         return block;
         }
 
     return 
-# 264 "./src/SyntaxAnalysis.cpp" 3 4
+# 450 "./src/SyntaxAnalysis.cpp" 3 4
           __null
-# 264 "./src/SyntaxAnalysis.cpp"
+# 450 "./src/SyntaxAnalysis.cpp"
               ;
     }
 
-static Token* GetInstruction (TokenBuffer* token_buf)
+static Token* GetCall (ProgramBuffer* program_buf)
     {
-    FunctionLogger func_269 {2, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 270); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 270); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 270 "./src/SyntaxAnalysis.cpp" 3 4
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 455); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 455); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 455 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 270 "./src/SyntaxAnalysis.cpp"
+# 455 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 270 "./src/SyntaxAnalysis.cpp" 3 4
+# 455 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 270 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 270); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 270), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 270, __func__, 270); } } while (0);;
+# 455 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 455); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 455), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 455, __func__, 455); } } while (0);;
 
-    if (!((( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == INSTRUCTION) ? true : false))
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != FUNCTION)
         {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Ebat, not a instruction token\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 274); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 275), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 275, __func__, 275);
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Not a function name\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 459); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 460), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 460, __func__, 460);
         }
 
-
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_instruction == FOUT)
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != EXPRESSION_CLOSING_BRACKET)
         {
-        Token* fout = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-        token_buf->position++;
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing '('\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 465); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 466), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 466, __func__, 466);
+        }
 
-        if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == OPERATOR && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator == OUT)
+    (program_buf->position)++;
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != EXPRESSION_CLOSING_BRACKET)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing ')'\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 473); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 474), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 474, __func__, 474);
+        }
+
+    (program_buf->position)++;
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != END_OF_STATEMENT)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing ';'\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 481); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 482), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 482, __func__, 482);
+        }
+
+    (program_buf->position)++;
+
+    Token* call = NewToken(CALL, {}, (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ));
+
+
+
+    return call;
+    }
+
+static Token* GetInstruction (ProgramBuffer* program_buf)
+    {
+    FunctionLogger func_496 {2, __func__};
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 497); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 497); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 497 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 497 "./src/SyntaxAnalysis.cpp"
+   , strerror(
+# 497 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 497 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 497); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 497), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 497, __func__, 497); } } while (0);;
+
+    if (!(((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == INSTRUCTION) ? true : false))
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Ebat, not a instruction token\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 501); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 502), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 502, __func__, 502);
+        }
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_instruction == RETURN)
+        return 
+# 506 "./src/SyntaxAnalysis.cpp" 3 4
+              __null
+# 506 "./src/SyntaxAnalysis.cpp"
+                  ;
+
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_instruction == FOUT)
+        {
+        Token* fout = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
+        (program_buf->position)++;
+
+        if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == OPERATOR && (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator == OUT)
             {
-            token_buf->position++;
+            (program_buf->position)++;
 
-            Token* output = GetE(token_buf);
+            Token* output = GetE(program_buf);
 
             fout->left_child = output;
             }
 
-        if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != END_OF_STATEMENT && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator != END_OF_STATEMENT)
+        if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != END_OF_STATEMENT && (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator != END_OF_STATEMENT)
             {
-            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing %c - end of statement after fout\n" , END_OF_STATEMENT); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 295); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 296), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 296, __func__, 296);
+            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing %c - end of statement after fout\n" , END_OF_STATEMENT); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 525); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 526), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 526, __func__, 526);
             }
 
-        Token* statement = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-        token_buf->position++;
+        Token* statement = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
+        (program_buf->position)++;
 
         statement->type = STATEMENT;
         statement->left_child = fout;
@@ -44706,56 +45127,56 @@ static Token* GetInstruction (TokenBuffer* token_buf)
         }
 
 
-    Token* instruction = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    token_buf->position++;
+    Token* instruction = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
+    (program_buf->position)++;
 
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != EXPRESSION_OPENING_BRACKET)
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != EXPRESSION_OPENING_BRACKET)
         {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing openig bracket in instruction \n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 314); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 315), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 315, __func__, 315);
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing openig bracket in instruction \n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 544); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 545), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 545, __func__, 545);
         }
 
-    Token* statement = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
+    Token* statement = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
     statement->type = STATEMENT;
     statement->left_child = instruction;
 
-    token_buf->position++;
+    (program_buf->position)++;
 
-    instruction->left_child = GetE(token_buf);
+    instruction->left_child = GetE(program_buf);
     if (!instruction->left_child)
         {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No condition for instruction\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 327); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 328), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 328, __func__, 328);
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No condition for instruction\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 557); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 558), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 558, __func__, 558);
         }
 
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != EXPRESSION_CLOSING_BRACKET)
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != EXPRESSION_CLOSING_BRACKET)
         {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing closing bracket in instruction\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 333); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 334), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 334, __func__, 334);
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing closing bracket in instruction\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 563); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 564), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 564, __func__, 564);
         }
 
-    token_buf->position++;
+    (program_buf->position)++;
 
 
-    instruction->right_child = GetStatement(token_buf);
+    instruction->right_child = GetStatement(program_buf);
     if (!instruction->right_child)
         {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No condition for instruction (position %d)\n" , token_buf->position); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 343); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 344), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 344, __func__, 344);
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No condition for instruction (position %d)\n" , (program_buf->position)); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 573); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 574), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 574, __func__, 574);
         }
 
 
-    if (instruction->value.t_instruction == IF && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == INSTRUCTION && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_instruction == ELSE)
+    if (instruction->value.t_instruction == IF && (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == INSTRUCTION && (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_instruction == ELSE)
         {
-        Token* else_instr = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-        token_buf->position++;
+        Token* else_instr = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
+        (program_buf->position)++;
 
          else_instr->left_child = instruction->right_child;
-        else_instr->right_child = GetStatement(token_buf);
+        else_instr->right_child = GetStatement(program_buf);
         if (!else_instr->right_child)
             {
-            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No commands for 'else' (position %d)\n" , token_buf->position); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 357); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 358), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 358, __func__, 358);
+            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No commands for 'else' (position %d)\n" , (program_buf->position)); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 587); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 588), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 588, __func__, 588);
             }
 
         instruction->right_child = else_instr;
@@ -44764,58 +45185,58 @@ static Token* GetInstruction (TokenBuffer* token_buf)
     return statement;
     }
 
-static Token* GetAssigment (TokenBuffer* token_buf)
+static Token* GetAssigment (ProgramBuffer* program_buf)
     {
-    FunctionLogger func_369 {2, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 370); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 370); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 370 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_599 {2, __func__};
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 600); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 600); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 600 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 370 "./src/SyntaxAnalysis.cpp"
+# 600 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 370 "./src/SyntaxAnalysis.cpp" 3 4
+# 600 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 370 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 370); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 370), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 370, __func__, 370); } } while (0);;
+# 600 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 600); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 600), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 600, __func__, 600); } } while (0);;
 
-    if (!( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == VARIABLE ) ? true : false ))
+    if (!( ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == VARIABLE ) ? true : false ))
         {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Error %d token must be variable\n" , token_buf->position); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 374); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 375), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 375, __func__, 375);
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Error %d token must be variable\n" , (program_buf->position)); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 604); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 605), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 605, __func__, 605);
         }
 
-    Token* var = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    token_buf->position++;
+    Token* var = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
+    (program_buf->position)++;
 
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != ASSIGMENT && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator != ASSIGMENT)
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != ASSIGMENT && (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator != ASSIGMENT)
         {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Error %d token must be assigment (%c)\n" , token_buf->position, ASSIGMENT); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 383); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 384), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 384, __func__, 384);
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Error %d token must be assigment (%c)\n" , (program_buf->position), ASSIGMENT); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 613); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 614), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 614, __func__, 614);
         }
 
-    Token* assigment = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    token_buf->position++;
+    Token* assigment = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
+    (program_buf->position)++;
 
      assigment->left_child = var;
-    assigment->right_child = GetE(token_buf);
+    assigment->right_child = GetE(program_buf);
 
     if (!assigment->right_child)
         {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Empty assigment!\n" ); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 395); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Empty assigment!\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 625); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
         return 
-# 396 "./src/SyntaxAnalysis.cpp" 3 4
+# 626 "./src/SyntaxAnalysis.cpp" 3 4
               __null
-# 396 "./src/SyntaxAnalysis.cpp"
+# 626 "./src/SyntaxAnalysis.cpp"
                   ;
         }
 
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type != END_OF_STATEMENT && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator != END_OF_STATEMENT)
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != END_OF_STATEMENT && (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator != END_OF_STATEMENT)
         {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing %c - end of statement\n" , END_OF_STATEMENT); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 401); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 402), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 402, __func__, 402);
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing %c - end of statement\n" , END_OF_STATEMENT); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 631); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 632), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 632, __func__, 632);
         }
 
-    Token* statement = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    token_buf->position++;
+    Token* statement = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
+    (program_buf->position)++;
 
     statement->type = STATEMENT;
     statement->left_child = assigment;
@@ -44823,30 +45244,30 @@ static Token* GetAssigment (TokenBuffer* token_buf)
     return statement;
     }
 
-static Token* GetE (TokenBuffer* token_buf)
+static Token* GetE (ProgramBuffer* program_buf)
     {
-    FunctionLogger func_416 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 417); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 417); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 417 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_646 {DEBUG_ALL, __func__};
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 647); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 647); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 647 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 417 "./src/SyntaxAnalysis.cpp"
+# 647 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 417 "./src/SyntaxAnalysis.cpp" 3 4
+# 647 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 417 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 417); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 417), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 417, __func__, 417); } } while (0);;
+# 647 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 647); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 647), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 647, __func__, 647); } } while (0);;
 
-    Token* node = GetT(token_buf);
+    Token* node = GetT(program_buf);
 
     Token* prev_op = node;
-    while (( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == OPERATOR ) ? true : false ) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator == ADD || ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator == SUB))
+    while (( ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == OPERATOR ) ? true : false ) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator == ADD || (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator == SUB))
         {
-        LogToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ), "token");
-        Token* current_op = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-        token_buf->position++;
+        LogToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), "token");
+        Token* current_op = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
+        (program_buf->position)++;
 
          current_op->left_child = prev_op;
-        current_op->right_child = GetT(token_buf);
+        current_op->right_child = GetT(program_buf);
 
         prev_op = current_op;
         }
@@ -44854,31 +45275,31 @@ static Token* GetE (TokenBuffer* token_buf)
     return prev_op;
     }
 
-static Token* GetT (TokenBuffer* token_buf)
+static Token* GetT (ProgramBuffer* program_buf)
     {
-    FunctionLogger func_439 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 440); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 440); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 440 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_669 {DEBUG_ALL, __func__};
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 670); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 670); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 670 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 440 "./src/SyntaxAnalysis.cpp"
+# 670 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 440 "./src/SyntaxAnalysis.cpp" 3 4
+# 670 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 440 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 440); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 440), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 440, __func__, 440); } } while (0);;
+# 670 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 670); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 670), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 670, __func__, 670); } } while (0);;
 
-    Token* node = GetPower(token_buf);
+    Token* node = GetPower(program_buf);
     LogToken(node, "node");
 
     Token* prev_op = node;
-    while (( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == OPERATOR ) ? true : false ) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator == MUL || ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator == DIV))
+    while (( ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == OPERATOR ) ? true : false ) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator == MUL || (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator == DIV))
         {
-        LogToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ), "token");
-        Token* current_op = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-        token_buf->position++;
+        LogToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), "token");
+        Token* current_op = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
+        (program_buf->position)++;
 
          current_op->left_child = prev_op;
-        current_op->right_child = GetPower(token_buf);
+        current_op->right_child = GetPower(program_buf);
 
         prev_op = current_op;
         }
@@ -44886,30 +45307,30 @@ static Token* GetT (TokenBuffer* token_buf)
     return prev_op;
     }
 
-Token* GetPower (TokenBuffer* token_buf)
+Token* GetPower (ProgramBuffer* program_buf)
     {
-    FunctionLogger func_463 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 464); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 464); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 464 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_693 {DEBUG_ALL, __func__};
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 694); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 694); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 694 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 464 "./src/SyntaxAnalysis.cpp"
+# 694 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 464 "./src/SyntaxAnalysis.cpp" 3 4
+# 694 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 464 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 464); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 464), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 464, __func__, 464); } } while (0);;
+# 694 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 694); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 694), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 694, __func__, 694); } } while (0);;
 
-    Token* node = GetP(token_buf);
+    Token* node = GetP(program_buf);
 
     Token* prev_op = node;
-    while (( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == OPERATOR ) ? true : false ) && ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator == POW)
+    while (( ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == OPERATOR ) ? true : false ) && (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator == POW)
         {
-        LogToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr ), "token");
-        Token* current_op = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-        token_buf->position++;
+        LogToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), "token");
+        Token* current_op = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
+        (program_buf->position)++;
 
          current_op->left_child = prev_op;
-        current_op->right_child = GetP(token_buf);
+        current_op->right_child = GetP(program_buf);
 
         prev_op = current_op;
         }
@@ -44917,61 +45338,217 @@ Token* GetPower (TokenBuffer* token_buf)
     return prev_op;
     }
 
-static Token* GetP (TokenBuffer* token_buf)
+static Token* GetP (ProgramBuffer* program_buf)
     {
-    FunctionLogger func_486 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 487); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 487); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 487 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_716 {DEBUG_ALL, __func__};
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 717); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 717); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 717 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 487 "./src/SyntaxAnalysis.cpp"
+# 717 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 487 "./src/SyntaxAnalysis.cpp" 3 4
+# 717 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 487 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 487); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 487), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 487, __func__, 487); } } while (0);;
+# 717 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 717); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 717), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 717, __func__, 717); } } while (0);;
 
-    if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == EXPRESSION_OPENING_BRACKET)
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == EXPRESSION_OPENING_BRACKET)
         {
-        token_buf->position++;
+        (program_buf->position)++;
 
-        Token* expression = GetE(token_buf);
+        Token* expression = GetE(program_buf);
 
-        if (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->value.t_operator != EXPRESSION_CLOSING_BRACKET)
+        if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator != EXPRESSION_CLOSING_BRACKET)
             {
-            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing closing bracket (token position %d)\n" , token_buf->position); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 497); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 498), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 498, __func__, 498);
+            do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing closing bracket (token position %d)\n" , (program_buf->position)); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 727); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+            return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 728), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 728, __func__, 728);
             }
 
-        token_buf->position++;
+        (program_buf->position)++;
 
         return expression;
         }
 
-    return GetN(token_buf);
+    return GetN(program_buf);
     }
 
-static Token* GetN (TokenBuffer* token_buf)
+static Token* GetN (ProgramBuffer* program_buf)
     {
-    FunctionLogger func_511 {DEBUG_ALL, __func__};
-    do { if (!(token_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "token_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 512); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 512); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 512 "./src/SyntaxAnalysis.cpp" 3 4
+    FunctionLogger func_741 {DEBUG_ALL, __func__};
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 742); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 742); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 742 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 512 "./src/SyntaxAnalysis.cpp"
+# 742 "./src/SyntaxAnalysis.cpp"
    , strerror(
-# 512 "./src/SyntaxAnalysis.cpp" 3 4
+# 742 "./src/SyntaxAnalysis.cpp" 3 4
    14
-# 512 "./src/SyntaxAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 512); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 512), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 512, __func__, 512); } } while (0);;
+# 742 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 742); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 742), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 742, __func__, 742); } } while (0);;
 
-    if (!( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == CONSTANT ) ? true : false ) && !( (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )) && (( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )->type == VARIABLE ) ? true : false ))
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == NAME)
+        DefineName(program_buf);
+
+    if (!( ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == CONSTANT ) ? true : false ) && !( ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == VARIABLE ) ? true : false ))
         {
-        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Cringe, this is not variable or constant node =( (token position %d)\n" , token_buf->position); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 516); PrintToken(( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr )); } while(0);;
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 517), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 517, __func__, 517);
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Cringe, this is not variable or constant node =(\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 749); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 750), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 750, __func__, 750);
         }
 
-    Token* result = ( (token_buf->position < token_buf->size) ? (token_buf->arr + token_buf->position) : nullptr );
-    token_buf->position++;
+    Token* result = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
+    (program_buf->position)++;
 
     LogToken(result, "result");
     return result;
+    }
+
+static int DefineName(ProgramBuffer* program_buf)
+    {
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 762); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 762); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 762 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 762 "./src/SyntaxAnalysis.cpp"
+   , strerror(
+# 762 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 762 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 762); system("powerof"); return NOT_DECLARED; } } while (0);;
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != NAME)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Not a name\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 766); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return NOT_DECLARED;
+        }
+
+
+    if (IsFuncLabel ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_name_id, ((program_buf)->global_func)))
+        {
+        (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type = FUNCTION;
+        return FUNCTION;
+        }
+
+    if (GetVarLabel ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_name_id, ((program_buf)->var_tabels)))
+        {
+        (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type = VARIABLE;
+        return VARIABLE;
+        }
+
+    do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("%s wasn't decalred\n" , ((program_buf->program)->string_arr)[(((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_name_id]); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 783); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+
+    return NOT_DECLARED;
+    }
+
+static FuncLabel* MakeFuncLabel(ProgramBuffer* program_buf)
+    {
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 790); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 790); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 790 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 790 "./src/SyntaxAnalysis.cpp"
+   , strerror(
+# 790 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 790 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 790); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 790), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 790, __func__, 790); } } while (0);;
+
+    FuncLabel* label = (FuncLabel*) Logger::getInstance().CAL_LOG (1, sizeof(label[0]), "./src/SyntaxAnalysis.cpp", __func__, 792);;
+    if (!label) return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 793), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 793, __func__, 793);
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != FUNCTION_RET_TYPE)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No return type in function\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 797); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 798), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 798, __func__, 798);
+        }
+
+    label->ret_type = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_function_ret_type;
+    (program_buf->position)++;
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != NAME)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No function name\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 806); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 807), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 807, __func__, 807);
+        }
+
+    label->name = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_name_id;
+    (program_buf->position)++;
+
+
+    if((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != EXPRESSION_OPENING_BRACKET)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing '(' in function prototype\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 816); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 817), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 817, __func__, 817);
+        }
+    (program_buf->position)++;
+
+
+    if((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != EXPRESSION_CLOSING_BRACKET)
+       {
+       do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing ')' in function \n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 824); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+       return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 825), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 825, __func__, 825);
+       }
+    (program_buf->position)++;
+
+    return label;
+    }
+
+static VarLabel* MakeVarLabel(ProgramBuffer* program_buf)
+    {
+    FunctionLogger func_834 {1, __func__};
+    do { if (!(program_buf)) { Logger::getInstance().log("Condition (%s) is false\n", "program_buf"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program_buf"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 835); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 835); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 835 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 835 "./src/SyntaxAnalysis.cpp"
+   , strerror(
+# 835 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 835 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 835); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 835), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 835, __func__, 835); } } while (0);;
+
+    VarLabel* label = (VarLabel*) Logger::getInstance().CAL_LOG (1, sizeof(label[0]), "./src/SyntaxAnalysis.cpp", __func__, 837);;
+    if (!label) return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 838), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 838, __func__, 838);
+
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != NAME)
+        {
+        do { printf("\033[91m" "Syntax ERORR\n""\033[0m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Ebat, not a name for variable initialization\n" , ((program_buf->program)->string_arr)[(((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_name_id]); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 842); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 843), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 843, __func__, 843);
+        }
+
+    label->name = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_name_id;
+
+    return label;
+    }
+
+static Token* FuncLabelToTokens (FuncLabel* label)
+    {
+    do { if (!(label)) { Logger::getInstance().log("Condition (%s) is false\n", "label"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "label"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 853); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 853); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 853 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 853 "./src/SyntaxAnalysis.cpp"
+   , strerror(
+# 853 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 853 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 853); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 853), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 853, __func__, 853); } } while (0);;
+
+    Token* name = NewToken (NAME, {.t_name_id = label->name});
+
+    name->right_child = NewToken (FUNCTION_RET_TYPE, {.t_function_ret_type = label->ret_type});
+# 866 "./src/SyntaxAnalysis.cpp"
+    return name;
+    }
+
+static VarLabel* GetVarLabel (int name_id, SuperStack* var_tabels)
+    {
+    do { if (!(var_tabels)) { Logger::getInstance().log("Condition (%s) is false\n", "var_tabels"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "var_tabels"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 871); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/SyntaxAnalysis.cpp", 871); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 871 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 871 "./src/SyntaxAnalysis.cpp"
+   , strerror(
+# 871 "./src/SyntaxAnalysis.cpp" 3 4
+   14
+# 871 "./src/SyntaxAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 871); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 871), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 871, __func__, 871); } } while (0);;
+
+    VarTabel* tabel = SStop (var_tabels );
+
+
+    VarLabel* temp = IsVarLabel(name_id, tabel);
+    return temp;
     }

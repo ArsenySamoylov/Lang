@@ -5,7 +5,7 @@ enum TokenType
     STATEMENT,
     // EXPRESSION,
     INSTRUCTION,
-    // SPECIFICATOR,
+    
     INITIALIZATOR,
     
     FUNCTION_RET_TYPE,
@@ -20,6 +20,8 @@ enum TokenType
     CONSTANT,
     
     FUNCTION, 
+
+    CALL,
 
     ASSIGMENT = '=', 
 
@@ -43,18 +45,14 @@ enum INSTUCTIONS_NUM
     WHILE = 2,
     FOUT  = 3,
     RETURN = 4,
-
-    NOT_A_INSTRUCTION = -666,
     };
 
 const int NUMBER_OF_INITIALIZATORS = 2;
 const char *const INITIALIZATORS[] = {"func", "var"};
 enum INITIALIZATORS_NUM
     {
-    FUNC = 0,
-    VAR  = 1,
-
-    NOT_A_INITIALIZATOR = -111,
+    FUNCTION_INITIALIZATOR = 0,
+    VARIABLE_INITIALIZATOR  = 1,
     };
 
 const int NUMBER_OF_FUNCTION_RET_TYPES = 2;
@@ -63,8 +61,6 @@ enum FUNCTION_RET_TYPES_NUM
     {
     DOUBLE,
     VOID,
-
-    NOT_A_RET_TYPE = -333,
     };
 
 const char OPERATORS[] = "+-/*^<<";

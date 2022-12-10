@@ -1,27 +1,25 @@
-func void hellowold();
-
 var x = 15;
-x = 64;
 
-double main
+double main()
     {
-    if (x)
+    if (45)
         {
         x = 45;
-        x = x - 10;
+        x = 10;
         }
     else
         x = 20;
 
-    fout << x; # 
+    fout << x; 
 
     x = 1 * (4 + 5);
 
     return x;
     }
 
+func void hellowold(); 
 void helloworld()
-    {
+   {
     fout << 101;
-    return;
+    return ;
     }

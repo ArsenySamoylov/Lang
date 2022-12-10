@@ -5,18 +5,26 @@
 
 #include "Grammar.h"
 #include "DSL.h"
-#include "LangUtils.h"
-#include "LogMacroses.h"
 #include "my_buffer.h"
+#include "LangUtils.h"
+
+#include "LogMacroses.h"
+
 #include "EasyDebug.h"
 #include "SomeStuff.h"
 
-static int GetTokenValue (TokenValue* val, Buffer* buf);
+static int GetTokenValue (TokenValue* val, Buffer* buf, const char** stc_code_ptr);
 static int BufferGetWord (Buffer*     buf, char*   word_buffer);
 
-static int IsInstruction     (char* str);
-static int IsInitializator   (char* str);
-static int IsFunctionRetType (char* str);
+static int IsInstruction     (const char* str);
+static int IsInitializator   (const char* str);
+static int IsFunctionRetType (const char* str);
+static int IsName            (const char* str, const char** string_arr, int suze_of_string_arr);
+
+const int NOT_A_NAME          = -555;
+const int NOT_A_INSTRUCTION   = -666;
+const int NOT_A_INITIALIZATOR = -111;
+const int  NOT_A_RET_TYPE     = -333;
 
 #pragma GCC diagnostic ignored "-Wconversion"
 #pragma GCC diagnostic ignored "-Wsign-conversion"
@@ -32,15 +40,17 @@ static int IsFunctionRetType (char* str);
         logf("");                                                   \
         LOG__.log_dup_console(format __VA_OPT__(,) __VA_ARGS__);    \
                                                                     \
-        printf("In ");                                              \
+        printf("In: " purplecolor);                                 \
         printl(buf->str, '\n');                                     \
+        printf(resetconsole "\n");                                  \
+        printf("%s:%d\n", __FILE__, __LINE__);                      \
         }                                                           \
     while(0);
 
-int Tokenizer (Programm* programm, const char* buffer)
+int Tokenizer (Program* program, const char* buffer)
     {
     $log(1)
-    assertlog (programm, EFAULT, return LFAILURE);
+    assertlog (program, EFAULT, return LFAILURE);
     assertlog (buffer,   EFAULT, return LFAILURE);
 
     Token* arr = (Token*) CALLOC (START_NUMBER_OF_TOKENS, sizeof(arr[0]));
@@ -68,6 +78,18 @@ int Tokenizer (Programm* programm, const char* buffer)
 
     while (BufferLook(buf) != '\0')
         {
+        // skip comments
+        if (BufferLook(buf) == COMMENT)
+            {
+            int n = 0;
+            sscanf(buf->str, "%*[^\n]%n", &n);
+
+            buf->str += n; 
+            buf->str = SkipSpaces(buf->str);
+
+            continue;            
+            }
+
         // check for resize
         if (number_of_tokens == size)
             {
@@ -95,38 +117,51 @@ int Tokenizer (Programm* programm, const char* buffer)
             string_arr = xyu;
             }
         //
-
-        TYPE(token) = GetTokenValue (&VALUE(token), buf);
+        
+        TYPE(token) = GetTokenValue (&VALUE(token), buf, &(token->ptr_to_src_code));
         if (TYPE(token) == UNKNOWN_TYPE)
             {
             report_lexical_error("Unknown type\n");
 
             KILL(arr);
             KILL(string_arr);
+            
             return LFAILURE;
             }
 
         if (TYPE(token) == NAME)
             {
-            current_str = strdup(NAME(token));
-            number_of_strings++;
+            int temp = IsName(NAME_PTR(token), string_arr, number_of_strings);
+            
+            // add new name
+            if (temp == NOT_A_NAME)
+                {
+                current_str = strdup(NAME_PTR(token));
+
+                // printf("Lexical test: %s\n test 2: %s\n test 3: %p\n", current_str, NAME_PTR(token), (void*) NAME_PTR(token));
+
+                NAME_ID(token) = number_of_strings;
+                number_of_strings++;
+                }
+            else
+                NAME_ID(token) = temp;
             }
 
         number_of_tokens++;
         }
         
-    programm->token_arr = (Token*) RECALLOC (arr, number_of_tokens * sizeof(arr[0]));
-    programm->number_of_tokens = number_of_tokens;
+    program->token_arr = (Token*) RECALLOC (arr, number_of_tokens * sizeof(arr[0]));
+    program->number_of_tokens = number_of_tokens;
     
-    programm->string_arr = (const char**) RECALLOC (string_arr, number_of_strings * sizeof(string_arr[0]));
-    programm->number_of_strings = number_of_strings;
+    program->string_arr = (const char**) RECALLOC (string_arr, number_of_strings * sizeof(string_arr[0]));
+    program->number_of_strings = number_of_strings;
 
     // for log
     $li(number_of_tokens)
     for (int i = 0; i < number_of_tokens; i++)
         {
         $li(i)
-        $LOG_TOKEN(arr + i)
+        $LOG_TOKEN(program->token_arr + i)
         }
     //
     return SUCCESS; 
@@ -135,27 +170,17 @@ int Tokenizer (Programm* programm, const char* buffer)
 #undef token
 #undef current_str
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-static int GetTokenValue (TokenValue* val, Buffer* buf)
+static int GetTokenValue (TokenValue* val, Buffer* buf, const char** src_code_ptr)
     {
     $log(1)
     assertlog(val, EFAULT, return UNKNOWN_TYPE);
     assertlog(buf, EFAULT, return UNKNOWN_TYPE);
 
-    buf->str  =  SkipSpaces(buf->str);
+    buf->str  = SkipSpaces(buf->str);
     char temp = BufferLook(buf);
     $lc(temp)
     
-    if (temp == COMMENT)
-            {
-            int n = 0;
-            sscanf(buf->str, "%*[^\n]%n", &n);
-
-            buf->str += n; // may be + 1 ??
-
-            temp = BufferLook(buf);
-            $lc(temp)
-            }
-
+    *src_code_ptr = buf->str;
 
     if (temp == ASSIGMENT)
             {
@@ -196,8 +221,10 @@ static int GetTokenValue (TokenValue* val, Buffer* buf)
     // NAME, INSTRUCTION, INITIALIZATOR or RET_TYPE
     if (isalpha(temp))
         {
-        char word[MAX_WORD_LENGTH] = "";
+        static char word[MAX_WORD_LENGTH] = "";
         BufferGetWord (buf, word);
+        // printf("Word: %s\n", word);
+
 
         int instruction = IsInstruction(word);
         if (instruction != NOT_A_INSTRUCTION)
@@ -224,7 +251,8 @@ static int GetTokenValue (TokenValue* val, Buffer* buf)
             }
 
 
-        val->t_name = word;
+        val->t_name_ptr = word;
+        // printf("Word: %s\n Name ptr: %s\n", word, val->t_name_ptr);
 
         return NAME;
         }
@@ -269,7 +297,7 @@ static int BufferGetWord (Buffer* buf, char* word_buffer)
     return n;
     }
 
-static int IsInstruction (char* str)
+static int IsInstruction (const char* str)
     {
     assertlog(str, EFAULT, return NOT_A_INSTRUCTION)
 
@@ -280,7 +308,7 @@ static int IsInstruction (char* str)
     return NOT_A_INSTRUCTION;
     }
 
-static int IsInitializator (char* str)
+static int IsInitializator (const char* str)
     {
     assertlog(str, EFAULT, return NOT_A_INITIALIZATOR)
 
@@ -291,7 +319,7 @@ static int IsInitializator (char* str)
     return NOT_A_INITIALIZATOR;
     }
 
-static int IsFunctionRetType (char* str)
+static int IsFunctionRetType (const char* str)
     {
     assertlog(str, EFAULT, return NOT_A_RET_TYPE)
 
@@ -300,4 +328,16 @@ static int IsFunctionRetType (char* str)
             return i;
     
     return NOT_A_RET_TYPE;
+    }
+
+static int IsName (const char* str, const char** string_arr, int size_of_string_arr)
+    {
+    assertlog(str, EFAULT, return NOT_A_NAME);
+    assertlog(string_arr, EFAULT, return NOT_A_NAME);
+
+    for (int i = 0; i < size_of_string_arr; i++)
+        if (!strcmp(str, *(string_arr + i)))
+            return i;
+
+    return NOT_A_NAME;
     }

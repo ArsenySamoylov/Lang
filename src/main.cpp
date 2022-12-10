@@ -24,9 +24,40 @@
 // num       : num
 // initialization : VAR
 
-void CloseProgramm(Programm* );
+void CloseProgram(Program* );
+
+int ProgramCtor(Program* program);
+int ProgramCtor(Program* program)
+    {
+    assertlog(program, EFAULT, return LFAILURE)
+
+    program->token_arr        = NULL;
+    program->number_of_tokens = 0;
+
+    // program->main_processes             = NULL;
+    // program->number_of_main_processes   = 0;
+
+    program->string_arr        = NULL;
+    program->number_of_strings = 0;
+
+    // program->global_vars = {};
+
+    // program->func_tabel = {};
+    // FuncTabelCtor(&(program->global_func_tabel));
+
+    return SUCCESS;
+    }
+
+void CloseProgram(Program* program)
+    {
+    assertlog(program, EFAULT, return);
+    TODO("сделаю потом");
+
+    return;
+    }
 
 #pragma GCC diagnostic ignored "-Wunused-variable"
+
 int main()
     {
     $log(RELEASE)
@@ -36,37 +67,39 @@ int main()
     ////////// FRONT END ///////////////////////    
     char* src_code = GetSrcFile (path);
     
-    Programm programm{};
+    Program program{};
+    ProgramCtor(&program);
 
-    int status = Tokenizer(&programm, src_code);
-    KILL(src_code); 
+    int run_time_status = Tokenizer(&program, src_code);
+    
 
-    if (status != SUCCESS)
+    if (run_time_status != SUCCESS)
         {
         printf(redcolor "Can't tokenize file " resetconsole "%s\n", path);
         return LFAILURE;
         }
 
     //////// MIDDLE END ////////////////////////
-    status |= GetG(&programm);
-    if (status != SUCCESS)
+    run_time_status |= GetG(&program);
+    if (run_time_status != SUCCESS)
         {
-        CloseProgramm(&programm);
+        CloseProgram(&program);
         return LFAILURE;
         }
     printf("to do grapphvis\n");
     // MakeImg("kek", TO_DO); 
     /////// BACK   END /////////////////////////
-    // status |= TranslateToAsm (root, "test.ars");
-    if (status != SUCCESS)
+    // run_time_status |= TranslateToAsm (root, "test.ars");
+    if (run_time_status != SUCCESS)
         {
-        CloseProgramm(&programm);
+        CloseProgram(&program);
         return LFAILURE;
         }
 
     // FINISH
     // KILL(token_arr);
-    CloseProgramm(&programm);
-
+    CloseProgram(&program);
+    KILL(src_code); // becuase token storres pointer to original code
+    
     return 0;
     }

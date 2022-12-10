@@ -11,21 +11,21 @@ enum VarType
 
 enum FuncType
     {
+    NOT_DECLARED,
     DECLARED,
-    NOT_DECLEARED,
     INITIALIZED,
     };
 
 struct VarLabel
     {
     int name;
-    int mem_type; // register, RAM or Local 
-    int address;
     };
 
-struct VarLabelTabel
+struct VarTabel
     {
     VarLabel** label_arr;
+    int arr_size;
+
     int number_of_labels;
     };
 
@@ -34,19 +34,30 @@ struct FuncLabel
     int name;
     int ret_type;
     int body_status;
-
-    VarLabelTabel local_args;
     int number_of_arguments;
+
+    VarTabel local_args;
     };
 
-struct FuncLabelTabel
+struct FuncTabel
     {
     FuncLabel** label_arr;
+    int arr_size;
+    
     int number_of_labels;
-
-    VarLabelTabel* local_var;
     };
 
-FuncLabel* GetFunctLabel (Token* token, FuncLabelTabel* func_tabel);
+int FuncTabelCtor (FuncTabel* tabel);
+FuncLabel* IsFuncLabel (int name_id, FuncTabel* func_tabel);
 
-int AddFuncLabel  (const char* name, int return_type, int body_status, FuncLabelTabel* func_tabel); 
+int AddFuncLabel (int name_id, int return_type, int body_status, FuncTabel* func_tabel); 
+int AddFuncLabel (FuncLabel* label, FuncTabel* tabel);
+
+int CompareFuncLabels (FuncLabel* label1, FuncLabel* label2);
+
+
+////////////////////////////////////////////////////////
+int VarTabelCtor (VarTabel* tabel);
+VarLabel* IsVarLabel (int name_id, VarTabel* tabel);
+
+int AddVarLabel (VarLabel* label, VarTabel* tabel);
