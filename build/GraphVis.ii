@@ -3078,36 +3078,32 @@ extern "C++" const char *basename (const char *__filename)
 # 3 "./headers/Grammar.h"
 enum TokenType
     {
-    STATEMENT,
 
-    INSTRUCTION,
 
-    INITIALIZATOR,
-
-    FUNCTION_RET_TYPE,
-
-    OPERATOR,
+# 1 "./headers/TokenTypes.h" 1
 
 
 
-    NAME,
+STATEMENT = 1,
+INSTRUCTION = 2,
+INITIALIZATOR = 3,
+FUNCTION_RET_TYPE = 4,
+OPERATOR = 5,
 
-    VARIABLE,
-    CONSTANT,
+NAME = 6,
+VARIABLE = 7,
+CONSTANT = 8,
+FUNCTION = 9,
+CALL = 10,
 
-    FUNCTION,
+ASSIGMENT = '=',
+BLOCK_OPENING_BRACKET = '{',
+BLOCK_CLOSING_BRACKET = '}',
+EXPRESSION_OPENING_BRACKET = '(',
+EXPRESSION_CLOSING_BRACKET = ')',
+END_OF_STATEMENT = ';',
+# 8 "./headers/Grammar.h" 2
 
-    CALL,
-
-    ASSIGMENT = '=',
-
-    OPENING_BRACKET = '{',
-    CLOSING_BRACKET = '}',
-
-    EXPRESSION_OPENING_BRACKET = '(',
-    EXPRESSION_CLOSING_BRACKET = ')',
-
-    END_OF_STATEMENT = ';',
 
     UNKNOWN_TYPE = -999,
     };
@@ -44357,7 +44353,7 @@ int SYSTEM(const char* format, ...);
 
 void PrintToken (const Token *const token, const char** string_arr);
 
-void LogToken (const Token *const token, const char* name);
+void LogToken (const Token *const token, const char* name, const char** STRING_ARR);
 # 9 "./src/GraphVis.cpp" 2
 # 1 "../ATC/Debug/EasyDebug.h" 1
 
@@ -44622,62 +44618,47 @@ static void PrintNode (const Token *const node)
    14
 # 155 "./src/GraphVis.cpp"
    )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 155); system("powerof"); abort(); } } while (0);;
-    LogToken(node, "node");
+    LogToken(node, "node", STRING_ARR);
 
     char def_data[333] = "";
 
-
     switch (node->type)
         {
-        case STATEMENT:
-            sprintf(def_data, "STATEMENT   | {%c} | {%p}", node->value.t_operator, (void*) node );
-            break;
-    case INSTRUCTION:
-            sprintf(def_data, "INSTRUCTION | {'%s'} ", INSTRUCTIONS[node->value.t_instruction]);
-            break;
-    case INITIALIZATOR:
-            sprintf(def_data, "INITIALIZATOR | {'%s'}\n\n", INITIALIZATORS[node->value.t_instruction]);
-            break;
-    case FUNCTION_RET_TYPE:
-            sprintf(def_data, "FUNCTION RET TYPE | {'%s'}\n\n", FUNCTION_RET_TYPES[node->value.t_instruction]);
-            break;
-   case NAME:
-            sprintf(def_data, "NAME | {%s}\n\n", STRING_ARR[node->value.t_name_id]);
-            break;
-    case EXPRESSION_OPENING_BRACKET:
-            sprintf(def_data, "EXPRESSION OPENING BRACKET | {%c}", node->value.t_operator);
-            break;
-    case EXPRESSION_CLOSING_BRACKET:
-            sprintf(def_data, "EXPRESSION CLOSING BRACKET | {%c}", node->value.t_operator);
-            break;
-    case OPENING_BRACKET:
-            sprintf(def_data, "OPENING BRACKET | {%c}", node->value.t_operator);
-            break;
-    case CLOSING_BRACKET:
-            sprintf(def_data, "CLOSING BRACKET | {%c}", node->value.t_operator);
-            break;
-    case ASSIGMENT:
-            sprintf(def_data, "ASSIGMENT | {%c}", node->value.t_operator);
-            break;
-    case END_OF_STATEMENT:
-            sprintf(def_data, "END_OF_STATEMENT | {%c} | {%p}", node->value.t_operator, (void*)node);
-            break;
 
 
-        case OPERATOR: sprintf(def_data, "Operator | {%c} | {%p}", node->value.t_operator, (void*) node);
-                       break;
 
-        case VARIABLE: sprintf(def_data, "Variable | {%s} | {%p}", STRING_ARR[node->value.t_name_id], (void*) node);
-                       break;
 
-         case FUNCTION: sprintf(def_data, "FUNCTION | {%c} | {%p}", node->value.t_operator, (void*) node);
-                       break;
-         case CALL: sprintf(def_data, "CALL ");
-                       break;
 
-        case CONSTANT: sprintf(def_data, "Constant | {%lg} | {%p}", node->value.t_constant, (void*) node);
-                       break;
-        default: break;
+
+# 1 "./headers/TokenTypes.h" 1
+
+
+
+case STATEMENT: sprintf(def_data, "STATEMENT" " | {" "%c" "}", node->value.t_operator); break;
+case INSTRUCTION: sprintf(def_data, "INSTRUCTION" " | {" "%s" "}", INSTRUCTIONS[node->value.t_instruction]); break;
+case INITIALIZATOR: sprintf(def_data, "INITIALIZATOR" " | {" "%s" "}", INITIALIZATORS[node->value.t_initializator]); break;
+case FUNCTION_RET_TYPE: sprintf(def_data, "FUNCTION_RET_TYPE" " | {" "%s" "}", FUNCTION_RET_TYPES[node->value.t_function_ret_type]); break;
+case OPERATOR: sprintf(def_data, "OPERATOR" " | {" "%c" "}", node->value.t_operator); break;
+
+case NAME: sprintf(def_data, "NAME" " | {" "%s" "}", STRING_ARR[node->value.t_name_id]); break;
+case VARIABLE: sprintf(def_data, "VARIABLE" " | {" "%s" "}", STRING_ARR[node->value.t_name_id]); break;
+case CONSTANT: sprintf(def_data, "CONSTANT" " | {" "%lg" "}", node->value.t_constant); break;
+case FUNCTION: sprintf(def_data, "FUNCTION" " | {" "%c" "}", node->value.t_operator); break;
+case CALL: sprintf(def_data, "CALL" " | {" "%s" "}", " "); break;
+
+case ASSIGMENT: sprintf(def_data, "ASSIGMENT" " | {" "%c" "}", node->value.t_operator); break;
+case BLOCK_OPENING_BRACKET: sprintf(def_data, "BLOCK_OPENING_BRACKET" " | {" "%c" "}", node->value.t_operator); break;
+case BLOCK_CLOSING_BRACKET: sprintf(def_data, "BLOCK_CLOSING_BRACKET" " | {" "%c" "}", node->value.t_operator); break;
+case EXPRESSION_OPENING_BRACKET: sprintf(def_data, "EXPRESSION_OPENING_BRACKET" " | {" "%c" "}", node->value.t_operator); break;
+case EXPRESSION_CLOSING_BRACKET: sprintf(def_data, "EXPRESSION_CLOSING_BRACKET" " | {" "%c" "}", node->value.t_operator); break;
+case END_OF_STATEMENT: sprintf(def_data, "END_OF_STATEMENT" " | {" "%c" "}", node->value.t_operator); break;
+# 169 "./src/GraphVis.cpp" 2
+
+
+
+
+        default: sprintf(def_data, "UNCKNOW_NAME\n");
+                 break;
         }
 
     DotPrint ("\t\tnode_%p [shape = Mrecord label =  \"%s\"]\n", (void*) node, def_data);

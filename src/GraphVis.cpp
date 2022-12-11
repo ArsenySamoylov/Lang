@@ -153,62 +153,25 @@ static void PrintNode (const Token *const node)
     {
     $log(1) 
     assertlog (node, EFAULT, abort());
-    $LOG_TOKEN(node)
+    $LOG_TOKEN(node, STRING_ARR)
 
     char def_data[333]   = "";
 
-
     switch (node->type)
         {
-        case STATEMENT:
-            sprintf(def_data, "STATEMENT   | {%c} | {%p}", OP(node), (void*) node );
-            break; 
-    case INSTRUCTION: 
-            sprintf(def_data, "INSTRUCTION | {'%s'} ",  INSTRUCTIONS[node->value.t_instruction]);
-            break;
-    case INITIALIZATOR: 
-            sprintf(def_data, "INITIALIZATOR | {'%s'}\n\n",  INITIALIZATORS[node->value.t_instruction]);
-            break;     
-    case FUNCTION_RET_TYPE: 
-            sprintf(def_data, "FUNCTION RET TYPE | {'%s'}\n\n",  FUNCTION_RET_TYPES[node->value.t_instruction]);
-            break;            
-   case NAME: 
-            sprintf(def_data, "NAME | {%s}\n\n",  STRING_ARR[NAME_ID(node)]);
-            break;               
-    case EXPRESSION_OPENING_BRACKET: 
-            sprintf(def_data, "EXPRESSION OPENING BRACKET | {%c}",  OP(node));
-            break;                                                     
-    case EXPRESSION_CLOSING_BRACKET: 
-            sprintf(def_data, "EXPRESSION CLOSING BRACKET | {%c}",  OP(node));
-            break;                                                                                    
-    case OPENING_BRACKET: 
-            sprintf(def_data, "OPENING BRACKET | {%c}",  OP(node));
-            break;                                                     
-    case CLOSING_BRACKET: 
-            sprintf(def_data, "CLOSING BRACKET | {%c}",  OP(node));
-            break;                                                       
-    case ASSIGMENT:      
-            sprintf(def_data, "ASSIGMENT | {%c}",  OP(node));
-            break;                                                       
-    case END_OF_STATEMENT: 
-            sprintf(def_data, "END_OF_STATEMENT | {%c} | {%p}",  OP(node), (void*)node);
-            break;                                   
+        #define TOKEN node
+        #define TOKEN_TYPE(name, val, specificator, ...)                            \
+            case name:                                                              \
+                sprintf(def_data, #name " | {" specificator "}", __VA_ARGS__);      \
+                break;
 
+        #include "TokenTypes.h"
 
-        case OPERATOR: sprintf(def_data, "Operator | {%c} | {%p}", node->value.t_operator, (void*) node);
-                       break;
+        #undef TOKEN
+        #undef TOKEN_TYPE
 
-        case VARIABLE: sprintf(def_data, "Variable | {%s} | {%p}", STRING_ARR[node->value.t_name_id], (void*) node);
-                       break;
-
-         case FUNCTION: sprintf(def_data, "FUNCTION | {%c} | {%p}", OP(node), (void*) node);
-                       break;
-         case CALL: sprintf(def_data, "CALL ");
-                       break;
-
-        case CONSTANT: sprintf(def_data, "Constant | {%lg} | {%p}", node->value.t_constant, (void*) node);
-                       break;
-        default: break;
+        default: sprintf(def_data, "UNCKNOW_NAME\n");
+                 break;
         }
 
     DotPrint ("\t\tnode_%p [shape = Mrecord label =  \"%s\"]\n", (void*) node, def_data);

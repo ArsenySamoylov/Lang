@@ -1,12 +1,12 @@
-Sun Dec 11 21:54:06 2022
+Sun Dec 11 23:14:01 2022
 
 main::
   {
-  LOG CALLOC:     {0x555fda434310} = calloc (308, 1 = 308) from GetSrcFile:27, at ../ATC/Buffer/my_buffer.cpp:27
+  LOG CALLOC:     {0x564daeaec310} = calloc (308, 1 = 308) from GetSrcFile:27, at ../ATC/Buffer/my_buffer.cpp:27
   Tokenizer::
     {
-    LOG CALLOC:     {0x555fda434450} = calloc (20, 40 = 800) from Tokenizer:56, at ./src/LexicalAnalysis.cpp:56
-    LOG CALLOC:     {0x555fda434780} = calloc (16, 8 = 128) from Tokenizer:62, at ./src/LexicalAnalysis.cpp:62
+    LOG CALLOC:     {0x564daeaec450} = calloc (20, 40 = 800) from Tokenizer:56, at ./src/LexicalAnalysis.cpp:56
+    LOG CALLOC:     {0x564daeaec780} = calloc (16, 8 = 128) from Tokenizer:62, at ./src/LexicalAnalysis.cpp:62
     BufferCtor::
       {
 
@@ -113,7 +113,7 @@ main::
       	temp: 'y'
       }
 
-    LOG REALLOC:     {0x555fda434450} -> {0x555fda434890} = realloc (new size 1600, old size 808) from Tokenizer:97, at ./src/LexicalAnalysis.cpp:97
+    LOG REALLOC:     {0x564daeaec450} -> {0x564daeaec890} = realloc (new size 1600, old size 808) from Tokenizer:97, at ./src/LexicalAnalysis.cpp:97
     GetTokenValue::
       {
       	temp: '='
@@ -214,7 +214,7 @@ main::
       	temp: '='
       }
 
-    LOG REALLOC:     {0x555fda434890} -> {0x555fda435320} = realloc (new size 3200, old size 1608) from Tokenizer:97, at ./src/LexicalAnalysis.cpp:97
+    LOG REALLOC:     {0x564daeaec890} -> {0x564daeaed320} = realloc (new size 3200, old size 1608) from Tokenizer:97, at ./src/LexicalAnalysis.cpp:97
     GetTokenValue::
       {
       	temp: '2'
@@ -395,551 +395,475 @@ main::
       	temp: '}'
       }
 
-    LOG REALLOC:     {0x555fda435320} -> {0x555fda435320} = realloc (new size 3040, old size 3208) from Tokenizer:153, at ./src/LexicalAnalysis.cpp:153
-    LOG REALLOC:     {0x555fda434780} -> {0x555fda434780} = realloc (new size 32, old size 136) from Tokenizer:156, at ./src/LexicalAnalysis.cpp:156
+    LOG REALLOC:     {0x564daeaed320} -> {0x564daeaed320} = realloc (new size 3040, old size 3208) from Tokenizer:153, at ./src/LexicalAnalysis.cpp:153
+    LOG REALLOC:     {0x564daeaec780} -> {0x564daeaec780} = realloc (new size 32, old size 136) from Tokenizer:156, at ./src/LexicalAnalysis.cpp:156
     	number_of_tokens: 76
     	i: 0
     Token program->token_arr + i
-    (0x555fda435320)::::::::::::::::
+    (0x564daeaed320)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INITIALIZATOR | {'func'}
-
+    		        type: INITIALIZATOR | {'func'}    
     	i: 1
     Token program->token_arr + i
-    (0x555fda435348)::::::::::::::::
+    (0x564daeaed348)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: FUNCTION RET TYPE | {'void'}
-
+    		        type: FUNCTION_RET_TYPE | {'void'}    
     	i: 2
     Token program->token_arr + i
-    (0x555fda435370)::::::::::::::::
+    (0x564daeaed370)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {0}
-
+    		        type: NAME | {'helloworld'}    
     	i: 3
     Token program->token_arr + i
-    (0x555fda435398)::::::::::::::::
+    (0x564daeaed398)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION OPENING BRACKET | {(}
-
+    		        type: EXPRESSION_OPENING_BRACKET | {'('}    
     	i: 4
     Token program->token_arr + i
-    (0x555fda4353c0)::::::::::::::::
+    (0x564daeaed3c0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION CLOSING BRACKET | {)}
-
+    		        type: EXPRESSION_CLOSING_BRACKET | {')'}    
     	i: 5
     Token program->token_arr + i
-    (0x555fda4353e8)::::::::::::::::
+    (0x564daeaed3e8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
+    		        type: END_OF_STATEMENT | {';'}    
     	i: 6
     Token program->token_arr + i
-    (0x555fda435410)::::::::::::::::
+    (0x564daeaed410)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INITIALIZATOR | {'var'}
-
+    		        type: INITIALIZATOR | {'var'}    
     	i: 7
     Token program->token_arr + i
-    (0x555fda435438)::::::::::::::::
+    (0x564daeaed438)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {1}
-
+    		        type: NAME | {'x'}    
     	i: 8
     Token program->token_arr + i
-    (0x555fda435460)::::::::::::::::
+    (0x564daeaed460)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {=}
-
+    		        type: ASSIGMENT | {'='}    
     	i: 9
     Token program->token_arr + i
-    (0x555fda435488)::::::::::::::::
+    (0x564daeaed488)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {30}
-
+    		        type: CONSTANT | {'30'}    
     	i: 10
     Token program->token_arr + i
-    (0x555fda4354b0)::::::::::::::::
+    (0x564daeaed4b0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {*}
-
+    		        type: OPERATOR | {'*'}    
     	i: 11
     Token program->token_arr + i
-    (0x555fda4354d8)::::::::::::::::
+    (0x564daeaed4d8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {56}
-
+    		        type: CONSTANT | {'56'}    
     	i: 12
     Token program->token_arr + i
-    (0x555fda435500)::::::::::::::::
+    (0x564daeaed500)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
+    		        type: END_OF_STATEMENT | {';'}    
     	i: 13
     Token program->token_arr + i
-    (0x555fda435528)::::::::::::::::
+    (0x564daeaed528)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: FUNCTION RET TYPE | {'double'}
-
+    		        type: FUNCTION_RET_TYPE | {'double'}    
     	i: 14
     Token program->token_arr + i
-    (0x555fda435550)::::::::::::::::
+    (0x564daeaed550)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {2}
-
+    		        type: NAME | {'main'}    
     	i: 15
     Token program->token_arr + i
-    (0x555fda435578)::::::::::::::::
+    (0x564daeaed578)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION OPENING BRACKET | {(}
-
+    		        type: EXPRESSION_OPENING_BRACKET | {'('}    
     	i: 16
     Token program->token_arr + i
-    (0x555fda4355a0)::::::::::::::::
+    (0x564daeaed5a0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION CLOSING BRACKET | {)}
-
+    		        type: EXPRESSION_CLOSING_BRACKET | {')'}    
     	i: 17
     Token program->token_arr + i
-    (0x555fda4355c8)::::::::::::::::
+    (0x564daeaed5c8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPENING BRACKET | {{}
-
+    		        type: BLOCK_OPENING_BRACKET | {'{'}    
     	i: 18
     Token program->token_arr + i
-    (0x555fda4355f0)::::::::::::::::
+    (0x564daeaed5f0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INITIALIZATOR | {'var'}
-
+    		        type: INITIALIZATOR | {'var'}    
     	i: 19
     Token program->token_arr + i
-    (0x555fda435618)::::::::::::::::
+    (0x564daeaed618)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {3}
-
+    		        type: NAME | {'y'}    
     	i: 20
     Token program->token_arr + i
-    (0x555fda435640)::::::::::::::::
+    (0x564daeaed640)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {=}
-
+    		        type: ASSIGMENT | {'='}    
     	i: 21
     Token program->token_arr + i
-    (0x555fda435668)::::::::::::::::
+    (0x564daeaed668)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {4}
-
+    		        type: CONSTANT | {'4'}    
     	i: 22
     Token program->token_arr + i
-    (0x555fda435690)::::::::::::::::
+    (0x564daeaed690)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
+    		        type: END_OF_STATEMENT | {';'}    
     	i: 23
     Token program->token_arr + i
-    (0x555fda4356b8)::::::::::::::::
+    (0x564daeaed6b8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INSTRUCTION | {'if'}
-
+    		        type: INSTRUCTION | {'if'}    
     	i: 24
     Token program->token_arr + i
-    (0x555fda4356e0)::::::::::::::::
+    (0x564daeaed6e0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION OPENING BRACKET | {(}
-
+    		        type: EXPRESSION_OPENING_BRACKET | {'('}    
     	i: 25
     Token program->token_arr + i
-    (0x555fda435708)::::::::::::::::
+    (0x564daeaed708)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {3}
-
+    		        type: NAME | {'y'}    
     	i: 26
     Token program->token_arr + i
-    (0x555fda435730)::::::::::::::::
+    (0x564daeaed730)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION CLOSING BRACKET | {)}
-
+    		        type: EXPRESSION_CLOSING_BRACKET | {')'}    
     	i: 27
     Token program->token_arr + i
-    (0x555fda435758)::::::::::::::::
+    (0x564daeaed758)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPENING BRACKET | {{}
-
+    		        type: BLOCK_OPENING_BRACKET | {'{'}    
     	i: 28
     Token program->token_arr + i
-    (0x555fda435780)::::::::::::::::
+    (0x564daeaed780)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {1}
-
+    		        type: NAME | {'x'}    
     	i: 29
     Token program->token_arr + i
-    (0x555fda4357a8)::::::::::::::::
+    (0x564daeaed7a8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {=}
-
+    		        type: ASSIGMENT | {'='}    
     	i: 30
     Token program->token_arr + i
-    (0x555fda4357d0)::::::::::::::::
+    (0x564daeaed7d0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {45}
-
+    		        type: CONSTANT | {'45'}    
     	i: 31
     Token program->token_arr + i
-    (0x555fda4357f8)::::::::::::::::
+    (0x564daeaed7f8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
+    		        type: END_OF_STATEMENT | {';'}    
     	i: 32
     Token program->token_arr + i
-    (0x555fda435820)::::::::::::::::
+    (0x564daeaed820)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {1}
-
+    		        type: NAME | {'x'}    
     	i: 33
     Token program->token_arr + i
-    (0x555fda435848)::::::::::::::::
+    (0x564daeaed848)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {=}
-
+    		        type: ASSIGMENT | {'='}    
     	i: 34
     Token program->token_arr + i
-    (0x555fda435870)::::::::::::::::
+    (0x564daeaed870)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {10}
-
+    		        type: CONSTANT | {'10'}    
     	i: 35
     Token program->token_arr + i
-    (0x555fda435898)::::::::::::::::
+    (0x564daeaed898)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
+    		        type: END_OF_STATEMENT | {';'}    
     	i: 36
     Token program->token_arr + i
-    (0x555fda4358c0)::::::::::::::::
+    (0x564daeaed8c0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CLOSING BRACKET | {}}
-
+    		        type: BLOCK_CLOSING_BRACKET | {'}'}    
     	i: 37
     Token program->token_arr + i
-    (0x555fda4358e8)::::::::::::::::
+    (0x564daeaed8e8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INSTRUCTION | {'else'}
-
+    		        type: INSTRUCTION | {'else'}    
     	i: 38
     Token program->token_arr + i
-    (0x555fda435910)::::::::::::::::
+    (0x564daeaed910)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {1}
-
+    		        type: NAME | {'x'}    
     	i: 39
     Token program->token_arr + i
-    (0x555fda435938)::::::::::::::::
+    (0x564daeaed938)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {=}
-
+    		        type: ASSIGMENT | {'='}    
     	i: 40
     Token program->token_arr + i
-    (0x555fda435960)::::::::::::::::
+    (0x564daeaed960)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {20}
-
+    		        type: CONSTANT | {'20'}    
     	i: 41
     Token program->token_arr + i
-    (0x555fda435988)::::::::::::::::
+    (0x564daeaed988)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
+    		        type: END_OF_STATEMENT | {';'}    
     	i: 42
     Token program->token_arr + i
-    (0x555fda4359b0)::::::::::::::::
+    (0x564daeaed9b0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INSTRUCTION | {'fout'}
-
+    		        type: INSTRUCTION | {'fout'}    
     	i: 43
     Token program->token_arr + i
-    (0x555fda4359d8)::::::::::::::::
+    (0x564daeaed9d8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {<}
-
+    		        type: OPERATOR | {'<'}    
     	i: 44
     Token program->token_arr + i
-    (0x555fda435a00)::::::::::::::::
+    (0x564daeaeda00)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {1}
-
+    		        type: NAME | {'x'}    
     	i: 45
     Token program->token_arr + i
-    (0x555fda435a28)::::::::::::::::
+    (0x564daeaeda28)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
+    		        type: END_OF_STATEMENT | {';'}    
     	i: 46
     Token program->token_arr + i
-    (0x555fda435a50)::::::::::::::::
+    (0x564daeaeda50)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {0}
-
+    		        type: NAME | {'helloworld'}    
     	i: 47
     Token program->token_arr + i
-    (0x555fda435a78)::::::::::::::::
+    (0x564daeaeda78)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION OPENING BRACKET | {(}
-
+    		        type: EXPRESSION_OPENING_BRACKET | {'('}    
     	i: 48
     Token program->token_arr + i
-    (0x555fda435aa0)::::::::::::::::
+    (0x564daeaedaa0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION CLOSING BRACKET | {)}
-
+    		        type: EXPRESSION_CLOSING_BRACKET | {')'}    
     	i: 49
     Token program->token_arr + i
-    (0x555fda435ac8)::::::::::::::::
+    (0x564daeaedac8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
+    		        type: END_OF_STATEMENT | {';'}    
     	i: 50
     Token program->token_arr + i
-    (0x555fda435af0)::::::::::::::::
+    (0x564daeaedaf0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {1}
-
+    		        type: NAME | {'x'}    
     	i: 51
     Token program->token_arr + i
-    (0x555fda435b18)::::::::::::::::
+    (0x564daeaedb18)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {=}
-
+    		        type: ASSIGMENT | {'='}    
     	i: 52
     Token program->token_arr + i
-    (0x555fda435b40)::::::::::::::::
+    (0x564daeaedb40)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {1}
-
+    		        type: CONSTANT | {'1'}    
     	i: 53
     Token program->token_arr + i
-    (0x555fda435b68)::::::::::::::::
+    (0x564daeaedb68)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {*}
-
+    		        type: OPERATOR | {'*'}    
     	i: 54
     Token program->token_arr + i
-    (0x555fda435b90)::::::::::::::::
+    (0x564daeaedb90)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION OPENING BRACKET | {(}
-
+    		        type: EXPRESSION_OPENING_BRACKET | {'('}    
     	i: 55
     Token program->token_arr + i
-    (0x555fda435bb8)::::::::::::::::
+    (0x564daeaedbb8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {4}
-
+    		        type: CONSTANT | {'4'}    
     	i: 56
     Token program->token_arr + i
-    (0x555fda435be0)::::::::::::::::
+    (0x564daeaedbe0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {+}
-
+    		        type: OPERATOR | {'+'}    
     	i: 57
     Token program->token_arr + i
-    (0x555fda435c08)::::::::::::::::
+    (0x564daeaedc08)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {5}
-
+    		        type: CONSTANT | {'5'}    
     	i: 58
     Token program->token_arr + i
-    (0x555fda435c30)::::::::::::::::
+    (0x564daeaedc30)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION CLOSING BRACKET | {)}
-
+    		        type: EXPRESSION_CLOSING_BRACKET | {')'}    
     	i: 59
     Token program->token_arr + i
-    (0x555fda435c58)::::::::::::::::
+    (0x564daeaedc58)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
+    		        type: END_OF_STATEMENT | {';'}    
     	i: 60
     Token program->token_arr + i
-    (0x555fda435c80)::::::::::::::::
+    (0x564daeaedc80)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INSTRUCTION | {'return'}
-
+    		        type: INSTRUCTION | {'return'}    
     	i: 61
     Token program->token_arr + i
-    (0x555fda435ca8)::::::::::::::::
+    (0x564daeaedca8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {3}
-
+    		        type: NAME | {'y'}    
     	i: 62
     Token program->token_arr + i
-    (0x555fda435cd0)::::::::::::::::
+    (0x564daeaedcd0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
+    		        type: END_OF_STATEMENT | {';'}    
     	i: 63
     Token program->token_arr + i
-    (0x555fda435cf8)::::::::::::::::
+    (0x564daeaedcf8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CLOSING BRACKET | {}}
-
+    		        type: BLOCK_CLOSING_BRACKET | {'}'}    
     	i: 64
     Token program->token_arr + i
-    (0x555fda435d20)::::::::::::::::
+    (0x564daeaedd20)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: FUNCTION RET TYPE | {'void'}
-
+    		        type: FUNCTION_RET_TYPE | {'void'}    
     	i: 65
     Token program->token_arr + i
-    (0x555fda435d48)::::::::::::::::
+    (0x564daeaedd48)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {0}
-
+    		        type: NAME | {'helloworld'}    
     	i: 66
     Token program->token_arr + i
-    (0x555fda435d70)::::::::::::::::
+    (0x564daeaedd70)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION OPENING BRACKET | {(}
-
+    		        type: EXPRESSION_OPENING_BRACKET | {'('}    
     	i: 67
     Token program->token_arr + i
-    (0x555fda435d98)::::::::::::::::
+    (0x564daeaedd98)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION CLOSING BRACKET | {)}
-
+    		        type: EXPRESSION_CLOSING_BRACKET | {')'}    
     	i: 68
     Token program->token_arr + i
-    (0x555fda435dc0)::::::::::::::::
+    (0x564daeaeddc0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPENING BRACKET | {{}
-
+    		        type: BLOCK_OPENING_BRACKET | {'{'}    
     	i: 69
     Token program->token_arr + i
-    (0x555fda435de8)::::::::::::::::
+    (0x564daeaedde8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INSTRUCTION | {'fout'}
-
+    		        type: INSTRUCTION | {'fout'}    
     	i: 70
     Token program->token_arr + i
-    (0x555fda435e10)::::::::::::::::
+    (0x564daeaede10)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {<}
-
+    		        type: OPERATOR | {'<'}    
     	i: 71
     Token program->token_arr + i
-    (0x555fda435e38)::::::::::::::::
+    (0x564daeaede38)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {101}
-
+    		        type: CONSTANT | {'101'}    
     	i: 72
     Token program->token_arr + i
-    (0x555fda435e60)::::::::::::::::
+    (0x564daeaede60)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
+    		        type: END_OF_STATEMENT | {';'}    
     	i: 73
     Token program->token_arr + i
-    (0x555fda435e88)::::::::::::::::
+    (0x564daeaede88)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INSTRUCTION | {'return'}
-
+    		        type: INSTRUCTION | {'return'}    
     	i: 74
     Token program->token_arr + i
-    (0x555fda435eb0)::::::::::::::::
+    (0x564daeaedeb0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT| {;}
-
+    		        type: END_OF_STATEMENT | {';'}    
     	i: 75
     Token program->token_arr + i
-    (0x555fda435ed8)::::::::::::::::
+    (0x564daeaeded8)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CLOSING BRACKET | {}}
-
+    		        type: BLOCK_CLOSING_BRACKET | {'}'}    
     }
 
   GetG::
     {
-    LOG CALLOC:     {0x555fda4348d0} = calloc (10, 8 = 80) from VarTabelCtor:130, at ./src/Tabels.cpp:130
-    LOG CALLOC:     {0x555fda434930} = calloc (10, 8 = 80) from FuncTabelCtor:20, at ./src/Tabels.cpp:20
-    LOG CALLOC:     {0x555fda434990} = calloc (1, 32 = 32) from MakeFuncLabel:840, at ./src/SyntaxAnalysis.cpp:840
+    LOG CALLOC:     {0x564daeaec8d0} = calloc (10, 8 = 80) from VarTabelCtor:130, at ./src/Tabels.cpp:130
+    LOG CALLOC:     {0x564daeaec930} = calloc (10, 8 = 80) from FuncTabelCtor:20, at ./src/Tabels.cpp:20
+    LOG CALLOC:     {0x564daeaec990} = calloc (1, 32 = 32) from MakeFuncLabel:840, at ./src/SyntaxAnalysis.cpp:840
     MakeVarLabel::
       {
-      LOG CALLOC:     {0x555fda4349c0} = calloc (1, 4 = 4) from MakeVarLabel:885, at ./src/SyntaxAnalysis.cpp:885
+      LOG CALLOC:     {0x564daeaec9c0} = calloc (1, 4 = 4) from MakeVarLabel:885, at ./src/SyntaxAnalysis.cpp:885
       }
 
     GetE::
@@ -953,11 +877,10 @@ main::
             GetN::
               {
               Token result
-              (0x555fda435488)::::::::::::::::
+              (0x564daeaed488)::::::::::::::::
               		  left_child: (nil)
               		 right_child: (nil)
-              		        type: CONSTANT | {30}
-
+              		        type: CONSTANT | {'30'}              
               }
 
             }
@@ -965,17 +888,15 @@ main::
           }
 
         Token node
-        (0x555fda435488)::::::::::::::::
+        (0x564daeaed488)::::::::::::::::
         		  left_child: (nil)
         		 right_child: (nil)
-        		        type: CONSTANT | {30}
-
+        		        type: CONSTANT | {'30'}        
         Token token
-        (0x555fda4354b0)::::::::::::::::
+        (0x564daeaed4b0)::::::::::::::::
         		  left_child: (nil)
         		 right_child: (nil)
-        		        type: OPERATOR | {*}
-
+        		        type: OPERATOR | {'*'}        
         GetPower::
           {
           GetP::
@@ -983,11 +904,10 @@ main::
             GetN::
               {
               Token result
-              (0x555fda4354d8)::::::::::::::::
+              (0x564daeaed4d8)::::::::::::::::
               		  left_child: (nil)
               		 right_child: (nil)
-              		        type: CONSTANT | {56}
-
+              		        type: CONSTANT | {'56'}              
               }
 
             }
@@ -1000,14 +920,14 @@ main::
 
     GetFunction::
       {
-      LOG CALLOC:     {0x555fda4349e0} = calloc (1, 32 = 32) from MakeFuncLabel:840, at ./src/SyntaxAnalysis.cpp:840
+      LOG CALLOC:     {0x564daeaec9e0} = calloc (1, 32 = 32) from MakeFuncLabel:840, at ./src/SyntaxAnalysis.cpp:840
       GetBlock::
         {
         GetStatement::
           {
           MakeVarLabel::
             {
-            LOG CALLOC:     {0x555fda434a10} = calloc (1, 4 = 4) from MakeVarLabel:885, at ./src/SyntaxAnalysis.cpp:885
+            LOG CALLOC:     {0x564daeaeca10} = calloc (1, 4 = 4) from MakeVarLabel:885, at ./src/SyntaxAnalysis.cpp:885
             }
 
           GetE::
@@ -1021,11 +941,10 @@ main::
                   GetN::
                     {
                     Token result
-                    (0x555fda435668)::::::::::::::::
+                    (0x564daeaed668)::::::::::::::::
                     		  left_child: (nil)
                     		 right_child: (nil)
-                    		        type: CONSTANT | {4}
-
+                    		        type: CONSTANT | {'4'}                    
                     }
 
                   }
@@ -1033,11 +952,10 @@ main::
                 }
 
               Token node
-              (0x555fda435668)::::::::::::::::
+              (0x564daeaed668)::::::::::::::::
               		  left_child: (nil)
               		 right_child: (nil)
-              		        type: CONSTANT | {4}
-
+              		        type: CONSTANT | {'4'}              
               }
 
             }
@@ -1059,20 +977,22 @@ main::
                     GetN::
                       {
                       Token result
-                      (0x555fda435708)::::::::::::::::
+                      (0x564daeaed708)::::::::::::::::
                       		  left_child: (nil)
                       		 right_child: (nil)
-                      		        type:                       }
+                      		        type: VARIABLE | {'y'}                      
+                      }
 
                     }
 
                   }
 
                 Token node
-                (0x555fda435708)::::::::::::::::
+                (0x564daeaed708)::::::::::::::::
                 		  left_child: (nil)
                 		 right_child: (nil)
-                		        type:                 }
+                		        type: VARIABLE | {'y'}                
+                }
 
               }
 
@@ -1097,11 +1017,10 @@ main::
                               GetN::
                                 {
                                 Token result
-                                (0x555fda4357d0)::::::::::::::::
+                                (0x564daeaed7d0)::::::::::::::::
                                 		  left_child: (nil)
                                 		 right_child: (nil)
-                                		        type: CONSTANT | {45}
-
+                                		        type: CONSTANT | {'45'}                                
                                 }
 
                               }
@@ -1109,11 +1028,10 @@ main::
                             }
 
                           Token node
-                          (0x555fda4357d0)::::::::::::::::
+                          (0x564daeaed7d0)::::::::::::::::
                           		  left_child: (nil)
                           		 right_child: (nil)
-                          		        type: CONSTANT | {45}
-
+                          		        type: CONSTANT | {'45'}                          
                           }
 
                         }
@@ -1141,11 +1059,10 @@ main::
                               GetN::
                                 {
                                 Token result
-                                (0x555fda435870)::::::::::::::::
+                                (0x564daeaed870)::::::::::::::::
                                 		  left_child: (nil)
                                 		 right_child: (nil)
-                                		        type: CONSTANT | {10}
-
+                                		        type: CONSTANT | {'10'}                                
                                 }
 
                               }
@@ -1153,11 +1070,10 @@ main::
                             }
 
                           Token node
-                          (0x555fda435870)::::::::::::::::
+                          (0x564daeaed870)::::::::::::::::
                           		  left_child: (nil)
                           		 right_child: (nil)
-                          		        type: CONSTANT | {10}
-
+                          		        type: CONSTANT | {'10'}                          
                           }
 
                         }
@@ -1193,11 +1109,10 @@ main::
                           GetN::
                             {
                             Token result
-                            (0x555fda435960)::::::::::::::::
+                            (0x564daeaed960)::::::::::::::::
                             		  left_child: (nil)
                             		 right_child: (nil)
-                            		        type: CONSTANT | {20}
-
+                            		        type: CONSTANT | {'20'}                            
                             }
 
                           }
@@ -1205,11 +1120,10 @@ main::
                         }
 
                       Token node
-                      (0x555fda435960)::::::::::::::::
+                      (0x564daeaed960)::::::::::::::::
                       		  left_child: (nil)
                       		 right_child: (nil)
-                      		        type: CONSTANT | {20}
-
+                      		        type: CONSTANT | {'20'}                      
                       }
 
                     }
@@ -1239,20 +1153,22 @@ main::
                     GetN::
                       {
                       Token result
-                      (0x555fda435a00)::::::::::::::::
+                      (0x564daeaeda00)::::::::::::::::
                       		  left_child: (nil)
                       		 right_child: (nil)
-                      		        type:                       }
+                      		        type: VARIABLE | {'x'}                      
+                      }
 
                     }
 
                   }
 
                 Token node
-                (0x555fda435a00)::::::::::::::::
+                (0x564daeaeda00)::::::::::::::::
                 		  left_child: (nil)
                 		 right_child: (nil)
-                		        type:                 }
+                		        type: VARIABLE | {'x'}                
+                }
 
               }
 
@@ -1266,7 +1182,7 @@ main::
             {
             NewToken::
               {
-              LOG CALLOC:     {0x555fda434a30} = calloc (1, 40 = 40) from NewToken:10, at ./src/Token.cpp:10
+              LOG CALLOC:     {0x564daeaeca30} = calloc (1, 40 = 40) from NewToken:10, at ./src/Token.cpp:10
               }
 
             }
@@ -1290,11 +1206,10 @@ main::
                       GetN::
                         {
                         Token result
-                        (0x555fda435b40)::::::::::::::::
+                        (0x564daeaedb40)::::::::::::::::
                         		  left_child: (nil)
                         		 right_child: (nil)
-                        		        type: CONSTANT | {1}
-
+                        		        type: CONSTANT | {'1'}                        
                         }
 
                       }
@@ -1302,17 +1217,15 @@ main::
                     }
 
                   Token node
-                  (0x555fda435b40)::::::::::::::::
+                  (0x564daeaedb40)::::::::::::::::
                   		  left_child: (nil)
                   		 right_child: (nil)
-                  		        type: CONSTANT | {1}
-
+                  		        type: CONSTANT | {'1'}                  
                   Token token
-                  (0x555fda435b68)::::::::::::::::
+                  (0x564daeaedb68)::::::::::::::::
                   		  left_child: (nil)
                   		 right_child: (nil)
-                  		        type: OPERATOR | {*}
-
+                  		        type: OPERATOR | {'*'}                  
                   GetPower::
                     {
                     GetP::
@@ -1328,11 +1241,10 @@ main::
                               GetN::
                                 {
                                 Token result
-                                (0x555fda435bb8)::::::::::::::::
+                                (0x564daeaedbb8)::::::::::::::::
                                 		  left_child: (nil)
                                 		 right_child: (nil)
-                                		        type: CONSTANT | {4}
-
+                                		        type: CONSTANT | {'4'}                                
                                 }
 
                               }
@@ -1340,19 +1252,17 @@ main::
                             }
 
                           Token node
-                          (0x555fda435bb8)::::::::::::::::
+                          (0x564daeaedbb8)::::::::::::::::
                           		  left_child: (nil)
                           		 right_child: (nil)
-                          		        type: CONSTANT | {4}
-
+                          		        type: CONSTANT | {'4'}                          
                           }
 
                         Token token
-                        (0x555fda435be0)::::::::::::::::
+                        (0x564daeaedbe0)::::::::::::::::
                         		  left_child: (nil)
                         		 right_child: (nil)
-                        		        type: OPERATOR | {+}
-
+                        		        type: OPERATOR | {'+'}                        
                         GetT::
                           {
                           GetPower::
@@ -1362,11 +1272,10 @@ main::
                               GetN::
                                 {
                                 Token result
-                                (0x555fda435c08)::::::::::::::::
+                                (0x564daeaedc08)::::::::::::::::
                                 		  left_child: (nil)
                                 		 right_child: (nil)
-                                		        type: CONSTANT | {5}
-
+                                		        type: CONSTANT | {'5'}                                
                                 }
 
                               }
@@ -1374,11 +1283,10 @@ main::
                             }
 
                           Token node
-                          (0x555fda435c08)::::::::::::::::
+                          (0x564daeaedc08)::::::::::::::::
                           		  left_child: (nil)
                           		 right_child: (nil)
-                          		        type: CONSTANT | {5}
-
+                          		        type: CONSTANT | {'5'}                          
                           }
 
                         }
@@ -1418,38 +1326,40 @@ main::
               GetN::
                 {
                 Token result
-                (0x555fda435ca8)::::::::::::::::
+                (0x564daeaedca8)::::::::::::::::
                 		  left_child: (nil)
                 		 right_child: (nil)
-                		        type:                 }
+                		        type: VARIABLE | {'y'}                
+                }
 
               }
 
             }
 
           Token node
-          (0x555fda435ca8)::::::::::::::::
+          (0x564daeaedca8)::::::::::::::::
           		  left_child: (nil)
           		 right_child: (nil)
-          		        type:           }
+          		        type: VARIABLE | {'y'}          
+          }
 
         }
 
       NewToken::
         {
-        LOG CALLOC:     {0x555fda434a60} = calloc (1, 40 = 40) from NewToken:10, at ./src/Token.cpp:10
+        LOG CALLOC:     {0x564daeaeca60} = calloc (1, 40 = 40) from NewToken:10, at ./src/Token.cpp:10
         }
 
       NewToken::
         {
-        LOG CALLOC:     {0x555fda434a90} = calloc (1, 40 = 40) from NewToken:10, at ./src/Token.cpp:10
+        LOG CALLOC:     {0x564daeaeca90} = calloc (1, 40 = 40) from NewToken:10, at ./src/Token.cpp:10
         }
 
       }
 
     GetFunction::
       {
-      LOG CALLOC:     {0x555fda434ac0} = calloc (1, 32 = 32) from MakeFuncLabel:840, at ./src/SyntaxAnalysis.cpp:840
+      LOG CALLOC:     {0x564daeaecac0} = calloc (1, 32 = 32) from MakeFuncLabel:840, at ./src/SyntaxAnalysis.cpp:840
       GetBlock::
         {
         GetStatement::
@@ -1467,11 +1377,10 @@ main::
                     GetN::
                       {
                       Token result
-                      (0x555fda435e38)::::::::::::::::
+                      (0x564daeaede38)::::::::::::::::
                       		  left_child: (nil)
                       		 right_child: (nil)
-                      		        type: CONSTANT | {101}
-
+                      		        type: CONSTANT | {'101'}                      
                       }
 
                     }
@@ -1479,11 +1388,10 @@ main::
                   }
 
                 Token node
-                (0x555fda435e38)::::::::::::::::
+                (0x564daeaede38)::::::::::::::::
                 		  left_child: (nil)
                 		 right_child: (nil)
-                		        type: CONSTANT | {101}
-
+                		        type: CONSTANT | {'101'}                
                 }
 
               }
@@ -1504,12 +1412,12 @@ main::
 
       NewToken::
         {
-        LOG CALLOC:     {0x555fda434af0} = calloc (1, 40 = 40) from NewToken:10, at ./src/Token.cpp:10
+        LOG CALLOC:     {0x564daeaecaf0} = calloc (1, 40 = 40) from NewToken:10, at ./src/Token.cpp:10
         }
 
       NewToken::
         {
-        LOG CALLOC:     {0x555fda434b20} = calloc (1, 40 = 40) from NewToken:10, at ./src/Token.cpp:10
+        LOG CALLOC:     {0x564daeaecb20} = calloc (1, 40 = 40) from NewToken:10, at ./src/Token.cpp:10
         }
 
       }
@@ -1521,913 +1429,856 @@ main::
     PrintNode::
       {
       Token node
-      (0x555fda435500)::::::::::::::::
-      		  left_child: 0x555fda435410
-      		 right_child: 0x555fda435cf8
-      		        type: STATEMENT   | {;}
-
+      (0x564daeaed500)::::::::::::::::
+      		  left_child: 0x564daeaed410
+      		 right_child: 0x564daeaedcf8
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435410)::::::::::::::::
-      		  left_child: 0x555fda435438
-      		 right_child: 0x555fda4354b0
-      		        type: INITIALIZATOR | {'var'}
-
+      (0x564daeaed410)::::::::::::::::
+      		  left_child: 0x564daeaed438
+      		 right_child: 0x564daeaed4b0
+      		        type: INITIALIZATOR | {'var'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435410)::::::::::::::::
-      		  left_child: 0x555fda435438
-      		 right_child: 0x555fda4354b0
-      		        type: INITIALIZATOR | {'var'}
-
+      (0x564daeaed410)::::::::::::::::
+      		  left_child: 0x564daeaed438
+      		 right_child: 0x564daeaed4b0
+      		        type: INITIALIZATOR | {'var'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435438)::::::::::::::::
+      (0x564daeaed438)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
+      		        type: VARIABLE | {'x'}      
+      }
 
     PrintNode::
       {
       Token node
-      (0x555fda435438)::::::::::::::::
+      (0x564daeaed438)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
-
-    PrintNode::
-      {
-      Token node
-      (0x555fda4354b0)::::::::::::::::
-      		  left_child: 0x555fda435488
-      		 right_child: 0x555fda4354d8
-      		        type: OPERATOR | {*}
-
+      		        type: VARIABLE | {'x'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4354b0)::::::::::::::::
-      		  left_child: 0x555fda435488
-      		 right_child: 0x555fda4354d8
-      		        type: OPERATOR | {*}
-
+      (0x564daeaed4b0)::::::::::::::::
+      		  left_child: 0x564daeaed488
+      		 right_child: 0x564daeaed4d8
+      		        type: OPERATOR | {'*'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435488)::::::::::::::::
+      (0x564daeaed4b0)::::::::::::::::
+      		  left_child: 0x564daeaed488
+      		 right_child: 0x564daeaed4d8
+      		        type: OPERATOR | {'*'}      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x564daeaed488)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {30}
-
+      		        type: CONSTANT | {'30'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435488)::::::::::::::::
+      (0x564daeaed488)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {30}
-
+      		        type: CONSTANT | {'30'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4354d8)::::::::::::::::
+      (0x564daeaed4d8)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {56}
-
+      		        type: CONSTANT | {'56'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4354d8)::::::::::::::::
+      (0x564daeaed4d8)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {56}
-
+      		        type: CONSTANT | {'56'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435cf8)::::::::::::::::
-      		  left_child: 0x555fda434a60
-      		 right_child: 0x555fda435ed8
-      		        type: UNCKNOWN TYPE
+      (0x564daeaedcf8)::::::::::::::::
+      		  left_child: 0x564daeaeca60
+      		 right_child: 0x564daeaeded8
+      		        type: FUNCTION | {'}'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435cf8)::::::::::::::::
-      		  left_child: 0x555fda434a60
-      		 right_child: 0x555fda435ed8
-      		        type: UNCKNOWN TYPE
+      (0x564daeaedcf8)::::::::::::::::
+      		  left_child: 0x564daeaeca60
+      		 right_child: 0x564daeaeded8
+      		        type: FUNCTION | {'}'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda434a60)::::::::::::::::
-      		  left_child: 0x555fda435690
-      		 right_child: 0x555fda434a90
-      		        type: NAME | {2}
-
+      (0x564daeaeca60)::::::::::::::::
+      		  left_child: 0x564daeaed690
+      		 right_child: 0x564daeaeca90
+      		        type: NAME | {'main'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda434a60)::::::::::::::::
-      		  left_child: 0x555fda435690
-      		 right_child: 0x555fda434a90
-      		        type: NAME | {2}
-
+      (0x564daeaeca60)::::::::::::::::
+      		  left_child: 0x564daeaed690
+      		 right_child: 0x564daeaeca90
+      		        type: NAME | {'main'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435690)::::::::::::::::
-      		  left_child: 0x555fda4355f0
-      		 right_child: 0x555fda4356e0
-      		        type: STATEMENT   | {;}
-
+      (0x564daeaed690)::::::::::::::::
+      		  left_child: 0x564daeaed5f0
+      		 right_child: 0x564daeaed6e0
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435690)::::::::::::::::
-      		  left_child: 0x555fda4355f0
-      		 right_child: 0x555fda4356e0
-      		        type: STATEMENT   | {;}
-
+      (0x564daeaed690)::::::::::::::::
+      		  left_child: 0x564daeaed5f0
+      		 right_child: 0x564daeaed6e0
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4355f0)::::::::::::::::
-      		  left_child: 0x555fda435618
-      		 right_child: 0x555fda435668
-      		        type: INITIALIZATOR | {'var'}
-
+      (0x564daeaed5f0)::::::::::::::::
+      		  left_child: 0x564daeaed618
+      		 right_child: 0x564daeaed668
+      		        type: INITIALIZATOR | {'var'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4355f0)::::::::::::::::
-      		  left_child: 0x555fda435618
-      		 right_child: 0x555fda435668
-      		        type: INITIALIZATOR | {'var'}
-
+      (0x564daeaed5f0)::::::::::::::::
+      		  left_child: 0x564daeaed618
+      		 right_child: 0x564daeaed668
+      		        type: INITIALIZATOR | {'var'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435618)::::::::::::::::
+      (0x564daeaed618)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
+      		        type: VARIABLE | {'y'}      
+      }
 
     PrintNode::
       {
       Token node
-      (0x555fda435618)::::::::::::::::
+      (0x564daeaed618)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
+      		        type: VARIABLE | {'y'}      
+      }
 
     PrintNode::
       {
       Token node
-      (0x555fda435668)::::::::::::::::
+      (0x564daeaed668)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {4}
-
+      		        type: CONSTANT | {'4'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435668)::::::::::::::::
+      (0x564daeaed668)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {4}
-
+      		        type: CONSTANT | {'4'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4356e0)::::::::::::::::
-      		  left_child: 0x555fda4356b8
-      		 right_child: 0x555fda435a28
-      		        type: STATEMENT   | {(}
-
+      (0x564daeaed6e0)::::::::::::::::
+      		  left_child: 0x564daeaed6b8
+      		 right_child: 0x564daeaeda28
+      		        type: STATEMENT | {'('}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4356e0)::::::::::::::::
-      		  left_child: 0x555fda4356b8
-      		 right_child: 0x555fda435a28
-      		        type: STATEMENT   | {(}
-
+      (0x564daeaed6e0)::::::::::::::::
+      		  left_child: 0x564daeaed6b8
+      		 right_child: 0x564daeaeda28
+      		        type: STATEMENT | {'('}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4356b8)::::::::::::::::
-      		  left_child: 0x555fda435708
-      		 right_child: 0x555fda4358e8
-      		        type: INSTRUCTION | {'if'}
-
+      (0x564daeaed6b8)::::::::::::::::
+      		  left_child: 0x564daeaed708
+      		 right_child: 0x564daeaed8e8
+      		        type: INSTRUCTION | {'if'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4356b8)::::::::::::::::
-      		  left_child: 0x555fda435708
-      		 right_child: 0x555fda4358e8
-      		        type: INSTRUCTION | {'if'}
-
+      (0x564daeaed6b8)::::::::::::::::
+      		  left_child: 0x564daeaed708
+      		 right_child: 0x564daeaed8e8
+      		        type: INSTRUCTION | {'if'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435708)::::::::::::::::
+      (0x564daeaed708)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
+      		        type: VARIABLE | {'y'}      
+      }
 
     PrintNode::
       {
       Token node
-      (0x555fda435708)::::::::::::::::
+      (0x564daeaed708)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
-
-    PrintNode::
-      {
-      Token node
-      (0x555fda4358e8)::::::::::::::::
-      		  left_child: 0x555fda4357f8
-      		 right_child: 0x555fda435988
-      		        type: INSTRUCTION | {'else'}
-
+      		        type: VARIABLE | {'y'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4358e8)::::::::::::::::
-      		  left_child: 0x555fda4357f8
-      		 right_child: 0x555fda435988
-      		        type: INSTRUCTION | {'else'}
-
+      (0x564daeaed8e8)::::::::::::::::
+      		  left_child: 0x564daeaed7f8
+      		 right_child: 0x564daeaed988
+      		        type: INSTRUCTION | {'else'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4357f8)::::::::::::::::
-      		  left_child: 0x555fda4357a8
-      		 right_child: 0x555fda435898
-      		        type: STATEMENT   | {;}
-
+      (0x564daeaed8e8)::::::::::::::::
+      		  left_child: 0x564daeaed7f8
+      		 right_child: 0x564daeaed988
+      		        type: INSTRUCTION | {'else'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4357f8)::::::::::::::::
-      		  left_child: 0x555fda4357a8
-      		 right_child: 0x555fda435898
-      		        type: STATEMENT   | {;}
-
+      (0x564daeaed7f8)::::::::::::::::
+      		  left_child: 0x564daeaed7a8
+      		 right_child: 0x564daeaed898
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4357a8)::::::::::::::::
-      		  left_child: 0x555fda435780
-      		 right_child: 0x555fda4357d0
-      		        type: ASSIGMENT | {=}
-
+      (0x564daeaed7f8)::::::::::::::::
+      		  left_child: 0x564daeaed7a8
+      		 right_child: 0x564daeaed898
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4357a8)::::::::::::::::
-      		  left_child: 0x555fda435780
-      		 right_child: 0x555fda4357d0
-      		        type: ASSIGMENT | {=}
-
+      (0x564daeaed7a8)::::::::::::::::
+      		  left_child: 0x564daeaed780
+      		 right_child: 0x564daeaed7d0
+      		        type: ASSIGMENT | {'='}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435780)::::::::::::::::
+      (0x564daeaed7a8)::::::::::::::::
+      		  left_child: 0x564daeaed780
+      		 right_child: 0x564daeaed7d0
+      		        type: ASSIGMENT | {'='}      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x564daeaed780)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
+      		        type: VARIABLE | {'x'}      
+      }
 
     PrintNode::
       {
       Token node
-      (0x555fda435780)::::::::::::::::
+      (0x564daeaed780)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
+      		        type: VARIABLE | {'x'}      
+      }
 
     PrintNode::
       {
       Token node
-      (0x555fda4357d0)::::::::::::::::
+      (0x564daeaed7d0)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {45}
-
+      		        type: CONSTANT | {'45'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4357d0)::::::::::::::::
+      (0x564daeaed7d0)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {45}
-
+      		        type: CONSTANT | {'45'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435898)::::::::::::::::
-      		  left_child: 0x555fda435848
+      (0x564daeaed898)::::::::::::::::
+      		  left_child: 0x564daeaed848
       		 right_child: (nil)
-      		        type: STATEMENT   | {;}
-
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435898)::::::::::::::::
-      		  left_child: 0x555fda435848
+      (0x564daeaed898)::::::::::::::::
+      		  left_child: 0x564daeaed848
       		 right_child: (nil)
-      		        type: STATEMENT   | {;}
-
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435848)::::::::::::::::
-      		  left_child: 0x555fda435820
-      		 right_child: 0x555fda435870
-      		        type: ASSIGMENT | {=}
-
+      (0x564daeaed848)::::::::::::::::
+      		  left_child: 0x564daeaed820
+      		 right_child: 0x564daeaed870
+      		        type: ASSIGMENT | {'='}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435848)::::::::::::::::
-      		  left_child: 0x555fda435820
-      		 right_child: 0x555fda435870
-      		        type: ASSIGMENT | {=}
-
+      (0x564daeaed848)::::::::::::::::
+      		  left_child: 0x564daeaed820
+      		 right_child: 0x564daeaed870
+      		        type: ASSIGMENT | {'='}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435820)::::::::::::::::
+      (0x564daeaed820)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
+      		        type: VARIABLE | {'x'}      
+      }
 
     PrintNode::
       {
       Token node
-      (0x555fda435820)::::::::::::::::
+      (0x564daeaed820)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
+      		        type: VARIABLE | {'x'}      
+      }
 
     PrintNode::
       {
       Token node
-      (0x555fda435870)::::::::::::::::
+      (0x564daeaed870)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {10}
-
+      		        type: CONSTANT | {'10'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435870)::::::::::::::::
+      (0x564daeaed870)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {10}
-
+      		        type: CONSTANT | {'10'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435988)::::::::::::::::
-      		  left_child: 0x555fda435938
+      (0x564daeaed988)::::::::::::::::
+      		  left_child: 0x564daeaed938
       		 right_child: (nil)
-      		        type: STATEMENT   | {;}
-
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435988)::::::::::::::::
-      		  left_child: 0x555fda435938
+      (0x564daeaed988)::::::::::::::::
+      		  left_child: 0x564daeaed938
       		 right_child: (nil)
-      		        type: STATEMENT   | {;}
-
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435938)::::::::::::::::
-      		  left_child: 0x555fda435910
-      		 right_child: 0x555fda435960
-      		        type: ASSIGMENT | {=}
-
+      (0x564daeaed938)::::::::::::::::
+      		  left_child: 0x564daeaed910
+      		 right_child: 0x564daeaed960
+      		        type: ASSIGMENT | {'='}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435938)::::::::::::::::
-      		  left_child: 0x555fda435910
-      		 right_child: 0x555fda435960
-      		        type: ASSIGMENT | {=}
-
+      (0x564daeaed938)::::::::::::::::
+      		  left_child: 0x564daeaed910
+      		 right_child: 0x564daeaed960
+      		        type: ASSIGMENT | {'='}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435910)::::::::::::::::
+      (0x564daeaed910)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
+      		        type: VARIABLE | {'x'}      
+      }
 
     PrintNode::
       {
       Token node
-      (0x555fda435910)::::::::::::::::
+      (0x564daeaed910)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
+      		        type: VARIABLE | {'x'}      
+      }
 
     PrintNode::
       {
       Token node
-      (0x555fda435960)::::::::::::::::
+      (0x564daeaed960)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {20}
-
+      		        type: CONSTANT | {'20'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435960)::::::::::::::::
+      (0x564daeaed960)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {20}
-
+      		        type: CONSTANT | {'20'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435a28)::::::::::::::::
-      		  left_child: 0x555fda4359b0
-      		 right_child: 0x555fda434a30
-      		        type: STATEMENT   | {;}
-
+      (0x564daeaeda28)::::::::::::::::
+      		  left_child: 0x564daeaed9b0
+      		 right_child: 0x564daeaeca30
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435a28)::::::::::::::::
-      		  left_child: 0x555fda4359b0
-      		 right_child: 0x555fda434a30
-      		        type: STATEMENT   | {;}
-
+      (0x564daeaeda28)::::::::::::::::
+      		  left_child: 0x564daeaed9b0
+      		 right_child: 0x564daeaeca30
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4359b0)::::::::::::::::
-      		  left_child: 0x555fda435a00
+      (0x564daeaed9b0)::::::::::::::::
+      		  left_child: 0x564daeaeda00
       		 right_child: (nil)
-      		        type: INSTRUCTION | {'fout'}
-
+      		        type: INSTRUCTION | {'fout'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda4359b0)::::::::::::::::
-      		  left_child: 0x555fda435a00
+      (0x564daeaed9b0)::::::::::::::::
+      		  left_child: 0x564daeaeda00
       		 right_child: (nil)
-      		        type: INSTRUCTION | {'fout'}
-
+      		        type: INSTRUCTION | {'fout'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435a00)::::::::::::::::
+      (0x564daeaeda00)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
+      		        type: VARIABLE | {'x'}      
+      }
 
     PrintNode::
       {
       Token node
-      (0x555fda435a00)::::::::::::::::
+      (0x564daeaeda00)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
-
-    PrintNode::
-      {
-      Token node
-      (0x555fda434a30)::::::::::::::::
-      		  left_child: 0x555fda435a50
-      		 right_child: 0x555fda435c58
-      		        type: UNCKNOWN TYPE
+      		        type: VARIABLE | {'x'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda434a30)::::::::::::::::
-      		  left_child: 0x555fda435a50
-      		 right_child: 0x555fda435c58
-      		        type: UNCKNOWN TYPE
+      (0x564daeaeca30)::::::::::::::::
+      		  left_child: 0x564daeaeda50
+      		 right_child: 0x564daeaedc58
+      		        type: CALL | {' '}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435a50)::::::::::::::::
+      (0x564daeaeca30)::::::::::::::::
+      		  left_child: 0x564daeaeda50
+      		 right_child: 0x564daeaedc58
+      		        type: CALL | {' '}      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x564daeaeda50)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: NAME | {0}
-
+      		        type: NAME | {'helloworld'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435a50)::::::::::::::::
+      (0x564daeaeda50)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: NAME | {0}
-
+      		        type: NAME | {'helloworld'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435c58)::::::::::::::::
-      		  left_child: 0x555fda435b18
+      (0x564daeaedc58)::::::::::::::::
+      		  left_child: 0x564daeaedb18
       		 right_child: (nil)
-      		        type: STATEMENT   | {;}
-
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435c58)::::::::::::::::
-      		  left_child: 0x555fda435b18
+      (0x564daeaedc58)::::::::::::::::
+      		  left_child: 0x564daeaedb18
       		 right_child: (nil)
-      		        type: STATEMENT   | {;}
-
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435b18)::::::::::::::::
-      		  left_child: 0x555fda435af0
-      		 right_child: 0x555fda435b68
-      		        type: ASSIGMENT | {=}
-
+      (0x564daeaedb18)::::::::::::::::
+      		  left_child: 0x564daeaedaf0
+      		 right_child: 0x564daeaedb68
+      		        type: ASSIGMENT | {'='}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435b18)::::::::::::::::
-      		  left_child: 0x555fda435af0
-      		 right_child: 0x555fda435b68
-      		        type: ASSIGMENT | {=}
-
+      (0x564daeaedb18)::::::::::::::::
+      		  left_child: 0x564daeaedaf0
+      		 right_child: 0x564daeaedb68
+      		        type: ASSIGMENT | {'='}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435af0)::::::::::::::::
+      (0x564daeaedaf0)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
+      		        type: VARIABLE | {'x'}      
+      }
 
     PrintNode::
       {
       Token node
-      (0x555fda435af0)::::::::::::::::
+      (0x564daeaedaf0)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type:       }
-
-    PrintNode::
-      {
-      Token node
-      (0x555fda435b68)::::::::::::::::
-      		  left_child: 0x555fda435b40
-      		 right_child: 0x555fda435be0
-      		        type: OPERATOR | {*}
-
+      		        type: VARIABLE | {'x'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435b68)::::::::::::::::
-      		  left_child: 0x555fda435b40
-      		 right_child: 0x555fda435be0
-      		        type: OPERATOR | {*}
-
+      (0x564daeaedb68)::::::::::::::::
+      		  left_child: 0x564daeaedb40
+      		 right_child: 0x564daeaedbe0
+      		        type: OPERATOR | {'*'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435b40)::::::::::::::::
+      (0x564daeaedb68)::::::::::::::::
+      		  left_child: 0x564daeaedb40
+      		 right_child: 0x564daeaedbe0
+      		        type: OPERATOR | {'*'}      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x564daeaedb40)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {1}
-
+      		        type: CONSTANT | {'1'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435b40)::::::::::::::::
+      (0x564daeaedb40)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {1}
-
+      		        type: CONSTANT | {'1'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435be0)::::::::::::::::
-      		  left_child: 0x555fda435bb8
-      		 right_child: 0x555fda435c08
-      		        type: OPERATOR | {+}
-
+      (0x564daeaedbe0)::::::::::::::::
+      		  left_child: 0x564daeaedbb8
+      		 right_child: 0x564daeaedc08
+      		        type: OPERATOR | {'+'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435be0)::::::::::::::::
-      		  left_child: 0x555fda435bb8
-      		 right_child: 0x555fda435c08
-      		        type: OPERATOR | {+}
-
+      (0x564daeaedbe0)::::::::::::::::
+      		  left_child: 0x564daeaedbb8
+      		 right_child: 0x564daeaedc08
+      		        type: OPERATOR | {'+'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435bb8)::::::::::::::::
+      (0x564daeaedbb8)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {4}
-
+      		        type: CONSTANT | {'4'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435bb8)::::::::::::::::
+      (0x564daeaedbb8)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {4}
-
+      		        type: CONSTANT | {'4'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435c08)::::::::::::::::
+      (0x564daeaedc08)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {5}
-
+      		        type: CONSTANT | {'5'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435c08)::::::::::::::::
+      (0x564daeaedc08)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {5}
-
+      		        type: CONSTANT | {'5'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda434a90)::::::::::::::::
+      (0x564daeaeca90)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: FUNCTION RET TYPE | {'double'}
-
+      		        type: FUNCTION_RET_TYPE | {'double'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda434a90)::::::::::::::::
+      (0x564daeaeca90)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: FUNCTION RET TYPE | {'double'}
-
+      		        type: FUNCTION_RET_TYPE | {'double'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435ed8)::::::::::::::::
-      		  left_child: 0x555fda434af0
+      (0x564daeaeded8)::::::::::::::::
+      		  left_child: 0x564daeaecaf0
       		 right_child: (nil)
-      		        type: UNCKNOWN TYPE
+      		        type: FUNCTION | {'}'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435ed8)::::::::::::::::
-      		  left_child: 0x555fda434af0
+      (0x564daeaeded8)::::::::::::::::
+      		  left_child: 0x564daeaecaf0
       		 right_child: (nil)
-      		        type: UNCKNOWN TYPE
+      		        type: FUNCTION | {'}'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda434af0)::::::::::::::::
-      		  left_child: 0x555fda435e60
-      		 right_child: 0x555fda434b20
-      		        type: NAME | {0}
-
+      (0x564daeaecaf0)::::::::::::::::
+      		  left_child: 0x564daeaede60
+      		 right_child: 0x564daeaecb20
+      		        type: NAME | {'helloworld'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda434af0)::::::::::::::::
-      		  left_child: 0x555fda435e60
-      		 right_child: 0x555fda434b20
-      		        type: NAME | {0}
-
+      (0x564daeaecaf0)::::::::::::::::
+      		  left_child: 0x564daeaede60
+      		 right_child: 0x564daeaecb20
+      		        type: NAME | {'helloworld'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435e60)::::::::::::::::
-      		  left_child: 0x555fda435de8
+      (0x564daeaede60)::::::::::::::::
+      		  left_child: 0x564daeaedde8
       		 right_child: (nil)
-      		        type: STATEMENT   | {;}
-
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435e60)::::::::::::::::
-      		  left_child: 0x555fda435de8
+      (0x564daeaede60)::::::::::::::::
+      		  left_child: 0x564daeaedde8
       		 right_child: (nil)
-      		        type: STATEMENT   | {;}
-
+      		        type: STATEMENT | {';'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435de8)::::::::::::::::
-      		  left_child: 0x555fda435e38
+      (0x564daeaedde8)::::::::::::::::
+      		  left_child: 0x564daeaede38
       		 right_child: (nil)
-      		        type: INSTRUCTION | {'fout'}
-
+      		        type: INSTRUCTION | {'fout'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435de8)::::::::::::::::
-      		  left_child: 0x555fda435e38
+      (0x564daeaedde8)::::::::::::::::
+      		  left_child: 0x564daeaede38
       		 right_child: (nil)
-      		        type: INSTRUCTION | {'fout'}
-
+      		        type: INSTRUCTION | {'fout'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435e38)::::::::::::::::
+      (0x564daeaede38)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {101}
-
+      		        type: CONSTANT | {'101'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda435e38)::::::::::::::::
+      (0x564daeaede38)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {101}
-
+      		        type: CONSTANT | {'101'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda434b20)::::::::::::::::
+      (0x564daeaecb20)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: FUNCTION RET TYPE | {'void'}
-
+      		        type: FUNCTION_RET_TYPE | {'void'}      
       }
 
     PrintNode::
       {
       Token node
-      (0x555fda434b20)::::::::::::::::
+      (0x564daeaecb20)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: FUNCTION RET TYPE | {'void'}
-
+      		        type: FUNCTION_RET_TYPE | {'void'}      
       }
 
     }

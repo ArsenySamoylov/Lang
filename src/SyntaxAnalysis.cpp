@@ -99,8 +99,8 @@ static Token* FuncLabelToTokens (FuncLabel* label);
         while(0);
 
 #define MISSING_EOS()   report_syntax_error("Missing '%c'\n", END_OF_STATEMENT)
-#define MISSING_OB()    report_syntax_error("Missing '%c'\n", OPENING_BRACKET)
-#define MISSING_CB()    report_syntax_error("Missing '%c'\n", CLOSING_BRACKET)
+#define MISSING_OB()    report_syntax_error("Missing '%c'\n", BLOCK_OPENING_BRACKET)
+#define MISSING_CB()    report_syntax_error("Missing '%c'\n", BLOCK_CLOSING_BRACOPENING_BRACKETOPENING_BRACKETET)
 #define MISSING_EOP()   report_syntax_error("Missing '%c'\n", EXPRESSION_OPENING_BRACKET)
 #define MISSING_ECB()   report_syntax_error("Missing '%c'\n", EXPRESSION_CLOSING_BRACKET)
 
@@ -351,7 +351,7 @@ static Token* GetFunction (ProgramBuffer* program_buf)
         }
 
     // function body
-    if (TYPE(token) != OPENING_BRACKET)
+    if (TYPE(token) != BLOCK_OPENING_BRACKET)
         {
         report_syntax_error("Missing '{' in function body\n");
         return LNULL;
@@ -389,7 +389,7 @@ static Token* GetFunction (ProgramBuffer* program_buf)
 
     POSITION(program_buf)++;
 
-    if (TYPE(token) != CLOSING_BRACKET)
+    if (TYPE(token) != BLOCK_CLOSING_BRACKET)
        {
        report_syntax_error("Missing '}' in function body\n");
        return LNULL;
@@ -466,13 +466,13 @@ static Token* GetStatement (ProgramBuffer* program_buf)
         return GetCall(program_buf);
         
 
-    if (TYPE(token) == OPENING_BRACKET)
+    if (TYPE(token) == BLOCK_OPENING_BRACKET)
         {
         POSITION(program_buf)++;
 
         Token* block = GetBlock(program_buf);
 
-        if (OP(token) != CLOSING_BRACKET)
+        if (OP(token) != BLOCK_CLOSING_BRACKET)
             {
             report_syntax_error("Missing closing bracket (token position %d)\n", POSITION(program_buf));
             return LNULL;
@@ -697,7 +697,7 @@ static Token* GetE (ProgramBuffer* program_buf)
     Token* prev_op = node;
     while (IS_OP(token) && (OP(token) ==  ADD || OP(token) == SUB))
         { 
-        $LOG_TOKEN(token)
+        $LOG_TOKEN(token, STRING_ARR(program_buf))
         Token* current_op = token;
         POSITION(program_buf)++;
 
@@ -716,12 +716,12 @@ static Token* GetT (ProgramBuffer* program_buf)
     assertlog (program_buf, EFAULT, return LNULL);
 
     Token* node = GetPower(program_buf);
-    $LOG_TOKEN(node)
+    $LOG_TOKEN(node, STRING_ARR(program_buf))
 
     Token* prev_op = node;
     while (IS_OP(token) && (OP(token) ==  MUL || OP(token) == DIV))
         {
-        $LOG_TOKEN(token)
+        $LOG_TOKEN(token, STRING_ARR(program_buf))
         Token* current_op = token;
         POSITION(program_buf)++;
         
@@ -744,7 +744,7 @@ Token* GetPower (ProgramBuffer* program_buf)
     Token* prev_op = node;
     while (IS_OP(token) && OP(token) ==  POW)
         {
-        $LOG_TOKEN(token)
+        $LOG_TOKEN(token, STRING_ARR(program_buf))
         Token* current_op = token;
         POSITION(program_buf)++;
 
@@ -799,7 +799,7 @@ static Token* GetN (ProgramBuffer* program_buf)
     Token* result = token;
     POSITION(program_buf)++;
 
-    $LOG_TOKEN(result)
+    $LOG_TOKEN(result, STRING_ARR(program_buf))
     return result;
     }
 

@@ -128,7 +128,7 @@ struct Program
 
 void PrintToken (const Token *const token, const char** string_arr);
 
-void LogToken (const Token *const token, const char* name);
+void LogToken (const Token *const token, const char* name, const char** STRING_ARR);
 # 2 "./src/LangUtils.cpp" 2
 
 # 1 "/usr/include/stdio.h" 1 3 4
@@ -1038,36 +1038,32 @@ extern int __overflow (FILE *, int);
 # 3 "./headers/Grammar.h"
 enum TokenType
     {
-    STATEMENT,
 
-    INSTRUCTION,
 
-    INITIALIZATOR,
-
-    FUNCTION_RET_TYPE,
-
-    OPERATOR,
+# 1 "./headers/TokenTypes.h" 1
 
 
 
-    NAME,
+STATEMENT = 1,
+INSTRUCTION = 2,
+INITIALIZATOR = 3,
+FUNCTION_RET_TYPE = 4,
+OPERATOR = 5,
 
-    VARIABLE,
-    CONSTANT,
+NAME = 6,
+VARIABLE = 7,
+CONSTANT = 8,
+FUNCTION = 9,
+CALL = 10,
 
-    FUNCTION,
+ASSIGMENT = '=',
+BLOCK_OPENING_BRACKET = '{',
+BLOCK_CLOSING_BRACKET = '}',
+EXPRESSION_OPENING_BRACKET = '(',
+EXPRESSION_CLOSING_BRACKET = ')',
+END_OF_STATEMENT = ';',
+# 8 "./headers/Grammar.h" 2
 
-    CALL,
-
-    ASSIGMENT = '=',
-
-    OPENING_BRACKET = '{',
-    CLOSING_BRACKET = '}',
-
-    EXPRESSION_OPENING_BRACKET = '(',
-    EXPRESSION_CLOSING_BRACKET = ')',
-
-    END_OF_STATEMENT = ';',
 
     UNKNOWN_TYPE = -999,
     };
@@ -44279,7 +44275,7 @@ int SYSTEM(const char* format, ...);
 
 
 #pragma GCC diagnostic ignored "-Wformat="
-void PrintToken (const Token *const token, const char** string_arr)
+void PrintToken (const Token *const token, const char** STRING_ARR)
     {
     if (!token) return;
 
@@ -44288,52 +44284,38 @@ void PrintToken (const Token *const token, const char** string_arr)
 
     switch (token->type)
     {
-    case STATEMENT:
-            printf("STATEMENT   | {%c}\n\n", token->value.t_operator);
-            break;
-    case INSTRUCTION:
-            printf("INSTRUCTION | {'%s'}\n\n", INSTRUCTIONS[token->value.t_instruction]);
-            break;
-    case INITIALIZATOR:
-            printf("INITIALIZATOR | {'%s'}\n\n", INITIALIZATORS[token->value.t_instruction]);
-            break;
-    case FUNCTION_RET_TYPE:
-            printf("FUNCTION RET TYPE | {'%s'}\n\n", FUNCTION_RET_TYPES[token->value.t_instruction]);
-            break;
-   case NAME:
-            printf("NAME | {%s}\n\n", string_arr[token->value.t_name_id]);
-            break;
 
-    case EXPRESSION_OPENING_BRACKET:
-            printf("EXPRESSION OPENING BRACKET | {%c}\n\n", token->value.t_operator);
-            break;
-    case EXPRESSION_CLOSING_BRACKET:
-            printf("EXPRESSION CLOSING BRACKET | {%c}\n\n", token->value.t_operator);
-            break;
-    case OPENING_BRACKET:
-            printf("OPENING BRACKET | {%c}\n\n", token->value.t_operator);
-            break;
-    case CLOSING_BRACKET:
-            printf("CLOSING BRACKET | {%c}\n\n", token->value.t_operator);
-            break;
-    case ASSIGMENT:
-            printf("ASSIGMENT | {%c}\n\n", token->value.t_operator);
-            break;
-    case END_OF_STATEMENT:
-            printf("END_OF_STATEMENT| {%c}\n\n", token->value.t_operator);
-            break;
-    case OPERATOR:
-            printf("OPERATOR | {%c}\n\n", token->value.t_operator);
-            break;
-    case VARIABLE:
-            printf("VARIABLE | {%s}\n\n", string_arr[token->value.t_name_id]);
-            break;
-     case FUNCTION:
-            printf("FUNCTION | {%c}\n\n", token->value.t_operator);
-            break;
-    case CONSTANT:
-            printf("CONSTANT | {%lg}\n\n", token->value.t_constant);
-            break;
+
+
+
+
+
+# 1 "./headers/TokenTypes.h" 1
+
+
+
+case STATEMENT: printf ("STATEMENT" " | {'" "%c" "'}", token->value.t_operator); break;
+case INSTRUCTION: printf ("INSTRUCTION" " | {'" "%s" "'}", INSTRUCTIONS[token->value.t_instruction]); break;
+case INITIALIZATOR: printf ("INITIALIZATOR" " | {'" "%s" "'}", INITIALIZATORS[token->value.t_initializator]); break;
+case FUNCTION_RET_TYPE: printf ("FUNCTION_RET_TYPE" " | {'" "%s" "'}", FUNCTION_RET_TYPES[token->value.t_function_ret_type]); break;
+case OPERATOR: printf ("OPERATOR" " | {'" "%c" "'}", token->value.t_operator); break;
+
+case NAME: printf ("NAME" " | {'" "%s" "'}", STRING_ARR[token->value.t_name_id]); break;
+case VARIABLE: printf ("VARIABLE" " | {'" "%s" "'}", STRING_ARR[token->value.t_name_id]); break;
+case CONSTANT: printf ("CONSTANT" " | {'" "%lg" "'}", token->value.t_constant); break;
+case FUNCTION: printf ("FUNCTION" " | {'" "%c" "'}", token->value.t_operator); break;
+case CALL: printf ("CALL" " | {'" "%s" "'}", " "); break;
+
+case ASSIGMENT: printf ("ASSIGMENT" " | {'" "%c" "'}", token->value.t_operator); break;
+case BLOCK_OPENING_BRACKET: printf ("BLOCK_OPENING_BRACKET" " | {'" "%c" "'}", token->value.t_operator); break;
+case BLOCK_CLOSING_BRACKET: printf ("BLOCK_CLOSING_BRACKET" " | {'" "%c" "'}", token->value.t_operator); break;
+case EXPRESSION_OPENING_BRACKET: printf ("EXPRESSION_OPENING_BRACKET" " | {'" "%c" "'}", token->value.t_operator); break;
+case EXPRESSION_CLOSING_BRACKET: printf ("EXPRESSION_CLOSING_BRACKET" " | {'" "%c" "'}", token->value.t_operator); break;
+case END_OF_STATEMENT: printf ("END_OF_STATEMENT" " | {'" "%c" "'}", token->value.t_operator); break;
+# 26 "./src/LangUtils.cpp" 2
+
+
+
 
     default: printf("UNCKNOWN TYPE\n"); break;
     }
@@ -44341,7 +44323,7 @@ void PrintToken (const Token *const token, const char** string_arr)
     return;
     }
 
-void LogToken (const Token *const token, const char* name)
+void LogToken (const Token *const token, const char* name, const char** STRING_ARR)
     {
     if (!token) return;
 
@@ -44353,53 +44335,44 @@ void LogToken (const Token *const token, const char* name)
 
     switch (token->type)
         {
-        case STATEMENT:
-                    Logger::getInstance().log_no_indent("STATEMENT   | {%c}\n\n" , token->value.t_operator);
-                    break;
-        case INSTRUCTION:
-                    Logger::getInstance().log_no_indent("INSTRUCTION | {'%s'}\n\n" , INSTRUCTIONS[token->value.t_instruction]);
-                    break;
-        case INITIALIZATOR:
-            Logger::getInstance().log_no_indent("INITIALIZATOR | {'%s'}\n\n" , INITIALIZATORS[token->value.t_instruction]);
-            break;
-        case FUNCTION_RET_TYPE:
-            Logger::getInstance().log_no_indent("FUNCTION RET TYPE | {'%s'}\n\n" , FUNCTION_RET_TYPES[token->value.t_instruction]);
-            break;
-         case NAME:
-            Logger::getInstance().log_no_indent("NAME | {%d}\n\n" , token->value.t_name_id);
-            break;
-        case EXPRESSION_OPENING_BRACKET:
-                    Logger::getInstance().log_no_indent("EXPRESSION OPENING BRACKET | {%c}\n\n" , token->value.t_operator);
-                    break;
-        case EXPRESSION_CLOSING_BRACKET:
-                    Logger::getInstance().log_no_indent("EXPRESSION CLOSING BRACKET | {%c}\n\n" , token->value.t_operator);
-                    break;
-        case OPENING_BRACKET:
-                    Logger::getInstance().log_no_indent("OPENING BRACKET | {%c}\n\n" , token->value.t_operator);
-                    break;
-        case CLOSING_BRACKET:
-                    Logger::getInstance().log_no_indent("CLOSING BRACKET | {%c}\n\n" , token->value.t_operator);
-                    break;
-        case ASSIGMENT:
-                    Logger::getInstance().log_no_indent("ASSIGMENT | {%c}\n\n" , token->value.t_operator);
-                    break;
-        case END_OF_STATEMENT:
-                    Logger::getInstance().log_no_indent("END_OF_STATEMENT| {%c}\n\n" , token->value.t_operator);
-                    break;
-        case OPERATOR:
-                    Logger::getInstance().log_no_indent("OPERATOR | {%c}\n\n" , token->value.t_operator);
-                    break;
-        case VARIABLE:
-
-                    break;
-
-        case CONSTANT: Logger::getInstance().log_no_indent("CONSTANT | {%lg}\n\n" , token->value.t_constant);
-                    break;
 
 
 
-        default: Logger::getInstance().log_no_indent("UNCKNOWN TYPE\n" ); break;
+
+
+
+# 1 "./headers/TokenTypes.h" 1
+
+
+
+case STATEMENT: Logger::getInstance().log_no_indent("STATEMENT" " | {'" "%c" "'}" , token->value.t_operator); break;
+case INSTRUCTION: Logger::getInstance().log_no_indent("INSTRUCTION" " | {'" "%s" "'}" , INSTRUCTIONS[token->value.t_instruction]); break;
+case INITIALIZATOR: Logger::getInstance().log_no_indent("INITIALIZATOR" " | {'" "%s" "'}" , INITIALIZATORS[token->value.t_initializator]); break;
+case FUNCTION_RET_TYPE: Logger::getInstance().log_no_indent("FUNCTION_RET_TYPE" " | {'" "%s" "'}" , FUNCTION_RET_TYPES[token->value.t_function_ret_type]); break;
+case OPERATOR: Logger::getInstance().log_no_indent("OPERATOR" " | {'" "%c" "'}" , token->value.t_operator); break;
+
+case NAME: Logger::getInstance().log_no_indent("NAME" " | {'" "%s" "'}" , STRING_ARR[token->value.t_name_id]); break;
+case VARIABLE: Logger::getInstance().log_no_indent("VARIABLE" " | {'" "%s" "'}" , STRING_ARR[token->value.t_name_id]); break;
+case CONSTANT: Logger::getInstance().log_no_indent("CONSTANT" " | {'" "%lg" "'}" , token->value.t_constant); break;
+case FUNCTION: Logger::getInstance().log_no_indent("FUNCTION" " | {'" "%c" "'}" , token->value.t_operator); break;
+case CALL: Logger::getInstance().log_no_indent("CALL" " | {'" "%s" "'}" , " "); break;
+
+case ASSIGMENT: Logger::getInstance().log_no_indent("ASSIGMENT" " | {'" "%c" "'}" , token->value.t_operator); break;
+case BLOCK_OPENING_BRACKET: Logger::getInstance().log_no_indent("BLOCK_OPENING_BRACKET" " | {'" "%c" "'}" , token->value.t_operator); break;
+case BLOCK_CLOSING_BRACKET: Logger::getInstance().log_no_indent("BLOCK_CLOSING_BRACKET" " | {'" "%c" "'}" , token->value.t_operator); break;
+case EXPRESSION_OPENING_BRACKET: Logger::getInstance().log_no_indent("EXPRESSION_OPENING_BRACKET" " | {'" "%c" "'}" , token->value.t_operator); break;
+case EXPRESSION_CLOSING_BRACKET: Logger::getInstance().log_no_indent("EXPRESSION_CLOSING_BRACKET" " | {'" "%c" "'}" , token->value.t_operator); break;
+case END_OF_STATEMENT: Logger::getInstance().log_no_indent("END_OF_STATEMENT" " | {'" "%c" "'}" , token->value.t_operator); break;
+# 55 "./src/LangUtils.cpp" 2
+
+
+
+
+        default: Logger::getInstance().log_no_indent("UNCKNOWN TYPE\n" );
+                 break;
         }
+
+    Logger::getInstance().log("\n" );
 
     return;
     }

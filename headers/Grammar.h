@@ -2,36 +2,10 @@
 
 enum TokenType
     {
-    STATEMENT,
-    // EXPRESSION,
-    INSTRUCTION,
-    
-    INITIALIZATOR,
-    
-    FUNCTION_RET_TYPE,
+    #define TOKEN_TYPE(name, val, specificator, ...)  name = val,
 
-    OPERATOR, 
-
-    // STRING,
-
-    NAME,
-
-    VARIABLE,
-    CONSTANT,
-    
-    FUNCTION, 
-
-    CALL,
-
-    ASSIGMENT = '=', 
-
-    OPENING_BRACKET  = '{',
-    CLOSING_BRACKET  = '}',
-
-    EXPRESSION_OPENING_BRACKET = '(',
-    EXPRESSION_CLOSING_BRACKET = ')',
-
-    END_OF_STATEMENT = ';',
+    #include "TokenTypes.h"
+    #undef TOKEN_TYPE
 
     UNKNOWN_TYPE  = -999,
     };

@@ -24318,36 +24318,32 @@ using std::lerp;
 # 3 "./headers/Grammar.h"
 enum TokenType
     {
-    STATEMENT,
 
-    INSTRUCTION,
 
-    INITIALIZATOR,
-
-    FUNCTION_RET_TYPE,
-
-    OPERATOR,
+# 1 "./headers/TokenTypes.h" 1
 
 
 
-    NAME,
+STATEMENT = 1,
+INSTRUCTION = 2,
+INITIALIZATOR = 3,
+FUNCTION_RET_TYPE = 4,
+OPERATOR = 5,
 
-    VARIABLE,
-    CONSTANT,
+NAME = 6,
+VARIABLE = 7,
+CONSTANT = 8,
+FUNCTION = 9,
+CALL = 10,
 
-    FUNCTION,
+ASSIGMENT = '=',
+BLOCK_OPENING_BRACKET = '{',
+BLOCK_CLOSING_BRACKET = '}',
+EXPRESSION_OPENING_BRACKET = '(',
+EXPRESSION_CLOSING_BRACKET = ')',
+END_OF_STATEMENT = ';',
+# 8 "./headers/Grammar.h" 2
 
-    CALL,
-
-    ASSIGMENT = '=',
-
-    OPENING_BRACKET = '{',
-    CLOSING_BRACKET = '}',
-
-    EXPRESSION_OPENING_BRACKET = '(',
-    EXPRESSION_CLOSING_BRACKET = ')',
-
-    END_OF_STATEMENT = ';',
 
     UNKNOWN_TYPE = -999,
     };
@@ -54630,7 +54626,7 @@ int BufferPutString (Buffer* buf, const char* str);
 
 void PrintToken (const Token *const token, const char** string_arr);
 
-void LogToken (const Token *const token, const char* name);
+void LogToken (const Token *const token, const char* name, const char** STRING_ARR);
 # 10 "./src/LexicalAnalysis.cpp" 2
 
 
@@ -54794,7 +54790,7 @@ int Tokenizer (Program* program, const char* buffer)
     for (int i = 0; i < number_of_tokens; i++)
         {
         do { Logger::getInstance().log("\t%s: %d\n" , "i", i); } while(0);
-        LogToken(program->token_arr + i, "program->token_arr + i");
+        LogToken(program->token_arr + i, "program->token_arr + i", string_arr);
         }
 
     return SUCCESS;
@@ -54912,7 +54908,7 @@ static int GetTokenValue (TokenValue* val, Buffer* buf, const char** src_code_pt
 
 
 
-    if (temp == OPENING_BRACKET || temp == CLOSING_BRACKET ||
+    if (temp == BLOCK_OPENING_BRACKET || temp == BLOCK_CLOSING_BRACKET ||
         temp == EXPRESSION_OPENING_BRACKET || temp == EXPRESSION_CLOSING_BRACKET)
         {
         val->t_operator = BufferGetCh(buf);

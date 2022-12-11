@@ -963,14 +963,14 @@ _ZL10GetProcessP13ProgramBuffer:
 	.loc 1 175 162 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 175 5 discriminator 4
-	cmpl	$5, %eax
+	cmpl	$6, %eax
 	je	.L23
 	.loc 1 175 5 is_stmt 0
-	cmpl	$5, %eax
+	cmpl	$6, %eax
 	jg	.L24
-	cmpl	$2, %eax
-	je	.L25
 	cmpl	$3, %eax
+	je	.L25
+	cmpl	$4, %eax
 	je	.L26
 	jmp	.L24
 .L25:
@@ -1627,7 +1627,7 @@ _ZL18FuncInitializationP13ProgramBuffer:
 	.loc 1 222 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 222 5 discriminator 4
-	cmpl	$2, %eax
+	cmpl	$3, %eax
 	jne	.L48
 	.loc 1 222 199 discriminator 5
 	movq	-40(%rbp), %rax
@@ -2410,7 +2410,7 @@ _ZL17VarInitializationP13ProgramBuffer:
 	.loc 1 252 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 252 5 discriminator 4
-	cmpl	$2, %eax
+	cmpl	$3, %eax
 	jne	.L73
 	.loc 1 252 199 discriminator 5
 	movq	-72(%rbp), %rax
@@ -2679,7 +2679,7 @@ _ZL17VarInitializationP13ProgramBuffer:
 	.loc 1 261 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 261 5 discriminator 4
-	cmpl	$5, %eax
+	cmpl	$6, %eax
 	je	.L85
 	.loc 1 263 20
 	leaq	.LC22(%rip), %rax
@@ -3114,7 +3114,7 @@ _ZL17VarInitializationP13ProgramBuffer:
 	movl	%edx, 8(%rax)
 	.loc 1 286 20
 	movq	-48(%rbp), %rax
-	movl	$6, 16(%rax)
+	movl	$7, 16(%rax)
 	.loc 1 288 32
 	movq	-56(%rbp), %rax
 	movq	-48(%rbp), %rdx
@@ -3223,7 +3223,7 @@ _ZL17VarInitializationP13ProgramBuffer:
 	movl	%edx, 8(%rax)
 	.loc 1 299 25 discriminator 4
 	movq	-24(%rbp), %rax
-	movl	$0, 16(%rax)
+	movl	$1, 16(%rax)
 	.loc 1 300 31 discriminator 4
 	movq	-24(%rbp), %rax
 	movq	-56(%rbp), %rdx
@@ -3703,7 +3703,7 @@ _ZL17VarInitializationP13ProgramBuffer:
 .L120:
 	.loc 1 327 21
 	movq	-32(%rbp), %rax
-	movl	$0, 16(%rax)
+	movl	$1, 16(%rax)
 	.loc 1 328 27
 	movq	-32(%rbp), %rax
 	movq	-56(%rbp), %rdx
@@ -4327,7 +4327,7 @@ _ZL11GetFunctionP13ProgramBuffer:
 	.loc 1 365 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 365 5 discriminator 4
-	cmpl	$1, %eax
+	cmpl	$2, %eax
 	je	.L139
 	.loc 1 365 197 discriminator 5
 	movq	-104(%rbp), %rax
@@ -5139,7 +5139,7 @@ _ZL11GetFunctionP13ProgramBuffer:
 	movl	$1, 8(%rax)
 	.loc 1 406 21 discriminator 4
 	movq	-64(%rbp), %rax
-	movl	$8, 16(%rax)
+	movl	$9, 16(%rax)
 	.loc 1 407 27 discriminator 4
 	movq	-64(%rbp), %rax
 	movq	-56(%rbp), %rdx
@@ -5721,7 +5721,7 @@ _ZL12GetStatementP13ProgramBuffer:
 	.loc 1 440 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 440 5 discriminator 4
-	cmpl	$5, %eax
+	cmpl	$6, %eax
 	jne	.L190
 	.loc 1 442 23
 	movq	-72(%rbp), %rax
@@ -5837,7 +5837,7 @@ _ZL12GetStatementP13ProgramBuffer:
 	.loc 1 448 313 is_stmt 1 discriminator 9
 	movl	16(%rax), %eax
 	.loc 1 448 334 discriminator 9
-	cmpl	$1, %eax
+	cmpl	$2, %eax
 	jne	.L194
 	.loc 1 449 30
 	movq	-72(%rbp), %rax
@@ -5917,7 +5917,7 @@ _ZL12GetStatementP13ProgramBuffer:
 	.loc 1 451 314 is_stmt 1 discriminator 9
 	movl	16(%rax), %eax
 	.loc 1 451 333 discriminator 9
-	cmpl	$6, %eax
+	cmpl	$7, %eax
 	jne	.L199
 	.loc 1 452 28
 	movq	-72(%rbp), %rax
@@ -5962,7 +5962,7 @@ _ZL12GetStatementP13ProgramBuffer:
 	.loc 1 454 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 454 5 discriminator 4
-	cmpl	$5, %eax
+	cmpl	$6, %eax
 	jne	.L204
 	.loc 1 456 23
 	movq	-72(%rbp), %rax
@@ -6043,7 +6043,7 @@ _ZL12GetStatementP13ProgramBuffer:
 	.loc 1 462 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 462 5 discriminator 4
-	cmpl	$2, %eax
+	cmpl	$3, %eax
 	jne	.L208
 	.loc 1 463 33
 	movq	-72(%rbp), %rax
@@ -6123,7 +6123,7 @@ _ZL12GetStatementP13ProgramBuffer:
 	.loc 1 465 313 is_stmt 1 discriminator 9
 	movl	16(%rax), %eax
 	.loc 1 465 332 discriminator 9
-	cmpl	$8, %eax
+	cmpl	$9, %eax
 	jne	.L211
 	.loc 1 466 23
 	movq	-72(%rbp), %rax
@@ -6598,7 +6598,7 @@ _ZL7GetCallP13ProgramBuffer:
 	.loc 1 494 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 494 5 discriminator 4
-	cmpl	$8, %eax
+	cmpl	$9, %eax
 	je	.L233
 	.loc 1 496 20
 	leaq	.LC22(%rip), %rax
@@ -6789,7 +6789,7 @@ _ZL7GetCallP13ProgramBuffer:
 	movq	%rax, -32(%rbp)
 	.loc 1 501 21 discriminator 4
 	movq	-32(%rbp), %rax
-	movl	$5, 16(%rax)
+	movl	$6, 16(%rax)
 	.loc 1 503 19 discriminator 4
 	movq	-40(%rbp), %rax
 	movl	8(%rax), %eax
@@ -7393,7 +7393,7 @@ _ZL7GetCallP13ProgramBuffer:
 	movq	-32(%rbp), %rax
 	movl	$0, %ecx
 	movq	%rax, %rdx
-	movl	$9, %edi
+	movl	$10, %edi
 	call	_Z8NewTokeni10TokenValueP5TokenS1_@PLT
 	movq	%rax, -24(%rbp)
 	.loc 1 534 12
@@ -7625,7 +7625,7 @@ _ZL14GetInstructionP13ProgramBuffer:
 	.loc 1 542 314 is_stmt 1 discriminator 9
 	movl	16(%rax), %eax
 	.loc 1 542 9 discriminator 9
-	cmpl	$1, %eax
+	cmpl	$2, %eax
 	je	.L269
 .L266:
 	.loc 1 544 20
@@ -7938,7 +7938,7 @@ _ZL14GetInstructionP13ProgramBuffer:
 	.loc 1 557 162 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 557 9 discriminator 4
-	cmpl	$4, %eax
+	cmpl	$5, %eax
 	jne	.L284
 	.loc 1 557 198 discriminator 5
 	movq	-104(%rbp), %rax
@@ -8268,7 +8268,7 @@ _ZL14GetInstructionP13ProgramBuffer:
 	movl	%edx, 8(%rax)
 	.loc 1 575 25 discriminator 4
 	movq	-56(%rbp), %rax
-	movl	$0, 16(%rax)
+	movl	$1, 16(%rax)
 	.loc 1 576 31 discriminator 4
 	movq	-56(%rbp), %rax
 	movq	-72(%rbp), %rdx
@@ -8546,7 +8546,7 @@ _ZL14GetInstructionP13ProgramBuffer:
 	movq	%rax, -88(%rbp)
 	.loc 1 592 21 discriminator 4
 	movq	-88(%rbp), %rax
-	movl	$0, 16(%rax)
+	movl	$1, 16(%rax)
 	.loc 1 593 27 discriminator 4
 	movq	-88(%rbp), %rax
 	movq	-96(%rbp), %rdx
@@ -9132,7 +9132,7 @@ _ZL14GetInstructionP13ProgramBuffer:
 	.loc 1 621 200 is_stmt 1 discriminator 5
 	movl	16(%rax), %eax
 	.loc 1 621 48 discriminator 5
-	cmpl	$1, %eax
+	cmpl	$2, %eax
 	jne	.L326
 	.loc 1 621 239 discriminator 6
 	movq	-104(%rbp), %rax
@@ -9654,7 +9654,7 @@ _ZL12GetAssigmentP13ProgramBuffer:
 	.loc 1 645 315 is_stmt 1 discriminator 9
 	movl	16(%rax), %eax
 	.loc 1 645 9 discriminator 9
-	cmpl	$6, %eax
+	cmpl	$7, %eax
 	je	.L350
 .L347:
 	.loc 1 647 20
@@ -10545,7 +10545,7 @@ _ZL12GetAssigmentP13ProgramBuffer:
 	movl	%edx, 8(%rax)
 	.loc 1 681 21 discriminator 4
 	movq	-56(%rbp), %rax
-	movl	$0, 16(%rax)
+	movl	$1, 16(%rax)
 	.loc 1 682 27 discriminator 4
 	movq	-56(%rbp), %rax
 	movq	-64(%rbp), %rdx
@@ -10741,43 +10741,48 @@ _ZL4GetEP13ProgramBuffer:
 	jmp	.L391
 .L403:
 .LBB12:
+	.loc 1 700 191
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 1 700 17
+	movq	24(%rax), %rdx
 	.loc 1 700 34
 	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
+	movl	8(%rax), %ecx
 	.loc 1 700 61
 	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
 	.loc 1 700 71
 	movl	8(%rax), %eax
 	.loc 1 700 17
-	cmpl	%eax, %edx
+	cmpl	%eax, %ecx
 	jge	.L392
 	.loc 1 700 107 discriminator 1
 	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
 	.loc 1 700 117 discriminator 1
-	movq	(%rax), %rcx
+	movq	(%rax), %rsi
 	.loc 1 700 143 discriminator 1
 	movq	-88(%rbp), %rax
 	movl	8(%rax), %eax
-	movslq	%eax, %rdx
+	movslq	%eax, %rcx
 	.loc 1 700 127 discriminator 1
-	movq	%rdx, %rax
+	movq	%rcx, %rax
 	salq	$2, %rax
-	addq	%rdx, %rax
+	addq	%rcx, %rax
 	salq	$3, %rax
 	.loc 1 700 17 discriminator 1
-	addq	%rcx, %rax
+	addq	%rsi, %rax
 	jmp	.L393
 .L392:
 	.loc 1 700 17 is_stmt 0 discriminator 2
 	movl	$0, %eax
 .L393:
 	.loc 1 700 17 discriminator 4
-	leaq	.LC74(%rip), %rdx
-	movq	%rdx, %rsi
+	leaq	.LC74(%rip), %rcx
+	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	call	_Z8LogTokenPK5TokenPKc@PLT
+	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
 	.loc 1 701 45 is_stmt 1
 	movq	-88(%rbp), %rax
 	movl	8(%rax), %edx
@@ -10906,7 +10911,7 @@ _ZL4GetEP13ProgramBuffer:
 	.loc 1 698 317 is_stmt 1 discriminator 9
 	movl	16(%rax), %eax
 	.loc 1 698 336 discriminator 9
-	cmpl	$4, %eax
+	cmpl	$5, %eax
 	jne	.L398
 	.loc 1 698 373 discriminator 10
 	movq	-88(%rbp), %rax
@@ -11167,12 +11172,16 @@ _ZL4GetTP13ProgramBuffer:
 	movq	%rax, %rdi
 	call	_ZL8GetPowerP13ProgramBuffer
 	movq	%rax, -64(%rbp)
+	.loc 1 719 43
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
 	.loc 1 719 13
+	movq	24(%rax), %rdx
 	movq	-64(%rbp), %rax
-	leaq	.LC76(%rip), %rdx
-	movq	%rdx, %rsi
+	leaq	.LC76(%rip), %rcx
+	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	call	_Z8LogTokenPK5TokenPKc@PLT
+	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
 	.loc 1 721 12
 	movq	-64(%rbp), %rax
 	movq	%rax, -72(%rbp)
@@ -11180,43 +11189,48 @@ _ZL4GetTP13ProgramBuffer:
 	jmp	.L413
 .L425:
 .LBB13:
+	.loc 1 724 191
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 1 724 17
+	movq	24(%rax), %rdx
 	.loc 1 724 34
 	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
+	movl	8(%rax), %ecx
 	.loc 1 724 61
 	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
 	.loc 1 724 71
 	movl	8(%rax), %eax
 	.loc 1 724 17
-	cmpl	%eax, %edx
+	cmpl	%eax, %ecx
 	jge	.L414
 	.loc 1 724 107 discriminator 1
 	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
 	.loc 1 724 117 discriminator 1
-	movq	(%rax), %rcx
+	movq	(%rax), %rsi
 	.loc 1 724 143 discriminator 1
 	movq	-88(%rbp), %rax
 	movl	8(%rax), %eax
-	movslq	%eax, %rdx
+	movslq	%eax, %rcx
 	.loc 1 724 127 discriminator 1
-	movq	%rdx, %rax
+	movq	%rcx, %rax
 	salq	$2, %rax
-	addq	%rdx, %rax
+	addq	%rcx, %rax
 	salq	$3, %rax
 	.loc 1 724 17 discriminator 1
-	addq	%rcx, %rax
+	addq	%rsi, %rax
 	jmp	.L415
 .L414:
 	.loc 1 724 17 is_stmt 0 discriminator 2
 	movl	$0, %eax
 .L415:
 	.loc 1 724 17 discriminator 4
-	leaq	.LC74(%rip), %rdx
-	movq	%rdx, %rsi
+	leaq	.LC74(%rip), %rcx
+	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	call	_Z8LogTokenPK5TokenPKc@PLT
+	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
 	.loc 1 725 45 is_stmt 1
 	movq	-88(%rbp), %rax
 	movl	8(%rax), %edx
@@ -11345,7 +11359,7 @@ _ZL4GetTP13ProgramBuffer:
 	.loc 1 722 317 is_stmt 1 discriminator 9
 	movl	16(%rax), %eax
 	.loc 1 722 336 discriminator 9
-	cmpl	$4, %eax
+	cmpl	$5, %eax
 	jne	.L420
 	.loc 1 722 373 discriminator 10
 	movq	-88(%rbp), %rax
@@ -11611,43 +11625,48 @@ _ZL8GetPowerP13ProgramBuffer:
 	jmp	.L435
 .L447:
 .LBB14:
+	.loc 1 747 191
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 1 747 17
+	movq	24(%rax), %rdx
 	.loc 1 747 34
 	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
+	movl	8(%rax), %ecx
 	.loc 1 747 61
 	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
 	.loc 1 747 71
 	movl	8(%rax), %eax
 	.loc 1 747 17
-	cmpl	%eax, %edx
+	cmpl	%eax, %ecx
 	jge	.L436
 	.loc 1 747 107 discriminator 1
 	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
 	.loc 1 747 117 discriminator 1
-	movq	(%rax), %rcx
+	movq	(%rax), %rsi
 	.loc 1 747 143 discriminator 1
 	movq	-88(%rbp), %rax
 	movl	8(%rax), %eax
-	movslq	%eax, %rdx
+	movslq	%eax, %rcx
 	.loc 1 747 127 discriminator 1
-	movq	%rdx, %rax
+	movq	%rcx, %rax
 	salq	$2, %rax
-	addq	%rdx, %rax
+	addq	%rcx, %rax
 	salq	$3, %rax
 	.loc 1 747 17 discriminator 1
-	addq	%rcx, %rax
+	addq	%rsi, %rax
 	jmp	.L437
 .L436:
 	.loc 1 747 17 is_stmt 0 discriminator 2
 	movl	$0, %eax
 .L437:
 	.loc 1 747 17 discriminator 4
-	leaq	.LC74(%rip), %rdx
-	movq	%rdx, %rsi
+	leaq	.LC74(%rip), %rcx
+	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	call	_Z8LogTokenPK5TokenPKc@PLT
+	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
 	.loc 1 748 45 is_stmt 1
 	movq	-88(%rbp), %rax
 	movl	8(%rax), %edx
@@ -11776,7 +11795,7 @@ _ZL8GetPowerP13ProgramBuffer:
 	.loc 1 745 317 is_stmt 1 discriminator 9
 	movl	16(%rax), %eax
 	.loc 1 745 336 discriminator 9
-	cmpl	$4, %eax
+	cmpl	$5, %eax
 	jne	.L442
 	.loc 1 745 372 discriminator 10
 	movq	-88(%rbp), %rax
@@ -12473,7 +12492,7 @@ _ZL4GetNP13ProgramBuffer:
 	.loc 1 790 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 790 5 discriminator 4
-	cmpl	$5, %eax
+	cmpl	$6, %eax
 	jne	.L474
 	.loc 1 791 19
 	movq	-72(%rbp), %rax
@@ -12550,7 +12569,7 @@ _ZL4GetNP13ProgramBuffer:
 	.loc 1 793 315 is_stmt 1 discriminator 10
 	movl	16(%rax), %eax
 	.loc 1 793 9 discriminator 10
-	cmpl	$7, %eax
+	cmpl	$8, %eax
 	je	.L480
 .L477:
 	.loc 1 793 374 discriminator 11
@@ -12623,7 +12642,7 @@ _ZL4GetNP13ProgramBuffer:
 	.loc 1 793 660 is_stmt 1 discriminator 20
 	movl	16(%rax), %eax
 	.loc 1 793 354 discriminator 20
-	cmpl	$6, %eax
+	cmpl	$7, %eax
 	je	.L480
 .L483:
 	.loc 1 795 20
@@ -12820,12 +12839,16 @@ _ZL4GetNP13ProgramBuffer:
 	leal	1(%rax), %edx
 	movq	-72(%rbp), %rax
 	movl	%edx, 8(%rax)
+	.loc 1 802 47 discriminator 4
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
 	.loc 1 802 13 discriminator 4
+	movq	24(%rax), %rdx
 	movq	-56(%rbp), %rax
-	leaq	.LC81(%rip), %rdx
-	movq	%rdx, %rsi
+	leaq	.LC81(%rip), %rcx
+	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	call	_Z8LogTokenPK5TokenPKc@PLT
+	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
 .LEHE31:
 	.loc 1 803 12
 	movq	-56(%rbp), %rbx
@@ -13010,7 +13033,7 @@ _ZL10DefineNameP13ProgramBuffer:
 	.loc 1 812 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 812 5 discriminator 4
-	cmpl	$5, %eax
+	cmpl	$6, %eax
 	je	.L501
 	.loc 1 814 20
 	leaq	.LC22(%rip), %rax
@@ -13221,9 +13244,9 @@ _ZL10DefineNameP13ProgramBuffer:
 	movl	$0, %eax
 .L510:
 	.loc 1 821 163 is_stmt 1 discriminator 4
-	movl	$8, 16(%rax)
+	movl	$9, 16(%rax)
 	.loc 1 822 16 discriminator 4
-	movl	$8, %eax
+	movl	$9, %eax
 	jmp	.L498
 .L508:
 	.loc 1 825 21
@@ -13304,9 +13327,9 @@ _ZL10DefineNameP13ProgramBuffer:
 	movl	$0, %eax
 .L515:
 	.loc 1 827 163 is_stmt 1 discriminator 4
-	movl	$6, 16(%rax)
+	movl	$7, 16(%rax)
 	.loc 1 828 16 discriminator 4
-	movl	$6, %eax
+	movl	$7, %eax
 	jmp	.L498
 .L513:
 	.loc 1 831 16
@@ -13694,7 +13717,7 @@ _ZL13MakeFuncLabelP13ProgramBuffer:
 	.loc 1 843 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 843 5 discriminator 4
-	cmpl	$3, %eax
+	cmpl	$4, %eax
 	je	.L528
 	.loc 1 845 20
 	leaq	.LC22(%rip), %rax
@@ -13928,7 +13951,7 @@ _ZL13MakeFuncLabelP13ProgramBuffer:
 	.loc 1 852 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 852 5 discriminator 4
-	cmpl	$5, %eax
+	cmpl	$6, %eax
 	je	.L537
 	.loc 1 854 20
 	leaq	.LC22(%rip), %rax
@@ -14740,7 +14763,7 @@ _ZL12MakeVarLabelP13ProgramBuffer:
 	.loc 1 888 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
 	.loc 1 888 5 discriminator 4
-	cmpl	$5, %eax
+	cmpl	$6, %eax
 	je	.L564
 	.loc 1 890 20
 	leaq	.LC22(%rip), %rax
@@ -15159,7 +15182,7 @@ _ZL17FuncLabelToTokensP9FuncLabel:
 	movl	$0, %ecx
 	movl	$0, %edx
 	movq	%rax, %rsi
-	movl	$5, %edi
+	movl	$6, %edi
 	call	_Z8NewTokeni10TokenValueP5TokenS1_@PLT
 	movq	%rax, -24(%rbp)
 	.loc 1 905 34
@@ -15175,7 +15198,7 @@ _ZL17FuncLabelToTokensP9FuncLabel:
 	movl	$0, %ecx
 	movl	$0, %edx
 	movq	%rax, %rsi
-	movl	$3, %edi
+	movl	$4, %edi
 	call	_Z8NewTokeni10TokenValueP5TokenS1_@PLT
 	.loc 1 905 23
 	movq	-24(%rbp), %rdx
@@ -15460,7 +15483,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.file 59 "/usr/include/c++/11/bits/algorithmfwd.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x37dd
+	.long	0x37e2
 	.value	0x5
 	.byte	0x1
 	.byte	0x8
@@ -16348,34 +16371,34 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.long	0x72f
 	.uleb128 0x9
 	.long	.LASF123
-	.byte	0
-	.uleb128 0x9
-	.long	.LASF124
 	.byte	0x1
 	.uleb128 0x9
-	.long	.LASF125
+	.long	.LASF124
 	.byte	0x2
 	.uleb128 0x9
-	.long	.LASF126
+	.long	.LASF125
 	.byte	0x3
 	.uleb128 0x9
-	.long	.LASF127
+	.long	.LASF126
 	.byte	0x4
 	.uleb128 0x9
-	.long	.LASF128
+	.long	.LASF127
 	.byte	0x5
 	.uleb128 0x9
-	.long	.LASF129
+	.long	.LASF128
 	.byte	0x6
 	.uleb128 0x9
-	.long	.LASF130
+	.long	.LASF129
 	.byte	0x7
 	.uleb128 0x9
-	.long	.LASF131
+	.long	.LASF130
 	.byte	0x8
 	.uleb128 0x9
-	.long	.LASF132
+	.long	.LASF131
 	.byte	0x9
+	.uleb128 0x9
+	.long	.LASF132
+	.byte	0xa
 	.uleb128 0x9
 	.long	.LASF133
 	.byte	0x3d
@@ -16401,7 +16424,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xa
 	.long	.LASF140
 	.byte	0xf
-	.byte	0x27
+	.byte	0xd
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
@@ -16419,7 +16442,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xa
 	.long	.LASF141
 	.byte	0xf
-	.byte	0x28
+	.byte	0xe
 	.byte	0x13
 	.long	0x755
 	.uleb128 0x9
@@ -16430,7 +16453,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x7
 	.long	0x117
 	.byte	0xf
-	.byte	0x29
+	.byte	0xf
 	.long	0x79e
 	.uleb128 0x1c
 	.string	"IF"
@@ -16451,7 +16474,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xa
 	.long	.LASF147
 	.byte	0xf
-	.byte	0x32
+	.byte	0x18
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
@@ -16469,7 +16492,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xa
 	.long	.LASF148
 	.byte	0xf
-	.byte	0x33
+	.byte	0x19
 	.byte	0x13
 	.long	0x7c4
 	.uleb128 0x9
@@ -16480,7 +16503,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x7
 	.long	0x117
 	.byte	0xf
-	.byte	0x34
+	.byte	0x1a
 	.long	0x7fc
 	.uleb128 0x9
 	.long	.LASF150
@@ -16492,7 +16515,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xa
 	.long	.LASF152
 	.byte	0xf
-	.byte	0x3a
+	.byte	0x20
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
@@ -16501,7 +16524,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xa
 	.long	.LASF153
 	.byte	0xf
-	.byte	0x3b
+	.byte	0x21
 	.byte	0x13
 	.long	0x7c4
 	.uleb128 0x9
@@ -16512,7 +16535,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x7
 	.long	0x117
 	.byte	0xf
-	.byte	0x3c
+	.byte	0x22
 	.long	0x845
 	.uleb128 0x9
 	.long	.LASF155
@@ -16533,7 +16556,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xa
 	.long	.LASF157
 	.byte	0xf
-	.byte	0x42
+	.byte	0x28
 	.byte	0xc
 	.long	0x855
 	.uleb128 0x9
@@ -16544,7 +16567,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x7
 	.long	0x117
 	.byte	0xf
-	.byte	0x43
+	.byte	0x29
 	.long	0x8a5
 	.uleb128 0x1c
 	.string	"ADD"
@@ -16568,7 +16591,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xa
 	.long	.LASF159
 	.byte	0xf
-	.byte	0x4d
+	.byte	0x33
 	.byte	0xc
 	.long	0xa3
 	.uleb128 0x9
@@ -16577,7 +16600,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xa
 	.long	.LASF160
 	.byte	0xf
-	.byte	0x4f
+	.byte	0x35
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
@@ -16586,7 +16609,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xa
 	.long	.LASF161
 	.byte	0xf
-	.byte	0x50
+	.byte	0x36
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
@@ -20778,7 +20801,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x19
 	.byte	0x18
 	.long	.LASF603
-	.long	0x2cc0
+	.long	0x2cc5
 	.byte	0x1
 	.byte	0
 	.uleb128 0x7
@@ -20788,11 +20811,13 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x37
 	.byte	0x7
 	.long	.LASF507
-	.long	0x2ad1
+	.long	0x2ad6
 	.uleb128 0x1
-	.long	0x2ad1
+	.long	0x2ad6
 	.uleb128 0x1
 	.long	0x10d
+	.uleb128 0x1
+	.long	0x278
 	.byte	0
 	.uleb128 0x7
 	.long	0x103
@@ -20803,7 +20828,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x8
 	.long	.LASF493
 	.long	0x108
-	.long	0x2aff
+	.long	0x2b04
 	.uleb128 0x1
 	.long	0x90
 	.uleb128 0x1
@@ -20820,7 +20845,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x5
 	.long	.LASF495
 	.long	0x90
-	.long	0x2b1e
+	.long	0x2b23
 	.uleb128 0x1
 	.long	0x224
 	.uleb128 0x1
@@ -20833,7 +20858,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x5
 	.long	.LASF497
 	.long	0x90
-	.long	0x2b3d
+	.long	0x2b42
 	.uleb128 0x1
 	.long	0x196
 	.uleb128 0x1
@@ -20846,7 +20871,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0xb
 	.long	.LASF499
 	.long	0x26a8
-	.long	0x2b57
+	.long	0x2b5c
 	.uleb128 0x1
 	.long	0x2941
 	.byte	0
@@ -20857,7 +20882,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x5
 	.long	.LASF501
 	.long	0x90
-	.long	0x2b76
+	.long	0x2b7b
 	.uleb128 0x1
 	.long	0x224
 	.uleb128 0x1
@@ -20870,7 +20895,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0xc
 	.long	.LASF503
 	.long	0x224
-	.long	0x2b95
+	.long	0x2b9a
 	.uleb128 0x1
 	.long	0x90
 	.uleb128 0x1
@@ -20883,7 +20908,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x13
 	.long	.LASF504
 	.long	0x1b35
-	.long	0x2bb0
+	.long	0x2bb5
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x14
@@ -20891,8 +20916,8 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x26
 	.long	0x263e
 	.long	.LASF505
-	.long	0x2bc1
-	.long	0x2bcb
+	.long	0x2bc6
+	.long	0x2bd0
 	.uleb128 0x27
 	.long	.LASF476
 	.long	0x2666
@@ -20902,9 +20927,9 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x37
 	.byte	0x5
 	.long	.LASF508
-	.long	0x2be5
+	.long	0x2bea
 	.uleb128 0x1
-	.long	0x2ad1
+	.long	0x2ad6
 	.uleb128 0x1
 	.long	0x278
 	.byte	0
@@ -20915,7 +20940,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x5
 	.long	.LASF510
 	.long	0x90
-	.long	0x2c04
+	.long	0x2c09
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x1
@@ -20928,7 +20953,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x5
 	.long	.LASF512
 	.long	0x90
-	.long	0x2c1e
+	.long	0x2c23
 	.uleb128 0x1
 	.long	0x293c
 	.byte	0
@@ -20937,7 +20962,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x33
 	.byte	0x4c
 	.long	.LASF514
-	.long	0x2c38
+	.long	0x2c3d
 	.uleb128 0x1
 	.long	0x2941
 	.uleb128 0x1
@@ -20950,7 +20975,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x5
 	.long	.LASF516
 	.long	0x90
-	.long	0x2c52
+	.long	0x2c57
 	.uleb128 0x1
 	.long	0x26b4
 	.byte	0
@@ -20961,7 +20986,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x5
 	.long	.LASF518
 	.long	0x90
-	.long	0x2c71
+	.long	0x2c76
 	.uleb128 0x1
 	.long	0x2941
 	.uleb128 0x1
@@ -20974,7 +20999,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x5
 	.long	.LASF520
 	.long	0x90
-	.long	0x2c91
+	.long	0x2c96
 	.uleb128 0x1
 	.long	0x90
 	.uleb128 0x1
@@ -20987,7 +21012,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.value	0x1a3
 	.byte	0xe
 	.long	0xaf
-	.long	0x2ca8
+	.long	0x2cad
 	.uleb128 0x1
 	.long	0x90
 	.byte	0
@@ -20997,7 +21022,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.value	0x164
 	.byte	0xc
 	.long	0x90
-	.long	0x2cc0
+	.long	0x2cc5
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x14
@@ -21007,8 +21032,8 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x26
 	.long	0x2618
 	.long	.LASF523
-	.long	0x2cd6
-	.long	0x2cf8
+	.long	0x2cdb
+	.long	0x2cfd
 	.uleb128 0x27
 	.long	.LASF476
 	.long	0x2666
@@ -21037,7 +21062,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2956-.LFB2956
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2d49
+	.long	0x2d4e
 	.uleb128 0x10
 	.long	.LASF525
 	.value	0x39e
@@ -21064,7 +21089,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2289-.LFB2289
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2dbb
+	.long	0x2dc0
 	.uleb128 0x10
 	.long	.LASF527
 	.value	0x395
@@ -21083,7 +21108,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -64
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x2dcb
+	.long	0x2dd0
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC95
@@ -21106,13 +21131,13 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0
 	.uleb128 0x12
 	.long	0xa3
-	.long	0x2dcb
+	.long	0x2dd0
 	.uleb128 0x13
 	.long	0x28e
 	.byte	0xb
 	.byte	0
 	.uleb128 0xc
-	.long	0x2dbb
+	.long	0x2dc0
 	.uleb128 0x11
 	.long	.LASF533
 	.value	0x383
@@ -21122,7 +21147,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2288-.LFB2288
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2e24
+	.long	0x2e29
 	.uleb128 0x10
 	.long	.LASF534
 	.value	0x383
@@ -21155,12 +21180,12 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2287-.LFB2287
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x10
 	.long	.LASF536
 	.value	0x370
 	.byte	0x2e
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -88
@@ -21174,7 +21199,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -64
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x2e9e
+	.long	0x2ea3
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC90
@@ -21191,13 +21216,13 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.long	0x28e8
 	.uleb128 0x12
 	.long	0xa3
-	.long	0x2e9e
+	.long	0x2ea3
 	.uleb128 0x13
 	.long	0x28e
 	.byte	0xc
 	.byte	0
 	.uleb128 0xc
-	.long	0x2e8e
+	.long	0x2e93
 	.uleb128 0x11
 	.long	.LASF538
 	.value	0x344
@@ -21207,18 +21232,18 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2286-.LFB2286
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2ef7
+	.long	0x2efc
 	.uleb128 0x10
 	.long	.LASF536
 	.value	0x344
 	.byte	0x30
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x2f07
+	.long	0x2f0c
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC85
@@ -21233,13 +21258,13 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0
 	.uleb128 0x12
 	.long	0xa3
-	.long	0x2f07
+	.long	0x2f0c
 	.uleb128 0x13
 	.long	0x28e
 	.byte	0xd
 	.byte	0
 	.uleb128 0xc
-	.long	0x2ef7
+	.long	0x2efc
 	.uleb128 0x11
 	.long	.LASF539
 	.value	0x328
@@ -21249,31 +21274,31 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2285-.LFB2285
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2f51
+	.long	0x2f56
 	.uleb128 0x10
 	.long	.LASF536
 	.value	0x328
 	.byte	0x26
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x2f61
+	.long	0x2f66
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC82
 	.byte	0
 	.uleb128 0x12
 	.long	0xa3
-	.long	0x2f61
+	.long	0x2f66
 	.uleb128 0x13
 	.long	0x28e
 	.byte	0xa
 	.byte	0
 	.uleb128 0xc
-	.long	0x2f51
+	.long	0x2f56
 	.uleb128 0x11
 	.long	.LASF540
 	.value	0x311
@@ -21283,12 +21308,12 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2284-.LFB2284
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2fcb
+	.long	0x2fd0
 	.uleb128 0x10
 	.long	.LASF536
 	.value	0x311
 	.byte	0x24
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -88
@@ -21302,7 +21327,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -64
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x2fdb
+	.long	0x2fe0
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC79
@@ -21317,13 +21342,13 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0
 	.uleb128 0x12
 	.long	0xa3
-	.long	0x2fdb
+	.long	0x2fe0
 	.uleb128 0x13
 	.long	0x28e
 	.byte	0x4
 	.byte	0
 	.uleb128 0xc
-	.long	0x2fcb
+	.long	0x2fd0
 	.uleb128 0x11
 	.long	.LASF543
 	.value	0x2f8
@@ -21333,12 +21358,12 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2283-.LFB2283
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x3057
+	.long	0x305c
 	.uleb128 0x10
 	.long	.LASF536
 	.value	0x2f8
 	.byte	0x24
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -88
@@ -21352,7 +21377,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -64
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x2fdb
+	.long	0x2fe0
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC78
@@ -21378,12 +21403,12 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2282-.LFB2282
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x30ee
+	.long	0x30f3
 	.uleb128 0x10
 	.long	.LASF536
 	.value	0x2e1
 	.byte	0x21
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -104
@@ -21397,7 +21422,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -64
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x30fe
+	.long	0x3103
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC77
@@ -21432,13 +21457,13 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0
 	.uleb128 0x12
 	.long	0xa3
-	.long	0x30fe
+	.long	0x3103
 	.uleb128 0x13
 	.long	0x28e
 	.byte	0x8
 	.byte	0
 	.uleb128 0xc
-	.long	0x30ee
+	.long	0x30f3
 	.uleb128 0x11
 	.long	.LASF551
 	.value	0x2c9
@@ -21448,12 +21473,12 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2281-.LFB2281
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x319a
+	.long	0x319f
 	.uleb128 0x10
 	.long	.LASF536
 	.value	0x2c9
 	.byte	0x24
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -104
@@ -21467,7 +21492,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -64
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x2fdb
+	.long	0x2fe0
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC75
@@ -21509,12 +21534,12 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2280-.LFB2280
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x3231
+	.long	0x3236
 	.uleb128 0x10
 	.long	.LASF536
 	.value	0x2b2
 	.byte	0x24
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -104
@@ -21528,7 +21553,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -64
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x2fdb
+	.long	0x2fe0
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC73
@@ -21570,12 +21595,12 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2279-.LFB2279
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x32b7
+	.long	0x32bc
 	.uleb128 0x10
 	.long	.LASF536
 	.value	0x280
 	.byte	0x2c
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -104
@@ -21589,7 +21614,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -64
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x2e9e
+	.long	0x2ea3
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC68
@@ -21628,12 +21653,12 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2278-.LFB2278
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x33a6
+	.long	0x33ab
 	.uleb128 0x10
 	.long	.LASF536
 	.value	0x219
 	.byte	0x2e
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -120
@@ -21647,7 +21672,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -64
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x33b6
+	.long	0x33bb
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC60
@@ -21670,7 +21695,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x63
 	.quad	.LBB7
 	.quad	.LBE7-.LBB7
-	.long	0x3383
+	.long	0x3388
 	.uleb128 0x6
 	.long	.LASF562
 	.value	0x22a
@@ -21715,13 +21740,13 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0
 	.uleb128 0x12
 	.long	0xa3
-	.long	0x33b6
+	.long	0x33bb
 	.uleb128 0x13
 	.long	0x28e
 	.byte	0xe
 	.byte	0
 	.uleb128 0xc
-	.long	0x33a6
+	.long	0x33ab
 	.uleb128 0x11
 	.long	.LASF565
 	.value	0x1ea
@@ -21731,12 +21756,12 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2277-.LFB2277
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x341e
+	.long	0x3423
 	.uleb128 0x10
 	.long	.LASF536
 	.value	0x1ea
 	.byte	0x27
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -21772,12 +21797,12 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2276-.LFB2276
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x3495
+	.long	0x349a
 	.uleb128 0x10
 	.long	.LASF536
 	.value	0x1b3
 	.byte	0x2c
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -88
@@ -21791,7 +21816,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -64
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x2e9e
+	.long	0x2ea3
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC54
@@ -21817,12 +21842,12 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2275-.LFB2275
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x350a
+	.long	0x350f
 	.uleb128 0x10
 	.long	.LASF536
 	.value	0x19c
 	.byte	0x28
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -88
@@ -21836,7 +21861,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -64
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x30fe
+	.long	0x3103
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC52
@@ -21866,12 +21891,12 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2274-.LFB2274
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x35af
+	.long	0x35b4
 	.uleb128 0x10
 	.long	.LASF536
 	.value	0x14e
 	.byte	0x2b
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -120
@@ -21885,7 +21910,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -64
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x2dcb
+	.long	0x2dd0
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC45
@@ -21939,12 +21964,12 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2273-.LFB2273
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x3651
+	.long	0x3656
 	.uleb128 0x28
 	.long	.LASF536
 	.byte	0xf8
 	.byte	0x31
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -88
@@ -22008,18 +22033,18 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2272-.LFB2272
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x36a3
+	.long	0x36a8
 	.uleb128 0x28
 	.long	.LASF536
 	.byte	0xda
 	.byte	0x2f
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x36b3
+	.long	0x36b8
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC35
@@ -22035,13 +22060,13 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0
 	.uleb128 0x12
 	.long	0xa3
-	.long	0x36b3
+	.long	0x36b8
 	.uleb128 0x13
 	.long	0x28e
 	.byte	0x12
 	.byte	0
 	.uleb128 0xc
-	.long	0x36a3
+	.long	0x36a8
 	.uleb128 0x2d
 	.long	.LASF582
 	.byte	0xab
@@ -22051,18 +22076,18 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.LFE2271-.LFB2271
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x36fb
+	.long	0x3700
 	.uleb128 0x28
 	.long	.LASF536
 	.byte	0xab
 	.byte	0x2a
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x2f61
+	.long	0x2f66
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC30
@@ -22097,7 +22122,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -160
 	.uleb128 0xf
 	.long	.LASF529
-	.long	0x2fdb
+	.long	0x2fe0
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC9
@@ -22115,7 +22140,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x1
 	.byte	0x77
 	.byte	0x14
-	.long	0x2e89
+	.long	0x2e8e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -224
@@ -23970,6 +23995,8 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.string	"_ZN6Logger3logEPKcz"
 .LASF575:
 	.string	"prev_declaration"
+.LASF135:
+	.string	"BLOCK_CLOSING_BRACKET"
 .LASF481:
 	.string	"CAL_LOG"
 .LASF102:
@@ -24300,6 +24327,8 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.string	"GetInstruction"
 .LASF343:
 	.string	"negative_sign"
+.LASF507:
+	.string	"_Z8LogTokenPK5TokenPKcPS3_"
 .LASF548:
 	.string	"node"
 .LASF125:
@@ -24320,8 +24349,6 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.string	"_markers"
 .LASF297:
 	.string	"wcstoull"
-.LASF134:
-	.string	"OPENING_BRACKET"
 .LASF2:
 	.string	"t_instruction"
 .LASF76:
@@ -24670,8 +24697,6 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.string	"long double"
 .LASF231:
 	.string	"putwc"
-.LASF507:
-	.string	"_Z8LogTokenPK5TokenPKc"
 .LASF133:
 	.string	"ASSIGMENT"
 .LASF323:
@@ -24900,6 +24925,8 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.string	"atexit"
 .LASF598:
 	.string	"_ZNKSt15__exception_ptr13exception_ptrcvbEv"
+.LASF134:
+	.string	"BLOCK_OPENING_BRACKET"
 .LASF462:
 	.string	"heapHash"
 .LASF64:
@@ -25074,8 +25101,6 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.string	"current_statement"
 .LASF275:
 	.string	"wcstoul"
-.LASF135:
-	.string	"CLOSING_BRACKET"
 .LASF408:
 	.string	"freopen"
 .LASF154:

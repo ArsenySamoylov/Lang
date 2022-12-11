@@ -1477,36 +1477,32 @@ extern "C++" const char *basename (const char *__filename)
 # 3 "./headers/Grammar.h"
 enum TokenType
     {
-    STATEMENT,
 
-    INSTRUCTION,
 
-    INITIALIZATOR,
-
-    FUNCTION_RET_TYPE,
-
-    OPERATOR,
+# 1 "./headers/TokenTypes.h" 1
 
 
 
-    NAME,
+STATEMENT = 1,
+INSTRUCTION = 2,
+INITIALIZATOR = 3,
+FUNCTION_RET_TYPE = 4,
+OPERATOR = 5,
 
-    VARIABLE,
-    CONSTANT,
+NAME = 6,
+VARIABLE = 7,
+CONSTANT = 8,
+FUNCTION = 9,
+CALL = 10,
 
-    FUNCTION,
+ASSIGMENT = '=',
+BLOCK_OPENING_BRACKET = '{',
+BLOCK_CLOSING_BRACKET = '}',
+EXPRESSION_OPENING_BRACKET = '(',
+EXPRESSION_CLOSING_BRACKET = ')',
+END_OF_STATEMENT = ';',
+# 8 "./headers/Grammar.h" 2
 
-    CALL,
-
-    ASSIGMENT = '=',
-
-    OPENING_BRACKET = '{',
-    CLOSING_BRACKET = '}',
-
-    EXPRESSION_OPENING_BRACKET = '(',
-    EXPRESSION_CLOSING_BRACKET = ')',
-
-    END_OF_STATEMENT = ';',
 
     UNKNOWN_TYPE = -999,
     };
@@ -44275,7 +44271,7 @@ int SYSTEM(const char* format, ...);
 
 void PrintToken (const Token *const token, const char** string_arr);
 
-void LogToken (const Token *const token, const char* name);
+void LogToken (const Token *const token, const char* name, const char** STRING_ARR);
 # 10 "./src/SyntaxAnalysis.cpp" 2
 
 
@@ -44902,7 +44898,7 @@ static Token* GetFunction (ProgramBuffer* program_buf)
         }
 
 
-    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != OPENING_BRACKET)
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != BLOCK_OPENING_BRACKET)
         {
         do { printf("\033[91m" "Syntax ERORR\n" "\033[94m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing '{' in function body\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 356); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
         return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 357), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 357, __func__, 357);
@@ -44940,7 +44936,7 @@ static Token* GetFunction (ProgramBuffer* program_buf)
 
     (program_buf->position)++;
 
-    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != CLOSING_BRACKET)
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type != BLOCK_CLOSING_BRACKET)
        {
        do { printf("\033[91m" "Syntax ERORR\n" "\033[94m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing '}' in function body\n" ); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 394); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 395), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 395, __func__, 395);
@@ -45033,13 +45029,13 @@ static Token* GetStatement (ProgramBuffer* program_buf)
         return GetCall(program_buf);
 
 
-    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == OPENING_BRACKET)
+    if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == BLOCK_OPENING_BRACKET)
         {
         (program_buf->position)++;
 
         Token* block = GetBlock(program_buf);
 
-        if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator != CLOSING_BRACKET)
+        if ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator != BLOCK_CLOSING_BRACKET)
             {
             do { printf("\033[91m" "Syntax ERORR\n" "\033[94m"); Logger::getInstance().log("Syntax ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Missing closing bracket (token position %d)\n" , (program_buf->position)); printf("In: " "\033[95m"); printl((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->ptr_to_src_code, '\n'); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/SyntaxAnalysis.cpp", 477); PrintToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), ((program_buf->program)->string_arr)); } while(0);;
             return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 478), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 478, __func__, 478);
@@ -45308,7 +45304,7 @@ static Token* GetE (ProgramBuffer* program_buf)
     Token* prev_op = node;
     while (( ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == OPERATOR ) ? true : false ) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator == ADD || (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator == SUB))
         {
-        LogToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), "token");
+        LogToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), "token", ((program_buf->program)->string_arr));
         Token* current_op = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
         (program_buf->position)++;
 
@@ -45335,12 +45331,12 @@ static Token* GetT (ProgramBuffer* program_buf)
    )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 716); system("powerof"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 716), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./src/SyntaxAnalysis.cpp", 716, __func__, 716); } } while (0);;
 
     Token* node = GetPower(program_buf);
-    LogToken(node, "node");
+    LogToken(node, "node", ((program_buf->program)->string_arr));
 
     Token* prev_op = node;
     while (( ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == OPERATOR ) ? true : false ) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator == MUL || (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator == DIV))
         {
-        LogToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), "token");
+        LogToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), "token", ((program_buf->program)->string_arr));
         Token* current_op = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
         (program_buf->position)++;
 
@@ -45371,7 +45367,7 @@ Token* GetPower (ProgramBuffer* program_buf)
     Token* prev_op = node;
     while (( ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )) && ((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->type == OPERATOR ) ? true : false ) && (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr )->value.t_operator == POW)
         {
-        LogToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), "token");
+        LogToken((((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr ), "token", ((program_buf->program)->string_arr));
         Token* current_op = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
         (program_buf->position)++;
 
@@ -45442,7 +45438,7 @@ static Token* GetN (ProgramBuffer* program_buf)
     Token* result = (((program_buf->position) < ((program_buf->program)->number_of_tokens)) ? ((program_buf->program)->token_arr + (program_buf->position)) : nullptr );
     (program_buf->position)++;
 
-    LogToken(result, "result");
+    LogToken(result, "result", ((program_buf->program)->string_arr));
     return result;
     }
 

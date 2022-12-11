@@ -20,6 +20,7 @@ static void CloseAsmFile ();
 static int  AddToAsm (const Token *const token);
 
 static void assprint(const char* format, ...);
+#define STRING_ARR(PROGRAM_BUF)
 
 #pragma GCC diagnostic ignored "-Wmissing-declarations"
 
@@ -83,7 +84,7 @@ static int AddToAsm (const Token *const token)
     {
     $log(3)
     assertlog(token, EFAULT, return LFAILURE);
-    $LOG_TOKEN(token)
+    // $LOG_TOKEN(token, STRING_ARR(token)) // change!!!!!!!!
 
     if (TYPE(token) == FUNCTION)
         {

@@ -974,7 +974,7 @@ _Z9TokenizerP7ProgramPKc:
 	.loc 1 132 39
 	movl	16(%rax), %eax
 	.loc 1 132 9
-	cmpl	$5, %eax
+	cmpl	$6, %eax
 	jne	.L15
 .LBB10:
 	.loc 1 134 38
@@ -1165,12 +1165,14 @@ _Z9TokenizerP7ProgramPKc:
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	addq	%rcx, %rax
+	addq	%rax, %rcx
 	.loc 1 164 17
-	leaq	.LC33(%rip), %rdx
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z8LogTokenPK5TokenPKc@PLT
+	movq	-96(%rbp), %rax
+	movq	%rax, %rdx
+	leaq	.LC33(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
 .LEHE1:
 	.loc 1 161 5 discriminator 2
 	addl	$1, -112(%rbp)
@@ -1511,7 +1513,7 @@ _ZL13GetTokenValueP10TokenValueP6BufferPPKc:
 	movq	-88(%rbp), %rax
 	movsd	%xmm0, (%rax)
 	.loc 1 201 20
-	movl	$7, %ebx
+	movl	$8, %ebx
 	jmp	.L26
 .L30:
 .LBE13:
@@ -1610,7 +1612,7 @@ _ZL13GetTokenValueP10TokenValueP6BufferPPKc:
 	jmp	.L26
 .L33:
 	.loc 1 218 16
-	movl	$4, %ebx
+	movl	$5, %ebx
 	jmp	.L26
 .L32:
 .LBB14:
@@ -1641,7 +1643,7 @@ _ZL13GetTokenValueP10TokenValueP6BufferPPKc:
 	movl	-68(%rbp), %edx
 	movl	%edx, (%rax)
 	.loc 1 234 20
-	movl	$1, %ebx
+	movl	$2, %ebx
 	jmp	.L26
 .L35:
 	.loc 1 237 44
@@ -1657,7 +1659,7 @@ _ZL13GetTokenValueP10TokenValueP6BufferPPKc:
 	movl	-64(%rbp), %edx
 	movl	%edx, (%rax)
 	.loc 1 242 20
-	movl	$2, %ebx
+	movl	$3, %ebx
 	jmp	.L26
 .L36:
 	.loc 1 245 41
@@ -1673,7 +1675,7 @@ _ZL13GetTokenValueP10TokenValueP6BufferPPKc:
 	movl	-60(%rbp), %edx
 	movl	%edx, (%rax)
 	.loc 1 250 20
-	movl	$3, %ebx
+	movl	$4, %ebx
 	jmp	.L26
 .L37:
 	.loc 1 254 25
@@ -1681,7 +1683,7 @@ _ZL13GetTokenValueP10TokenValueP6BufferPPKc:
 	leaq	_ZZL13GetTokenValueP10TokenValueP6BufferPPKcE4word(%rip), %rdx
 	movq	%rdx, (%rax)
 	.loc 1 257 16
-	movl	$5, %ebx
+	movl	$6, %ebx
 	jmp	.L26
 .L34:
 .LBE15:
@@ -1689,10 +1691,10 @@ _ZL13GetTokenValueP10TokenValueP6BufferPPKc:
 	.loc 1 262 5
 	cmpb	$123, -69(%rbp)
 	je	.L38
-	.loc 1 262 33 discriminator 1
+	.loc 1 262 39 discriminator 1
 	cmpb	$125, -69(%rbp)
 	je	.L38
-	.loc 1 262 60 discriminator 2
+	.loc 1 262 72 discriminator 2
 	cmpb	$40, -69(%rbp)
 	je	.L38
 	.loc 1 263 44
@@ -2830,7 +2832,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.file 60 "/usr/include/c++/11/bits/algorithmfwd.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x4633
+	.long	0x4638
 	.value	0x5
 	.byte	0x1
 	.byte	0x8
@@ -7760,34 +7762,34 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.long	0x27e9
 	.uleb128 0xe
 	.long	.LASF403
-	.byte	0
-	.uleb128 0xe
-	.long	.LASF404
 	.byte	0x1
 	.uleb128 0xe
-	.long	.LASF405
+	.long	.LASF404
 	.byte	0x2
 	.uleb128 0xe
-	.long	.LASF406
+	.long	.LASF405
 	.byte	0x3
 	.uleb128 0xe
-	.long	.LASF407
+	.long	.LASF406
 	.byte	0x4
 	.uleb128 0xe
-	.long	.LASF408
+	.long	.LASF407
 	.byte	0x5
 	.uleb128 0xe
-	.long	.LASF409
+	.long	.LASF408
 	.byte	0x6
 	.uleb128 0xe
-	.long	.LASF410
+	.long	.LASF409
 	.byte	0x7
 	.uleb128 0xe
-	.long	.LASF411
+	.long	.LASF410
 	.byte	0x8
 	.uleb128 0xe
-	.long	.LASF412
+	.long	.LASF411
 	.byte	0x9
+	.uleb128 0xe
+	.long	.LASF412
+	.byte	0xa
 	.uleb128 0xe
 	.long	.LASF413
 	.byte	0x3d
@@ -7813,7 +7815,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x9
 	.long	.LASF420
 	.byte	0x27
-	.byte	0x27
+	.byte	0xd
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
@@ -7831,7 +7833,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x9
 	.long	.LASF421
 	.byte	0x27
-	.byte	0x28
+	.byte	0xe
 	.byte	0x13
 	.long	0x280f
 	.uleb128 0x9
@@ -7840,7 +7842,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x9
 	.long	.LASF422
 	.byte	0x27
-	.byte	0x32
+	.byte	0x18
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
@@ -7858,7 +7860,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x9
 	.long	.LASF423
 	.byte	0x27
-	.byte	0x33
+	.byte	0x19
 	.byte	0x13
 	.long	0x2850
 	.uleb128 0x9
@@ -7867,7 +7869,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x9
 	.long	.LASF424
 	.byte	0x27
-	.byte	0x3a
+	.byte	0x20
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
@@ -7876,7 +7878,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x9
 	.long	.LASF425
 	.byte	0x27
-	.byte	0x3b
+	.byte	0x21
 	.byte	0x13
 	.long	0x2850
 	.uleb128 0x9
@@ -7894,7 +7896,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x9
 	.long	.LASF426
 	.byte	0x27
-	.byte	0x42
+	.byte	0x28
 	.byte	0xc
 	.long	0x28a7
 	.uleb128 0x9
@@ -7905,7 +7907,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0x7
 	.long	0x117
 	.byte	0x27
-	.byte	0x43
+	.byte	0x29
 	.long	0x28f7
 	.uleb128 0x1b
 	.string	"ADD"
@@ -7929,7 +7931,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x9
 	.long	.LASF429
 	.byte	0x27
-	.byte	0x4d
+	.byte	0x33
 	.byte	0xc
 	.long	0xa3
 	.uleb128 0x9
@@ -7938,7 +7940,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x9
 	.long	.LASF430
 	.byte	0x27
-	.byte	0x4f
+	.byte	0x35
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
@@ -7947,7 +7949,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x9
 	.long	.LASF431
 	.byte	0x27
-	.byte	0x50
+	.byte	0x36
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
@@ -10423,11 +10425,13 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0x7
 	.byte	0x6
 	.long	.LASF720
-	.long	0x3e89
+	.long	0x3e8e
 	.uleb128 0x1
-	.long	0x3e89
+	.long	0x3e8e
 	.uleb128 0x1
 	.long	0x10d
+	.uleb128 0x1
+	.long	0x16d
 	.byte	0
 	.uleb128 0x7
 	.long	0x103
@@ -10437,7 +10441,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0xbb
 	.byte	0xe
 	.long	0xaf
-	.long	0x3ea4
+	.long	0x3ea9
 	.uleb128 0x1
 	.long	0x10d
 	.byte	0
@@ -10448,7 +10452,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0x5
 	.long	.LASF657
 	.long	0x90
-	.long	0x3ec3
+	.long	0x3ec8
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x1
@@ -10456,17 +10460,17 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0
 	.uleb128 0x34
 	.long	.LASF659
-	.long	0x3fe4
+	.long	0x3fe9
 	.uleb128 0x17
 	.long	.LASF660
 	.byte	0x3a
 	.byte	0x27
 	.byte	0xe
 	.long	.LASF661
-	.long	0x3ee0
-	.long	0x3eec
+	.long	0x3ee5
+	.long	0x3ef1
 	.uleb128 0xb
-	.long	0x3fe4
+	.long	0x3fe9
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x13
@@ -10478,10 +10482,10 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0xf
 	.long	.LASF663
 	.long	0x1e6
-	.long	0x3f04
-	.long	0x3f23
+	.long	0x3f09
+	.long	0x3f28
 	.uleb128 0xb
-	.long	0x3fe4
+	.long	0x3fe9
 	.uleb128 0x1
 	.long	0x1e6
 	.uleb128 0x1
@@ -10499,10 +10503,10 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0x2b
 	.byte	0xe
 	.long	.LASF665
-	.long	0x3f37
-	.long	0x3f51
+	.long	0x3f3c
+	.long	0x3f56
 	.uleb128 0xb
-	.long	0x3fe4
+	.long	0x3fe9
 	.uleb128 0x1
 	.long	0x1e6
 	.uleb128 0x1
@@ -10519,10 +10523,10 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0xf
 	.long	.LASF667
 	.long	0x1e6
-	.long	0x3f69
-	.long	0x3f88
+	.long	0x3f6e
+	.long	0x3f8d
 	.uleb128 0xb
-	.long	0x3fe4
+	.long	0x3fe9
 	.uleb128 0x1
 	.long	0x19e
 	.uleb128 0x1
@@ -10541,10 +10545,10 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0xd
 	.long	.LASF669
 	.long	0x90
-	.long	0x3fa0
-	.long	0x3fb1
+	.long	0x3fa5
+	.long	0x3fb6
 	.uleb128 0xb
-	.long	0x3fe4
+	.long	0x3fe9
 	.uleb128 0x1
 	.long	0x90
 	.uleb128 0x1
@@ -10558,10 +10562,10 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0xe
 	.long	.LASF721
 	.byte	0x1
-	.long	0x3fc6
-	.long	0x3fd2
+	.long	0x3fcb
+	.long	0x3fd7
 	.uleb128 0xb
-	.long	0x3fe4
+	.long	0x3fe9
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x13
@@ -10572,11 +10576,11 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0x19
 	.byte	0x18
 	.long	.LASF723
-	.long	0x40ac
+	.long	0x40b1
 	.byte	0x1
 	.byte	0
 	.uleb128 0x7
-	.long	0x3ec3
+	.long	0x3ec8
 	.uleb128 0xa
 	.long	.LASF670
 	.byte	0x35
@@ -10584,7 +10588,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0x7
 	.long	.LASF671
 	.long	0xaf
-	.long	0x4003
+	.long	0x4008
 	.uleb128 0x1
 	.long	0x10d
 	.byte	0
@@ -10595,7 +10599,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0xc
 	.long	.LASF673
 	.long	0x90
-	.long	0x4024
+	.long	0x4029
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x1
@@ -10609,7 +10613,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0x5
 	.long	.LASF675
 	.long	0x90
-	.long	0x403e
+	.long	0x4043
 	.uleb128 0x1
 	.long	0x3e2f
 	.byte	0
@@ -10620,7 +10624,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0x5
 	.long	.LASF677
 	.long	0x90
-	.long	0x405d
+	.long	0x4062
 	.uleb128 0x1
 	.long	0x3e2f
 	.uleb128 0x1
@@ -10633,7 +10637,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0x5
 	.long	.LASF679
 	.long	0x90
-	.long	0x407d
+	.long	0x4082
 	.uleb128 0x1
 	.long	0x90
 	.uleb128 0x1
@@ -10646,7 +10650,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.value	0x1a3
 	.byte	0xe
 	.long	0xaf
-	.long	0x4094
+	.long	0x4099
 	.uleb128 0x1
 	.long	0x90
 	.byte	0
@@ -10656,18 +10660,18 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.value	0x164
 	.byte	0xc
 	.long	0x90
-	.long	0x40ac
+	.long	0x40b1
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x13
 	.byte	0
 	.uleb128 0x18
-	.long	0x3ec3
+	.long	0x3ec8
 	.uleb128 0x29
 	.long	0x3b44
 	.long	.LASF682
-	.long	0x40c2
-	.long	0x40e4
+	.long	0x40c7
+	.long	0x40e9
 	.uleb128 0x2a
 	.long	.LASF643
 	.long	0x3b92
@@ -10696,7 +10700,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.quad	.LFE3655-.LFB3655
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x4135
+	.long	0x413a
 	.uleb128 0x20
 	.long	.LASF684
 	.value	0x157
@@ -10722,7 +10726,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.quad	.LFE2871-.LFB2871
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x41b7
+	.long	0x41bc
 	.uleb128 0x22
 	.string	"str"
 	.value	0x14d
@@ -10749,7 +10753,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.sleb128 -68
 	.uleb128 0x19
 	.long	.LASF688
-	.long	0x41c7
+	.long	0x41cc
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC48
@@ -10768,13 +10772,13 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0
 	.uleb128 0x10
 	.long	0xa3
-	.long	0x41c7
+	.long	0x41cc
 	.uleb128 0x11
 	.long	0x1aa
 	.byte	0x6
 	.byte	0
 	.uleb128 0xc
-	.long	0x41b7
+	.long	0x41bc
 	.uleb128 0x21
 	.long	.LASF690
 	.value	0x142
@@ -10783,7 +10787,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.quad	.LFE2870-.LFB2870
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x422f
+	.long	0x4234
 	.uleb128 0x22
 	.string	"str"
 	.value	0x142
@@ -10819,7 +10823,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.quad	.LFE2869-.LFB2869
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x4292
+	.long	0x4297
 	.uleb128 0x22
 	.string	"str"
 	.value	0x137
@@ -10830,7 +10834,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.sleb128 -56
 	.uleb128 0x19
 	.long	.LASF688
-	.long	0x42a2
+	.long	0x42a7
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC46
@@ -10849,13 +10853,13 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0
 	.uleb128 0x10
 	.long	0xa3
-	.long	0x42a2
+	.long	0x42a7
 	.uleb128 0x11
 	.long	0x1aa
 	.byte	0xf
 	.byte	0
 	.uleb128 0xc
-	.long	0x4292
+	.long	0x4297
 	.uleb128 0x21
 	.long	.LASF692
 	.value	0x12c
@@ -10864,7 +10868,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.quad	.LFE2868-.LFB2868
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x430a
+	.long	0x430f
 	.uleb128 0x22
 	.string	"str"
 	.value	0x12c
@@ -10875,7 +10879,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.sleb128 -56
 	.uleb128 0x19
 	.long	.LASF688
-	.long	0x431a
+	.long	0x431f
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC45
@@ -10894,13 +10898,13 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.byte	0
 	.uleb128 0x10
 	.long	0xa3
-	.long	0x431a
+	.long	0x431f
 	.uleb128 0x11
 	.long	0x1aa
 	.byte	0xd
 	.byte	0
 	.uleb128 0xc
-	.long	0x430a
+	.long	0x430f
 	.uleb128 0x21
 	.long	.LASF693
 	.value	0x119
@@ -10909,7 +10913,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.quad	.LFE2867-.LFB2867
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x437f
+	.long	0x4384
 	.uleb128 0x22
 	.string	"buf"
 	.value	0x119
@@ -10928,7 +10932,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.sleb128 -64
 	.uleb128 0x19
 	.long	.LASF688
-	.long	0x431a
+	.long	0x431f
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC41
@@ -10951,12 +10955,12 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.quad	.LFE2866-.LFB2866
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x447f
+	.long	0x4484
 	.uleb128 0x39
 	.string	"val"
 	.byte	0xad
 	.byte	0x27
-	.long	0x447f
+	.long	0x4484
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -104
@@ -10987,7 +10991,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.sleb128 -64
 	.uleb128 0x19
 	.long	.LASF688
-	.long	0x431a
+	.long	0x431f
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC34
@@ -11003,7 +11007,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x24
 	.quad	.LBB13
 	.quad	.LBE13-.LBB13
-	.long	0x4426
+	.long	0x442b
 	.uleb128 0x9
 	.long	.LASF699
 	.byte	0x1
@@ -11068,12 +11072,12 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.quad	.LFE2865-.LFB2865
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x461c
+	.long	0x4621
 	.uleb128 0x2f
 	.long	.LASF708
 	.byte	0x32
 	.byte	0x19
-	.long	0x461c
+	.long	0x4621
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -168
@@ -11096,7 +11100,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.sleb128 -64
 	.uleb128 0x19
 	.long	.LASF688
-	.long	0x4631
+	.long	0x4636
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC9
@@ -11173,7 +11177,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x24
 	.quad	.LBB4
 	.quad	.LBE4-.LBB4
-	.long	0x458b
+	.long	0x4590
 	.uleb128 0x25
 	.string	"n"
 	.byte	0x54
@@ -11186,7 +11190,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x24
 	.quad	.LBB6
 	.quad	.LBE6-.LBB6
-	.long	0x45b1
+	.long	0x45b6
 	.uleb128 0x9
 	.long	.LASF713
 	.byte	0x1
@@ -11200,7 +11204,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x24
 	.quad	.LBB8
 	.quad	.LBE8-.LBB8
-	.long	0x45d6
+	.long	0x45db
 	.uleb128 0x25
 	.string	"xyu"
 	.byte	0x6e
@@ -11213,7 +11217,7 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.uleb128 0x24
 	.quad	.LBB10
 	.quad	.LBE10-.LBB10
-	.long	0x45fc
+	.long	0x4601
 	.uleb128 0x9
 	.long	.LASF698
 	.byte	0x1
@@ -11241,13 +11245,13 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.long	0x11e
 	.uleb128 0x10
 	.long	0xa3
-	.long	0x4631
+	.long	0x4636
 	.uleb128 0x11
 	.long	0x1aa
 	.byte	0x9
 	.byte	0
 	.uleb128 0xc
-	.long	0x4621
+	.long	0x4626
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
 .Ldebug_abbrev0:
@@ -13063,8 +13067,6 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.string	"__func__"
 .LASF470:
 	.string	"tm_sec"
-.LASF257:
-	.string	"_ZSt5expm1f"
 .LASF169:
 	.string	"sqrt"
 .LASF582:
@@ -13469,6 +13471,8 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.string	"negative_sign"
 .LASF287:
 	.string	"log1p"
+.LASF720:
+	.string	"_Z8LogTokenPK5TokenPKcPS3_"
 .LASF694:
 	.string	"word_buffer"
 .LASF668:
@@ -13487,8 +13491,8 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.string	"_ZSt8copysignff"
 .LASF256:
 	.string	"_ZSt5expm1e"
-.LASF414:
-	.string	"OPENING_BRACKET"
+.LASF257:
+	.string	"_ZSt5expm1f"
 .LASF138:
 	.string	"_ZSt3sine"
 .LASF139:
@@ -13531,8 +13535,8 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.string	"_ZNSt15__exception_ptr13exception_ptr4swapERS0_"
 .LASF462:
 	.string	"__isoc99_vwscanf"
-.LASF369:
-	.string	"_ZNSt8ios_base4InitC4Ev"
+.LASF414:
+	.string	"BLOCK_OPENING_BRACKET"
 .LASF225:
 	.string	"_ZSt13islessgreateree"
 .LASF439:
@@ -13653,6 +13657,8 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.string	"char32_t"
 .LASF96:
 	.string	"_unused2"
+.LASF504:
+	.string	"wcsstr"
 .LASF479:
 	.string	"tm_gmtoff"
 .LASF12:
@@ -13921,8 +13927,6 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.string	"word"
 .LASF712:
 	.string	"buf_orig"
-.LASF720:
-	.string	"_Z8LogTokenPK5TokenPKc"
 .LASF97:
 	.string	"FILE"
 .LASF253:
@@ -13995,8 +13999,8 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.string	"frexp"
 .LASF55:
 	.string	"__off_t"
-.LASF504:
-	.string	"wcsstr"
+.LASF415:
+	.string	"BLOCK_CLOSING_BRACKET"
 .LASF682:
 	.string	"_ZN14FunctionLoggerC1EiPKc"
 .LASF99:
@@ -14359,6 +14363,8 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.string	"_ZSt6llrinte"
 .LASF283:
 	.string	"_ZSt6llrintf"
+.LASF369:
+	.string	"_ZNSt8ios_base4InitC4Ev"
 .LASF725:
 	.string	"__static_initialization_and_destruction_0"
 .LASF339:
@@ -14429,8 +14435,6 @@ _GLOBAL__sub_I__Z9TokenizerP7ProgramPKc:
 	.string	"wcstoul"
 .LASF200:
 	.string	"isnormal"
-.LASF415:
-	.string	"CLOSING_BRACKET"
 .LASF598:
 	.string	"freopen"
 .LASF233:

@@ -161,7 +161,7 @@ int Tokenizer (Program* program, const char* buffer)
     for (int i = 0; i < number_of_tokens; i++)
         {
         $li(i)
-        $LOG_TOKEN(program->token_arr + i)
+        $LOG_TOKEN(program->token_arr + i, string_arr)
         }
     //
     return SUCCESS; 
@@ -259,7 +259,7 @@ static int GetTokenValue (TokenValue* val, Buffer* buf, const char** src_code_pt
 
        
     // brackets
-    if (temp == OPENING_BRACKET            || temp == CLOSING_BRACKET   || 
+    if (temp == BLOCK_OPENING_BRACKET      || temp == BLOCK_CLOSING_BRACKET   || 
         temp == EXPRESSION_OPENING_BRACKET || temp == EXPRESSION_CLOSING_BRACKET)             
         {
         val->t_operator = BufferGetCh(buf);
