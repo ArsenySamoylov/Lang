@@ -44427,6 +44427,11 @@ static FILE* Dot =
                   __null
 # 12 "./src/GraphVis.cpp"
                       ;
+static const char** STRING_ARR = 
+# 13 "./src/GraphVis.cpp" 3 4
+                                __null
+# 13 "./src/GraphVis.cpp"
+                                    ;
 
 static void DotPrint (const char* format, ...);
 
@@ -44443,13 +44448,48 @@ static void PrintNode (const Token *const node);
 
 const char* MakeImg (const char* img_name, const Program *const program)
     {
-    FunctionLogger func_29 {2, __func__};
-    return 
-# 30 "./src/GraphVis.cpp" 3 4
-          __null
-# 30 "./src/GraphVis.cpp"
-              ;
-# 66 "./src/GraphVis.cpp"
+    FunctionLogger func_30 {2, __func__};
+
+    do { if (!(img_name)) printf ("\033[91mASSERT\033[0m %s: Dyrachok, (%s) - is wrong condition (in line %d)\n", __func__, "img_name", 32); } while(0);;
+    do { if (!(program)) printf ("\033[91mASSERT\033[0m %s: Dyrachok, (%s) - is wrong condition (in line %d)\n", __func__, "program", 33); } while(0);;
+
+    char dot_file [MAX_GRAPH_NAME_LENGTH + 16] = {};
+    snprintf (dot_file, MAX_GRAPH_NAME_LENGTH, "%s%s.dot",
+                                                PATH_FOR_DOT, img_name);
+
+
+
+    OpenDotFile (dot_file);
+    if (!Dot) return 
+# 42 "./src/GraphVis.cpp" 3 4
+                    __null
+# 42 "./src/GraphVis.cpp"
+                        ;
+
+    SetDot ();
+
+
+
+    STRING_ARR = program->string_arr;
+
+    DotTreeBranch (program->root);
+
+
+    SetEndDot ();
+
+    static char full_img_name [IMAGE_NAME_LENGTH + 16] = {};
+    snprintf (full_img_name, IMAGE_NAME_LENGTH, "%s%s.%s",
+                                                   PATH_FOR_IMG, img_name, EXTENSION);
+
+    char system_command [SYSTEM_COMMAND_LENGTH + 16] = {};
+    snprintf (system_command, SYSTEM_COMMAND_LENGTH, "dot -T %s -o %s %s", EXTENSION, full_img_name, dot_file);
+
+
+    system (system_command);
+
+    CloseDotFile ();
+    return full_img_name;
+
     }
 
 
@@ -44482,29 +44522,29 @@ static void DotPrint (const char* format, ...)
     {
     va_list ptr;
     
-# 97 "./src/GraphVis.cpp" 3 4
+# 99 "./src/GraphVis.cpp" 3 4
    __builtin_va_start(
-# 97 "./src/GraphVis.cpp"
+# 99 "./src/GraphVis.cpp"
    ptr
-# 97 "./src/GraphVis.cpp" 3 4
+# 99 "./src/GraphVis.cpp" 3 4
    ,
-# 97 "./src/GraphVis.cpp"
+# 99 "./src/GraphVis.cpp"
    format
-# 97 "./src/GraphVis.cpp" 3 4
+# 99 "./src/GraphVis.cpp" 3 4
    )
-# 97 "./src/GraphVis.cpp"
+# 99 "./src/GraphVis.cpp"
                         ;
 
     vfprintf (Dot, format, ptr);
 
     
-# 101 "./src/GraphVis.cpp" 3 4
+# 103 "./src/GraphVis.cpp" 3 4
    __builtin_va_end(
-# 101 "./src/GraphVis.cpp"
+# 103 "./src/GraphVis.cpp"
    ptr
-# 101 "./src/GraphVis.cpp" 3 4
+# 103 "./src/GraphVis.cpp" 3 4
    )
-# 101 "./src/GraphVis.cpp"
+# 103 "./src/GraphVis.cpp"
               ;
 
     return;
@@ -44513,9 +44553,9 @@ static void DotPrint (const char* format, ...)
 FILE* OpenDotFile (const char* path)
     {
     if (!path) return 
-# 108 "./src/GraphVis.cpp" 3 4
+# 110 "./src/GraphVis.cpp" 3 4
                       __null
-# 108 "./src/GraphVis.cpp"
+# 110 "./src/GraphVis.cpp"
                           ;
     return Dot = fopen (path, "wb");
     }
@@ -44525,24 +44565,24 @@ void CloseDotFile ()
     fclose (Dot);
 
     Dot = 
-# 116 "./src/GraphVis.cpp" 3 4
+# 118 "./src/GraphVis.cpp" 3 4
          __null
-# 116 "./src/GraphVis.cpp"
+# 118 "./src/GraphVis.cpp"
              ;
     return;
     }
 
 static void DotTreeBranch (const Token *const node)
     {
-    do { if (!(node)) { Logger::getInstance().log("Condition (%s) is false\n", "node"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "node"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/GraphVis.cpp", 122); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/GraphVis.cpp", 122); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 122 "./src/GraphVis.cpp" 3 4
+    do { if (!(node)) { Logger::getInstance().log("Condition (%s) is false\n", "node"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "node"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/GraphVis.cpp", 124); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/GraphVis.cpp", 124); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 124 "./src/GraphVis.cpp" 3 4
    14
-# 122 "./src/GraphVis.cpp"
+# 124 "./src/GraphVis.cpp"
    , strerror(
-# 122 "./src/GraphVis.cpp" 3 4
+# 124 "./src/GraphVis.cpp" 3 4
    14
-# 122 "./src/GraphVis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 122); system("powerof"); abort(); } } while (0);;
+# 124 "./src/GraphVis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 124); system("powerof"); abort(); } } while (0);;
 
     PrintNode (node);
 
@@ -44572,16 +44612,16 @@ static void DotTreeBranch (const Token *const node)
 #pragma GCC diagnostic ignored "-Wcast-qual"
 static void PrintNode (const Token *const node)
     {
-    FunctionLogger func_152 {1, __func__};
-    do { if (!(node)) { Logger::getInstance().log("Condition (%s) is false\n", "node"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "node"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/GraphVis.cpp", 153); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/GraphVis.cpp", 153); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 153 "./src/GraphVis.cpp" 3 4
+    FunctionLogger func_154 {1, __func__};
+    do { if (!(node)) { Logger::getInstance().log("Condition (%s) is false\n", "node"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "node"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/GraphVis.cpp", 155); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/GraphVis.cpp", 155); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 155 "./src/GraphVis.cpp" 3 4
    14
-# 153 "./src/GraphVis.cpp"
+# 155 "./src/GraphVis.cpp"
    , strerror(
-# 153 "./src/GraphVis.cpp" 3 4
+# 155 "./src/GraphVis.cpp" 3 4
    14
-# 153 "./src/GraphVis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 153); system("powerof"); abort(); } } while (0);;
+# 155 "./src/GraphVis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 155); system("powerof"); abort(); } } while (0);;
     LogToken(node, "node");
 
     char def_data[333] = "";
@@ -44594,6 +44634,15 @@ static void PrintNode (const Token *const node)
             break;
     case INSTRUCTION:
             sprintf(def_data, "INSTRUCTION | {'%s'} ", INSTRUCTIONS[node->value.t_instruction]);
+            break;
+    case INITIALIZATOR:
+            sprintf(def_data, "INITIALIZATOR | {'%s'}\n\n", INITIALIZATORS[node->value.t_instruction]);
+            break;
+    case FUNCTION_RET_TYPE:
+            sprintf(def_data, "FUNCTION RET TYPE | {'%s'}\n\n", FUNCTION_RET_TYPES[node->value.t_instruction]);
+            break;
+   case NAME:
+            sprintf(def_data, "NAME | {%s}\n\n", STRING_ARR[node->value.t_name_id]);
             break;
     case EXPRESSION_OPENING_BRACKET:
             sprintf(def_data, "EXPRESSION OPENING BRACKET | {%c}", node->value.t_operator);
@@ -44618,8 +44667,13 @@ static void PrintNode (const Token *const node)
         case OPERATOR: sprintf(def_data, "Operator | {%c} | {%p}", node->value.t_operator, (void*) node);
                        break;
 
+        case VARIABLE: sprintf(def_data, "Variable | {%s} | {%p}", STRING_ARR[node->value.t_name_id], (void*) node);
+                       break;
 
-
+         case FUNCTION: sprintf(def_data, "FUNCTION | {%c} | {%p}", node->value.t_operator, (void*) node);
+                       break;
+         case CALL: sprintf(def_data, "CALL ");
+                       break;
 
         case CONSTANT: sprintf(def_data, "Constant | {%lg} | {%p}", node->value.t_constant, (void*) node);
                        break;

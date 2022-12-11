@@ -2,91 +2,176 @@
 digraph 
 {
 rankdir = TB # RANKDIR
-		node_0x61a0000006c0 [shape = Mrecord label =  "STATEMENT   | {(} | {0x61a0000006c0}"]
-		node_0x61a0000006a0 [shape = Mrecord label =  "INSTRUCTION | {'if'} "]
-		node_0x61a0000006c0 -> node_0x61a0000006a0 
-		node_0x61a0000006a0 [shape = Mrecord label =  "INSTRUCTION | {'if'} "]
-		node_0x61a0000006e0 [shape = Mrecord label =  "Variable | {x} | {0x61a0000006e0}"]
-		node_0x61a0000006a0 -> node_0x61a0000006e0 
-		node_0x61a0000006e0 [shape = Mrecord label =  "Variable | {x} | {0x61a0000006e0}"]
-		node_0x61a0000008a0 [shape = Mrecord label =  "INSTRUCTION | {'else'} "]
-		node_0x61a0000006a0 -> node_0x61a0000008a0 
-		node_0x61a0000008a0 [shape = Mrecord label =  "INSTRUCTION | {'else'} "]
-		node_0x61a0000007a0 [shape = Mrecord label =  "STATEMENT   | {;} | {0x61a0000007a0}"]
-		node_0x61a0000008a0 -> node_0x61a0000007a0 
-		node_0x61a0000007a0 [shape = Mrecord label =  "STATEMENT   | {;} | {0x61a0000007a0}"]
-		node_0x61a000000760 [shape = Mrecord label =  "ASSIGMENT | {=}"]
-		node_0x61a0000007a0 -> node_0x61a000000760 
-		node_0x61a000000760 [shape = Mrecord label =  "ASSIGMENT | {=}"]
-		node_0x61a000000740 [shape = Mrecord label =  "Variable | {x} | {0x61a000000740}"]
-		node_0x61a000000760 -> node_0x61a000000740 
-		node_0x61a000000740 [shape = Mrecord label =  "Variable | {x} | {0x61a000000740}"]
-		node_0x61a000000780 [shape = Mrecord label =  "Constant | {45} | {0x61a000000780}"]
-		node_0x61a000000760 -> node_0x61a000000780 
-		node_0x61a000000780 [shape = Mrecord label =  "Constant | {45} | {0x61a000000780}"]
-		node_0x61a000000860 [shape = Mrecord label =  "STATEMENT   | {;} | {0x61a000000860}"]
-		node_0x61a0000007a0 -> node_0x61a000000860 
-		node_0x61a000000860 [shape = Mrecord label =  "STATEMENT   | {;} | {0x61a000000860}"]
-		node_0x61a0000007e0 [shape = Mrecord label =  "ASSIGMENT | {=}"]
-		node_0x61a000000860 -> node_0x61a0000007e0 
-		node_0x61a0000007e0 [shape = Mrecord label =  "ASSIGMENT | {=}"]
-		node_0x61a0000007c0 [shape = Mrecord label =  "Variable | {x} | {0x61a0000007c0}"]
-		node_0x61a0000007e0 -> node_0x61a0000007c0 
-		node_0x61a0000007c0 [shape = Mrecord label =  "Variable | {x} | {0x61a0000007c0}"]
-		node_0x61a000000820 [shape = Mrecord label =  "Operator | {-} | {0x61a000000820}"]
-		node_0x61a0000007e0 -> node_0x61a000000820 
-		node_0x61a000000820 [shape = Mrecord label =  "Operator | {-} | {0x61a000000820}"]
-		node_0x61a000000800 [shape = Mrecord label =  "Variable | {x} | {0x61a000000800}"]
-		node_0x61a000000820 -> node_0x61a000000800 
-		node_0x61a000000800 [shape = Mrecord label =  "Variable | {x} | {0x61a000000800}"]
-		node_0x61a000000840 [shape = Mrecord label =  "Constant | {10} | {0x61a000000840}"]
-		node_0x61a000000820 -> node_0x61a000000840 
-		node_0x61a000000840 [shape = Mrecord label =  "Constant | {10} | {0x61a000000840}"]
-		node_0x61a000000920 [shape = Mrecord label =  "STATEMENT   | {;} | {0x61a000000920}"]
-		node_0x61a0000008a0 -> node_0x61a000000920 
-		node_0x61a000000920 [shape = Mrecord label =  "STATEMENT   | {;} | {0x61a000000920}"]
-		node_0x61a0000008e0 [shape = Mrecord label =  "ASSIGMENT | {=}"]
-		node_0x61a000000920 -> node_0x61a0000008e0 
-		node_0x61a0000008e0 [shape = Mrecord label =  "ASSIGMENT | {=}"]
-		node_0x61a0000008c0 [shape = Mrecord label =  "Variable | {x} | {0x61a0000008c0}"]
-		node_0x61a0000008e0 -> node_0x61a0000008c0 
-		node_0x61a0000008c0 [shape = Mrecord label =  "Variable | {x} | {0x61a0000008c0}"]
-		node_0x61a000000900 [shape = Mrecord label =  "Constant | {20} | {0x61a000000900}"]
-		node_0x61a0000008e0 -> node_0x61a000000900 
-		node_0x61a000000900 [shape = Mrecord label =  "Constant | {20} | {0x61a000000900}"]
-		node_0x61a0000009a0 [shape = Mrecord label =  "STATEMENT   | {;} | {0x61a0000009a0}"]
-		node_0x61a0000006c0 -> node_0x61a0000009a0 
-		node_0x61a0000009a0 [shape = Mrecord label =  "STATEMENT   | {;} | {0x61a0000009a0}"]
-		node_0x61a000000940 [shape = Mrecord label =  "INSTRUCTION | {'fout'} "]
-		node_0x61a0000009a0 -> node_0x61a000000940 
-		node_0x61a000000940 [shape = Mrecord label =  "INSTRUCTION | {'fout'} "]
-		node_0x61a000000980 [shape = Mrecord label =  "Variable | {x} | {0x61a000000980}"]
-		node_0x61a000000940 -> node_0x61a000000980 
-		node_0x61a000000980 [shape = Mrecord label =  "Variable | {x} | {0x61a000000980}"]
-		node_0x61a000000ae0 [shape = Mrecord label =  "STATEMENT   | {;} | {0x61a000000ae0}"]
-		node_0x61a0000009a0 -> node_0x61a000000ae0 
-		node_0x61a000000ae0 [shape = Mrecord label =  "STATEMENT   | {;} | {0x61a000000ae0}"]
-		node_0x61a0000009e0 [shape = Mrecord label =  "ASSIGMENT | {=}"]
-		node_0x61a000000ae0 -> node_0x61a0000009e0 
-		node_0x61a0000009e0 [shape = Mrecord label =  "ASSIGMENT | {=}"]
-		node_0x61a0000009c0 [shape = Mrecord label =  "Variable | {x} | {0x61a0000009c0}"]
-		node_0x61a0000009e0 -> node_0x61a0000009c0 
-		node_0x61a0000009c0 [shape = Mrecord label =  "Variable | {x} | {0x61a0000009c0}"]
-		node_0x61a000000a20 [shape = Mrecord label =  "Operator | {*} | {0x61a000000a20}"]
-		node_0x61a0000009e0 -> node_0x61a000000a20 
-		node_0x61a000000a20 [shape = Mrecord label =  "Operator | {*} | {0x61a000000a20}"]
-		node_0x61a000000a00 [shape = Mrecord label =  "Constant | {1} | {0x61a000000a00}"]
-		node_0x61a000000a20 -> node_0x61a000000a00 
-		node_0x61a000000a00 [shape = Mrecord label =  "Constant | {1} | {0x61a000000a00}"]
-		node_0x61a000000a80 [shape = Mrecord label =  "Operator | {+} | {0x61a000000a80}"]
-		node_0x61a000000a20 -> node_0x61a000000a80 
-		node_0x61a000000a80 [shape = Mrecord label =  "Operator | {+} | {0x61a000000a80}"]
-		node_0x61a000000a60 [shape = Mrecord label =  "Constant | {4} | {0x61a000000a60}"]
-		node_0x61a000000a80 -> node_0x61a000000a60 
-		node_0x61a000000a60 [shape = Mrecord label =  "Constant | {4} | {0x61a000000a60}"]
-		node_0x61a000000aa0 [shape = Mrecord label =  "Constant | {5} | {0x61a000000aa0}"]
-		node_0x61a000000a80 -> node_0x61a000000aa0 
-		node_0x61a000000aa0 [shape = Mrecord label =  "Constant | {5} | {0x61a000000aa0}"]
+		node_0x555fda435500 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda435500}"]
+		node_0x555fda435410 [shape = Mrecord label =  "INITIALIZATOR | {'var'}
+
+"]
+		node_0x555fda435500 -> node_0x555fda435410 
+		node_0x555fda435410 [shape = Mrecord label =  "INITIALIZATOR | {'var'}
+
+"]
+		node_0x555fda435438 [shape = Mrecord label =  "Variable | {x} | {0x555fda435438}"]
+		node_0x555fda435410 -> node_0x555fda435438 
+		node_0x555fda435438 [shape = Mrecord label =  "Variable | {x} | {0x555fda435438}"]
+		node_0x555fda4354b0 [shape = Mrecord label =  "Operator | {*} | {0x555fda4354b0}"]
+		node_0x555fda435410 -> node_0x555fda4354b0 
+		node_0x555fda4354b0 [shape = Mrecord label =  "Operator | {*} | {0x555fda4354b0}"]
+		node_0x555fda435488 [shape = Mrecord label =  "Constant | {30} | {0x555fda435488}"]
+		node_0x555fda4354b0 -> node_0x555fda435488 
+		node_0x555fda435488 [shape = Mrecord label =  "Constant | {30} | {0x555fda435488}"]
+		node_0x555fda4354d8 [shape = Mrecord label =  "Constant | {56} | {0x555fda4354d8}"]
+		node_0x555fda4354b0 -> node_0x555fda4354d8 
+		node_0x555fda4354d8 [shape = Mrecord label =  "Constant | {56} | {0x555fda4354d8}"]
+		node_0x555fda435cf8 [shape = Mrecord label =  "FUNCTION | {}} | {0x555fda435cf8}"]
+		node_0x555fda435500 -> node_0x555fda435cf8 
+		node_0x555fda435cf8 [shape = Mrecord label =  "FUNCTION | {}} | {0x555fda435cf8}"]
+		node_0x555fda434a60 [shape = Mrecord label =  "NAME | {main}
+
+"]
+		node_0x555fda435cf8 -> node_0x555fda434a60 
+		node_0x555fda434a60 [shape = Mrecord label =  "NAME | {main}
+
+"]
+		node_0x555fda435690 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda435690}"]
+		node_0x555fda434a60 -> node_0x555fda435690 
+		node_0x555fda435690 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda435690}"]
+		node_0x555fda4355f0 [shape = Mrecord label =  "INITIALIZATOR | {'var'}
+
+"]
+		node_0x555fda435690 -> node_0x555fda4355f0 
+		node_0x555fda4355f0 [shape = Mrecord label =  "INITIALIZATOR | {'var'}
+
+"]
+		node_0x555fda435618 [shape = Mrecord label =  "Variable | {y} | {0x555fda435618}"]
+		node_0x555fda4355f0 -> node_0x555fda435618 
+		node_0x555fda435618 [shape = Mrecord label =  "Variable | {y} | {0x555fda435618}"]
+		node_0x555fda435668 [shape = Mrecord label =  "Constant | {4} | {0x555fda435668}"]
+		node_0x555fda4355f0 -> node_0x555fda435668 
+		node_0x555fda435668 [shape = Mrecord label =  "Constant | {4} | {0x555fda435668}"]
+		node_0x555fda4356e0 [shape = Mrecord label =  "STATEMENT   | {(} | {0x555fda4356e0}"]
+		node_0x555fda435690 -> node_0x555fda4356e0 
+		node_0x555fda4356e0 [shape = Mrecord label =  "STATEMENT   | {(} | {0x555fda4356e0}"]
+		node_0x555fda4356b8 [shape = Mrecord label =  "INSTRUCTION | {'if'} "]
+		node_0x555fda4356e0 -> node_0x555fda4356b8 
+		node_0x555fda4356b8 [shape = Mrecord label =  "INSTRUCTION | {'if'} "]
+		node_0x555fda435708 [shape = Mrecord label =  "Variable | {y} | {0x555fda435708}"]
+		node_0x555fda4356b8 -> node_0x555fda435708 
+		node_0x555fda435708 [shape = Mrecord label =  "Variable | {y} | {0x555fda435708}"]
+		node_0x555fda4358e8 [shape = Mrecord label =  "INSTRUCTION | {'else'} "]
+		node_0x555fda4356b8 -> node_0x555fda4358e8 
+		node_0x555fda4358e8 [shape = Mrecord label =  "INSTRUCTION | {'else'} "]
+		node_0x555fda4357f8 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda4357f8}"]
+		node_0x555fda4358e8 -> node_0x555fda4357f8 
+		node_0x555fda4357f8 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda4357f8}"]
+		node_0x555fda4357a8 [shape = Mrecord label =  "ASSIGMENT | {=}"]
+		node_0x555fda4357f8 -> node_0x555fda4357a8 
+		node_0x555fda4357a8 [shape = Mrecord label =  "ASSIGMENT | {=}"]
+		node_0x555fda435780 [shape = Mrecord label =  "Variable | {x} | {0x555fda435780}"]
+		node_0x555fda4357a8 -> node_0x555fda435780 
+		node_0x555fda435780 [shape = Mrecord label =  "Variable | {x} | {0x555fda435780}"]
+		node_0x555fda4357d0 [shape = Mrecord label =  "Constant | {45} | {0x555fda4357d0}"]
+		node_0x555fda4357a8 -> node_0x555fda4357d0 
+		node_0x555fda4357d0 [shape = Mrecord label =  "Constant | {45} | {0x555fda4357d0}"]
+		node_0x555fda435898 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda435898}"]
+		node_0x555fda4357f8 -> node_0x555fda435898 
+		node_0x555fda435898 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda435898}"]
+		node_0x555fda435848 [shape = Mrecord label =  "ASSIGMENT | {=}"]
+		node_0x555fda435898 -> node_0x555fda435848 
+		node_0x555fda435848 [shape = Mrecord label =  "ASSIGMENT | {=}"]
+		node_0x555fda435820 [shape = Mrecord label =  "Variable | {x} | {0x555fda435820}"]
+		node_0x555fda435848 -> node_0x555fda435820 
+		node_0x555fda435820 [shape = Mrecord label =  "Variable | {x} | {0x555fda435820}"]
+		node_0x555fda435870 [shape = Mrecord label =  "Constant | {10} | {0x555fda435870}"]
+		node_0x555fda435848 -> node_0x555fda435870 
+		node_0x555fda435870 [shape = Mrecord label =  "Constant | {10} | {0x555fda435870}"]
+		node_0x555fda435988 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda435988}"]
+		node_0x555fda4358e8 -> node_0x555fda435988 
+		node_0x555fda435988 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda435988}"]
+		node_0x555fda435938 [shape = Mrecord label =  "ASSIGMENT | {=}"]
+		node_0x555fda435988 -> node_0x555fda435938 
+		node_0x555fda435938 [shape = Mrecord label =  "ASSIGMENT | {=}"]
+		node_0x555fda435910 [shape = Mrecord label =  "Variable | {x} | {0x555fda435910}"]
+		node_0x555fda435938 -> node_0x555fda435910 
+		node_0x555fda435910 [shape = Mrecord label =  "Variable | {x} | {0x555fda435910}"]
+		node_0x555fda435960 [shape = Mrecord label =  "Constant | {20} | {0x555fda435960}"]
+		node_0x555fda435938 -> node_0x555fda435960 
+		node_0x555fda435960 [shape = Mrecord label =  "Constant | {20} | {0x555fda435960}"]
+		node_0x555fda435a28 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda435a28}"]
+		node_0x555fda4356e0 -> node_0x555fda435a28 
+		node_0x555fda435a28 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda435a28}"]
+		node_0x555fda4359b0 [shape = Mrecord label =  "INSTRUCTION | {'fout'} "]
+		node_0x555fda435a28 -> node_0x555fda4359b0 
+		node_0x555fda4359b0 [shape = Mrecord label =  "INSTRUCTION | {'fout'} "]
+		node_0x555fda435a00 [shape = Mrecord label =  "Variable | {x} | {0x555fda435a00}"]
+		node_0x555fda4359b0 -> node_0x555fda435a00 
+		node_0x555fda435a00 [shape = Mrecord label =  "Variable | {x} | {0x555fda435a00}"]
+		node_0x555fda434a30 [shape = Mrecord label =  "CALL "]
+		node_0x555fda435a28 -> node_0x555fda434a30 
+		node_0x555fda434a30 [shape = Mrecord label =  "CALL "]
+		node_0x555fda435a50 [shape = Mrecord label =  "NAME | {helloworld}
+
+"]
+		node_0x555fda434a30 -> node_0x555fda435a50 
+		node_0x555fda435a50 [shape = Mrecord label =  "NAME | {helloworld}
+
+"]
+		node_0x555fda435c58 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda435c58}"]
+		node_0x555fda434a30 -> node_0x555fda435c58 
+		node_0x555fda435c58 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda435c58}"]
+		node_0x555fda435b18 [shape = Mrecord label =  "ASSIGMENT | {=}"]
+		node_0x555fda435c58 -> node_0x555fda435b18 
+		node_0x555fda435b18 [shape = Mrecord label =  "ASSIGMENT | {=}"]
+		node_0x555fda435af0 [shape = Mrecord label =  "Variable | {x} | {0x555fda435af0}"]
+		node_0x555fda435b18 -> node_0x555fda435af0 
+		node_0x555fda435af0 [shape = Mrecord label =  "Variable | {x} | {0x555fda435af0}"]
+		node_0x555fda435b68 [shape = Mrecord label =  "Operator | {*} | {0x555fda435b68}"]
+		node_0x555fda435b18 -> node_0x555fda435b68 
+		node_0x555fda435b68 [shape = Mrecord label =  "Operator | {*} | {0x555fda435b68}"]
+		node_0x555fda435b40 [shape = Mrecord label =  "Constant | {1} | {0x555fda435b40}"]
+		node_0x555fda435b68 -> node_0x555fda435b40 
+		node_0x555fda435b40 [shape = Mrecord label =  "Constant | {1} | {0x555fda435b40}"]
+		node_0x555fda435be0 [shape = Mrecord label =  "Operator | {+} | {0x555fda435be0}"]
+		node_0x555fda435b68 -> node_0x555fda435be0 
+		node_0x555fda435be0 [shape = Mrecord label =  "Operator | {+} | {0x555fda435be0}"]
+		node_0x555fda435bb8 [shape = Mrecord label =  "Constant | {4} | {0x555fda435bb8}"]
+		node_0x555fda435be0 -> node_0x555fda435bb8 
+		node_0x555fda435bb8 [shape = Mrecord label =  "Constant | {4} | {0x555fda435bb8}"]
+		node_0x555fda435c08 [shape = Mrecord label =  "Constant | {5} | {0x555fda435c08}"]
+		node_0x555fda435be0 -> node_0x555fda435c08 
+		node_0x555fda435c08 [shape = Mrecord label =  "Constant | {5} | {0x555fda435c08}"]
+		node_0x555fda434a90 [shape = Mrecord label =  "FUNCTION RET TYPE | {'double'}
+
+"]
+		node_0x555fda434a60 -> node_0x555fda434a90 
+		node_0x555fda434a90 [shape = Mrecord label =  "FUNCTION RET TYPE | {'double'}
+
+"]
+		node_0x555fda435ed8 [shape = Mrecord label =  "FUNCTION | {}} | {0x555fda435ed8}"]
+		node_0x555fda435cf8 -> node_0x555fda435ed8 
+		node_0x555fda435ed8 [shape = Mrecord label =  "FUNCTION | {}} | {0x555fda435ed8}"]
+		node_0x555fda434af0 [shape = Mrecord label =  "NAME | {helloworld}
+
+"]
+		node_0x555fda435ed8 -> node_0x555fda434af0 
+		node_0x555fda434af0 [shape = Mrecord label =  "NAME | {helloworld}
+
+"]
+		node_0x555fda435e60 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda435e60}"]
+		node_0x555fda434af0 -> node_0x555fda435e60 
+		node_0x555fda435e60 [shape = Mrecord label =  "STATEMENT   | {;} | {0x555fda435e60}"]
+		node_0x555fda435de8 [shape = Mrecord label =  "INSTRUCTION | {'fout'} "]
+		node_0x555fda435e60 -> node_0x555fda435de8 
+		node_0x555fda435de8 [shape = Mrecord label =  "INSTRUCTION | {'fout'} "]
+		node_0x555fda435e38 [shape = Mrecord label =  "Constant | {101} | {0x555fda435e38}"]
+		node_0x555fda435de8 -> node_0x555fda435e38 
+		node_0x555fda435e38 [shape = Mrecord label =  "Constant | {101} | {0x555fda435e38}"]
+		node_0x555fda434b20 [shape = Mrecord label =  "FUNCTION RET TYPE | {'void'}
+
+"]
+		node_0x555fda434af0 -> node_0x555fda434b20 
+		node_0x555fda434b20 [shape = Mrecord label =  "FUNCTION RET TYPE | {'void'}
+
+"]
 ########################################################### SetEndDot
 
 }

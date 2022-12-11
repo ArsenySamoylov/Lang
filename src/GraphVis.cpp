@@ -10,6 +10,7 @@
 #include "LogMacroses.h"
 
 static FILE* Dot = NULL; 
+static const char** STRING_ARR = NULL;
 
 static void DotPrint     (const char* format, ...);
 
@@ -27,10 +28,9 @@ static void PrintNode     (const Token *const node);
 const char* MakeImg (const char* img_name, const Program *const program) 
     {
     $log(2)
-    return NULL;
-    /*
+    
     assert (img_name);
-    assert (node);
+    assert (program);
 
     char      dot_file [MAX_GRAPH_NAME_LENGTH + 16] = {};
     snprintf (dot_file, MAX_GRAPH_NAME_LENGTH, "%s%s.dot", 
@@ -45,7 +45,9 @@ const char* MakeImg (const char* img_name, const Program *const program)
 
     // THIS COULD BE THE PLACE FOR YOUR FUNCTION
     
-    DotTreeBranch (node);
+    STRING_ARR = program->string_arr;
+
+    DotTreeBranch (program->root);
     // FOR EXample like this ^
 
     SetEndDot ();
@@ -56,13 +58,13 @@ const char* MakeImg (const char* img_name, const Program *const program)
    
     char      system_command [SYSTEM_COMMAND_LENGTH + 16] = {};
     snprintf (system_command, SYSTEM_COMMAND_LENGTH, "dot -T %s -o %s %s", EXTENSION, full_img_name, dot_file);
-    //$s(system_command)
+    // $s(system_command)
 
     system   (system_command);
     
     CloseDotFile ();
     return full_img_name;
-    */
+    
     }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -163,7 +165,16 @@ static void PrintNode (const Token *const node)
             break; 
     case INSTRUCTION: 
             sprintf(def_data, "INSTRUCTION | {'%s'} ",  INSTRUCTIONS[node->value.t_instruction]);
-            break;             
+            break;
+    case INITIALIZATOR: 
+            sprintf(def_data, "INITIALIZATOR | {'%s'}\n\n",  INITIALIZATORS[node->value.t_instruction]);
+            break;     
+    case FUNCTION_RET_TYPE: 
+            sprintf(def_data, "FUNCTION RET TYPE | {'%s'}\n\n",  FUNCTION_RET_TYPES[node->value.t_instruction]);
+            break;            
+   case NAME: 
+            sprintf(def_data, "NAME | {%s}\n\n",  STRING_ARR[NAME_ID(node)]);
+            break;               
     case EXPRESSION_OPENING_BRACKET: 
             sprintf(def_data, "EXPRESSION OPENING BRACKET | {%c}",  OP(node));
             break;                                                     
@@ -187,8 +198,13 @@ static void PrintNode (const Token *const node)
         case OPERATOR: sprintf(def_data, "Operator | {%c} | {%p}", node->value.t_operator, (void*) node);
                        break;
 
-        // case VARIABLE: sprintf(def_data, "Variable | {%c} | {%p}", node->value.t_variable, (void*) node);
-                    //    break;
+        case VARIABLE: sprintf(def_data, "Variable | {%s} | {%p}", STRING_ARR[node->value.t_name_id], (void*) node);
+                       break;
+
+         case FUNCTION: sprintf(def_data, "FUNCTION | {%c} | {%p}", OP(node), (void*) node);
+                       break;
+         case CALL: sprintf(def_data, "CALL ");
+                       break;
 
         case CONSTANT: sprintf(def_data, "Constant | {%lg} | {%p}", node->value.t_constant, (void*) node);
                        break;

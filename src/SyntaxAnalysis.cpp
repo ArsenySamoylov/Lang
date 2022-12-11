@@ -86,7 +86,7 @@ static Token* FuncLabelToTokens (FuncLabel* label);
 #define report_syntax_error(format, ...)                                    \
         do                                                                  \
             {                                                               \
-            printf(redcolor "Syntax ERORR\n"resetconsole);                  \
+            printf(redcolor "Syntax ERORR\n" bluecolor);                    \
             logf("Syntax ERROR\n");                                         \
             logf("");                                                       \
             LOG__.log_dup_console(format __VA_OPT__(,) __VA_ARGS__);        \
@@ -152,6 +152,8 @@ int GetG (Program* program)
            
         if (!RIGHT(current_process))
             return LFAILURE;
+        
+        current_process = RIGHT(current_process); 
         }
 
     if (POSITION(program_buf) != SIZE(program_buf))
@@ -161,7 +163,7 @@ int GetG (Program* program)
         }
 
     // set programm
-    TODO("set programm\n");
+    // TODO("set programm\n");
 
     return SUCCESS;
     }
@@ -287,7 +289,18 @@ static Token* VarInitialization (ProgramBuffer* program_buf)
     RIGHT(initializator) = nullptr;
     
     if (TYPE(token) == END_OF_STATEMENT)
-        return initializator;
+        {
+        printf (purplecolor "Warning: unitializad variable " cyancolor "'%s'\n" resetconsole, STRING_ARR(program_buf)[label->name]);
+
+        Token* statement = token;
+
+        POSITION(program_buf)++;
+
+        TYPE(statement) = STATEMENT;
+        LEFT(statement) = initializator;
+
+        return statement;
+        }
         
     if (TYPE(token) != ASSIGMENT)
         {
@@ -305,14 +318,19 @@ static Token* VarInitialization (ProgramBuffer* program_buf)
         return LNULL;
         }
     
+    Token* statement = token;
     POSITION(program_buf)++;
 
     if (!RIGHT(initializator))
         return LNULL;
 
-    return initializator;
+    TYPE(statement) = STATEMENT;
+    LEFT(statement) = initializator;
+
+    return statement;
     }
 
+// CHANGE RETURN SYSTEM (move to get block or get statement) (return can be not only in the end of function)
 static Token* GetFunction (ProgramBuffer* program_buf)
     {
     $log(DEBUG)
@@ -355,7 +373,12 @@ static Token* GetFunction (ProgramBuffer* program_buf)
     // chek if void so to do;
     if (label->ret_type != VOID)
         {
-        GetE(program_buf);
+        // TODO("Function return\n");
+        if (!GetE(program_buf))
+            {
+            report_syntax_error("No return value in novoid function\n");
+            return LNULL;
+            }
         }
 
     if (TYPE(token) != END_OF_STATEMENT)
@@ -372,13 +395,18 @@ static Token* GetFunction (ProgramBuffer* program_buf)
        return LNULL;
        }
 
+    Token* statement = token;
     POSITION(program_buf)++;
 
     Token* function = FuncLabelToTokens(label);
+    LEFT(function) = body;
 
     label->body_status = DECLARED;
 
-    return function;
+    TYPE(statement) = FUNCTION;
+    LEFT(statement) = function;
+
+    return statement;
     }
 
 static Token* GetBlock (ProgramBuffer* program_buf)
@@ -408,6 +436,14 @@ static Token* GetStatement (ProgramBuffer* program_buf)
     {
     $log(1)
     assertlog(program_buf, EFAULT, return LNULL);
+
+    if (TYPE(token) == NAME)
+        {
+        if (DefineName(program_buf) == NOT_DECLARED)
+            return LNULL;
+
+        return GetStatement(program_buf);
+        }
 
     if (IS_INSTRUCTION(token))
         return GetInstruction(program_buf);
@@ -450,6 +486,7 @@ static Token* GetStatement (ProgramBuffer* program_buf)
     return NULL;
     }
 
+//note: changes token type from function to name
 static Token* GetCall (ProgramBuffer* program_buf)
     {
     assertlog(program_buf, EFAULT, return LNULL);
@@ -460,7 +497,12 @@ static Token* GetCall (ProgramBuffer* program_buf)
         return LNULL;
         }
 
-    if (TYPE(token) != EXPRESSION_CLOSING_BRACKET)
+    Token* func_name = token;
+    TYPE(func_name) = NAME; 
+
+    POSITION(program_buf)++;
+
+    if (TYPE(token) != EXPRESSION_OPENING_BRACKET)
         {
         report_syntax_error("Missing '('\n");
         return LNULL;
@@ -484,7 +526,8 @@ static Token* GetCall (ProgramBuffer* program_buf)
     
     POSITION(program_buf)++;
 
-    Token* call = NewToken(CALL, {}, token);
+    // can bound to ';' instead calloc
+    Token* call = NewToken(CALL, {}, func_name);
     
     // work with arguments;
 
@@ -641,6 +684,9 @@ static Token* GetAssigment (ProgramBuffer* program_buf)
     return statement;
     }
 
+
+
+// Epressions
 static Token* GetE (ProgramBuffer* program_buf)
     {
     $log(DEBUG_ALL)
@@ -757,6 +803,8 @@ static Token* GetN (ProgramBuffer* program_buf)
     return result;
     }
 
+
+// UTILS
 static int DefineName(ProgramBuffer* program_buf)
     {
     assertlog(program_buf, EFAULT, return NOT_DECLARED);
@@ -876,26 +924,3 @@ static VarLabel* GetVarLabel (int name_id, SuperStack* var_tabels)
     VarLabel* temp = IsVarLabel(name_id, tabel); 
     return temp;
     }
-
-
-
-/*  
-static void report_syntax_error(TokenBuffer* program_buf, const char* format, ...)
-    {
-    assertlog(program_buf, EFAULT, return);
-    assertlog(format,    EFAULT, return);
-
-    
-    va_list ptr;
-    va_start(ptr, format);
-
-    logger(
-
-    vprintf(format, ptr);
-
-    va_end(ptr);
-
-   
-    return;
-    }
-    */

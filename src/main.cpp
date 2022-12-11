@@ -1,4 +1,3 @@
-
 #include "LexicalAnalysis.h"
 #include "SyntaxAnalysis.h"
 #include "TranslateToAsm.h"
@@ -7,6 +6,7 @@
 
 #include "my_buffer.h"
 #include "LogMacroses.h"
+#include "EasyDebug.h"
 
 // OPERATORS
 // = : EQ
@@ -86,10 +86,12 @@ int main()
         CloseProgram(&program);
         return LFAILURE;
         }
-    printf("to do grapphvis\n");
-    // MakeImg("kek", TO_DO); 
+
+    MakeImg("kek", &program); 
+    // SYSTEM("xdg-open graphics/kek.png");
+    $$
     /////// BACK   END /////////////////////////
-    // run_time_status |= TranslateToAsm (root, "test.ars");
+    run_time_status |= TranslateToAsm (program.root, "test.ars");
     if (run_time_status != SUCCESS)
         {
         CloseProgram(&program);

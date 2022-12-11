@@ -29,7 +29,7 @@ void PrintToken (const Token *const token, const char** string_arr)
             printf("FUNCTION RET TYPE | {'%s'}\n\n",  FUNCTION_RET_TYPES[token->value.t_instruction]);
             break;            
    case NAME: 
-            printf("NAME | {%d}\n\n",  string_arr[NAME_ID(token)]);
+            printf("NAME | {%s}\n\n",  string_arr[NAME_ID(token)]);
             break;  
 
     case EXPRESSION_OPENING_BRACKET: 
@@ -56,7 +56,9 @@ void PrintToken (const Token *const token, const char** string_arr)
     case VARIABLE: 
             printf("VARIABLE | {%s}\n\n",  string_arr[NAME_ID(token)]);
             break;                                                      
-                                                                            
+     case FUNCTION: 
+            printf("FUNCTION | {%c}\n\n",  OP(token));
+            break;                                                                                            
     case CONSTANT: 
             printf("CONSTANT | {%lg}\n\n", CONST(token));
             break;                                                      

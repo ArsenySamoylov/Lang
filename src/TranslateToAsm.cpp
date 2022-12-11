@@ -6,6 +6,7 @@
 
 #include "DSL.h"
 #include "Grammar.h"
+#include "SuperStack.h"
 #include "LangUtils.h"
 
 #include "LogMacroses.h"
@@ -21,6 +22,18 @@ static int  AddToAsm (const Token *const token);
 static void assprint(const char* format, ...);
 
 #pragma GCC diagnostic ignored "-Wmissing-declarations"
+
+struct ProgramBuffer
+    {
+    Program* program;
+
+    int position;
+    int current_func_tabel;
+    
+    FuncTabel*  global_func;
+    SuperStack* var_tabels;
+    };
+
 
 int TranslateToAsm (const Token *const root, const char *const name)
     {
@@ -71,6 +84,12 @@ static int AddToAsm (const Token *const token)
     $log(3)
     assertlog(token, EFAULT, return LFAILURE);
     $LOG_TOKEN(token)
+
+    if (TYPE(token) == FUNCTION)
+        {
+        // add to func tabel
+        // put label
+        }
 
     if (IS_CONST(token))
         return PUSH(CONST(token)), SUCCESS;

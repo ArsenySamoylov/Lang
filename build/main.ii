@@ -5,7 +5,6 @@
 # 1 "/usr/include/stdc-predef.h" 1 3 4
 # 0 "<command-line>" 2
 # 1 "./src/main.cpp"
-
 # 1 "./headers/LexicalAnalysis.h" 1
        
 
@@ -131,21 +130,21 @@ const int START_NUMBER_OF_TOKENS = 20;
 const int START_NUMBER_OF_STRINGS = 16;
 
 int Tokenizer (Program* program, const char* expression);
-# 3 "./src/main.cpp" 2
+# 2 "./src/main.cpp" 2
 # 1 "./headers/SyntaxAnalysis.h" 1
        
 
 
 
 int GetG (Program* program);
-# 4 "./src/main.cpp" 2
+# 3 "./src/main.cpp" 2
 # 1 "./headers/TranslateToAsm.h" 1
        
 
 
 
-int TranslateToAsm (const Program *const program, const char *const name);
-# 5 "./src/main.cpp" 2
+int TranslateToAsm (const Token *const root, const char *const name);
+# 4 "./src/main.cpp" 2
 
 # 1 "./headers/DefGraphVis.h" 1
        
@@ -2673,7 +2672,7 @@ FILE* OpenDotFile (const char* path);
 void CloseDotFile ();
 
 const char* MakeImg (const char* img_name, const Program *const program);
-# 7 "./src/main.cpp" 2
+# 6 "./src/main.cpp" 2
 
 # 1 "../ATC/Buffer/my_buffer.h" 1
 
@@ -2730,7 +2729,7 @@ int BufferGetDouble (Buffer* buf, double* val);
 int BufferPutDouble (Buffer* buf, double val);
 int BufferPutChar (Buffer* buf, char ch);
 int BufferPutString (Buffer* buf, const char* str);
-# 9 "./src/main.cpp" 2
+# 8 "./src/main.cpp" 2
 # 1 "../ATC/Logger/LogMacroses.h" 1
        
 
@@ -44340,6 +44339,8 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 
 int SYSTEM(const char* format, ...);
 # 13 "../ATC/Logger/LogMacroses.h" 2
+# 9 "./src/main.cpp" 2
+# 1 "../ATC/Debug/EasyDebug.h" 1
 # 10 "./src/main.cpp" 2
 # 27 "./src/main.cpp"
 void CloseProgram(Program* );
@@ -44393,7 +44394,7 @@ void CloseProgram(Program* program)
    14
 # 53 "./src/main.cpp"
    )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 53); system("powerof"); return; } } while (0);;
-    printf("\033[91m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/main.cpp", 54, "сделаю потом"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/main.cpp", 54, "сделаю потом"); Logger::getInstance().log("сделаю потом" );;
+    printf("\033[96m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/main.cpp", 54, "сделаю потом"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/main.cpp", 54, "сделаю потом"); Logger::getInstance().log("сделаю потом" );;
 
     return;
     }
@@ -44428,20 +44429,22 @@ int main()
         CloseProgram(&program);
         return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 87, __func__, 87), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 87, __func__, 87);
         }
-    printf("to do grapphvis\n");
 
+    MakeImg("kek", &program);
 
+    do { printf("Enter any key to continue (line %d, func %s)\n", 92, __func__); getchar(); } while (0);
 
+    run_time_status |= TranslateToAsm (program.root, "test.ars");
     if (run_time_status != SUCCESS)
         {
         CloseProgram(&program);
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 96, __func__, 96), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 96, __func__, 96);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 98, __func__, 98), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 98, __func__, 98);
         }
 
 
 
     CloseProgram(&program);
-    Logger::getInstance().FREE_LOG (src_code, "./src/main.cpp", __func__, 102);;
+    Logger::getInstance().FREE_LOG (src_code, "./src/main.cpp", __func__, 104);;
 
     return 0;
     }

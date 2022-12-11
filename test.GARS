@@ -1,8 +1,12 @@
-var x = 15;
+func void helloworld(); 
+
+var x = 30 * 56;
 
 double main()
     {
-    if (45)
+    var y = 4;
+
+    if (y)
         {
         x = 45;
         x = 10;
@@ -12,12 +16,14 @@ double main()
 
     fout << x; 
 
+    helloworld();
+
     x = 1 * (4 + 5);
 
-    return x;
+    return y;
     }
 
-func void hellowold(); 
+
 void helloworld()
    {
     fout << 101;

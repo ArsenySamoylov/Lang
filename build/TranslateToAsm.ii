@@ -126,7 +126,7 @@ struct Program
     };
 # 4 "./headers/TranslateToAsm.h" 2
 
-int TranslateToAsm (const Program *const program, const char *const name);
+int TranslateToAsm (const Token *const root, const char *const name);
 # 2 "./src/TranslateToAsm.cpp" 2
 
 # 1 "/usr/include/stdio.h" 1 3 4
@@ -54506,6 +54506,162 @@ const char COMMENT = '#';
 const int MAX_FUNCTION_NAME_LENGTH = 16;
 const int MAX_WORD_LENGTH = 16;
 # 9 "./src/TranslateToAsm.cpp" 2
+# 1 "../ATC/SuperStack/SuperStack.h" 1
+
+
+
+#pragma GCC diagnostic ignored "-Wconversion"
+
+
+
+# 1 "../ATC/SuperStack/SuperStackConfig.h" 1
+
+
+
+
+
+
+
+typedef VarTabel* element_t;
+# 9 "../ATC/SuperStack/SuperStack.h" 2
+# 1 "../ATC/my_safety/my_safety.h" 1
+
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 5 "../ATC/my_safety/my_safety.h" 2
+# 1 "/usr/include/inttypes.h" 1 3 4
+# 266 "/usr/include/inttypes.h" 3 4
+
+# 266 "/usr/include/inttypes.h" 3 4
+extern "C" {
+
+
+
+
+typedef struct
+  {
+    long int quot;
+    long int rem;
+  } imaxdiv_t;
+# 290 "/usr/include/inttypes.h" 3 4
+extern intmax_t imaxabs (intmax_t __n) noexcept (true) __attribute__ ((__const__));
+
+
+extern imaxdiv_t imaxdiv (intmax_t __numer, intmax_t __denom)
+      noexcept (true) __attribute__ ((__const__));
+
+
+extern intmax_t strtoimax (const char *__restrict __nptr,
+      char **__restrict __endptr, int __base) noexcept (true);
+
+
+extern uintmax_t strtoumax (const char *__restrict __nptr,
+       char ** __restrict __endptr, int __base) noexcept (true);
+
+
+extern intmax_t wcstoimax (const wchar_t *__restrict __nptr,
+      wchar_t **__restrict __endptr, int __base)
+     noexcept (true);
+
+
+extern uintmax_t wcstoumax (const wchar_t *__restrict __nptr,
+       wchar_t ** __restrict __endptr, int __base)
+     noexcept (true);
+
+}
+# 6 "../ATC/my_safety/my_safety.h" 2
+
+
+# 7 "../ATC/my_safety/my_safety.h"
+typedef long long CANARY;
+
+const int _CANARY_SIZE_ = sizeof(CANARY);
+
+const int _OPENING_CANARY_ = 0xABCDEF;
+const int _CLOSING_CANARY_ = 0xFEDCBA;
+
+
+void* canary_calloc ( size_t numbers_of_elements, size_t size_of_element);
+void* canary_realloc (void* ptr, size_t new_numbers_of_elements, size_t size_of_element);
+void canary_free (void* ptr);
+
+int generateHash(const void *start, const void *end);
+# 10 "../ATC/SuperStack/SuperStack.h" 2
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 13 "../ATC/SuperStack/SuperStack.h" 2
+# 21 "../ATC/SuperStack/SuperStack.h"
+const size_t _HEAP_MIN_CAPACITY_ = 10;
+const size_t _ELEMENT_T_SIZE_ = sizeof(element_t);
+
+enum super_stack_status
+    {
+    UNINITIALIZED,
+
+    INITIALIZATION_ERR,
+
+    DESTRUCTOR_ERR,
+    };
+
+enum SuperStackCtorErr
+    {
+    NULL_STK_PTR_CTR = -2,
+    WRONG_CAPACITY = -3,
+    INITIALIZED_STACK = -4,
+
+    ERROR_INITIALIZATION = -1,
+    SUCCESS_INITIALIZATION = 1,
+    };
+
+typedef long long CANARY;
+struct SuperStack
+    {
+
+    CANARY opening_canary;
+
+
+    element_t* heap;
+    size_t capacity;
+    ssize_t top;
+
+    int status;
+
+
+
+
+
+
+    int heapHash;
+    int hash;
+
+
+
+    CANARY closing_canary;
+
+    };
+
+int SuperStackCtor (SuperStack* stk, size_t capacity
+                     );
+
+void SuperStackDtor (SuperStack* stk
+                     );
+
+void SSpush (SuperStack* stk, element_t value
+                    );
+
+element_t SSpop (SuperStack* stk
+                    );
+
+element_t SStop (SuperStack* stk
+                    );
+# 101 "../ATC/SuperStack/SuperStack.h"
+void SSdump (SuperStack* negoden, unsigned flag_err
+                         );
+
+unsigned MedComissionSS (SuperStack* prezyvnik);
+# 10 "./src/TranslateToAsm.cpp" 2
 # 1 "./headers/LangUtils.h" 1
        
 
@@ -54514,7 +54670,7 @@ const int MAX_WORD_LENGTH = 16;
 void PrintToken (const Token *const token, const char** string_arr);
 
 void LogToken (const Token *const token, const char* name);
-# 10 "./src/TranslateToAsm.cpp" 2
+# 11 "./src/TranslateToAsm.cpp" 2
 
 
 # 1 "../ATC/Debug/EasyDebug.h" 1
@@ -54632,12 +54788,12 @@ int BufferPutDouble (Buffer* buf, double val);
 int BufferPutChar (Buffer* buf, char ch);
 int BufferPutString (Buffer* buf, const char* str);
 # 5 "../ATC/Debug/EasyDebug.h" 2
-# 13 "./src/TranslateToAsm.cpp" 2
+# 14 "./src/TranslateToAsm.cpp" 2
 
 static FILE* ASM_FILE = 
-# 14 "./src/TranslateToAsm.cpp" 3 4
+# 15 "./src/TranslateToAsm.cpp" 3 4
                        __null
-# 14 "./src/TranslateToAsm.cpp"
+# 15 "./src/TranslateToAsm.cpp"
                            ;
 
 static int OpenAsmFile (const char *const name);
@@ -54649,33 +54805,45 @@ static void assprint(const char* format, ...);
 
 #pragma GCC diagnostic ignored "-Wmissing-declarations"
 
+struct ProgramBuffer
+    {
+    Program* program;
+
+    int position;
+    int current_func_tabel;
+
+    FuncTabel* global_func;
+    SuperStack* var_tabels;
+    };
+
+
 int TranslateToAsm (const Token *const root, const char *const name)
     {
-    do { if (!(root)) { Logger::getInstance().log("Condition (%s) is false\n", "root"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "root"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/TranslateToAsm.cpp", 27); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/TranslateToAsm.cpp", 27); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 27 "./src/TranslateToAsm.cpp" 3 4
+    do { if (!(root)) { Logger::getInstance().log("Condition (%s) is false\n", "root"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "root"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/TranslateToAsm.cpp", 40); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/TranslateToAsm.cpp", 40); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 40 "./src/TranslateToAsm.cpp" 3 4
    14
-# 27 "./src/TranslateToAsm.cpp"
+# 40 "./src/TranslateToAsm.cpp"
    , strerror(
-# 27 "./src/TranslateToAsm.cpp" 3 4
+# 40 "./src/TranslateToAsm.cpp" 3 4
    14
-# 27 "./src/TranslateToAsm.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 27); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 27, __func__, 27), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 27, __func__, 27); } } while (0);;
-    do { if (!(name)) { Logger::getInstance().log("Condition (%s) is false\n", "name"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "name"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/TranslateToAsm.cpp", 28); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/TranslateToAsm.cpp", 28); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 28 "./src/TranslateToAsm.cpp" 3 4
+# 40 "./src/TranslateToAsm.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 40); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 40, __func__, 40), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 40, __func__, 40); } } while (0);;
+    do { if (!(name)) { Logger::getInstance().log("Condition (%s) is false\n", "name"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "name"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/TranslateToAsm.cpp", 41); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/TranslateToAsm.cpp", 41); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 41 "./src/TranslateToAsm.cpp" 3 4
    14
-# 28 "./src/TranslateToAsm.cpp"
+# 41 "./src/TranslateToAsm.cpp"
    , strerror(
-# 28 "./src/TranslateToAsm.cpp" 3 4
+# 41 "./src/TranslateToAsm.cpp" 3 4
    14
-# 28 "./src/TranslateToAsm.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 28); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 28, __func__, 28), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 28, __func__, 28); } } while (0);;
+# 41 "./src/TranslateToAsm.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 41); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 41, __func__, 41), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 41, __func__, 41); } } while (0);;
 
     if (OpenAsmFile(name) != SUCCESS)
         {
         printf("Couldn't open %s for ASM file\n", name);
           Logger::getInstance().log("Couldn't open %s for ASM file\n" , name);
 
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 35, __func__, 35), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 35, __func__, 35);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 48, __func__, 48), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 48, __func__, 48);
         }
 
     if (AddToAsm(root) != SUCCESS)
@@ -54683,29 +54851,35 @@ int TranslateToAsm (const Token *const root, const char *const name)
         printf("Couldn't make ASM file\n");
           Logger::getInstance().log("Couldn't make ASM file\n" );
 
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 43, __func__, 43), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 43, __func__, 43);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 56, __func__, 56), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 56, __func__, 56);
         }
 
     CloseAsmFile();
 
-    return Logger::getInstance().Logger::getInstance().LogMsgRet (SUCCESS, "%s:%d returned SUCCESS " , __func__, 48);
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (SUCCESS, "%s:%d returned SUCCESS " , __func__, 61);
     }
 
 const int PRECISION = 100;
-# 69 "./src/TranslateToAsm.cpp"
+# 82 "./src/TranslateToAsm.cpp"
 static int AddToAsm (const Token *const token)
     {
-    FunctionLogger func_71 {3, __func__};
-    do { if (!(token)) { Logger::getInstance().log("Condition (%s) is false\n", "token"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/TranslateToAsm.cpp", 72); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/TranslateToAsm.cpp", 72); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 72 "./src/TranslateToAsm.cpp" 3 4
+    FunctionLogger func_84 {3, __func__};
+    do { if (!(token)) { Logger::getInstance().log("Condition (%s) is false\n", "token"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "token"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/TranslateToAsm.cpp", 85); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/TranslateToAsm.cpp", 85); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 85 "./src/TranslateToAsm.cpp" 3 4
    14
-# 72 "./src/TranslateToAsm.cpp"
+# 85 "./src/TranslateToAsm.cpp"
    , strerror(
-# 72 "./src/TranslateToAsm.cpp" 3 4
+# 85 "./src/TranslateToAsm.cpp" 3 4
    14
-# 72 "./src/TranslateToAsm.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 72); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 72, __func__, 72), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 72, __func__, 72); } } while (0);;
+# 85 "./src/TranslateToAsm.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 85); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 85, __func__, 85), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 85, __func__, 85); } } while (0);;
     LogToken(token, "token");
+
+    if (token->type == FUNCTION)
+        {
+
+
+        }
 
     if (( (token) && (token->type == CONSTANT ) ? true : false ))
         return assprint("push %d\n", (int) floor(token->value.t_constant * PRECISION)), SUCCESS;
@@ -54720,9 +54894,9 @@ static int AddToAsm (const Token *const token)
             {
             case ELSE:
                 {
-                printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/TranslateToAsm.cpp", 88, __func__, 88); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/TranslateToAsm.cpp", 88, __func__, 88);
-                printf("\033[91m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/TranslateToAsm.cpp", 89, "to do else\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/TranslateToAsm.cpp", 89, "to do else\n"); Logger::getInstance().log("to do else\n" );;
-                return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 90, __func__, 90), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 90, __func__, 90);
+                printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/TranslateToAsm.cpp", 107, __func__, 107); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/TranslateToAsm.cpp", 107, __func__, 107);
+                printf("\033[96m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/TranslateToAsm.cpp", 108, "to do else\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/TranslateToAsm.cpp", 108, "to do else\n"); Logger::getInstance().log("to do else\n" );;
+                return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 109, __func__, 109), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 109, __func__, 109);
                 }
             case IF:
                 {
@@ -54732,7 +54906,7 @@ static int AddToAsm (const Token *const token)
                     Token* else_body = token->right_child->right_child;
 
                     assprint ("; condition for %s_%d with else \n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"), current_instruction);
-                    do { if (!AddToAsm( token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm( LEFT(token)) == SUCCESS" " is false\n" , __func__, 100); return FAILURE ; } }while (0);;
+                    do { if (!AddToAsm( token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm( LEFT(token)) == SUCCESS" " is false\n" , __func__, 119); return FAILURE ; } }while (0);;
 
                     assprint("\n");
                     assprint("push %d\n", (int) floor(0 * PRECISION));
@@ -54740,19 +54914,19 @@ static int AddToAsm (const Token *const token)
                     assprint ("; end of condition\n\n");
 
                     assprint("; if body\n");
-                    do { if (!AddToAsm(if_body) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(if_body) == SUCCESS" " is false\n" , __func__, 108); return FAILURE ; } }while (0);;
+                    do { if (!AddToAsm(if_body) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(if_body) == SUCCESS" " is false\n" , __func__, 127); return FAILURE ; } }while (0);;
                     assprint ("jmp : else_end_label_%d\n", current_instruction);
 
                     assprint("; else body\n");
                     assprint(": else_label_%d\n", current_instruction);
-                    do { if (!AddToAsm(else_body) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(else_body) == SUCCESS" " is false\n" , __func__, 113); return FAILURE ; } }while (0);;
+                    do { if (!AddToAsm(else_body) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(else_body) == SUCCESS" " is false\n" , __func__, 132); return FAILURE ; } }while (0);;
 
                     assprint (": else_end_label_%d\n", current_instruction);
                     }
                 else
                     {
                     assprint ("; condition for %s_%d\n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"), current_instruction);
-                    do { if (!AddToAsm( token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm( LEFT(token)) == SUCCESS" " is false\n" , __func__, 120); return FAILURE ; } }while (0);;
+                    do { if (!AddToAsm( token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm( LEFT(token)) == SUCCESS" " is false\n" , __func__, 139); return FAILURE ; } }while (0);;
 
                     assprint("\n");
                     assprint("push %d\n", (int) floor(0 * PRECISION));
@@ -54760,7 +54934,7 @@ static int AddToAsm (const Token *const token)
                     assprint ("; end of condition\n\n");
 
                     assprint("; %s body\n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"));
-                    do { if (!AddToAsm(token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(RIGHT(token)) == SUCCESS" " is false\n" , __func__, 128); return FAILURE ; } }while (0);;
+                    do { if (!AddToAsm(token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(RIGHT(token)) == SUCCESS" " is false\n" , __func__, 147); return FAILURE ; } }while (0);;
                     assprint (": %s_end_label_%d\n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"), current_instruction);
                     }
 
@@ -54769,7 +54943,7 @@ static int AddToAsm (const Token *const token)
             case WHILE:
                 {
                 assprint ("; condition for %s_%d\n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"), current_instruction);
-                do { if (!AddToAsm( token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm( LEFT(token)) == SUCCESS" " is false\n" , __func__, 137); return FAILURE ; } }while (0);;
+                do { if (!AddToAsm( token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm( LEFT(token)) == SUCCESS" " is false\n" , __func__, 156); return FAILURE ; } }while (0);;
 
                 assprint("\n");
                 assprint("push %d\n", (int) floor(0 * PRECISION));
@@ -54777,7 +54951,7 @@ static int AddToAsm (const Token *const token)
                 assprint ("; end of condition\n\n");
 
                 assprint("; %s body\n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"));
-                do { if (!AddToAsm(token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(RIGHT(token)) == SUCCESS" " is false\n" , __func__, 145); return FAILURE ; } }while (0);;
+                do { if (!AddToAsm(token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(RIGHT(token)) == SUCCESS" " is false\n" , __func__, 164); return FAILURE ; } }while (0);;
                 assprint (": %s_end_label_%d\n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"), current_instruction);
 
                 break;
@@ -54785,16 +54959,16 @@ static int AddToAsm (const Token *const token)
             case FOUT:
                 {
                  if (token->left_child)
-                    do { if (!AddToAsm (token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm (LEFT(token)) == SUCCESS" " is false\n" , __func__, 153); return FAILURE ; } }while (0);;
+                    do { if (!AddToAsm (token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm (LEFT(token)) == SUCCESS" " is false\n" , __func__, 172); return FAILURE ; } }while (0);;
 
                 assprint("FOUT\n");
 
                 return SUCCESS;
                 }
             default:
-                printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/TranslateToAsm.cpp", 160, __func__, 160); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/TranslateToAsm.cpp", 160, __func__, 160);
-                printf("\033[91m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/TranslateToAsm.cpp", 161, "to do instructions default\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/TranslateToAsm.cpp", 161, "to do instructions default\n"); Logger::getInstance().log("to do instructions default\n" );;
-                return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 162, __func__, 162), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 162, __func__, 162);
+                printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/TranslateToAsm.cpp", 179, __func__, 179); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/TranslateToAsm.cpp", 179, __func__, 179);
+                printf("\033[96m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/TranslateToAsm.cpp", 180, "to do instructions default\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/TranslateToAsm.cpp", 180, "to do instructions default\n"); Logger::getInstance().log("to do instructions default\n" );;
+                return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 181, __func__, 181), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 181, __func__, 181);
             }
 
         return SUCCESS;
@@ -54802,7 +54976,7 @@ static int AddToAsm (const Token *const token)
 
     if (( (token) && (token->type == ASSIGMENT) ? true : false ))
         {
-        do { if (!AddToAsm (token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm (RIGHT(token)) == SUCCESS" " is false\n" , __func__, 170); return FAILURE ; } }while (0);;
+        do { if (!AddToAsm (token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm (RIGHT(token)) == SUCCESS" " is false\n" , __func__, 189); return FAILURE ; } }while (0);;
 
         assprint("pop  r%cx\n", 1 + 'a' - 1);
         assprint("\n");
@@ -54824,72 +54998,72 @@ static int AddToAsm (const Token *const token)
             case DIV:
             case POW:
 
-                do { if (!AddToAsm (token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm (RIGHT(token)) == SUCCESS" " is false\n" , __func__, 192); return FAILURE ; } }while (0);;
-                do { if (!AddToAsm ( token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm ( LEFT(token)) == SUCCESS" " is false\n" , __func__, 193); return FAILURE ; } }while (0);;
+                do { if (!AddToAsm (token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm (RIGHT(token)) == SUCCESS" " is false\n" , __func__, 211); return FAILURE ; } }while (0);;
+                do { if (!AddToAsm ( token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm ( LEFT(token)) == SUCCESS" " is false\n" , __func__, 212); return FAILURE ; } }while (0);;
                 switch (token->value.t_operator) { case ADD: assprint("ADD\n"); break; case SUB: assprint("SUB\n"); break; case DIV: assprint("FDIV\n"); break; case MUL: assprint("FMUL\n"); break; case POW: assprint("POW\n"); break; default: break; };
 
                 return SUCCESS;
 
             default:
                 printf("Wrong operator %c\n", token->value.t_operator);
-                printf("\033[91m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/TranslateToAsm.cpp", 200, "nill ptr\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/TranslateToAsm.cpp", 200, "nill ptr\n"); Logger::getInstance().log("nill ptr\n" );;
+                printf("\033[96m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/TranslateToAsm.cpp", 219, "nill ptr\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/TranslateToAsm.cpp", 219, "nill ptr\n"); Logger::getInstance().log("nill ptr\n" );;
                 PrintToken(token, 
-# 201 "./src/TranslateToAsm.cpp" 3 4
+# 220 "./src/TranslateToAsm.cpp" 3 4
                                  __null
-# 201 "./src/TranslateToAsm.cpp"
+# 220 "./src/TranslateToAsm.cpp"
                                      );
 
-                return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 203, __func__, 203), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 203, __func__, 203);
+                return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 222, __func__, 222), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 222, __func__, 222);
             }
         }
 
     if (( (token) && (token->type == STATEMENT) ? true : false ))
         {
-        do { if (!AddToAsm ( token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm ( LEFT(token)) == SUCCESS" " is false\n" , __func__, 209); return FAILURE ; } }while (0);;
+        do { if (!AddToAsm ( token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm ( LEFT(token)) == SUCCESS" " is false\n" , __func__, 228); return FAILURE ; } }while (0);;
 
         if (token->right_child)
-             do { if (!AddToAsm (token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm (RIGHT(token)) == SUCCESS" " is false\n" , __func__, 212); return FAILURE ; } }while (0);;
+             do { if (!AddToAsm (token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm (RIGHT(token)) == SUCCESS" " is false\n" , __func__, 231); return FAILURE ; } }while (0);;
 
         return SUCCESS;
         }
 
-    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/TranslateToAsm.cpp", 217, __func__, 217); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/TranslateToAsm.cpp", 217, __func__, 217);
+    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/TranslateToAsm.cpp", 236, __func__, 236); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/TranslateToAsm.cpp", 236, __func__, 236);
     PrintToken(token, 
-# 218 "./src/TranslateToAsm.cpp" 3 4
+# 237 "./src/TranslateToAsm.cpp" 3 4
                      __null
-# 218 "./src/TranslateToAsm.cpp"
+# 237 "./src/TranslateToAsm.cpp"
                          );
 
-    return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 220, __func__, 220), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 220, __func__, 220);
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 239, __func__, 239), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 239, __func__, 239);
     }
 
 static void assprint (const char* format, ...)
     {
     va_list ptr;
     
-# 226 "./src/TranslateToAsm.cpp" 3 4
+# 245 "./src/TranslateToAsm.cpp" 3 4
    __builtin_va_start(
-# 226 "./src/TranslateToAsm.cpp"
+# 245 "./src/TranslateToAsm.cpp"
    ptr
-# 226 "./src/TranslateToAsm.cpp" 3 4
+# 245 "./src/TranslateToAsm.cpp" 3 4
    ,
-# 226 "./src/TranslateToAsm.cpp"
+# 245 "./src/TranslateToAsm.cpp"
    format
-# 226 "./src/TranslateToAsm.cpp" 3 4
+# 245 "./src/TranslateToAsm.cpp" 3 4
    )
-# 226 "./src/TranslateToAsm.cpp"
+# 245 "./src/TranslateToAsm.cpp"
                         ;
 
     vfprintf (ASM_FILE, format, ptr);
 
     
-# 230 "./src/TranslateToAsm.cpp" 3 4
+# 249 "./src/TranslateToAsm.cpp" 3 4
    __builtin_va_end(
-# 230 "./src/TranslateToAsm.cpp"
+# 249 "./src/TranslateToAsm.cpp"
    ptr
-# 230 "./src/TranslateToAsm.cpp" 3 4
+# 249 "./src/TranslateToAsm.cpp" 3 4
    )
-# 230 "./src/TranslateToAsm.cpp"
+# 249 "./src/TranslateToAsm.cpp"
               ;
 
     return;
@@ -54898,9 +55072,9 @@ static void assprint (const char* format, ...)
 static int OpenAsmFile (const char *const name)
     {
     if (!name) return 
-# 237 "./src/TranslateToAsm.cpp" 3 4
+# 256 "./src/TranslateToAsm.cpp" 3 4
                       __null
-# 237 "./src/TranslateToAsm.cpp"
+# 256 "./src/TranslateToAsm.cpp"
                           ;
 
     ASM_FILE = fopen (name, "wb");
@@ -54908,17 +55082,17 @@ static int OpenAsmFile (const char *const name)
         {
           Logger::getInstance().log("Couldn't create ASM_FILE %s" , name);
         printf("Couldn't create ASM_FILE %s", name);
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 244, __func__, 244), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 244, __func__, 244);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/TranslateToAsm.cpp", 263, __func__, 263), "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 263, __func__, 263);
         }
 
     time_t NewYorkTime = time(
-# 247 "./src/TranslateToAsm.cpp" 3 4
+# 266 "./src/TranslateToAsm.cpp" 3 4
                              __null
-# 247 "./src/TranslateToAsm.cpp"
+# 266 "./src/TranslateToAsm.cpp"
                                  );
     assprint (";%s\n", ctime(&NewYorkTime));
 
-    return Logger::getInstance().Logger::getInstance().LogMsgRet (SUCCESS, "%s:%d returned SUCCESS " , __func__, 250);
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (SUCCESS, "%s:%d returned SUCCESS " , __func__, 269);
     }
 
 void CloseAsmFile()
@@ -54933,9 +55107,9 @@ void CloseAsmFile()
     fclose (ASM_FILE);
 
     ASM_FILE = 
-# 264 "./src/TranslateToAsm.cpp" 3 4
+# 283 "./src/TranslateToAsm.cpp" 3 4
               __null
-# 264 "./src/TranslateToAsm.cpp"
+# 283 "./src/TranslateToAsm.cpp"
                   ;
 
     return;
