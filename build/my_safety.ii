@@ -1,11 +1,11 @@
-# 0 "../ATC/my_safety/my_safety.cpp"
+# 0 "./ATC/my_safety/my_safety.cpp"
 # 1 "/home/arsenyfucker/Cprojects/Lang/Translator//"
 # 0 "<built-in>"
 # 0 "<command-line>"
 # 1 "/usr/include/stdc-predef.h" 1 3 4
 # 0 "<command-line>" 2
-# 1 "../ATC/my_safety/my_safety.cpp"
-# 1 "../ATC/my_safety/my_safety.h" 1
+# 1 "./ATC/my_safety/my_safety.cpp"
+# 1 "./ATC/my_safety/my_safety.h" 1
 
 
 
@@ -29,7 +29,7 @@ typedef struct {
 
 
   typedef decltype(nullptr) nullptr_t;
-# 5 "../ATC/my_safety/my_safety.h" 2
+# 5 "./ATC/my_safety/my_safety.h" 2
 # 1 "/usr/include/inttypes.h" 1 3 4
 # 25 "/usr/include/inttypes.h" 3 4
 # 1 "/usr/include/features.h" 1 3 4
@@ -301,10 +301,10 @@ extern uintmax_t wcstoumax (const wchar_t *__restrict __nptr,
      noexcept (true);
 
 }
-# 6 "../ATC/my_safety/my_safety.h" 2
+# 6 "./ATC/my_safety/my_safety.h" 2
 
 
-# 7 "../ATC/my_safety/my_safety.h"
+# 7 "./ATC/my_safety/my_safety.h"
 typedef long long CANARY;
 
 const int _CANARY_SIZE_ = sizeof(CANARY);
@@ -318,7 +318,7 @@ void* canary_realloc (void* ptr, size_t new_numbers_of_elements, size_t size_of_
 void canary_free (void* ptr);
 
 int generateHash(const void *start, const void *end);
-# 2 "../ATC/my_safety/my_safety.cpp" 2
+# 2 "./ATC/my_safety/my_safety.cpp" 2
 
 # 1 "/usr/include/c++/11/stdlib.h" 1 3
 # 36 "/usr/include/c++/11/stdlib.h" 3
@@ -1962,7 +1962,7 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 4 "../ATC/my_safety/my_safety.cpp" 2
+# 4 "./ATC/my_safety/my_safety.cpp" 2
 # 1 "/usr/include/assert.h" 1 3 4
 # 66 "/usr/include/assert.h" 3 4
 extern "C" {
@@ -1985,10 +1985,10 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 
 
 }
-# 5 "../ATC/my_safety/my_safety.cpp" 2
+# 5 "./ATC/my_safety/my_safety.cpp" 2
 
 
-# 6 "../ATC/my_safety/my_safety.cpp"
+# 6 "./ATC/my_safety/my_safety.cpp"
 const int HASH_START_OFFSET = 17;
 
 void* canary_calloc(size_t number_of_elements, size_t size_of_element)
@@ -2021,9 +2021,9 @@ void* canary_realloc(void* ptr, size_t new_numbers_of_elements, size_t size_of_e
     {
     if (!ptr)
         return 
-# 37 "../ATC/my_safety/my_safety.cpp" 3 4
+# 37 "./ATC/my_safety/my_safety.cpp" 3 4
               __null
-# 37 "../ATC/my_safety/my_safety.cpp"
+# 37 "./ATC/my_safety/my_safety.cpp"
                   ;
 
 

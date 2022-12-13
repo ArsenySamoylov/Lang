@@ -8,6 +8,8 @@
 #include "LangUtils.h"
 #include "EasyDebug.h"
 #include "LogMacroses.h"
+//                                  0       1           2       3           4       5           6       7
+const int GRAPH_VIS_COLORS[] = {0XFFFFFF, 0XE0FFE0, 0XFFE0E0, 0XE0E0FF, 0XFFFFE0, 0XFFE0FF, 0XE0FFFF, 0XE0E0E0};
 
 static FILE* Dot = NULL; 
 static const char** STRING_ARR = NULL;
@@ -174,7 +176,7 @@ static void PrintNode (const Token *const node)
                  break;
         }
 
-    DotPrint ("\t\tnode_%p [shape = Mrecord label =  \"%s\"]\n", (void*) node, def_data);
+    DotPrint ("\t\tnode_%p [style = filled, fillcolor = \"#%06X\", shape = Mrecord label =  \"%s\"]\n", (void*) node, GRAPH_VIS_COLORS[TYPE(node) % 8],  def_data);
 
     return;
     }    

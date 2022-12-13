@@ -2,6 +2,8 @@
 
 #include "Token.h"
 
+const int  NOT_DECLARED = - 111;
+
 enum VarType
     {
     REGISTER,
@@ -11,14 +13,14 @@ enum VarType
 
 enum FuncType
     {
-    NOT_DECLARED,
     DECLARED,
-    INITIALIZED,
+    DEFINED,
     };
 
 struct VarLabel
     {
-    int name;
+    int name_id;
+    int position;
     };
 
 struct VarTabel
@@ -26,6 +28,7 @@ struct VarTabel
     VarLabel** label_arr;
     int arr_size;
 
+    int memory_adress;
     int number_of_labels;
     };
 
@@ -44,7 +47,7 @@ struct FuncTabel
     FuncLabel** label_arr;
     int arr_size;
     
-    int number_of_labels;
+    int number_of_labels;  
     };
 
 int FuncTabelCtor (FuncTabel* tabel);
@@ -61,3 +64,4 @@ int VarTabelCtor (VarTabel* tabel);
 VarLabel* IsVarLabel (int name_id, VarTabel* tabel);
 
 int AddVarLabel (VarLabel* label, VarTabel* tabel);
+int AddVarLabel (int name_id,  VarTabel* tabel);

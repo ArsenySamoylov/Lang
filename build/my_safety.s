@@ -1,7 +1,7 @@
 	.file	"my_safety.cpp"
 	.text
 .Ltext0:
-	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/my_safety/my_safety.cpp"
+	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "./ATC/my_safety/my_safety.cpp"
 	.section	.rodata
 	.align 4
 	.type	_ZL13_CANARY_SIZE_, @object
@@ -28,7 +28,7 @@ _ZL17HASH_START_OFFSET:
 	.type	_Z13canary_callocmm, @function
 _Z13canary_callocmm:
 .LFB13:
-	.file 1 "../ATC/my_safety/my_safety.cpp"
+	.file 1 "./ATC/my_safety/my_safety.cpp"
 	.loc 1 9 5
 	.cfi_startproc
 	endbr64
@@ -255,7 +255,7 @@ _Z12generateHashPKvS0_:
 	.size	_Z12generateHashPKvS0_, .-_Z12generateHashPKvS0_
 .Letext0:
 	.file 2 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h"
-	.file 3 "../ATC/my_safety/my_safety.h"
+	.file 3 "./ATC/my_safety/my_safety.h"
 	.file 4 "/usr/include/stdlib.h"
 	.file 5 "/usr/include/c++/11/cstdlib"
 	.file 6 "/usr/include/c++/11/bits/std_abs.h"
@@ -2277,7 +2277,7 @@ _Z12generateHashPKvS0_:
 	.string	"__gnu_cxx"
 	.section	.debug_line_str,"MS",@progbits,1
 .LASF0:
-	.string	"../ATC/my_safety/my_safety.cpp"
+	.string	"./ATC/my_safety/my_safety.cpp"
 .LASF1:
 	.string	"/home/arsenyfucker/Cprojects/Lang/Translator"
 	.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"

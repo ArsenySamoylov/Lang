@@ -132,6 +132,18 @@ _ZL6CRINGE:
 	.size	_ZL11INDENT_SIZE, 4
 _ZL11INDENT_SIZE:
 	.long	2
+	.align 32
+	.type	_ZL16GRAPH_VIS_COLORS, @object
+	.size	_ZL16GRAPH_VIS_COLORS, 32
+_ZL16GRAPH_VIS_COLORS:
+	.long	16777215
+	.long	14745568
+	.long	16769248
+	.long	14737663
+	.long	16777184
+	.long	16769279
+	.long	14745599
+	.long	14737632
 	.local	_ZL3Dot
 	.comm	_ZL3Dot,8,8
 	.local	_ZL10STRING_ARR
@@ -159,7 +171,7 @@ _ZL11INDENT_SIZE:
 _Z7MakeImgPKcPK7Program:
 .LFB2270:
 	.file 1 "./src/GraphVis.cpp"
-	.loc 1 29 5
+	.loc 1 31 5
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA2270
@@ -174,11 +186,11 @@ _Z7MakeImgPKcPK7Program:
 	.cfi_offset 3, -24
 	movq	%rdi, -744(%rbp)
 	movq	%rsi, -752(%rbp)
-	.loc 1 29 5
+	.loc 1 31 5
 	movq	%fs:40, %rax
 	movq	%rax, -24(%rbp)
 	xorl	%eax, %eax
-	.loc 1 30 40
+	.loc 1 32 40
 	leaq	-736(%rbp), %rax
 	leaq	.LC9(%rip), %rdx
 	movl	$2, %esi
@@ -186,11 +198,11 @@ _Z7MakeImgPKcPK7Program:
 .LEHB0:
 	call	_ZN14FunctionLoggerC1EiPKc@PLT
 .LEHE0:
-	.loc 1 32 10
+	.loc 1 34 10
 	cmpq	$0, -744(%rbp)
 	jne	.L2
-	.loc 1 32 34 discriminator 1
-	movl	$32, %ecx
+	.loc 1 34 34 discriminator 1
+	movl	$34, %ecx
 	leaq	.LC10(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC9(%rip), %rax
@@ -201,11 +213,11 @@ _Z7MakeImgPKcPK7Program:
 .LEHB1:
 	call	printf@PLT
 .L2:
-	.loc 1 33 10
+	.loc 1 35 10
 	cmpq	$0, -752(%rbp)
 	jne	.L3
-	.loc 1 33 33 discriminator 1
-	movl	$33, %ecx
+	.loc 1 35 33 discriminator 1
+	movl	$35, %ecx
 	leaq	.LC12(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC9(%rip), %rax
@@ -215,7 +227,7 @@ _Z7MakeImgPKcPK7Program:
 	movl	$0, %eax
 	call	printf@PLT
 .L3:
-	.loc 1 35 10
+	.loc 1 37 10
 	movq	$0, -704(%rbp)
 	movq	$0, -696(%rbp)
 	movq	$0, -688(%rbp)
@@ -234,7 +246,7 @@ _Z7MakeImgPKcPK7Program:
 	movq	$0, -584(%rbp)
 	movq	$0, -576(%rbp)
 	movq	$0, -568(%rbp)
-	.loc 1 36 14
+	.loc 1 38 14
 	movq	-744(%rbp), %rdx
 	leaq	-704(%rbp), %rax
 	movq	%rdx, %r8
@@ -245,35 +257,35 @@ _Z7MakeImgPKcPK7Program:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	snprintf@PLT
-	.loc 1 41 17
+	.loc 1 43 17
 	leaq	-704(%rbp), %rax
 	movq	%rax, %rdi
 	call	_Z11OpenDotFilePKc
-	.loc 1 42 9
+	.loc 1 44 9
 	movq	_ZL3Dot(%rip), %rax
-	.loc 1 42 5
+	.loc 1 44 5
 	testq	%rax, %rax
 	jne	.L4
-	.loc 1 42 21 discriminator 1
+	.loc 1 44 21 discriminator 1
 	movl	$0, %ebx
 	jmp	.L5
 .L4:
-	.loc 1 44 12
+	.loc 1 46 12
 	call	_ZL6SetDotv
-	.loc 1 48 27
+	.loc 1 50 27
 	movq	-752(%rbp), %rax
 	movq	24(%rax), %rax
-	.loc 1 48 16
+	.loc 1 50 16
 	movq	%rax, _ZL10STRING_ARR(%rip)
-	.loc 1 50 29
+	.loc 1 52 29
 	movq	-752(%rbp), %rax
 	movq	16(%rax), %rax
-	.loc 1 50 19
+	.loc 1 52 19
 	movq	%rax, %rdi
 	call	_ZL13DotTreeBranchPK5Token
-	.loc 1 53 15
+	.loc 1 55 15
 	call	_ZL9SetEndDotv
-	.loc 1 56 14
+	.loc 1 58 14
 	movq	-744(%rbp), %rax
 	leaq	_ZL9EXTENSION(%rip), %r9
 	movq	%rax, %r8
@@ -286,7 +298,7 @@ _Z7MakeImgPKcPK7Program:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	snprintf@PLT
-	.loc 1 59 10
+	.loc 1 61 10
 	movq	$0, -560(%rbp)
 	movq	$0, -552(%rbp)
 	leaq	-544(%rbp), %rdx
@@ -294,7 +306,7 @@ _Z7MakeImgPKcPK7Program:
 	movl	$64, %ecx
 	movq	%rdx, %rdi
 	rep stosq
-	.loc 1 60 14
+	.loc 1 62 14
 	leaq	-704(%rbp), %rdx
 	leaq	-560(%rbp), %rax
 	movq	%rdx, %r9
@@ -306,17 +318,17 @@ _Z7MakeImgPKcPK7Program:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	snprintf@PLT
-	.loc 1 63 12
+	.loc 1 65 12
 	leaq	-560(%rbp), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 65 18
+	.loc 1 67 18
 	call	_Z12CloseDotFilev
 .LEHE1:
-	.loc 1 66 12
+	.loc 1 68 12
 	leaq	_ZZ7MakeImgPKcPK7ProgramE13full_img_name(%rip), %rbx
 .L5:
-	.loc 1 68 5
+	.loc 1 70 5
 	leaq	-736(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
@@ -382,7 +394,7 @@ _Z7MakeImgPKcPK7Program:
 	.type	_ZL6SetDotv, @function
 _ZL6SetDotv:
 .LFB2271:
-	.loc 1 72 5
+	.loc 1 74 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -390,12 +402,12 @@ _ZL6SetDotv:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	.loc 1 73 9
+	.loc 1 75 9
 	movq	_ZL3Dot(%rip), %rax
-	.loc 1 73 5
+	.loc 1 75 5
 	testq	%rax, %rax
 	je	.L14
-	.loc 1 75 13
+	.loc 1 77 13
 	movq	_ZL3Dot(%rip), %rax
 	leaq	.LC16(%rip), %rdx
 	leaq	.LC17(%rip), %rcx
@@ -403,25 +415,25 @@ _ZL6SetDotv:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	fprintf@PLT
-	.loc 1 77 13
+	.loc 1 79 13
 	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_ZL8DotPrintPKcz
-	.loc 1 78 13
+	.loc 1 80 13
 	leaq	_ZL7RANKDIR(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC19(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_ZL8DotPrintPKcz
-	.loc 1 80 5
+	.loc 1 82 5
 	jmp	.L11
 .L14:
-	.loc 1 73 15
+	.loc 1 75 15
 	nop
 .L11:
-	.loc 1 81 5
+	.loc 1 83 5
 	popq	%rbp
 	.cfi_def_cfa 7, 8
 	ret
@@ -437,7 +449,7 @@ _ZL6SetDotv:
 	.type	_ZL9SetEndDotv, @function
 _ZL9SetEndDotv:
 .LFB2272:
-	.loc 1 84 5
+	.loc 1 86 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -445,12 +457,12 @@ _ZL9SetEndDotv:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	.loc 1 85 9
+	.loc 1 87 9
 	movq	_ZL3Dot(%rip), %rax
-	.loc 1 85 5
+	.loc 1 87 5
 	testq	%rax, %rax
 	je	.L18
-	.loc 1 87 13
+	.loc 1 89 13
 	movq	_ZL3Dot(%rip), %rax
 	leaq	.LC20(%rip), %rdx
 	leaq	.LC17(%rip), %rcx
@@ -458,22 +470,22 @@ _ZL9SetEndDotv:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	fprintf@PLT
-	.loc 1 89 13
+	.loc 1 91 13
 	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_ZL8DotPrintPKcz
-	.loc 1 90 11
+	.loc 1 92 11
 	movq	_ZL3Dot(%rip), %rax
 	movq	%rax, %rdi
 	call	fflush@PLT
-	.loc 1 92 5
+	.loc 1 94 5
 	jmp	.L15
 .L18:
-	.loc 1 85 15
+	.loc 1 87 15
 	nop
 .L15:
-	.loc 1 93 5
+	.loc 1 95 5
 	popq	%rbp
 	.cfi_def_cfa 7, 8
 	ret
@@ -483,7 +495,7 @@ _ZL9SetEndDotv:
 	.type	_ZL8DotPrintPKcz, @function
 _ZL8DotPrintPKcz:
 .LFB2273:
-	.loc 1 97 5
+	.loc 1 99 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -509,23 +521,23 @@ _ZL8DotPrintPKcz:
 	movaps	%xmm6, -32(%rbp)
 	movaps	%xmm7, -16(%rbp)
 .L22:
-	.loc 1 99 22
+	.loc 1 101 22
 	movl	$8, -200(%rbp)
 	movl	$48, -196(%rbp)
 	leaq	16(%rbp), %rax
 	movq	%rax, -192(%rbp)
 	leaq	-176(%rbp), %rax
 	movq	%rax, -184(%rbp)
-	.loc 1 101 14
+	.loc 1 103 14
 	movq	_ZL3Dot(%rip), %rax
 	leaq	-200(%rbp), %rdx
 	movq	-216(%rbp), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	call	vfprintf@PLT
-	.loc 1 105 5
+	.loc 1 107 5
 	nop
-	.loc 1 106 5
+	.loc 1 108 5
 	leave
 	.cfi_def_cfa 7, 8
 	ret
@@ -540,7 +552,7 @@ _ZL8DotPrintPKcz:
 	.type	_Z11OpenDotFilePKc, @function
 _Z11OpenDotFilePKc:
 .LFB2274:
-	.loc 1 109 5
+	.loc 1 111 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -550,25 +562,25 @@ _Z11OpenDotFilePKc:
 	.cfi_def_cfa_register 6
 	subq	$16, %rsp
 	movq	%rdi, -8(%rbp)
-	.loc 1 110 5
+	.loc 1 112 5
 	cmpq	$0, -8(%rbp)
 	jne	.L24
-	.loc 1 110 23 discriminator 1
+	.loc 1 112 23 discriminator 1
 	movl	$0, %eax
 	jmp	.L25
 .L24:
-	.loc 1 111 24
+	.loc 1 113 24
 	movq	-8(%rbp), %rax
 	leaq	.LC22(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	fopen@PLT
-	.loc 1 111 16
+	.loc 1 113 16
 	movq	%rax, _ZL3Dot(%rip)
-	.loc 1 111 35
+	.loc 1 113 35
 	movq	_ZL3Dot(%rip), %rax
 .L25:
-	.loc 1 112 5
+	.loc 1 114 5
 	leave
 	.cfi_def_cfa 7, 8
 	ret
@@ -579,7 +591,7 @@ _Z11OpenDotFilePKc:
 	.type	_Z12CloseDotFilev, @function
 _Z12CloseDotFilev:
 .LFB2275:
-	.loc 1 115 5
+	.loc 1 117 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -587,15 +599,15 @@ _Z12CloseDotFilev:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	.loc 1 116 12
+	.loc 1 118 12
 	movq	_ZL3Dot(%rip), %rax
 	movq	%rax, %rdi
 	call	fclose@PLT
-	.loc 1 118 9
+	.loc 1 120 9
 	movq	$0, _ZL3Dot(%rip)
-	.loc 1 119 5
+	.loc 1 121 5
 	nop
-	.loc 1 120 5
+	.loc 1 122 5
 	popq	%rbp
 	.cfi_def_cfa 7, 8
 	ret
@@ -605,33 +617,36 @@ _Z12CloseDotFilev:
 	.section	.rodata
 .LC23:
 	.string	"node"
+	.align 8
 .LC24:
-	.string	"Condition (%s) is false\n"
+	.string	"ASSERTLOG:: Condition (%s) is false\n"
 	.align 8
 .LC25:
-	.string	"Condition\033[91m (%s) is false\n\033[0m"
-.LC26:
-	.string	"./src/GraphVis.cpp"
-.LC27:
-	.string	"DotTreeBranch"
+	.string	"\033[93mASSERTLOG:: \033[0mCondition\033[95m (%s) \033[0mis \033[91mfalse\n\033[0m"
 	.align 8
+.LC26:
+	.string	"void DotTreeBranch(const Token*)"
+.LC27:
+	.string	"./src/GraphVis.cpp"
 .LC28:
-	.string	"\t(function: %s, file: %s, line: %d)\n"
+	.string	"\t%s:%d, function: %s\n"
 	.align 8
 .LC29:
 	.string	"It matches to error: (code %d) %s\n\n"
-	.align 8
 .LC30:
-	.string	"Shutting down the system (%s:%d)"
+	.string	"DotTreeBranch"
+	.align 8
 .LC31:
-	.string	"powerof"
+	.string	"Shutting down the system (%s:%d)"
 .LC32:
+	.string	"echo LOX\n"
+.LC33:
 	.string	"\t\tnode_%p -> node_%p \n"
 	.text
 	.type	_ZL13DotTreeBranchPK5Token, @function
 _ZL13DotTreeBranchPK5Token:
 .LFB2276:
-	.loc 1 123 5
+	.loc 1 125 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -643,13 +658,13 @@ _ZL13DotTreeBranchPK5Token:
 	subq	$24, %rsp
 	.cfi_offset 3, -24
 	movq	%rdi, -24(%rbp)
-	.loc 1 124 10
+	.loc 1 126 10
 	cmpq	$0, -24(%rbp)
 	jne	.L29
-	.loc 1 124 44 discriminator 1
+	.loc 1 126 44 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 124 50 discriminator 1
+	.loc 1 126 50 discriminator 1
 	leaq	.LC23(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC24(%rip), %rax
@@ -657,40 +672,39 @@ _ZL13DotTreeBranchPK5Token:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 124 95 discriminator 1
+	.loc 1 126 107 discriminator 1
 	leaq	.LC23(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC25(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 124 177 discriminator 1
+	.loc 1 126 252 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 124 183 discriminator 1
-	movl	$124, %r8d
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rcx
+	.loc 1 126 258 discriminator 1
+	leaq	.LC26(%rip), %r8
+	movl	$126, %ecx
 	leaq	.LC27(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC28(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 124 270 discriminator 1
-	movl	$124, %ecx
+	.loc 1 126 341 discriminator 1
 	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdx
+	movq	%rax, %rcx
+	movl	$126, %edx
 	leaq	.LC27(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC28(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 124 370 discriminator 1
+	.loc 1 126 437 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 124 376 discriminator 1
+	.loc 1 126 443 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -700,90 +714,90 @@ _ZL13DotTreeBranchPK5Token:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 124 27 discriminator 1
+	.loc 1 126 27 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 124 33 discriminator 1
-	movl	$124, %ecx
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdx
+	.loc 1 126 33 discriminator 1
+	movl	$126, %ecx
 	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC31(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 124 92 discriminator 1
-	leaq	.LC31(%rip), %rax
+	.loc 1 126 92 discriminator 1
+	leaq	.LC32(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 124 110 discriminator 1
+	.loc 1 126 113 discriminator 1
 	call	abort@PLT
 .L29:
-	.loc 1 126 15
+	.loc 1 128 15
 	movq	-24(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZL9PrintNodePK5Token
-	.loc 1 130 15
+	.loc 1 132 15
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 130 5
+	.loc 1 132 5
 	testq	%rax, %rax
 	je	.L30
-	.loc 1 132 26
+	.loc 1 134 26
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 132 19
+	.loc 1 134 19
 	movq	%rax, %rdi
 	call	_ZL9PrintNodePK5Token
-	.loc 1 134 60
+	.loc 1 136 60
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rdx
-	.loc 1 134 18
+	.loc 1 136 18
 	movq	-24(%rbp), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC33(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_ZL8DotPrintPKcz
-	.loc 1 136 30
+	.loc 1 138 30
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 136 23
+	.loc 1 138 23
 	movq	%rax, %rdi
 	call	_ZL13DotTreeBranchPK5Token
 .L30:
-	.loc 1 139 15
+	.loc 1 141 15
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	.loc 1 139 5
+	.loc 1 141 5
 	testq	%rax, %rax
 	je	.L33
-	.loc 1 141 26
+	.loc 1 143 26
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	.loc 1 141 19
+	.loc 1 143 19
 	movq	%rax, %rdi
 	call	_ZL9PrintNodePK5Token
-	.loc 1 143 60
+	.loc 1 145 60
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rdx
-	.loc 1 143 18
+	.loc 1 145 18
 	movq	-24(%rbp), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC33(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_ZL8DotPrintPKcz
-	.loc 1 145 30
+	.loc 1 147 30
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	.loc 1 145 23
+	.loc 1 147 23
 	movq	%rax, %rdi
 	call	_ZL13DotTreeBranchPK5Token
-	.loc 1 148 5
+	.loc 1 150 5
 	nop
 .L33:
 	nop
-	.loc 1 149 5
+	.loc 1 151 5
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
@@ -792,54 +806,56 @@ _ZL13DotTreeBranchPK5Token:
 .LFE2276:
 	.size	_ZL13DotTreeBranchPK5Token, .-_ZL13DotTreeBranchPK5Token
 	.section	.rodata
-.LC33:
-	.string	"PrintNode"
 .LC34:
-	.string	"STATEMENT | {%c}"
+	.string	"PrintNode"
 .LC35:
-	.string	"INSTRUCTION | {%s}"
+	.string	"void PrintNode(const Token*)"
 .LC36:
-	.string	"INITIALIZATOR | {%s}"
+	.string	"STATEMENT | {%c}"
 .LC37:
-	.string	"FUNCTION_RET_TYPE | {%s}"
+	.string	"INSTRUCTION | {%s}"
 .LC38:
-	.string	"OPERATOR | {%c}"
+	.string	"INITIALIZATOR | {%s}"
 .LC39:
-	.string	"NAME | {%s}"
+	.string	"FUNCTION_RET_TYPE | {%s}"
 .LC40:
-	.string	"VARIABLE | {%s}"
+	.string	"OPERATOR | {%c}"
 .LC41:
-	.string	"CONSTANT | {%lg}"
+	.string	"NAME | {%s}"
 .LC42:
-	.string	"FUNCTION | {%c}"
+	.string	"VARIABLE | {%s}"
 .LC43:
-	.string	" "
+	.string	"CONSTANT | {%lg}"
 .LC44:
-	.string	"CALL | {%s}"
+	.string	"FUNCTION | {%c}"
 .LC45:
-	.string	"ASSIGMENT | {%c}"
+	.string	" "
 .LC46:
-	.string	"BLOCK_OPENING_BRACKET | {%c}"
+	.string	"CALL | {%s}"
 .LC47:
+	.string	"ASSIGMENT | {%c}"
+.LC48:
+	.string	"BLOCK_OPENING_BRACKET | {%c}"
+.LC49:
 	.string	"BLOCK_CLOSING_BRACKET | {%c}"
 	.align 8
-.LC48:
+.LC50:
 	.string	"EXPRESSION_OPENING_BRACKET | {%c}"
 	.align 8
-.LC49:
-	.string	"EXPRESSION_CLOSING_BRACKET | {%c}"
-.LC50:
-	.string	"END_OF_STATEMENT | {%c}"
 .LC51:
+	.string	"EXPRESSION_CLOSING_BRACKET | {%c}"
+.LC52:
+	.string	"END_OF_STATEMENT | {%c}"
+.LC53:
 	.string	"UNCKNOW_NAME\n"
 	.align 8
-.LC52:
-	.string	"\t\tnode_%p [shape = Mrecord label =  \"%s\"]\n"
+.LC54:
+	.string	"\t\tnode_%p [style = filled, fillcolor = \"#%06X\", shape = Mrecord label =  \"%s\"]\n"
 	.text
 	.type	_ZL9PrintNodePK5Token, @function
 _ZL9PrintNodePK5Token:
 .LFB2277:
-	.loc 1 153 5
+	.loc 1 155 5
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA2277
@@ -853,26 +869,26 @@ _ZL9PrintNodePK5Token:
 	subq	$408, %rsp
 	.cfi_offset 3, -24
 	movq	%rdi, -408(%rbp)
-	.loc 1 153 5
+	.loc 1 155 5
 	movq	%fs:40, %rax
 	movq	%rax, -24(%rbp)
 	xorl	%eax, %eax
-	.loc 1 154 41
+	.loc 1 156 41
 	leaq	-400(%rbp), %rax
-	leaq	.LC33(%rip), %rdx
+	leaq	.LC34(%rip), %rdx
 	movl	$1, %esi
 	movq	%rax, %rdi
 .LEHB3:
 	call	_ZN14FunctionLoggerC1EiPKc@PLT
 .LEHE3:
-	.loc 1 155 10
+	.loc 1 157 10
 	cmpq	$0, -408(%rbp)
 	jne	.L35
 .LEHB4:
-	.loc 1 155 44 discriminator 1
+	.loc 1 157 44 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 155 50 discriminator 1
+	.loc 1 157 50 discriminator 1
 	leaq	.LC23(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC24(%rip), %rax
@@ -880,40 +896,39 @@ _ZL9PrintNodePK5Token:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 155 95 discriminator 3
+	.loc 1 157 107 discriminator 3
 	leaq	.LC23(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC25(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 155 177 discriminator 4
+	.loc 1 157 252 discriminator 4
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 155 183 discriminator 4
-	movl	$155, %r8d
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC33(%rip), %rax
+	.loc 1 157 258 discriminator 4
+	leaq	.LC35(%rip), %r8
+	movl	$157, %ecx
+	leaq	.LC27(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC28(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 155 270 discriminator 6
-	movl	$155, %ecx
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC33(%rip), %rax
+	.loc 1 157 341 discriminator 6
+	leaq	.LC35(%rip), %rax
+	movq	%rax, %rcx
+	movl	$157, %edx
+	leaq	.LC27(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC28(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 155 370 discriminator 7
+	.loc 1 157 437 discriminator 7
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 155 376 discriminator 7
+	.loc 1 157 443 discriminator 7
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -923,32 +938,32 @@ _ZL9PrintNodePK5Token:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 155 27 discriminator 9
+	.loc 1 157 27 discriminator 9
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 155 33 discriminator 9
-	movl	$155, %ecx
-	leaq	.LC33(%rip), %rax
+	.loc 1 157 33 discriminator 9
+	movl	$157, %ecx
+	leaq	.LC34(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC30(%rip), %rax
+	leaq	.LC31(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 155 92 discriminator 11
-	leaq	.LC31(%rip), %rax
+	.loc 1 157 92 discriminator 11
+	leaq	.LC32(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 155 110 discriminator 12
+	.loc 1 157 113 discriminator 12
 	call	abort@PLT
 .L35:
-	.loc 1 156 13
+	.loc 1 158 13
 	movq	_ZL10STRING_ARR(%rip), %rdx
 	movq	-408(%rbp), %rax
 	leaq	.LC23(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
-	.loc 1 158 10
+	.loc 1 160 10
 	movq	$0, -368(%rbp)
 	movq	$0, -360(%rbp)
 	leaq	-352(%rbp), %rdx
@@ -961,10 +976,10 @@ _ZL9PrintNodePK5Token:
 	addq	$4, %rdx
 	movb	%al, (%rdx)
 	addq	$1, %rdx
-	.loc 1 160 19
+	.loc 1 162 19
 	movq	-408(%rbp), %rax
 	movl	16(%rax), %eax
-	.loc 1 160 5
+	.loc 1 162 5
 	cmpl	$125, %eax
 	ja	.L36
 	movl	%eax, %eax
@@ -1112,15 +1127,38 @@ _ZL9PrintNodePK5Token:
 	movq	-408(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 4 24
-	movsbl	%al, %edx
-	leaq	-368(%rbp), %rax
-	leaq	.LC34(%rip), %rcx
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
+	cmpb	$123, %al
+	je	.L54
+	.loc 2 4 114 discriminator 1
+	movq	-408(%rbp), %rax
+	movzbl	24(%rax), %eax
+	.loc 2 4 94 discriminator 1
+	cmpb	$125, %al
+	je	.L55
+	.loc 2 4 152 discriminator 3
+	movq	-408(%rbp), %rax
+	movzbl	24(%rax), %eax
+	.loc 2 4 94 discriminator 3
+	movsbl	%al, %eax
+	jmp	.L57
+.L55:
+	.loc 2 4 94 is_stmt 0 discriminator 4
+	movl	$93, %eax
+	jmp	.L57
+.L54:
+	.loc 2 4 24 is_stmt 1 discriminator 2
+	movl	$91, %eax
+.L57:
+	.loc 2 4 24 is_stmt 0 discriminator 8
+	leaq	-368(%rbp), %rcx
+	movl	%eax, %edx
+	leaq	.LC36(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
-	.loc 2 4 89
-	jmp	.L54
+	.loc 2 4 165 is_stmt 1 discriminator 8
+	jmp	.L58
 .L52:
 	.loc 2 5 93
 	movq	-408(%rbp), %rax
@@ -1132,13 +1170,13 @@ _ZL9PrintNodePK5Token:
 	movq	(%rdx,%rax), %rdx
 	.loc 2 5 26
 	leaq	-368(%rbp), %rax
-	leaq	.LC35(%rip), %rcx
+	leaq	.LC37(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
 	.loc 2 5 110
-	jmp	.L54
+	jmp	.L58
 .L51:
 	.loc 2 6 99
 	movq	-408(%rbp), %rax
@@ -1150,13 +1188,13 @@ _ZL9PrintNodePK5Token:
 	movq	(%rdx,%rax), %rdx
 	.loc 2 6 28
 	leaq	-368(%rbp), %rax
-	leaq	.LC36(%rip), %rcx
+	leaq	.LC38(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
 	.loc 2 6 118
-	jmp	.L54
+	jmp	.L58
 .L50:
 	.loc 2 7 111
 	movq	-408(%rbp), %rax
@@ -1168,13 +1206,13 @@ _ZL9PrintNodePK5Token:
 	movq	(%rdx,%rax), %rdx
 	.loc 2 7 32
 	leaq	-368(%rbp), %rax
-	leaq	.LC37(%rip), %rcx
+	leaq	.LC39(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
 	.loc 2 7 134
-	jmp	.L54
+	jmp	.L58
 .L49:
 	.loc 2 8 74
 	movq	-408(%rbp), %rax
@@ -1182,13 +1220,13 @@ _ZL9PrintNodePK5Token:
 	.loc 2 8 23
 	movsbl	%al, %edx
 	leaq	-368(%rbp), %rax
-	leaq	.LC38(%rip), %rcx
+	leaq	.LC40(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
 	.loc 2 8 87
-	jmp	.L54
+	jmp	.L58
 .L48:
 	.loc 2 10 86
 	movq	_ZL10STRING_ARR(%rip), %rdx
@@ -1202,13 +1240,13 @@ _ZL9PrintNodePK5Token:
 	.loc 2 10 19
 	movq	(%rax), %rdx
 	leaq	-368(%rbp), %rax
-	leaq	.LC39(%rip), %rcx
+	leaq	.LC41(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
 	.loc 2 10 90
-	jmp	.L54
+	jmp	.L58
 .L47:
 	.loc 2 11 94
 	movq	_ZL10STRING_ARR(%rip), %rdx
@@ -1222,13 +1260,13 @@ _ZL9PrintNodePK5Token:
 	.loc 2 11 23
 	movq	(%rax), %rdx
 	leaq	-368(%rbp), %rax
-	leaq	.LC40(%rip), %rcx
+	leaq	.LC42(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
 	.loc 2 11 98
-	jmp	.L54
+	jmp	.L58
 .L46:
 	.loc 2 12 75
 	movq	-408(%rbp), %rax
@@ -1236,38 +1274,61 @@ _ZL9PrintNodePK5Token:
 	.loc 2 12 23
 	leaq	-368(%rbp), %rax
 	movq	%rdx, %xmm0
-	leaq	.LC41(%rip), %rdx
+	leaq	.LC43(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	movl	$1, %eax
 	call	sprintf@PLT
 	.loc 2 12 88
-	jmp	.L54
+	jmp	.L58
 .L45:
 	.loc 2 13 74
 	movq	-408(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 13 23
-	movsbl	%al, %edx
-	leaq	-368(%rbp), %rax
-	leaq	.LC42(%rip), %rcx
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
+	cmpb	$123, %al
+	je	.L59
+	.loc 2 13 112 discriminator 1
+	movq	-408(%rbp), %rax
+	movzbl	24(%rax), %eax
+	.loc 2 13 92 discriminator 1
+	cmpb	$125, %al
+	je	.L60
+	.loc 2 13 150 discriminator 3
+	movq	-408(%rbp), %rax
+	movzbl	24(%rax), %eax
+	.loc 2 13 92 discriminator 3
+	movsbl	%al, %eax
+	jmp	.L62
+.L60:
+	.loc 2 13 92 is_stmt 0 discriminator 4
+	movl	$93, %eax
+	jmp	.L62
+.L59:
+	.loc 2 13 23 is_stmt 1 discriminator 2
+	movl	$91, %eax
+.L62:
+	.loc 2 13 23 is_stmt 0 discriminator 8
+	leaq	-368(%rbp), %rcx
+	movl	%eax, %edx
+	leaq	.LC44(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
-	.loc 2 13 87
-	jmp	.L54
+	.loc 2 13 163 is_stmt 1 discriminator 8
+	jmp	.L58
 .L44:
 	.loc 2 14 19
 	leaq	-368(%rbp), %rax
-	leaq	.LC43(%rip), %rdx
-	leaq	.LC44(%rip), %rcx
+	leaq	.LC45(%rip), %rdx
+	leaq	.LC46(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
 	.loc 2 14 60
-	jmp	.L54
+	jmp	.L58
 .L40:
 	.loc 2 16 76
 	movq	-408(%rbp), %rax
@@ -1275,13 +1336,13 @@ _ZL9PrintNodePK5Token:
 	.loc 2 16 24
 	movsbl	%al, %edx
 	leaq	-368(%rbp), %rax
-	leaq	.LC45(%rip), %rcx
+	leaq	.LC47(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
 	.loc 2 16 89
-	jmp	.L54
+	jmp	.L58
 .L39:
 	.loc 2 17 100
 	movq	-408(%rbp), %rax
@@ -1289,13 +1350,13 @@ _ZL9PrintNodePK5Token:
 	.loc 2 17 36
 	movsbl	%al, %edx
 	leaq	-368(%rbp), %rax
-	leaq	.LC46(%rip), %rcx
+	leaq	.LC48(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
 	.loc 2 17 113
-	jmp	.L54
+	jmp	.L58
 .L37:
 	.loc 2 18 100
 	movq	-408(%rbp), %rax
@@ -1303,13 +1364,13 @@ _ZL9PrintNodePK5Token:
 	.loc 2 18 36
 	movsbl	%al, %edx
 	leaq	-368(%rbp), %rax
-	leaq	.LC47(%rip), %rcx
+	leaq	.LC49(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
 	.loc 2 18 113
-	jmp	.L54
+	jmp	.L58
 .L43:
 	.loc 2 19 110
 	movq	-408(%rbp), %rax
@@ -1317,13 +1378,13 @@ _ZL9PrintNodePK5Token:
 	.loc 2 19 41
 	movsbl	%al, %edx
 	leaq	-368(%rbp), %rax
-	leaq	.LC48(%rip), %rcx
+	leaq	.LC50(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
 	.loc 2 19 123
-	jmp	.L54
+	jmp	.L58
 .L42:
 	.loc 2 20 110
 	movq	-408(%rbp), %rax
@@ -1331,13 +1392,13 @@ _ZL9PrintNodePK5Token:
 	.loc 2 20 41
 	movsbl	%al, %edx
 	leaq	-368(%rbp), %rax
-	leaq	.LC49(%rip), %rcx
+	leaq	.LC51(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
 	.loc 2 20 123
-	jmp	.L54
+	jmp	.L58
 .L41:
 	.loc 2 21 90
 	movq	-408(%rbp), %rax
@@ -1345,47 +1406,61 @@ _ZL9PrintNodePK5Token:
 	.loc 2 21 31
 	movsbl	%al, %edx
 	leaq	-368(%rbp), %rax
-	leaq	.LC50(%rip), %rcx
+	leaq	.LC52(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
 	.loc 2 21 103
-	jmp	.L54
+	jmp	.L58
 .L36:
-	.loc 1 173 25
+	.loc 1 175 25
 	leaq	-368(%rbp), %rax
-	leaq	.LC51(%rip), %rdx
+	leaq	.LC53(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
-	.loc 1 174 18
+	.loc 1 176 18
 	nop
-.L54:
-	.loc 1 177 14
-	leaq	-368(%rbp), %rdx
+.L58:
+	.loc 1 179 142
+	movq	-408(%rbp), %rax
+	movl	16(%rax), %eax
+	.loc 1 179 147
+	cltd
+	shrl	$29, %edx
+	addl	%edx, %eax
+	andl	$7, %eax
+	subl	%edx, %eax
+	.loc 1 179 150
+	cltq
+	leaq	0(,%rax,4), %rdx
+	leaq	_ZL16GRAPH_VIS_COLORS(%rip), %rax
+	movl	(%rdx,%rax), %edx
+	.loc 1 179 14
+	leaq	-368(%rbp), %rcx
 	movq	-408(%rbp), %rax
 	movq	%rax, %rsi
-	leaq	.LC52(%rip), %rax
+	leaq	.LC54(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_ZL8DotPrintPKcz
 .LEHE4:
-	.loc 1 179 5
+	.loc 1 181 5
 	nop
-	.loc 1 180 5
+	.loc 1 182 5
 	leaq	-400(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
-	.loc 1 179 5
+	.loc 1 181 5
 	nop
-	.loc 1 180 5
+	.loc 1 182 5
 	movq	-24(%rbp), %rax
 	subq	%fs:40, %rax
-	je	.L57
-	jmp	.L59
-.L58:
+	je	.L65
+	jmp	.L67
+.L66:
 	endbr64
 	movq	%rax, %rbx
 	leaq	-400(%rbp), %rax
@@ -1396,9 +1471,9 @@ _ZL9PrintNodePK5Token:
 .LEHB5:
 	call	_Unwind_Resume@PLT
 .LEHE5:
-.L59:
+.L67:
 	call	__stack_chk_fail@PLT
-.L57:
+.L65:
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
@@ -1418,7 +1493,7 @@ _ZL9PrintNodePK5Token:
 	.uleb128 0
 	.uleb128 .LEHB4-.LFB2277
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L58-.LFB2277
+	.uleb128 .L66-.LFB2277
 	.uleb128 0
 	.uleb128 .LEHB5-.LFB2277
 	.uleb128 .LEHE5-.LEHB5
@@ -1430,7 +1505,7 @@ _ZL9PrintNodePK5Token:
 	.type	_Z41__static_initialization_and_destruction_0ii, @function
 _Z41__static_initialization_and_destruction_0ii:
 .LFB2944:
-	.loc 1 180 5
+	.loc 1 182 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -1441,12 +1516,12 @@ _Z41__static_initialization_and_destruction_0ii:
 	subq	$16, %rsp
 	movl	%edi, -4(%rbp)
 	movl	%esi, -8(%rbp)
-	.loc 1 180 5
+	.loc 1 182 5
 	cmpl	$1, -4(%rbp)
-	jne	.L62
-	.loc 1 180 5 is_stmt 0 discriminator 1
+	jne	.L70
+	.loc 1 182 5 is_stmt 0 discriminator 1
 	cmpl	$65535, -8(%rbp)
-	jne	.L62
+	jne	.L70
 	.file 3 "/usr/include/c++/11/iostream"
 	.loc 3 74 25 is_stmt 1
 	leaq	_ZStL8__ioinit(%rip), %rax
@@ -1459,8 +1534,8 @@ _Z41__static_initialization_and_destruction_0ii:
 	movq	_ZNSt8ios_base4InitD1Ev@GOTPCREL(%rip), %rax
 	movq	%rax, %rdi
 	call	__cxa_atexit@PLT
-.L62:
-	.loc 1 180 5
+.L70:
+	.loc 1 182 5
 	nop
 	leave
 	.cfi_def_cfa 7, 8
@@ -1471,7 +1546,7 @@ _Z41__static_initialization_and_destruction_0ii:
 	.type	_GLOBAL__sub_I__Z7MakeImgPKcPK7Program, @function
 _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 .LFB2945:
-	.loc 1 180 5
+	.loc 1 182 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -1479,7 +1554,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	.loc 1 180 5
+	.loc 1 182 5
 	movl	$65535, %esi
 	movl	$1, %edi
 	call	_Z41__static_initialization_and_destruction_0ii
@@ -1527,7 +1602,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.file 34 "/usr/include/stdio.h"
 	.file 35 "./headers/Token.h"
 	.file 36 "./headers/Program.h"
-	.file 37 "../ATC/GraphVis/GVConfig.h"
+	.file 37 "./ATC/GraphVis/GVConfig.h"
 	.file 38 "./headers/Grammar.h"
 	.file 39 "/usr/include/x86_64-linux-gnu/bits/types/wint_t.h"
 	.file 40 "/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h"
@@ -1539,23 +1614,23 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.file 46 "/usr/include/locale.h"
 	.file 47 "/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h"
 	.file 48 "/usr/include/wctype.h"
-	.file 49 "../ATC/Logger/LogConfig.h"
-	.file 50 "../ATC/Logger/FunctionLogger.h"
-	.file 51 "../ATC/RandomStuff/CommonEnums.h"
-	.file 52 "../ATC/Buffer/my_buffer.h"
+	.file 49 "./ATC/Logger/LogConfig.h"
+	.file 50 "./ATC/Logger/FunctionLogger.h"
+	.file 51 "./ATC/RandomStuff/CommonEnums.h"
+	.file 52 "./ATC/Buffer/my_buffer.h"
 	.file 53 "./headers/LangUtils.h"
 	.file 54 "/usr/include/string.h"
 	.file 55 "/usr/include/c++/11/bits/algorithmfwd.h"
-	.file 56 "../ATC/Logger/Logger.h"
+	.file 56 "./ATC/Logger/Logger.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x2b84
+	.long	0x2bff
 	.value	0x5
 	.byte	0x1
 	.byte	0x8
 	.long	.Ldebug_abbrev0
 	.uleb128 0x31
-	.long	.LASF463
+	.long	.LASF465
 	.byte	0x21
 	.long	.LASF0
 	.long	.LASF1
@@ -2480,12 +2555,12 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.value	0x12a
 	.byte	0xe
 	.long	0x1f58
-	.uleb128 0x1a
+	.uleb128 0x1b
 	.long	.LASF56
 	.byte	0xb
 	.value	0xa86
 	.byte	0xd
-	.uleb128 0x1a
+	.uleb128 0x1b
 	.long	.LASF57
 	.byte	0xb
 	.value	0xadc
@@ -2553,7 +2628,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0xa
 	.long	0x1f9f
 	.byte	0
-	.uleb128 0x18
+	.uleb128 0x19
 	.long	.LASF64
 	.byte	0x6b
 	.long	.LASF68
@@ -2562,7 +2637,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0xa
 	.long	0x1f9a
 	.byte	0
-	.uleb128 0x18
+	.uleb128 0x19
 	.long	.LASF64
 	.byte	0x6d
 	.long	.LASF69
@@ -2573,7 +2648,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x1
 	.long	0x1fa4
 	.byte	0
-	.uleb128 0x18
+	.uleb128 0x19
 	.long	.LASF64
 	.byte	0x70
 	.long	.LASF70
@@ -2584,7 +2659,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x1
 	.long	0x8a6
 	.byte	0
-	.uleb128 0x18
+	.uleb128 0x19
 	.long	.LASF64
 	.byte	0x74
 	.long	.LASF71
@@ -2619,7 +2694,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x1
 	.long	0x1fa9
 	.byte	0
-	.uleb128 0x18
+	.uleb128 0x19
 	.long	.LASF75
 	.byte	0x8c
 	.long	.LASF76
@@ -2630,7 +2705,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0xa
 	.long	0x8b
 	.byte	0
-	.uleb128 0x18
+	.uleb128 0x19
 	.long	.LASF77
 	.byte	0x8f
 	.long	.LASF78
@@ -2642,11 +2717,11 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.long	0x1faf
 	.byte	0
 	.uleb128 0x39
-	.long	.LASF446
+	.long	.LASF448
 	.byte	0xc
 	.byte	0x9b
 	.byte	0x10
-	.long	.LASF448
+	.long	.LASF450
 	.long	0x1f7e
 	.byte	0x1
 	.long	0x858
@@ -2697,7 +2772,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0x1d
 	.long	0x1f79
 	.uleb128 0x3c
-	.long	.LASF464
+	.long	.LASF466
 	.uleb128 0x8
 	.long	0x8b3
 	.uleb128 0x23
@@ -2721,12 +2796,12 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0xf
 	.byte	0x50
 	.byte	0xf
-	.uleb128 0x1a
+	.uleb128 0x1b
 	.long	.LASF87
 	.byte	0xf
 	.value	0x31d
 	.byte	0xd
-	.uleb128 0x1a
+	.uleb128 0x1b
 	.long	.LASF88
 	.byte	0xf
 	.value	0x3a0
@@ -2747,7 +2822,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0xe
 	.byte	0x36
 	.byte	0xd
-	.uleb128 0x1a
+	.uleb128 0x1b
 	.long	.LASF91
 	.byte	0x11
 	.value	0x20e
@@ -3068,7 +3143,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.value	0x25c
 	.byte	0x14
 	.uleb128 0x2b
-	.long	.LASF428
+	.long	.LASF429
 	.long	0xbaa
 	.uleb128 0x3f
 	.long	.LASF97
@@ -3328,7 +3403,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x1
 	.long	0x2e
 	.byte	0
-	.uleb128 0x19
+	.uleb128 0x1a
 	.long	.LASF116
 	.byte	0x5
 	.value	0x346
@@ -3357,7 +3432,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.value	0x1c6
 	.byte	0xc
 	.long	0x8b
-	.uleb128 0x19
+	.uleb128 0x1a
 	.long	.LASF117
 	.byte	0x5
 	.value	0x1c8
@@ -3753,7 +3828,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0x1b
 	.long	0x108e
 	.uleb128 0x47
-	.long	.LASF465
+	.long	.LASF467
 	.long	0x1097
 	.uleb128 0xc
 	.long	0x10a7
@@ -3763,7 +3838,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0
 	.byte	0
 	.uleb128 0x48
-	.long	.LASF466
+	.long	.LASF468
 	.byte	0x18
 	.byte	0x1c
 	.byte	0
@@ -3832,7 +3907,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0x15
 	.byte	0x3
 	.long	0x10dc
-	.uleb128 0x1b
+	.uleb128 0x1c
 	.long	.LASF148
 	.byte	0x10
 	.byte	0x1e
@@ -3866,7 +3941,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0x5
 	.byte	0x19
 	.long	0x1172
-	.uleb128 0x1b
+	.uleb128 0x1c
 	.long	.LASF149
 	.byte	0xd8
 	.byte	0x20
@@ -4084,7 +4159,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0x19
 	.long	0x1172
 	.uleb128 0x4a
-	.long	.LASF467
+	.long	.LASF469
 	.byte	0x20
 	.byte	0x2b
 	.byte	0xe
@@ -4135,7 +4210,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x6
 	.long	0x12f9
 	.uleb128 0x4b
-	.long	.LASF468
+	.long	.LASF470
 	.byte	0x8
 	.byte	0x23
 	.byte	0x3
@@ -4184,7 +4259,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0x9
 	.long	0x8b
 	.byte	0
-	.uleb128 0x1b
+	.uleb128 0x1c
 	.long	.LASF192
 	.byte	0x28
 	.byte	0x23
@@ -4231,7 +4306,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.long	0x13d9
 	.uleb128 0x6
 	.long	0x13d9
-	.uleb128 0x1b
+	.uleb128 0x1c
 	.long	.LASF198
 	.byte	0x28
 	.byte	0x24
@@ -4378,7 +4453,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0x3
 	.quad	_ZL21SYSTEM_COMMAND_LENGTH
 	.uleb128 0x4c
-	.long	.LASF469
+	.long	.LASF471
 	.byte	0x5
 	.byte	0x4
 	.long	0x8b
@@ -5491,7 +5566,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.long	0x8b
 	.byte	0
 	.uleb128 0x4f
-	.long	.LASF470
+	.long	.LASF472
 	.uleb128 0xb
 	.byte	0x1
 	.byte	0x2
@@ -5681,7 +5756,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0x66
 	.byte	0x15
 	.long	0x221
-	.uleb128 0x1b
+	.uleb128 0x1c
 	.long	.LASF348
 	.byte	0x60
 	.byte	0x2e
@@ -5881,7 +5956,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0x10
 	.byte	0x7
 	.long	.LASF375
-	.uleb128 0x19
+	.uleb128 0x1a
 	.long	.LASF376
 	.byte	0x22
 	.value	0x312
@@ -6063,7 +6138,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.value	0x208
 	.byte	0xc
 	.long	0x8b
-	.uleb128 0x19
+	.uleb128 0x1a
 	.long	.LASF392
 	.byte	0x22
 	.value	0x324
@@ -6093,7 +6168,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x1
 	.long	0x11e
 	.byte	0
-	.uleb128 0x19
+	.uleb128 0x1a
 	.long	.LASF395
 	.byte	0x22
 	.value	0x2d3
@@ -6101,7 +6176,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x1
 	.long	0x1372
 	.byte	0
-	.uleb128 0x19
+	.uleb128 0x1a
 	.long	.LASF396
 	.byte	0x22
 	.value	0x148
@@ -6366,51 +6441,69 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL11INDENT_SIZE
+	.uleb128 0xc
+	.long	0x92
+	.long	0x26cc
+	.uleb128 0xd
+	.long	0x3a
+	.byte	0x7
+	.byte	0
+	.uleb128 0x8
+	.long	0x26bc
+	.uleb128 0x9
+	.long	.LASF420
+	.byte	0x1
+	.byte	0xc
+	.byte	0xb
+	.long	0x26cc
+	.uleb128 0x9
+	.byte	0x3
+	.quad	_ZL16GRAPH_VIS_COLORS
 	.uleb128 0x2e
 	.string	"Dot"
-	.byte	0xc
+	.byte	0xe
 	.byte	0xe
 	.long	0x1372
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL3Dot
 	.uleb128 0x9
-	.long	.LASF420
+	.long	.LASF421
 	.byte	0x1
-	.byte	0xd
+	.byte	0xf
 	.byte	0x15
 	.long	0x1486
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL10STRING_ARR
 	.uleb128 0x57
-	.long	.LASF441
+	.long	.LASF442
 	.long	0x245
 	.uleb128 0x20
 	.long	0xb41
-	.long	.LASF421
-	.long	0x2701
-	.long	0x270b
+	.long	.LASF422
+	.long	0x272c
+	.long	0x2736
 	.uleb128 0x21
-	.long	.LASF423
+	.long	.LASF424
 	.long	0x24e8
 	.byte	0
 	.uleb128 0x20
 	.long	0xb28
-	.long	.LASF422
-	.long	0x271c
-	.long	0x2726
-	.uleb128 0x21
 	.long	.LASF423
+	.long	0x2747
+	.long	0x2751
+	.uleb128 0x21
+	.long	.LASF424
 	.long	0x24e8
 	.byte	0
 	.uleb128 0x4
-	.long	.LASF424
+	.long	.LASF425
 	.byte	0x22
 	.value	0x166
 	.byte	0xc
 	.long	0x8b
-	.long	0x2743
+	.long	0x276e
 	.uleb128 0x1
 	.long	0x247
 	.uleb128 0x1
@@ -6418,14 +6511,14 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x10
 	.byte	0
 	.uleb128 0x58
-	.long	.LASF425
+	.long	.LASF426
 	.byte	0x35
 	.byte	0x7
 	.byte	0x6
-	.long	.LASF471
-	.long	0x2763
+	.long	.LASF473
+	.long	0x278e
 	.uleb128 0x1
-	.long	0x2763
+	.long	0x278e
 	.uleb128 0x1
 	.long	0x11e
 	.uleb128 0x1
@@ -6434,60 +6527,60 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x6
 	.long	0x1428
 	.uleb128 0x8
-	.long	0x2763
+	.long	0x278e
 	.uleb128 0x59
-	.long	.LASF426
+	.long	.LASF427
 	.byte	0x5
 	.value	0x256
 	.byte	0xd
 	.uleb128 0x4
-	.long	.LASF427
+	.long	.LASF428
 	.byte	0x36
 	.value	0x1a3
 	.byte	0xe
 	.long	0x247
-	.long	0x278d
+	.long	0x27b8
 	.uleb128 0x1
 	.long	0x8b
 	.byte	0
 	.uleb128 0x2b
-	.long	.LASF429
-	.long	0x27c9
+	.long	.LASF430
+	.long	0x27f4
 	.uleb128 0x5a
 	.string	"log"
 	.byte	0x38
 	.byte	0x24
 	.byte	0xe
-	.long	.LASF472
+	.long	.LASF474
 	.byte	0x1
-	.long	0x27ab
-	.long	0x27b7
+	.long	0x27d6
+	.long	0x27e2
 	.uleb128 0xa
-	.long	0x27c9
+	.long	0x27f4
 	.uleb128 0x1
 	.long	0x11e
 	.uleb128 0x10
 	.byte	0
 	.uleb128 0x5b
-	.long	.LASF473
+	.long	.LASF475
 	.byte	0x38
 	.byte	0x19
 	.byte	0x18
-	.long	.LASF474
-	.long	0x27ce
+	.long	.LASF476
+	.long	0x27f9
 	.byte	0x1
 	.byte	0
 	.uleb128 0x6
-	.long	0x278d
+	.long	0x27b8
 	.uleb128 0x17
-	.long	0x278d
+	.long	0x27b8
 	.uleb128 0x4
-	.long	.LASF430
+	.long	.LASF431
 	.byte	0x22
 	.value	0x16d
 	.byte	0xc
 	.long	0x8b
-	.long	0x27f4
+	.long	0x281f
 	.uleb128 0x1
 	.long	0x1372
 	.uleb128 0x1
@@ -6496,12 +6589,12 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.long	0x1976
 	.byte	0
 	.uleb128 0x4
-	.long	.LASF431
+	.long	.LASF432
 	.byte	0x22
 	.value	0x15e
 	.byte	0xc
 	.long	0x8b
-	.long	0x2811
+	.long	0x283c
 	.uleb128 0x1
 	.long	0x1372
 	.uleb128 0x1
@@ -6510,20 +6603,20 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0
 	.uleb128 0x20
 	.long	0x2659
-	.long	.LASF432
-	.long	0x2822
-	.long	0x282c
+	.long	.LASF433
+	.long	0x284d
+	.long	0x2857
 	.uleb128 0x21
-	.long	.LASF423
+	.long	.LASF424
 	.long	0x2681
 	.byte	0
 	.uleb128 0x4
-	.long	.LASF433
+	.long	.LASF434
 	.byte	0x22
 	.value	0x17a
 	.byte	0xc
 	.long	0x8b
-	.long	0x284e
+	.long	0x2879
 	.uleb128 0x1
 	.long	0x247
 	.uleb128 0x1
@@ -6533,23 +6626,23 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x10
 	.byte	0
 	.uleb128 0x4
-	.long	.LASF434
+	.long	.LASF435
 	.byte	0x22
 	.value	0x164
 	.byte	0xc
 	.long	0x8b
-	.long	0x2866
+	.long	0x2891
 	.uleb128 0x1
 	.long	0x11e
 	.uleb128 0x10
 	.byte	0
 	.uleb128 0x20
 	.long	0x2633
-	.long	.LASF435
-	.long	0x2877
-	.long	0x2899
+	.long	.LASF436
+	.long	0x28a2
+	.long	0x28c4
 	.uleb128 0x21
-	.long	.LASF423
+	.long	.LASF424
 	.long	0x2681
 	.uleb128 0x5c
 	.string	"lvl"
@@ -6558,172 +6651,202 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0x1c
 	.long	0x8b
 	.uleb128 0x5d
-	.long	.LASF436
+	.long	.LASF437
 	.byte	0x32
 	.byte	0x18
 	.byte	0x2d
 	.long	0x11e
 	.byte	0
 	.uleb128 0x5e
-	.long	.LASF475
+	.long	.LASF477
 	.quad	.LFB2945
 	.quad	.LFE2945-.LFB2945
 	.uleb128 0x1
 	.byte	0x9c
 	.uleb128 0x5f
-	.long	.LASF476
+	.long	.LASF478
 	.quad	.LFB2944
 	.quad	.LFE2944-.LFB2944
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x28e8
+	.long	0x2913
 	.uleb128 0x14
-	.long	.LASF437
-	.byte	0xb4
+	.long	.LASF438
+	.byte	0xb6
 	.byte	0x5
 	.long	0x8b
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -20
 	.uleb128 0x14
-	.long	.LASF438
-	.byte	0xb4
+	.long	.LASF439
+	.byte	0xb6
 	.byte	0x5
 	.long	0x8b
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
 	.byte	0
-	.uleb128 0x1c
-	.long	.LASF444
-	.byte	0x98
+	.uleb128 0x1d
+	.long	.LASF446
+	.byte	0x9a
 	.quad	.LFB2277
 	.quad	.LFE2277-.LFB2277
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2947
+	.long	0x2985
 	.uleb128 0x14
-	.long	.LASF439
-	.byte	0x98
+	.long	.LASF440
+	.byte	0x9a
 	.byte	0x2b
-	.long	0x2768
+	.long	0x2793
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -424
 	.uleb128 0x9
-	.long	.LASF440
+	.long	.LASF441
 	.byte	0x1
-	.byte	0x9a
+	.byte	0x9c
 	.byte	0x14
 	.long	0x25b0
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -416
-	.uleb128 0x1d
-	.long	.LASF442
-	.long	0x2957
+	.uleb128 0x18
+	.long	.LASF443
+	.long	0x2995
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC33
+	.quad	.LC34
+	.uleb128 0x18
+	.long	.LASF444
+	.long	0x29aa
 	.uleb128 0x9
-	.long	.LASF443
+	.byte	0x3
+	.quad	.LC35
+	.uleb128 0x9
+	.long	.LASF445
 	.byte	0x1
-	.byte	0x9e
+	.byte	0xa0
 	.byte	0xa
-	.long	0x295c
+	.long	0x29af
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -384
 	.byte	0
 	.uleb128 0xc
 	.long	0x12f
-	.long	0x2957
+	.long	0x2995
 	.uleb128 0xd
 	.long	0x3a
 	.byte	0x9
 	.byte	0
 	.uleb128 0x8
-	.long	0x2947
+	.long	0x2985
+	.uleb128 0xc
+	.long	0x12f
+	.long	0x29aa
+	.uleb128 0xd
+	.long	0x3a
+	.byte	0x1c
+	.byte	0
+	.uleb128 0x8
+	.long	0x299a
 	.uleb128 0xc
 	.long	0x128
-	.long	0x296d
+	.long	0x29c0
 	.uleb128 0x2f
 	.long	0x3a
 	.value	0x14c
 	.byte	0
-	.uleb128 0x1c
-	.long	.LASF445
-	.byte	0x7a
+	.uleb128 0x1d
+	.long	.LASF447
+	.byte	0x7c
 	.quad	.LFB2276
 	.quad	.LFE2276-.LFB2276
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x29ab
+	.long	0x2a11
 	.uleb128 0x14
-	.long	.LASF439
-	.byte	0x7a
+	.long	.LASF440
+	.byte	0x7c
 	.byte	0x2f
-	.long	0x2768
+	.long	0x2793
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
-	.uleb128 0x1d
-	.long	.LASF442
-	.long	0x29bb
+	.uleb128 0x18
+	.long	.LASF444
+	.long	0x2a21
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC27
+	.quad	.LC26
+	.uleb128 0x18
+	.long	.LASF443
+	.long	0x2a36
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC30
 	.byte	0
 	.uleb128 0xc
 	.long	0x12f
-	.long	0x29bb
+	.long	0x2a21
+	.uleb128 0xd
+	.long	0x3a
+	.byte	0x20
+	.byte	0
+	.uleb128 0x8
+	.long	0x2a11
+	.uleb128 0xc
+	.long	0x12f
+	.long	0x2a36
 	.uleb128 0xd
 	.long	0x3a
 	.byte	0xd
 	.byte	0
 	.uleb128 0x8
-	.long	0x29ab
+	.long	0x2a26
 	.uleb128 0x60
-	.long	.LASF477
+	.long	.LASF479
 	.byte	0x1
-	.byte	0x72
+	.byte	0x74
 	.byte	0x6
-	.long	.LASF478
+	.long	.LASF480
 	.quad	.LFB2275
 	.quad	.LFE2275-.LFB2275
 	.uleb128 0x1
 	.byte	0x9c
 	.uleb128 0x30
-	.long	.LASF447
-	.byte	0x6c
-	.byte	0x7
 	.long	.LASF449
+	.byte	0x6e
+	.byte	0x7
+	.long	.LASF451
 	.long	0x1372
 	.quad	.LFB2274
 	.quad	.LFE2274-.LFB2274
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2a12
+	.long	0x2a8d
 	.uleb128 0x14
-	.long	.LASF450
-	.byte	0x6c
+	.long	.LASF452
+	.byte	0x6e
 	.byte	0x20
 	.long	0x11e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
 	.byte	0
-	.uleb128 0x1c
-	.long	.LASF451
-	.byte	0x60
+	.uleb128 0x1d
+	.long	.LASF453
+	.byte	0x62
 	.quad	.LFB2273
 	.quad	.LFE2273-.LFB2273
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2a4e
+	.long	0x2ac9
 	.uleb128 0x14
-	.long	.LASF452
-	.byte	0x60
+	.long	.LASF454
+	.byte	0x62
 	.byte	0x23
 	.long	0x11e
 	.uleb128 0x3
@@ -6732,118 +6855,118 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x10
 	.uleb128 0x2e
 	.string	"ptr"
-	.byte	0x62
+	.byte	0x64
 	.byte	0xd
 	.long	0x1355
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -216
 	.byte	0
-	.uleb128 0x1c
-	.long	.LASF453
-	.byte	0x53
+	.uleb128 0x1d
+	.long	.LASF455
+	.byte	0x55
 	.quad	.LFB2272
 	.quad	.LFE2272-.LFB2272
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2a7e
-	.uleb128 0x1d
-	.long	.LASF442
-	.long	0x2957
+	.long	0x2af9
+	.uleb128 0x18
+	.long	.LASF443
+	.long	0x2995
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC20
 	.byte	0
-	.uleb128 0x1c
-	.long	.LASF454
-	.byte	0x47
+	.uleb128 0x1d
+	.long	.LASF456
+	.byte	0x49
 	.quad	.LFB2271
 	.quad	.LFE2271-.LFB2271
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2aae
-	.uleb128 0x1d
-	.long	.LASF442
-	.long	0x2abe
+	.long	0x2b29
+	.uleb128 0x18
+	.long	.LASF443
+	.long	0x2b39
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC16
 	.byte	0
 	.uleb128 0xc
 	.long	0x12f
-	.long	0x2abe
+	.long	0x2b39
 	.uleb128 0xd
 	.long	0x3a
 	.byte	0x6
 	.byte	0
 	.uleb128 0x8
-	.long	0x2aae
+	.long	0x2b29
 	.uleb128 0x30
-	.long	.LASF455
-	.byte	0x1c
+	.long	.LASF457
+	.byte	0x1e
 	.byte	0xd
-	.long	.LASF456
+	.long	.LASF458
 	.long	0x11e
 	.quad	.LFB2270
 	.quad	.LFE2270-.LFB2270
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2b60
+	.long	0x2bdb
 	.uleb128 0x14
-	.long	.LASF457
-	.byte	0x1c
+	.long	.LASF459
+	.byte	0x1e
 	.byte	0x22
 	.long	0x11e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -760
 	.uleb128 0x14
-	.long	.LASF458
-	.byte	0x1c
+	.long	.LASF460
+	.byte	0x1e
 	.byte	0x41
-	.long	0x2b65
+	.long	0x2be0
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -768
 	.uleb128 0x9
-	.long	.LASF459
+	.long	.LASF461
 	.byte	0x1
-	.byte	0x1e
+	.byte	0x20
 	.byte	0x14
 	.long	0x25b0
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -752
-	.uleb128 0x1d
-	.long	.LASF442
+	.uleb128 0x18
+	.long	.LASF443
 	.long	0x16b1
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC9
 	.uleb128 0x9
-	.long	.LASF460
+	.long	.LASF462
 	.byte	0x1
-	.byte	0x23
+	.byte	0x25
 	.byte	0xa
-	.long	0x2b6a
+	.long	0x2be5
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -720
 	.uleb128 0x9
-	.long	.LASF461
+	.long	.LASF463
 	.byte	0x1
-	.byte	0x37
+	.byte	0x39
 	.byte	0x11
-	.long	0x2b6a
+	.long	0x2be5
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZZ7MakeImgPKcPK7ProgramE13full_img_name
 	.uleb128 0x9
-	.long	.LASF462
+	.long	.LASF464
 	.byte	0x1
-	.byte	0x3b
+	.byte	0x3d
 	.byte	0xa
-	.long	0x2b7a
+	.long	0x2bf5
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -576
@@ -6851,10 +6974,10 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x6
 	.long	0x1481
 	.uleb128 0x8
-	.long	0x2b60
+	.long	0x2bdb
 	.uleb128 0xc
 	.long	0x128
-	.long	0x2b7a
+	.long	0x2bf5
 	.uleb128 0xd
 	.long	0x3a
 	.byte	0x8f
@@ -7190,6 +7313,21 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.byte	0
 	.byte	0
 	.uleb128 0x18
+	.uleb128 0x34
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x34
+	.uleb128 0x19
+	.uleb128 0x6c
+	.uleb128 0x19
+	.uleb128 0x2
+	.uleb128 0x18
+	.byte	0
+	.byte	0
+	.uleb128 0x19
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -7217,7 +7355,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x19
+	.uleb128 0x1a
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -7237,7 +7375,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x1a
+	.uleb128 0x1b
 	.uleb128 0x39
 	.byte	0
 	.uleb128 0x3
@@ -7250,7 +7388,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0xb
 	.byte	0
 	.byte	0
-	.uleb128 0x1b
+	.uleb128 0x1c
 	.uleb128 0x13
 	.byte	0x1
 	.uleb128 0x3
@@ -7267,7 +7405,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x1c
+	.uleb128 0x1d
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3
@@ -7290,21 +7428,6 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.uleb128 0x19
 	.uleb128 0x1
 	.uleb128 0x13
-	.byte	0
-	.byte	0
-	.uleb128 0x1d
-	.uleb128 0x34
-	.byte	0
-	.uleb128 0x3
-	.uleb128 0xe
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x34
-	.uleb128 0x19
-	.uleb128 0x6c
-	.uleb128 0x19
-	.uleb128 0x2
-	.uleb128 0x18
 	.byte	0
 	.byte	0
 	.uleb128 0x1e
@@ -8533,7 +8656,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"INITIALIZATOR"
 .LASF169:
 	.string	"_shortbuf"
-.LASF467:
+.LASF469:
 	.string	"_IO_lock_t"
 .LASF397:
 	.string	"setvbuf"
@@ -8543,7 +8666,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"gp_offset"
 .LASF393:
 	.string	"remove"
-.LASF452:
+.LASF454:
 	.string	"format"
 .LASF209:
 	.string	"EXTENSION"
@@ -8553,13 +8676,15 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"tm_yday"
 .LASF158:
 	.string	"_IO_buf_end"
-.LASF459:
-	.string	"func_30"
+.LASF42:
+	.string	"__off_t"
+.LASF461:
+	.string	"func_32"
 .LASF55:
 	.string	"_ZSt3divll"
 .LASF85:
 	.string	"__cust_swap"
-.LASF420:
+.LASF421:
 	.string	"STRING_ARR"
 .LASF380:
 	.string	"fflush"
@@ -8569,13 +8694,13 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"CALL"
 .LASF309:
 	.string	"__isoc99_wscanf"
-.LASF438:
+.LASF439:
 	.string	"__priority"
 .LASF264:
 	.string	"vfwscanf"
 .LASF361:
 	.string	"p_cs_precedes"
-.LASF434:
+.LASF435:
 	.string	"printf"
 .LASF404:
 	.string	"towctrans"
@@ -8589,7 +8714,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"_freeres_list"
 .LASF58:
 	.string	"__exception_ptr"
-.LASF448:
+.LASF450:
 	.string	"_ZNKSt15__exception_ptr13exception_ptrcvbEv"
 .LASF346:
 	.string	"intmax_t"
@@ -8607,7 +8732,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"_ZNSt15__exception_ptr13exception_ptr4swapERS0_"
 .LASF216:
 	.string	"OPERATOR"
-.LASF427:
+.LASF428:
 	.string	"strerror"
 .LASF41:
 	.string	"__uintmax_t"
@@ -8629,7 +8754,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"__isoc99_swscanf"
 .LASF232:
 	.string	"INITIALIZATORS"
-.LASF462:
+.LASF464:
 	.string	"system_command"
 .LASF33:
 	.string	"__uint_least8_t"
@@ -8639,7 +8764,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"~FunctionLogger"
 .LASF126:
 	.string	"__ops"
-.LASF474:
+.LASF476:
 	.string	"_ZN6Logger11getInstanceEv"
 .LASF319:
 	.string	"char8_t"
@@ -8649,11 +8774,11 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"wcscpy"
 .LASF411:
 	.string	"current_indent"
-.LASF451:
+.LASF453:
 	.string	"DotPrint"
 .LASF141:
 	.string	"__count"
-.LASF463:
+.LASF465:
 	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF273:
 	.string	"wcscat"
@@ -8661,11 +8786,11 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"lconv"
 .LASF349:
 	.string	"decimal_point"
-.LASF436:
+.LASF437:
 	.string	"func_name"
 .LASF237:
 	.string	"MAX_FUNCTION_NAME_LENGTH"
-.LASF430:
+.LASF431:
 	.string	"vfprintf"
 .LASF364:
 	.string	"n_sep_by_space"
@@ -8685,10 +8810,8 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"_ZSt3absl"
 .LASF323:
 	.string	"__gnu_debug"
-.LASF432:
+.LASF433:
 	.string	"_ZN14FunctionLoggerD1Ev"
-.LASF42:
-	.string	"__off_t"
 .LASF248:
 	.string	"fwscanf"
 .LASF129:
@@ -8731,7 +8854,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"__isoc99_vswscanf"
 .LASF225:
 	.string	"EXPRESSION_OPENING_BRACKET"
-.LASF445:
+.LASF447:
 	.string	"DotTreeBranch"
 .LASF57:
 	.string	"__swappable_with_details"
@@ -8747,7 +8870,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"uintmax_t"
 .LASF250:
 	.string	"getwc"
-.LASF456:
+.LASF458:
 	.string	"_Z7MakeImgPKcPK7Program"
 .LASF190:
 	.string	"t_name_ptr"
@@ -8777,6 +8900,8 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"lldiv"
 .LASF374:
 	.string	"localeconv"
+.LASF420:
+	.string	"GRAPH_VIS_COLORS"
 .LASF147:
 	.string	"__FILE"
 .LASF160:
@@ -8799,7 +8924,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"IMAGE_NAME_LENGTH"
 .LASF128:
 	.string	"atoll"
-.LASF431:
+.LASF432:
 	.string	"fprintf"
 .LASF267:
 	.string	"vswscanf"
@@ -8807,7 +8932,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"vfwprintf"
 .LASF419:
 	.string	"INDENT_SIZE"
-.LASF426:
+.LASF427:
 	.string	"abort"
 .LASF384:
 	.string	"fopen"
@@ -8829,11 +8954,11 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"int64_t"
 .LASF331:
 	.string	"int_least64_t"
-.LASF422:
+.LASF423:
 	.string	"_ZNSt8ios_base4InitC1Ev"
 .LASF257:
 	.string	"putwc"
-.LASF461:
+.LASF463:
 	.string	"full_img_name"
 .LASF332:
 	.string	"uint_least8_t"
@@ -8843,17 +8968,17 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"__uint_least32_t"
 .LASF410:
 	.string	"guard_level"
-.LASF458:
+.LASF460:
 	.string	"program"
-.LASF435:
+.LASF436:
 	.string	"_ZN14FunctionLoggerC1EiPKc"
 .LASF161:
 	.string	"_IO_save_end"
-.LASF455:
+.LASF457:
 	.string	"MakeImg"
 .LASF196:
 	.string	"value"
-.LASF437:
+.LASF438:
 	.string	"__initialize_p"
 .LASF359:
 	.string	"int_frac_digits"
@@ -8867,7 +8992,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"fwide"
 .LASF369:
 	.string	"int_n_cs_precedes"
-.LASF450:
+.LASF452:
 	.string	"path"
 .LASF417:
 	.string	"_ZN14FunctionLoggerD4Ev"
@@ -8911,7 +9036,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"_IO_marker"
 .LASF116:
 	.string	"qsort"
-.LASF472:
+.LASF474:
 	.string	"_ZN6Logger3logEPKcz"
 .LASF154:
 	.string	"_IO_write_base"
@@ -8931,7 +9056,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"uint8_t"
 .LASF76:
 	.string	"_ZNSt15__exception_ptr13exception_ptrD4Ev"
-.LASF468:
+.LASF470:
 	.string	"TokenValue"
 .LASF8:
 	.string	"quot"
@@ -8939,7 +9064,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"signed char"
 .LASF256:
 	.string	"mbsrtowcs"
-.LASF473:
+.LASF475:
 	.string	"getInstance"
 .LASF217:
 	.string	"NAME"
@@ -8965,7 +9090,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"INSTRUCTIONS"
 .LASF399:
 	.string	"tmpnam"
-.LASF478:
+.LASF480:
 	.string	"_Z12CloseDotFilev"
 .LASF372:
 	.string	"int_n_sign_posn"
@@ -8981,7 +9106,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"Program"
 .LASF189:
 	.string	"t_function_ret_type"
-.LASF424:
+.LASF425:
 	.string	"sprintf"
 .LASF356:
 	.string	"mon_grouping"
@@ -8999,7 +9124,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"__int16_t"
 .LASF259:
 	.string	"swprintf"
-.LASF425:
+.LASF426:
 	.string	"LogToken"
 .LASF242:
 	.string	"fgetwc"
@@ -9031,9 +9156,9 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"fsetpos"
 .LASF342:
 	.string	"uint_fast32_t"
-.LASF449:
+.LASF451:
 	.string	"_Z11OpenDotFilePKc"
-.LASF443:
+.LASF445:
 	.string	"def_data"
 .LASF389:
 	.string	"ftell"
@@ -9077,17 +9202,17 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"ptr_to_src_code"
 .LASF275:
 	.string	"wcscoll"
-.LASF423:
+.LASF424:
 	.string	"this"
 .LASF245:
 	.string	"fputws"
 .LASF173:
 	.string	"_wide_data"
-.LASF476:
+.LASF478:
 	.string	"__static_initialization_and_destruction_0"
-.LASF440:
-	.string	"func_154"
-.LASF428:
+.LASF441:
+	.string	"func_156"
+.LASF429:
 	.string	"ios_base"
 .LASF200:
 	.string	"number_of_tokens"
@@ -9143,7 +9268,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"wmemcpy"
 .LASF385:
 	.string	"fread"
-.LASF464:
+.LASF466:
 	.string	"type_info"
 .LASF366:
 	.string	"n_sign_posn"
@@ -9153,19 +9278,19 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"11__mbstate_t"
 .LASF104:
 	.string	"atexit"
-.LASF471:
+.LASF473:
 	.string	"_Z8LogTokenPK5TokenPKcPS3_"
 .LASF258:
 	.string	"putwchar"
 .LASF312:
 	.string	"wcsrchr"
-.LASF466:
+.LASF468:
 	.string	"typedef __va_list_tag __va_list_tag"
 .LASF252:
 	.string	"getwchar"
 .LASF182:
 	.string	"_IO_wide_data"
-.LASF439:
+.LASF440:
 	.string	"node"
 .LASF140:
 	.string	"__wchb"
@@ -9193,7 +9318,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"ldiv_t"
 .LASF136:
 	.string	"overflow_arg_area"
-.LASF453:
+.LASF455:
 	.string	"SetEndDot"
 .LASF379:
 	.string	"ferror"
@@ -9213,11 +9338,11 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"strtoull"
 .LASF390:
 	.string	"getc"
-.LASF433:
+.LASF434:
 	.string	"snprintf"
 .LASF334:
 	.string	"uint_least32_t"
-.LASF446:
+.LASF448:
 	.string	"operator bool"
 .LASF80:
 	.string	"_ZNKSt15__exception_ptr13exception_ptr20__cxa_exception_typeEv"
@@ -9239,7 +9364,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"_lock"
 .LASF231:
 	.string	"NUMBER_OF_INITIALIZATORS"
-.LASF475:
+.LASF477:
 	.string	"_GLOBAL__sub_I__Z7MakeImgPKcPK7Program"
 .LASF120:
 	.string	"strtoul"
@@ -9247,7 +9372,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"long unsigned int"
 .LASF98:
 	.string	"~Init"
-.LASF444:
+.LASF446:
 	.string	"PrintNode"
 .LASF149:
 	.string	"_IO_FILE"
@@ -9269,7 +9394,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"FUNCTION_RET_TYPE"
 .LASF311:
 	.string	"wcspbrk"
-.LASF457:
+.LASF459:
 	.string	"img_name"
 .LASF280:
 	.string	"tm_min"
@@ -9281,13 +9406,13 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"wcstol"
 .LASF289:
 	.string	"tm_zone"
-.LASF429:
+.LASF430:
 	.string	"Logger"
 .LASF224:
 	.string	"BLOCK_CLOSING_BRACKET"
 .LASF322:
 	.string	"__int128"
-.LASF469:
+.LASF471:
 	.string	"TokenType"
 .LASF306:
 	.string	"wmemset"
@@ -9303,17 +9428,17 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"FunctionLogger"
 .LASF29:
 	.string	"__uint32_t"
-.LASF454:
+.LASF456:
 	.string	"SetDot"
-.LASF477:
+.LASF479:
 	.string	"CloseDotFile"
 .LASF398:
 	.string	"tmpfile"
 .LASF82:
 	.string	"_ZSt17rethrow_exceptionNSt15__exception_ptr13exception_ptrE"
-.LASF460:
+.LASF462:
 	.string	"dot_file"
-.LASF441:
+.LASF442:
 	.string	"__dso_handle"
 .LASF155:
 	.string	"_IO_write_ptr"
@@ -9321,7 +9446,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"thousands_sep"
 .LASF61:
 	.string	"_M_release"
-.LASF470:
+.LASF472:
 	.string	"decltype(nullptr)"
 .LASF131:
 	.string	"strtof"
@@ -9375,7 +9500,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"rewind"
 .LASF281:
 	.string	"tm_hour"
-.LASF421:
+.LASF422:
 	.string	"_ZNSt8ios_base4InitD1Ev"
 .LASF220:
 	.string	"FUNCTION"
@@ -9395,7 +9520,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"atof"
 .LASF277:
 	.string	"wcscspn"
-.LASF465:
+.LASF467:
 	.string	"__builtin_va_list"
 .LASF106:
 	.string	"atoi"
@@ -9403,7 +9528,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"n_cs_precedes"
 .LASF67:
 	.string	"_ZNKSt15__exception_ptr13exception_ptr6_M_getEv"
-.LASF442:
+.LASF443:
 	.string	"__func__"
 .LASF73:
 	.string	"_ZNSt15__exception_ptr13exception_ptraSERKS0_"
@@ -9439,6 +9564,8 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"vswprintf"
 .LASF165:
 	.string	"_flags2"
+.LASF444:
+	.string	"__PRETTY_FUNCTION__"
 .LASF199:
 	.string	"token_arr"
 .LASF228:
@@ -9455,7 +9582,7 @@ _GLOBAL__sub_I__Z7MakeImgPKcPK7Program:
 	.string	"_unused2"
 .LASF157:
 	.string	"_IO_buf_base"
-.LASF447:
+.LASF449:
 	.string	"OpenDotFile"
 .LASF265:
 	.string	"__isoc99_vfwscanf"

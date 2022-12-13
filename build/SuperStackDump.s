@@ -1,7 +1,7 @@
 	.file	"SuperStackDump.cpp"
 	.text
 .Ltext0:
-	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/SuperStack/SuperStackDump.cpp"
+	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "./ATC/SuperStack/SuperStackDump.cpp"
 	.section	.rodata
 	.align 4
 	.type	_ZL13_CANARY_SIZE_, @object
@@ -91,7 +91,7 @@ MedComissionErorrMessage:
 	.type	_Z6SSdumpP10SuperStackjPKc, @function
 _Z6SSdumpP10SuperStackjPKc:
 .LFB1112:
-	.file 1 "../ATC/SuperStack/SuperStackDump.cpp"
+	.file 1 "./ATC/SuperStack/SuperStackDump.cpp"
 	.loc 1 27 5
 	.cfi_startproc
 	endbr64
@@ -134,19 +134,19 @@ _Z6SSdumpP10SuperStackjPKc:
 	.file 15 "/usr/include/c++/11/bits/ptr_traits.h"
 	.file 16 "/usr/include/c++/11/math.h"
 	.file 17 "./headers/Tabels.h"
-	.file 18 "../ATC/SuperStack/SuperStackConfig.h"
-	.file 19 "../ATC/my_safety/my_safety.h"
-	.file 20 "../ATC/SuperStack/SuperStack.h"
-	.file 21 "../ATC/SuperStack/DebugFunctions.h"
+	.file 18 "./ATC/SuperStack/SuperStackConfig.h"
+	.file 19 "./ATC/my_safety/my_safety.h"
+	.file 20 "./ATC/SuperStack/SuperStack.h"
+	.file 21 "./ATC/SuperStack/DebugFunctions.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x1892
+	.long	0x18ac
 	.value	0x5
 	.byte	0x1
 	.byte	0x8
 	.long	.Ldebug_abbrev0
 	.uleb128 0x13
-	.long	.LASF291
+	.long	.LASF293
 	.byte	0x21
 	.long	.LASF0
 	.long	.LASF1
@@ -378,7 +378,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.uleb128 0x1
 	.long	0x120d
 	.byte	0
-	.uleb128 0x6
+	.uleb128 0x7
 	.string	"sin"
 	.value	0x1ad
 	.long	.LASF34
@@ -387,7 +387,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.uleb128 0x1
 	.long	0x11fa
 	.byte	0
-	.uleb128 0x6
+	.uleb128 0x7
 	.string	"sin"
 	.value	0x1a9
 	.long	.LASF35
@@ -396,7 +396,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.uleb128 0x1
 	.long	0x120d
 	.byte	0
-	.uleb128 0x6
+	.uleb128 0x7
 	.string	"tan"
 	.value	0x1e6
 	.long	.LASF36
@@ -405,7 +405,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.uleb128 0x1
 	.long	0x11fa
 	.byte	0
-	.uleb128 0x6
+	.uleb128 0x7
 	.string	"tan"
 	.value	0x1e2
 	.long	.LASF37
@@ -532,7 +532,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.uleb128 0x1
 	.long	0x11e0
 	.byte	0
-	.uleb128 0x6
+	.uleb128 0x7
 	.string	"log"
 	.value	0x156
 	.long	.LASF55
@@ -541,7 +541,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.uleb128 0x1
 	.long	0x11fa
 	.byte	0
-	.uleb128 0x6
+	.uleb128 0x7
 	.string	"log"
 	.value	0x152
 	.long	.LASF56
@@ -590,7 +590,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.uleb128 0x1
 	.long	0x1395
 	.byte	0
-	.uleb128 0x6
+	.uleb128 0x7
 	.string	"pow"
 	.value	0x188
 	.long	.LASF63
@@ -601,7 +601,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.uleb128 0x1
 	.long	0x11fa
 	.byte	0
-	.uleb128 0x6
+	.uleb128 0x7
 	.string	"pow"
 	.value	0x184
 	.long	.LASF64
@@ -1160,7 +1160,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.uleb128 0x1
 	.long	0x120d
 	.byte	0
-	.uleb128 0x6
+	.uleb128 0x7
 	.string	"erf"
 	.value	0x51e
 	.long	.LASF143
@@ -1169,7 +1169,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.uleb128 0x1
 	.long	0x11fa
 	.byte	0
-	.uleb128 0x6
+	.uleb128 0x7
 	.string	"erf"
 	.value	0x51a
 	.long	.LASF144
@@ -1254,7 +1254,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.uleb128 0x1
 	.long	0x120d
 	.byte	0
-	.uleb128 0x6
+	.uleb128 0x7
 	.string	"fma"
 	.value	0x57a
 	.long	.LASF157
@@ -1267,7 +1267,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.uleb128 0x1
 	.long	0x11fa
 	.byte	0
-	.uleb128 0x6
+	.uleb128 0x7
 	.string	"fma"
 	.value	0x576
 	.long	.LASF158
@@ -1804,7 +1804,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.byte	0x2
 	.value	0x777
 	.byte	0x3
-	.long	.LASF292
+	.long	.LASF294
 	.long	0x120d
 	.uleb128 0x1
 	.long	0x120d
@@ -2454,69 +2454,83 @@ _Z6SSdumpP10SuperStackjPKc:
 	.byte	0xb7
 	.long	0x1170
 	.uleb128 0xf
-	.long	.LASF264
-	.byte	0x4
+	.long	.LASF266
+	.byte	0x8
 	.byte	0x11
 	.byte	0x13
-	.long	0x1696
-	.uleb128 0x7
-	.long	.LASF266
+	.long	0x16a3
+	.uleb128 0x6
+	.long	.LASF264
 	.byte	0x11
 	.byte	0x15
 	.byte	0x9
 	.long	0x11e0
 	.byte	0
+	.uleb128 0x6
+	.long	.LASF265
+	.byte	0x11
+	.byte	0x16
+	.byte	0x9
+	.long	0x11e0
+	.byte	0x4
 	.byte	0
 	.uleb128 0xf
-	.long	.LASF265
-	.byte	0x10
-	.byte	0x11
-	.byte	0x18
-	.long	0x16ca
-	.uleb128 0x7
 	.long	.LASF267
+	.byte	0x18
 	.byte	0x11
-	.byte	0x1a
-	.byte	0x10
-	.long	0x16ca
-	.byte	0
-	.uleb128 0x7
+	.byte	0x19
+	.long	0x16e4
+	.uleb128 0x6
 	.long	.LASF268
 	.byte	0x11
 	.byte	0x1b
+	.byte	0x10
+	.long	0x16e4
+	.byte	0
+	.uleb128 0x6
+	.long	.LASF269
+	.byte	0x11
+	.byte	0x1c
 	.byte	0x9
 	.long	0x11e0
 	.byte	0x8
-	.uleb128 0x7
-	.long	.LASF269
+	.uleb128 0x6
+	.long	.LASF270
 	.byte	0x11
-	.byte	0x1d
+	.byte	0x1e
 	.byte	0x9
 	.long	0x11e0
 	.byte	0xc
+	.uleb128 0x6
+	.long	.LASF271
+	.byte	0x11
+	.byte	0x1f
+	.byte	0x9
+	.long	0x11e0
+	.byte	0x10
 	.byte	0
 	.uleb128 0x9
-	.long	0x16cf
+	.long	0x16e9
 	.uleb128 0x9
 	.long	0x167c
 	.uleb128 0xb
-	.long	.LASF270
+	.long	.LASF272
 	.byte	0x12
 	.byte	0x8
 	.byte	0x13
-	.long	0x16e0
+	.long	0x16fa
 	.uleb128 0x9
-	.long	0x1696
+	.long	0x16a3
 	.uleb128 0x1b
-	.long	.LASF293
+	.long	.LASF295
 	.uleb128 0xb
-	.long	.LASF271
+	.long	.LASF273
 	.byte	0x13
 	.byte	0x7
 	.byte	0x13
 	.long	0x11f3
 	.uleb128 0xa
-	.long	.LASF272
+	.long	.LASF274
 	.byte	0x13
 	.byte	0x9
 	.byte	0xb
@@ -2525,7 +2539,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.byte	0x3
 	.quad	_ZL13_CANARY_SIZE_
 	.uleb128 0xa
-	.long	.LASF273
+	.long	.LASF275
 	.byte	0x13
 	.byte	0xb
 	.byte	0xb
@@ -2534,7 +2548,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.byte	0x3
 	.quad	_ZL16_OPENING_CANARY_
 	.uleb128 0xa
-	.long	.LASF274
+	.long	.LASF276
 	.byte	0x13
 	.byte	0xc
 	.byte	0xb
@@ -2543,7 +2557,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.byte	0x3
 	.quad	_ZL16_CLOSING_CANARY_
 	.uleb128 0xa
-	.long	.LASF275
+	.long	.LASF277
 	.byte	0x14
 	.byte	0x15
 	.byte	0xe
@@ -2552,7 +2566,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.byte	0x3
 	.quad	_ZL19_HEAP_MIN_CAPACITY_
 	.uleb128 0xa
-	.long	.LASF276
+	.long	.LASF278
 	.byte	0x14
 	.byte	0x16
 	.byte	0xe
@@ -2561,27 +2575,27 @@ _Z6SSdumpP10SuperStackjPKc:
 	.byte	0x3
 	.quad	_ZL16_ELEMENT_T_SIZE_
 	.uleb128 0xf
-	.long	.LASF277
+	.long	.LASF279
 	.byte	0x38
 	.byte	0x14
 	.byte	0x2c
-	.long	0x17d9
-	.uleb128 0x7
-	.long	.LASF278
+	.long	0x17f3
+	.uleb128 0x6
+	.long	.LASF280
 	.byte	0x14
 	.byte	0x2f
 	.byte	0xc
-	.long	0x16ea
+	.long	0x1704
 	.byte	0
-	.uleb128 0x7
-	.long	.LASF279
+	.uleb128 0x6
+	.long	.LASF281
 	.byte	0x14
 	.byte	0x32
 	.byte	0x10
-	.long	0x17d9
+	.long	0x17f3
 	.byte	0x8
-	.uleb128 0x7
-	.long	.LASF280
+	.uleb128 0x6
+	.long	.LASF282
 	.byte	0x14
 	.byte	0x33
 	.byte	0xc
@@ -2594,39 +2608,39 @@ _Z6SSdumpP10SuperStackjPKc:
 	.byte	0xd
 	.long	0x1268
 	.byte	0x18
-	.uleb128 0x7
-	.long	.LASF281
+	.uleb128 0x6
+	.long	.LASF283
 	.byte	0x14
 	.byte	0x36
 	.byte	0x9
 	.long	0x11e0
 	.byte	0x20
-	.uleb128 0x7
-	.long	.LASF282
+	.uleb128 0x6
+	.long	.LASF284
 	.byte	0x14
 	.byte	0x3d
 	.byte	0x9
 	.long	0x11e0
 	.byte	0x24
-	.uleb128 0x7
-	.long	.LASF283
+	.uleb128 0x6
+	.long	.LASF285
 	.byte	0x14
 	.byte	0x3e
 	.byte	0x9
 	.long	0x11e0
 	.byte	0x28
-	.uleb128 0x7
-	.long	.LASF284
+	.uleb128 0x6
+	.long	.LASF286
 	.byte	0x14
 	.byte	0x42
 	.byte	0xc
-	.long	0x16ea
+	.long	0x1704
 	.byte	0x30
 	.byte	0
 	.uleb128 0x9
-	.long	0x16d4
+	.long	0x16ee
 	.uleb128 0xa
-	.long	.LASF285
+	.long	.LASF287
 	.byte	0x15
 	.byte	0x16
 	.byte	0xb
@@ -2635,7 +2649,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.byte	0x3
 	.quad	_ZL9IntPoison
 	.uleb128 0xa
-	.long	.LASF286
+	.long	.LASF288
 	.byte	0x15
 	.byte	0x17
 	.byte	0xc
@@ -2644,7 +2658,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.byte	0x3
 	.quad	_ZL10CharPoison
 	.uleb128 0xa
-	.long	.LASF287
+	.long	.LASF289
 	.byte	0x15
 	.byte	0x18
 	.byte	0xe
@@ -2654,47 +2668,47 @@ _Z6SSdumpP10SuperStackjPKc:
 	.quad	_ZL12DoublePoison
 	.uleb128 0x1d
 	.long	0x1263
-	.long	0x1830
+	.long	0x184a
 	.uleb128 0x1e
 	.long	0x11c4
 	.byte	0xa
 	.byte	0
 	.uleb128 0x1f
-	.long	.LASF294
+	.long	.LASF296
 	.byte	0x1
 	.byte	0x9
 	.byte	0xd
-	.long	0x1820
+	.long	0x183a
 	.uleb128 0x9
 	.byte	0x3
 	.quad	MedComissionErorrMessage
 	.uleb128 0x20
-	.long	.LASF295
+	.long	.LASF297
 	.byte	0x1
 	.byte	0x1a
 	.byte	0x6
-	.long	.LASF296
+	.long	.LASF298
 	.quad	.LFB1112
 	.quad	.LFE1112-.LFB1112
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1890
+	.long	0x18aa
 	.uleb128 0x10
-	.long	.LASF288
+	.long	.LASF290
 	.byte	0x19
-	.long	0x1890
+	.long	0x18aa
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
 	.uleb128 0x10
-	.long	.LASF289
+	.long	.LASF291
 	.byte	0x2b
 	.long	0x1192
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -28
 	.uleb128 0x10
-	.long	.LASF290
+	.long	.LASF292
 	.byte	0x43
 	.long	0x1263
 	.uleb128 0x2
@@ -2702,7 +2716,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.sleb128 -40
 	.byte	0
 	.uleb128 0x9
-	.long	0x1764
+	.long	0x177e
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
 .Ldebug_abbrev0:
@@ -2790,6 +2804,23 @@ _Z6SSdumpP10SuperStackjPKc:
 	.byte	0
 	.byte	0
 	.uleb128 0x6
+	.uleb128 0xd
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x39
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x38
+	.uleb128 0xb
+	.byte	0
+	.byte	0
+	.uleb128 0x7
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -2812,23 +2843,6 @@ _Z6SSdumpP10SuperStackjPKc:
 	.uleb128 0x19
 	.uleb128 0x1
 	.uleb128 0x13
-	.byte	0
-	.byte	0
-	.uleb128 0x7
-	.uleb128 0xd
-	.byte	0
-	.uleb128 0x3
-	.uleb128 0xe
-	.uleb128 0x3a
-	.uleb128 0xb
-	.uleb128 0x3b
-	.uleb128 0xb
-	.uleb128 0x39
-	.uleb128 0xb
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x38
-	.uleb128 0xb
 	.byte	0
 	.byte	0
 	.uleb128 0x8
@@ -3255,7 +3269,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"fmod"
 .LASF119:
 	.string	"_ZSt11islessequalff"
-.LASF280:
+.LASF282:
 	.string	"capacity"
 .LASF40:
 	.string	"_ZSt4coshf"
@@ -3275,14 +3289,16 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"_ZSt5acoshf"
 .LASF192:
 	.string	"lrint"
+.LASF154:
+	.string	"fdim"
 .LASF12:
 	.string	"__cust"
 .LASF254:
 	.string	"double_t"
 .LASF180:
 	.string	"llround"
-.LASF154:
-	.string	"fdim"
+.LASF270:
+	.string	"memory_adress"
 .LASF234:
 	.string	"unsigned int"
 .LASF141:
@@ -3291,11 +3307,11 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"__gnu_cxx"
 .LASF155:
 	.string	"_ZSt4fdimee"
-.LASF275:
+.LASF277:
 	.string	"_HEAP_MIN_CAPACITY_"
 .LASF257:
 	.string	"wchar_t"
-.LASF279:
+.LASF281:
 	.string	"heap"
 .LASF2:
 	.string	"__swappable_details"
@@ -3305,9 +3321,9 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"scalbln"
 .LASF74:
 	.string	"floor"
-.LASF290:
+.LASF292:
 	.string	"func"
-.LASF270:
+.LASF272:
 	.string	"element_t"
 .LASF53:
 	.string	"_ZSt5ldexpei"
@@ -3315,11 +3331,11 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"__ops"
 .LASF258:
 	.string	"char8_t"
-.LASF286:
+.LASF288:
 	.string	"CharPoison"
 .LASF137:
 	.string	"cbrt"
-.LASF265:
+.LASF267:
 	.string	"VarTabel"
 .LASF156:
 	.string	"_ZSt4fdimff"
@@ -3327,7 +3343,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"_ZSt4rintf"
 .LASF220:
 	.string	"_ZSt7scalblnel"
-.LASF291:
+.LASF293:
 	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF199:
 	.string	"_ZSt9nearbyinte"
@@ -3335,7 +3351,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"_ZSt9nextafteree"
 .LASF207:
 	.string	"remainder"
-.LASF272:
+.LASF274:
 	.string	"_CANARY_SIZE_"
 .LASF17:
 	.string	"_ZSt3absd"
@@ -3345,7 +3361,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"_ZSt3absf"
 .LASF49:
 	.string	"frexp"
-.LASF295:
+.LASF297:
 	.string	"SSdump"
 .LASF242:
 	.string	"signed char"
@@ -3363,7 +3379,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"_ZSt14isgreaterequalee"
 .LASF54:
 	.string	"_ZSt5ldexpfi"
-.LASF273:
+.LASF275:
 	.string	"_OPENING_CANARY_"
 .LASF213:
 	.string	"rint"
@@ -3385,13 +3401,13 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"long long unsigned int"
 .LASF201:
 	.string	"nextafter"
-.LASF268:
+.LASF269:
 	.string	"arr_size"
 .LASF159:
 	.string	"fmax"
 .LASF61:
 	.string	"_ZSt4modfePe"
-.LASF267:
+.LASF268:
 	.string	"label_arr"
 .LASF63:
 	.string	"_ZSt3powee"
@@ -3411,7 +3427,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"_ZSt10fpclassifyf"
 .LASF51:
 	.string	"_ZSt5frexpfPi"
-.LASF276:
+.LASF278:
 	.string	"_ELEMENT_T_SIZE_"
 .LASF208:
 	.string	"_ZSt9remainderee"
@@ -3439,7 +3455,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"modf"
 .LASF163:
 	.string	"_ZSt4fminee"
-.LASF292:
+.LASF294:
 	.string	"_ZSt4lerpfff"
 .LASF110:
 	.string	"_ZSt14isgreaterequaldd"
@@ -3449,7 +3465,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"_ZSt5trunce"
 .LASF230:
 	.string	"_ZSt5truncf"
-.LASF287:
+.LASF289:
 	.string	"DoublePoison"
 .LASF209:
 	.string	"_ZSt9remainderff"
@@ -3477,7 +3493,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"_ZSt3tane"
 .LASF37:
 	.string	"_ZSt3tanf"
-.LASF269:
+.LASF271:
 	.string	"number_of_labels"
 .LASF233:
 	.string	"_ZSt4lerpddd"
@@ -3489,13 +3505,13 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"asin"
 .LASF13:
 	.string	"__cmp_alg"
-.LASF288:
+.LASF290:
 	.string	"stk_ptr"
 .LASF256:
 	.string	"ssize_t"
 .LASF127:
 	.string	"_ZSt11isunorderedff"
-.LASF281:
+.LASF283:
 	.string	"status"
 .LASF189:
 	.string	"logb"
@@ -3525,8 +3541,10 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"long long int"
 .LASF120:
 	.string	"islessgreater"
-.LASF284:
+.LASF286:
 	.string	"closing_canary"
+.LASF264:
+	.string	"name_id"
 .LASF235:
 	.string	"bool"
 .LASF231:
@@ -3563,7 +3581,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"_ZSt4erfcf"
 .LASF157:
 	.string	"_ZSt3fmaeee"
-.LASF278:
+.LASF280:
 	.string	"opening_canary"
 .LASF187:
 	.string	"_ZSt4log2e"
@@ -3585,23 +3603,23 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"__cmp_cust"
 .LASF246:
 	.string	"long double"
-.LASF277:
+.LASF279:
 	.string	"SuperStack"
 .LASF124:
 	.string	"isunordered"
 .LASF162:
 	.string	"fmin"
-.LASF296:
+.LASF298:
 	.string	"_Z6SSdumpP10SuperStackjPKc"
 .LASF62:
 	.string	"_ZSt4modffPf"
-.LASF271:
+.LASF273:
 	.string	"CANARY"
 .LASF152:
 	.string	"_ZSt5expm1e"
 .LASF153:
 	.string	"_ZSt5expm1f"
-.LASF274:
+.LASF276:
 	.string	"_CLOSING_CANARY_"
 .LASF88:
 	.string	"isinf"
@@ -3613,7 +3631,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"long int"
 .LASF115:
 	.string	"_ZSt6islessff"
-.LASF283:
+.LASF285:
 	.string	"hash"
 .LASF90:
 	.string	"_ZSt5isinfd"
@@ -3649,8 +3667,6 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"_ZSt4logbe"
 .LASF191:
 	.string	"_ZSt4logbf"
-.LASF266:
-	.string	"name"
 .LASF30:
 	.string	"_ZSt5atan2ee"
 .LASF204:
@@ -3677,7 +3693,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"isgreaterequal"
 .LASF168:
 	.string	"_ZSt5hypotfff"
-.LASF289:
+.LASF291:
 	.string	"flag_error"
 .LASF150:
 	.string	"_ZSt4exp2f"
@@ -3707,9 +3723,9 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"_ZSt6lrounde"
 .LASF197:
 	.string	"_ZSt6lroundf"
-.LASF282:
+.LASF284:
 	.string	"heapHash"
-.LASF293:
+.LASF295:
 	.string	"decltype(nullptr)"
 .LASF134:
 	.string	"atanh"
@@ -3753,7 +3769,7 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"_ZSt6lgammae"
 .LASF176:
 	.string	"_ZSt6lgammaf"
-.LASF285:
+.LASF287:
 	.string	"IntPoison"
 .LASF101:
 	.string	"_ZSt7signbite"
@@ -3765,13 +3781,13 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"_ZSt4cbrte"
 .LASF139:
 	.string	"_ZSt4cbrtf"
-.LASF294:
+.LASF296:
 	.string	"MedComissionErorrMessage"
 .LASF128:
 	.string	"acosh"
 .LASF48:
 	.string	"_ZSt3expf"
-.LASF264:
+.LASF266:
 	.string	"VarLabel"
 .LASF263:
 	.string	"__int128 unsigned"
@@ -3811,6 +3827,8 @@ _Z6SSdumpP10SuperStackjPKc:
 	.string	"_ZSt3erfe"
 .LASF144:
 	.string	"_ZSt3erff"
+.LASF265:
+	.string	"position"
 .LASF38:
 	.string	"cosh"
 .LASF214:
@@ -3819,7 +3837,7 @@ _Z6SSdumpP10SuperStackjPKc:
 .LASF1:
 	.string	"/home/arsenyfucker/Cprojects/Lang/Translator"
 .LASF0:
-	.string	"../ATC/SuperStack/SuperStackDump.cpp"
+	.string	"./ATC/SuperStack/SuperStackDump.cpp"
 	.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"
 	.section	.note.GNU-stack,"",@progbits
 	.section	.note.gnu.property,"a"

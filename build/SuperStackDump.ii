@@ -1,10 +1,10 @@
-# 0 "../ATC/SuperStack/SuperStackDump.cpp"
+# 0 "./ATC/SuperStack/SuperStackDump.cpp"
 # 1 "/home/arsenyfucker/Cprojects/Lang/Translator//"
 # 0 "<built-in>"
 # 0 "<command-line>"
 # 1 "/usr/include/stdc-predef.h" 1 3 4
 # 0 "<command-line>" 2
-# 1 "../ATC/SuperStack/SuperStackDump.cpp"
+# 1 "./ATC/SuperStack/SuperStackDump.cpp"
 # 1 "/usr/include/c++/11/math.h" 1 3
 # 36 "/usr/include/c++/11/math.h" 3
 # 1 "/usr/include/c++/11/cmath" 1 3
@@ -23494,9 +23494,9 @@ using std::tgamma;
 using std::trunc;
 # 183 "/usr/include/c++/11/math.h" 3
 using std::lerp;
-# 2 "../ATC/SuperStack/SuperStackDump.cpp" 2
+# 2 "./ATC/SuperStack/SuperStackDump.cpp" 2
 
-# 1 "../ATC/SuperStack/SuperStack.h" 1
+# 1 "./ATC/SuperStack/SuperStack.h" 1
 
 
 
@@ -23504,7 +23504,7 @@ using std::lerp;
 
 
 
-# 1 "../ATC/SuperStack/SuperStackConfig.h" 1
+# 1 "./ATC/SuperStack/SuperStackConfig.h" 1
 
 
 
@@ -23564,7 +23564,8 @@ enum FuncType
 
 struct VarLabel
     {
-    int name;
+    int name_id;
+    int position;
     };
 
 struct VarTabel
@@ -23572,6 +23573,7 @@ struct VarTabel
     VarLabel** label_arr;
     int arr_size;
 
+    int memory_adress;
     int number_of_labels;
     };
 
@@ -23607,13 +23609,14 @@ int VarTabelCtor (VarTabel* tabel);
 VarLabel* IsVarLabel (int name_id, VarTabel* tabel);
 
 int AddVarLabel (VarLabel* label, VarTabel* tabel);
-# 5 "../ATC/SuperStack/SuperStackConfig.h" 2
+int AddVarLabel (int name_id, VarTabel* tabel);
+# 5 "./ATC/SuperStack/SuperStackConfig.h" 2
 
 
 
 typedef VarTabel* element_t;
-# 9 "../ATC/SuperStack/SuperStack.h" 2
-# 1 "../ATC/my_safety/my_safety.h" 1
+# 9 "./ATC/SuperStack/SuperStack.h" 2
+# 1 "./ATC/my_safety/my_safety.h" 1
 
 
 
@@ -23635,7 +23638,7 @@ typedef struct {
 
 
   typedef decltype(nullptr) nullptr_t;
-# 5 "../ATC/my_safety/my_safety.h" 2
+# 5 "./ATC/my_safety/my_safety.h" 2
 # 1 "/usr/include/inttypes.h" 1 3 4
 # 27 "/usr/include/inttypes.h" 3 4
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h" 1 3 4
@@ -23741,10 +23744,10 @@ extern uintmax_t wcstoumax (const wchar_t *__restrict __nptr,
      noexcept (true);
 
 }
-# 6 "../ATC/my_safety/my_safety.h" 2
+# 6 "./ATC/my_safety/my_safety.h" 2
 
 
-# 7 "../ATC/my_safety/my_safety.h"
+# 7 "./ATC/my_safety/my_safety.h"
 typedef long long CANARY;
 
 const int _CANARY_SIZE_ = sizeof(CANARY);
@@ -23758,12 +23761,12 @@ void* canary_realloc (void* ptr, size_t new_numbers_of_elements, size_t size_of_
 void canary_free (void* ptr);
 
 int generateHash(const void *start, const void *end);
-# 10 "../ATC/SuperStack/SuperStack.h" 2
+# 10 "./ATC/SuperStack/SuperStack.h" 2
 
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 13 "../ATC/SuperStack/SuperStack.h" 2
-# 21 "../ATC/SuperStack/SuperStack.h"
+# 13 "./ATC/SuperStack/SuperStack.h" 2
+# 21 "./ATC/SuperStack/SuperStack.h"
 const size_t _HEAP_MIN_CAPACITY_ = 10;
 const size_t _ELEMENT_T_SIZE_ = sizeof(element_t);
 
@@ -23827,13 +23830,13 @@ element_t SSpop (SuperStack* stk
 
 element_t SStop (SuperStack* stk
                     );
-# 101 "../ATC/SuperStack/SuperStack.h"
+# 101 "./ATC/SuperStack/SuperStack.h"
 void SSdump (SuperStack* negoden, unsigned flag_err
                          );
 
 unsigned MedComissionSS (SuperStack* prezyvnik);
-# 4 "../ATC/SuperStack/SuperStackDump.cpp" 2
-# 1 "../ATC/SuperStack/DebugFunctions.h" 1
+# 4 "./ATC/SuperStack/SuperStackDump.cpp" 2
+# 1 "./ATC/SuperStack/DebugFunctions.h" 1
 
 
 
@@ -24525,8 +24528,8 @@ extern int __uflow (FILE *);
 extern int __overflow (FILE *, int);
 # 902 "/usr/include/stdio.h" 3 4
 }
-# 5 "../ATC/SuperStack/DebugFunctions.h" 2
-# 1 "../ATC/SuperStack/SuperStackConfig.h" 1
+# 5 "./ATC/SuperStack/DebugFunctions.h" 2
+# 1 "./ATC/SuperStack/SuperStackConfig.h" 1
 
 
 
@@ -24535,9 +24538,9 @@ extern int __overflow (FILE *, int);
 
 
 
-# 8 "../ATC/SuperStack/SuperStackConfig.h"
+# 8 "./ATC/SuperStack/SuperStackConfig.h"
 typedef VarTabel* element_t;
-# 6 "../ATC/SuperStack/DebugFunctions.h" 2
+# 6 "./ATC/SuperStack/DebugFunctions.h" 2
 
 unsigned enum MedComissionSS_err
     {
@@ -24557,9 +24560,9 @@ unsigned enum MedComissionSS_err
 const int IntPoison = 0xBADDED;
 const char CharPoison = '\0';
 const double DoublePoison = 
-# 24 "../ATC/SuperStack/DebugFunctions.h" 3 4
+# 24 "./ATC/SuperStack/DebugFunctions.h" 3 4
                            (__builtin_nanf (""))
-# 24 "../ATC/SuperStack/DebugFunctions.h"
+# 24 "./ATC/SuperStack/DebugFunctions.h"
                               ;
 
 void fprintf_element_t(FILE* file, element_t* ptr);
@@ -24583,7 +24586,7 @@ void FillPoison (int* element);
 void FillPoison (char* element);
 void FillPoison (double* element);
 void FillPoison (VarTabel** element);
-# 5 "../ATC/SuperStack/SuperStackDump.cpp" 2
+# 5 "./ATC/SuperStack/SuperStackDump.cpp" 2
 
 
 
@@ -24609,5 +24612,5 @@ void SSdump(SuperStack* stk_ptr, unsigned flag_error, const char* func)
     {
     printf("Ss dump\n");
     return;
-# 141 "../ATC/SuperStack/SuperStackDump.cpp"
+# 141 "./ATC/SuperStack/SuperStackDump.cpp"
     }

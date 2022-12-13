@@ -1,11 +1,11 @@
-# 0 "../ATC/Logger/Logger.cpp"
+# 0 "./ATC/Logger/Logger.cpp"
 # 1 "/home/arsenyfucker/Cprojects/Lang/Translator//"
 # 0 "<built-in>"
 # 0 "<command-line>"
 # 1 "/usr/include/stdc-predef.h" 1 3 4
 # 0 "<command-line>" 2
-# 1 "../ATC/Logger/Logger.cpp"
-# 1 "../ATC/Logger/Logger.h" 1
+# 1 "./ATC/Logger/Logger.cpp"
+# 1 "./ATC/Logger/Logger.h" 1
        
 
 # 1 "/usr/include/c++/11/iostream" 1 3
@@ -43445,13 +43445,13 @@ namespace std __attribute__ ((__visibility__ ("default")))
 
 
 }
-# 4 "../ATC/Logger/Logger.h" 2
+# 4 "./ATC/Logger/Logger.h" 2
 
-# 1 "../ATC/Logger/LogConfig.h" 1
+# 1 "./ATC/Logger/LogConfig.h" 1
        
 
 
-# 3 "../ATC/Logger/LogConfig.h"
+# 3 "./ATC/Logger/LogConfig.h"
 const char STD_LOG_NAME[] = "./logs/stdlog.ars";
 
 
@@ -43468,8 +43468,8 @@ enum LoggingLevels
 
     RELEASE = 666,
     };
-# 6 "../ATC/Logger/Logger.h" 2
-# 1 "../ATC/Logger/tostring.h" 1
+# 6 "./ATC/Logger/Logger.h" 2
+# 1 "./ATC/Logger/tostring.h" 1
        
 
 char* tostring(short);
@@ -43483,7 +43483,7 @@ char* tostring(double);
 
 char* tostring(char);
 char* tostring(const char*);
-# 7 "../ATC/Logger/Logger.h" 2
+# 7 "./ATC/Logger/Logger.h" 2
 
 class Logger : public std::ostream
     {
@@ -43544,7 +43544,7 @@ Logger& operator<<(Logger& log_out, const Type& value)
          free(message);
          return log_out;
          }
-# 2 "../ATC/Logger/Logger.cpp" 2
+# 2 "./ATC/Logger/Logger.cpp" 2
 
 # 1 "/usr/include/c++/11/stdlib.h" 1 3
 # 36 "/usr/include/c++/11/stdlib.h" 3
@@ -43600,10 +43600,10 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 4 "../ATC/Logger/Logger.cpp" 2
+# 4 "./ATC/Logger/Logger.cpp" 2
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 1 3 4
-# 6 "../ATC/Logger/Logger.cpp" 2
+# 6 "./ATC/Logger/Logger.cpp" 2
 # 1 "/usr/include/string.h" 1 3 4
 # 26 "/usr/include/string.h" 3 4
 # 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
@@ -44020,7 +44020,7 @@ extern "C++" const char *basename (const char *__filename)
      noexcept (true) __asm ("basename") __attribute__ ((__nonnull__ (1)));
 # 539 "/usr/include/string.h" 3 4
 }
-# 7 "../ATC/Logger/Logger.cpp" 2
+# 7 "./ATC/Logger/Logger.cpp" 2
 
 # 1 "/usr/include/malloc.h" 1 3 4
 # 24 "/usr/include/malloc.h" 3 4
@@ -44127,7 +44127,7 @@ extern void malloc_stats (void) noexcept (true);
 extern int malloc_info (int __options, FILE *__fp) noexcept (true);
 
 }
-# 9 "../ATC/Logger/Logger.cpp" 2
+# 9 "./ATC/Logger/Logger.cpp" 2
 # 1 "/usr/include/assert.h" 1 3 4
 # 66 "/usr/include/assert.h" 3 4
 extern "C" {
@@ -44150,21 +44150,21 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 
 
 }
-# 10 "../ATC/Logger/Logger.cpp" 2
+# 10 "./ATC/Logger/Logger.cpp" 2
 
-# 1 "../ATC/Buffer/my_buffer.h" 1
+# 1 "./ATC/Buffer/my_buffer.h" 1
 
 
 
 # 1 "/usr/include/c++/11/stdlib.h" 1 3
-# 5 "../ATC/Buffer/my_buffer.h" 2
+# 5 "./ATC/Buffer/my_buffer.h" 2
 
 
 
 
 
 
-# 10 "../ATC/Buffer/my_buffer.h"
+# 10 "./ATC/Buffer/my_buffer.h"
 char* GetSrcFile (const char *file_direction);
 
 
@@ -44209,19 +44209,19 @@ int BufferGetDouble (Buffer* buf, double* val);
 int BufferPutDouble (Buffer* buf, double val);
 int BufferPutChar (Buffer* buf, char ch);
 int BufferPutString (Buffer* buf, const char* str);
-# 12 "../ATC/Logger/Logger.cpp" 2
-# 1 "../ATC/ConsoleColors/LinuxColors.h" 1
+# 12 "./ATC/Logger/Logger.cpp" 2
+# 1 "./ATC/ConsoleColors/LinuxColors.h" 1
        
-# 13 "../ATC/Logger/Logger.cpp" 2
+# 13 "./ATC/Logger/Logger.cpp" 2
 
 
 
 
 
 Logger::Logger (const char* log_name) : my_log(
-# 18 "../ATC/Logger/Logger.cpp" 3 4
+# 18 "./ATC/Logger/Logger.cpp" 3 4
                                               __null
-# 18 "../ATC/Logger/Logger.cpp"
+# 18 "./ATC/Logger/Logger.cpp"
                                                   ), level(0), indent(0), logname(log_name)
             {
             try
@@ -44232,19 +44232,19 @@ Logger::Logger (const char* log_name) : my_log(
                     throw "Ebat, lox, You can't even open logfile\n";
 
                setvbuf(my_log, 
-# 27 "../ATC/Logger/Logger.cpp" 3 4
+# 27 "./ATC/Logger/Logger.cpp" 3 4
                               __null
-# 27 "../ATC/Logger/Logger.cpp"
+# 27 "./ATC/Logger/Logger.cpp"
                                   , 
-# 27 "../ATC/Logger/Logger.cpp" 3 4
+# 27 "./ATC/Logger/Logger.cpp" 3 4
                                     2
-# 27 "../ATC/Logger/Logger.cpp"
+# 27 "./ATC/Logger/Logger.cpp"
                                           , 0);
 
                time_t NewYorkTime = time(
-# 29 "../ATC/Logger/Logger.cpp" 3 4
+# 29 "./ATC/Logger/Logger.cpp" 3 4
                                         __null
-# 29 "../ATC/Logger/Logger.cpp"
+# 29 "./ATC/Logger/Logger.cpp"
                                             );
                fprintf (my_log, "%s\n", ctime(&NewYorkTime));
                }
@@ -44264,9 +44264,9 @@ Logger::Logger (const char* log_name) : my_log(
 Logger:: ~Logger()
     {
     time_t NewYorkTime = time(
-# 47 "../ATC/Logger/Logger.cpp" 3 4
+# 47 "./ATC/Logger/Logger.cpp" 3 4
                              __null
-# 47 "../ATC/Logger/Logger.cpp"
+# 47 "./ATC/Logger/Logger.cpp"
                                  );
 
     log("*********************************************************************\n");
@@ -44275,9 +44275,9 @@ Logger:: ~Logger()
 
     fclose(my_log);
     my_log = 
-# 54 "../ATC/Logger/Logger.cpp" 3 4
+# 54 "./ATC/Logger/Logger.cpp" 3 4
             __null
-# 54 "../ATC/Logger/Logger.cpp"
+# 54 "./ATC/Logger/Logger.cpp"
                 ;
 
     printf ("\033[96m" "Log closed\n" "\033[0m");
@@ -44319,17 +44319,17 @@ void Logger::log (const char* format, ...)
 
     va_list ptr;
     
-# 94 "../ATC/Logger/Logger.cpp" 3 4
+# 94 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_start(
-# 94 "../ATC/Logger/Logger.cpp"
+# 94 "./ATC/Logger/Logger.cpp"
    ptr
-# 94 "../ATC/Logger/Logger.cpp" 3 4
+# 94 "./ATC/Logger/Logger.cpp" 3 4
    ,
-# 94 "../ATC/Logger/Logger.cpp"
+# 94 "./ATC/Logger/Logger.cpp"
    format
-# 94 "../ATC/Logger/Logger.cpp" 3 4
+# 94 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 94 "../ATC/Logger/Logger.cpp"
+# 94 "./ATC/Logger/Logger.cpp"
                         ;
 
     fsetindent (my_log, indent);
@@ -44338,13 +44338,13 @@ void Logger::log (const char* format, ...)
     ;
 
     
-# 101 "../ATC/Logger/Logger.cpp" 3 4
+# 101 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_end(
-# 101 "../ATC/Logger/Logger.cpp"
+# 101 "./ATC/Logger/Logger.cpp"
    ptr
-# 101 "../ATC/Logger/Logger.cpp" 3 4
+# 101 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 101 "../ATC/Logger/Logger.cpp"
+# 101 "./ATC/Logger/Logger.cpp"
               ;
 
     return;
@@ -44354,17 +44354,17 @@ void Logger::log_nolvl (const char* format, ...)
     {
     va_list ptr;
     
-# 109 "../ATC/Logger/Logger.cpp" 3 4
+# 109 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_start(
-# 109 "../ATC/Logger/Logger.cpp"
+# 109 "./ATC/Logger/Logger.cpp"
    ptr
-# 109 "../ATC/Logger/Logger.cpp" 3 4
+# 109 "./ATC/Logger/Logger.cpp" 3 4
    ,
-# 109 "../ATC/Logger/Logger.cpp"
+# 109 "./ATC/Logger/Logger.cpp"
    format
-# 109 "../ATC/Logger/Logger.cpp" 3 4
+# 109 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 109 "../ATC/Logger/Logger.cpp"
+# 109 "./ATC/Logger/Logger.cpp"
                         ;
 
     fsetindent (my_log, indent);
@@ -44373,13 +44373,13 @@ void Logger::log_nolvl (const char* format, ...)
     ;
 
     
-# 116 "../ATC/Logger/Logger.cpp" 3 4
+# 116 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_end(
-# 116 "../ATC/Logger/Logger.cpp"
+# 116 "./ATC/Logger/Logger.cpp"
    ptr
-# 116 "../ATC/Logger/Logger.cpp" 3 4
+# 116 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 116 "../ATC/Logger/Logger.cpp"
+# 116 "./ATC/Logger/Logger.cpp"
               ;
 
     return;
@@ -44392,17 +44392,17 @@ void Logger::log_no_indent (const char* format, ...)
 
     va_list ptr;
     
-# 127 "../ATC/Logger/Logger.cpp" 3 4
+# 127 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_start(
-# 127 "../ATC/Logger/Logger.cpp"
+# 127 "./ATC/Logger/Logger.cpp"
    ptr
-# 127 "../ATC/Logger/Logger.cpp" 3 4
+# 127 "./ATC/Logger/Logger.cpp" 3 4
    ,
-# 127 "../ATC/Logger/Logger.cpp"
+# 127 "./ATC/Logger/Logger.cpp"
    format
-# 127 "../ATC/Logger/Logger.cpp" 3 4
+# 127 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 127 "../ATC/Logger/Logger.cpp"
+# 127 "./ATC/Logger/Logger.cpp"
                         ;
 
 
@@ -44411,13 +44411,13 @@ void Logger::log_no_indent (const char* format, ...)
     ;
 
     
-# 134 "../ATC/Logger/Logger.cpp" 3 4
+# 134 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_end(
-# 134 "../ATC/Logger/Logger.cpp"
+# 134 "./ATC/Logger/Logger.cpp"
    ptr
-# 134 "../ATC/Logger/Logger.cpp" 3 4
+# 134 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 134 "../ATC/Logger/Logger.cpp"
+# 134 "./ATC/Logger/Logger.cpp"
               ;
 
     return;
@@ -44430,52 +44430,52 @@ void Logger::log_dup_console(const char* format, ...)
     va_list for_console;
 
     
-# 145 "../ATC/Logger/Logger.cpp" 3 4
+# 145 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_start(
-# 145 "../ATC/Logger/Logger.cpp"
+# 145 "./ATC/Logger/Logger.cpp"
    for_log
-# 145 "../ATC/Logger/Logger.cpp" 3 4
+# 145 "./ATC/Logger/Logger.cpp" 3 4
    ,
-# 145 "../ATC/Logger/Logger.cpp"
+# 145 "./ATC/Logger/Logger.cpp"
    format
-# 145 "../ATC/Logger/Logger.cpp" 3 4
+# 145 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 145 "../ATC/Logger/Logger.cpp"
+# 145 "./ATC/Logger/Logger.cpp"
                                 ;
     
-# 146 "../ATC/Logger/Logger.cpp" 3 4
+# 146 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_start(
-# 146 "../ATC/Logger/Logger.cpp"
+# 146 "./ATC/Logger/Logger.cpp"
    for_console
-# 146 "../ATC/Logger/Logger.cpp" 3 4
+# 146 "./ATC/Logger/Logger.cpp" 3 4
    ,
-# 146 "../ATC/Logger/Logger.cpp"
+# 146 "./ATC/Logger/Logger.cpp"
    format
-# 146 "../ATC/Logger/Logger.cpp" 3 4
+# 146 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 146 "../ATC/Logger/Logger.cpp"
+# 146 "./ATC/Logger/Logger.cpp"
                                 ;
 
     vfprintf (my_log, format, for_log);
      vprintf ( format, for_console);
 
     
-# 151 "../ATC/Logger/Logger.cpp" 3 4
+# 151 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_end(
-# 151 "../ATC/Logger/Logger.cpp"
+# 151 "./ATC/Logger/Logger.cpp"
    for_log
-# 151 "../ATC/Logger/Logger.cpp" 3 4
+# 151 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 151 "../ATC/Logger/Logger.cpp"
+# 151 "./ATC/Logger/Logger.cpp"
                   ;
     
-# 152 "../ATC/Logger/Logger.cpp" 3 4
+# 152 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_end(
-# 152 "../ATC/Logger/Logger.cpp"
+# 152 "./ATC/Logger/Logger.cpp"
    for_console
-# 152 "../ATC/Logger/Logger.cpp" 3 4
+# 152 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 152 "../ATC/Logger/Logger.cpp"
+# 152 "./ATC/Logger/Logger.cpp"
                       ;
 
     return;
@@ -44484,17 +44484,17 @@ void Logger::log_dup_console(const char* format, ...)
 void Logger::logmsg (char* message)
     {
     
-# 159 "../ATC/Logger/Logger.cpp" 3 4
+# 159 "./ATC/Logger/Logger.cpp" 3 4
    (static_cast <bool> (
-# 159 "../ATC/Logger/Logger.cpp"
+# 159 "./ATC/Logger/Logger.cpp"
    message
-# 159 "../ATC/Logger/Logger.cpp" 3 4
+# 159 "./ATC/Logger/Logger.cpp" 3 4
    ) ? void (0) : __assert_fail (
-# 159 "../ATC/Logger/Logger.cpp"
+# 159 "./ATC/Logger/Logger.cpp"
    "message"
-# 159 "../ATC/Logger/Logger.cpp" 3 4
-   , "../ATC/Logger/Logger.cpp", 159, __extension__ __PRETTY_FUNCTION__))
-# 159 "../ATC/Logger/Logger.cpp"
+# 159 "./ATC/Logger/Logger.cpp" 3 4
+   , "./ATC/Logger/Logger.cpp", 159, __extension__ __PRETTY_FUNCTION__))
+# 159 "./ATC/Logger/Logger.cpp"
                   ;
 
     fprintf (my_log, "%s\n", message);
@@ -44544,9 +44544,9 @@ void* Logger::RECAL_LOG (void* ptr, size_t size, const char* file, const char* f
         Logger::getInstance().log_nolvl("Null pointer from RECALLOC from: %s:%d, at %s:%d\n", func, line, file, line);
 
         return 
-# 207 "../ATC/Logger/Logger.cpp" 3 4
+# 207 "./ATC/Logger/Logger.cpp" 3 4
               __null
-# 207 "../ATC/Logger/Logger.cpp"
+# 207 "./ATC/Logger/Logger.cpp"
                   ;
         }
 
@@ -44556,9 +44556,9 @@ void* Logger::RECAL_LOG (void* ptr, size_t size, const char* file, const char* f
         Logger::getInstance().log_nolvl("Null bloc size at %p, from %s:%d, at %s:%d\n", ptr, func, line, file, line);
 
         return 
-# 215 "../ATC/Logger/Logger.cpp" 3 4
+# 215 "./ATC/Logger/Logger.cpp" 3 4
               __null
-# 215 "../ATC/Logger/Logger.cpp"
+# 215 "./ATC/Logger/Logger.cpp"
                   ;
         }
 
@@ -44591,17 +44591,17 @@ int Logger::LogMsgRet(int return_value, const char* format, ... )
 
     va_list ptr;
     
-# 246 "../ATC/Logger/Logger.cpp" 3 4
+# 246 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_start(
-# 246 "../ATC/Logger/Logger.cpp"
+# 246 "./ATC/Logger/Logger.cpp"
    ptr
-# 246 "../ATC/Logger/Logger.cpp" 3 4
+# 246 "./ATC/Logger/Logger.cpp" 3 4
    ,
-# 246 "../ATC/Logger/Logger.cpp"
+# 246 "./ATC/Logger/Logger.cpp"
    format
-# 246 "../ATC/Logger/Logger.cpp" 3 4
+# 246 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 246 "../ATC/Logger/Logger.cpp"
+# 246 "./ATC/Logger/Logger.cpp"
                         ;
 
     fprintf (my_log, "\n");
@@ -44615,13 +44615,13 @@ int Logger::LogMsgRet(int return_value, const char* format, ... )
     ;
 
     
-# 258 "../ATC/Logger/Logger.cpp" 3 4
+# 258 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_end(
-# 258 "../ATC/Logger/Logger.cpp"
+# 258 "./ATC/Logger/Logger.cpp"
    ptr
-# 258 "../ATC/Logger/Logger.cpp" 3 4
+# 258 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 258 "../ATC/Logger/Logger.cpp"
+# 258 "./ATC/Logger/Logger.cpp"
               ;
 
     return return_value;
@@ -44631,17 +44631,17 @@ void Logger::LogMsgNoRet(const char* format, ... )
     {
     va_list ptr;
     
-# 266 "../ATC/Logger/Logger.cpp" 3 4
+# 266 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_start(
-# 266 "../ATC/Logger/Logger.cpp"
+# 266 "./ATC/Logger/Logger.cpp"
    ptr
-# 266 "../ATC/Logger/Logger.cpp" 3 4
+# 266 "./ATC/Logger/Logger.cpp" 3 4
    ,
-# 266 "../ATC/Logger/Logger.cpp"
+# 266 "./ATC/Logger/Logger.cpp"
    format
-# 266 "../ATC/Logger/Logger.cpp" 3 4
+# 266 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 266 "../ATC/Logger/Logger.cpp"
+# 266 "./ATC/Logger/Logger.cpp"
                         ;
 
     fprintf (my_log, "\n");
@@ -44654,13 +44654,13 @@ void Logger::LogMsgNoRet(const char* format, ... )
     ;
 
     
-# 277 "../ATC/Logger/Logger.cpp" 3 4
+# 277 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_end(
-# 277 "../ATC/Logger/Logger.cpp"
+# 277 "./ATC/Logger/Logger.cpp"
    ptr
-# 277 "../ATC/Logger/Logger.cpp" 3 4
+# 277 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 277 "../ATC/Logger/Logger.cpp"
+# 277 "./ATC/Logger/Logger.cpp"
               ;
 
     return;
@@ -44669,32 +44669,32 @@ void Logger::LogMsgNoRet(const char* format, ... )
 std::nullptr_t Logger::LogMsgNullRet(const char* format, ...)
     {
     
-# 284 "../ATC/Logger/Logger.cpp" 3 4
+# 284 "./ATC/Logger/Logger.cpp" 3 4
    (static_cast <bool> (
-# 284 "../ATC/Logger/Logger.cpp"
+# 284 "./ATC/Logger/Logger.cpp"
    format
-# 284 "../ATC/Logger/Logger.cpp" 3 4
+# 284 "./ATC/Logger/Logger.cpp" 3 4
    ) ? void (0) : __assert_fail (
-# 284 "../ATC/Logger/Logger.cpp"
+# 284 "./ATC/Logger/Logger.cpp"
    "format"
-# 284 "../ATC/Logger/Logger.cpp" 3 4
-   , "../ATC/Logger/Logger.cpp", 284, __extension__ __PRETTY_FUNCTION__))
-# 284 "../ATC/Logger/Logger.cpp"
+# 284 "./ATC/Logger/Logger.cpp" 3 4
+   , "./ATC/Logger/Logger.cpp", 284, __extension__ __PRETTY_FUNCTION__))
+# 284 "./ATC/Logger/Logger.cpp"
                  ;
 
     va_list ptr;
     
-# 287 "../ATC/Logger/Logger.cpp" 3 4
+# 287 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_start(
-# 287 "../ATC/Logger/Logger.cpp"
+# 287 "./ATC/Logger/Logger.cpp"
    ptr
-# 287 "../ATC/Logger/Logger.cpp" 3 4
+# 287 "./ATC/Logger/Logger.cpp" 3 4
    ,
-# 287 "../ATC/Logger/Logger.cpp"
+# 287 "./ATC/Logger/Logger.cpp"
    format
-# 287 "../ATC/Logger/Logger.cpp" 3 4
+# 287 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 287 "../ATC/Logger/Logger.cpp"
+# 287 "./ATC/Logger/Logger.cpp"
                         ;
 
     fprintf (my_log, "\n");
@@ -44706,13 +44706,13 @@ std::nullptr_t Logger::LogMsgNullRet(const char* format, ...)
 
     ;
     
-# 297 "../ATC/Logger/Logger.cpp" 3 4
+# 297 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_end(
-# 297 "../ATC/Logger/Logger.cpp"
+# 297 "./ATC/Logger/Logger.cpp"
    ptr
-# 297 "../ATC/Logger/Logger.cpp" 3 4
+# 297 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 297 "../ATC/Logger/Logger.cpp"
+# 297 "./ATC/Logger/Logger.cpp"
               ;
 
     return nullptr;
@@ -44723,17 +44723,17 @@ void Logger::logerror (int error_code, const char* format, ...)
     {
     va_list ptr;
     
-# 306 "../ATC/Logger/Logger.cpp" 3 4
+# 306 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_start(
-# 306 "../ATC/Logger/Logger.cpp"
+# 306 "./ATC/Logger/Logger.cpp"
    ptr
-# 306 "../ATC/Logger/Logger.cpp" 3 4
+# 306 "./ATC/Logger/Logger.cpp" 3 4
    ,
-# 306 "../ATC/Logger/Logger.cpp"
+# 306 "./ATC/Logger/Logger.cpp"
    format
-# 306 "../ATC/Logger/Logger.cpp" 3 4
+# 306 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 306 "../ATC/Logger/Logger.cpp"
+# 306 "./ATC/Logger/Logger.cpp"
                         ;
 
     vfprintf (my_log, format, ptr);
@@ -44743,13 +44743,13 @@ void Logger::logerror (int error_code, const char* format, ...)
     ;
 
     
-# 314 "../ATC/Logger/Logger.cpp" 3 4
+# 314 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_end(
-# 314 "../ATC/Logger/Logger.cpp"
+# 314 "./ATC/Logger/Logger.cpp"
    ptr
-# 314 "../ATC/Logger/Logger.cpp" 3 4
+# 314 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 314 "../ATC/Logger/Logger.cpp"
+# 314 "./ATC/Logger/Logger.cpp"
               ;
 
     return;
@@ -44759,40 +44759,40 @@ void Logger::logerrno (const char* format, ...)
     {
     va_list ptr;
     
-# 322 "../ATC/Logger/Logger.cpp" 3 4
+# 322 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_start(
-# 322 "../ATC/Logger/Logger.cpp"
+# 322 "./ATC/Logger/Logger.cpp"
    ptr
-# 322 "../ATC/Logger/Logger.cpp" 3 4
+# 322 "./ATC/Logger/Logger.cpp" 3 4
    ,
-# 322 "../ATC/Logger/Logger.cpp"
+# 322 "./ATC/Logger/Logger.cpp"
    format
-# 322 "../ATC/Logger/Logger.cpp" 3 4
+# 322 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 322 "../ATC/Logger/Logger.cpp"
+# 322 "./ATC/Logger/Logger.cpp"
                         ;
 
     vfprintf (my_log, format, ptr);
 
     log("\n\terror: (code %d) %s\n\n", 
-# 326 "../ATC/Logger/Logger.cpp" 3 4
+# 326 "./ATC/Logger/Logger.cpp" 3 4
                                       (*__errno_location ())
-# 326 "../ATC/Logger/Logger.cpp"
+# 326 "./ATC/Logger/Logger.cpp"
                                            , strerror(
-# 326 "../ATC/Logger/Logger.cpp" 3 4
+# 326 "./ATC/Logger/Logger.cpp" 3 4
                                                       (*__errno_location ())
-# 326 "../ATC/Logger/Logger.cpp"
+# 326 "./ATC/Logger/Logger.cpp"
                                                            ));
 
     ;
     
-# 329 "../ATC/Logger/Logger.cpp" 3 4
+# 329 "./ATC/Logger/Logger.cpp" 3 4
    __builtin_va_end(
-# 329 "../ATC/Logger/Logger.cpp"
+# 329 "./ATC/Logger/Logger.cpp"
    ptr
-# 329 "../ATC/Logger/Logger.cpp" 3 4
+# 329 "./ATC/Logger/Logger.cpp" 3 4
    )
-# 329 "../ATC/Logger/Logger.cpp"
+# 329 "./ATC/Logger/Logger.cpp"
               ;
 
     return;
@@ -44801,36 +44801,36 @@ void Logger::logerrno (const char* format, ...)
 void Logger::checkerrno (const char* format, ...)
     {
     if (
-# 336 "../ATC/Logger/Logger.cpp" 3 4
+# 336 "./ATC/Logger/Logger.cpp" 3 4
        (*__errno_location ())
-# 336 "../ATC/Logger/Logger.cpp"
+# 336 "./ATC/Logger/Logger.cpp"
             )
         {
         va_list ptr;
         
-# 339 "../ATC/Logger/Logger.cpp" 3 4
+# 339 "./ATC/Logger/Logger.cpp" 3 4
        __builtin_va_start(
-# 339 "../ATC/Logger/Logger.cpp"
+# 339 "./ATC/Logger/Logger.cpp"
        ptr
-# 339 "../ATC/Logger/Logger.cpp" 3 4
+# 339 "./ATC/Logger/Logger.cpp" 3 4
        ,
-# 339 "../ATC/Logger/Logger.cpp"
+# 339 "./ATC/Logger/Logger.cpp"
        format
-# 339 "../ATC/Logger/Logger.cpp" 3 4
+# 339 "./ATC/Logger/Logger.cpp" 3 4
        )
-# 339 "../ATC/Logger/Logger.cpp"
+# 339 "./ATC/Logger/Logger.cpp"
                             ;
 
         vfprintf (my_log, format, ptr);
 
         log("\n\terror: (code %d) %s\n\n", 
-# 343 "../ATC/Logger/Logger.cpp" 3 4
+# 343 "./ATC/Logger/Logger.cpp" 3 4
                                           (*__errno_location ())
-# 343 "../ATC/Logger/Logger.cpp"
+# 343 "./ATC/Logger/Logger.cpp"
                                                , strerror(
-# 343 "../ATC/Logger/Logger.cpp" 3 4
+# 343 "./ATC/Logger/Logger.cpp" 3 4
                                                           (*__errno_location ())
-# 343 "../ATC/Logger/Logger.cpp"
+# 343 "./ATC/Logger/Logger.cpp"
                                                                ));
         }
     else

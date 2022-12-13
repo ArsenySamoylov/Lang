@@ -1,7 +1,7 @@
 	.file	"SomeStuff.cpp"
 	.text
 .Ltext0:
-	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/RandomStuff/SomeStuff.cpp"
+	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "./ATC/RandomStuff/SomeStuff.cpp"
 	.section	.rodata
 	.align 4
 	.type	_ZL11INDENT_SIZE, @object
@@ -15,7 +15,7 @@ _ZL11INDENT_SIZE:
 	.type	_Z16ShowCharInBinaryc, @function
 _Z16ShowCharInBinaryc:
 .LFB13:
-	.file 1 "../ATC/RandomStuff/SomeStuff.cpp"
+	.file 1 "./ATC/RandomStuff/SomeStuff.cpp"
 	.loc 1 6 5
 	.cfi_startproc
 	endbr64
@@ -174,7 +174,7 @@ _Z6printlPKcc:
 	.file 5 "/usr/include/c++/11/bits/std_abs.h"
 	.file 6 "/usr/include/c++/11/stdlib.h"
 	.file 7 "/usr/include/stdio.h"
-	.file 8 "../ATC/Buffer/my_buffer.h"
+	.file 8 "./ATC/Buffer/my_buffer.h"
 	.file 9 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
@@ -2026,10 +2026,10 @@ _Z6printlPKcc:
 .LASF27:
 	.string	"_ZSt3absf"
 	.section	.debug_line_str,"MS",@progbits,1
-.LASF0:
-	.string	"../ATC/RandomStuff/SomeStuff.cpp"
 .LASF1:
 	.string	"/home/arsenyfucker/Cprojects/Lang/Translator"
+.LASF0:
+	.string	"./ATC/RandomStuff/SomeStuff.cpp"
 	.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"
 	.section	.note.GNU-stack,"",@progbits
 	.section	.note.gnu.property,"a"

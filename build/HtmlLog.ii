@@ -1,11 +1,11 @@
-# 0 "../ATC/HtmlLog/HtmlLog.cpp"
+# 0 "./ATC/HtmlLog/HtmlLog.cpp"
 # 1 "/home/arsenyfucker/Cprojects/Lang/Translator//"
 # 0 "<built-in>"
 # 0 "<command-line>"
 # 1 "/usr/include/stdc-predef.h" 1 3 4
 # 0 "<command-line>" 2
-# 1 "../ATC/HtmlLog/HtmlLog.cpp"
-# 1 "../ATC/HtmlLog/HtmlLog.h" 1
+# 1 "./ATC/HtmlLog/HtmlLog.cpp"
+# 1 "./ATC/HtmlLog/HtmlLog.h" 1
        
 
 # 1 "/usr/include/c++/11/stdlib.h" 1 3
@@ -1818,7 +1818,7 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 4 "../ATC/HtmlLog/HtmlLog.h" 2
+# 4 "./ATC/HtmlLog/HtmlLog.h" 2
 # 1 "/usr/include/stdio.h" 1 3 4
 # 27 "/usr/include/stdio.h" 3 4
 # 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
@@ -2505,43 +2505,43 @@ extern int __uflow (FILE *);
 extern int __overflow (FILE *, int);
 # 902 "/usr/include/stdio.h" 3 4
 }
-# 5 "../ATC/HtmlLog/HtmlLog.h" 2
+# 5 "./ATC/HtmlLog/HtmlLog.h" 2
 
 
-# 6 "../ATC/HtmlLog/HtmlLog.h"
+# 6 "./ATC/HtmlLog/HtmlLog.h"
 void CloseHtmlLog ();
 FILE* OpenHtmlLog ();
 
 void hlog (const char* format, ...);
 
 int AddImage (const char* path);
-# 2 "../ATC/HtmlLog/HtmlLog.cpp" 2
+# 2 "./ATC/HtmlLog/HtmlLog.cpp" 2
 
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 1 3 4
-# 5 "../ATC/HtmlLog/HtmlLog.cpp" 2
+# 5 "./ATC/HtmlLog/HtmlLog.cpp" 2
 
 static FILE* HtmlLog = 
-# 6 "../ATC/HtmlLog/HtmlLog.cpp" 3 4
+# 6 "./ATC/HtmlLog/HtmlLog.cpp" 3 4
                       __null
-# 6 "../ATC/HtmlLog/HtmlLog.cpp"
+# 6 "./ATC/HtmlLog/HtmlLog.cpp"
                           ;
 
 int AddImage (const char* path)
     {
     if (!path) return 
-# 10 "../ATC/HtmlLog/HtmlLog.cpp" 3 4
+# 10 "./ATC/HtmlLog/HtmlLog.cpp" 3 4
                      1
-# 10 "../ATC/HtmlLog/HtmlLog.cpp"
+# 10 "./ATC/HtmlLog/HtmlLog.cpp"
                                  ;
 
     hlog("\t<img src = \"%s\"\n", path);
     hlog("<hr>\n<hr>\n");
 
     return 
-# 15 "../ATC/HtmlLog/HtmlLog.cpp" 3 4
+# 15 "./ATC/HtmlLog/HtmlLog.cpp" 3 4
           0
-# 15 "../ATC/HtmlLog/HtmlLog.cpp"
+# 15 "./ATC/HtmlLog/HtmlLog.cpp"
                       ;
     }
 
@@ -2550,17 +2550,17 @@ void hlog (const char* format, ...)
     {
     va_list ptr;
     
-# 22 "../ATC/HtmlLog/HtmlLog.cpp" 3 4
+# 22 "./ATC/HtmlLog/HtmlLog.cpp" 3 4
    __builtin_va_start(
-# 22 "../ATC/HtmlLog/HtmlLog.cpp"
+# 22 "./ATC/HtmlLog/HtmlLog.cpp"
    ptr
-# 22 "../ATC/HtmlLog/HtmlLog.cpp" 3 4
+# 22 "./ATC/HtmlLog/HtmlLog.cpp" 3 4
    ,
-# 22 "../ATC/HtmlLog/HtmlLog.cpp"
+# 22 "./ATC/HtmlLog/HtmlLog.cpp"
    format
-# 22 "../ATC/HtmlLog/HtmlLog.cpp" 3 4
+# 22 "./ATC/HtmlLog/HtmlLog.cpp" 3 4
    )
-# 22 "../ATC/HtmlLog/HtmlLog.cpp"
+# 22 "./ATC/HtmlLog/HtmlLog.cpp"
                         ;
 
     vfprintf (HtmlLog, format, ptr);
@@ -2572,13 +2572,13 @@ FILE* OpenHtmlLog()
     {
     HtmlLog = fopen ("2HtmlMaster.html", "wb");
     setvbuf (HtmlLog, 
-# 32 "../ATC/HtmlLog/HtmlLog.cpp" 3 4
+# 32 "./ATC/HtmlLog/HtmlLog.cpp" 3 4
                      __null
-# 32 "../ATC/HtmlLog/HtmlLog.cpp"
+# 32 "./ATC/HtmlLog/HtmlLog.cpp"
                          , 
-# 32 "../ATC/HtmlLog/HtmlLog.cpp" 3 4
+# 32 "./ATC/HtmlLog/HtmlLog.cpp" 3 4
                            2
-# 32 "../ATC/HtmlLog/HtmlLog.cpp"
+# 32 "./ATC/HtmlLog/HtmlLog.cpp"
                                  , 0);
 
     fprintf (HtmlLog, "<pre>\n");

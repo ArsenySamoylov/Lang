@@ -13,6 +13,6 @@ struct Program
     const char** string_arr;
     int number_of_strings;
     
-    //  VarTabel global_vars;
-    // FuncTabel func_tabel;
+    VarTabel global_vars;
+    FuncTabel func_tabel;
     };

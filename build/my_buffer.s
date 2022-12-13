@@ -1,7 +1,7 @@
 	.file	"my_buffer.cpp"
 	.text
 .Ltext0:
-	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/Buffer/my_buffer.cpp"
+	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "./ATC/Buffer/my_buffer.cpp"
 	.section	.rodata
 	.align 4
 	.type	_ZL11INDENT_SIZE, @object
@@ -25,13 +25,13 @@ _ZL6CRINGE:
 .LC1:
 	.string	"GetSrcFile"
 .LC2:
-	.string	"../ATC/Buffer/my_buffer.cpp"
+	.string	"./ATC/Buffer/my_buffer.cpp"
 	.text
 	.globl	_Z10GetSrcFilePKc
 	.type	_Z10GetSrcFilePKc, @function
 _Z10GetSrcFilePKc:
 .LFB2270:
-	.file 1 "../ATC/Buffer/my_buffer.cpp"
+	.file 1 "./ATC/Buffer/my_buffer.cpp"
 	.loc 1 11 5
 	.cfi_startproc
 	endbr64
@@ -1441,7 +1441,7 @@ _Z10BufferCtorP6BufferPKc:
 	.loc 1 294 164 discriminator 6
 	addq	$16, %rsp
 	movl	%eax, %ebx
-	.loc 1 294 355 is_stmt 1 discriminator 6
+	.loc 1 294 353 is_stmt 1 discriminator 6
 	jmp	.L93
 .L92:
 	.loc 1 296 17
@@ -1524,22 +1524,24 @@ _Z10BufferCtorP6BufferPKc:
 	.section	.rodata
 .LC18:
 	.string	"buf"
+	.align 8
 .LC19:
-	.string	"Condition (%s) is false\n"
+	.string	"ASSERTLOG:: Condition (%s) is false\n"
 	.align 8
 .LC20:
-	.string	"Condition\033[91m (%s) is false\n\033[0m"
-	.align 8
+	.string	"\033[93mASSERTLOG:: \033[0mCondition\033[95m (%s) \033[0mis \033[91mfalse\n\033[0m"
 .LC21:
-	.string	"\t(function: %s, file: %s, line: %d)\n"
-	.align 8
+	.string	"int BufferCtor(Buffer*, int)"
 .LC22:
-	.string	"It matches to error: (code %d) %s\n\n"
+	.string	"\t%s:%d, function: %s\n"
 	.align 8
 .LC23:
-	.string	"Shutting down the system (%s:%d)"
+	.string	"It matches to error: (code %d) %s\n\n"
+	.align 8
 .LC24:
-	.string	"powerof"
+	.string	"Shutting down the system (%s:%d)"
+.LC25:
+	.string	"echo LOX\n"
 	.text
 	.globl	_Z10BufferCtorP6Bufferi
 	.type	_Z10BufferCtorP6Bufferi, @function
@@ -1583,45 +1585,44 @@ _Z10BufferCtorP6Bufferi:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 305 93 discriminator 3
+	.loc 1 305 105 discriminator 3
 	leaq	.LC18(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 305 174 discriminator 4
+	.loc 1 305 249 discriminator 4
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 305 180 discriminator 4
-	movl	$305, %r8d
-	leaq	.LC2(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC21(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 305 276 discriminator 6
+	.loc 1 305 255 discriminator 4
+	leaq	.LC21(%rip), %r8
 	movl	$305, %ecx
 	leaq	.LC2(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC13(%rip), %rax
+	leaq	.LC22(%rip), %rax
 	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 1 305 346 discriminator 6
 	leaq	.LC21(%rip), %rax
+	movq	%rax, %rcx
+	movl	$305, %edx
+	leaq	.LC2(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC22(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 305 385 discriminator 7
+	.loc 1 305 450 discriminator 7
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 305 391 discriminator 7
+	.loc 1 305 456 discriminator 7
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
 	movl	$14, %edx
-	leaq	.LC22(%rip), %rax
+	leaq	.LC23(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rbx, %rdi
 	movl	$0, %eax
@@ -1633,21 +1634,21 @@ _Z10BufferCtorP6Bufferi:
 	movl	$305, %ecx
 	leaq	.LC13(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC23(%rip), %rax
+	leaq	.LC24(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
 	.loc 1 305 92 discriminator 11
-	leaq	.LC24(%rip), %rax
+	leaq	.LC25(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 305 131 discriminator 12
+	.loc 1 305 134 discriminator 12
 	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 305 153 discriminator 12
+	.loc 1 305 156 discriminator 12
 	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 305 153 is_stmt 0 discriminator 13
+	.loc 1 305 156 is_stmt 0 discriminator 13
 	movq	%rax, %rbx
-	.loc 1 305 166 is_stmt 1 discriminator 13
+	.loc 1 305 169 is_stmt 1 discriminator 13
 	movl	$305, %r9d
 	leaq	.LC13(%rip), %r8
 	movl	$305, %ecx
@@ -1658,7 +1659,7 @@ _Z10BufferCtorP6Bufferi:
 	movl	$-1, %edi
 	movl	$0, %eax
 	call	_Z6MsgRetiPKcz@PLT
-	.loc 1 305 166 is_stmt 0 discriminator 14
+	.loc 1 305 169 is_stmt 0 discriminator 14
 	movl	%eax, %esi
 	subq	$8, %rsp
 	pushq	$305
@@ -1672,10 +1673,10 @@ _Z10BufferCtorP6Bufferi:
 	movl	$0, %eax
 	.cfi_escape 0x2e,0x10
 	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
-	.loc 1 305 166 discriminator 15
+	.loc 1 305 169 discriminator 15
 	addq	$16, %rsp
 	movl	%eax, %ebx
-	.loc 1 305 357 is_stmt 1 discriminator 15
+	.loc 1 305 358 is_stmt 1 discriminator 15
 	jmp	.L100
 .L99:
 	.cfi_escape 0x2e,0
@@ -1735,7 +1736,7 @@ _Z10BufferCtorP6Bufferi:
 	.loc 1 308 84 discriminator 4
 	addq	$16, %rsp
 	movl	%eax, %ebx
-	.loc 1 308 275 is_stmt 1 discriminator 4
+	.loc 1 308 273 is_stmt 1 discriminator 4
 	jmp	.L100
 .L101:
 	.loc 1 310 29
@@ -1813,7 +1814,7 @@ _Z10BufferCtorP6Bufferi:
 	.text
 	.size	_Z10BufferCtorP6Bufferi, .-_Z10BufferCtorP6Bufferi
 	.section	.rodata
-.LC25:
+.LC26:
 	.string	"void BufferUngetCh(Buffer*)"
 	.text
 	.globl	_Z13BufferUngetChP6Buffer
@@ -1834,7 +1835,7 @@ _Z13BufferUngetChP6Buffer:
 	cmpq	$0, -8(%rbp)
 	jne	.L107
 	.loc 1 317 33 discriminator 1
-	leaq	.LC25(%rip), %rax
+	leaq	.LC26(%rip), %rax
 	movq	%rax, %rcx
 	movl	$317, %edx
 	leaq	.LC2(%rip), %rax
@@ -1871,7 +1872,7 @@ _Z13BufferUngetChP6Buffer:
 .LFE2286:
 	.size	_Z13BufferUngetChP6Buffer, .-_Z13BufferUngetChP6Buffer
 	.section	.rodata
-.LC26:
+.LC27:
 	.string	"int BufferGetCh(Buffer*)"
 	.text
 	.globl	_Z11BufferGetChP6Buffer
@@ -1892,7 +1893,7 @@ _Z11BufferGetChP6Buffer:
 	cmpq	$0, -24(%rbp)
 	jne	.L112
 	.loc 1 327 33 discriminator 1
-	leaq	.LC26(%rip), %rax
+	leaq	.LC27(%rip), %rax
 	movq	%rax, %rcx
 	movl	$327, %edx
 	leaq	.LC2(%rip), %rax
@@ -1942,7 +1943,7 @@ _Z11BufferGetChP6Buffer:
 .LFE2287:
 	.size	_Z11BufferGetChP6Buffer, .-_Z11BufferGetChP6Buffer
 	.section	.rodata
-.LC27:
+.LC28:
 	.string	"int BufferLook(Buffer*)"
 	.text
 	.globl	_Z10BufferLookP6Buffer
@@ -1963,7 +1964,7 @@ _Z10BufferLookP6Buffer:
 	cmpq	$0, -24(%rbp)
 	jne	.L115
 	.loc 1 342 33 discriminator 1
-	leaq	.LC27(%rip), %rax
+	leaq	.LC28(%rip), %rax
 	movq	%rax, %rcx
 	movl	$342, %edx
 	leaq	.LC2(%rip), %rax
@@ -2005,9 +2006,9 @@ _Z10BufferLookP6Buffer:
 	.size	_Z10BufferLookP6Buffer, .-_Z10BufferLookP6Buffer
 	.section	.rodata
 	.align 8
-.LC28:
-	.string	"int BufferGetDouble(Buffer*, double*)"
 .LC29:
+	.string	"int BufferGetDouble(Buffer*, double*)"
+.LC30:
 	.string	"%lg%n"
 	.text
 	.globl	_Z15BufferGetDoubleP6BufferPd
@@ -2029,7 +2030,7 @@ _Z15BufferGetDoubleP6BufferPd:
 	cmpq	$0, -24(%rbp)
 	jne	.L118
 	.loc 1 357 33 discriminator 1
-	leaq	.LC28(%rip), %rax
+	leaq	.LC29(%rip), %rax
 	movq	%rax, %rcx
 	movl	$357, %edx
 	leaq	.LC2(%rip), %rax
@@ -2046,7 +2047,7 @@ _Z15BufferGetDoubleP6BufferPd:
 	.loc 1 363 15
 	leaq	-4(%rbp), %rcx
 	movq	-32(%rbp), %rdx
-	leaq	.LC29(%rip), %rsi
+	leaq	.LC30(%rip), %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	__isoc99_sscanf@PLT
@@ -2082,7 +2083,7 @@ _Z15BufferGetDoubleP6BufferPd:
 	.size	_Z15BufferGetDoubleP6BufferPd, .-_Z15BufferGetDoubleP6BufferPd
 	.section	.rodata
 	.align 8
-.LC30:
+.LC31:
 	.string	"int BufferPutDouble(Buffer*, double)"
 	.text
 	.globl	_Z15BufferPutDoubleP6Bufferd
@@ -2104,7 +2105,7 @@ _Z15BufferPutDoubleP6Bufferd:
 	cmpq	$0, -24(%rbp)
 	jne	.L123
 	.loc 1 374 33 discriminator 1
-	leaq	.LC30(%rip), %rax
+	leaq	.LC31(%rip), %rax
 	movq	%rax, %rcx
 	movl	$374, %edx
 	leaq	.LC2(%rip), %rax
@@ -2121,7 +2122,7 @@ _Z15BufferPutDoubleP6Bufferd:
 	leaq	-4(%rbp), %rdx
 	movq	-32(%rbp), %rcx
 	movq	%rcx, %xmm0
-	leaq	.LC29(%rip), %rcx
+	leaq	.LC30(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	movl	$1, %eax
@@ -2170,11 +2171,11 @@ _Z15BufferPutDoubleP6Bufferd:
 	.size	_Z15BufferPutDoubleP6Bufferd, .-_Z15BufferPutDoubleP6Bufferd
 	.section	.rodata
 	.align 8
-.LC31:
-	.string	"int BufferPutChar(Buffer*, char)"
 .LC32:
-	.string	"%c%n"
+	.string	"int BufferPutChar(Buffer*, char)"
 .LC33:
+	.string	"%c%n"
+.LC34:
 	.string	"BufferPutChar"
 	.text
 	.globl	_Z13BufferPutCharP6Bufferc
@@ -2199,7 +2200,7 @@ _Z13BufferPutCharP6Bufferc:
 	cmpq	$0, -40(%rbp)
 	jne	.L130
 	.loc 1 387 33 discriminator 1
-	leaq	.LC31(%rip), %rax
+	leaq	.LC32(%rip), %rax
 	movq	%rax, %rcx
 	movl	$387, %edx
 	leaq	.LC2(%rip), %rax
@@ -2215,7 +2216,7 @@ _Z13BufferPutCharP6Bufferc:
 	movq	-40(%rbp), %rax
 	movq	8(%rax), %rax
 	leaq	-20(%rbp), %rcx
-	leaq	.LC32(%rip), %rsi
+	leaq	.LC33(%rip), %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
@@ -2244,7 +2245,7 @@ _Z13BufferPutCharP6Bufferc:
 	movq	%rax, %rbx
 	.loc 1 391 70
 	movl	$391, %r9d
-	leaq	.LC33(%rip), %r8
+	leaq	.LC34(%rip), %r8
 	movl	$391, %ecx
 	leaq	.LC2(%rip), %rax
 	movq	%rax, %rdx
@@ -2256,7 +2257,7 @@ _Z13BufferPutCharP6Bufferc:
 	movl	%eax, %esi
 	subq	$8, %rsp
 	pushq	$391
-	leaq	.LC33(%rip), %r9
+	leaq	.LC34(%rip), %r9
 	movl	$391, %r8d
 	leaq	.LC2(%rip), %rax
 	movq	%rax, %rcx
@@ -2266,7 +2267,7 @@ _Z13BufferPutCharP6Bufferc:
 	movl	$0, %eax
 	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
 	addq	$16, %rsp
-	.loc 1 391 261
+	.loc 1 391 259
 	jmp	.L135
 .L133:
 	.loc 1 393 14
@@ -2286,7 +2287,7 @@ _Z13BufferPutCharP6Bufferc:
 	movq	%rax, %rdi
 	.loc 1 395 66
 	movl	$395, %r8d
-	leaq	.LC33(%rip), %rax
+	leaq	.LC34(%rip), %rax
 	movq	%rax, %rcx
 	leaq	.LC17(%rip), %rax
 	movq	%rax, %rdx
@@ -2306,13 +2307,13 @@ _Z13BufferPutCharP6Bufferc:
 	.size	_Z13BufferPutCharP6Bufferc, .-_Z13BufferPutCharP6Bufferc
 	.section	.rodata
 	.align 8
-.LC34:
-	.string	"int BufferPutString(Buffer*, const char*)"
 .LC35:
-	.string	"str"
+	.string	"int BufferPutString(Buffer*, const char*)"
 .LC36:
-	.string	"%s%n"
+	.string	"str"
 .LC37:
+	.string	"%s%n"
+.LC38:
 	.string	"BufferPutString"
 	.text
 	.globl	_Z15BufferPutStringP6BufferPKc
@@ -2336,7 +2337,7 @@ _Z15BufferPutStringP6BufferPKc:
 	cmpq	$0, -40(%rbp)
 	jne	.L137
 	.loc 1 400 33 discriminator 1
-	leaq	.LC34(%rip), %rax
+	leaq	.LC35(%rip), %rax
 	movq	%rax, %rcx
 	movl	$400, %edx
 	leaq	.LC2(%rip), %rax
@@ -2349,12 +2350,12 @@ _Z15BufferPutStringP6BufferPKc:
 	cmpq	$0, -48(%rbp)
 	jne	.L138
 	.loc 1 401 33 discriminator 1
-	leaq	.LC34(%rip), %rax
+	leaq	.LC35(%rip), %rax
 	movq	%rax, %rcx
 	movl	$401, %edx
 	leaq	.LC2(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC35(%rip), %rax
+	leaq	.LC36(%rip), %rax
 	movq	%rax, %rdi
 	call	__assert_fail@PLT
 .L138:
@@ -2365,7 +2366,7 @@ _Z15BufferPutStringP6BufferPKc:
 	movq	8(%rax), %rax
 	leaq	-20(%rbp), %rcx
 	movq	-48(%rbp), %rdx
-	leaq	.LC36(%rip), %rsi
+	leaq	.LC37(%rip), %rsi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf@PLT
@@ -2394,7 +2395,7 @@ _Z15BufferPutStringP6BufferPKc:
 	movq	%rax, %rbx
 	.loc 1 405 70
 	movl	$405, %r9d
-	leaq	.LC37(%rip), %r8
+	leaq	.LC38(%rip), %r8
 	movl	$405, %ecx
 	leaq	.LC2(%rip), %rax
 	movq	%rax, %rdx
@@ -2406,7 +2407,7 @@ _Z15BufferPutStringP6BufferPKc:
 	movl	%eax, %esi
 	subq	$8, %rsp
 	pushq	$405
-	leaq	.LC37(%rip), %r9
+	leaq	.LC38(%rip), %r9
 	movl	$405, %r8d
 	leaq	.LC2(%rip), %rax
 	movq	%rax, %rcx
@@ -2416,7 +2417,7 @@ _Z15BufferPutStringP6BufferPKc:
 	movl	$0, %eax
 	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
 	addq	$16, %rsp
-	.loc 1 405 261
+	.loc 1 405 259
 	jmp	.L143
 .L141:
 	.loc 1 407 14
@@ -2436,7 +2437,7 @@ _Z15BufferPutStringP6BufferPKc:
 	movq	%rax, %rdi
 	.loc 1 409 66
 	movl	$409, %r8d
-	leaq	.LC37(%rip), %rax
+	leaq	.LC38(%rip), %rax
 	movq	%rax, %rcx
 	leaq	.LC17(%rip), %rax
 	movq	%rax, %rdx
@@ -2552,7 +2553,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.file 31 "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h"
 	.file 32 "/usr/include/x86_64-linux-gnu/bits/types/FILE.h"
 	.file 33 "/usr/include/stdio.h"
-	.file 34 "../ATC/Buffer/my_buffer.h"
+	.file 34 "./ATC/Buffer/my_buffer.h"
 	.file 35 "/usr/include/x86_64-linux-gnu/bits/struct_stat.h"
 	.file 36 "/usr/include/x86_64-linux-gnu/bits/types/wint_t.h"
 	.file 37 "/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h"
@@ -2564,19 +2565,19 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.file 43 "/usr/include/locale.h"
 	.file 44 "/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h"
 	.file 45 "/usr/include/wctype.h"
-	.file 46 "../ATC/Logger/LogConfig.h"
-	.file 47 "../ATC/Logger/FunctionLogger.h"
-	.file 48 "../ATC/RandomStuff/CommonEnums.h"
+	.file 46 "./ATC/Logger/LogConfig.h"
+	.file 47 "./ATC/Logger/FunctionLogger.h"
+	.file 48 "./ATC/RandomStuff/CommonEnums.h"
 	.file 49 "/usr/include/assert.h"
 	.file 50 "/usr/include/string.h"
-	.file 51 "../ATC/Logger/Logger.h"
-	.file 52 "../ATC/Utils/Utils.h"
+	.file 51 "./ATC/Logger/Logger.h"
+	.file 52 "./ATC/Utils/Utils.h"
 	.file 53 "/usr/include/ctype.h"
 	.file 54 "/usr/include/x86_64-linux-gnu/sys/stat.h"
 	.file 55 "/usr/include/c++/11/bits/algorithmfwd.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x30c0
+	.long	0x30e8
 	.value	0x5
 	.byte	0x1
 	.byte	0x8
@@ -5224,7 +5225,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.long	0x13d0
 	.uleb128 0x6
 	.long	0x1374
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	.LASF197
 	.byte	0x22
 	.byte	0x20
@@ -7067,7 +7068,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.byte	0
 	.uleb128 0x9
 	.long	0x238b
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	.LASF384
 	.byte	0x2e
 	.byte	0x3
@@ -7203,7 +7204,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.long	0x24ad
 	.uleb128 0x19
 	.long	0x23e6
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	.LASF400
 	.byte	0x30
 	.byte	0x3
@@ -7539,12 +7540,12 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
-	.uleb128 0xf
+	.uleb128 0xd
 	.long	.LASF434
 	.long	0x283c
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC34
+	.quad	.LC35
 	.uleb128 0x1f
 	.string	"n"
 	.value	0x193
@@ -7552,12 +7553,12 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -36
-	.uleb128 0xf
+	.uleb128 0xd
 	.long	.LASF435
 	.long	0x2851
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC37
+	.quad	.LC38
 	.byte	0
 	.uleb128 0x6
 	.long	0x13fc
@@ -7605,12 +7606,12 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -60
-	.uleb128 0xf
+	.uleb128 0xd
 	.long	.LASF434
 	.long	0x28db
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC31
+	.quad	.LC32
 	.uleb128 0x1f
 	.string	"n"
 	.value	0x185
@@ -7618,12 +7619,12 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -36
-	.uleb128 0xf
+	.uleb128 0xd
 	.long	.LASF435
 	.long	0x28f0
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC33
+	.quad	.LC34
 	.byte	0
 	.uleb128 0xb
 	.long	0x12d
@@ -7669,12 +7670,12 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
-	.uleb128 0xf
+	.uleb128 0xd
 	.long	.LASF434
 	.long	0x2968
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC30
+	.quad	.LC31
 	.uleb128 0x1f
 	.string	"n"
 	.value	0x178
@@ -7718,12 +7719,12 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
-	.uleb128 0xf
+	.uleb128 0xd
 	.long	.LASF434
 	.long	0x29e5
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC28
+	.quad	.LC29
 	.uleb128 0x1f
 	.string	"n"
 	.value	0x167
@@ -7761,12 +7762,12 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
-	.uleb128 0xf
+	.uleb128 0xd
 	.long	.LASF434
 	.long	0x2a4e
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC27
+	.quad	.LC28
 	.uleb128 0x1f
 	.string	"n"
 	.value	0x158
@@ -7802,12 +7803,12 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
-	.uleb128 0xf
+	.uleb128 0xd
 	.long	.LASF434
 	.long	0x2ab7
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC26
+	.quad	.LC27
 	.uleb128 0x1f
 	.string	"n"
 	.value	0x149
@@ -7842,12 +7843,12 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
-	.uleb128 0xf
+	.uleb128 0xd
 	.long	.LASF434
 	.long	0x2b10
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC25
+	.quad	.LC26
 	.byte	0
 	.uleb128 0xb
 	.long	0x12d
@@ -7867,7 +7868,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2285-.LFB2285
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2b7c
+	.long	0x2b8f
 	.uleb128 0x11
 	.string	"buf"
 	.value	0x12e
@@ -7891,22 +7892,37 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
-	.uleb128 0xf
+	.uleb128 0xd
 	.long	.LASF435
-	.long	0x2b8c
+	.long	0x2b9f
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC13
+	.uleb128 0xd
+	.long	.LASF434
+	.long	0x2bb4
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC21
 	.byte	0
 	.uleb128 0xb
 	.long	0x12d
-	.long	0x2b8c
+	.long	0x2b9f
 	.uleb128 0xc
 	.long	0x3a
 	.byte	0xa
 	.byte	0
 	.uleb128 0x9
-	.long	0x2b7c
+	.long	0x2b8f
+	.uleb128 0xb
+	.long	0x12d
+	.long	0x2bb4
+	.uleb128 0xc
+	.long	0x3a
+	.byte	0x1c
+	.byte	0
+	.uleb128 0x9
+	.long	0x2ba4
 	.uleb128 0x17
 	.long	.LASF449
 	.value	0x123
@@ -7916,7 +7932,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2284-.LFB2284
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2bf8
+	.long	0x2c20
 	.uleb128 0x11
 	.string	"buf"
 	.value	0x123
@@ -7940,9 +7956,9 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
-	.uleb128 0xf
+	.uleb128 0xd
 	.long	.LASF435
-	.long	0x2b8c
+	.long	0x2b9f
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC13
@@ -7955,7 +7971,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2283-.LFB2283
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2c29
+	.long	0x2c51
 	.uleb128 0x1a
 	.long	.LASF458
 	.value	0x11c
@@ -7973,7 +7989,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2282-.LFB2282
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2c69
+	.long	0x2c91
 	.uleb128 0x1a
 	.long	.LASF461
 	.value	0x115
@@ -8011,7 +8027,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2280-.LFB2280
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2ce2
+	.long	0x2d0a
 	.uleb128 0x1b
 	.string	"s1"
 	.byte	0xf8
@@ -8028,7 +8044,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
-	.uleb128 0xd
+	.uleb128 0xe
 	.long	.LASF465
 	.byte	0xf8
 	.byte	0x36
@@ -8055,7 +8071,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2279-.LFB2279
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2d3d
+	.long	0x2d65
 	.uleb128 0x1b
 	.string	"s1"
 	.byte	0xec
@@ -8072,7 +8088,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
-	.uleb128 0xd
+	.uleb128 0xe
 	.long	.LASF465
 	.byte	0xec
 	.byte	0x33
@@ -8099,7 +8115,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2278-.LFB2278
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2d89
+	.long	0x2db1
 	.uleb128 0x1b
 	.string	"s1"
 	.byte	0xe1
@@ -8135,8 +8151,8 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2277-.LFB2277
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2dba
-	.uleb128 0xd
+	.long	0x2de2
+	.uleb128 0xe
 	.long	.LASF472
 	.byte	0xc4
 	.byte	0x1b
@@ -8155,7 +8171,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2276-.LFB2276
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2df8
+	.long	0x2e20
 	.uleb128 0x1b
 	.string	"s"
 	.byte	0xb9
@@ -8181,8 +8197,8 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2275-.LFB2275
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2e4f
-	.uleb128 0xd
+	.long	0x2e77
+	.uleb128 0xe
 	.long	.LASF199
 	.byte	0xa6
 	.byte	0x1c
@@ -8190,7 +8206,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
-	.uleb128 0xd
+	.uleb128 0xe
 	.long	.LASF451
 	.byte	0xa6
 	.byte	0x2d
@@ -8198,7 +8214,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -44
-	.uleb128 0xd
+	.uleb128 0xe
 	.long	.LASF477
 	.byte	0xa6
 	.byte	0x38
@@ -8223,8 +8239,8 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2274-.LFB2274
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2e8c
-	.uleb128 0xd
+	.long	0x2eb4
+	.uleb128 0xe
 	.long	.LASF199
 	.byte	0x97
 	.byte	0x1c
@@ -8232,7 +8248,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
-	.uleb128 0xd
+	.uleb128 0xe
 	.long	.LASF477
 	.byte	0x97
 	.byte	0x29
@@ -8251,8 +8267,8 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2273-.LFB2273
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2ee9
-	.uleb128 0xd
+	.long	0x2f11
+	.uleb128 0xe
 	.long	.LASF481
 	.byte	0x84
 	.byte	0x1f
@@ -8260,7 +8276,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
-	.uleb128 0xd
+	.uleb128 0xe
 	.long	.LASF482
 	.byte	0x84
 	.byte	0x2a
@@ -8268,7 +8284,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -44
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	.LASF483
 	.byte	0x1
 	.byte	0x89
@@ -8296,8 +8312,8 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2272-.LFB2272
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2f77
-	.uleb128 0xd
+	.long	0x2f9f
+	.uleb128 0xe
 	.long	.LASF199
 	.byte	0x5b
 	.byte	0x30
@@ -8305,7 +8321,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
-	.uleb128 0xd
+	.uleb128 0xe
 	.long	.LASF483
 	.byte	0x5b
 	.byte	0x3f
@@ -8313,7 +8329,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	.LASF486
 	.byte	0x1
 	.byte	0x60
@@ -8322,13 +8338,13 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
-	.uleb128 0xf
+	.uleb128 0xd
 	.long	.LASF435
-	.long	0x2f87
+	.long	0x2faf
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC4
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	.LASF487
 	.byte	0x1
 	.byte	0x63
@@ -8337,7 +8353,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	.LASF488
 	.byte	0x1
 	.byte	0x64
@@ -8357,13 +8373,13 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.byte	0
 	.uleb128 0xb
 	.long	0x12d
-	.long	0x2f87
+	.long	0x2faf
 	.uleb128 0xc
 	.long	0x3a
 	.byte	0x14
 	.byte	0
 	.uleb128 0x9
-	.long	0x2f77
+	.long	0x2f9f
 	.uleb128 0x22
 	.long	.LASF489
 	.byte	0x2e
@@ -8374,8 +8390,8 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2271-.LFB2271
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x301a
-	.uleb128 0xd
+	.long	0x3042
+	.uleb128 0xe
 	.long	.LASF199
 	.byte	0x2e
 	.byte	0x2b
@@ -8383,7 +8399,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
-	.uleb128 0xd
+	.uleb128 0xe
 	.long	.LASF483
 	.byte	0x2e
 	.byte	0x3a
@@ -8391,7 +8407,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	.LASF486
 	.byte	0x1
 	.byte	0x33
@@ -8400,13 +8416,13 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
-	.uleb128 0xf
+	.uleb128 0xd
 	.long	.LASF435
-	.long	0x302a
+	.long	0x3052
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC3
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	.LASF487
 	.byte	0x1
 	.byte	0x36
@@ -8415,7 +8431,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	.LASF488
 	.byte	0x1
 	.byte	0x37
@@ -8435,13 +8451,13 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.byte	0
 	.uleb128 0xb
 	.long	0x12d
-	.long	0x302a
+	.long	0x3052
 	.uleb128 0xc
 	.long	0x3a
 	.byte	0x15
 	.byte	0
 	.uleb128 0x9
-	.long	0x301a
+	.long	0x3042
 	.uleb128 0x67
 	.long	.LASF491
 	.byte	0x1
@@ -8453,7 +8469,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.quad	.LFE2270-.LFB2270
 	.uleb128 0x1
 	.byte	0x9c
-	.uleb128 0xd
+	.uleb128 0xe
 	.long	.LASF493
 	.byte	0xa
 	.byte	0x1f
@@ -8469,7 +8485,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -184
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	.LASF494
 	.byte	0x1
 	.byte	0x12
@@ -8478,7 +8494,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -160
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	.LASF495
 	.byte	0x1
 	.byte	0x1b
@@ -8487,13 +8503,13 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -192
-	.uleb128 0xf
+	.uleb128 0xd
 	.long	.LASF435
-	.long	0x2b8c
+	.long	0x2b9f
 	.uleb128 0x9
 	.byte	0x3
 	.quad	.LC1
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	.LASF465
 	.byte	0x1
 	.byte	0x1f
@@ -8502,7 +8518,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -176
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	.LASF496
 	.byte	0x1
 	.byte	0x21
@@ -8665,6 +8681,21 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.byte	0
 	.byte	0
 	.uleb128 0xd
+	.uleb128 0x34
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x34
+	.uleb128 0x19
+	.uleb128 0x6c
+	.uleb128 0x19
+	.uleb128 0x2
+	.uleb128 0x18
+	.byte	0
+	.byte	0
+	.uleb128 0xe
 	.uleb128 0x5
 	.byte	0
 	.uleb128 0x3
@@ -8682,7 +8713,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0x18
 	.byte	0
 	.byte	0
-	.uleb128 0xe
+	.uleb128 0xf
 	.uleb128 0x34
 	.byte	0
 	.uleb128 0x3
@@ -8695,21 +8726,6 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.uleb128 0xb
 	.uleb128 0x49
 	.uleb128 0x13
-	.uleb128 0x2
-	.uleb128 0x18
-	.byte	0
-	.byte	0
-	.uleb128 0xf
-	.uleb128 0x34
-	.byte	0
-	.uleb128 0x3
-	.uleb128 0xe
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x34
-	.uleb128 0x19
-	.uleb128 0x6c
-	.uleb128 0x19
 	.uleb128 0x2
 	.uleb128 0x18
 	.byte	0
@@ -11355,7 +11371,7 @@ _GLOBAL__sub_I__Z10GetSrcFilePKc:
 	.string	"freopen"
 	.section	.debug_line_str,"MS",@progbits,1
 .LASF0:
-	.string	"../ATC/Buffer/my_buffer.cpp"
+	.string	"./ATC/Buffer/my_buffer.cpp"
 .LASF1:
 	.string	"/home/arsenyfucker/Cprojects/Lang/Translator"
 	.hidden	DW.ref.__gxx_personality_v0

@@ -25,7 +25,8 @@ const int GROWTH_RATE = 2;
 
 const int START_NUMBER_OF_MAIN_PROCESSES = 20;
 
-struct ProgramBuffer
+// Replace to ProgramCtx
+struct ProgramCtx
     {
     Program* program;
 
@@ -33,51 +34,41 @@ struct ProgramBuffer
     int current_func_tabel;
     
     FuncTabel*  global_func;
+
+    // change to var tabel (you don't need stack here)
     SuperStack* var_tabels;
     };
 
-static Token* GetProcess     (ProgramBuffer* program_buf);
+static Token* GetProcess     (ProgramCtx* program_buf);
 
-static Token* GetFunction    (ProgramBuffer* program_buf);
-static Token* GetBlock       (ProgramBuffer* program_buf);
-static Token* GetStatement   (ProgramBuffer* program_buf);
+static Token* GetFunction    (ProgramCtx* program_buf);
+static Token* GetBlock       (ProgramCtx* program_buf);
+static Token* GetStatement   (ProgramCtx* program_buf);
 
-static Token* GetCall        (ProgramBuffer* ptogram_buf);
-static Token* GetInstruction (ProgramBuffer* program_buf);
-static Token* GetAssigment   (ProgramBuffer* program_buf);
+static Token* GetCall        (ProgramCtx* ptogram_buf);
+static Token* GetInstruction (ProgramCtx* program_buf);
+static Token* GetAssigment   (ProgramCtx* program_buf);
 
-static Token* GetE     (ProgramBuffer* program_buf);
-static Token* GetT     (ProgramBuffer* program_buf);
-static Token* GetPower (ProgramBuffer* program_buf);
-static Token* GetP     (ProgramBuffer* program_buf);
-static Token* GetN     (ProgramBuffer* program_buf);
+static Token* GetE     (ProgramCtx* program_buf);
+static Token* GetT     (ProgramCtx* program_buf);
+static Token* GetPower (ProgramCtx* program_buf);
+static Token* GetP     (ProgramCtx* program_buf);
+static Token* GetN     (ProgramCtx* program_buf);
 
-
-static Token* VarInitialization (ProgramBuffer* program_buf);
-static int   FuncInitialization (ProgramBuffer* program_buf);
-
-
-static FuncLabel* MakeFuncLabel(ProgramBuffer* program_buf);
-static VarLabel*  MakeVarLabel(ProgramBuffer* program_buf);
-
-static VarLabel* GetVarLabel (int name_id, SuperStack* var_tabels);
-
-static int DefineName(ProgramBuffer* program_buf);
-
-static Token* FuncLabelToTokens (FuncLabel* label);
+// static Token* FuncLabelToTokens (FuncLabel* label);
 
 #define PROGRAM(PROGRAM_BUF)   (program_buf->program)
 
 #define POSITION(PROGRAM_BUF)   (PROGRAM_BUF->position)
 #define SIZE(PROGRAM_BUF)       (PROGRAM(PROGRAM_BUF)->number_of_tokens)
 
-#define MAIN_PROCESSES(PROGRAM_BUF)    (PROGRAM(PROGRAM_BUF)->main_processes)
-#define MAIN_PROCESSES_NUMBER(PROGRAM_BUF) (PROGRAM(PROGEAM_BUF)->number_of_main_processes
+// #define MAIN_PROCESSES(PROGRAM_BUF)    (PROGRAM(PROGRAM_BUF)->main_processes)
+// #define MAIN_PROCESSES_NUMBER(PROGRAM_BUF) (PROGRAM(PROGEAM_BUF)->number_of_main_processes
 
 
 #define VAR_TABELS_STK(PROGRAM_BUF)   ((PROGRAM_BUF)->var_tabels)
 #define TOP_VAR_TABEL(PROGRAM_BUF)    (StackTop(VAR_TABELS_STK(PROGRAM_BUF)))
-#define FUNC_TABEL(PROGRAM_BUF)      ((PROGRAM_BUF)->global_func)
+#define FUNC_TABEL(PROGRAM_BUF)       ((PROGRAM_BUF)->global_func)
 #define STRING_ARR(PROGRAM_BUF)       (PROGRAM(PROGRAM_BUF)->string_arr)
 
 #define token         ((POSITION(program_buf) < SIZE(program_buf)) ? (PROGRAM(program_buf)->token_arr + POSITION(program_buf)) : nullptr )
@@ -104,6 +95,11 @@ static Token* FuncLabelToTokens (FuncLabel* label);
 #define MISSING_EOP()   report_syntax_error("Missing '%c'\n", EXPRESSION_OPENING_BRACKET)
 #define MISSING_ECB()   report_syntax_error("Missing '%c'\n", EXPRESSION_CLOSING_BRACKET)
 
+#include "../src/AnalysUtils_.ars"
+
+#include "../src/SyntaxAnalysisUtils_.ars"
+#include "../src/SyntaxAnalysisExpressions_.ars"
+
 int GetG (Program* program)
     {
     $log(DEBUG)
@@ -115,15 +111,21 @@ int GetG (Program* program)
         return LFAILURE;
         }
 
-    ProgramBuffer  program_buf_ = {program, 0};
-    ProgramBuffer* program_buf  = &program_buf_;
+    ProgramCtx  program_buf_ = {program, 0};
+    ProgramCtx* program_buf  = &program_buf_;
 
     SuperStack var_tabels_ {};
     SuperStack* var_tabels = &var_tabels_;
     StackCtor(var_tabels, 5);
 
-    VarTabel  global_var_tabel_{};
-    VarTabel* global_var_tabel = &global_var_tabel_;
+    // VarTabel  global_var_tabel_{};                       // &global_var_tabel_;
+    VarTabel* global_var_tabel = (VarTabel*) CALLOC (1, sizeof(global_var_tabel[0]);
+    if (!global_var_tabel)
+        {
+        TODO("KILL THIS SHIT\n");
+        return FAILURE;
+        }
+
     VarTabelCtor(global_var_tabel);
 
     // printf("Global var tabel: %p\n", (void*) global_var_tabel);
@@ -134,8 +136,15 @@ int GetG (Program* program)
     // printf("Global var tabel macros: %p\n", (void*) VAR_TABELS_STK(program_buf));
     // printf("Global var tabel top macros: %p\n", (void*) TOP_VAR_TABEL(program_buf));
 
-    FuncTabel  global_functions_{};
-    FuncTabel* global_functions = &global_functions_;
+    // FuncTabel  global_functions_{}; // &global_functions_;
+    FuncTabel* global_functions = (FuncTabel*) CALLOC(1, sizeof(global_functions[0]));
+    if (!global_functions)
+        {
+        {
+        TODO("KILL THIS SHIT\n");
+        return FAILURE;
+        }
+
     FuncTabelCtor(global_functions);
                                                                                                                                                     
     FUNC_TABEL(program_buf) = global_functions;
@@ -164,11 +173,13 @@ int GetG (Program* program)
 
     // set programm
     // TODO("set programm\n");
+    program->global_vars;
+    program->func_tabel;
 
     return SUCCESS;
     }
 
-static Token* GetProcess (ProgramBuffer* program_buf)
+static Token* GetProcess (ProgramCtx* program_buf)
     {
     assertlog(program_buf, EFAULT, return LNULL);
 
@@ -215,7 +226,7 @@ static Token* GetProcess (ProgramBuffer* program_buf)
     return LNULL;
     }
 
-static int FuncInitialization (ProgramBuffer* program_buf)
+static int FuncInitialization (ProgramCtx* program_buf)
     {
     assertlog(program_buf, EFAULT, return LFAILURE);
 
@@ -226,7 +237,9 @@ static int FuncInitialization (ProgramBuffer* program_buf)
         }
     POSITION(program_buf)++;
     
-    FuncLabel* label = MakeFuncLabel(program_buf);
+    Token* dummy = NULL;
+
+    FuncLabel* label = MakeFuncLabel(program_buf, &dummy);
     if (IsFuncLabel(label->name, FUNC_TABEL(program_buf)))
         {
         report_syntax_error("Ebat, %s shadows previous declaration\n", STRING_ARR(program_buf)[label->name]);
@@ -245,7 +258,7 @@ static int FuncInitialization (ProgramBuffer* program_buf)
     return SUCCESS;
     }
 
-static Token* VarInitialization (ProgramBuffer* program_buf)
+static Token* VarInitialization (ProgramCtx* program_buf)
     {
     assertlog(program_buf, EFAULT, return LNULL);
     
@@ -265,10 +278,12 @@ static Token* VarInitialization (ProgramBuffer* program_buf)
         }
 
     Token* var_name = token;
-
+    
+    // CHANGE to AddVarLabel (int, tabel) 
+    TODO("Change to  AddVarLabel\n"); 
     VarLabel* label = MakeVarLabel(program_buf);
 
-    if (GetVarLabel(label->name, VAR_TABELS_STK(program_buf)))
+    if (GetVarLabel(label->name_id, VAR_TABELS_STK(program_buf)))
         {
         report_syntax_error("Ebat, %s shadows previous declaration\n", STRING_ARR(program_buf)[NAME_ID(token)]);
         
@@ -290,7 +305,7 @@ static Token* VarInitialization (ProgramBuffer* program_buf)
     
     if (TYPE(token) == END_OF_STATEMENT)
         {
-        printf (purplecolor "Warning: unitializad variable " cyancolor "'%s'\n" resetconsole, STRING_ARR(program_buf)[label->name]);
+        printf (purplecolor "Warning: unitializad variable " cyancolor "'%s'\n" resetconsole, STRING_ARR(program_buf)[label->name_id]);
 
         Token* statement = token;
 
@@ -331,24 +346,33 @@ static Token* VarInitialization (ProgramBuffer* program_buf)
     }
 
 // CHANGE RETURN SYSTEM (move to get block or get statement) (return can be not only in the end of function)
-static Token* GetFunction (ProgramBuffer* program_buf)
+static Token* GetFunction (ProgramCtx* program_buf)
     {
     $log(DEBUG)
     assertlog(program_buf, EFAULT, return LNULL);
 
     // get function name, parametrs and etc
-    FuncLabel* label = MakeFuncLabel(program_buf);    
-    AddFuncLabel(label, FUNC_TABEL(program_buf));
+    Token* func_head = NULL;
+
+    FuncLabel* label = MakeFuncLabel(program_buf, &func_head);    
 
     FuncLabel* prev_declaration = IsFuncLabel(label->name, FUNC_TABEL(program_buf));
     if (prev_declaration)
         {
         if (!CompareFuncLabels (label, prev_declaration))
             {
-            report_syntax_error("Conflict with prev declaration\n");
+            report_syntax_error("'%s' conflict with prev declaration\n", STRING_ARR(program_ctx)[label->name]);
+            return LNULL;
+            }
+        
+        if (prev_declaration->body_status = DEFINED)
+            {
+            report_syntax_error("Redefinition of function '%s'\n", STRING_ARR(program_ctx)[label->name]);
             return LNULL;
             }
         }
+
+    AddFuncLabel(label, FUNC_TABEL(program_buf));
 
     // function body
     if (TYPE(token) != BLOCK_OPENING_BRACKET)
@@ -356,6 +380,9 @@ static Token* GetFunction (ProgramBuffer* program_buf)
         report_syntax_error("Missing '{' in function body\n");
         return LNULL;
         }
+
+    Token* function = token;
+    TYPE(function) = FUNCTION;
 
     POSITION(program_buf)++;
 
@@ -398,18 +425,22 @@ static Token* GetFunction (ProgramBuffer* program_buf)
     Token* statement = token;
     POSITION(program_buf)++;
 
-    Token* function = FuncLabelToTokens(label);
-    LEFT(function) = body;
+    // Token* name = FuncLabelToTokens(label);
+    
+    LEFT(statement) = function;
+
+     LEFT(function) = func_head;
+    RIGHT(function) = body;
 
     label->body_status = DECLARED;
 
-    TYPE(statement) = FUNCTION;
+    TYPE(statement) = STATEMENT;
     LEFT(statement) = function;
 
     return statement;
     }
 
-static Token* GetBlock (ProgramBuffer* program_buf)
+static Token* GetBlock (ProgramCtx* program_buf)
     {
     $log(DEBUG)
     assertlog(program_buf, EFAULT, return LNULL);
@@ -432,7 +463,7 @@ static Token* GetBlock (ProgramBuffer* program_buf)
     return block;
     }
 
-static Token* GetStatement (ProgramBuffer* program_buf)
+static Token* GetStatement (ProgramCtx* program_buf)
     {
     $log(1)
     assertlog(program_buf, EFAULT, return LNULL);
@@ -487,7 +518,7 @@ static Token* GetStatement (ProgramBuffer* program_buf)
     }
 
 //note: changes token type from function to name
-static Token* GetCall (ProgramBuffer* program_buf)
+static Token* GetCall (ProgramCtx* program_buf)
     {
     assertlog(program_buf, EFAULT, return LNULL);
 
@@ -507,6 +538,9 @@ static Token* GetCall (ProgramBuffer* program_buf)
         report_syntax_error("Missing '('\n");
         return LNULL;
         }
+
+    Token* statement = token;
+    TYPE(statement) = STATEMENT;
 
     POSITION(program_buf)++;
 
@@ -531,10 +565,14 @@ static Token* GetCall (ProgramBuffer* program_buf)
     
     // work with arguments;
 
-    return call;
+    //
+
+    LEFT(statement) = call;
+
+    return statement;
     }
 
-static Token* GetInstruction (ProgramBuffer* program_buf)
+static Token* GetInstruction (ProgramCtx* program_buf)
     {
     $log(2)
     assertlog (program_buf, EFAULT, return LNULL);
@@ -637,7 +675,7 @@ static Token* GetInstruction (ProgramBuffer* program_buf)
     return statement;
     }
 
-static Token* GetAssigment (ProgramBuffer* program_buf)
+static Token* GetAssigment (ProgramCtx* program_buf)
     {
     $log(2)
     assertlog (program_buf, EFAULT, return LNULL);
@@ -684,243 +722,3 @@ static Token* GetAssigment (ProgramBuffer* program_buf)
     return statement;
     }
 
-
-
-// Epressions
-static Token* GetE (ProgramBuffer* program_buf)
-    {
-    $log(DEBUG_ALL)
-    assertlog (program_buf, EFAULT, return LNULL);
-
-    Token* node = GetT(program_buf);
-
-    Token* prev_op = node;
-    while (IS_OP(token) && (OP(token) ==  ADD || OP(token) == SUB))
-        { 
-        $LOG_TOKEN(token, STRING_ARR(program_buf))
-        Token* current_op = token;
-        POSITION(program_buf)++;
-
-         LEFT(current_op) = prev_op;
-        RIGHT(current_op) = GetT(program_buf);
-
-        prev_op = current_op;
-        }
-
-    return prev_op;
-    } 
-
-static Token* GetT (ProgramBuffer* program_buf)
-    {
-    $log(DEBUG_ALL)
-    assertlog (program_buf, EFAULT, return LNULL);
-
-    Token* node = GetPower(program_buf);
-    $LOG_TOKEN(node, STRING_ARR(program_buf))
-
-    Token* prev_op = node;
-    while (IS_OP(token) && (OP(token) ==  MUL || OP(token) == DIV))
-        {
-        $LOG_TOKEN(token, STRING_ARR(program_buf))
-        Token* current_op = token;
-        POSITION(program_buf)++;
-        
-         LEFT(current_op) = prev_op;
-        RIGHT(current_op) = GetPower(program_buf);
-
-        prev_op = current_op;
-        }
-    
-    return prev_op;
-    }
-
-Token* GetPower (ProgramBuffer* program_buf)
-    {
-    $log(DEBUG_ALL)
-    assertlog (program_buf, EFAULT, return LNULL);
-
-    Token* node = GetP(program_buf);
-
-    Token* prev_op = node;
-    while (IS_OP(token) && OP(token) ==  POW)
-        {
-        $LOG_TOKEN(token, STRING_ARR(program_buf))
-        Token* current_op = token;
-        POSITION(program_buf)++;
-
-         LEFT(current_op) = prev_op;
-        RIGHT(current_op) = GetP(program_buf);
-
-        prev_op = current_op;
-        }
-    
-    return prev_op;
-    }
-
-static Token* GetP (ProgramBuffer* program_buf)
-    {
-    $log(DEBUG_ALL)
-    assertlog (program_buf, EFAULT, return LNULL);
-
-    if (TYPE(token) == EXPRESSION_OPENING_BRACKET)
-        {
-        POSITION(program_buf)++;
-
-        Token* expression = GetE(program_buf); 
-
-        if (OP(token) != EXPRESSION_CLOSING_BRACKET)
-            {
-            report_syntax_error("Missing closing bracket (token position %d)\n", POSITION(program_buf));
-            return LNULL;
-            }
-
-        POSITION(program_buf)++;
-        
-        return expression; 
-        }
-
-    return GetN(program_buf);
-    }
-
-static Token* GetN (ProgramBuffer* program_buf)
-    {
-    $log(DEBUG_ALL)
-    assertlog(program_buf, EFAULT, return LNULL);
-
-    if (TYPE(token) == NAME)
-        DefineName(program_buf);
-
-    if (!IS_CONST(token) && !IS_VAR(token))
-        {
-        report_syntax_error("Cringe, this is not variable or constant node =(\n");
-        return LNULL;
-        } 
-    
-    Token* result = token;
-    POSITION(program_buf)++;
-
-    $LOG_TOKEN(result, STRING_ARR(program_buf))
-    return result;
-    }
-
-
-// UTILS
-static int DefineName(ProgramBuffer* program_buf)
-    {
-    assertlog(program_buf, EFAULT, return NOT_DECLARED);
-
-    if (TYPE(token) != NAME)
-        {
-        report_syntax_error("Not a name\n");
-        return NOT_DECLARED;
-        }
-
-    // what if function and variable has same name ? 
-    if (IsFuncLabel (NAME_ID(token), FUNC_TABEL(program_buf)))
-        {
-        TYPE(token) = FUNCTION;
-        return FUNCTION;
-        }
-
-    if (GetVarLabel (NAME_ID(token), VAR_TABELS_STK(program_buf)))
-        {
-        TYPE(token) = VARIABLE;
-        return VARIABLE;
-        }
-
-    report_syntax_error("%s wasn't decalred\n", STRING_ARR(program_buf)[NAME_ID(token)]);
-    
-    return NOT_DECLARED;
-    } 
-
-static FuncLabel* MakeFuncLabel(ProgramBuffer* program_buf)
-    {
-    assertlog(program_buf, EFAULT, return LNULL);
-
-    FuncLabel* label = (FuncLabel*) CALLOC (1, sizeof(label[0]));
-    if (!label) return LNULL;
-
-    if (TYPE(token) != FUNCTION_RET_TYPE)
-        {
-        report_syntax_error("No return type in function\n");
-        return LNULL;
-        }
-    
-    label->ret_type = RET_TYPE(token);
-    POSITION(program_buf)++;
-
-    if (TYPE(token) != NAME)
-        {
-        report_syntax_error("No function name\n");
-        return LNULL;
-        }
-
-    label->name = NAME_ID(token);
-    POSITION(program_buf)++;
-            
-    // argument
-    if(TYPE(token) != EXPRESSION_OPENING_BRACKET)
-        {
-        report_syntax_error("Missing '(' in function prototype\n");
-        return LNULL;
-        }
-    POSITION(program_buf)++;
-    // TO_DO
-
-    if(TYPE(token) != EXPRESSION_CLOSING_BRACKET)
-       {
-       report_syntax_error("Missing ')' in function \n");
-       return LNULL;
-       }
-    POSITION(program_buf)++;
-    
-    return label;
-    } 
-
-static VarLabel* MakeVarLabel(ProgramBuffer* program_buf)
-    {
-    $log(1)
-    assertlog(program_buf, EFAULT, return LNULL);
-
-    VarLabel* label = (VarLabel*) CALLOC (1, sizeof(label[0]));
-    if (!label) return LNULL;
-
-    if (TYPE(token) != NAME)
-        {
-        report_syntax_error("Ebat, not a name for variable initialization\n", STRING_ARR(program_buf)[NAME_ID(token)]);
-        return LNULL;
-        }
-
-    label->name =  NAME_ID(token);
-
-    return label;
-    }
-
-static Token* FuncLabelToTokens (FuncLabel* label)
-    {
-    assertlog(label, EFAULT, return LNULL);
-
-    Token* name = NewToken (NAME, {.t_name_id = label->name});
-    
-    RIGHT(name) = NewToken (FUNCTION_RET_TYPE, {.t_function_ret_type = label->ret_type});
-
-    /* NOT NOW
-    Token* temp = NewToken(
-    for(int i = 0; i < label->number_of_arguments; i++)
-        {
-
-    */
-
-    return name;
-    }
-
-static VarLabel* GetVarLabel (int name_id, SuperStack* var_tabels)
-    {
-    assertlog(var_tabels, EFAULT, return LNULL);
-
-    VarTabel* tabel = StackTop(var_tabels);
-
-    // a lot to do
-    VarLabel* temp = IsVarLabel(name_id, tabel); 
-    return temp;
-    }

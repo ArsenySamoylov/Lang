@@ -1,7 +1,7 @@
 	.file	"ErrorMessages.cpp"
 	.text
 .Ltext0:
-	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/Logger/OldandUselles/ErrorMessages.cpp"
+	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "./ATC/Logger/OldandUselles/ErrorMessages.cpp"
 	.globl	ERROR_MESSAGES
 	.section	.rodata
 .LC0:
@@ -55,7 +55,7 @@ ERROR_MESSAGES:
 	.quad	.LC13
 	.text
 .Letext0:
-	.file 1 "../ATC/Logger/OldandUselles/ErrorMessages.cpp"
+	.file 1 "./ATC/Logger/OldandUselles/ErrorMessages.cpp"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
 	.long	0x5a
@@ -204,7 +204,7 @@ ERROR_MESSAGES:
 	.string	"char"
 	.section	.debug_line_str,"MS",@progbits,1
 .LASF0:
-	.string	"../ATC/Logger/OldandUselles/ErrorMessages.cpp"
+	.string	"./ATC/Logger/OldandUselles/ErrorMessages.cpp"
 .LASF1:
 	.string	"/home/arsenyfucker/Cprojects/Lang/Translator"
 	.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"

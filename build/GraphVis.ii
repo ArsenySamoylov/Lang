@@ -2567,7 +2567,8 @@ enum FuncType
 
 struct VarLabel
     {
-    int name;
+    int name_id;
+    int position;
     };
 
 struct VarTabel
@@ -2575,6 +2576,7 @@ struct VarTabel
     VarLabel** label_arr;
     int arr_size;
 
+    int memory_adress;
     int number_of_labels;
     };
 
@@ -2610,6 +2612,7 @@ int VarTabelCtor (VarTabel* tabel);
 VarLabel* IsVarLabel (int name_id, VarTabel* tabel);
 
 int AddVarLabel (VarLabel* label, VarTabel* tabel);
+int AddVarLabel (int name_id, VarTabel* tabel);
 # 5 "./headers/Program.h" 2
 
 struct Program
@@ -2627,7 +2630,7 @@ struct Program
     };
 # 7 "./headers/DefGraphVis.h" 2
 
-# 1 "../ATC/GraphVis/GVConfig.h" 1
+# 1 "./ATC/GraphVis/GVConfig.h" 1
        
 
 const int MAX_GRAPH_NAME_LENGTH = 128;
@@ -3153,7 +3156,7 @@ const int MAX_WORD_LENGTH = 16;
 # 7 "./src/GraphVis.cpp" 2
 # 1 "./headers/DSL.h" 1
        
-# 1 "../ATC/Logger/LogMacroses.h" 1
+# 1 "./ATC/Logger/LogMacroses.h" 1
        
 
 # 1 "/usr/include/c++/11/iostream" 1 3
@@ -44149,20 +44152,20 @@ namespace std __attribute__ ((__visibility__ ("default")))
 
 
 }
-# 4 "../ATC/Logger/LogMacroses.h" 2
+# 4 "./ATC/Logger/LogMacroses.h" 2
 
 
 
-# 1 "../ATC/Logger/Logger.h" 1
+# 1 "./ATC/Logger/Logger.h" 1
        
 
 
 
-# 1 "../ATC/Logger/LogConfig.h" 1
+# 1 "./ATC/Logger/LogConfig.h" 1
        
 
 
-# 3 "../ATC/Logger/LogConfig.h"
+# 3 "./ATC/Logger/LogConfig.h"
 const char STD_LOG_NAME[] = "./logs/stdlog.ars";
 
 
@@ -44179,8 +44182,8 @@ enum LoggingLevels
 
     RELEASE = 666,
     };
-# 6 "../ATC/Logger/Logger.h" 2
-# 1 "../ATC/Logger/tostring.h" 1
+# 6 "./ATC/Logger/Logger.h" 2
+# 1 "./ATC/Logger/tostring.h" 1
        
 
 char* tostring(short);
@@ -44194,7 +44197,7 @@ char* tostring(double);
 
 char* tostring(char);
 char* tostring(const char*);
-# 7 "../ATC/Logger/Logger.h" 2
+# 7 "./ATC/Logger/Logger.h" 2
 
 class Logger : public std::ostream
     {
@@ -44255,10 +44258,10 @@ Logger& operator<<(Logger& log_out, const Type& value)
          free(message);
          return log_out;
          }
-# 8 "../ATC/Logger/LogMacroses.h" 2
-# 1 "../ATC/Logger/FunctionLogger.h" 1
+# 8 "./ATC/Logger/LogMacroses.h" 2
+# 1 "./ATC/Logger/FunctionLogger.h" 1
        
-# 11 "../ATC/Logger/FunctionLogger.h"
+# 11 "./ATC/Logger/FunctionLogger.h"
 class FunctionLogger
     {
     private:
@@ -44275,9 +44278,9 @@ class FunctionLogger
         FunctionLogger(int lvl, const char* func_name);
         ~FunctionLogger();
     };
-# 9 "../ATC/Logger/LogMacroses.h" 2
+# 9 "./ATC/Logger/LogMacroses.h" 2
 
-# 1 "../ATC/RandomStuff/CommonEnums.h" 1
+# 1 "./ATC/RandomStuff/CommonEnums.h" 1
        
 
 const int CRINGE = 0xDED;
@@ -44322,11 +44325,11 @@ enum CommonErrors
     SYNTAX_ERROR = 13,
     LOX = 0xDED,
     };
-# 11 "../ATC/Logger/LogMacroses.h" 2
-# 1 "../ATC/ConsoleColors/LinuxColors.h" 1
+# 11 "./ATC/Logger/LogMacroses.h" 2
+# 1 "./ATC/ConsoleColors/LinuxColors.h" 1
        
-# 12 "../ATC/Logger/LogMacroses.h" 2
-# 1 "../ATC/Utils/Utils.h" 1
+# 12 "./ATC/Logger/LogMacroses.h" 2
+# 1 "./ATC/Utils/Utils.h" 1
        
 
 
@@ -44343,7 +44346,7 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 
 
 int SYSTEM(const char* format, ...);
-# 13 "../ATC/Logger/LogMacroses.h" 2
+# 13 "./ATC/Logger/LogMacroses.h" 2
 # 3 "./headers/DSL.h" 2
 # 8 "./src/GraphVis.cpp" 2
 # 1 "./headers/LangUtils.h" 1
@@ -44355,16 +44358,16 @@ void PrintToken (const Token *const token, const char** string_arr);
 
 void LogToken (const Token *const token, const char* name, const char** STRING_ARR);
 # 9 "./src/GraphVis.cpp" 2
-# 1 "../ATC/Debug/EasyDebug.h" 1
+# 1 "./ATC/Debug/EasyDebug.h" 1
 
 
 
-# 1 "../ATC/Buffer/my_buffer.h" 1
+# 1 "./ATC/Buffer/my_buffer.h" 1
 
 
 
 # 1 "/usr/include/c++/11/stdlib.h" 1 3
-# 5 "../ATC/Buffer/my_buffer.h" 2
+# 5 "./ATC/Buffer/my_buffer.h" 2
 
 
 
@@ -44414,19 +44417,21 @@ int BufferGetDouble (Buffer* buf, double* val);
 int BufferPutDouble (Buffer* buf, double val);
 int BufferPutChar (Buffer* buf, char ch);
 int BufferPutString (Buffer* buf, const char* str);
-# 5 "../ATC/Debug/EasyDebug.h" 2
+# 5 "./ATC/Debug/EasyDebug.h" 2
 # 10 "./src/GraphVis.cpp" 2
 
 
+const int GRAPH_VIS_COLORS[] = {0XFFFFFF, 0XE0FFE0, 0XFFE0E0, 0XE0E0FF, 0XFFFFE0, 0XFFE0FF, 0XE0FFFF, 0XE0E0E0};
+
 static FILE* Dot = 
-# 12 "./src/GraphVis.cpp" 3 4
+# 14 "./src/GraphVis.cpp" 3 4
                   __null
-# 12 "./src/GraphVis.cpp"
+# 14 "./src/GraphVis.cpp"
                       ;
 static const char** STRING_ARR = 
-# 13 "./src/GraphVis.cpp" 3 4
+# 15 "./src/GraphVis.cpp" 3 4
                                 __null
-# 13 "./src/GraphVis.cpp"
+# 15 "./src/GraphVis.cpp"
                                     ;
 
 static void DotPrint (const char* format, ...);
@@ -44444,10 +44449,10 @@ static void PrintNode (const Token *const node);
 
 const char* MakeImg (const char* img_name, const Program *const program)
     {
-    FunctionLogger func_30 {2, __func__};
+    FunctionLogger func_32 {2, __func__};
 
-    do { if (!(img_name)) printf ("\033[91mASSERT\033[0m %s: Dyrachok, (%s) - is wrong condition (in line %d)\n", __func__, "img_name", 32); } while(0);;
-    do { if (!(program)) printf ("\033[91mASSERT\033[0m %s: Dyrachok, (%s) - is wrong condition (in line %d)\n", __func__, "program", 33); } while(0);;
+    do { if (!(img_name)) printf ("\033[91mASSERT\033[0m %s: Dyrachok, (%s) - is wrong condition (in line %d)\n", __func__, "img_name", 34); } while(0);;
+    do { if (!(program)) printf ("\033[91mASSERT\033[0m %s: Dyrachok, (%s) - is wrong condition (in line %d)\n", __func__, "program", 35); } while(0);;
 
     char dot_file [MAX_GRAPH_NAME_LENGTH + 16] = {};
     snprintf (dot_file, MAX_GRAPH_NAME_LENGTH, "%s%s.dot",
@@ -44457,9 +44462,9 @@ const char* MakeImg (const char* img_name, const Program *const program)
 
     OpenDotFile (dot_file);
     if (!Dot) return 
-# 42 "./src/GraphVis.cpp" 3 4
+# 44 "./src/GraphVis.cpp" 3 4
                     __null
-# 42 "./src/GraphVis.cpp"
+# 44 "./src/GraphVis.cpp"
                         ;
 
     SetDot ();
@@ -44518,29 +44523,29 @@ static void DotPrint (const char* format, ...)
     {
     va_list ptr;
     
-# 99 "./src/GraphVis.cpp" 3 4
+# 101 "./src/GraphVis.cpp" 3 4
    __builtin_va_start(
-# 99 "./src/GraphVis.cpp"
+# 101 "./src/GraphVis.cpp"
    ptr
-# 99 "./src/GraphVis.cpp" 3 4
+# 101 "./src/GraphVis.cpp" 3 4
    ,
-# 99 "./src/GraphVis.cpp"
+# 101 "./src/GraphVis.cpp"
    format
-# 99 "./src/GraphVis.cpp" 3 4
+# 101 "./src/GraphVis.cpp" 3 4
    )
-# 99 "./src/GraphVis.cpp"
+# 101 "./src/GraphVis.cpp"
                         ;
 
     vfprintf (Dot, format, ptr);
 
     
-# 103 "./src/GraphVis.cpp" 3 4
+# 105 "./src/GraphVis.cpp" 3 4
    __builtin_va_end(
-# 103 "./src/GraphVis.cpp"
+# 105 "./src/GraphVis.cpp"
    ptr
-# 103 "./src/GraphVis.cpp" 3 4
+# 105 "./src/GraphVis.cpp" 3 4
    )
-# 103 "./src/GraphVis.cpp"
+# 105 "./src/GraphVis.cpp"
               ;
 
     return;
@@ -44549,9 +44554,9 @@ static void DotPrint (const char* format, ...)
 FILE* OpenDotFile (const char* path)
     {
     if (!path) return 
-# 110 "./src/GraphVis.cpp" 3 4
+# 112 "./src/GraphVis.cpp" 3 4
                       __null
-# 110 "./src/GraphVis.cpp"
+# 112 "./src/GraphVis.cpp"
                           ;
     return Dot = fopen (path, "wb");
     }
@@ -44561,24 +44566,24 @@ void CloseDotFile ()
     fclose (Dot);
 
     Dot = 
-# 118 "./src/GraphVis.cpp" 3 4
+# 120 "./src/GraphVis.cpp" 3 4
          __null
-# 118 "./src/GraphVis.cpp"
+# 120 "./src/GraphVis.cpp"
              ;
     return;
     }
 
 static void DotTreeBranch (const Token *const node)
     {
-    do { if (!(node)) { Logger::getInstance().log("Condition (%s) is false\n", "node"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "node"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/GraphVis.cpp", 124); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/GraphVis.cpp", 124); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 124 "./src/GraphVis.cpp" 3 4
+    do { if (!(node)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "node"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "node"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/GraphVis.cpp", 126, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/GraphVis.cpp", 126, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 126 "./src/GraphVis.cpp" 3 4
    14
-# 124 "./src/GraphVis.cpp"
+# 126 "./src/GraphVis.cpp"
    , strerror(
-# 124 "./src/GraphVis.cpp" 3 4
+# 126 "./src/GraphVis.cpp" 3 4
    14
-# 124 "./src/GraphVis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 124); system("powerof"); abort(); } } while (0);;
+# 126 "./src/GraphVis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 126); system("echo LOX\n"); abort(); } } while (0);;
 
     PrintNode (node);
 
@@ -44608,16 +44613,16 @@ static void DotTreeBranch (const Token *const node)
 #pragma GCC diagnostic ignored "-Wcast-qual"
 static void PrintNode (const Token *const node)
     {
-    FunctionLogger func_154 {1, __func__};
-    do { if (!(node)) { Logger::getInstance().log("Condition (%s) is false\n", "node"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "node"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/GraphVis.cpp", 155); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/GraphVis.cpp", 155); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 155 "./src/GraphVis.cpp" 3 4
+    FunctionLogger func_156 {1, __func__};
+    do { if (!(node)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "node"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "node"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/GraphVis.cpp", 157, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/GraphVis.cpp", 157, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 157 "./src/GraphVis.cpp" 3 4
    14
-# 155 "./src/GraphVis.cpp"
+# 157 "./src/GraphVis.cpp"
    , strerror(
-# 155 "./src/GraphVis.cpp" 3 4
+# 157 "./src/GraphVis.cpp" 3 4
    14
-# 155 "./src/GraphVis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 155); system("powerof"); abort(); } } while (0);;
+# 157 "./src/GraphVis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 157); system("echo LOX\n"); abort(); } } while (0);;
     LogToken(node, "node", STRING_ARR);
 
     char def_data[333] = "";
@@ -44634,7 +44639,7 @@ static void PrintNode (const Token *const node)
 
 
 
-case STATEMENT: sprintf(def_data, "STATEMENT" " | {" "%c" "}", node->value.t_operator); break;
+case STATEMENT: sprintf(def_data, "STATEMENT" " | {" "%c" "}", node->value.t_operator == '{' ? '[' : node->value.t_operator == '}' ? ']' : node->value.t_operator); break;
 case INSTRUCTION: sprintf(def_data, "INSTRUCTION" " | {" "%s" "}", INSTRUCTIONS[node->value.t_instruction]); break;
 case INITIALIZATOR: sprintf(def_data, "INITIALIZATOR" " | {" "%s" "}", INITIALIZATORS[node->value.t_initializator]); break;
 case FUNCTION_RET_TYPE: sprintf(def_data, "FUNCTION_RET_TYPE" " | {" "%s" "}", FUNCTION_RET_TYPES[node->value.t_function_ret_type]); break;
@@ -44643,7 +44648,7 @@ case OPERATOR: sprintf(def_data, "OPERATOR" " | {" "%c" "}", node->value.t_opera
 case NAME: sprintf(def_data, "NAME" " | {" "%s" "}", STRING_ARR[node->value.t_name_id]); break;
 case VARIABLE: sprintf(def_data, "VARIABLE" " | {" "%s" "}", STRING_ARR[node->value.t_name_id]); break;
 case CONSTANT: sprintf(def_data, "CONSTANT" " | {" "%lg" "}", node->value.t_constant); break;
-case FUNCTION: sprintf(def_data, "FUNCTION" " | {" "%c" "}", node->value.t_operator); break;
+case FUNCTION: sprintf(def_data, "FUNCTION" " | {" "%c" "}", node->value.t_operator == '{' ? '[' : node->value.t_operator == '}' ? ']' : node->value.t_operator); break;
 case CALL: sprintf(def_data, "CALL" " | {" "%s" "}", " "); break;
 
 case ASSIGMENT: sprintf(def_data, "ASSIGMENT" " | {" "%c" "}", node->value.t_operator); break;
@@ -44652,7 +44657,7 @@ case BLOCK_CLOSING_BRACKET: sprintf(def_data, "BLOCK_CLOSING_BRACKET" " | {" "%c
 case EXPRESSION_OPENING_BRACKET: sprintf(def_data, "EXPRESSION_OPENING_BRACKET" " | {" "%c" "}", node->value.t_operator); break;
 case EXPRESSION_CLOSING_BRACKET: sprintf(def_data, "EXPRESSION_CLOSING_BRACKET" " | {" "%c" "}", node->value.t_operator); break;
 case END_OF_STATEMENT: sprintf(def_data, "END_OF_STATEMENT" " | {" "%c" "}", node->value.t_operator); break;
-# 169 "./src/GraphVis.cpp" 2
+# 171 "./src/GraphVis.cpp" 2
 
 
 
@@ -44661,7 +44666,7 @@ case END_OF_STATEMENT: sprintf(def_data, "END_OF_STATEMENT" " | {" "%c" "}", nod
                  break;
         }
 
-    DotPrint ("\t\tnode_%p [shape = Mrecord label =  \"%s\"]\n", (void*) node, def_data);
+    DotPrint ("\t\tnode_%p [style = filled, fillcolor = \"#%06X\", shape = Mrecord label =  \"%s\"]\n", (void*) node, GRAPH_VIS_COLORS[node->type % 8], def_data);
 
     return;
     }

@@ -1,7 +1,7 @@
 	.file	"FunctionLogger.cpp"
 	.text
 .Ltext0:
-	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/Logger/FunctionLogger.cpp"
+	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "./ATC/Logger/FunctionLogger.cpp"
 	.local	_ZStL8__ioinit
 	.comm	_ZStL8__ioinit,1,1
 	.section	.rodata
@@ -22,7 +22,7 @@ _ZL12STD_LOG_NAME:
 	.type	_ZN14FunctionLoggerC2EiPKc, @function
 _ZN14FunctionLoggerC2EiPKc:
 .LFB2271:
-	.file 1 "../ATC/Logger/FunctionLogger.cpp"
+	.file 1 "./ATC/Logger/FunctionLogger.cpp"
 	.loc 1 3 1
 	.cfi_startproc
 	endbr64
@@ -304,9 +304,9 @@ _GLOBAL__sub_I__ZN14FunctionLoggerC2EiPKc:
 	.file 38 "/usr/include/stdio.h"
 	.file 39 "/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h"
 	.file 40 "/usr/include/wctype.h"
-	.file 41 "../ATC/Logger/LogConfig.h"
-	.file 42 "../ATC/Logger/FunctionLogger.h"
-	.file 43 "../ATC/Logger/Logger.h"
+	.file 41 "./ATC/Logger/LogConfig.h"
+	.file 42 "./ATC/Logger/FunctionLogger.h"
+	.file 43 "./ATC/Logger/Logger.h"
 	.file 44 "/usr/include/c++/11/bits/algorithmfwd.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
@@ -6984,7 +6984,7 @@ _GLOBAL__sub_I__ZN14FunctionLoggerC2EiPKc:
 	.string	"__isoc99_vfwscanf"
 	.section	.debug_line_str,"MS",@progbits,1
 .LASF0:
-	.string	"../ATC/Logger/FunctionLogger.cpp"
+	.string	"./ATC/Logger/FunctionLogger.cpp"
 .LASF1:
 	.string	"/home/arsenyfucker/Cprojects/Lang/Translator"
 	.hidden	DW.ref.__gxx_personality_v0

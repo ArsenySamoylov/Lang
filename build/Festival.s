@@ -1,7 +1,7 @@
 	.file	"Festival.cpp"
 	.text
 .Ltext0:
-	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/Festival/Festival.cpp"
+	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "./ATC/Festival/Festival.cpp"
 	.section	.rodata
 	.align 4
 	.type	_ZL23FESTIVAL_COMMAND_LENGHT, @object
@@ -18,7 +18,7 @@ _ZL15FESTIVAL_ZALUPA:
 .LC0:
 	.string	"void festsay(const char*)"
 .LC1:
-	.string	"../ATC/Festival/Festival.cpp"
+	.string	"./ATC/Festival/Festival.cpp"
 .LC2:
 	.string	"text"
 	.text
@@ -26,7 +26,7 @@ _ZL15FESTIVAL_ZALUPA:
 	.type	_Z7festsayPKc, @function
 _Z7festsayPKc:
 .LFB13:
-	.file 1 "../ATC/Festival/Festival.cpp"
+	.file 1 "./ATC/Festival/Festival.cpp"
 	.loc 1 9 5
 	.cfi_startproc
 	endbr64
@@ -79,7 +79,7 @@ _Z7festsayPKc:
 .LFE13:
 	.size	_Z7festsayPKc, .-_Z7festsayPKc
 .Letext0:
-	.file 2 "../ATC/Festival/Festival.h"
+	.file 2 "./ATC/Festival/Festival.h"
 	.file 3 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h"
 	.file 4 "/usr/include/stdlib.h"
 	.file 5 "/usr/include/c++/11/cstdlib"
@@ -1877,10 +1877,10 @@ _Z7festsayPKc:
 .LASF54:
 	.string	"__gnu_cxx"
 	.section	.debug_line_str,"MS",@progbits,1
+.LASF0:
+	.string	"./ATC/Festival/Festival.cpp"
 .LASF1:
 	.string	"/home/arsenyfucker/Cprojects/Lang/Translator"
-.LASF0:
-	.string	"../ATC/Festival/Festival.cpp"
 	.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"
 	.section	.note.GNU-stack,"",@progbits
 	.section	.note.gnu.property,"a"

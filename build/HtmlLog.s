@@ -1,7 +1,7 @@
 	.file	"HtmlLog.cpp"
 	.text
 .Ltext0:
-	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/HtmlLog/HtmlLog.cpp"
+	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "./ATC/HtmlLog/HtmlLog.cpp"
 	.local	_ZL7HtmlLog
 	.comm	_ZL7HtmlLog,8,8
 	.section	.rodata
@@ -14,7 +14,7 @@
 	.type	_Z8AddImagePKc, @function
 _Z8AddImagePKc:
 .LFB13:
-	.file 1 "../ATC/HtmlLog/HtmlLog.cpp"
+	.file 1 "./ATC/HtmlLog/HtmlLog.cpp"
 	.loc 1 9 5
 	.cfi_startproc
 	endbr64
@@ -2598,7 +2598,7 @@ _Z12CloseHtmlLogv:
 	.string	"__gnu_cxx"
 	.section	.debug_line_str,"MS",@progbits,1
 .LASF0:
-	.string	"../ATC/HtmlLog/HtmlLog.cpp"
+	.string	"./ATC/HtmlLog/HtmlLog.cpp"
 .LASF1:
 	.string	"/home/arsenyfucker/Cprojects/Lang/Translator"
 	.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"

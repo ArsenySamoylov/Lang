@@ -182,9 +182,29 @@ static int ResizeVarTabel (VarTabel* tabel)
 
         for(int i = 0; i < number_of_labels; i++)
             {
-            if (name_id == (*(label_arr + i))->name )
+            if (name_id == (*(label_arr + i))->name_id)
                 return *(label_arr + i);
             } 
 
         return NULL;
         }
+
+int AddVarLabel (int name_id, VarTabel* tabel)
+    {
+    assertlog(tabel, EFAULT, return LFAILURE);
+
+    if (ARR_SIZE(tabel) <= NUMBER_OF_LABELS(tabel))
+        CHECK(ResizeVarTabel(tabel) == SUCCESS, return LFAILURE);
+
+    VarLabel* new_label = (VarLabel*) CALLOC(1, sizeof(new_label[0]));
+    
+    if (!new_label)
+        return LFAILURE;
+
+    new_label->name_id = name_id;
+
+    *(LABEL_ARR(tabel) + NUMBER_OF_LABELS(tabel)) = new_label;
+    NUMBER_OF_LABELS(tabel)++;
+
+    return SUCCESS;
+    }

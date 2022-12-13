@@ -17,9 +17,9 @@ void PrintToken (const Token *const token, const char** STRING_ARR)
     switch (TYPE(token))                                                        
     {
     #define TOKEN token
-        #define TOKEN_TYPE(name, val, specificator, ...)             \
-            case name:                                               \
-                printf (#name " | {'" specificator "'}", __VA_ARGS__); \
+        #define TOKEN_TYPE(name, val, specificator, ...)                   \
+            case name:                                                     \
+                printf (#name " | {'" specificator "'}\n", __VA_ARGS__);   \
                 break;
 
         #include "TokenTypes.h"
@@ -46,9 +46,9 @@ void LogToken (const Token *const token, const char* name, const char** STRING_A
     switch (TYPE(token))                                                        
         {
         #define TOKEN token
-        #define TOKEN_TYPE(name, val, specificator, ...)              \
-            case name:                                                \
-                logf_ni (#name " | {'" specificator "'}", __VA_ARGS__); \
+        #define TOKEN_TYPE(name, val, specificator, ...)                    \
+            case name:                                                      \
+                logf_ni (#name " | {'" specificator "'}\n", __VA_ARGS__);   \
                 break;
 
         #include "TokenTypes.h"

@@ -135,62 +135,42 @@ _ZL11GROWTH_RATE:
 _ZL30START_NUMBER_OF_MAIN_PROCESSES:
 	.long	20
 .LC9:
-	.string	"GetG"
+	.string	"var_tabels"
+	.align 8
 .LC10:
-	.string	"program"
+	.string	"ASSERTLOG:: Condition (%s) is false\n"
+	.align 8
 .LC11:
-	.string	"Condition (%s) is false\n"
+	.string	"\033[93mASSERTLOG:: \033[0mCondition\033[95m (%s) \033[0mis \033[91mfalse\n\033[0m"
 	.align 8
 .LC12:
-	.string	"Condition\033[91m (%s) is false\n\033[0m"
+	.string	"VarLabel* GetVarLabel(int, SuperStack*)"
 .LC13:
-	.string	"./src/SyntaxAnalysis.cpp"
-	.align 8
+	.string	"./src/../src/AnalysUtils_.ars"
 .LC14:
-	.string	"\t(function: %s, file: %s, line: %d)\n"
+	.string	"\t%s:%d, function: %s\n"
 	.align 8
 .LC15:
 	.string	"It matches to error: (code %d) %s\n\n"
-	.align 8
 .LC16:
-	.string	"Shutting down the system (%s:%d)"
+	.string	"GetVarLabel"
+	.align 8
 .LC17:
-	.string	"powerof"
-	.align 8
+	.string	"Shutting down the system (%s:%d)"
 .LC18:
-	.string	"\033[91mFailed %s:%d (%s:%d)\n\033[0m"
+	.string	"echo LOX\n"
 .LC19:
-	.string	"Failed (%s:%d, %s:%d)"
+	.string	"Returnig null ptr (%s:%d)"
+	.align 8
 .LC20:
-	.string	"\t%s: "
-	.align 8
-.LC21:
-	.string	"Program root must be NULL, %p\n"
-.LC22:
-	.string	"\033[91mSyntax ERORR\n\033[94m"
-.LC23:
-	.string	"Syntax ERROR\n"
-.LC24:
-	.string	""
-	.align 8
-.LC25:
-	.string	"Invalid number of tokens: %d (size %d)\n"
-.LC26:
-	.string	"In: \033[95m"
-.LC27:
-	.string	"\033[0m"
-.LC28:
-	.string	"%s:%d\n"
+	.string	"\033[94mReturnig null ptr %s:%d (%s:%d)\n\033[0m"
 	.text
-	.globl	_Z4GetGP7Program
-	.type	_Z4GetGP7Program, @function
-_Z4GetGP7Program:
+	.type	_ZL11GetVarLabeliP10SuperStack, @function
+_ZL11GetVarLabeliP10SuperStack:
 .LFB2270:
-	.file 1 "./src/SyntaxAnalysis.cpp"
-	.loc 1 108 5
+	.file 1 "./src/../src/AnalysUtils_.ars"
+	.loc 1 5 5
 	.cfi_startproc
-	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2270
 	endbr64
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -198,66 +178,57 @@ _Z4GetGP7Program:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	pushq	%rbx
-	subq	$232, %rsp
+	subq	$40, %rsp
 	.cfi_offset 3, -24
-	movq	%rdi, -232(%rbp)
-	.loc 1 109 45
-	leaq	-144(%rbp), %rax
-	leaq	.LC9(%rip), %rdx
-	movl	$2, %esi
-	movq	%rax, %rdi
-.LEHB0:
-	call	_ZN14FunctionLoggerC1EiPKc@PLT
-.LEHE0:
-	.loc 1 110 10
-	cmpq	$0, -232(%rbp)
+	movl	%edi, -36(%rbp)
+	movq	%rsi, -48(%rbp)
+	.loc 1 6 10
+	cmpq	$0, -48(%rbp)
 	jne	.L2
-.LEHB1:
-	.loc 1 110 47 discriminator 1
+	.loc 1 6 50 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 110 53 discriminator 1
-	leaq	.LC10(%rip), %rax
+	.loc 1 6 56 discriminator 1
+	leaq	.LC9(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 110 101 discriminator 3
-	leaq	.LC10(%rip), %rax
+	.loc 1 6 119 discriminator 1
+	leaq	.LC9(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 110 186 discriminator 4
+	.loc 1 6 270 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 110 192 discriminator 4
-	movl	$110, %r8d
+	.loc 1 6 276 discriminator 1
+	leaq	.LC12(%rip), %r8
+	movl	$6, %ecx
 	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC9(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 110 285 discriminator 6
-	movl	$110, %ecx
+	.loc 1 6 368 discriminator 1
+	leaq	.LC12(%rip), %rax
+	movq	%rax, %rcx
+	movl	$6, %edx
 	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC9(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 110 391 discriminator 7
+	.loc 1 6 473 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 110 397 discriminator 7
+	.loc 1 6 479 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -267,558 +238,102 @@ _Z4GetGP7Program:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 110 27 discriminator 9
+	.loc 1 6 27 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 110 33 discriminator 9
-	movl	$110, %ecx
-	leaq	.LC9(%rip), %rax
-	movq	%rax, %rdx
+	.loc 1 6 33 discriminator 1
+	movl	$6, %ecx
 	leaq	.LC16(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 110 92 discriminator 11
-	leaq	.LC17(%rip), %rax
+	.loc 1 6 90 discriminator 1
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 110 131 discriminator 12
+	.loc 1 6 132 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 110 153 discriminator 12
-	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 110 153 is_stmt 0 discriminator 13
-	movq	%rax, %rbx
-	.loc 1 110 166 is_stmt 1 discriminator 13
-	movl	$110, %r9d
-	leaq	.LC9(%rip), %r8
-	movl	$110, %ecx
-	leaq	.LC13(%rip), %rax
+	movq	%rax, %rdi
+	.loc 1 6 148 discriminator 1
+	movl	$6, %ecx
+	leaq	.LC16(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC18(%rip), %rax
-	movq	%rax, %rsi
-	movl	$-1, %edi
-	movl	$0, %eax
-	call	_Z6MsgRetiPKcz@PLT
-	.loc 1 110 166 is_stmt 0 discriminator 14
-	movl	%eax, %esi
-	subq	$8, %rsp
-	pushq	$110
-	leaq	.LC9(%rip), %r9
-	movl	$110, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
 	leaq	.LC19(%rip), %rax
-	movq	%rax, %rdx
-	movq	%rbx, %rdi
+	movq	%rax, %rsi
 	movl	$0, %eax
-	.cfi_escape 0x2e,0x10
-	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
-	.loc 1 110 166 discriminator 15
-	addq	$16, %rsp
-	movl	%eax, %ebx
-	.loc 1 110 351 is_stmt 1 discriminator 15
-	jmp	.L3
-.L2:
-	.loc 1 112 18
-	movq	-232(%rbp), %rax
-	movq	16(%rax), %rax
-	.loc 1 112 5
-	testq	%rax, %rax
-	je	.L4
-	.loc 1 114 17
-	leaq	.LC9(%rip), %rax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 1 6 205 discriminator 1
+	movl	$6, %r8d
+	leaq	.LC16(%rip), %rax
+	movq	%rax, %rcx
+	movl	$6, %edx
+	leaq	.LC13(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
-	.cfi_escape 0x2e,0
-	call	printf@PLT
-	.loc 1 114 98 discriminator 1
-	movq	-232(%rbp), %rax
-	movq	16(%rax), %rax
-	.loc 1 114 45 discriminator 1
-	movq	%rax, %rsi
-	leaq	.LC21(%rip), %rax
-	movq	%rax, %rdi
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 1 6 311 discriminator 1
 	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 115 35
-	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 115 57
-	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 115 57 is_stmt 0 discriminator 1
-	movq	%rax, %rbx
-	.loc 1 115 70 is_stmt 1 discriminator 1
-	movl	$115, %r9d
-	leaq	.LC9(%rip), %r8
-	movl	$115, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC18(%rip), %rax
-	movq	%rax, %rsi
-	movl	$-1, %edi
-	movl	$0, %eax
-	call	_Z6MsgRetiPKcz@PLT
-	.loc 1 115 70 is_stmt 0 discriminator 2
-	movl	%eax, %esi
-	subq	$8, %rsp
-	pushq	$115
-	leaq	.LC9(%rip), %r9
-	movl	$115, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC19(%rip), %rax
-	movq	%rax, %rdx
-	movq	%rbx, %rdi
-	movl	$0, %eax
-	.cfi_escape 0x2e,0x10
-	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
-	.loc 1 115 70 discriminator 3
-	addq	$16, %rsp
-	movl	%eax, %ebx
-	.loc 1 115 255 is_stmt 1 discriminator 3
 	jmp	.L3
-.L4:
-	.loc 1 118 19
-	movq	$0, -112(%rbp)
-	movq	$0, -104(%rbp)
-	movq	$0, -96(%rbp)
-	movq	$0, -88(%rbp)
-	.loc 1 118 45
-	movq	-232(%rbp), %rax
-	movq	%rax, -112(%rbp)
-	.loc 1 119 20
-	leaq	-112(%rbp), %rax
-	movq	%rax, -208(%rbp)
-	.loc 1 121 16
-	movq	$0, -80(%rbp)
-	movq	$0, -72(%rbp)
-	movq	$0, -64(%rbp)
-	movq	$0, -56(%rbp)
-	movq	$0, -48(%rbp)
-	movq	$0, -40(%rbp)
-	movq	$0, -32(%rbp)
-	.loc 1 122 17
-	leaq	-80(%rbp), %rax
-	movq	%rax, -200(%rbp)
-	.loc 1 123 20
-	movq	-200(%rbp), %rax
-	movl	$5, %esi
+.L2:
+	.loc 1 8 29
+	movq	-48(%rbp), %rax
 	movq	%rax, %rdi
-	.cfi_escape 0x2e,0
-	call	_Z14SuperStackCtorP10SuperStackm@PLT
-	.loc 1 125 14
-	movq	$0, -176(%rbp)
-	movq	$0, -168(%rbp)
-	.loc 1 126 15
-	leaq	-176(%rbp), %rax
-	movq	%rax, -192(%rbp)
-	.loc 1 127 17
-	movq	-192(%rbp), %rax
-	movq	%rax, %rdi
-	call	_Z12VarTabelCtorP8VarTabel@PLT
-	.loc 1 130 12
-	movq	-192(%rbp), %rdx
-	movq	-200(%rbp), %rax
+	call	_Z5SStopP10SuperStack@PLT
+	movq	%rax, -32(%rbp)
+	.loc 1 11 32
+	movq	-32(%rbp), %rdx
+	movl	-36(%rbp), %eax
 	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z6SSpushP10SuperStackP8VarTabel@PLT
-	.loc 1 133 33
-	movq	-208(%rbp), %rax
-	movq	-200(%rbp), %rdx
-	movq	%rdx, 24(%rax)
-	.loc 1 137 15
-	movq	$0, -160(%rbp)
-	movq	$0, -152(%rbp)
-	.loc 1 138 16
-	leaq	-160(%rbp), %rax
-	movq	%rax, -184(%rbp)
-	.loc 1 139 18
-	movq	-184(%rbp), %rax
-	movq	%rax, %rdi
-	call	_Z13FuncTabelCtorP9FuncTabel@PLT
-	.loc 1 141 34
-	movq	-208(%rbp), %rax
-	movq	-184(%rbp), %rdx
-	movq	%rdx, 16(%rax)
-	.loc 1 143 31
-	movq	-208(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL10GetProcessP13ProgramBuffer
-	.loc 1 143 19
-	movq	-232(%rbp), %rdx
-	movq	%rax, 16(%rdx)
-	.loc 1 144 19
-	movq	-232(%rbp), %rax
-	movq	16(%rax), %rax
-	.loc 1 144 5
-	testq	%rax, %rax
-	jne	.L5
-	.loc 1 145 35
-	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 145 57
-	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 145 57 is_stmt 0 discriminator 1
-	movq	%rax, %rbx
-	.loc 1 145 70 is_stmt 1 discriminator 1
-	movl	$145, %r9d
-	leaq	.LC9(%rip), %r8
-	movl	$145, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC18(%rip), %rax
-	movq	%rax, %rsi
-	movl	$-1, %edi
-	movl	$0, %eax
-	call	_Z6MsgRetiPKcz@PLT
-	.loc 1 145 70 is_stmt 0 discriminator 2
-	movl	%eax, %esi
-	subq	$8, %rsp
-	pushq	$145
-	leaq	.LC9(%rip), %r9
-	movl	$145, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC19(%rip), %rax
-	movq	%rax, %rdx
-	movq	%rbx, %rdi
-	movl	$0, %eax
-	.cfi_escape 0x2e,0x10
-	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
-	.loc 1 145 70 discriminator 3
-	addq	$16, %rsp
-	movl	%eax, %ebx
-	.loc 1 145 255 is_stmt 1 discriminator 3
-	jmp	.L3
-.L5:
-	.loc 1 147 12
-	movq	-232(%rbp), %rax
-	movq	16(%rax), %rax
-	movq	%rax, -216(%rbp)
-	.loc 1 149 5
-	jmp	.L6
-.L8:
-	.loc 1 151 50
-	movq	-208(%rbp), %rax
-	movq	%rax, %rdi
-	.cfi_escape 0x2e,0
-	call	_ZL10GetProcessP13ProgramBuffer
-	.loc 1 151 38
-	movq	-216(%rbp), %rdx
-	movq	%rax, 8(%rdx)
-	.loc 1 153 31
-	movq	-216(%rbp), %rax
-	movq	8(%rax), %rax
-	.loc 1 153 9
-	testq	%rax, %rax
-	jne	.L7
-	.loc 1 154 39
-	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 154 61
-	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 154 61 is_stmt 0 discriminator 1
-	movq	%rax, %rbx
-	.loc 1 154 74 is_stmt 1 discriminator 1
-	movl	$154, %r9d
-	leaq	.LC9(%rip), %r8
-	movl	$154, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC18(%rip), %rax
-	movq	%rax, %rsi
-	movl	$-1, %edi
-	movl	$0, %eax
-	call	_Z6MsgRetiPKcz@PLT
-	.loc 1 154 74 is_stmt 0 discriminator 2
-	movl	%eax, %esi
-	subq	$8, %rsp
-	pushq	$154
-	leaq	.LC9(%rip), %r9
-	movl	$154, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC19(%rip), %rax
-	movq	%rax, %rdx
-	movq	%rbx, %rdi
-	movl	$0, %eax
-	.cfi_escape 0x2e,0x10
-	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
-	.loc 1 154 74 discriminator 3
-	addq	$16, %rsp
-	movl	%eax, %ebx
-	.loc 1 154 259 is_stmt 1 discriminator 3
-	jmp	.L3
-.L7:
-	.loc 1 156 25
-	movq	-216(%rbp), %rax
-	movq	8(%rax), %rax
-	movq	%rax, -216(%rbp)
-.L6:
-	.loc 1 149 26
-	movq	-208(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 149 53
-	movq	-208(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 149 63
-	movl	8(%rax), %eax
-	.loc 1 149 36
-	cmpl	%eax, %edx
-	jl	.L8
-	.loc 1 159 23
-	movq	-208(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 159 51
-	movq	-208(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 159 61
-	movl	8(%rax), %eax
-	.loc 1 159 5
-	cmpl	%eax, %edx
-	je	.L9
-	.loc 1 161 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	.cfi_escape 0x2e,0
-	call	printf@PLT
-	.loc 1 161 81 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 161 87 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 161 127 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 161 133 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 161 159 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 161 263 discriminator 5
-	movq	-208(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 161 177 discriminator 5
-	movl	8(%rax), %edx
-	movq	-208(%rbp), %rax
-	movl	8(%rax), %eax
-	movl	%edx, %ecx
-	movl	%eax, %edx
-	leaq	.LC25(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 161 299 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 161 343 discriminator 8
-	movq	-208(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 161 370 discriminator 8
-	movq	-208(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 161 380 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 161 399 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L10
-	.loc 1 161 416 discriminator 9
-	movq	-208(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 161 426 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 161 452 discriminator 9
-	movq	-208(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 161 436 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 161 399 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L11
-.L10:
-	.loc 1 161 399 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L11:
-	.loc 1 161 326 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 161 506 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 161 530 discriminator 14
-	movl	$161, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 161 751 discriminator 15
-	movq	-208(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 161 586 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 161 603 discriminator 15
-	movq	-208(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 161 630 discriminator 15
-	movq	-208(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 161 640 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 161 586 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L12
-	.loc 1 161 676 discriminator 16
-	movq	-208(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 161 686 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 161 712 discriminator 16
-	movq	-208(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 161 696 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 161 586 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L13
-.L12:
-	.loc 1 161 586 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L13:
-	.loc 1 161 586 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 162 35 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 162 57
-	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 162 57 is_stmt 0 discriminator 1
-	movq	%rax, %rbx
-	.loc 1 162 70 is_stmt 1 discriminator 1
-	movl	$162, %r9d
-	leaq	.LC9(%rip), %r8
-	movl	$162, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC18(%rip), %rax
-	movq	%rax, %rsi
-	movl	$-1, %edi
-	movl	$0, %eax
-	call	_Z6MsgRetiPKcz@PLT
-	.loc 1 162 70 is_stmt 0 discriminator 2
-	movl	%eax, %esi
-	subq	$8, %rsp
-	pushq	$162
-	leaq	.LC9(%rip), %r9
-	movl	$162, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC19(%rip), %rax
-	movq	%rax, %rdx
-	movq	%rbx, %rdi
-	movl	$0, %eax
-	.cfi_escape 0x2e,0x10
-	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
-.LEHE1:
-	.loc 1 162 70 discriminator 3
-	addq	$16, %rsp
-	movl	%eax, %ebx
-	.loc 1 162 255 is_stmt 1 discriminator 3
-	jmp	.L3
-.L9:
-	.loc 1 168 12
-	movl	$0, %ebx
+	movl	%eax, %edi
+	call	_Z10IsVarLabeliP8VarTabel@PLT
+	movq	%rax, -24(%rbp)
+	.loc 1 12 12
+	movq	-24(%rbp), %rax
 .L3:
-	.loc 1 169 5
-	leaq	-144(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZN14FunctionLoggerD1Ev@PLT
-	movl	%ebx, %eax
-	jmp	.L17
-.L16:
-	endbr64
-	movq	%rax, %rbx
-	leaq	-144(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZN14FunctionLoggerD1Ev@PLT
-	movq	%rbx, %rax
-	movq	%rax, %rdi
-.LEHB2:
-	call	_Unwind_Resume@PLT
-.LEHE2:
-.L17:
+	.loc 1 13 5
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE2270:
-	.globl	__gxx_personality_v0
-	.section	.gcc_except_table,"a",@progbits
-.LLSDA2270:
-	.byte	0xff
-	.byte	0xff
-	.byte	0x1
-	.uleb128 .LLSDACSE2270-.LLSDACSB2270
-.LLSDACSB2270:
-	.uleb128 .LEHB0-.LFB2270
-	.uleb128 .LEHE0-.LEHB0
-	.uleb128 0
-	.uleb128 0
-	.uleb128 .LEHB1-.LFB2270
-	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L16-.LFB2270
-	.uleb128 0
-	.uleb128 .LEHB2-.LFB2270
-	.uleb128 .LEHE2-.LEHB2
-	.uleb128 0
-	.uleb128 0
-.LLSDACSE2270:
-	.text
-	.size	_Z4GetGP7Program, .-_Z4GetGP7Program
+	.size	_ZL11GetVarLabeliP10SuperStack, .-_ZL11GetVarLabeliP10SuperStack
 	.section	.rodata
-.LC29:
+.LC21:
 	.string	"program_buf"
+.LC22:
+	.string	"int DefineName(ProgramCtx*)"
+	.align 8
+.LC23:
+	.string	"./src/../src/SyntaxAnalysisUtils_.ars"
+.LC24:
+	.string	"DefineName"
+.LC25:
+	.string	"\033[91mSyntax ERORR\n\033[94m"
+.LC26:
+	.string	"Syntax ERROR\n"
+.LC27:
+	.string	""
+.LC28:
+	.string	"Not a name\n"
+.LC29:
+	.string	"In: \033[95m"
 .LC30:
-	.string	"GetProcess"
+	.string	"\033[0m"
 .LC31:
-	.string	"Returnig null ptr (%s:%d)"
-	.align 8
+	.string	"%s:%d\n"
 .LC32:
-	.string	"\033[94mReturnig null ptr %s:%d (%s:%d)\n\033[0m"
-.LC33:
-	.string	"Unknow Initializator type\n"
-	.align 8
-.LC34:
-	.string	"This token can't be in global scope\n"
+	.string	"'%s' wasn't decalred\n"
 	.text
-	.type	_ZL10GetProcessP13ProgramBuffer, @function
-_ZL10GetProcessP13ProgramBuffer:
+	.type	_ZL10DefineNameP10ProgramCtx, @function
+_ZL10DefineNameP10ProgramCtx:
 .LFB2271:
-	.loc 1 172 5
+	.file 2 "./src/../src/SyntaxAnalysisUtils_.ars"
+	.loc 2 14 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -830,54 +345,53 @@ _ZL10GetProcessP13ProgramBuffer:
 	subq	$24, %rsp
 	.cfi_offset 3, -24
 	movq	%rdi, -24(%rbp)
-	.loc 1 173 10
+	.loc 2 15 10
 	cmpq	$0, -24(%rbp)
-	jne	.L19
-	.loc 1 173 51 discriminator 1
+	jne	.L5
+	.loc 2 15 51 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 173 57 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 2 15 57 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 173 109 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 2 15 121 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 173 198 discriminator 1
+	.loc 2 15 273 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 173 204 discriminator 1
-	movl	$173, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC30(%rip), %rax
+	.loc 2 15 279 discriminator 1
+	leaq	.LC22(%rip), %r8
+	movl	$15, %ecx
+	leaq	.LC23(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 173 297 discriminator 1
-	movl	$173, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC30(%rip), %rax
+	.loc 2 15 380 discriminator 1
+	leaq	.LC22(%rip), %rax
+	movq	%rax, %rcx
+	movl	$15, %edx
+	leaq	.LC23(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 173 403 discriminator 1
+	.loc 2 15 494 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 173 409 discriminator 1
+	.loc 2 15 500 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -887,596 +401,564 @@ _ZL10GetProcessP13ProgramBuffer:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 173 27 discriminator 1
+	.loc 2 15 27 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 173 33 discriminator 1
-	movl	$173, %ecx
-	leaq	.LC30(%rip), %rax
+	.loc 2 15 33 discriminator 1
+	movl	$15, %ecx
+	leaq	.LC24(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 173 92 discriminator 1
-	leaq	.LC17(%rip), %rax
+	.loc 2 15 91 discriminator 1
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 173 131 discriminator 1
+	.loc 2 15 114 discriminator 1
+	movl	$0, %eax
+	jmp	.L6
+.L5:
+	.loc 2 17 25
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 17 52
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 17 62
+	movl	8(%rax), %eax
+	.loc 2 17 81
+	cmpl	%eax, %edx
+	jge	.L7
+	.loc 2 17 98 discriminator 1
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 17 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 2 17 134 discriminator 1
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 2 17 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 2 17 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L8
+.L7:
+	.loc 2 17 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L8:
+	.loc 2 17 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 2 17 5 discriminator 4
+	cmpl	$6, %eax
+	je	.L9
+	.loc 2 19 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 19 81
 	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 173 147 discriminator 1
-	movl	$173, %ecx
-	leaq	.LC30(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	.loc 2 19 87
+	leaq	.LC26(%rip), %rax
 	movq	%rax, %rsi
+	movq	%rdx, %rdi
 	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 173 206 discriminator 1
-	movl	$173, %r8d
-	leaq	.LC30(%rip), %rax
-	movq	%rax, %rcx
-	movl	$173, %edx
-	leaq	.LC13(%rip), %rax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 19 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 19 133
+	leaq	.LC27(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 19 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 19 177
+	leaq	.LC28(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 2 19 202
+	leaq	.LC29(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 173 311 discriminator 1
+	call	printf@PLT
+	.loc 2 19 246
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 19 273
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 19 283
+	movl	8(%rax), %eax
+	.loc 2 19 302
+	cmpl	%eax, %edx
+	jge	.L10
+	.loc 2 19 319 discriminator 1
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 19 329 discriminator 1
+	movq	(%rax), %rcx
+	.loc 2 19 355 discriminator 1
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 2 19 339 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 2 19 302 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L11
+.L10:
+	.loc 2 19 302 is_stmt 0 discriminator 2
 	movl	$0, %eax
+.L11:
+	.loc 2 19 229 is_stmt 1 discriminator 4
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 2 19 409 discriminator 4
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 2 19 433 discriminator 4
+	movl	$19, %edx
+	leaq	.LC23(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 19 666 discriminator 4
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 19 501 discriminator 4
+	movq	24(%rax), %rdx
+	.loc 2 19 518 discriminator 4
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 2 19 545 discriminator 4
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 19 555 discriminator 4
+	movl	8(%rax), %eax
+	.loc 2 19 501 discriminator 4
+	cmpl	%eax, %ecx
+	jge	.L12
+	.loc 2 19 591 discriminator 5
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 19 601 discriminator 5
+	movq	(%rax), %rsi
+	.loc 2 19 627 discriminator 5
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 2 19 611 discriminator 5
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 2 19 501 discriminator 5
+	addq	%rsi, %rax
+	jmp	.L13
+.L12:
+	.loc 2 19 501 is_stmt 0 discriminator 6
+	movl	$0, %eax
+.L13:
+	.loc 2 19 501 discriminator 8
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 2 20 16 is_stmt 1 discriminator 8
+	movl	$0, %eax
+	jmp	.L6
+.L9:
+	.loc 2 24 21
+	movq	-24(%rbp), %rax
+	movq	16(%rax), %rdx
+	.loc 2 24 38
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 2 24 65
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 24 75
+	movl	8(%rax), %eax
+	.loc 2 24 94
+	cmpl	%eax, %ecx
+	jge	.L14
+	.loc 2 24 111 discriminator 1
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 24 121 discriminator 1
+	movq	(%rax), %rsi
+	.loc 2 24 147 discriminator 1
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 2 24 131 discriminator 1
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 2 24 94 discriminator 1
+	addq	%rsi, %rax
+	jmp	.L15
+.L14:
+	.loc 2 24 94 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L15:
+	.loc 2 24 21 is_stmt 1 discriminator 4
+	movl	24(%rax), %eax
+	movq	%rdx, %rsi
+	movl	%eax, %edi
+	call	_Z11IsFuncLabeliP9FuncTabel@PLT
+	testq	%rax, %rax
+	setne	%al
+	.loc 2 24 5 discriminator 4
+	testb	%al, %al
+	je	.L16
+	.loc 2 26 25
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 26 52
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 26 62
+	movl	8(%rax), %eax
+	.loc 2 26 81
+	cmpl	%eax, %edx
+	jge	.L17
+	.loc 2 26 98 discriminator 1
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 26 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 2 26 134 discriminator 1
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 2 26 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 2 26 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L18
+.L17:
+	.loc 2 26 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L18:
+	.loc 2 26 163 is_stmt 1 discriminator 4
+	movl	$9, 16(%rax)
+	.loc 2 27 16 discriminator 4
+	movl	$9, %eax
+	jmp	.L6
+.L16:
+	.loc 2 30 21
+	movq	-24(%rbp), %rax
+	movq	24(%rax), %rdx
+	.loc 2 30 38
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 2 30 65
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 30 75
+	movl	8(%rax), %eax
+	.loc 2 30 94
+	cmpl	%eax, %ecx
+	jge	.L19
+	.loc 2 30 111 discriminator 1
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 30 121 discriminator 1
+	movq	(%rax), %rsi
+	.loc 2 30 147 discriminator 1
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 2 30 131 discriminator 1
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 2 30 94 discriminator 1
+	addq	%rsi, %rax
 	jmp	.L20
 .L19:
-	.loc 1 175 29
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 175 56
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 175 66
-	movl	8(%rax), %eax
-	.loc 1 175 85
-	cmpl	%eax, %edx
-	jge	.L21
-	.loc 1 175 102 discriminator 1
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 175 112 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 175 138 discriminator 1
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 175 122 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 175 85 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L22
-.L21:
-	.loc 1 175 85 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L22:
-	.loc 1 175 162 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 175 5 discriminator 4
-	cmpl	$6, %eax
-	je	.L23
-	.loc 1 175 5 is_stmt 0
-	cmpl	$6, %eax
-	jg	.L24
-	cmpl	$3, %eax
-	je	.L25
-	cmpl	$4, %eax
-	je	.L26
-	jmp	.L24
-.L25:
-	.loc 1 179 29 is_stmt 1
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 179 56
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 179 66
-	movl	8(%rax), %eax
-	.loc 1 179 85
-	cmpl	%eax, %edx
-	jge	.L27
-	.loc 1 179 102 discriminator 1
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 179 112 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 179 138 discriminator 1
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 179 122 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 179 85 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L28
-.L27:
-	.loc 1 179 85 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L28:
-	.loc 1 179 168 is_stmt 1 discriminator 4
-	movl	24(%rax), %eax
-	.loc 1 179 9 discriminator 4
-	testl	%eax, %eax
-	jne	.L29
-	.loc 1 181 35
-	movq	-24(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL18FuncInitializationP13ProgramBuffer
-	.loc 1 181 49
-	testl	%eax, %eax
-	setne	%al
-	.loc 1 181 13
-	testb	%al, %al
-	je	.L30
-	.loc 1 182 43
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 182 59
-	movl	$182, %ecx
-	leaq	.LC30(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 182 118
-	movl	$182, %r8d
-	leaq	.LC30(%rip), %rax
-	movq	%rax, %rcx
-	movl	$182, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 182 223
-	movl	$0, %eax
-	jmp	.L20
-.L30:
-	.loc 1 184 30
-	movq	-24(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL10GetProcessP13ProgramBuffer
-	.loc 1 184 42
-	jmp	.L20
-.L29:
-	.loc 1 187 29
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 187 56
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 187 66
-	movl	8(%rax), %eax
-	.loc 1 187 85
-	cmpl	%eax, %edx
-	jge	.L31
-	.loc 1 187 102 discriminator 1
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 187 112 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 187 138 discriminator 1
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 187 122 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 187 85 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L32
-.L31:
-	.loc 1 187 85 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L32:
-	.loc 1 187 168 is_stmt 1 discriminator 4
-	movl	24(%rax), %eax
-	.loc 1 187 9 discriminator 4
-	cmpl	$1, %eax
-	jne	.L33
-	.loc 1 188 37
-	movq	-24(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL17VarInitializationP13ProgramBuffer
-	.loc 1 188 49
-	jmp	.L20
-.L33:
-	.loc 1 190 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 190 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 190 87
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 190 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 190 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 190 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 190 177
-	leaq	.LC33(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 190 217
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 190 261
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 190 288
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 190 298
-	movl	8(%rax), %eax
-	.loc 1 190 317
-	cmpl	%eax, %edx
-	jge	.L34
-	.loc 1 190 334 discriminator 1
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 190 344 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 190 370 discriminator 1
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 190 354 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 190 317 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L35
-.L34:
-	.loc 1 190 317 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L35:
-	.loc 1 190 244 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 190 424 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 190 448 discriminator 4
-	movl	$190, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 190 669 discriminator 4
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 190 504 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 190 521 discriminator 4
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 190 548 discriminator 4
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 190 558 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 190 504 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L36
-	.loc 1 190 594 discriminator 5
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 190 604 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 190 630 discriminator 5
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 190 614 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 190 504 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L37
-.L36:
-	.loc 1 190 504 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L37:
-	.loc 1 190 504 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 191 35 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 191 51 discriminator 8
-	movl	$191, %ecx
-	leaq	.LC30(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 191 110 discriminator 8
-	movl	$191, %r8d
-	leaq	.LC30(%rip), %rax
-	movq	%rax, %rcx
-	movl	$191, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 191 215 discriminator 8
-	movl	$0, %eax
-	jmp	.L20
-.L23:
-	.loc 1 195 23
-	movq	-24(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL10DefineNameP13ProgramBuffer
-	.loc 1 195 37
-	testl	%eax, %eax
-	sete	%al
-	.loc 1 195 9
-	testb	%al, %al
-	je	.L38
-	.loc 1 196 39
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 196 55
-	movl	$196, %ecx
-	leaq	.LC30(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 196 114
-	movl	$196, %r8d
-	leaq	.LC30(%rip), %rax
-	movq	%rax, %rcx
-	movl	$196, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 196 219
-	movl	$0, %eax
-	jmp	.L20
-.L38:
-	.loc 1 198 26
-	movq	-24(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL10GetProcessP13ProgramBuffer
-	.loc 1 198 38
-	jmp	.L20
-.L26:
-	.loc 1 206 27
-	movq	-24(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL11GetFunctionP13ProgramBuffer
-	.loc 1 206 39
-	jmp	.L20
-.L24:
-	.loc 1 209 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 209 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 209 87
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 209 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 209 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 209 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 209 177
-	leaq	.LC34(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 209 227
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 209 271
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 209 298
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 209 308
-	movl	8(%rax), %eax
-	.loc 1 209 327
-	cmpl	%eax, %edx
-	jge	.L39
-	.loc 1 209 344 discriminator 1
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 209 354 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 209 380 discriminator 1
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 209 364 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 209 327 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L40
-.L39:
-	.loc 1 209 327 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L40:
-	.loc 1 209 254 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 209 434 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 209 458 discriminator 4
-	movl	$209, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 209 679 discriminator 4
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 209 514 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 209 531 discriminator 4
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 209 558 discriminator 4
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 209 568 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 209 514 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L41
-	.loc 1 209 604 discriminator 5
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 209 614 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 209 640 discriminator 5
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 209 624 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 209 514 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L42
-.L41:
-	.loc 1 209 514 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L42:
-	.loc 1 209 514 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 210 35 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 210 51 discriminator 8
-	movl	$210, %ecx
-	leaq	.LC30(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 210 110 discriminator 8
-	movl	$210, %r8d
-	leaq	.LC30(%rip), %rax
-	movq	%rax, %rcx
-	movl	$210, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 210 215 discriminator 8
+	.loc 2 30 94 is_stmt 0 discriminator 2
 	movl	$0, %eax
 .L20:
-	.loc 1 216 5
+	.loc 2 30 21 is_stmt 1 discriminator 4
+	movl	24(%rax), %eax
+	movq	%rdx, %rsi
+	movl	%eax, %edi
+	call	_ZL11GetVarLabeliP10SuperStack
+	testq	%rax, %rax
+	setne	%al
+	.loc 2 30 5 discriminator 4
+	testb	%al, %al
+	je	.L21
+	.loc 2 32 25
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 32 52
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 32 62
+	movl	8(%rax), %eax
+	.loc 2 32 81
+	cmpl	%eax, %edx
+	jge	.L22
+	.loc 2 32 98 discriminator 1
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 32 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 2 32 134 discriminator 1
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 2 32 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 2 32 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L23
+.L22:
+	.loc 2 32 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L23:
+	.loc 2 32 163 is_stmt 1 discriminator 4
+	movl	$7, 16(%rax)
+	.loc 2 33 16 discriminator 4
+	movl	$7, %eax
+	jmp	.L6
+.L21:
+	.loc 2 36 16
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 36 77
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 36 83
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 36 123
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 36 129
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 36 155
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 2 36 216
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 36 226
+	movq	24(%rax), %rsi
+	.loc 2 36 254
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 36 281
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 36 291
+	movl	8(%rax), %eax
+	.loc 2 36 310
+	cmpl	%eax, %edx
+	jge	.L24
+	.loc 2 36 327 discriminator 1
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 36 337 discriminator 1
+	movq	(%rax), %rdi
+	.loc 2 36 363 discriminator 1
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 2 36 347 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 2 36 310 discriminator 1
+	addq	%rdi, %rax
+	jmp	.L25
+.L24:
+	.loc 2 36 310 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L25:
+	.loc 2 36 393 is_stmt 1 discriminator 4
+	movl	24(%rax), %eax
+	cltq
+	.loc 2 36 402 discriminator 4
+	salq	$3, %rax
+	addq	%rsi, %rax
+	.loc 2 36 173 discriminator 4
+	movq	(%rax), %rax
+	movq	%rax, %rdx
+	leaq	.LC32(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 2 36 412 discriminator 4
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 36 456 discriminator 4
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 36 483 discriminator 4
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 36 493 discriminator 4
+	movl	8(%rax), %eax
+	.loc 2 36 512 discriminator 4
+	cmpl	%eax, %edx
+	jge	.L26
+	.loc 2 36 529 discriminator 5
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 36 539 discriminator 5
+	movq	(%rax), %rcx
+	.loc 2 36 565 discriminator 5
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 2 36 549 discriminator 5
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 2 36 512 discriminator 5
+	addq	%rcx, %rax
+	jmp	.L27
+.L26:
+	.loc 2 36 512 is_stmt 0 discriminator 6
+	movl	$0, %eax
+.L27:
+	.loc 2 36 439 is_stmt 1 discriminator 8
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 2 36 619 discriminator 8
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 2 36 643 discriminator 8
+	movl	$36, %edx
+	leaq	.LC23(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 36 876 discriminator 8
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 36 711 discriminator 8
+	movq	24(%rax), %rdx
+	.loc 2 36 728 discriminator 8
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 2 36 755 discriminator 8
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 36 765 discriminator 8
+	movl	8(%rax), %eax
+	.loc 2 36 711 discriminator 8
+	cmpl	%eax, %ecx
+	jge	.L28
+	.loc 2 36 801 discriminator 9
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 36 811 discriminator 9
+	movq	(%rax), %rsi
+	.loc 2 36 837 discriminator 9
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 2 36 821 discriminator 9
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 2 36 711 discriminator 9
+	addq	%rsi, %rax
+	jmp	.L29
+.L28:
+	.loc 2 36 711 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L29:
+	.loc 2 36 711 discriminator 12
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 2 38 12 is_stmt 1 discriminator 12
+	movl	$0, %eax
+.L6:
+	.loc 2 39 5
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE2271:
-	.size	_ZL10GetProcessP13ProgramBuffer, .-_ZL10GetProcessP13ProgramBuffer
+	.size	_ZL10DefineNameP10ProgramCtx, .-_ZL10DefineNameP10ProgramCtx
 	.section	.rodata
+	.align 8
+.LC33:
+	.string	"FuncLabel* MakeFuncLabel(ProgramCtx*, Token**)"
+.LC34:
+	.string	"MakeFuncLabel"
 .LC35:
-	.string	"FuncInitialization"
-	.align 8
+	.string	"func_head"
 .LC36:
-	.string	"Wrong token type for function initialization\n"
-	.align 8
+	.string	"No return type in function\n"
 .LC37:
-	.string	"Ebat, %s shadows previous declaration\n"
+	.string	"No function name\n"
+	.align 8
 .LC38:
-	.string	"Missing '%c'\n"
+	.string	"Missing '(' in function prototype\n"
+.LC39:
+	.string	"Missing ')' in function \n"
 	.text
-	.type	_ZL18FuncInitializationP13ProgramBuffer, @function
-_ZL18FuncInitializationP13ProgramBuffer:
+	.type	_ZL13MakeFuncLabelP10ProgramCtxPP5Token, @function
+_ZL13MakeFuncLabelP10ProgramCtxPP5Token:
 .LFB2272:
-	.loc 1 219 5
+	.loc 2 42 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -1485,57 +967,57 @@ _ZL18FuncInitializationP13ProgramBuffer:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	pushq	%rbx
-	subq	$40, %rsp
+	subq	$56, %rsp
 	.cfi_offset 3, -24
-	movq	%rdi, -40(%rbp)
-	.loc 1 220 10
-	cmpq	$0, -40(%rbp)
-	jne	.L44
-	.loc 1 220 51 discriminator 1
+	movq	%rdi, -56(%rbp)
+	movq	%rsi, -64(%rbp)
+	.loc 2 43 10
+	cmpq	$0, -56(%rbp)
+	jne	.L31
+	.loc 2 43 51 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 220 57 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 2 43 57 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 220 109 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 2 43 121 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 220 198 discriminator 1
+	.loc 2 43 273 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 220 204 discriminator 1
-	movl	$220, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC35(%rip), %rax
+	.loc 2 43 279 discriminator 1
+	leaq	.LC33(%rip), %r8
+	movl	$43, %ecx
+	leaq	.LC23(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 220 297 discriminator 1
-	movl	$220, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC35(%rip), %rax
+	.loc 2 43 380 discriminator 1
+	leaq	.LC33(%rip), %rax
+	movq	%rax, %rcx
+	movl	$43, %edx
+	leaq	.LC23(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 220 403 discriminator 1
+	.loc 2 43 494 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 220 409 discriminator 1
+	.loc 2 43 500 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -1545,728 +1027,1089 @@ _ZL18FuncInitializationP13ProgramBuffer:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 220 27 discriminator 1
+	.loc 2 43 27 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 220 33 discriminator 1
-	movl	$220, %ecx
-	leaq	.LC35(%rip), %rax
+	.loc 2 43 33 discriminator 1
+	movl	$43, %ecx
+	leaq	.LC34(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 220 92 discriminator 1
-	leaq	.LC17(%rip), %rax
+	.loc 2 43 91 discriminator 1
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 220 131 discriminator 1
+	.loc 2 43 133 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 220 153 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rbx
-	.loc 1 220 166 discriminator 1
-	movl	$220, %r9d
-	leaq	.LC35(%rip), %r8
-	movl	$220, %ecx
-	leaq	.LC13(%rip), %rax
+	movq	%rax, %rdi
+	.loc 2 43 149 discriminator 1
+	movl	$43, %ecx
+	leaq	.LC34(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC18(%rip), %rax
-	movq	%rax, %rsi
-	movl	$-1, %edi
-	movl	$0, %eax
-	call	_Z6MsgRetiPKcz@PLT
-	movl	%eax, %esi
-	subq	$8, %rsp
-	pushq	$220
-	leaq	.LC35(%rip), %r9
-	movl	$220, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
 	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 2 43 207 discriminator 1
+	movl	$43, %r8d
+	leaq	.LC34(%rip), %rax
+	movq	%rax, %rcx
+	movl	$43, %edx
+	leaq	.LC23(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 2 43 323 discriminator 1
+	movl	$0, %eax
+	jmp	.L32
+.L31:
+	.loc 2 44 10
+	cmpq	$0, -64(%rbp)
+	jne	.L33
+	.loc 2 44 49 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 2 44 55 discriminator 1
+	leaq	.LC35(%rip), %rax
 	movq	%rax, %rdx
-	movq	%rbx, %rdi
+	leaq	.LC10(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
 	movl	$0, %eax
-	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
-	addq	$16, %rsp
-	.loc 1 220 351 discriminator 1
-	jmp	.L45
-.L44:
-	.loc 1 222 25
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 222 52
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 222 62
-	movl	8(%rax), %eax
-	.loc 1 222 81
-	cmpl	%eax, %edx
-	jge	.L46
-	.loc 1 222 98 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 222 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 222 134 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 222 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 222 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L47
-.L46:
-	.loc 1 222 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L47:
-	.loc 1 222 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 222 5 discriminator 4
-	cmpl	$3, %eax
-	jne	.L48
-	.loc 1 222 199 discriminator 5
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 222 226 discriminator 5
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 222 236 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 222 255 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L49
-	.loc 1 222 272 discriminator 6
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 222 282 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 222 308 discriminator 6
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 222 292 discriminator 6
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 222 255 discriminator 6
-	addq	%rcx, %rax
-	jmp	.L50
-.L49:
-	.loc 1 222 255 is_stmt 0 discriminator 7
-	movl	$0, %eax
-.L50:
-	.loc 1 222 338 is_stmt 1 discriminator 9
-	movl	24(%rax), %eax
-	.loc 1 222 180 discriminator 9
-	testl	%eax, %eax
-	je	.L51
-.L48:
-	.loc 1 224 20
-	leaq	.LC22(%rip), %rax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 44 117 discriminator 1
+	leaq	.LC35(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 224 81
+	.loc 2 44 267 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 2 44 273 discriminator 1
+	leaq	.LC33(%rip), %r8
+	movl	$44, %ecx
+	leaq	.LC23(%rip), %rax
 	movq	%rax, %rdx
-	.loc 1 224 87
+	leaq	.LC14(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 44 374 discriminator 1
+	leaq	.LC33(%rip), %rax
+	movq	%rax, %rcx
+	movl	$44, %edx
 	leaq	.LC23(%rip), %rax
 	movq	%rax, %rsi
-	movq	%rdx, %rdi
+	leaq	.LC14(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 44 488 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rbx
+	.loc 2 44 494 discriminator 1
+	movl	$14, %edi
+	call	strerror@PLT
+	movq	%rax, %rcx
+	movl	$14, %edx
+	leaq	.LC15(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 224 127
+	.loc 2 44 27 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 2 44 33 discriminator 1
+	movl	$44, %ecx
+	leaq	.LC34(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC17(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 44 91 discriminator 1
+	leaq	.LC18(%rip), %rax
+	movq	%rax, %rdi
+	call	system@PLT
+	.loc 2 44 133 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 2 44 149 discriminator 1
+	movl	$44, %ecx
+	leaq	.LC34(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 2 44 207 discriminator 1
+	movl	$44, %r8d
+	leaq	.LC34(%rip), %rax
+	movq	%rax, %rcx
+	movl	$44, %edx
+	leaq	.LC23(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 2 44 323 discriminator 1
+	movl	$0, %eax
+	jmp	.L32
+.L33:
+	.loc 2 46 56
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 2 46 67
+	movl	$46, %r9d
+	leaq	.LC34(%rip), %r8
+	leaq	.LC23(%rip), %rax
+	movq	%rax, %rcx
+	movl	$40, %edx
+	movl	$1, %esi
+	call	_ZN6Logger7CAL_LOGEmmPKcS1_i@PLT
+	movq	%rax, -40(%rbp)
+	.loc 2 47 5
+	cmpq	$0, -40(%rbp)
+	jne	.L34
+	.loc 2 47 43 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 2 47 59 discriminator 1
+	movl	$47, %ecx
+	leaq	.LC34(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 2 47 117 discriminator 1
+	movl	$47, %r8d
+	leaq	.LC34(%rip), %rax
+	movq	%rax, %rcx
+	movl	$47, %edx
+	leaq	.LC23(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 2 47 233 discriminator 1
+	movl	$0, %eax
+	jmp	.L32
+.L34:
+	.loc 2 49 25
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 49 52
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 49 62
+	movl	8(%rax), %eax
+	.loc 2 49 81
+	cmpl	%eax, %edx
+	jge	.L35
+	.loc 2 49 98 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 49 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 2 49 134 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 2 49 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 2 49 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L36
+.L35:
+	.loc 2 49 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L36:
+	.loc 2 49 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 2 49 5 discriminator 4
+	cmpl	$4, %eax
+	je	.L37
+	.loc 2 51 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 51 81
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
-	.loc 1 224 133
-	leaq	.LC24(%rip), %rax
+	.loc 2 51 87
+	leaq	.LC26(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 224 159
+	.loc 2 51 127
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
-	.loc 1 224 177
+	.loc 2 51 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 51 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 51 177
 	leaq	.LC36(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 224 236
-	leaq	.LC26(%rip), %rax
+	.loc 2 51 218
+	leaq	.LC29(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 224 280
-	movq	-40(%rbp), %rax
+	.loc 2 51 262
+	movq	-56(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 224 307
-	movq	-40(%rbp), %rax
+	.loc 2 51 289
+	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 224 317
+	.loc 2 51 299
 	movl	8(%rax), %eax
-	.loc 1 224 336
+	.loc 2 51 318
 	cmpl	%eax, %edx
-	jge	.L52
-	.loc 1 224 353 discriminator 1
-	movq	-40(%rbp), %rax
+	jge	.L38
+	.loc 2 51 335 discriminator 1
+	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 224 363 discriminator 1
+	.loc 2 51 345 discriminator 1
 	movq	(%rax), %rcx
-	.loc 1 224 389 discriminator 1
-	movq	-40(%rbp), %rax
+	.loc 2 51 371 discriminator 1
+	movq	-56(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 224 373 discriminator 1
+	.loc 2 51 355 discriminator 1
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 224 336 discriminator 1
+	.loc 2 51 318 discriminator 1
 	addq	%rcx, %rax
-	jmp	.L53
-.L52:
-	.loc 1 224 336 is_stmt 0 discriminator 2
+	jmp	.L39
+.L38:
+	.loc 2 51 318 is_stmt 0 discriminator 2
 	movl	$0, %eax
-.L53:
-	.loc 1 224 263 is_stmt 1 discriminator 4
+.L39:
+	.loc 2 51 245 is_stmt 1 discriminator 4
 	movq	32(%rax), %rax
 	movl	$10, %esi
 	movq	%rax, %rdi
 	call	_Z6printlPKcc@PLT
-	.loc 1 224 443 discriminator 4
-	leaq	.LC27(%rip), %rax
+	.loc 2 51 425 discriminator 4
+	leaq	.LC30(%rip), %rax
 	movq	%rax, %rdi
 	call	puts@PLT
-	.loc 1 224 467 discriminator 4
-	movl	$224, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 224 688 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 224 523 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 224 540 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 224 567 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 224 577 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 224 523 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L54
-	.loc 1 224 613 discriminator 5
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 224 623 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 224 649 discriminator 5
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 224 633 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 224 523 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L55
-.L54:
-	.loc 1 224 523 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L55:
-	.loc 1 224 523 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 225 35 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 225 57 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rbx
-	.loc 1 225 70 discriminator 8
-	movl	$225, %r9d
-	leaq	.LC35(%rip), %r8
-	movl	$225, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC18(%rip), %rax
-	movq	%rax, %rsi
-	movl	$-1, %edi
-	movl	$0, %eax
-	call	_Z6MsgRetiPKcz@PLT
-	movl	%eax, %esi
-	subq	$8, %rsp
-	pushq	$225
-	leaq	.LC35(%rip), %r9
-	movl	$225, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC19(%rip), %rax
-	movq	%rax, %rdx
-	movq	%rbx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
-	addq	$16, %rsp
-	.loc 1 225 255 discriminator 8
-	jmp	.L45
-.L51:
-	.loc 1 227 19
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 227 28
-	leal	1(%rax), %edx
-	movq	-40(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 229 37
-	movq	-40(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL13MakeFuncLabelP13ProgramBuffer
-	movq	%rax, -24(%rbp)
-	.loc 1 230 20
-	movq	-40(%rbp), %rax
-	movq	16(%rax), %rdx
-	movq	-24(%rbp), %rax
-	movl	(%rax), %eax
-	movq	%rdx, %rsi
-	movl	%eax, %edi
-	call	_Z11IsFuncLabeliP9FuncTabel@PLT
-	testq	%rax, %rax
-	setne	%al
-	.loc 1 230 5
-	testb	%al, %al
-	je	.L56
-	.loc 1 232 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 232 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 232 87
+	.loc 2 51 449 discriminator 4
+	movl	$51, %edx
 	leaq	.LC23(%rip), %rax
 	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 232 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 232 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 232 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rcx
-	.loc 1 232 237
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 232 247
-	movq	24(%rax), %rdx
-	.loc 1 232 266
-	movq	-24(%rbp), %rax
-	movl	(%rax), %eax
-	cltq
-	.loc 1 232 270
-	salq	$3, %rax
-	addq	%rdx, %rax
-	.loc 1 232 177
-	movq	(%rax), %rax
-	movq	%rax, %rdx
-	leaq	.LC37(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rcx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 232 280
-	leaq	.LC26(%rip), %rax
+	leaq	.LC31(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 232 324
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 232 351
-	movq	-40(%rbp), %rax
+	.loc 2 51 682 discriminator 4
+	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 232 361
-	movl	8(%rax), %eax
-	.loc 1 232 380
-	cmpl	%eax, %edx
-	jge	.L57
-	.loc 1 232 397 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 232 407 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 232 433 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 232 417 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 232 380 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L58
-.L57:
-	.loc 1 232 380 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L58:
-	.loc 1 232 307 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 232 487 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 232 511 discriminator 4
-	movl	$232, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 232 732 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 232 567 discriminator 4
+	.loc 2 51 517 discriminator 4
 	movq	24(%rax), %rdx
-	.loc 1 232 584 discriminator 4
-	movq	-40(%rbp), %rax
+	.loc 2 51 534 discriminator 4
+	movq	-56(%rbp), %rax
 	movl	8(%rax), %ecx
-	.loc 1 232 611 discriminator 4
-	movq	-40(%rbp), %rax
+	.loc 2 51 561 discriminator 4
+	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 232 621 discriminator 4
+	.loc 2 51 571 discriminator 4
 	movl	8(%rax), %eax
-	.loc 1 232 567 discriminator 4
+	.loc 2 51 517 discriminator 4
 	cmpl	%eax, %ecx
-	jge	.L59
-	.loc 1 232 657 discriminator 5
-	movq	-40(%rbp), %rax
+	jge	.L40
+	.loc 2 51 607 discriminator 5
+	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 232 667 discriminator 5
+	.loc 2 51 617 discriminator 5
 	movq	(%rax), %rsi
-	.loc 1 232 693 discriminator 5
-	movq	-40(%rbp), %rax
+	.loc 2 51 643 discriminator 5
+	movq	-56(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rcx
-	.loc 1 232 677 discriminator 5
+	.loc 2 51 627 discriminator 5
 	movq	%rcx, %rax
 	salq	$2, %rax
 	addq	%rcx, %rax
 	salq	$3, %rax
-	.loc 1 232 567 discriminator 5
+	.loc 2 51 517 discriminator 5
 	addq	%rsi, %rax
-	jmp	.L60
-.L59:
-	.loc 1 232 567 is_stmt 0 discriminator 6
+	jmp	.L41
+.L40:
+	.loc 2 51 517 is_stmt 0 discriminator 6
 	movl	$0, %eax
-.L60:
-	.loc 1 232 567 discriminator 8
+.L41:
+	.loc 2 51 517 discriminator 8
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 233 35 is_stmt 1 discriminator 8
+	.loc 2 52 35 is_stmt 1 discriminator 8
 	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 233 57 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rbx
-	.loc 1 233 70 discriminator 8
-	movl	$233, %r9d
-	leaq	.LC35(%rip), %r8
-	movl	$233, %ecx
-	leaq	.LC13(%rip), %rax
+	movq	%rax, %rdi
+	.loc 2 52 51 discriminator 8
+	movl	$52, %ecx
+	leaq	.LC34(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC18(%rip), %rax
-	movq	%rax, %rsi
-	movl	$-1, %edi
-	movl	$0, %eax
-	call	_Z6MsgRetiPKcz@PLT
-	movl	%eax, %esi
-	subq	$8, %rsp
-	pushq	$233
-	leaq	.LC35(%rip), %r9
-	movl	$233, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
 	leaq	.LC19(%rip), %rax
-	movq	%rax, %rdx
-	movq	%rbx, %rdi
+	movq	%rax, %rsi
 	movl	$0, %eax
-	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
-	addq	$16, %rsp
-	.loc 1 233 255 discriminator 8
-	jmp	.L45
-.L56:
-	.loc 1 236 17
-	movq	-40(%rbp), %rax
-	movq	16(%rax), %rdx
-	movq	-24(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z12AddFuncLabelP9FuncLabelP9FuncTabel@PLT
-	.loc 1 238 25
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 238 52
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 238 62
-	movl	8(%rax), %eax
-	.loc 1 238 81
-	cmpl	%eax, %edx
-	jge	.L61
-	.loc 1 238 98 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 238 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 238 134 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 238 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 238 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L62
-.L61:
-	.loc 1 238 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L62:
-	.loc 1 238 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 238 5 discriminator 4
-	cmpl	$59, %eax
-	je	.L63
-	.loc 1 240 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 240 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 240 87
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 2 52 109 discriminator 8
+	movl	$52, %r8d
+	leaq	.LC34(%rip), %rax
+	movq	%rax, %rcx
+	movl	$52, %edx
 	leaq	.LC23(%rip), %rax
 	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 240 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 240 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 240 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rcx
-	.loc 1 240 177
-	movl	$59, %edx
-	leaq	.LC38(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rcx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 240 222
-	leaq	.LC26(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 240 266
-	movq	-40(%rbp), %rax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 2 52 225 discriminator 8
+	movl	$0, %eax
+	jmp	.L32
+.L37:
+	.loc 2 55 39
+	movq	-56(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 240 293
-	movq	-40(%rbp), %rax
+	.loc 2 55 66
+	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 240 303
+	.loc 2 55 76
 	movl	8(%rax), %eax
-	.loc 1 240 322
+	.loc 2 55 95
 	cmpl	%eax, %edx
-	jge	.L64
-	.loc 1 240 339 discriminator 1
-	movq	-40(%rbp), %rax
+	jge	.L42
+	.loc 2 55 112 discriminator 1
+	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 240 349 discriminator 1
+	.loc 2 55 122 discriminator 1
 	movq	(%rax), %rcx
-	.loc 1 240 375 discriminator 1
-	movq	-40(%rbp), %rax
+	.loc 2 55 148 discriminator 1
+	movq	-56(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 240 359 discriminator 1
+	.loc 2 55 132 discriminator 1
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 240 322 discriminator 1
+	.loc 2 55 95 discriminator 1
 	addq	%rcx, %rax
-	jmp	.L65
-.L64:
-	.loc 1 240 322 is_stmt 0 discriminator 2
+	jmp	.L43
+.L42:
+	.loc 2 55 95 is_stmt 0 discriminator 2
 	movl	$0, %eax
-.L65:
-	.loc 1 240 249 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 240 429 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 240 453 discriminator 4
-	movl	$240, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 240 674 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 240 509 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 240 526 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 240 553 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 240 563 discriminator 4
+.L43:
+	.loc 2 55 12 is_stmt 1 discriminator 4
+	movq	%rax, -32(%rbp)
+	.loc 2 56 19 discriminator 4
+	movq	-56(%rbp), %rax
 	movl	8(%rax), %eax
-	.loc 1 240 509 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L66
-	.loc 1 240 599 discriminator 5
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 240 609 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 240 635 discriminator 5
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 240 619 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 240 509 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L67
-.L66:
-	.loc 1 240 509 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L67:
-	.loc 1 240 509 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 241 35 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 241 57 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rbx
-	.loc 1 241 70 discriminator 8
-	movl	$241, %r9d
-	leaq	.LC35(%rip), %r8
-	movl	$241, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC18(%rip), %rax
-	movq	%rax, %rsi
-	movl	$-1, %edi
-	movl	$0, %eax
-	call	_Z6MsgRetiPKcz@PLT
-	movl	%eax, %esi
-	subq	$8, %rsp
-	pushq	$241
-	leaq	.LC35(%rip), %r9
-	movl	$241, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC19(%rip), %rax
-	movq	%rax, %rdx
-	movq	%rbx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
-	addq	$16, %rsp
-	.loc 1 241 255 discriminator 8
-	jmp	.L45
-.L63:
-	.loc 1 243 19
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 243 28
+	.loc 2 56 28 discriminator 4
 	leal	1(%rax), %edx
-	movq	-40(%rbp), %rax
+	movq	-56(%rbp), %rax
 	movl	%edx, 8(%rax)
-	.loc 1 245 12
+	.loc 2 58 39 discriminator 4
+	movq	-32(%rbp), %rax
+	movl	24(%rax), %edx
+	.loc 2 58 21 discriminator 4
+	movq	-40(%rbp), %rax
+	movl	%edx, 4(%rax)
+	.loc 2 60 25 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 60 52 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 60 62 discriminator 4
+	movl	8(%rax), %eax
+	.loc 2 60 81 discriminator 4
+	cmpl	%eax, %edx
+	jge	.L44
+	.loc 2 60 98 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 60 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 2 60 134 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 2 60 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 2 60 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L45
+.L44:
+	.loc 2 60 81 is_stmt 0 discriminator 2
 	movl	$0, %eax
 .L45:
-	.loc 1 246 5
+	.loc 2 60 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 2 60 5 discriminator 4
+	cmpl	$6, %eax
+	je	.L46
+	.loc 2 62 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 62 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 62 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 62 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 62 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 62 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 62 177
+	leaq	.LC37(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 2 62 208
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 62 252
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 62 279
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 62 289
+	movl	8(%rax), %eax
+	.loc 2 62 308
+	cmpl	%eax, %edx
+	jge	.L47
+	.loc 2 62 325 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 62 335 discriminator 1
+	movq	(%rax), %rcx
+	.loc 2 62 361 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 2 62 345 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 2 62 308 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L48
+.L47:
+	.loc 2 62 308 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L48:
+	.loc 2 62 235 is_stmt 1 discriminator 4
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 2 62 415 discriminator 4
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 2 62 439 discriminator 4
+	movl	$62, %edx
+	leaq	.LC23(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 62 672 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 62 507 discriminator 4
+	movq	24(%rax), %rdx
+	.loc 2 62 524 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 2 62 551 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 62 561 discriminator 4
+	movl	8(%rax), %eax
+	.loc 2 62 507 discriminator 4
+	cmpl	%eax, %ecx
+	jge	.L49
+	.loc 2 62 597 discriminator 5
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 62 607 discriminator 5
+	movq	(%rax), %rsi
+	.loc 2 62 633 discriminator 5
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 2 62 617 discriminator 5
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 2 62 507 discriminator 5
+	addq	%rsi, %rax
+	jmp	.L50
+.L49:
+	.loc 2 62 507 is_stmt 0 discriminator 6
+	movl	$0, %eax
+.L50:
+	.loc 2 62 507 discriminator 8
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 2 63 35 is_stmt 1 discriminator 8
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 2 63 51 discriminator 8
+	movl	$63, %ecx
+	leaq	.LC34(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 2 63 109 discriminator 8
+	movl	$63, %r8d
+	leaq	.LC34(%rip), %rax
+	movq	%rax, %rcx
+	movl	$63, %edx
+	leaq	.LC23(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 2 63 225 discriminator 8
+	movl	$0, %eax
+	jmp	.L32
+.L46:
+	.loc 2 66 35
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 66 62
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 66 72
+	movl	8(%rax), %eax
+	.loc 2 66 91
+	cmpl	%eax, %edx
+	jge	.L51
+	.loc 2 66 108 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 66 118 discriminator 1
+	movq	(%rax), %rcx
+	.loc 2 66 144 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 2 66 128 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 2 66 91 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L52
+.L51:
+	.loc 2 66 91 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L52:
+	.loc 2 66 12 is_stmt 1 discriminator 4
+	movq	%rax, -24(%rbp)
+	.loc 2 67 19 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 2 67 28 discriminator 4
+	leal	1(%rax), %edx
+	movq	-56(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 2 69 31 discriminator 4
+	movq	-24(%rbp), %rax
+	movl	24(%rax), %edx
+	.loc 2 69 17 discriminator 4
+	movq	-40(%rbp), %rax
+	movl	%edx, (%rax)
+	.loc 2 72 24 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 72 51 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 72 61 discriminator 4
+	movl	8(%rax), %eax
+	.loc 2 72 80 discriminator 4
+	cmpl	%eax, %edx
+	jge	.L53
+	.loc 2 72 97 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 72 107 discriminator 1
+	movq	(%rax), %rcx
+	.loc 2 72 133 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 2 72 117 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 2 72 80 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L54
+.L53:
+	.loc 2 72 80 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L54:
+	.loc 2 72 157 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 2 72 5 discriminator 4
+	cmpl	$40, %eax
+	je	.L55
+	.loc 2 74 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 74 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 74 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 74 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 74 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 74 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 74 177
+	leaq	.LC38(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 2 74 225
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 74 269
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 74 296
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 74 306
+	movl	8(%rax), %eax
+	.loc 2 74 325
+	cmpl	%eax, %edx
+	jge	.L56
+	.loc 2 74 342 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 74 352 discriminator 1
+	movq	(%rax), %rcx
+	.loc 2 74 378 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 2 74 362 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 2 74 325 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L57
+.L56:
+	.loc 2 74 325 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L57:
+	.loc 2 74 252 is_stmt 1 discriminator 4
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 2 74 432 discriminator 4
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 2 74 456 discriminator 4
+	movl	$74, %edx
+	leaq	.LC23(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 74 689 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 74 524 discriminator 4
+	movq	24(%rax), %rdx
+	.loc 2 74 541 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 2 74 568 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 74 578 discriminator 4
+	movl	8(%rax), %eax
+	.loc 2 74 524 discriminator 4
+	cmpl	%eax, %ecx
+	jge	.L58
+	.loc 2 74 614 discriminator 5
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 74 624 discriminator 5
+	movq	(%rax), %rsi
+	.loc 2 74 650 discriminator 5
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 2 74 634 discriminator 5
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 2 74 524 discriminator 5
+	addq	%rsi, %rax
+	jmp	.L59
+.L58:
+	.loc 2 74 524 is_stmt 0 discriminator 6
+	movl	$0, %eax
+.L59:
+	.loc 2 74 524 discriminator 8
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 2 75 35 is_stmt 1 discriminator 8
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 2 75 51 discriminator 8
+	movl	$75, %ecx
+	leaq	.LC34(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 2 75 109 discriminator 8
+	movl	$75, %r8d
+	leaq	.LC34(%rip), %rax
+	movq	%rax, %rcx
+	movl	$75, %edx
+	leaq	.LC23(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 2 75 225 discriminator 8
+	movl	$0, %eax
+	jmp	.L32
+.L55:
+	.loc 2 77 19
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 2 77 28
+	leal	1(%rax), %edx
+	movq	-56(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 2 80 24
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 80 51
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 80 61
+	movl	8(%rax), %eax
+	.loc 2 80 80
+	cmpl	%eax, %edx
+	jge	.L60
+	.loc 2 80 97 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 80 107 discriminator 1
+	movq	(%rax), %rcx
+	.loc 2 80 133 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 2 80 117 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 2 80 80 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L61
+.L60:
+	.loc 2 80 80 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L61:
+	.loc 2 80 157 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 2 80 5 discriminator 4
+	cmpl	$41, %eax
+	je	.L62
+	.loc 2 82 19
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 82 80
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 82 86
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 82 126
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 82 132
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 82 158
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 82 176
+	leaq	.LC39(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 2 82 215
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 82 259
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 82 286
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 82 296
+	movl	8(%rax), %eax
+	.loc 2 82 315
+	cmpl	%eax, %edx
+	jge	.L63
+	.loc 2 82 332 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 82 342 discriminator 1
+	movq	(%rax), %rcx
+	.loc 2 82 368 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 2 82 352 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 2 82 315 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L64
+.L63:
+	.loc 2 82 315 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L64:
+	.loc 2 82 242 is_stmt 1 discriminator 4
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 2 82 422 discriminator 4
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 2 82 446 discriminator 4
+	movl	$82, %edx
+	leaq	.LC23(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 82 679 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 82 514 discriminator 4
+	movq	24(%rax), %rdx
+	.loc 2 82 531 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 2 82 558 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 82 568 discriminator 4
+	movl	8(%rax), %eax
+	.loc 2 82 514 discriminator 4
+	cmpl	%eax, %ecx
+	jge	.L65
+	.loc 2 82 604 discriminator 5
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 82 614 discriminator 5
+	movq	(%rax), %rsi
+	.loc 2 82 640 discriminator 5
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 2 82 624 discriminator 5
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 2 82 514 discriminator 5
+	addq	%rsi, %rax
+	jmp	.L66
+.L65:
+	.loc 2 82 514 is_stmt 0 discriminator 6
+	movl	$0, %eax
+.L66:
+	.loc 2 82 514 discriminator 8
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 2 83 34 is_stmt 1 discriminator 8
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 2 83 50 discriminator 8
+	movl	$83, %ecx
+	leaq	.LC34(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 2 83 108 discriminator 8
+	movl	$83, %r8d
+	leaq	.LC34(%rip), %rax
+	movq	%rax, %rcx
+	movl	$83, %edx
+	leaq	.LC23(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 2 83 224 discriminator 8
+	movl	$0, %eax
+	jmp	.L32
+.L62:
+	.loc 2 85 19
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 2 85 28
+	leal	1(%rax), %edx
+	movq	-56(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 2 88 23
+	movq	-24(%rbp), %rax
+	movq	-32(%rbp), %rdx
+	movq	%rdx, 8(%rax)
+	.loc 2 90 16
+	movq	-64(%rbp), %rax
+	movq	-24(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 2 92 12
+	movq	-40(%rbp), %rax
+.L32:
+	.loc 2 93 5
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE2272:
-	.size	_ZL18FuncInitializationP13ProgramBuffer, .-_ZL18FuncInitializationP13ProgramBuffer
+	.size	_ZL13MakeFuncLabelP10ProgramCtxPP5Token, .-_ZL13MakeFuncLabelP10ProgramCtxPP5Token
 	.section	.rodata
-.LC39:
-	.string	"VarInitialization"
-	.align 8
 .LC40:
-	.string	"Wrong token type for variable initialization\n"
+	.string	"MakeVarLabel"
+	.align 8
 .LC41:
-	.string	"not a name\n"
+	.string	"VarLabel* MakeVarLabel(ProgramCtx*)"
 	.align 8
 .LC42:
-	.string	"\033[95mWarning: unitializad variable \033[96m'%s'\n\033[0m"
-.LC43:
-	.string	"Must be assigment\n"
-.LC44:
-	.string	"Missing ';'\n"
+	.string	"Ebat, not a name for variable initialization\n"
 	.text
-	.type	_ZL17VarInitializationP13ProgramBuffer, @function
-_ZL17VarInitializationP13ProgramBuffer:
+	.type	_ZL12MakeVarLabelP10ProgramCtx, @function
+_ZL12MakeVarLabelP10ProgramCtx:
 .LFB2273:
-	.loc 1 249 5
+	.loc 2 96 5
 	.cfi_startproc
+	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
+	.cfi_lsda 0x1b,.LLSDA2273
 	endbr64
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2277,54 +2120,62 @@ _ZL17VarInitializationP13ProgramBuffer:
 	subq	$72, %rsp
 	.cfi_offset 3, -24
 	movq	%rdi, -72(%rbp)
-	.loc 1 250 10
+	.loc 2 97 40
+	leaq	-48(%rbp), %rax
+	leaq	.LC40(%rip), %rdx
+	movl	$1, %esi
+	movq	%rax, %rdi
+.LEHB0:
+	call	_ZN14FunctionLoggerC1EiPKc@PLT
+.LEHE0:
+	.loc 2 98 10
 	cmpq	$0, -72(%rbp)
-	jne	.L69
-	.loc 1 250 51 discriminator 1
+	jne	.L68
+.LEHB1:
+	.loc 2 98 51 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 250 57 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 2 98 57 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 250 109 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 2 98 121 discriminator 3
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 250 198 discriminator 1
+	.loc 2 98 273 discriminator 4
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 250 204 discriminator 1
-	movl	$250, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC39(%rip), %rax
+	.loc 2 98 279 discriminator 4
+	leaq	.LC41(%rip), %r8
+	movl	$98, %ecx
+	leaq	.LC23(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 250 297 discriminator 1
-	movl	$250, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC39(%rip), %rax
+	.loc 2 98 380 discriminator 6
+	leaq	.LC41(%rip), %rax
+	movq	%rax, %rcx
+	movl	$98, %edx
+	leaq	.LC23(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 250 403 discriminator 1
+	.loc 2 98 494 discriminator 7
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 250 409 discriminator 1
+	.loc 2 98 500 discriminator 7
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -2334,1413 +2185,428 @@ _ZL17VarInitializationP13ProgramBuffer:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 250 27 discriminator 1
+	.loc 2 98 27 discriminator 9
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 250 33 discriminator 1
-	movl	$250, %ecx
-	leaq	.LC39(%rip), %rax
+	.loc 2 98 33 discriminator 9
+	movl	$98, %ecx
+	leaq	.LC40(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 250 92 discriminator 1
-	leaq	.LC17(%rip), %rax
+	.loc 2 98 91 discriminator 11
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 250 131 discriminator 1
+	.loc 2 98 133 discriminator 12
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 250 147 discriminator 1
-	movl	$250, %ecx
-	leaq	.LC39(%rip), %rax
+	.loc 2 98 149 discriminator 12
+	movl	$98, %ecx
+	leaq	.LC40(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 250 206 discriminator 1
-	movl	$250, %r8d
-	leaq	.LC39(%rip), %rax
+	.loc 2 98 207 discriminator 14
+	movl	$98, %r8d
+	leaq	.LC40(%rip), %rax
 	movq	%rax, %rcx
-	movl	$250, %edx
-	leaq	.LC13(%rip), %rax
+	movl	$98, %edx
+	leaq	.LC23(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 250 311 discriminator 1
+	.loc 2 98 323 discriminator 15
+	movl	$0, %ebx
+	jmp	.L69
+.L68:
+	.loc 2 100 54
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 2 100 65
+	movl	$100, %r9d
+	leaq	.LC40(%rip), %r8
+	leaq	.LC23(%rip), %rax
+	movq	%rax, %rcx
+	movl	$8, %edx
+	movl	$1, %esi
+	call	_ZN6Logger7CAL_LOGEmmPKcS1_i@PLT
+	.loc 2 100 65 is_stmt 0 discriminator 1
+	movq	%rax, -56(%rbp)
+	.loc 2 101 5 is_stmt 1 discriminator 1
+	cmpq	$0, -56(%rbp)
+	jne	.L70
+	.loc 2 101 43 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 2 101 59 discriminator 1
+	movl	$101, %ecx
+	leaq	.LC40(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
 	movl	$0, %eax
-	jmp	.L70
-.L69:
-	.loc 1 252 25
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 2 101 118 discriminator 3
+	movl	$101, %r8d
+	leaq	.LC40(%rip), %rax
+	movq	%rax, %rcx
+	movl	$101, %edx
+	leaq	.LC23(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 2 101 236 discriminator 4
+	movl	$0, %ebx
+	jmp	.L69
+.L70:
+	.loc 2 103 25
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 252 52
+	.loc 2 103 52
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 252 62
+	.loc 2 103 62
 	movl	8(%rax), %eax
-	.loc 1 252 81
+	.loc 2 103 81
 	cmpl	%eax, %edx
 	jge	.L71
-	.loc 1 252 98 discriminator 1
+	.loc 2 103 98 discriminator 1
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 252 108 discriminator 1
+	.loc 2 103 108 discriminator 1
 	movq	(%rax), %rcx
-	.loc 1 252 134 discriminator 1
+	.loc 2 103 134 discriminator 1
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 252 118 discriminator 1
+	.loc 2 103 118 discriminator 1
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 252 81 discriminator 1
+	.loc 2 103 81 discriminator 1
 	addq	%rcx, %rax
 	jmp	.L72
 .L71:
-	.loc 1 252 81 is_stmt 0 discriminator 2
+	.loc 2 103 81 is_stmt 0 discriminator 2
 	movl	$0, %eax
 .L72:
-	.loc 1 252 158 is_stmt 1 discriminator 4
+	.loc 2 103 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
-	.loc 1 252 5 discriminator 4
-	cmpl	$3, %eax
-	jne	.L73
-	.loc 1 252 199 discriminator 5
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 252 226 discriminator 5
+	.loc 2 103 5 discriminator 4
+	cmpl	$6, %eax
+	je	.L73
+	.loc 2 105 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 2 105 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 105 87 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 105 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 2 105 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 2 105 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 2 105 244 discriminator 5
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 252 236 discriminator 5
+	.loc 2 105 254 discriminator 5
+	movq	24(%rax), %rsi
+	.loc 2 105 282 discriminator 5
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 2 105 309 discriminator 5
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 2 105 319 discriminator 5
 	movl	8(%rax), %eax
-	.loc 1 252 255 discriminator 5
+	.loc 2 105 338 discriminator 5
 	cmpl	%eax, %edx
 	jge	.L74
-	.loc 1 252 272 discriminator 6
+	.loc 2 105 355 discriminator 7
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 252 282 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 252 308 discriminator 6
+	.loc 2 105 365 discriminator 7
+	movq	(%rax), %rdi
+	.loc 2 105 391 discriminator 7
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 252 292 discriminator 6
+	.loc 2 105 375 discriminator 7
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 252 255 discriminator 6
-	addq	%rcx, %rax
+	.loc 2 105 338 discriminator 7
+	addq	%rdi, %rax
 	jmp	.L75
 .L74:
-	.loc 1 252 255 is_stmt 0 discriminator 7
+	.loc 2 105 338 is_stmt 0 discriminator 8
 	movl	$0, %eax
 .L75:
-	.loc 1 252 338 is_stmt 1 discriminator 9
-	movl	24(%rax), %eax
-	.loc 1 252 180 discriminator 9
-	cmpl	$1, %eax
-	je	.L76
-.L73:
-	.loc 1 254 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 254 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 254 87
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 254 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 254 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 254 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 254 177
-	leaq	.LC40(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 254 236
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 254 280
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 254 307
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 254 317
-	movl	8(%rax), %eax
-	.loc 1 254 336
-	cmpl	%eax, %edx
-	jge	.L77
-	.loc 1 254 353 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 254 363 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 254 389 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 254 373 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 254 336 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L78
-.L77:
-	.loc 1 254 336 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L78:
-	.loc 1 254 263 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 254 443 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 254 467 discriminator 4
-	movl	$254, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 254 688 discriminator 4
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 254 523 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 254 540 discriminator 4
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 254 567 discriminator 4
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 254 577 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 254 523 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L79
-	.loc 1 254 613 discriminator 5
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 254 623 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 254 649 discriminator 5
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 254 633 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 254 523 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L80
-.L79:
-	.loc 1 254 523 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L80:
-	.loc 1 254 523 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 255 35 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 255 51 discriminator 8
-	movl	$255, %ecx
-	leaq	.LC39(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 255 110 discriminator 8
-	movl	$255, %r8d
-	leaq	.LC39(%rip), %rax
-	movq	%rax, %rcx
-	movl	$255, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 255 215 discriminator 8
-	movl	$0, %eax
-	jmp	.L70
-.L76:
-	.loc 1 258 44
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 258 71
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 258 81
-	movl	8(%rax), %eax
-	.loc 1 258 100
-	cmpl	%eax, %edx
-	jge	.L81
-	.loc 1 258 117 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 258 127 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 258 153 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 258 137 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 258 100 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L82
-.L81:
-	.loc 1 258 100 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L82:
-	.loc 1 258 12 is_stmt 1 discriminator 4
-	movq	%rax, -56(%rbp)
-	.loc 1 259 19 discriminator 4
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 259 28 discriminator 4
-	leal	1(%rax), %edx
-	movq	-72(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 261 25 discriminator 4
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 261 52 discriminator 4
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 261 62 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 261 81 discriminator 4
-	cmpl	%eax, %edx
-	jge	.L83
-	.loc 1 261 98 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 261 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 261 134 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 261 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 261 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L84
-.L83:
-	.loc 1 261 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L84:
-	.loc 1 261 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 261 5 discriminator 4
-	cmpl	$6, %eax
-	je	.L85
-	.loc 1 263 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 263 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 263 87
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 263 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 263 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 263 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 263 177
-	leaq	.LC41(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 263 202
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 263 246
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 263 273
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 263 283
-	movl	8(%rax), %eax
-	.loc 1 263 302
-	cmpl	%eax, %edx
-	jge	.L86
-	.loc 1 263 319 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 263 329 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 263 355 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 263 339 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 263 302 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L87
-.L86:
-	.loc 1 263 302 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L87:
-	.loc 1 263 229 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 263 409 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 263 433 discriminator 4
-	movl	$263, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 263 654 discriminator 4
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 263 489 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 263 506 discriminator 4
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 263 533 discriminator 4
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 263 543 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 263 489 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L88
-	.loc 1 263 579 discriminator 5
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 263 589 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 263 615 discriminator 5
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 263 599 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 263 489 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L89
-.L88:
-	.loc 1 263 489 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L89:
-	.loc 1 263 489 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 264 35 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 264 51 discriminator 8
-	movl	$264, %ecx
-	leaq	.LC39(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 264 110 discriminator 8
-	movl	$264, %r8d
-	leaq	.LC39(%rip), %rax
-	movq	%rax, %rcx
-	movl	$264, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 264 215 discriminator 8
-	movl	$0, %eax
-	jmp	.L70
-.L85:
-	.loc 1 267 39
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 267 66
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 267 76
-	movl	8(%rax), %eax
-	.loc 1 267 95
-	cmpl	%eax, %edx
-	jge	.L90
-	.loc 1 267 112 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 267 122 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 267 148 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 267 132 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 267 95 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L91
-.L90:
-	.loc 1 267 95 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L91:
-	.loc 1 267 12 is_stmt 1 discriminator 4
-	movq	%rax, -48(%rbp)
-	.loc 1 269 35 discriminator 4
-	movq	-72(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL12MakeVarLabelP13ProgramBuffer
-	movq	%rax, -40(%rbp)
-	.loc 1 271 20 discriminator 4
-	movq	-72(%rbp), %rax
-	movq	24(%rax), %rdx
-	movq	-40(%rbp), %rax
-	movl	(%rax), %eax
-	movq	%rdx, %rsi
-	movl	%eax, %edi
-	call	_ZL11GetVarLabeliP10SuperStack
-	testq	%rax, %rax
-	setne	%al
-	.loc 1 271 5 discriminator 4
-	testb	%al, %al
-	je	.L92
-	.loc 1 273 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 273 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 273 87
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 273 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 273 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 273 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rcx
-	.loc 1 273 237
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 273 247
-	movq	24(%rax), %rsi
-	.loc 1 273 275
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 273 302
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 273 312
-	movl	8(%rax), %eax
-	.loc 1 273 331
-	cmpl	%eax, %edx
-	jge	.L93
-	.loc 1 273 348 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 273 358 discriminator 1
-	movq	(%rax), %rdi
-	.loc 1 273 384 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 273 368 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 273 331 discriminator 1
-	addq	%rdi, %rax
-	jmp	.L94
-.L93:
-	.loc 1 273 331 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L94:
-	.loc 1 273 414 is_stmt 1 discriminator 4
+	.loc 2 105 421 is_stmt 1 discriminator 10
 	movl	24(%rax), %eax
 	cltq
-	.loc 1 273 423 discriminator 4
+	.loc 2 105 430 discriminator 10
 	salq	$3, %rax
 	addq	%rsi, %rax
-	.loc 1 273 177 discriminator 4
+	.loc 2 105 177 discriminator 10
 	movq	(%rax), %rax
 	movq	%rax, %rdx
-	leaq	.LC37(%rip), %rax
+	leaq	.LC42(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 273 433 discriminator 4
-	leaq	.LC26(%rip), %rax
+	.loc 2 105 440 discriminator 11
+	leaq	.LC29(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 273 477 discriminator 4
+	.loc 2 105 484 discriminator 12
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 273 504 discriminator 4
+	.loc 2 105 511 discriminator 12
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 273 514 discriminator 4
+	.loc 2 105 521 discriminator 12
 	movl	8(%rax), %eax
-	.loc 1 273 533 discriminator 4
+	.loc 2 105 540 discriminator 12
 	cmpl	%eax, %edx
-	jge	.L95
-	.loc 1 273 550 discriminator 5
+	jge	.L76
+	.loc 2 105 557 discriminator 13
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 273 560 discriminator 5
+	.loc 2 105 567 discriminator 13
 	movq	(%rax), %rcx
-	.loc 1 273 586 discriminator 5
+	.loc 2 105 593 discriminator 13
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 273 570 discriminator 5
+	.loc 2 105 577 discriminator 13
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 273 533 discriminator 5
+	.loc 2 105 540 discriminator 13
 	addq	%rcx, %rax
-	jmp	.L96
-.L95:
-	.loc 1 273 533 is_stmt 0 discriminator 6
+	jmp	.L77
+.L76:
+	.loc 2 105 540 is_stmt 0 discriminator 14
 	movl	$0, %eax
-.L96:
-	.loc 1 273 460 is_stmt 1 discriminator 8
+.L77:
+	.loc 2 105 467 is_stmt 1 discriminator 16
 	movq	32(%rax), %rax
 	movl	$10, %esi
 	movq	%rax, %rdi
 	call	_Z6printlPKcc@PLT
-	.loc 1 273 640 discriminator 8
-	leaq	.LC27(%rip), %rax
+	.loc 2 105 647 discriminator 17
+	leaq	.LC30(%rip), %rax
 	movq	%rax, %rdi
 	call	puts@PLT
-	.loc 1 273 664 discriminator 8
-	movl	$273, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 273 885 discriminator 8
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 273 720 discriminator 8
-	movq	24(%rax), %rdx
-	.loc 1 273 737 discriminator 8
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 273 764 discriminator 8
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 273 774 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 273 720 discriminator 8
-	cmpl	%eax, %ecx
-	jge	.L97
-	.loc 1 273 810 discriminator 9
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 273 820 discriminator 9
-	movq	(%rax), %rsi
-	.loc 1 273 846 discriminator 9
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 273 830 discriminator 9
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 273 720 discriminator 9
-	addq	%rsi, %rax
-	jmp	.L98
-.L97:
-	.loc 1 273 720 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L98:
-	.loc 1 273 720 discriminator 12
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 275 28 is_stmt 1 discriminator 12
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 275 40 discriminator 12
-	movq	-40(%rbp), %rax
-	movl	$275, %r8d
-	leaq	.LC39(%rip), %rdx
-	movq	%rdx, %rcx
-	leaq	.LC13(%rip), %rdx
-	movq	%rax, %rsi
-	call	_ZN6Logger8FREE_LOGEPvPKcS2_i@PLT
-	.loc 1 276 35 discriminator 12
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 276 51 discriminator 12
-	movl	$276, %ecx
-	leaq	.LC39(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 276 110 discriminator 12
-	movl	$276, %r8d
-	leaq	.LC39(%rip), %rax
-	movq	%rax, %rcx
-	movl	$276, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 276 215 discriminator 12
-	movl	$0, %eax
-	jmp	.L70
-.L92:
-	.loc 1 282 16
-	movq	-72(%rbp), %rax
-	movq	24(%rax), %rax
-	movq	%rax, %rdi
-	call	_Z5SStopP10SuperStack@PLT
-	movq	%rax, %rdx
-	movq	-40(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z11AddVarLabelP8VarLabelP8VarTabel@PLT
-	.loc 1 284 19
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 284 28
-	leal	1(%rax), %edx
-	movq	-72(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 286 20
-	movq	-48(%rbp), %rax
-	movl	$7, 16(%rax)
-	.loc 1 288 32
-	movq	-56(%rbp), %rax
-	movq	-48(%rbp), %rdx
-	movq	%rdx, (%rax)
-	.loc 1 289 32
-	movq	-56(%rbp), %rax
-	movq	$0, 8(%rax)
-.LBB2:
-	.loc 1 291 25
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 291 52
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 291 62
-	movl	8(%rax), %eax
-	.loc 1 291 81
-	cmpl	%eax, %edx
-	jge	.L99
-	.loc 1 291 98 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 291 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 291 134 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 291 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 291 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L100
-.L99:
-	.loc 1 291 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L100:
-	.loc 1 291 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 291 5 discriminator 4
-	cmpl	$59, %eax
-	jne	.L101
-.LBB3:
-	.loc 1 293 107
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 293 117
-	movq	24(%rax), %rdx
-	.loc 1 293 136
-	movq	-40(%rbp), %rax
-	movl	(%rax), %eax
-	cltq
-	.loc 1 293 140
-	salq	$3, %rax
-	addq	%rdx, %rax
-	.loc 1 293 16
-	movq	(%rax), %rax
-	movq	%rax, %rsi
-	leaq	.LC42(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 295 44
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 295 71
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 295 81
-	movl	8(%rax), %eax
-	.loc 1 295 100
-	cmpl	%eax, %edx
-	jge	.L102
-	.loc 1 295 117 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 295 127 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 295 153 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 295 137 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 295 100 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L103
-.L102:
-	.loc 1 295 100 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L103:
-	.loc 1 295 16 is_stmt 1 discriminator 4
-	movq	%rax, -24(%rbp)
-	.loc 1 297 23 discriminator 4
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 297 32 discriminator 4
-	leal	1(%rax), %edx
-	movq	-72(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 299 25 discriminator 4
-	movq	-24(%rbp), %rax
-	movl	$1, 16(%rax)
-	.loc 1 300 31 discriminator 4
-	movq	-24(%rbp), %rax
-	movq	-56(%rbp), %rdx
-	movq	%rdx, (%rax)
-	.loc 1 302 16 discriminator 4
-	movq	-24(%rbp), %rax
-	jmp	.L70
-.L101:
-.LBE3:
-.LBE2:
-	.loc 1 305 25
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 305 52
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 305 62
-	movl	8(%rax), %eax
-	.loc 1 305 81
-	cmpl	%eax, %edx
-	jge	.L104
-	.loc 1 305 98 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 305 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 305 134 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 305 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 305 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L105
-.L104:
-	.loc 1 305 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L105:
-	.loc 1 305 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 305 5 discriminator 4
-	cmpl	$61, %eax
-	je	.L106
-	.loc 1 307 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 307 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 307 87
+	.loc 2 105 671 discriminator 18
+	movl	$105, %edx
 	leaq	.LC23(%rip), %rax
 	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 307 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 307 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 307 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 307 177
-	leaq	.LC43(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 307 209
-	leaq	.LC26(%rip), %rax
+	leaq	.LC31(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 307 253
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 307 280
+	.loc 2 105 905 discriminator 19
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 307 290
-	movl	8(%rax), %eax
-	.loc 1 307 309
-	cmpl	%eax, %edx
-	jge	.L107
-	.loc 1 307 326 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 307 336 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 307 362 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 307 346 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 307 309 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L108
-.L107:
-	.loc 1 307 309 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L108:
-	.loc 1 307 236 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 307 416 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 307 440 discriminator 4
-	movl	$307, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 307 661 discriminator 4
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 307 496 discriminator 4
+	.loc 2 105 740 discriminator 19
 	movq	24(%rax), %rdx
-	.loc 1 307 513 discriminator 4
+	.loc 2 105 757 discriminator 19
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %ecx
-	.loc 1 307 540 discriminator 4
+	.loc 2 105 784 discriminator 19
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 307 550 discriminator 4
+	.loc 2 105 794 discriminator 19
 	movl	8(%rax), %eax
-	.loc 1 307 496 discriminator 4
+	.loc 2 105 740 discriminator 19
 	cmpl	%eax, %ecx
-	jge	.L109
-	.loc 1 307 586 discriminator 5
+	jge	.L78
+	.loc 2 105 830 discriminator 20
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 307 596 discriminator 5
+	.loc 2 105 840 discriminator 20
 	movq	(%rax), %rsi
-	.loc 1 307 622 discriminator 5
+	.loc 2 105 866 discriminator 20
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rcx
-	.loc 1 307 606 discriminator 5
+	.loc 2 105 850 discriminator 20
 	movq	%rcx, %rax
 	salq	$2, %rax
 	addq	%rcx, %rax
 	salq	$3, %rax
-	.loc 1 307 496 discriminator 5
+	.loc 2 105 740 discriminator 20
 	addq	%rsi, %rax
-	jmp	.L110
-.L109:
-	.loc 1 307 496 is_stmt 0 discriminator 6
+	jmp	.L79
+.L78:
+	.loc 2 105 740 is_stmt 0 discriminator 21
 	movl	$0, %eax
-.L110:
-	.loc 1 307 496 discriminator 8
+.L79:
+	.loc 2 105 740 discriminator 23
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 308 35 is_stmt 1 discriminator 8
+	.loc 2 106 35 is_stmt 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 308 51 discriminator 8
-	movl	$308, %ecx
-	leaq	.LC39(%rip), %rax
+	.loc 2 106 51
+	movl	$106, %ecx
+	leaq	.LC40(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 308 110 discriminator 8
-	movl	$308, %r8d
-	leaq	.LC39(%rip), %rax
+	.loc 2 106 110 discriminator 2
+	movl	$106, %r8d
+	leaq	.LC40(%rip), %rax
 	movq	%rax, %rcx
-	movl	$308, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 308 215 discriminator 8
-	movl	$0, %eax
-	jmp	.L70
-.L106:
-	.loc 1 311 19
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 311 28
-	leal	1(%rax), %edx
-	movq	-72(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 313 39
-	movq	-72(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL4GetEP13ProgramBuffer
-	.loc 1 313 32
-	movq	-56(%rbp), %rdx
-	movq	%rax, 8(%rdx)
-	.loc 1 315 25
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 315 52
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 315 62
-	movl	8(%rax), %eax
-	.loc 1 315 81
-	cmpl	%eax, %edx
-	jge	.L111
-	.loc 1 315 98 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 315 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 315 134 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 315 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 315 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L112
-.L111:
-	.loc 1 315 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L112:
-	.loc 1 315 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 315 5 discriminator 4
-	cmpl	$59, %eax
-	je	.L113
-	.loc 1 317 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 317 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 317 87
+	movl	$106, %edx
 	leaq	.LC23(%rip), %rax
 	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 317 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 317 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 317 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 317 177
-	leaq	.LC44(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 317 203
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 317 247
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 317 274
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 317 284
-	movl	8(%rax), %eax
-	.loc 1 317 303
-	cmpl	%eax, %edx
-	jge	.L114
-	.loc 1 317 320 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 317 330 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 317 356 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 317 340 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 317 303 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L115
-.L114:
-	.loc 1 317 303 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L115:
-	.loc 1 317 230 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 317 410 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 317 434 discriminator 4
-	movl	$317, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 317 655 discriminator 4
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 317 490 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 317 507 discriminator 4
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 317 534 discriminator 4
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 317 544 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 317 490 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L116
-	.loc 1 317 580 discriminator 5
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 317 590 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 317 616 discriminator 5
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 317 600 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 317 490 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L117
-.L116:
-	.loc 1 317 490 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L117:
-	.loc 1 317 490 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 318 35 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 318 51 discriminator 8
-	movl	$318, %ecx
-	leaq	.LC39(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 318 110 discriminator 8
-	movl	$318, %r8d
-	leaq	.LC39(%rip), %rax
-	movq	%rax, %rcx
-	movl	$318, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 318 215 discriminator 8
-	movl	$0, %eax
-	jmp	.L70
-.L113:
-	.loc 1 321 40
+.LEHE1:
+	.loc 2 106 228 discriminator 3
+	movl	$0, %ebx
+	jmp	.L69
+.L73:
+	.loc 2 109 38
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 321 67
+	.loc 2 109 65
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 321 77
+	.loc 2 109 75
 	movl	8(%rax), %eax
-	.loc 1 321 96
+	.loc 2 109 94
 	cmpl	%eax, %edx
-	jge	.L118
-	.loc 1 321 113 discriminator 1
+	jge	.L80
+	.loc 2 109 111 discriminator 1
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 321 123 discriminator 1
+	.loc 2 109 121 discriminator 1
 	movq	(%rax), %rcx
-	.loc 1 321 149 discriminator 1
+	.loc 2 109 147 discriminator 1
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 321 133 discriminator 1
+	.loc 2 109 131 discriminator 1
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 321 96 discriminator 1
+	.loc 2 109 94 discriminator 1
 	addq	%rcx, %rax
-	jmp	.L119
-.L118:
-	.loc 1 321 96 is_stmt 0 discriminator 2
+	jmp	.L81
+.L80:
+	.loc 2 109 94 is_stmt 0 discriminator 2
 	movl	$0, %eax
-.L119:
-	.loc 1 321 12 is_stmt 1 discriminator 4
-	movq	%rax, -32(%rbp)
-	.loc 1 322 19 discriminator 4
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 322 28 discriminator 4
-	leal	1(%rax), %edx
-	movq	-72(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 324 25 discriminator 4
+.L81:
+	.loc 2 109 177 is_stmt 1 discriminator 4
+	movl	24(%rax), %edx
+	.loc 2 109 20 discriminator 4
 	movq	-56(%rbp), %rax
-	movq	8(%rax), %rax
-	.loc 1 324 5 discriminator 4
-	testq	%rax, %rax
-	jne	.L120
-	.loc 1 325 35
-	call	_ZN6Logger11getInstanceEv@PLT
+	movl	%edx, (%rax)
+	.loc 2 111 12 discriminator 4
+	movq	-56(%rbp), %rbx
+.L69:
+	.loc 2 112 5
+	leaq	-48(%rbp), %rax
 	movq	%rax, %rdi
-	.loc 1 325 51
-	movl	$325, %ecx
-	leaq	.LC39(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 325 110
-	movl	$325, %r8d
-	leaq	.LC39(%rip), %rax
-	movq	%rax, %rcx
-	movl	$325, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	call	_ZN14FunctionLoggerD1Ev@PLT
+	movq	%rbx, %rax
+	jmp	.L85
+.L84:
+	endbr64
+	movq	%rax, %rbx
+	leaq	-48(%rbp), %rax
 	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 325 215
-	movl	$0, %eax
-	jmp	.L70
-.L120:
-	.loc 1 327 21
-	movq	-32(%rbp), %rax
-	movl	$1, 16(%rax)
-	.loc 1 328 27
-	movq	-32(%rbp), %rax
-	movq	-56(%rbp), %rdx
-	movq	%rdx, (%rax)
-	.loc 1 330 12
-	movq	-32(%rbp), %rax
-.L70:
-	.loc 1 331 5
+	call	_ZN14FunctionLoggerD1Ev@PLT
+	movq	%rbx, %rax
+	movq	%rax, %rdi
+.LEHB2:
+	call	_Unwind_Resume@PLT
+.LEHE2:
+.L85:
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE2273:
-	.size	_ZL17VarInitializationP13ProgramBuffer, .-_ZL17VarInitializationP13ProgramBuffer
-	.section	.rodata
-.LC45:
-	.string	"GetFunction"
-	.align 8
-.LC46:
-	.string	"Conflict with prev declaration\n"
-.LC47:
-	.string	"Missing '{' in function body\n"
-.LC48:
-	.string	"%s:%d::CHECK: body is false\n"
-.LC49:
-	.string	"No return in function\n"
-	.align 8
-.LC50:
-	.string	"No return value in novoid function\n"
-.LC51:
-	.string	"Missing '}' in function body\n"
+	.globl	__gxx_personality_v0
+	.section	.gcc_except_table,"a",@progbits
+.LLSDA2273:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 .LLSDACSE2273-.LLSDACSB2273
+.LLSDACSB2273:
+	.uleb128 .LEHB0-.LFB2273
+	.uleb128 .LEHE0-.LEHB0
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB1-.LFB2273
+	.uleb128 .LEHE1-.LEHB1
+	.uleb128 .L84-.LFB2273
+	.uleb128 0
+	.uleb128 .LEHB2-.LFB2273
+	.uleb128 .LEHE2-.LEHB2
+	.uleb128 0
+	.uleb128 0
+.LLSDACSE2273:
 	.text
-	.type	_ZL11GetFunctionP13ProgramBuffer, @function
-_ZL11GetFunctionP13ProgramBuffer:
+	.size	_ZL12MakeVarLabelP10ProgramCtx, .-_ZL12MakeVarLabelP10ProgramCtx
+	.section	.rodata
+.LC43:
+	.string	"GetE"
+.LC44:
+	.string	"Token* GetE(ProgramCtx*)"
+	.align 8
+.LC45:
+	.string	"./src/../src/SyntaxAnalysisExpressions_.ars"
+.LC46:
+	.string	"token"
+	.text
+	.type	_ZL4GetEP10ProgramCtx, @function
+_ZL4GetEP10ProgramCtx:
 .LFB2274:
-	.loc 1 335 5
+	.file 3 "./src/../src/SyntaxAnalysisExpressions_.ars"
+	.loc 3 3 5
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA2274
@@ -3751,66 +2617,65 @@ _ZL11GetFunctionP13ProgramBuffer:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	pushq	%rbx
-	subq	$104, %rsp
+	subq	$88, %rsp
 	.cfi_offset 3, -24
-	movq	%rdi, -104(%rbp)
-	.loc 1 336 45
+	movq	%rdi, -88(%rbp)
+	.loc 3 4 47
 	leaq	-48(%rbp), %rax
-	leaq	.LC45(%rip), %rdx
-	movl	$2, %esi
+	leaq	.LC43(%rip), %rdx
+	movl	$1, %esi
 	movq	%rax, %rdi
 .LEHB3:
 	call	_ZN14FunctionLoggerC1EiPKc@PLT
 .LEHE3:
-	.loc 1 337 10
-	cmpq	$0, -104(%rbp)
-	jne	.L122
+	.loc 3 5 10
+	cmpq	$0, -88(%rbp)
+	jne	.L87
 .LEHB4:
-	.loc 1 337 51 discriminator 1
+	.loc 3 5 51 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 337 57 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 3 5 57 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 337 109 discriminator 3
-	leaq	.LC29(%rip), %rax
+	.loc 3 5 121 discriminator 3
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 337 198 discriminator 4
+	.loc 3 5 273 discriminator 4
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 337 204 discriminator 4
-	movl	$337, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
+	.loc 3 5 279 discriminator 4
+	leaq	.LC44(%rip), %r8
+	movl	$5, %ecx
 	leaq	.LC45(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 337 297 discriminator 6
-	movl	$337, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
+	.loc 3 5 385 discriminator 6
+	leaq	.LC44(%rip), %rax
+	movq	%rax, %rcx
+	movl	$5, %edx
 	leaq	.LC45(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 337 403 discriminator 7
+	.loc 3 5 504 discriminator 7
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 337 409 discriminator 7
+	.loc 3 5 510 discriminator 7
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -3820,1340 +2685,316 @@ _ZL11GetFunctionP13ProgramBuffer:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 337 27 discriminator 9
+	.loc 3 5 27 discriminator 9
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 337 33 discriminator 9
-	movl	$337, %ecx
-	leaq	.LC45(%rip), %rax
+	.loc 3 5 33 discriminator 9
+	movl	$5, %ecx
+	leaq	.LC43(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 337 92 discriminator 11
-	leaq	.LC17(%rip), %rax
+	.loc 3 5 90 discriminator 11
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 337 131 discriminator 12
+	.loc 3 5 132 discriminator 12
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 337 147 discriminator 12
-	movl	$337, %ecx
-	leaq	.LC45(%rip), %rax
+	.loc 3 5 148 discriminator 12
+	movl	$5, %ecx
+	leaq	.LC43(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 337 206 discriminator 14
-	movl	$337, %r8d
-	leaq	.LC45(%rip), %rax
+	.loc 3 5 205 discriminator 14
+	movl	$5, %r8d
+	leaq	.LC43(%rip), %rax
 	movq	%rax, %rcx
-	movl	$337, %edx
-	leaq	.LC13(%rip), %rax
+	movl	$5, %edx
+	leaq	.LC45(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 337 311 discriminator 15
+	.loc 3 5 325 discriminator 15
 	movl	$0, %ebx
-	jmp	.L123
-.L122:
-	.loc 1 340 37
-	movq	-104(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL13MakeFuncLabelP13ProgramBuffer
-	movq	%rax, -88(%rbp)
-	.loc 1 341 17
-	movq	-104(%rbp), %rax
-	movq	16(%rax), %rdx
+	jmp	.L88
+.L87:
+	.loc 3 7 23
 	movq	-88(%rbp), %rax
-	movq	%rdx, %rsi
 	movq	%rax, %rdi
-	call	_Z12AddFuncLabelP9FuncLabelP9FuncTabel@PLT
-	.loc 1 343 46
-	movq	-104(%rbp), %rax
-	movq	16(%rax), %rdx
-	movq	-88(%rbp), %rax
-	movl	(%rax), %eax
-	movq	%rdx, %rsi
-	movl	%eax, %edi
-	call	_Z11IsFuncLabeliP9FuncTabel@PLT
-	movq	%rax, -80(%rbp)
-	.loc 1 344 5
-	cmpq	$0, -80(%rbp)
-	je	.L124
-	.loc 1 346 32
-	movq	-80(%rbp), %rdx
-	movq	-88(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z17CompareFuncLabelsP9FuncLabelS0_@PLT
-	.loc 1 346 13
-	testl	%eax, %eax
-	sete	%al
-	.loc 1 346 9
-	testb	%al, %al
-	je	.L124
-	.loc 1 348 24
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 348 85 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 348 91 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 348 131 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 348 137 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 348 163 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 348 181 discriminator 5
-	leaq	.LC46(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 348 226 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 348 270 discriminator 8
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 348 297 discriminator 8
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 348 307 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 348 326 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L125
-	.loc 1 348 343 discriminator 9
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 348 353 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 348 379 discriminator 9
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 348 363 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 348 326 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L126
-.L125:
-	.loc 1 348 326 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L126:
-	.loc 1 348 253 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 348 433 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 348 457 discriminator 14
-	movl	$348, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 348 678 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 348 513 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 348 530 discriminator 15
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 348 557 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 348 567 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 348 513 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L127
-	.loc 1 348 603 discriminator 16
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 348 613 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 348 639 discriminator 16
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 348 623 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 348 513 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L128
-.L127:
-	.loc 1 348 513 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L128:
-	.loc 1 348 513 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 349 39 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 349 55
-	movl	$349, %ecx
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 349 114 discriminator 2
-	movl	$349, %r8d
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rcx
-	movl	$349, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 349 219 discriminator 3
-	movl	$0, %ebx
-	jmp	.L123
-.L124:
-	.loc 1 354 25
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 354 52
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 354 62
-	movl	8(%rax), %eax
-	.loc 1 354 81
-	cmpl	%eax, %edx
-	jge	.L129
-	.loc 1 354 98 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 354 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 354 134 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 354 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 354 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L130
-.L129:
-	.loc 1 354 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L130:
-	.loc 1 354 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 354 5 discriminator 4
-	cmpl	$123, %eax
-	je	.L131
-	.loc 1 356 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 356 81 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 356 87 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 356 127 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 356 133 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 356 159 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 356 177 discriminator 5
-	leaq	.LC47(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 356 220 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 356 264 discriminator 8
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 356 291 discriminator 8
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 356 301 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 356 320 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L132
-	.loc 1 356 337 discriminator 9
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 356 347 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 356 373 discriminator 9
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 356 357 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 356 320 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L133
-.L132:
-	.loc 1 356 320 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L133:
-	.loc 1 356 247 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 356 427 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 356 451 discriminator 14
-	movl	$356, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 356 672 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 356 507 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 356 524 discriminator 15
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 356 551 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 356 561 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 356 507 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L134
-	.loc 1 356 597 discriminator 16
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 356 607 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 356 633 discriminator 16
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 356 617 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 356 507 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L135
-.L134:
-	.loc 1 356 507 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L135:
-	.loc 1 356 507 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 357 35 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 357 51
-	movl	$357, %ecx
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 357 110 discriminator 2
-	movl	$357, %r8d
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rcx
-	movl	$357, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 357 215 discriminator 3
-	movl	$0, %ebx
-	jmp	.L123
-.L131:
-	.loc 1 360 19
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 360 28
-	leal	1(%rax), %edx
-	movq	-104(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 362 27
-	movq	-104(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL8GetBlockP13ProgramBuffer
-	movq	%rax, -72(%rbp)
-	.loc 1 363 10
-	cmpq	$0, -72(%rbp)
-	jne	.L136
-	.loc 1 363 42 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 363 48 discriminator 1
-	movl	$363, %ecx
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC48(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 363 131 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 363 147 discriminator 3
-	movl	$363, %ecx
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 363 206 discriminator 5
-	movl	$363, %r8d
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rcx
-	movl	$363, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 363 311 discriminator 6
-	movl	$0, %ebx
-	jmp	.L123
-.L136:
-	.loc 1 365 25
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 365 52
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 365 62
-	movl	8(%rax), %eax
-	.loc 1 365 81
-	cmpl	%eax, %edx
-	jge	.L137
-	.loc 1 365 98 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 365 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 365 134 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 365 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 365 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L138
-.L137:
-	.loc 1 365 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L138:
-	.loc 1 365 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 365 5 discriminator 4
-	cmpl	$2, %eax
-	je	.L139
-	.loc 1 365 197 discriminator 5
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 365 224 discriminator 5
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 365 234 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 365 253 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L140
-	.loc 1 365 270 discriminator 6
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 365 280 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 365 306 discriminator 6
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 365 290 discriminator 6
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 365 253 discriminator 6
-	addq	%rcx, %rax
-	jmp	.L141
-.L140:
-	.loc 1 365 253 is_stmt 0 discriminator 7
-	movl	$0, %eax
-.L141:
-	.loc 1 365 336 is_stmt 1 discriminator 9
-	movl	24(%rax), %eax
-	.loc 1 365 178 discriminator 9
-	cmpl	$4, %eax
-	je	.L139
-	.loc 1 367 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 367 81 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 367 87 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 367 127 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 367 133 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 367 159 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 367 177 discriminator 5
-	leaq	.LC49(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 367 213 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 367 257 discriminator 8
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 367 284 discriminator 8
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 367 294 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 367 313 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L142
-	.loc 1 367 330 discriminator 9
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 367 340 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 367 366 discriminator 9
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 367 350 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 367 313 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L143
-.L142:
-	.loc 1 367 313 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L143:
-	.loc 1 367 240 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 367 420 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 367 444 discriminator 14
-	movl	$367, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 367 665 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 367 500 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 367 517 discriminator 15
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 367 544 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 367 554 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 367 500 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L144
-	.loc 1 367 590 discriminator 16
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 367 600 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 367 626 discriminator 16
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 367 610 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 367 500 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L145
-.L144:
-	.loc 1 367 500 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L145:
-	.loc 1 367 500 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 368 35 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 368 51
-	movl	$368, %ecx
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 368 110 discriminator 2
-	movl	$368, %r8d
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rcx
-	movl	$368, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 368 215 discriminator 3
-	movl	$0, %ebx
-	jmp	.L123
-.L139:
-	.loc 1 371 19
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 371 28
-	leal	1(%rax), %edx
-	movq	-104(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 374 16
-	movq	-88(%rbp), %rax
-	movl	4(%rax), %eax
-	.loc 1 374 5
-	cmpl	$1, %eax
-	je	.L146
-	.loc 1 377 18
-	movq	-104(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL4GetEP13ProgramBuffer
-	.loc 1 377 13
-	testq	%rax, %rax
-	sete	%al
-	.loc 1 377 9
-	testb	%al, %al
-	je	.L146
-	.loc 1 379 24
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 379 85 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 379 91 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 379 131 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 379 137 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 379 163 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 379 181 discriminator 5
-	leaq	.LC50(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 379 230 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 379 274 discriminator 8
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 379 301 discriminator 8
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 379 311 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 379 330 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L147
-	.loc 1 379 347 discriminator 9
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 379 357 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 379 383 discriminator 9
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 379 367 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 379 330 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L148
-.L147:
-	.loc 1 379 330 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L148:
-	.loc 1 379 257 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 379 437 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 379 461 discriminator 14
-	movl	$379, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 379 682 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 379 517 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 379 534 discriminator 15
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 379 561 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 379 571 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 379 517 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L149
-	.loc 1 379 607 discriminator 16
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 379 617 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 379 643 discriminator 16
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 379 627 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 379 517 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L150
-.L149:
-	.loc 1 379 517 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L150:
-	.loc 1 379 517 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 380 39 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 380 55
-	movl	$380, %ecx
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 380 114 discriminator 2
-	movl	$380, %r8d
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rcx
-	movl	$380, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 380 219 discriminator 3
-	movl	$0, %ebx
-	jmp	.L123
-.L146:
-	.loc 1 384 25
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 384 52
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 384 62
-	movl	8(%rax), %eax
-	.loc 1 384 81
-	cmpl	%eax, %edx
-	jge	.L151
-	.loc 1 384 98 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 384 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 384 134 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 384 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 384 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L152
-.L151:
-	.loc 1 384 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L152:
-	.loc 1 384 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 384 5 discriminator 4
-	cmpl	$59, %eax
-	je	.L153
-	.loc 1 386 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 386 81 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 386 87 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 386 127 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 386 133 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 386 159 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rcx
-	.loc 1 386 177 discriminator 5
-	movl	$59, %edx
-	leaq	.LC38(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rcx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 386 222 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 386 266 discriminator 8
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 386 293 discriminator 8
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 386 303 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 386 322 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L154
-	.loc 1 386 339 discriminator 9
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 386 349 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 386 375 discriminator 9
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 386 359 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 386 322 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L155
-.L154:
-	.loc 1 386 322 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L155:
-	.loc 1 386 249 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 386 429 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 386 453 discriminator 14
-	movl	$386, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 386 674 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 386 509 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 386 526 discriminator 15
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 386 553 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 386 563 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 386 509 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L156
-	.loc 1 386 599 discriminator 16
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 386 609 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 386 635 discriminator 16
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 386 619 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 386 509 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L157
-.L156:
-	.loc 1 386 509 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L157:
-	.loc 1 386 509 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 387 35 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 387 51
-	movl	$387, %ecx
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 387 110 discriminator 2
-	movl	$387, %r8d
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rcx
-	movl	$387, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 387 215 discriminator 3
-	movl	$0, %ebx
-	jmp	.L123
-.L153:
-	.loc 1 390 19
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 390 28
-	leal	1(%rax), %edx
-	movq	-104(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 392 25
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 392 52
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 392 62
-	movl	8(%rax), %eax
-	.loc 1 392 81
-	cmpl	%eax, %edx
-	jge	.L158
-	.loc 1 392 98 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 392 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 392 134 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 392 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 392 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L159
-.L158:
-	.loc 1 392 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L159:
-	.loc 1 392 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 392 5 discriminator 4
-	cmpl	$125, %eax
-	je	.L160
-	.loc 1 394 19
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 394 80 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 394 86 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 394 126 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 394 132 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 394 158 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 394 176 discriminator 5
-	leaq	.LC51(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 394 219 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 394 263 discriminator 8
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 394 290 discriminator 8
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 394 300 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 394 319 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L161
-	.loc 1 394 336 discriminator 9
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 394 346 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 394 372 discriminator 9
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 394 356 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 394 319 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L162
-.L161:
-	.loc 1 394 319 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L162:
-	.loc 1 394 246 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 394 426 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 394 450 discriminator 14
-	movl	$394, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 394 671 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 394 506 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 394 523 discriminator 15
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 394 550 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 394 560 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 394 506 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L163
-	.loc 1 394 596 discriminator 16
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 394 606 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 394 632 discriminator 16
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 394 616 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 394 506 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L164
-.L163:
-	.loc 1 394 506 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L164:
-	.loc 1 394 506 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 395 34 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 395 50
-	movl	$395, %ecx
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 395 109 discriminator 2
-	movl	$395, %r8d
-	leaq	.LC45(%rip), %rax
-	movq	%rax, %rcx
-	movl	$395, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 395 214 discriminator 3
-	movl	$0, %ebx
-	jmp	.L123
-.L160:
-	.loc 1 398 40
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 398 67
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 398 77
-	movl	8(%rax), %eax
-	.loc 1 398 96
-	cmpl	%eax, %edx
-	jge	.L165
-	.loc 1 398 113 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 398 123 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 398 149 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 398 133 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 398 96 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L166
-.L165:
-	.loc 1 398 96 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L166:
-	.loc 1 398 12 is_stmt 1 discriminator 4
+	call	_ZL4GetTP10ProgramCtx
 	movq	%rax, -64(%rbp)
-	.loc 1 399 19 discriminator 4
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 399 28 discriminator 4
-	leal	1(%rax), %edx
-	movq	-104(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 401 40 discriminator 4
+	.loc 3 9 12
+	movq	-64(%rbp), %rax
+	movq	%rax, -72(%rbp)
+	.loc 3 10 5
+	jmp	.L89
+.L101:
+.LBB2:
+	.loc 3 12 191
 	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 12 17
+	movq	24(%rax), %rdx
+	.loc 3 12 34
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 3 12 61
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 12 71
+	movl	8(%rax), %eax
+	.loc 3 12 17
+	cmpl	%eax, %ecx
+	jge	.L90
+	.loc 3 12 107 discriminator 1
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 12 117 discriminator 1
+	movq	(%rax), %rsi
+	.loc 3 12 143 discriminator 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 3 12 127 discriminator 1
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 3 12 17 discriminator 1
+	addq	%rsi, %rax
+	jmp	.L91
+.L90:
+	.loc 3 12 17 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L91:
+	.loc 3 12 17 discriminator 4
+	leaq	.LC46(%rip), %rcx
+	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	call	_ZL17FuncLabelToTokensP9FuncLabel
-.LEHE4:
+	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
+	.loc 3 13 45 is_stmt 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 13 72
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 13 82
+	movl	8(%rax), %eax
+	.loc 3 13 101
+	cmpl	%eax, %edx
+	jge	.L92
+	.loc 3 13 118 discriminator 1
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 13 128 discriminator 1
+	movq	(%rax), %rcx
+	.loc 3 13 154 discriminator 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 13 138 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 13 101 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L93
+.L92:
+	.loc 3 13 101 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L93:
+	.loc 3 13 16 is_stmt 1 discriminator 4
 	movq	%rax, -56(%rbp)
-	.loc 1 402 26 discriminator 4
+	.loc 3 14 23 discriminator 4
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 3 14 32 discriminator 4
+	leal	1(%rax), %edx
+	movq	-88(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 3 16 33 discriminator 4
 	movq	-56(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 1 404 24 discriminator 4
+	.loc 3 17 39 discriminator 4
 	movq	-88(%rbp), %rax
-	movl	$1, 8(%rax)
-	.loc 1 406 21 discriminator 4
-	movq	-64(%rbp), %rax
-	movl	$9, 16(%rax)
-	.loc 1 407 27 discriminator 4
-	movq	-64(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL4GetTP10ProgramCtx
+.LEHE4:
+	.loc 3 17 33 discriminator 1
 	movq	-56(%rbp), %rdx
-	movq	%rdx, (%rax)
-	.loc 1 409 12 discriminator 4
-	movq	-64(%rbp), %rbx
-.L123:
-	.loc 1 410 5
+	movq	%rax, 8(%rdx)
+	.loc 3 19 17 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	%rax, -72(%rbp)
+.L89:
+.LBE2:
+	.loc 3 10 31
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 10 58
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 10 68
+	movl	8(%rax), %eax
+	.loc 3 10 87
+	cmpl	%eax, %edx
+	jge	.L94
+	.loc 3 10 104 discriminator 1
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 10 114 discriminator 1
+	movq	(%rax), %rcx
+	.loc 3 10 140 discriminator 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 10 124 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 10 87 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L95
+.L94:
+	.loc 3 10 87 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L95:
+	.loc 3 10 353 is_stmt 1 discriminator 4
+	testq	%rax, %rax
+	je	.L96
+	.loc 3 10 184 discriminator 5
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 10 211 discriminator 5
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 10 221 discriminator 5
+	movl	8(%rax), %eax
+	.loc 3 10 240 discriminator 5
+	cmpl	%eax, %edx
+	jge	.L97
+	.loc 3 10 257 discriminator 6
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 10 267 discriminator 6
+	movq	(%rax), %rcx
+	.loc 3 10 293 discriminator 6
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 10 277 discriminator 6
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 10 240 discriminator 6
+	addq	%rcx, %rax
+	jmp	.L98
+.L97:
+	.loc 3 10 240 is_stmt 0 discriminator 7
+	movl	$0, %eax
+.L98:
+	.loc 3 10 317 is_stmt 1 discriminator 9
+	movl	16(%rax), %eax
+	.loc 3 10 336 discriminator 9
+	cmpl	$5, %eax
+	jne	.L96
+	.loc 3 10 373 discriminator 10
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 10 400 discriminator 10
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 10 410 discriminator 10
+	movl	8(%rax), %eax
+	.loc 3 10 429 discriminator 10
+	cmpl	%eax, %edx
+	jge	.L99
+	.loc 3 10 446 discriminator 11
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 10 456 discriminator 11
+	movq	(%rax), %rcx
+	.loc 3 10 482 discriminator 11
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 10 466 discriminator 11
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 10 429 discriminator 11
+	addq	%rcx, %rax
+	jmp	.L100
+.L99:
+	.loc 3 10 429 is_stmt 0 discriminator 12
+	movl	$0, %eax
+.L100:
+	.loc 3 10 512 is_stmt 1 discriminator 14
+	movzbl	24(%rax), %eax
+	.loc 3 10 353 discriminator 14
+	cmpb	$43, %al
+	je	.L101
+	.loc 3 10 549 discriminator 15
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 10 576 discriminator 15
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 10 586 discriminator 15
+	movl	8(%rax), %eax
+	.loc 3 10 605 discriminator 15
+	cmpl	%eax, %edx
+	jge	.L102
+	.loc 3 10 622 discriminator 16
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 10 632 discriminator 16
+	movq	(%rax), %rcx
+	.loc 3 10 658 discriminator 16
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 10 642 discriminator 16
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 10 605 discriminator 16
+	addq	%rcx, %rax
+	jmp	.L103
+.L102:
+	.loc 3 10 605 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L103:
+	.loc 3 10 688 is_stmt 1 discriminator 19
+	movzbl	24(%rax), %eax
+	.loc 3 10 530 discriminator 19
+	cmpb	$45, %al
+	je	.L101
+.L96:
+	.loc 3 22 12
+	movq	-72(%rbp), %rbx
+.L88:
+	.loc 3 23 5
 	leaq	-48(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
 	movq	%rbx, %rax
-	jmp	.L170
-.L169:
+	jmp	.L107
+.L106:
 	endbr64
 	movq	%rax, %rbx
 	leaq	-48(%rbp), %rax
@@ -5164,7 +3005,7 @@ _ZL11GetFunctionP13ProgramBuffer:
 .LEHB5:
 	call	_Unwind_Resume@PLT
 .LEHE5:
-.L170:
+.L107:
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
@@ -5184,7 +3025,7 @@ _ZL11GetFunctionP13ProgramBuffer:
 	.uleb128 0
 	.uleb128 .LEHB4-.LFB2274
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L169-.LFB2274
+	.uleb128 .L106-.LFB2274
 	.uleb128 0
 	.uleb128 .LEHB5-.LFB2274
 	.uleb128 .LEHE5-.LEHB5
@@ -5192,17 +3033,19 @@ _ZL11GetFunctionP13ProgramBuffer:
 	.uleb128 0
 .LLSDACSE2274:
 	.text
-	.size	_ZL11GetFunctionP13ProgramBuffer, .-_ZL11GetFunctionP13ProgramBuffer
+	.size	_ZL4GetEP10ProgramCtx, .-_ZL4GetEP10ProgramCtx
 	.section	.rodata
-.LC52:
-	.string	"GetBlock"
-.LC53:
-	.string	"Empty block\n"
+.LC47:
+	.string	"GetT"
+.LC48:
+	.string	"Token* GetT(ProgramCtx*)"
+.LC49:
+	.string	"node"
 	.text
-	.type	_ZL8GetBlockP13ProgramBuffer, @function
-_ZL8GetBlockP13ProgramBuffer:
+	.type	_ZL4GetTP10ProgramCtx, @function
+_ZL4GetTP10ProgramCtx:
 .LFB2275:
-	.loc 1 413 5
+	.loc 3 26 5
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA2275
@@ -5213,66 +3056,65 @@ _ZL8GetBlockP13ProgramBuffer:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	pushq	%rbx
-	subq	$72, %rsp
+	subq	$88, %rsp
 	.cfi_offset 3, -24
-	movq	%rdi, -72(%rbp)
-	.loc 1 414 45
+	movq	%rdi, -88(%rbp)
+	.loc 3 27 48
 	leaq	-48(%rbp), %rax
-	leaq	.LC52(%rip), %rdx
-	movl	$2, %esi
+	leaq	.LC47(%rip), %rdx
+	movl	$1, %esi
 	movq	%rax, %rdi
 .LEHB6:
 	call	_ZN14FunctionLoggerC1EiPKc@PLT
 .LEHE6:
-	.loc 1 415 10
-	cmpq	$0, -72(%rbp)
-	jne	.L172
+	.loc 3 28 10
+	cmpq	$0, -88(%rbp)
+	jne	.L109
 .LEHB7:
-	.loc 1 415 51 discriminator 1
+	.loc 3 28 51 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 415 57 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 3 28 57 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 415 109 discriminator 3
-	leaq	.LC29(%rip), %rax
+	.loc 3 28 121 discriminator 3
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 415 198 discriminator 4
+	.loc 3 28 273 discriminator 4
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 415 204 discriminator 4
-	movl	$415, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC52(%rip), %rax
+	.loc 3 28 279 discriminator 4
+	leaq	.LC48(%rip), %r8
+	movl	$28, %ecx
+	leaq	.LC45(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 415 297 discriminator 6
-	movl	$415, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC52(%rip), %rax
+	.loc 3 28 386 discriminator 6
+	leaq	.LC48(%rip), %rax
+	movq	%rax, %rcx
+	movl	$28, %edx
+	leaq	.LC45(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 415 403 discriminator 7
+	.loc 3 28 506 discriminator 7
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 415 409 discriminator 7
+	.loc 3 28 512 discriminator 7
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -5282,240 +3124,326 @@ _ZL8GetBlockP13ProgramBuffer:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 415 27 discriminator 9
+	.loc 3 28 27 discriminator 9
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 415 33 discriminator 9
-	movl	$415, %ecx
-	leaq	.LC52(%rip), %rax
+	.loc 3 28 33 discriminator 9
+	movl	$28, %ecx
+	leaq	.LC47(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 415 92 discriminator 11
-	leaq	.LC17(%rip), %rax
+	.loc 3 28 91 discriminator 11
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 415 131 discriminator 12
+	.loc 3 28 133 discriminator 12
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 415 147 discriminator 12
-	movl	$415, %ecx
-	leaq	.LC52(%rip), %rax
+	.loc 3 28 149 discriminator 12
+	movl	$28, %ecx
+	leaq	.LC47(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 415 206 discriminator 14
-	movl	$415, %r8d
-	leaq	.LC52(%rip), %rax
+	.loc 3 28 207 discriminator 14
+	movl	$28, %r8d
+	leaq	.LC47(%rip), %rax
 	movq	%rax, %rcx
-	movl	$415, %edx
-	leaq	.LC13(%rip), %rax
+	movl	$28, %edx
+	leaq	.LC45(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 415 311 discriminator 15
+	.loc 3 28 329 discriminator 15
 	movl	$0, %ebx
-	jmp	.L173
-.L172:
-	.loc 1 417 32
-	movq	-72(%rbp), %rax
+	jmp	.L110
+.L109:
+	.loc 3 30 27
+	movq	-88(%rbp), %rax
 	movq	%rax, %rdi
-	call	_ZL12GetStatementP13ProgramBuffer
-	movq	%rax, -56(%rbp)
-	.loc 1 418 5
-	cmpq	$0, -56(%rbp)
-	jne	.L174
-	.loc 1 420 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 420 81 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 420 87 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 420 127 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 420 133 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 420 159 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 420 177 discriminator 5
-	leaq	.LC53(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 420 203 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 420 247 discriminator 8
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 420 274 discriminator 8
-	movq	-72(%rbp), %rax
+	call	_ZL8GetPowerP10ProgramCtx
+	movq	%rax, -64(%rbp)
+	.loc 3 31 43
+	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 420 284 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 420 303 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L175
-	.loc 1 420 320 discriminator 9
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 420 330 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 420 356 discriminator 9
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 420 340 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 420 303 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L176
-.L175:
-	.loc 1 420 303 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L176:
-	.loc 1 420 230 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 420 410 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 420 434 discriminator 14
-	movl	$420, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 420 655 discriminator 15
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 420 490 discriminator 15
+	.loc 3 31 13
 	movq	24(%rax), %rdx
-	.loc 1 420 507 discriminator 15
-	movq	-72(%rbp), %rax
+	movq	-64(%rbp), %rax
+	leaq	.LC49(%rip), %rcx
+	movq	%rcx, %rsi
+	movq	%rax, %rdi
+	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
+	.loc 3 33 12
+	movq	-64(%rbp), %rax
+	movq	%rax, -72(%rbp)
+	.loc 3 34 5
+	jmp	.L111
+.L123:
+.LBB3:
+	.loc 3 36 191
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 36 17
+	movq	24(%rax), %rdx
+	.loc 3 36 34
+	movq	-88(%rbp), %rax
 	movl	8(%rax), %ecx
-	.loc 1 420 534 discriminator 15
-	movq	-72(%rbp), %rax
+	.loc 3 36 61
+	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 420 544 discriminator 15
+	.loc 3 36 71
 	movl	8(%rax), %eax
-	.loc 1 420 490 discriminator 15
+	.loc 3 36 17
 	cmpl	%eax, %ecx
-	jge	.L177
-	.loc 1 420 580 discriminator 16
-	movq	-72(%rbp), %rax
+	jge	.L112
+	.loc 3 36 107 discriminator 1
+	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 420 590 discriminator 16
+	.loc 3 36 117 discriminator 1
 	movq	(%rax), %rsi
-	.loc 1 420 616 discriminator 16
-	movq	-72(%rbp), %rax
+	.loc 3 36 143 discriminator 1
+	movq	-88(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rcx
-	.loc 1 420 600 discriminator 16
+	.loc 3 36 127 discriminator 1
 	movq	%rcx, %rax
 	salq	$2, %rax
 	addq	%rcx, %rax
 	salq	$3, %rax
-	.loc 1 420 490 discriminator 16
+	.loc 3 36 17 discriminator 1
 	addq	%rsi, %rax
-	jmp	.L178
-.L177:
-	.loc 1 420 490 is_stmt 0 discriminator 17
+	jmp	.L113
+.L112:
+	.loc 3 36 17 is_stmt 0 discriminator 2
 	movl	$0, %eax
-.L178:
-	.loc 1 420 490 discriminator 19
-	movq	%rdx, %rsi
+.L113:
+	.loc 3 36 17 discriminator 4
+	leaq	.LC46(%rip), %rcx
+	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 421 35 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 421 51
-	movl	$421, %ecx
-	leaq	.LC52(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
+	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
+	.loc 3 37 45 is_stmt 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 37 72
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 37 82
+	movl	8(%rax), %eax
+	.loc 3 37 101
+	cmpl	%eax, %edx
+	jge	.L114
+	.loc 3 37 118 discriminator 1
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 37 128 discriminator 1
+	movq	(%rax), %rcx
+	.loc 3 37 154 discriminator 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 37 138 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 37 101 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L115
+.L114:
+	.loc 3 37 101 is_stmt 0 discriminator 2
 	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 421 110 discriminator 2
-	movl	$421, %r8d
-	leaq	.LC52(%rip), %rax
-	movq	%rax, %rcx
-	movl	$421, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 421 215 discriminator 3
-	movl	$0, %ebx
-	jmp	.L173
-.L174:
-	.loc 1 424 12
+.L115:
+	.loc 3 37 16 is_stmt 1 discriminator 4
+	movq	%rax, -56(%rbp)
+	.loc 3 38 23 discriminator 4
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 3 38 32 discriminator 4
+	leal	1(%rax), %edx
+	movq	-88(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 3 40 33 discriminator 4
 	movq	-56(%rbp), %rax
-	movq	%rax, -64(%rbp)
-	.loc 1 425 5
-	jmp	.L179
-.L180:
-	.loc 1 427 54
-	movq	-72(%rbp), %rax
+	movq	-72(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 3 41 43 discriminator 4
+	movq	-88(%rbp), %rax
 	movq	%rax, %rdi
-	call	_ZL12GetStatementP13ProgramBuffer
+	call	_ZL8GetPowerP10ProgramCtx
 .LEHE7:
-	.loc 1 427 40 discriminator 1
-	movq	-64(%rbp), %rdx
+	.loc 3 41 33 discriminator 1
+	movq	-56(%rbp), %rdx
 	movq	%rax, 8(%rdx)
-	.loc 1 429 27 discriminator 1
-	movq	-64(%rbp), %rax
-	movq	8(%rax), %rax
-	movq	%rax, -64(%rbp)
-.L179:
-	.loc 1 425 12
-	cmpq	$0, -64(%rbp)
-	jne	.L180
-	.loc 1 432 12
-	movq	-56(%rbp), %rbx
-.L173:
-	.loc 1 433 5
+	.loc 3 43 17 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	%rax, -72(%rbp)
+.L111:
+.LBE3:
+	.loc 3 34 31
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 34 58
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 34 68
+	movl	8(%rax), %eax
+	.loc 3 34 87
+	cmpl	%eax, %edx
+	jge	.L116
+	.loc 3 34 104 discriminator 1
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 34 114 discriminator 1
+	movq	(%rax), %rcx
+	.loc 3 34 140 discriminator 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 34 124 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 34 87 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L117
+.L116:
+	.loc 3 34 87 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L117:
+	.loc 3 34 353 is_stmt 1 discriminator 4
+	testq	%rax, %rax
+	je	.L118
+	.loc 3 34 184 discriminator 5
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 34 211 discriminator 5
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 34 221 discriminator 5
+	movl	8(%rax), %eax
+	.loc 3 34 240 discriminator 5
+	cmpl	%eax, %edx
+	jge	.L119
+	.loc 3 34 257 discriminator 6
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 34 267 discriminator 6
+	movq	(%rax), %rcx
+	.loc 3 34 293 discriminator 6
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 34 277 discriminator 6
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 34 240 discriminator 6
+	addq	%rcx, %rax
+	jmp	.L120
+.L119:
+	.loc 3 34 240 is_stmt 0 discriminator 7
+	movl	$0, %eax
+.L120:
+	.loc 3 34 317 is_stmt 1 discriminator 9
+	movl	16(%rax), %eax
+	.loc 3 34 336 discriminator 9
+	cmpl	$5, %eax
+	jne	.L118
+	.loc 3 34 373 discriminator 10
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 34 400 discriminator 10
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 34 410 discriminator 10
+	movl	8(%rax), %eax
+	.loc 3 34 429 discriminator 10
+	cmpl	%eax, %edx
+	jge	.L121
+	.loc 3 34 446 discriminator 11
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 34 456 discriminator 11
+	movq	(%rax), %rcx
+	.loc 3 34 482 discriminator 11
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 34 466 discriminator 11
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 34 429 discriminator 11
+	addq	%rcx, %rax
+	jmp	.L122
+.L121:
+	.loc 3 34 429 is_stmt 0 discriminator 12
+	movl	$0, %eax
+.L122:
+	.loc 3 34 512 is_stmt 1 discriminator 14
+	movzbl	24(%rax), %eax
+	.loc 3 34 353 discriminator 14
+	cmpb	$42, %al
+	je	.L123
+	.loc 3 34 549 discriminator 15
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 34 576 discriminator 15
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 34 586 discriminator 15
+	movl	8(%rax), %eax
+	.loc 3 34 605 discriminator 15
+	cmpl	%eax, %edx
+	jge	.L124
+	.loc 3 34 622 discriminator 16
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 34 632 discriminator 16
+	movq	(%rax), %rcx
+	.loc 3 34 658 discriminator 16
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 34 642 discriminator 16
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 34 605 discriminator 16
+	addq	%rcx, %rax
+	jmp	.L125
+.L124:
+	.loc 3 34 605 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L125:
+	.loc 3 34 688 is_stmt 1 discriminator 19
+	movzbl	24(%rax), %eax
+	.loc 3 34 530 discriminator 19
+	cmpb	$47, %al
+	je	.L123
+.L118:
+	.loc 3 46 12
+	movq	-72(%rbp), %rbx
+.L110:
+	.loc 3 47 5
 	leaq	-48(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
 	movq	%rbx, %rax
-	jmp	.L184
-.L183:
+	jmp	.L129
+.L128:
 	endbr64
 	movq	%rax, %rbx
 	leaq	-48(%rbp), %rax
@@ -5526,7 +3454,7 @@ _ZL8GetBlockP13ProgramBuffer:
 .LEHB8:
 	call	_Unwind_Resume@PLT
 .LEHE8:
-.L184:
+.L129:
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
@@ -5546,7 +3474,7 @@ _ZL8GetBlockP13ProgramBuffer:
 	.uleb128 0
 	.uleb128 .LEHB7-.LFB2275
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L183-.LFB2275
+	.uleb128 .L128-.LFB2275
 	.uleb128 0
 	.uleb128 .LEHB8-.LFB2275
 	.uleb128 .LEHE8-.LEHB8
@@ -5554,18 +3482,17 @@ _ZL8GetBlockP13ProgramBuffer:
 	.uleb128 0
 .LLSDACSE2275:
 	.text
-	.size	_ZL8GetBlockP13ProgramBuffer, .-_ZL8GetBlockP13ProgramBuffer
+	.size	_ZL4GetTP10ProgramCtx, .-_ZL4GetTP10ProgramCtx
 	.section	.rodata
-.LC54:
-	.string	"GetStatement"
-	.align 8
-.LC55:
-	.string	"Missing closing bracket (token position %d)\n"
+.LC50:
+	.string	"GetPower"
+.LC51:
+	.string	"Token* GetPower(ProgramCtx*)"
 	.text
-	.type	_ZL12GetStatementP13ProgramBuffer, @function
-_ZL12GetStatementP13ProgramBuffer:
+	.type	_ZL8GetPowerP10ProgramCtx, @function
+_ZL8GetPowerP10ProgramCtx:
 .LFB2276:
-	.loc 1 436 5
+	.loc 3 50 5
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA2276
@@ -5576,66 +3503,65 @@ _ZL12GetStatementP13ProgramBuffer:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	pushq	%rbx
-	subq	$72, %rsp
+	subq	$88, %rsp
 	.cfi_offset 3, -24
-	movq	%rdi, -72(%rbp)
-	.loc 1 437 41
+	movq	%rdi, -88(%rbp)
+	.loc 3 51 48
 	leaq	-48(%rbp), %rax
-	leaq	.LC54(%rip), %rdx
+	leaq	.LC50(%rip), %rdx
 	movl	$1, %esi
 	movq	%rax, %rdi
 .LEHB9:
 	call	_ZN14FunctionLoggerC1EiPKc@PLT
 .LEHE9:
-	.loc 1 438 10
-	cmpq	$0, -72(%rbp)
-	jne	.L186
+	.loc 3 52 10
+	cmpq	$0, -88(%rbp)
+	jne	.L131
 .LEHB10:
-	.loc 1 438 51 discriminator 1
+	.loc 3 52 51 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 438 57 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 3 52 57 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 438 109 discriminator 3
-	leaq	.LC29(%rip), %rax
+	.loc 3 52 121 discriminator 3
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 438 198 discriminator 4
+	.loc 3 52 273 discriminator 4
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 438 204 discriminator 4
-	movl	$438, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC54(%rip), %rax
+	.loc 3 52 279 discriminator 4
+	leaq	.LC51(%rip), %r8
+	movl	$52, %ecx
+	leaq	.LC45(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 438 297 discriminator 6
-	movl	$438, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC54(%rip), %rax
+	.loc 3 52 386 discriminator 6
+	leaq	.LC51(%rip), %rax
+	movq	%rax, %rcx
+	movl	$52, %edx
+	leaq	.LC45(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 438 403 discriminator 7
+	.loc 3 52 506 discriminator 7
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 438 409 discriminator 7
+	.loc 3 52 512 discriminator 7
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -5645,762 +3571,279 @@ _ZL12GetStatementP13ProgramBuffer:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 438 27 discriminator 9
+	.loc 3 52 27 discriminator 9
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 438 33 discriminator 9
-	movl	$438, %ecx
-	leaq	.LC54(%rip), %rax
+	.loc 3 52 33 discriminator 9
+	movl	$52, %ecx
+	leaq	.LC50(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 438 92 discriminator 11
-	leaq	.LC17(%rip), %rax
+	.loc 3 52 91 discriminator 11
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 438 131 discriminator 12
+	.loc 3 52 133 discriminator 12
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 438 147 discriminator 12
-	movl	$438, %ecx
-	leaq	.LC54(%rip), %rax
+	.loc 3 52 149 discriminator 12
+	movl	$52, %ecx
+	leaq	.LC50(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 438 206 discriminator 14
-	movl	$438, %r8d
-	leaq	.LC54(%rip), %rax
+	.loc 3 52 207 discriminator 14
+	movl	$52, %r8d
+	leaq	.LC50(%rip), %rax
 	movq	%rax, %rcx
-	movl	$438, %edx
-	leaq	.LC13(%rip), %rax
+	movl	$52, %edx
+	leaq	.LC45(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 438 311 discriminator 15
+	.loc 3 52 329 discriminator 15
 	movl	$0, %ebx
-	jmp	.L187
-.L186:
-	.loc 1 440 25
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 440 52
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 440 62
-	movl	8(%rax), %eax
-	.loc 1 440 81
-	cmpl	%eax, %edx
-	jge	.L188
-	.loc 1 440 98 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 440 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 440 134 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 440 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 440 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L189
-.L188:
-	.loc 1 440 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L189:
-	.loc 1 440 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 440 5 discriminator 4
-	cmpl	$6, %eax
-	jne	.L190
-	.loc 1 442 23
-	movq	-72(%rbp), %rax
+	jmp	.L132
+.L131:
+	.loc 3 54 23
+	movq	-88(%rbp), %rax
 	movq	%rax, %rdi
-	call	_ZL10DefineNameP13ProgramBuffer
-	.loc 1 442 37
-	testl	%eax, %eax
-	sete	%al
-	.loc 1 442 9
-	testb	%al, %al
-	je	.L191
-	.loc 1 443 39
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 443 55
-	movl	$443, %ecx
-	leaq	.LC54(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 443 114 discriminator 2
-	movl	$443, %r8d
-	leaq	.LC54(%rip), %rax
-	movq	%rax, %rcx
-	movl	$443, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 443 219 discriminator 3
-	movl	$0, %ebx
-	jmp	.L187
-.L191:
-	.loc 1 445 28
-	movq	-72(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL12GetStatementP13ProgramBuffer
-	movq	%rax, %rbx
-	.loc 1 445 40
-	jmp	.L187
-.L190:
-	.loc 1 448 27
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 448 54
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 448 64
-	movl	8(%rax), %eax
-	.loc 1 448 83
-	cmpl	%eax, %edx
-	jge	.L192
-	.loc 1 448 100 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 448 110 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 448 136 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 448 120 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 448 83 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L193
-.L192:
-	.loc 1 448 83 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L193:
-	.loc 1 448 5 is_stmt 1 discriminator 4
-	testq	%rax, %rax
-	je	.L194
-	.loc 1 448 180 discriminator 5
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 448 207 discriminator 5
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 448 217 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 448 236 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L195
-	.loc 1 448 253 discriminator 6
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 448 263 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 448 289 discriminator 6
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 448 273 discriminator 6
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 448 236 discriminator 6
-	addq	%rcx, %rax
-	jmp	.L196
-.L195:
-	.loc 1 448 236 is_stmt 0 discriminator 7
-	movl	$0, %eax
-.L196:
-	.loc 1 448 313 is_stmt 1 discriminator 9
-	movl	16(%rax), %eax
-	.loc 1 448 334 discriminator 9
-	cmpl	$2, %eax
-	jne	.L194
-	.loc 1 449 30
-	movq	-72(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL14GetInstructionP13ProgramBuffer
-	movq	%rax, %rbx
-	.loc 1 449 42
-	jmp	.L187
-.L194:
-	.loc 1 451 28
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 451 55
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 451 65
-	movl	8(%rax), %eax
-	.loc 1 451 84
-	cmpl	%eax, %edx
-	jge	.L197
-	.loc 1 451 101 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 451 111 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 451 137 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 451 121 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 451 84 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L198
-.L197:
-	.loc 1 451 84 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L198:
-	.loc 1 451 5 is_stmt 1 discriminator 4
-	testq	%rax, %rax
-	je	.L199
-	.loc 1 451 181 discriminator 5
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 451 208 discriminator 5
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 451 218 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 451 237 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L200
-	.loc 1 451 254 discriminator 6
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 451 264 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 451 290 discriminator 6
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 451 274 discriminator 6
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 451 237 discriminator 6
-	addq	%rcx, %rax
-	jmp	.L201
-.L200:
-	.loc 1 451 237 is_stmt 0 discriminator 7
-	movl	$0, %eax
-.L201:
-	.loc 1 451 314 is_stmt 1 discriminator 9
-	movl	16(%rax), %eax
-	.loc 1 451 333 discriminator 9
-	cmpl	$7, %eax
-	jne	.L199
-	.loc 1 452 28
-	movq	-72(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL12GetAssigmentP13ProgramBuffer
-	movq	%rax, %rbx
-	.loc 1 452 40
-	jmp	.L187
-.L199:
-	.loc 1 454 25
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 454 52
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 454 62
-	movl	8(%rax), %eax
-	.loc 1 454 81
-	cmpl	%eax, %edx
-	jge	.L202
-	.loc 1 454 98 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 454 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 454 134 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 454 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 454 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L203
-.L202:
-	.loc 1 454 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L203:
-	.loc 1 454 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 454 5 discriminator 4
-	cmpl	$6, %eax
-	jne	.L204
-	.loc 1 456 23
-	movq	-72(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL10DefineNameP13ProgramBuffer
-	.loc 1 456 37
-	testl	%eax, %eax
-	sete	%al
-	.loc 1 456 9
-	testb	%al, %al
-	je	.L205
-	.loc 1 457 39
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 457 55
-	movl	$457, %ecx
-	leaq	.LC54(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 457 114 discriminator 2
-	movl	$457, %r8d
-	leaq	.LC54(%rip), %rax
-	movq	%rax, %rcx
-	movl	$457, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 457 219 discriminator 3
-	movl	$0, %ebx
-	jmp	.L187
-.L205:
-	.loc 1 459 28
-	movq	-72(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL12GetStatementP13ProgramBuffer
-	movq	%rax, %rbx
-	.loc 1 459 40
-	jmp	.L187
-.L204:
-	.loc 1 462 25
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 462 52
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 462 62
-	movl	8(%rax), %eax
-	.loc 1 462 81
-	cmpl	%eax, %edx
-	jge	.L206
-	.loc 1 462 98 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 462 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 462 134 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 462 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 462 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L207
-.L206:
-	.loc 1 462 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L207:
-	.loc 1 462 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 462 5 discriminator 4
-	cmpl	$3, %eax
-	jne	.L208
-	.loc 1 463 33
-	movq	-72(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL17VarInitializationP13ProgramBuffer
-	movq	%rax, %rbx
-	.loc 1 463 45
-	jmp	.L187
-.L208:
-	.loc 1 465 27
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 465 54
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 465 64
-	movl	8(%rax), %eax
-	.loc 1 465 83
-	cmpl	%eax, %edx
-	jge	.L209
-	.loc 1 465 100 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 465 110 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 465 136 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 465 120 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 465 83 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L210
-.L209:
-	.loc 1 465 83 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L210:
-	.loc 1 465 5 is_stmt 1 discriminator 4
-	testq	%rax, %rax
-	je	.L211
-	.loc 1 465 180 discriminator 5
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 465 207 discriminator 5
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 465 217 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 465 236 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L212
-	.loc 1 465 253 discriminator 6
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 465 263 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 465 289 discriminator 6
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 465 273 discriminator 6
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 465 236 discriminator 6
-	addq	%rcx, %rax
-	jmp	.L213
-.L212:
-	.loc 1 465 236 is_stmt 0 discriminator 7
-	movl	$0, %eax
-.L213:
-	.loc 1 465 313 is_stmt 1 discriminator 9
-	movl	16(%rax), %eax
-	.loc 1 465 332 discriminator 9
-	cmpl	$9, %eax
-	jne	.L211
-	.loc 1 466 23
-	movq	-72(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL7GetCallP13ProgramBuffer
-	movq	%rax, %rbx
-	.loc 1 466 35
-	jmp	.L187
-.L211:
+	call	_ZL4GetPP10ProgramCtx
+	movq	%rax, -64(%rbp)
+	.loc 3 56 12
+	movq	-64(%rbp), %rax
+	movq	%rax, -72(%rbp)
+	.loc 3 57 5
+	jmp	.L133
+.L145:
 .LBB4:
-	.loc 1 469 25
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 469 52
-	movq	-72(%rbp), %rax
+	.loc 3 59 191
+	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 469 62
-	movl	8(%rax), %eax
-	.loc 1 469 81
-	cmpl	%eax, %edx
-	jge	.L214
-	.loc 1 469 98 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 469 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 469 134 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 469 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 469 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L215
-.L214:
-	.loc 1 469 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L215:
-	.loc 1 469 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 469 5 discriminator 4
-	cmpl	$123, %eax
-	jne	.L216
-.LBB5:
-	.loc 1 471 23
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 471 32
-	leal	1(%rax), %edx
-	movq	-72(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 473 32
-	movq	-72(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL8GetBlockP13ProgramBuffer
-	movq	%rax, -56(%rbp)
-	.loc 1 475 29
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 475 56
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 475 66
-	movl	8(%rax), %eax
-	.loc 1 475 85
-	cmpl	%eax, %edx
-	jge	.L217
-	.loc 1 475 102 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 475 112 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 475 138 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 475 122 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 475 85 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L218
-.L217:
-	.loc 1 475 85 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L218:
-	.loc 1 475 168 is_stmt 1 discriminator 4
-	movzbl	24(%rax), %eax
-	.loc 1 475 9 discriminator 4
-	cmpb	$125, %al
-	je	.L219
-	.loc 1 477 24
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 477 85 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 477 91 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 477 131 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 477 137 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 477 163 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rcx
-	.loc 1 477 181 discriminator 5
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movl	%eax, %edx
-	leaq	.LC55(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rcx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 477 264 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 477 308 discriminator 8
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 477 335 discriminator 8
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 477 345 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 477 364 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L220
-	.loc 1 477 381 discriminator 9
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 477 391 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 477 417 discriminator 9
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 477 401 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 477 364 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L221
-.L220:
-	.loc 1 477 364 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L221:
-	.loc 1 477 291 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 477 471 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 477 495 discriminator 14
-	movl	$477, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 477 716 discriminator 15
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 477 551 discriminator 15
+	.loc 3 59 17
 	movq	24(%rax), %rdx
-	.loc 1 477 568 discriminator 15
-	movq	-72(%rbp), %rax
+	.loc 3 59 34
+	movq	-88(%rbp), %rax
 	movl	8(%rax), %ecx
-	.loc 1 477 595 discriminator 15
-	movq	-72(%rbp), %rax
+	.loc 3 59 61
+	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 477 605 discriminator 15
+	.loc 3 59 71
 	movl	8(%rax), %eax
-	.loc 1 477 551 discriminator 15
+	.loc 3 59 17
 	cmpl	%eax, %ecx
-	jge	.L222
-	.loc 1 477 641 discriminator 16
-	movq	-72(%rbp), %rax
+	jge	.L134
+	.loc 3 59 107 discriminator 1
+	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 477 651 discriminator 16
+	.loc 3 59 117 discriminator 1
 	movq	(%rax), %rsi
-	.loc 1 477 677 discriminator 16
-	movq	-72(%rbp), %rax
+	.loc 3 59 143 discriminator 1
+	movq	-88(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rcx
-	.loc 1 477 661 discriminator 16
+	.loc 3 59 127 discriminator 1
 	movq	%rcx, %rax
 	salq	$2, %rax
 	addq	%rcx, %rax
 	salq	$3, %rax
-	.loc 1 477 551 discriminator 16
+	.loc 3 59 17 discriminator 1
 	addq	%rsi, %rax
-	jmp	.L223
-.L222:
-	.loc 1 477 551 is_stmt 0 discriminator 17
+	jmp	.L135
+.L134:
+	.loc 3 59 17 is_stmt 0 discriminator 2
 	movl	$0, %eax
-.L223:
-	.loc 1 477 551 discriminator 19
-	movq	%rdx, %rsi
+.L135:
+	.loc 3 59 17 discriminator 4
+	leaq	.LC46(%rip), %rcx
+	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 478 39 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 478 55
-	movl	$478, %ecx
-	leaq	.LC54(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 478 114 discriminator 2
-	movl	$478, %r8d
-	leaq	.LC54(%rip), %rax
-	movq	%rax, %rcx
-	movl	$478, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-.LEHE10:
-	.loc 1 478 219 discriminator 3
-	movl	$0, %ebx
-	jmp	.L187
-.L219:
-	.loc 1 481 23
-	movq	-72(%rbp), %rax
+	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
+	.loc 3 60 45 is_stmt 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 60 72
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 60 82
 	movl	8(%rax), %eax
-	.loc 1 481 32
+	.loc 3 60 101
+	cmpl	%eax, %edx
+	jge	.L136
+	.loc 3 60 118 discriminator 1
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 60 128 discriminator 1
+	movq	(%rax), %rcx
+	.loc 3 60 154 discriminator 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 60 138 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 60 101 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L137
+.L136:
+	.loc 3 60 101 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L137:
+	.loc 3 60 16 is_stmt 1 discriminator 4
+	movq	%rax, -56(%rbp)
+	.loc 3 61 23 discriminator 4
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 3 61 32 discriminator 4
 	leal	1(%rax), %edx
-	movq	-72(%rbp), %rax
+	movq	-88(%rbp), %rax
 	movl	%edx, 8(%rax)
-	.loc 1 483 16
-	movq	-56(%rbp), %rbx
-	jmp	.L187
-.L216:
-.LBE5:
+	.loc 3 63 33 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	-72(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 3 64 39 discriminator 4
+	movq	-88(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL4GetPP10ProgramCtx
+.LEHE10:
+	.loc 3 64 33 discriminator 1
+	movq	-56(%rbp), %rdx
+	movq	%rax, 8(%rdx)
+	.loc 3 66 17 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	%rax, -72(%rbp)
+.L133:
 .LBE4:
-	.loc 1 486 11
-	movl	$0, %ebx
-.L187:
-	.loc 1 487 5
+	.loc 3 57 31
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 57 58
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 57 68
+	movl	8(%rax), %eax
+	.loc 3 57 87
+	cmpl	%eax, %edx
+	jge	.L138
+	.loc 3 57 104 discriminator 1
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 57 114 discriminator 1
+	movq	(%rax), %rcx
+	.loc 3 57 140 discriminator 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 57 124 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 57 87 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L139
+.L138:
+	.loc 3 57 87 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L139:
+	.loc 3 57 353 is_stmt 1 discriminator 4
+	testq	%rax, %rax
+	je	.L140
+	.loc 3 57 184 discriminator 5
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 57 211 discriminator 5
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 57 221 discriminator 5
+	movl	8(%rax), %eax
+	.loc 3 57 240 discriminator 5
+	cmpl	%eax, %edx
+	jge	.L141
+	.loc 3 57 257 discriminator 6
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 57 267 discriminator 6
+	movq	(%rax), %rcx
+	.loc 3 57 293 discriminator 6
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 57 277 discriminator 6
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 57 240 discriminator 6
+	addq	%rcx, %rax
+	jmp	.L142
+.L141:
+	.loc 3 57 240 is_stmt 0 discriminator 7
+	movl	$0, %eax
+.L142:
+	.loc 3 57 317 is_stmt 1 discriminator 9
+	movl	16(%rax), %eax
+	.loc 3 57 336 discriminator 9
+	cmpl	$5, %eax
+	jne	.L140
+	.loc 3 57 372 discriminator 10
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 57 399 discriminator 10
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 57 409 discriminator 10
+	movl	8(%rax), %eax
+	.loc 3 57 428 discriminator 10
+	cmpl	%eax, %edx
+	jge	.L143
+	.loc 3 57 445 discriminator 11
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 57 455 discriminator 11
+	movq	(%rax), %rcx
+	.loc 3 57 481 discriminator 11
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 57 465 discriminator 11
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 57 428 discriminator 11
+	addq	%rcx, %rax
+	jmp	.L144
+.L143:
+	.loc 3 57 428 is_stmt 0 discriminator 12
+	movl	$0, %eax
+.L144:
+	.loc 3 57 511 is_stmt 1 discriminator 14
+	movzbl	24(%rax), %eax
+	.loc 3 57 353 discriminator 14
+	cmpb	$94, %al
+	je	.L145
+.L140:
+	.loc 3 69 12
+	movq	-72(%rbp), %rbx
+.L132:
+	.loc 3 70 5
 	leaq	-48(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
 	movq	%rbx, %rax
-	jmp	.L227
-.L226:
+	jmp	.L149
+.L148:
 	endbr64
 	movq	%rax, %rbx
 	leaq	-48(%rbp), %rax
@@ -6411,7 +3854,7 @@ _ZL12GetStatementP13ProgramBuffer:
 .LEHB11:
 	call	_Unwind_Resume@PLT
 .LEHE11:
-.L227:
+.L149:
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
@@ -6431,7 +3874,7 @@ _ZL12GetStatementP13ProgramBuffer:
 	.uleb128 0
 	.uleb128 .LEHB10-.LFB2276
 	.uleb128 .LEHE10-.LEHB10
-	.uleb128 .L226-.LFB2276
+	.uleb128 .L148-.LFB2276
 	.uleb128 0
 	.uleb128 .LEHB11-.LFB2276
 	.uleb128 .LEHE11-.LEHB11
@@ -6439,1005 +3882,23 @@ _ZL12GetStatementP13ProgramBuffer:
 	.uleb128 0
 .LLSDACSE2276:
 	.text
-	.size	_ZL12GetStatementP13ProgramBuffer, .-_ZL12GetStatementP13ProgramBuffer
+	.size	_ZL8GetPowerP10ProgramCtx, .-_ZL8GetPowerP10ProgramCtx
 	.section	.rodata
-.LC56:
-	.string	"GetCall"
-.LC57:
-	.string	"Not a function name\n"
-.LC58:
-	.string	"Missing '('\n"
-.LC59:
-	.string	"Missing ')'\n"
+.LC52:
+	.string	"GetP"
+.LC53:
+	.string	"Token* GetP(ProgramCtx*)"
+	.align 8
+.LC54:
+	.string	"Missing closing bracket (token position %d)\n"
 	.text
-	.type	_ZL7GetCallP13ProgramBuffer, @function
-_ZL7GetCallP13ProgramBuffer:
+	.type	_ZL4GetPP10ProgramCtx, @function
+_ZL4GetPP10ProgramCtx:
 .LFB2277:
-	.loc 1 491 5
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	pushq	%rbx
-	subq	$40, %rsp
-	.cfi_offset 3, -24
-	movq	%rdi, -40(%rbp)
-	.loc 1 492 10
-	cmpq	$0, -40(%rbp)
-	jne	.L229
-	.loc 1 492 51 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rcx
-	.loc 1 492 57 discriminator 1
-	leaq	.LC29(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rcx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 492 109 discriminator 1
-	leaq	.LC29(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 492 198 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 492 204 discriminator 1
-	movl	$492, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC56(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC14(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 492 297 discriminator 1
-	movl	$492, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC56(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC14(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 492 403 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rbx
-	.loc 1 492 409 discriminator 1
-	movl	$14, %edi
-	call	strerror@PLT
-	movq	%rax, %rcx
-	movl	$14, %edx
-	leaq	.LC15(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rbx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 492 27 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 492 33 discriminator 1
-	movl	$492, %ecx
-	leaq	.LC56(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 492 92 discriminator 1
-	leaq	.LC17(%rip), %rax
-	movq	%rax, %rdi
-	call	system@PLT
-	.loc 1 492 131 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 492 147 discriminator 1
-	movl	$492, %ecx
-	leaq	.LC56(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 492 206 discriminator 1
-	movl	$492, %r8d
-	leaq	.LC56(%rip), %rax
-	movq	%rax, %rcx
-	movl	$492, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 492 311 discriminator 1
-	movl	$0, %eax
-	jmp	.L230
-.L229:
-	.loc 1 494 25
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 494 52
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 494 62
-	movl	8(%rax), %eax
-	.loc 1 494 81
-	cmpl	%eax, %edx
-	jge	.L231
-	.loc 1 494 98 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 494 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 494 134 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 494 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 494 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L232
-.L231:
-	.loc 1 494 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L232:
-	.loc 1 494 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 494 5 discriminator 4
-	cmpl	$9, %eax
-	je	.L233
-	.loc 1 496 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 496 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 496 87
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 496 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 496 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 496 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 496 177
-	leaq	.LC57(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 496 211
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 496 255
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 496 282
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 496 292
-	movl	8(%rax), %eax
-	.loc 1 496 311
-	cmpl	%eax, %edx
-	jge	.L234
-	.loc 1 496 328 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 496 338 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 496 364 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 496 348 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 496 311 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L235
-.L234:
-	.loc 1 496 311 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L235:
-	.loc 1 496 238 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 496 418 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 496 442 discriminator 4
-	movl	$496, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 496 663 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 496 498 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 496 515 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 496 542 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 496 552 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 496 498 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L236
-	.loc 1 496 588 discriminator 5
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 496 598 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 496 624 discriminator 5
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 496 608 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 496 498 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L237
-.L236:
-	.loc 1 496 498 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L237:
-	.loc 1 496 498 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 497 35 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 497 51 discriminator 8
-	movl	$497, %ecx
-	leaq	.LC56(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 497 110 discriminator 8
-	movl	$497, %r8d
-	leaq	.LC56(%rip), %rax
-	movq	%rax, %rcx
-	movl	$497, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 497 215 discriminator 8
-	movl	$0, %eax
-	jmp	.L230
-.L233:
-	.loc 1 500 40
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 500 67
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 500 77
-	movl	8(%rax), %eax
-	.loc 1 500 96
-	cmpl	%eax, %edx
-	jge	.L238
-	.loc 1 500 113 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 500 123 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 500 149 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 500 133 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 500 96 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L239
-.L238:
-	.loc 1 500 96 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L239:
-	.loc 1 500 12 is_stmt 1 discriminator 4
-	movq	%rax, -32(%rbp)
-	.loc 1 501 21 discriminator 4
-	movq	-32(%rbp), %rax
-	movl	$6, 16(%rax)
-	.loc 1 503 19 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 503 28 discriminator 4
-	leal	1(%rax), %edx
-	movq	-40(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 505 25 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 505 52 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 505 62 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 505 81 discriminator 4
-	cmpl	%eax, %edx
-	jge	.L240
-	.loc 1 505 98 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 505 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 505 134 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 505 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 505 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L241
-.L240:
-	.loc 1 505 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L241:
-	.loc 1 505 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 505 5 discriminator 4
-	cmpl	$40, %eax
-	je	.L242
-	.loc 1 507 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 507 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 507 87
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 507 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 507 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 507 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 507 177
-	leaq	.LC58(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 507 203
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 507 247
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 507 274
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 507 284
-	movl	8(%rax), %eax
-	.loc 1 507 303
-	cmpl	%eax, %edx
-	jge	.L243
-	.loc 1 507 320 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 507 330 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 507 356 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 507 340 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 507 303 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L244
-.L243:
-	.loc 1 507 303 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L244:
-	.loc 1 507 230 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 507 410 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 507 434 discriminator 4
-	movl	$507, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 507 655 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 507 490 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 507 507 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 507 534 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 507 544 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 507 490 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L245
-	.loc 1 507 580 discriminator 5
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 507 590 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 507 616 discriminator 5
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 507 600 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 507 490 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L246
-.L245:
-	.loc 1 507 490 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L246:
-	.loc 1 507 490 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 508 35 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 508 51 discriminator 8
-	movl	$508, %ecx
-	leaq	.LC56(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 508 110 discriminator 8
-	movl	$508, %r8d
-	leaq	.LC56(%rip), %rax
-	movq	%rax, %rcx
-	movl	$508, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 508 215 discriminator 8
-	movl	$0, %eax
-	jmp	.L230
-.L242:
-	.loc 1 511 19
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 511 28
-	leal	1(%rax), %edx
-	movq	-40(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 513 25
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 513 52
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 513 62
-	movl	8(%rax), %eax
-	.loc 1 513 81
-	cmpl	%eax, %edx
-	jge	.L247
-	.loc 1 513 98 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 513 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 513 134 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 513 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 513 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L248
-.L247:
-	.loc 1 513 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L248:
-	.loc 1 513 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 513 5 discriminator 4
-	cmpl	$41, %eax
-	je	.L249
-	.loc 1 515 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 515 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 515 87
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 515 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 515 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 515 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 515 177
-	leaq	.LC59(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 515 203
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 515 247
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 515 274
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 515 284
-	movl	8(%rax), %eax
-	.loc 1 515 303
-	cmpl	%eax, %edx
-	jge	.L250
-	.loc 1 515 320 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 515 330 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 515 356 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 515 340 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 515 303 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L251
-.L250:
-	.loc 1 515 303 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L251:
-	.loc 1 515 230 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 515 410 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 515 434 discriminator 4
-	movl	$515, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 515 655 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 515 490 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 515 507 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 515 534 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 515 544 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 515 490 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L252
-	.loc 1 515 580 discriminator 5
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 515 590 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 515 616 discriminator 5
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 515 600 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 515 490 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L253
-.L252:
-	.loc 1 515 490 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L253:
-	.loc 1 515 490 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 516 35 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 516 51 discriminator 8
-	movl	$516, %ecx
-	leaq	.LC56(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 516 110 discriminator 8
-	movl	$516, %r8d
-	leaq	.LC56(%rip), %rax
-	movq	%rax, %rcx
-	movl	$516, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 516 215 discriminator 8
-	movl	$0, %eax
-	jmp	.L230
-.L249:
-	.loc 1 519 19
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 519 28
-	leal	1(%rax), %edx
-	movq	-40(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 521 25
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 521 52
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 521 62
-	movl	8(%rax), %eax
-	.loc 1 521 81
-	cmpl	%eax, %edx
-	jge	.L254
-	.loc 1 521 98 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 521 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 521 134 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 521 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 521 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L255
-.L254:
-	.loc 1 521 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L255:
-	.loc 1 521 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 521 5 discriminator 4
-	cmpl	$59, %eax
-	je	.L256
-	.loc 1 523 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 523 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 523 87
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 523 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 523 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 523 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 523 177
-	leaq	.LC44(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 523 203
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 523 247
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 523 274
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 523 284
-	movl	8(%rax), %eax
-	.loc 1 523 303
-	cmpl	%eax, %edx
-	jge	.L257
-	.loc 1 523 320 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 523 330 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 523 356 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 523 340 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 523 303 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L258
-.L257:
-	.loc 1 523 303 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L258:
-	.loc 1 523 230 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 523 410 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 523 434 discriminator 4
-	movl	$523, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 523 655 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 523 490 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 523 507 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 523 534 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 523 544 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 523 490 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L259
-	.loc 1 523 580 discriminator 5
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 523 590 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 523 616 discriminator 5
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 523 600 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 523 490 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L260
-.L259:
-	.loc 1 523 490 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L260:
-	.loc 1 523 490 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 524 35 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 524 51 discriminator 8
-	movl	$524, %ecx
-	leaq	.LC56(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 524 110 discriminator 8
-	movl	$524, %r8d
-	leaq	.LC56(%rip), %rax
-	movq	%rax, %rcx
-	movl	$524, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 524 215 discriminator 8
-	movl	$0, %eax
-	jmp	.L230
-.L256:
-	.loc 1 527 19
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 527 28
-	leal	1(%rax), %edx
-	movq	-40(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 530 27
-	movl	$0, %esi
-	movq	-32(%rbp), %rax
-	movl	$0, %ecx
-	movq	%rax, %rdx
-	movl	$10, %edi
-	call	_Z8NewTokeni10TokenValueP5TokenS1_@PLT
-	movq	%rax, -24(%rbp)
-	.loc 1 534 12
-	movq	-24(%rbp), %rax
-.L230:
-	.loc 1 535 5
-	movq	-8(%rbp), %rbx
-	leave
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2277:
-	.size	_ZL7GetCallP13ProgramBuffer, .-_ZL7GetCallP13ProgramBuffer
-	.section	.rodata
-.LC60:
-	.string	"GetInstruction"
-	.align 8
-.LC61:
-	.string	"Ebat, not a instruction token\n"
-	.align 8
-.LC62:
-	.string	"Missing %c - end of statement after fout\n"
-	.align 8
-.LC63:
-	.string	"Missing openig bracket in instruction \n"
-.LC64:
-	.string	"No condition for instruction\n"
-	.align 8
-.LC65:
-	.string	"Missing closing bracket in instruction\n"
-	.align 8
-.LC66:
-	.string	"No condition for instruction (position %d)\n"
-	.align 8
-.LC67:
-	.string	"No commands for 'else' (position %d)\n"
-	.text
-	.type	_ZL14GetInstructionP13ProgramBuffer, @function
-_ZL14GetInstructionP13ProgramBuffer:
-.LFB2278:
-	.loc 1 538 5
+	.loc 3 73 5
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2278
+	.cfi_lsda 0x1b,.LLSDA2277
 	endbr64
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -7445,66 +3906,65 @@ _ZL14GetInstructionP13ProgramBuffer:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	pushq	%rbx
-	subq	$104, %rsp
+	subq	$72, %rsp
 	.cfi_offset 3, -24
-	movq	%rdi, -104(%rbp)
-	.loc 1 539 41
+	movq	%rdi, -72(%rbp)
+	.loc 3 74 48
 	leaq	-48(%rbp), %rax
-	leaq	.LC60(%rip), %rdx
-	movl	$2, %esi
+	leaq	.LC52(%rip), %rdx
+	movl	$1, %esi
 	movq	%rax, %rdi
 .LEHB12:
 	call	_ZN14FunctionLoggerC1EiPKc@PLT
 .LEHE12:
-	.loc 1 540 10
-	cmpq	$0, -104(%rbp)
-	jne	.L262
+	.loc 3 75 10
+	cmpq	$0, -72(%rbp)
+	jne	.L151
 .LEHB13:
-	.loc 1 540 51 discriminator 1
+	.loc 3 75 51 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 540 57 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 3 75 57 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 540 109 discriminator 3
-	leaq	.LC29(%rip), %rax
+	.loc 3 75 121 discriminator 3
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 540 198 discriminator 4
+	.loc 3 75 273 discriminator 4
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 540 204 discriminator 4
-	movl	$540, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC60(%rip), %rax
+	.loc 3 75 279 discriminator 4
+	leaq	.LC53(%rip), %r8
+	movl	$75, %ecx
+	leaq	.LC45(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 540 297 discriminator 6
-	movl	$540, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC60(%rip), %rax
+	.loc 3 75 386 discriminator 6
+	leaq	.LC53(%rip), %rax
+	movq	%rax, %rcx
+	movl	$75, %edx
+	leaq	.LC45(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 540 403 discriminator 7
+	.loc 3 75 506 discriminator 7
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 540 409 discriminator 7
+	.loc 3 75 512 discriminator 7
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -7514,1898 +3974,320 @@ _ZL14GetInstructionP13ProgramBuffer:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 540 27 discriminator 9
+	.loc 3 75 27 discriminator 9
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 540 33 discriminator 9
-	movl	$540, %ecx
-	leaq	.LC60(%rip), %rax
+	.loc 3 75 33 discriminator 9
+	movl	$75, %ecx
+	leaq	.LC52(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 540 92 discriminator 11
-	leaq	.LC17(%rip), %rax
+	.loc 3 75 91 discriminator 11
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 540 131 discriminator 12
+	.loc 3 75 133 discriminator 12
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 540 147 discriminator 12
-	movl	$540, %ecx
-	leaq	.LC60(%rip), %rax
+	.loc 3 75 149 discriminator 12
+	movl	$75, %ecx
+	leaq	.LC52(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 540 206 discriminator 14
-	movl	$540, %r8d
-	leaq	.LC60(%rip), %rax
+	.loc 3 75 207 discriminator 14
+	movl	$75, %r8d
+	leaq	.LC52(%rip), %rax
 	movq	%rax, %rcx
-	movl	$540, %edx
-	leaq	.LC13(%rip), %rax
+	movl	$75, %edx
+	leaq	.LC45(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 540 311 discriminator 15
+	.loc 3 75 329 discriminator 15
 	movl	$0, %ebx
-	jmp	.L263
-.L262:
-	.loc 1 542 28
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 542 55
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 542 65
-	movl	8(%rax), %eax
-	.loc 1 542 84
-	cmpl	%eax, %edx
-	jge	.L264
-	.loc 1 542 101 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 542 111 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 542 137 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 542 121 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 542 84 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L265
-.L264:
-	.loc 1 542 84 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L265:
-	.loc 1 542 5 is_stmt 1 discriminator 4
-	testq	%rax, %rax
-	je	.L266
-	.loc 1 542 181 discriminator 5
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 542 208 discriminator 5
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 542 218 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 542 237 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L267
-	.loc 1 542 254 discriminator 6
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 542 264 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 542 290 discriminator 6
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 542 274 discriminator 6
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 542 237 discriminator 6
-	addq	%rcx, %rax
-	jmp	.L268
-.L267:
-	.loc 1 542 237 is_stmt 0 discriminator 7
-	movl	$0, %eax
-.L268:
-	.loc 1 542 314 is_stmt 1 discriminator 9
-	movl	16(%rax), %eax
-	.loc 1 542 9 discriminator 9
-	cmpl	$2, %eax
-	je	.L269
-.L266:
-	.loc 1 544 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 544 81 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 544 87 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 544 127 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 544 133 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 544 159 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 544 177 discriminator 5
-	leaq	.LC61(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 544 221 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 544 265 discriminator 8
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 544 292 discriminator 8
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 544 302 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 544 321 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L270
-	.loc 1 544 338 discriminator 9
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 544 348 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 544 374 discriminator 9
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 544 358 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 544 321 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L271
-.L270:
-	.loc 1 544 321 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L271:
-	.loc 1 544 248 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 544 428 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 544 452 discriminator 14
-	movl	$544, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 544 673 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 544 508 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 544 525 discriminator 15
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 544 552 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 544 562 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 544 508 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L272
-	.loc 1 544 598 discriminator 16
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 544 608 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 544 634 discriminator 16
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 544 618 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 544 508 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L273
-.L272:
-	.loc 1 544 508 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L273:
-	.loc 1 544 508 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 545 35 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 545 51
-	movl	$545, %ecx
-	leaq	.LC60(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 545 110 discriminator 2
-	movl	$545, %r8d
-	leaq	.LC60(%rip), %rax
-	movq	%rax, %rcx
-	movl	$545, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 545 215 discriminator 3
-	movl	$0, %ebx
-	jmp	.L263
-.L269:
-	.loc 1 548 25
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 548 52
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 548 62
-	movl	8(%rax), %eax
-	.loc 1 548 81
-	cmpl	%eax, %edx
-	jge	.L274
-	.loc 1 548 98 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 548 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 548 134 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 548 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 548 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L275
-.L274:
-	.loc 1 548 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L275:
-	.loc 1 548 164 is_stmt 1 discriminator 4
-	movl	24(%rax), %eax
-	.loc 1 548 5 discriminator 4
-	cmpl	$4, %eax
-	jne	.L276
-	.loc 1 549 15
-	movl	$0, %ebx
-	jmp	.L263
-.L276:
-.LBB6:
-	.loc 1 552 25
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 552 52
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 552 62
-	movl	8(%rax), %eax
-	.loc 1 552 81
-	cmpl	%eax, %edx
-	jge	.L277
-	.loc 1 552 98 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 552 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 552 134 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 552 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 552 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L278
-.L277:
-	.loc 1 552 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L278:
-	.loc 1 552 164 is_stmt 1 discriminator 4
-	movl	24(%rax), %eax
-	.loc 1 552 5 discriminator 4
-	cmpl	$3, %eax
-	jne	.L279
-.LBB7:
-	.loc 1 554 39
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 554 66
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 554 76
-	movl	8(%rax), %eax
-	.loc 1 554 95
-	cmpl	%eax, %edx
-	jge	.L280
-	.loc 1 554 112 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 554 122 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 554 148 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 554 132 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 554 95 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L281
-.L280:
-	.loc 1 554 95 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L281:
-	.loc 1 554 16 is_stmt 1 discriminator 4
-	movq	%rax, -72(%rbp)
-	.loc 1 555 23 discriminator 4
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 555 32 discriminator 4
-	leal	1(%rax), %edx
-	movq	-104(%rbp), %rax
-	movl	%edx, 8(%rax)
-.LBB8:
-	.loc 1 557 29 discriminator 4
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 557 56 discriminator 4
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 557 66 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 557 85 discriminator 4
-	cmpl	%eax, %edx
-	jge	.L282
-	.loc 1 557 102 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 557 112 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 557 138 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 557 122 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 557 85 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L283
-.L282:
-	.loc 1 557 85 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L283:
-	.loc 1 557 162 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 557 9 discriminator 4
-	cmpl	$5, %eax
-	jne	.L284
-	.loc 1 557 198 discriminator 5
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 557 225 discriminator 5
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 557 235 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 557 254 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L285
-	.loc 1 557 271 discriminator 6
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 557 281 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 557 307 discriminator 6
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 557 291 discriminator 6
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 557 254 discriminator 6
-	addq	%rcx, %rax
-	jmp	.L286
-.L285:
-	.loc 1 557 254 is_stmt 0 discriminator 7
-	movl	$0, %eax
-.L286:
-	.loc 1 557 337 is_stmt 1 discriminator 9
-	movzbl	24(%rax), %eax
-	.loc 1 557 179 discriminator 9
-	cmpb	$60, %al
-	jne	.L284
-.LBB9:
-	.loc 1 559 27
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 559 36
-	leal	1(%rax), %edx
-	movq	-104(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 561 33
-	movq	-104(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL4GetEP13ProgramBuffer
-	movq	%rax, -64(%rbp)
-	.loc 1 563 30
+	jmp	.L152
+.L151:
+.LBB5:
+	.loc 3 77 25
 	movq	-72(%rbp), %rax
-	movq	-64(%rbp), %rdx
-	movq	%rdx, (%rax)
-.L284:
-.LBE9:
-.LBE8:
-	.loc 1 566 29
-	movq	-104(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 566 56
-	movq	-104(%rbp), %rax
+	.loc 3 77 52
+	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 566 66
+	.loc 3 77 62
 	movl	8(%rax), %eax
-	.loc 1 566 85
+	.loc 3 77 81
 	cmpl	%eax, %edx
-	jge	.L287
-	.loc 1 566 102 discriminator 1
-	movq	-104(%rbp), %rax
+	jge	.L153
+	.loc 3 77 98 discriminator 1
+	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 566 112 discriminator 1
+	.loc 3 77 108 discriminator 1
 	movq	(%rax), %rcx
-	.loc 1 566 138 discriminator 1
-	movq	-104(%rbp), %rax
+	.loc 3 77 134 discriminator 1
+	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 566 122 discriminator 1
+	.loc 3 77 118 discriminator 1
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 566 85 discriminator 1
+	.loc 3 77 81 discriminator 1
 	addq	%rcx, %rax
-	jmp	.L288
-.L287:
-	.loc 1 566 85 is_stmt 0 discriminator 2
+	jmp	.L154
+.L153:
+	.loc 3 77 81 is_stmt 0 discriminator 2
 	movl	$0, %eax
-.L288:
-	.loc 1 566 162 is_stmt 1 discriminator 4
+.L154:
+	.loc 3 77 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
-	.loc 1 566 9 discriminator 4
-	cmpl	$59, %eax
-	je	.L289
-	.loc 1 566 206 discriminator 5
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 566 233 discriminator 5
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 566 243 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 566 262 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L290
-	.loc 1 566 279 discriminator 6
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 566 289 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 566 315 discriminator 6
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 566 299 discriminator 6
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 566 262 discriminator 6
-	addq	%rcx, %rax
-	jmp	.L291
-.L290:
-	.loc 1 566 262 is_stmt 0 discriminator 7
-	movl	$0, %eax
-.L291:
-	.loc 1 566 345 is_stmt 1 discriminator 9
-	movzbl	24(%rax), %eax
-	.loc 1 566 187 discriminator 9
-	cmpb	$59, %al
-	je	.L289
-	.loc 1 568 24
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 568 85 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 568 91 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 568 131 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 568 137 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 568 163 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rcx
-	.loc 1 568 181 discriminator 5
-	movl	$59, %edx
-	leaq	.LC62(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rcx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 568 254 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 568 298 discriminator 8
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 568 325 discriminator 8
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 568 335 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 568 354 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L292
-	.loc 1 568 371 discriminator 9
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 568 381 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 568 407 discriminator 9
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 568 391 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 568 354 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L293
-.L292:
-	.loc 1 568 354 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L293:
-	.loc 1 568 281 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 568 461 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 568 485 discriminator 14
-	movl	$568, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 568 706 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 568 541 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 568 558 discriminator 15
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 568 585 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 568 595 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 568 541 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L294
-	.loc 1 568 631 discriminator 16
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 568 641 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 568 667 discriminator 16
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 568 651 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 568 541 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L295
-.L294:
-	.loc 1 568 541 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L295:
-	.loc 1 568 541 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 569 39 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 569 55
-	movl	$569, %ecx
-	leaq	.LC60(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 569 114 discriminator 2
-	movl	$569, %r8d
-	leaq	.LC60(%rip), %rax
-	movq	%rax, %rcx
-	movl	$569, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 569 219 discriminator 3
-	movl	$0, %ebx
-	jmp	.L263
-.L289:
-	.loc 1 572 44
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 572 71
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 572 81
-	movl	8(%rax), %eax
-	.loc 1 572 100
-	cmpl	%eax, %edx
-	jge	.L296
-	.loc 1 572 117 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 572 127 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 572 153 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 572 137 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 572 100 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L297
-.L296:
-	.loc 1 572 100 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L297:
-	.loc 1 572 16 is_stmt 1 discriminator 4
-	movq	%rax, -56(%rbp)
-	.loc 1 573 23 discriminator 4
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 573 32 discriminator 4
-	leal	1(%rax), %edx
-	movq	-104(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 575 25 discriminator 4
-	movq	-56(%rbp), %rax
-	movl	$1, 16(%rax)
-	.loc 1 576 31 discriminator 4
-	movq	-56(%rbp), %rax
-	movq	-72(%rbp), %rdx
-	movq	%rdx, (%rax)
-	.loc 1 578 16 discriminator 4
-	movq	-56(%rbp), %rbx
-	jmp	.L263
-.L279:
-.LBE7:
-.LBE6:
-	.loc 1 582 42
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 582 69
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 582 79
-	movl	8(%rax), %eax
-	.loc 1 582 98
-	cmpl	%eax, %edx
-	jge	.L298
-	.loc 1 582 115 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 582 125 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 582 151 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 582 135 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 582 98 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L299
-.L298:
-	.loc 1 582 98 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L299:
-	.loc 1 582 12 is_stmt 1 discriminator 4
-	movq	%rax, -96(%rbp)
-	.loc 1 583 19 discriminator 4
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 583 28 discriminator 4
-	leal	1(%rax), %edx
-	movq	-104(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 585 25 discriminator 4
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 585 52 discriminator 4
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 585 62 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 585 81 discriminator 4
-	cmpl	%eax, %edx
-	jge	.L300
-	.loc 1 585 98 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 585 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 585 134 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 585 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 585 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L301
-.L300:
-	.loc 1 585 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L301:
-	.loc 1 585 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 585 5 discriminator 4
+	.loc 3 77 5 discriminator 4
 	cmpl	$40, %eax
-	je	.L302
-	.loc 1 587 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 587 81 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 587 87 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 587 127 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 587 133 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 587 159 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 587 177 discriminator 5
-	leaq	.LC63(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 587 230 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 587 274 discriminator 8
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 587 301 discriminator 8
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 587 311 discriminator 8
+	jne	.L155
+.LBB6:
+	.loc 3 79 23
+	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
-	.loc 1 587 330 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L303
-	.loc 1 587 347 discriminator 9
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 587 357 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 587 383 discriminator 9
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 587 367 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 587 330 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L304
-.L303:
-	.loc 1 587 330 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L304:
-	.loc 1 587 257 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 587 437 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 587 461 discriminator 14
-	movl	$587, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 587 682 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 587 517 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 587 534 discriminator 15
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 587 561 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 587 571 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 587 517 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L305
-	.loc 1 587 607 discriminator 16
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 587 617 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 587 643 discriminator 16
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 587 627 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 587 517 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L306
-.L305:
-	.loc 1 587 517 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L306:
-	.loc 1 587 517 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 588 35 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 588 51
-	movl	$588, %ecx
-	leaq	.LC60(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 588 110 discriminator 2
-	movl	$588, %r8d
-	leaq	.LC60(%rip), %rax
-	movq	%rax, %rcx
-	movl	$588, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 588 215 discriminator 3
-	movl	$0, %ebx
-	jmp	.L263
-.L302:
-	.loc 1 591 40
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 591 67
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 591 77
-	movl	8(%rax), %eax
-	.loc 1 591 96
-	cmpl	%eax, %edx
-	jge	.L307
-	.loc 1 591 113 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 591 123 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 591 149 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 591 133 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 591 96 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L308
-.L307:
-	.loc 1 591 96 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L308:
-	.loc 1 591 12 is_stmt 1 discriminator 4
-	movq	%rax, -88(%rbp)
-	.loc 1 592 21 discriminator 4
-	movq	-88(%rbp), %rax
-	movl	$1, 16(%rax)
-	.loc 1 593 27 discriminator 4
-	movq	-88(%rbp), %rax
-	movq	-96(%rbp), %rdx
-	movq	%rdx, (%rax)
-	.loc 1 595 19 discriminator 4
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 595 28 discriminator 4
+	.loc 3 79 32
 	leal	1(%rax), %edx
-	movq	-104(%rbp), %rax
+	movq	-72(%rbp), %rax
 	movl	%edx, 8(%rax)
-	.loc 1 597 35 discriminator 4
-	movq	-104(%rbp), %rax
+	.loc 3 81 33
+	movq	-72(%rbp), %rax
 	movq	%rax, %rdi
-	call	_ZL4GetEP13ProgramBuffer
-	.loc 1 597 29 discriminator 4
-	movq	-96(%rbp), %rdx
-	movq	%rax, (%rdx)
-	.loc 1 598 23 discriminator 4
-	movq	-96(%rbp), %rax
+	call	_ZL4GetEP10ProgramCtx
+	movq	%rax, -56(%rbp)
+	.loc 3 83 29
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 83 56
+	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 598 5 discriminator 4
-	testq	%rax, %rax
-	jne	.L309
-	.loc 1 600 20
-	leaq	.LC22(%rip), %rax
+	.loc 3 83 66
+	movl	8(%rax), %eax
+	.loc 3 83 85
+	cmpl	%eax, %edx
+	jge	.L156
+	.loc 3 83 102 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 83 112 discriminator 1
+	movq	(%rax), %rcx
+	.loc 3 83 138 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 83 122 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 83 85 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L157
+.L156:
+	.loc 3 83 85 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L157:
+	.loc 3 83 168 is_stmt 1 discriminator 4
+	movzbl	24(%rax), %eax
+	.loc 3 83 9 discriminator 4
+	cmpb	$41, %al
+	je	.L158
+	.loc 3 85 24
+	leaq	.LC25(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 600 81 discriminator 1
+	.loc 3 85 85 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
-	.loc 1 600 87 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 600 127 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 600 133 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 600 159 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 600 177 discriminator 5
-	leaq	.LC64(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 600 220 discriminator 7
+	.loc 3 85 91 discriminator 1
 	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
 	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 600 264 discriminator 8
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 600 291 discriminator 8
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 600 301 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 600 320 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L310
-	.loc 1 600 337 discriminator 9
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 600 347 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 600 373 discriminator 9
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 600 357 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 600 320 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L311
-.L310:
-	.loc 1 600 320 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L311:
-	.loc 1 600 247 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 600 427 discriminator 13
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 3 85 131 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 3 85 137 discriminator 3
 	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 600 451 discriminator 14
-	movl	$600, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 600 672 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 600 507 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 600 524 discriminator 15
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 600 551 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 600 561 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 600 507 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L312
-	.loc 1 600 597 discriminator 16
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 600 607 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 600 633 discriminator 16
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 600 617 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 600 507 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L313
-.L312:
-	.loc 1 600 507 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L313:
-	.loc 1 600 507 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 601 35 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 601 51
-	movl	$601, %ecx
-	leaq	.LC60(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 601 110 discriminator 2
-	movl	$601, %r8d
-	leaq	.LC60(%rip), %rax
-	movq	%rax, %rcx
-	movl	$601, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 601 215 discriminator 3
-	movl	$0, %ebx
-	jmp	.L263
-.L309:
-	.loc 1 604 25
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 604 52
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 604 62
-	movl	8(%rax), %eax
-	.loc 1 604 81
-	cmpl	%eax, %edx
-	jge	.L314
-	.loc 1 604 98 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 604 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 604 134 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 604 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 604 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L315
-.L314:
-	.loc 1 604 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L315:
-	.loc 1 604 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 604 5 discriminator 4
-	cmpl	$41, %eax
-	je	.L316
-	.loc 1 606 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 606 81 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 606 87 discriminator 1
-	leaq	.LC23(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 606 127 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 606 133 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 606 159 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 606 177 discriminator 5
-	leaq	.LC65(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 606 230 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 606 274 discriminator 8
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 606 301 discriminator 8
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 606 311 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 606 330 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L317
-	.loc 1 606 347 discriminator 9
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 606 357 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 606 383 discriminator 9
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 606 367 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 606 330 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L318
-.L317:
-	.loc 1 606 330 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L318:
-	.loc 1 606 257 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 606 437 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 606 461 discriminator 14
-	movl	$606, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 606 682 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 606 517 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 606 534 discriminator 15
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 606 561 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 606 571 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 606 517 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L319
-	.loc 1 606 607 discriminator 16
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 606 617 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 606 643 discriminator 16
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 606 627 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 606 517 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L320
-.L319:
-	.loc 1 606 517 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L320:
-	.loc 1 606 517 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 607 35 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 607 51
-	movl	$607, %ecx
-	leaq	.LC60(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 607 110 discriminator 2
-	movl	$607, %r8d
-	leaq	.LC60(%rip), %rax
-	movq	%rax, %rcx
-	movl	$607, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 607 215 discriminator 3
-	movl	$0, %ebx
-	jmp	.L263
-.L316:
-	.loc 1 610 19
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 610 28
-	leal	1(%rax), %edx
-	movq	-104(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 613 44
-	movq	-104(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL12GetStatementP13ProgramBuffer
-	.loc 1 613 30
-	movq	-96(%rbp), %rdx
-	movq	%rax, 8(%rdx)
-	.loc 1 614 23
-	movq	-96(%rbp), %rax
-	movq	8(%rax), %rax
-	.loc 1 614 5
-	testq	%rax, %rax
-	jne	.L321
-	.loc 1 616 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 616 81 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 616 87 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 616 127 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 616 133 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 616 159 discriminator 5
+	.loc 3 85 163 discriminator 5
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 616 177 discriminator 5
-	movq	-104(%rbp), %rax
+	.loc 3 85 181 discriminator 5
+	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movl	%eax, %edx
-	leaq	.LC66(%rip), %rax
+	leaq	.LC54(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 616 259 discriminator 7
-	leaq	.LC26(%rip), %rax
+	.loc 3 85 264 discriminator 7
+	leaq	.LC29(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 616 303 discriminator 8
-	movq	-104(%rbp), %rax
+	.loc 3 85 308 discriminator 8
+	movq	-72(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 616 330 discriminator 8
-	movq	-104(%rbp), %rax
+	.loc 3 85 335 discriminator 8
+	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 616 340 discriminator 8
+	.loc 3 85 345 discriminator 8
 	movl	8(%rax), %eax
-	.loc 1 616 359 discriminator 8
+	.loc 3 85 364 discriminator 8
 	cmpl	%eax, %edx
-	jge	.L322
-	.loc 1 616 376 discriminator 9
-	movq	-104(%rbp), %rax
+	jge	.L159
+	.loc 3 85 381 discriminator 9
+	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 616 386 discriminator 9
+	.loc 3 85 391 discriminator 9
 	movq	(%rax), %rcx
-	.loc 1 616 412 discriminator 9
-	movq	-104(%rbp), %rax
+	.loc 3 85 417 discriminator 9
+	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 616 396 discriminator 9
+	.loc 3 85 401 discriminator 9
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 616 359 discriminator 9
+	.loc 3 85 364 discriminator 9
 	addq	%rcx, %rax
-	jmp	.L323
-.L322:
-	.loc 1 616 359 is_stmt 0 discriminator 10
+	jmp	.L160
+.L159:
+	.loc 3 85 364 is_stmt 0 discriminator 10
 	movl	$0, %eax
-.L323:
-	.loc 1 616 286 is_stmt 1 discriminator 12
+.L160:
+	.loc 3 85 291 is_stmt 1 discriminator 12
 	movq	32(%rax), %rax
 	movl	$10, %esi
 	movq	%rax, %rdi
 	call	_Z6printlPKcc@PLT
-	.loc 1 616 466 discriminator 13
-	leaq	.LC27(%rip), %rax
+	.loc 3 85 471 discriminator 13
+	leaq	.LC30(%rip), %rax
 	movq	%rax, %rdi
 	call	puts@PLT
-	.loc 1 616 490 discriminator 14
-	movl	$616, %edx
-	leaq	.LC13(%rip), %rax
+	.loc 3 85 495 discriminator 14
+	movl	$85, %edx
+	leaq	.LC45(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
+	leaq	.LC31(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 616 711 discriminator 15
-	movq	-104(%rbp), %rax
+	.loc 3 85 734 discriminator 15
+	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 616 546 discriminator 15
+	.loc 3 85 569 discriminator 15
 	movq	24(%rax), %rdx
-	.loc 1 616 563 discriminator 15
-	movq	-104(%rbp), %rax
+	.loc 3 85 586 discriminator 15
+	movq	-72(%rbp), %rax
 	movl	8(%rax), %ecx
-	.loc 1 616 590 discriminator 15
-	movq	-104(%rbp), %rax
+	.loc 3 85 613 discriminator 15
+	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 616 600 discriminator 15
+	.loc 3 85 623 discriminator 15
 	movl	8(%rax), %eax
-	.loc 1 616 546 discriminator 15
+	.loc 3 85 569 discriminator 15
 	cmpl	%eax, %ecx
-	jge	.L324
-	.loc 1 616 636 discriminator 16
-	movq	-104(%rbp), %rax
+	jge	.L161
+	.loc 3 85 659 discriminator 16
+	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 616 646 discriminator 16
+	.loc 3 85 669 discriminator 16
 	movq	(%rax), %rsi
-	.loc 1 616 672 discriminator 16
-	movq	-104(%rbp), %rax
+	.loc 3 85 695 discriminator 16
+	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rcx
-	.loc 1 616 656 discriminator 16
+	.loc 3 85 679 discriminator 16
 	movq	%rcx, %rax
 	salq	$2, %rax
 	addq	%rcx, %rax
 	salq	$3, %rax
-	.loc 1 616 546 discriminator 16
+	.loc 3 85 569 discriminator 16
 	addq	%rsi, %rax
-	jmp	.L325
-.L324:
-	.loc 1 616 546 is_stmt 0 discriminator 17
+	jmp	.L162
+.L161:
+	.loc 3 85 569 is_stmt 0 discriminator 17
 	movl	$0, %eax
-.L325:
-	.loc 1 616 546 discriminator 19
+.L162:
+	.loc 3 85 569 discriminator 19
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 617 35 is_stmt 1
+	.loc 3 86 39 is_stmt 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 617 51
-	movl	$617, %ecx
-	leaq	.LC60(%rip), %rax
+	.loc 3 86 55
+	movl	$86, %ecx
+	leaq	.LC52(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 617 110 discriminator 2
-	movl	$617, %r8d
-	leaq	.LC60(%rip), %rax
+	.loc 3 86 113 discriminator 2
+	movl	$86, %r8d
+	leaq	.LC52(%rip), %rax
 	movq	%rax, %rcx
-	movl	$617, %edx
-	leaq	.LC13(%rip), %rax
+	movl	$86, %edx
+	leaq	.LC45(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 617 215 discriminator 3
+	.loc 3 86 235 discriminator 3
 	movl	$0, %ebx
-	jmp	.L263
-.L321:
-.LBB10:
-	.loc 1 621 28
-	movq	-96(%rbp), %rax
-	movl	24(%rax), %eax
-	.loc 1 621 5
-	testl	%eax, %eax
-	jne	.L326
-	.loc 1 621 67 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 621 94 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 621 104 discriminator 1
+	jmp	.L152
+.L158:
+	.loc 3 89 23
+	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
-	.loc 1 621 123 discriminator 1
-	cmpl	%eax, %edx
-	jge	.L327
-	.loc 1 621 140 discriminator 2
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 621 150 discriminator 2
-	movq	(%rax), %rcx
-	.loc 1 621 176 discriminator 2
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 621 160 discriminator 2
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 621 123 discriminator 2
-	addq	%rcx, %rax
-	jmp	.L328
-.L327:
-	.loc 1 621 123 is_stmt 0 discriminator 3
-	movl	$0, %eax
-.L328:
-	.loc 1 621 200 is_stmt 1 discriminator 5
-	movl	16(%rax), %eax
-	.loc 1 621 48 discriminator 5
-	cmpl	$2, %eax
-	jne	.L326
-	.loc 1 621 239 discriminator 6
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 621 266 discriminator 6
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 621 276 discriminator 6
-	movl	8(%rax), %eax
-	.loc 1 621 295 discriminator 6
-	cmpl	%eax, %edx
-	jge	.L329
-	.loc 1 621 312 discriminator 7
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 621 322 discriminator 7
-	movq	(%rax), %rcx
-	.loc 1 621 348 discriminator 7
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 621 332 discriminator 7
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 621 295 discriminator 7
-	addq	%rcx, %rax
-	jmp	.L330
-.L329:
-	.loc 1 621 295 is_stmt 0 discriminator 8
-	movl	$0, %eax
-.L330:
-	.loc 1 621 378 is_stmt 1 discriminator 10
-	movl	24(%rax), %eax
-	.loc 1 621 220 discriminator 10
-	cmpl	$1, %eax
-	jne	.L326
-.LBB11:
-	.loc 1 623 45
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 623 72
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 623 82
-	movl	8(%rax), %eax
-	.loc 1 623 101
-	cmpl	%eax, %edx
-	jge	.L331
-	.loc 1 623 118 discriminator 1
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 623 128 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 623 154 discriminator 1
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 623 138 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 623 101 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L332
-.L331:
-	.loc 1 623 101 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L332:
-	.loc 1 623 16 is_stmt 1 discriminator 4
-	movq	%rax, -80(%rbp)
-	.loc 1 624 23 discriminator 4
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 624 32 discriminator 4
+	.loc 3 89 32
 	leal	1(%rax), %edx
-	movq	-104(%rbp), %rax
+	movq	-72(%rbp), %rax
 	movl	%edx, 8(%rax)
-	.loc 1 626 48 discriminator 4
-	movq	-96(%rbp), %rax
-	movq	8(%rax), %rdx
-	.loc 1 626 33 discriminator 4
-	movq	-80(%rbp), %rax
-	movq	%rdx, (%rax)
-	.loc 1 627 47 discriminator 4
-	movq	-104(%rbp), %rax
+	.loc 3 91 16
+	movq	-56(%rbp), %rbx
+	jmp	.L152
+.L155:
+.LBE6:
+.LBE5:
+	.loc 3 94 16
+	movq	-72(%rbp), %rax
 	movq	%rax, %rdi
-	call	_ZL12GetStatementP13ProgramBuffer
-	.loc 1 627 33 discriminator 4
-	movq	-80(%rbp), %rdx
-	movq	%rax, 8(%rdx)
-	.loc 1 628 26 discriminator 4
-	movq	-80(%rbp), %rax
-	movq	8(%rax), %rax
-	.loc 1 628 9 discriminator 4
-	testq	%rax, %rax
-	jne	.L333
-	.loc 1 630 24
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 630 85 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 630 91 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 630 131 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 630 137 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 630 163 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rcx
-	.loc 1 630 181 discriminator 5
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movl	%eax, %edx
-	leaq	.LC67(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rcx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 630 257 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 630 301 discriminator 8
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 630 328 discriminator 8
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 630 338 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 630 357 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L334
-	.loc 1 630 374 discriminator 9
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 630 384 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 630 410 discriminator 9
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 630 394 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 630 357 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L335
-.L334:
-	.loc 1 630 357 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L335:
-	.loc 1 630 284 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 630 464 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 630 488 discriminator 14
-	movl	$630, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 630 709 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 630 544 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 630 561 discriminator 15
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 630 588 discriminator 15
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 630 598 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 630 544 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L336
-	.loc 1 630 634 discriminator 16
-	movq	-104(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 630 644 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 630 670 discriminator 16
-	movq	-104(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 630 654 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 630 544 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L337
-.L336:
-	.loc 1 630 544 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L337:
-	.loc 1 630 544 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 631 39 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 631 55
-	movl	$631, %ecx
-	leaq	.LC60(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 631 114 discriminator 2
-	movl	$631, %r8d
-	leaq	.LC60(%rip), %rax
-	movq	%rax, %rcx
-	movl	$631, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
+	call	_ZL4GetNP10ProgramCtx
 .LEHE13:
-	.loc 1 631 219 discriminator 3
-	movl	$0, %ebx
-	jmp	.L263
-.L333:
-	.loc 1 634 34
-	movq	-96(%rbp), %rax
-	movq	-80(%rbp), %rdx
-	movq	%rdx, 8(%rax)
-.L326:
-.LBE11:
-.LBE10:
-	.loc 1 637 12
-	movq	-88(%rbp), %rbx
-.L263:
-	.loc 1 638 5
+	movq	%rax, %rbx
+	.loc 3 94 28
+	nop
+.L152:
+	.loc 3 95 5
 	leaq	-48(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
 	movq	%rbx, %rax
-	jmp	.L341
-.L340:
+	jmp	.L166
+.L165:
 	endbr64
 	movq	%rax, %rbx
 	leaq	-48(%rbp), %rax
@@ -9416,7 +4298,592 @@ _ZL14GetInstructionP13ProgramBuffer:
 .LEHB14:
 	call	_Unwind_Resume@PLT
 .LEHE14:
-.L341:
+.L166:
+	movq	-8(%rbp), %rbx
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2277:
+	.section	.gcc_except_table
+.LLSDA2277:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 .LLSDACSE2277-.LLSDACSB2277
+.LLSDACSB2277:
+	.uleb128 .LEHB12-.LFB2277
+	.uleb128 .LEHE12-.LEHB12
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB13-.LFB2277
+	.uleb128 .LEHE13-.LEHB13
+	.uleb128 .L165-.LFB2277
+	.uleb128 0
+	.uleb128 .LEHB14-.LFB2277
+	.uleb128 .LEHE14-.LEHB14
+	.uleb128 0
+	.uleb128 0
+.LLSDACSE2277:
+	.text
+	.size	_ZL4GetPP10ProgramCtx, .-_ZL4GetPP10ProgramCtx
+	.section	.rodata
+.LC55:
+	.string	"GetN"
+.LC56:
+	.string	"Token* GetN(ProgramCtx*)"
+	.align 8
+.LC57:
+	.string	"Cringe, this is not variable or constant node =(\n"
+.LC58:
+	.string	"result"
+	.text
+	.type	_ZL4GetNP10ProgramCtx, @function
+_ZL4GetNP10ProgramCtx:
+.LFB2278:
+	.loc 3 98 5
+	.cfi_startproc
+	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
+	.cfi_lsda 0x1b,.LLSDA2278
+	endbr64
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	pushq	%rbx
+	subq	$72, %rsp
+	.cfi_offset 3, -24
+	movq	%rdi, -72(%rbp)
+	.loc 3 99 48
+	leaq	-48(%rbp), %rax
+	leaq	.LC55(%rip), %rdx
+	movl	$1, %esi
+	movq	%rax, %rdi
+.LEHB15:
+	call	_ZN14FunctionLoggerC1EiPKc@PLT
+.LEHE15:
+	.loc 3 100 10
+	cmpq	$0, -72(%rbp)
+	jne	.L168
+.LEHB16:
+	.loc 3 100 51 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 3 100 57 discriminator 1
+	leaq	.LC21(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC10(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 3 100 121 discriminator 3
+	leaq	.LC21(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC11(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 3 100 273 discriminator 4
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 3 100 279 discriminator 4
+	leaq	.LC56(%rip), %r8
+	movl	$100, %ecx
+	leaq	.LC45(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC14(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 3 100 387 discriminator 6
+	leaq	.LC56(%rip), %rax
+	movq	%rax, %rcx
+	movl	$100, %edx
+	leaq	.LC45(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC14(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 3 100 508 discriminator 7
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rbx
+	.loc 3 100 514 discriminator 7
+	movl	$14, %edi
+	call	strerror@PLT
+	movq	%rax, %rcx
+	movl	$14, %edx
+	leaq	.LC15(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rbx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 3 100 27 discriminator 9
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 3 100 33 discriminator 9
+	movl	$100, %ecx
+	leaq	.LC55(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC17(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 3 100 92 discriminator 11
+	leaq	.LC18(%rip), %rax
+	movq	%rax, %rdi
+	call	system@PLT
+	.loc 3 100 134 discriminator 12
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 3 100 150 discriminator 12
+	movl	$100, %ecx
+	leaq	.LC55(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 3 100 209 discriminator 14
+	movl	$100, %r8d
+	leaq	.LC55(%rip), %rax
+	movq	%rax, %rcx
+	movl	$100, %edx
+	leaq	.LC45(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 3 100 333 discriminator 15
+	movl	$0, %ebx
+	jmp	.L169
+.L168:
+	.loc 3 102 25
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 102 52
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 102 62
+	movl	8(%rax), %eax
+	.loc 3 102 81
+	cmpl	%eax, %edx
+	jge	.L170
+	.loc 3 102 98 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 102 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 3 102 134 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 102 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 102 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L171
+.L170:
+	.loc 3 102 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L171:
+	.loc 3 102 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 3 102 5 discriminator 4
+	cmpl	$6, %eax
+	jne	.L172
+	.loc 3 104 23
+	movq	-72(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL10DefineNameP10ProgramCtx
+	.loc 3 104 37
+	testl	%eax, %eax
+	sete	%al
+	.loc 3 104 9
+	testb	%al, %al
+	je	.L172
+	.loc 3 105 19
+	movl	$0, %ebx
+	jmp	.L169
+.L172:
+	.loc 3 108 29
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 108 56
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 108 66
+	movl	8(%rax), %eax
+	.loc 3 108 85
+	cmpl	%eax, %edx
+	jge	.L173
+	.loc 3 108 102 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 108 112 discriminator 1
+	movq	(%rax), %rcx
+	.loc 3 108 138 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 108 122 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 108 85 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L174
+.L173:
+	.loc 3 108 85 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L174:
+	.loc 3 108 5 is_stmt 1 discriminator 4
+	testq	%rax, %rax
+	je	.L175
+	.loc 3 108 182 discriminator 6
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 108 209 discriminator 6
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 108 219 discriminator 6
+	movl	8(%rax), %eax
+	.loc 3 108 238 discriminator 6
+	cmpl	%eax, %edx
+	jge	.L176
+	.loc 3 108 255 discriminator 7
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 108 265 discriminator 7
+	movq	(%rax), %rcx
+	.loc 3 108 291 discriminator 7
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 108 275 discriminator 7
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 108 238 discriminator 7
+	addq	%rcx, %rax
+	jmp	.L177
+.L176:
+	.loc 3 108 238 is_stmt 0 discriminator 8
+	movl	$0, %eax
+.L177:
+	.loc 3 108 315 is_stmt 1 discriminator 10
+	movl	16(%rax), %eax
+	.loc 3 108 9 discriminator 10
+	cmpl	$8, %eax
+	je	.L178
+.L175:
+	.loc 3 108 374 discriminator 11
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 108 401 discriminator 11
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 108 411 discriminator 11
+	movl	8(%rax), %eax
+	.loc 3 108 430 discriminator 11
+	cmpl	%eax, %edx
+	jge	.L179
+	.loc 3 108 447 discriminator 12
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 108 457 discriminator 12
+	movq	(%rax), %rcx
+	.loc 3 108 483 discriminator 12
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 108 467 discriminator 12
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 108 430 discriminator 12
+	addq	%rcx, %rax
+	jmp	.L180
+.L179:
+	.loc 3 108 430 is_stmt 0 discriminator 13
+	movl	$0, %eax
+.L180:
+	.loc 3 108 351 is_stmt 1 discriminator 15
+	testq	%rax, %rax
+	je	.L181
+	.loc 3 108 527 discriminator 16
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 108 554 discriminator 16
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 108 564 discriminator 16
+	movl	8(%rax), %eax
+	.loc 3 108 583 discriminator 16
+	cmpl	%eax, %edx
+	jge	.L182
+	.loc 3 108 600 discriminator 17
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 108 610 discriminator 17
+	movq	(%rax), %rcx
+	.loc 3 108 636 discriminator 17
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 108 620 discriminator 17
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 108 583 discriminator 17
+	addq	%rcx, %rax
+	jmp	.L183
+.L182:
+	.loc 3 108 583 is_stmt 0 discriminator 18
+	movl	$0, %eax
+.L183:
+	.loc 3 108 660 is_stmt 1 discriminator 20
+	movl	16(%rax), %eax
+	.loc 3 108 354 discriminator 20
+	cmpl	$7, %eax
+	je	.L178
+.L181:
+	.loc 3 110 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 3 110 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 3 110 87 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 3 110 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 3 110 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 3 110 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 3 110 177 discriminator 5
+	leaq	.LC57(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 3 110 240 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 3 110 284 discriminator 8
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 110 311 discriminator 8
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 110 321 discriminator 8
+	movl	8(%rax), %eax
+	.loc 3 110 340 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L184
+	.loc 3 110 357 discriminator 9
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 110 367 discriminator 9
+	movq	(%rax), %rcx
+	.loc 3 110 393 discriminator 9
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 110 377 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 110 340 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L185
+.L184:
+	.loc 3 110 340 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L185:
+	.loc 3 110 267 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 3 110 447 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 3 110 471 discriminator 14
+	movl	$110, %edx
+	leaq	.LC45(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 3 110 711 discriminator 15
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 110 546 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 3 110 563 discriminator 15
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 3 110 590 discriminator 15
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 110 600 discriminator 15
+	movl	8(%rax), %eax
+	.loc 3 110 546 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L186
+	.loc 3 110 636 discriminator 16
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 110 646 discriminator 16
+	movq	(%rax), %rsi
+	.loc 3 110 672 discriminator 16
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 3 110 656 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 3 110 546 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L187
+.L186:
+	.loc 3 110 546 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L187:
+	.loc 3 110 546 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 3 111 35 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 3 111 51
+	movl	$111, %ecx
+	leaq	.LC55(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 3 111 110 discriminator 2
+	movl	$111, %r8d
+	leaq	.LC55(%rip), %rax
+	movq	%rax, %rcx
+	movl	$111, %edx
+	leaq	.LC45(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 3 111 234 discriminator 3
+	movl	$0, %ebx
+	jmp	.L169
+.L178:
+	.loc 3 114 37
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 3 114 64
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 114 74
+	movl	8(%rax), %eax
+	.loc 3 114 93
+	cmpl	%eax, %edx
+	jge	.L188
+	.loc 3 114 110 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 114 120 discriminator 1
+	movq	(%rax), %rcx
+	.loc 3 114 146 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 3 114 130 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 3 114 93 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L189
+.L188:
+	.loc 3 114 93 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L189:
+	.loc 3 114 12 is_stmt 1 discriminator 4
+	movq	%rax, -56(%rbp)
+	.loc 3 115 19 discriminator 4
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 3 115 28 discriminator 4
+	leal	1(%rax), %edx
+	movq	-72(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 3 117 47 discriminator 4
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 3 117 13 discriminator 4
+	movq	24(%rax), %rdx
+	movq	-56(%rbp), %rax
+	leaq	.LC58(%rip), %rcx
+	movq	%rcx, %rsi
+	movq	%rax, %rdi
+	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
+.LEHE16:
+	.loc 3 118 12
+	movq	-56(%rbp), %rbx
+.L169:
+	.loc 3 119 5
+	leaq	-48(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZN14FunctionLoggerD1Ev@PLT
+	movq	%rbx, %rax
+	jmp	.L193
+.L192:
+	endbr64
+	movq	%rax, %rbx
+	leaq	-48(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZN14FunctionLoggerD1Ev@PLT
+	movq	%rbx, %rax
+	movq	%rax, %rdi
+.LEHB17:
+	call	_Unwind_Resume@PLT
+.LEHE17:
+.L193:
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
@@ -9430,40 +4897,50 @@ _ZL14GetInstructionP13ProgramBuffer:
 	.byte	0x1
 	.uleb128 .LLSDACSE2278-.LLSDACSB2278
 .LLSDACSB2278:
-	.uleb128 .LEHB12-.LFB2278
-	.uleb128 .LEHE12-.LEHB12
+	.uleb128 .LEHB15-.LFB2278
+	.uleb128 .LEHE15-.LEHB15
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB13-.LFB2278
-	.uleb128 .LEHE13-.LEHB13
-	.uleb128 .L340-.LFB2278
+	.uleb128 .LEHB16-.LFB2278
+	.uleb128 .LEHE16-.LEHB16
+	.uleb128 .L192-.LFB2278
 	.uleb128 0
-	.uleb128 .LEHB14-.LFB2278
-	.uleb128 .LEHE14-.LEHB14
+	.uleb128 .LEHB17-.LFB2278
+	.uleb128 .LEHE17-.LEHB17
 	.uleb128 0
 	.uleb128 0
 .LLSDACSE2278:
 	.text
-	.size	_ZL14GetInstructionP13ProgramBuffer, .-_ZL14GetInstructionP13ProgramBuffer
+	.size	_ZL4GetNP10ProgramCtx, .-_ZL4GetNP10ProgramCtx
 	.section	.rodata
-.LC68:
-	.string	"GetAssigment"
+.LC59:
+	.string	"GetG"
+.LC60:
+	.string	"program"
+.LC61:
+	.string	"int GetG(Program*)"
+.LC62:
+	.string	"./src/SyntaxAnalysis.cpp"
 	.align 8
-.LC69:
-	.string	"Error %d token must be variable\n"
+.LC63:
+	.string	"\033[91mFailed %s:%d (%s:%d)\n\033[0m"
+.LC64:
+	.string	"Failed (%s:%d, %s:%d)"
+.LC65:
+	.string	"\t%s: "
 	.align 8
-.LC70:
-	.string	"Error %d token must be assigment (%c)\n"
-.LC71:
-	.string	"Empty assigment!\n"
+.LC66:
+	.string	"Program root must be NULL, %p\n"
 	.align 8
-.LC72:
-	.string	"Missing %c - end of statement\n"
+.LC67:
+	.string	"Invalid number of tokens: %d (size %d)\n"
 	.text
-	.type	_ZL12GetAssigmentP13ProgramBuffer, @function
-_ZL12GetAssigmentP13ProgramBuffer:
+	.globl	_Z4GetGP7Program
+	.type	_Z4GetGP7Program, @function
+_Z4GetGP7Program:
 .LFB2279:
-	.loc 1 641 5
+	.file 4 "./src/SyntaxAnalysis.cpp"
+	.loc 4 102 5
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA2279
@@ -9474,66 +4951,65 @@ _ZL12GetAssigmentP13ProgramBuffer:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	pushq	%rbx
-	subq	$88, %rsp
+	subq	$248, %rsp
 	.cfi_offset 3, -24
-	movq	%rdi, -88(%rbp)
-	.loc 1 642 41
-	leaq	-48(%rbp), %rax
-	leaq	.LC68(%rip), %rdx
+	movq	%rdi, -248(%rbp)
+	.loc 4 103 45
+	leaq	-176(%rbp), %rax
+	leaq	.LC59(%rip), %rdx
 	movl	$2, %esi
 	movq	%rax, %rdi
-.LEHB15:
+.LEHB18:
 	call	_ZN14FunctionLoggerC1EiPKc@PLT
-.LEHE15:
-	.loc 1 643 10
-	cmpq	$0, -88(%rbp)
-	jne	.L343
-.LEHB16:
-	.loc 1 643 51 discriminator 1
+.LEHE18:
+	.loc 4 104 10
+	cmpq	$0, -248(%rbp)
+	jne	.L195
+.LEHB19:
+	.loc 4 104 47 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 643 57 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 4 104 53 discriminator 1
+	leaq	.LC60(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 643 109 discriminator 3
-	leaq	.LC29(%rip), %rax
+	.loc 4 104 113 discriminator 3
+	leaq	.LC60(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 643 198 discriminator 4
+	.loc 4 104 261 discriminator 4
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 643 204 discriminator 4
-	movl	$643, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC68(%rip), %rax
+	.loc 4 104 267 discriminator 4
+	leaq	.LC61(%rip), %r8
+	movl	$104, %ecx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 643 297 discriminator 6
-	movl	$643, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC68(%rip), %rax
+	.loc 4 104 356 discriminator 6
+	leaq	.LC61(%rip), %rax
+	movq	%rax, %rcx
+	movl	$104, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 643 403 discriminator 7
+	.loc 4 104 458 discriminator 7
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 643 409 discriminator 7
+	.loc 4 104 464 discriminator 7
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -9543,1034 +5019,510 @@ _ZL12GetAssigmentP13ProgramBuffer:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 643 27 discriminator 9
+	.loc 4 104 27 discriminator 9
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 643 33 discriminator 9
-	movl	$643, %ecx
-	leaq	.LC68(%rip), %rax
+	.loc 4 104 33 discriminator 9
+	movl	$104, %ecx
+	leaq	.LC59(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 643 92 discriminator 11
-	leaq	.LC17(%rip), %rax
+	.loc 4 104 92 discriminator 11
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 643 131 discriminator 12
+	.loc 4 104 134 discriminator 12
 	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 643 147 discriminator 12
-	movl	$643, %ecx
-	leaq	.LC68(%rip), %rax
+	.loc 4 104 156 discriminator 12
+	call	_ZN6Logger11getInstanceEv@PLT
+	.loc 4 104 156 is_stmt 0 discriminator 13
+	movq	%rax, %rbx
+	.loc 4 104 169 is_stmt 1 discriminator 13
+	movl	$104, %r9d
+	leaq	.LC59(%rip), %r8
+	movl	$104, %ecx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC63(%rip), %rax
 	movq	%rax, %rsi
+	movl	$-1, %edi
 	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 643 206 discriminator 14
-	movl	$643, %r8d
-	leaq	.LC68(%rip), %rax
+	call	_Z6MsgRetiPKcz@PLT
+	.loc 4 104 169 is_stmt 0 discriminator 14
+	movl	%eax, %esi
+	subq	$8, %rsp
+	pushq	$104
+	leaq	.LC59(%rip), %r9
+	movl	$104, %r8d
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rcx
-	movl	$643, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
+	leaq	.LC64(%rip), %rax
+	movq	%rax, %rdx
+	movq	%rbx, %rdi
 	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 643 311 discriminator 15
-	movl	$0, %ebx
-	jmp	.L344
-.L343:
-	.loc 1 645 29
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 645 56
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 645 66
-	movl	8(%rax), %eax
-	.loc 1 645 85
-	cmpl	%eax, %edx
-	jge	.L345
-	.loc 1 645 102 discriminator 1
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 645 112 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 645 138 discriminator 1
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 645 122 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 645 85 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L346
-.L345:
-	.loc 1 645 85 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L346:
-	.loc 1 645 5 is_stmt 1 discriminator 4
+	.cfi_escape 0x2e,0x10
+	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
+	.loc 4 104 169 discriminator 15
+	addq	$16, %rsp
+	movl	%eax, %ebx
+	.loc 4 104 354 is_stmt 1 discriminator 15
+	jmp	.L196
+.L195:
+	.loc 4 106 18
+	movq	-248(%rbp), %rax
+	movq	16(%rax), %rax
+	.loc 4 106 5
 	testq	%rax, %rax
-	je	.L347
-	.loc 1 645 182 discriminator 5
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 645 209 discriminator 5
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 645 219 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 645 238 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L348
-	.loc 1 645 255 discriminator 6
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 645 265 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 645 291 discriminator 6
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 645 275 discriminator 6
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 645 238 discriminator 6
-	addq	%rcx, %rax
-	jmp	.L349
-.L348:
-	.loc 1 645 238 is_stmt 0 discriminator 7
+	je	.L197
+	.loc 4 108 17
+	leaq	.LC59(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC65(%rip), %rax
+	movq	%rax, %rdi
 	movl	$0, %eax
-.L349:
-	.loc 1 645 315 is_stmt 1 discriminator 9
-	movl	16(%rax), %eax
-	.loc 1 645 9 discriminator 9
-	cmpl	$7, %eax
-	je	.L350
-.L347:
-	.loc 1 647 20
-	leaq	.LC22(%rip), %rax
+	.cfi_escape 0x2e,0
+	call	printf@PLT
+	.loc 4 108 98 discriminator 1
+	movq	-248(%rbp), %rax
+	movq	16(%rax), %rax
+	.loc 4 108 45 discriminator 1
+	movq	%rax, %rsi
+	leaq	.LC66(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 647 81 discriminator 1
+	.loc 4 109 35
 	call	_ZN6Logger11getInstanceEv@PLT
+	.loc 4 109 57
+	call	_ZN6Logger11getInstanceEv@PLT
+	.loc 4 109 57 is_stmt 0 discriminator 1
+	movq	%rax, %rbx
+	.loc 4 109 70 is_stmt 1 discriminator 1
+	movl	$109, %r9d
+	leaq	.LC59(%rip), %r8
+	movl	$109, %ecx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rdx
-	.loc 1 647 87 discriminator 1
-	leaq	.LC23(%rip), %rax
+	leaq	.LC63(%rip), %rax
 	movq	%rax, %rsi
-	movq	%rdx, %rdi
+	movl	$-1, %edi
 	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 647 127 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 647 133 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 647 159 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
+	call	_Z6MsgRetiPKcz@PLT
+	.loc 4 109 70 is_stmt 0 discriminator 2
+	movl	%eax, %esi
+	subq	$8, %rsp
+	pushq	$109
+	leaq	.LC59(%rip), %r9
+	movl	$109, %r8d
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rcx
-	.loc 1 647 177 discriminator 5
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movl	%eax, %edx
-	leaq	.LC69(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rcx, %rdi
+	leaq	.LC64(%rip), %rax
+	movq	%rax, %rdx
+	movq	%rbx, %rdi
 	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 647 248 discriminator 7
-	leaq	.LC26(%rip), %rax
+	.cfi_escape 0x2e,0x10
+	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
+	.loc 4 109 70 discriminator 3
+	addq	$16, %rsp
+	movl	%eax, %ebx
+	.loc 4 109 255 is_stmt 1 discriminator 3
+	jmp	.L196
+.L197:
+	.loc 4 112 16
+	movq	$0, -112(%rbp)
+	movq	$0, -104(%rbp)
+	movq	$0, -96(%rbp)
+	movq	$0, -88(%rbp)
+	.loc 4 112 42
+	movq	-248(%rbp), %rax
+	movq	%rax, -112(%rbp)
+	.loc 4 113 17
+	leaq	-112(%rbp), %rax
+	movq	%rax, -224(%rbp)
+	.loc 4 115 16
+	movq	$0, -80(%rbp)
+	movq	$0, -72(%rbp)
+	movq	$0, -64(%rbp)
+	movq	$0, -56(%rbp)
+	movq	$0, -48(%rbp)
+	movq	$0, -40(%rbp)
+	movq	$0, -32(%rbp)
+	.loc 4 116 17
+	leaq	-80(%rbp), %rax
+	movq	%rax, -216(%rbp)
+	.loc 4 117 20
+	movq	-216(%rbp), %rax
+	movl	$5, %esi
 	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 647 292 discriminator 8
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 647 319 discriminator 8
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 647 329 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 647 348 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L351
-	.loc 1 647 365 discriminator 9
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 647 375 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 647 401 discriminator 9
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 647 385 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 647 348 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L352
-.L351:
-	.loc 1 647 348 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L352:
-	.loc 1 647 275 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
+	.cfi_escape 0x2e,0
+	call	_Z14SuperStackCtorP10SuperStackm@PLT
+	.loc 4 119 14
+	movq	$0, -144(%rbp)
+	movq	$0, -136(%rbp)
+	movq	$0, -128(%rbp)
+	.loc 4 120 15
+	leaq	-144(%rbp), %rax
+	movq	%rax, -208(%rbp)
+	.loc 4 121 17
+	movq	-208(%rbp), %rax
 	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 647 455 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 647 479 discriminator 14
-	movl	$647, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 647 700 discriminator 15
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 647 535 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 647 552 discriminator 15
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 647 579 discriminator 15
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 647 589 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 647 535 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L353
-	.loc 1 647 625 discriminator 16
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 647 635 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 647 661 discriminator 16
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 647 645 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 647 535 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L354
-.L353:
-	.loc 1 647 535 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L354:
-	.loc 1 647 535 discriminator 19
+	call	_Z12VarTabelCtorP8VarTabel@PLT
+	.loc 4 124 12
+	movq	-208(%rbp), %rdx
+	movq	-216(%rbp), %rax
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 648 35 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
+	call	_Z6SSpushP10SuperStackP8VarTabel@PLT
+	.loc 4 127 33
+	movq	-224(%rbp), %rax
+	movq	-216(%rbp), %rdx
+	movq	%rdx, 24(%rax)
+	.loc 4 131 15
+	movq	$0, -192(%rbp)
+	movq	$0, -184(%rbp)
+	.loc 4 132 16
+	leaq	-192(%rbp), %rax
+	movq	%rax, -200(%rbp)
+	.loc 4 133 18
+	movq	-200(%rbp), %rax
 	movq	%rax, %rdi
-	.loc 1 648 51
-	movl	$648, %ecx
-	leaq	.LC68(%rip), %rax
+	call	_Z13FuncTabelCtorP9FuncTabel@PLT
+	.loc 4 135 34
+	movq	-224(%rbp), %rax
+	movq	-200(%rbp), %rdx
+	movq	%rdx, 16(%rax)
+	.loc 4 137 31
+	movq	-224(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL10GetProcessP10ProgramCtx
+	.loc 4 137 19
+	movq	-248(%rbp), %rdx
+	movq	%rax, 16(%rdx)
+	.loc 4 138 19
+	movq	-248(%rbp), %rax
+	movq	16(%rax), %rax
+	.loc 4 138 5
+	testq	%rax, %rax
+	jne	.L198
+	.loc 4 139 35
+	call	_ZN6Logger11getInstanceEv@PLT
+	.loc 4 139 57
+	call	_ZN6Logger11getInstanceEv@PLT
+	.loc 4 139 57 is_stmt 0 discriminator 1
+	movq	%rax, %rbx
+	.loc 4 139 70 is_stmt 1 discriminator 1
+	movl	$139, %r9d
+	leaq	.LC59(%rip), %r8
+	movl	$139, %ecx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC63(%rip), %rax
 	movq	%rax, %rsi
+	movl	$-1, %edi
 	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 648 110 discriminator 2
-	movl	$648, %r8d
-	leaq	.LC68(%rip), %rax
+	call	_Z6MsgRetiPKcz@PLT
+	.loc 4 139 70 is_stmt 0 discriminator 2
+	movl	%eax, %esi
+	subq	$8, %rsp
+	pushq	$139
+	leaq	.LC59(%rip), %r9
+	movl	$139, %r8d
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rcx
-	movl	$648, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 648 215 discriminator 3
-	movl	$0, %ebx
-	jmp	.L344
-.L350:
-	.loc 1 651 34
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 651 61
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 651 71
-	movl	8(%rax), %eax
-	.loc 1 651 90
-	cmpl	%eax, %edx
-	jge	.L355
-	.loc 1 651 107 discriminator 1
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 651 117 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 651 143 discriminator 1
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 651 127 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 651 90 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L356
-.L355:
-	.loc 1 651 90 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L356:
-	.loc 1 651 12 is_stmt 1 discriminator 4
-	movq	%rax, -72(%rbp)
-	.loc 1 652 19 discriminator 4
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 652 28 discriminator 4
-	leal	1(%rax), %edx
-	movq	-88(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 654 25 discriminator 4
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 654 52 discriminator 4
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 654 62 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 654 81 discriminator 4
-	cmpl	%eax, %edx
-	jge	.L357
-	.loc 1 654 98 discriminator 1
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 654 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 654 134 discriminator 1
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 654 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 654 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L358
-.L357:
-	.loc 1 654 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L358:
-	.loc 1 654 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 654 5 discriminator 4
-	cmpl	$61, %eax
-	je	.L359
-	.loc 1 654 195 discriminator 5
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 654 222 discriminator 5
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 654 232 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 654 251 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L360
-	.loc 1 654 268 discriminator 6
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 654 278 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 654 304 discriminator 6
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 654 288 discriminator 6
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 654 251 discriminator 6
-	addq	%rcx, %rax
-	jmp	.L361
-.L360:
-	.loc 1 654 251 is_stmt 0 discriminator 7
-	movl	$0, %eax
-.L361:
-	.loc 1 654 334 is_stmt 1 discriminator 9
-	movzbl	24(%rax), %eax
-	.loc 1 654 176 discriminator 9
-	cmpb	$61, %al
-	je	.L359
-	.loc 1 656 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 656 81 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
+	leaq	.LC64(%rip), %rax
 	movq	%rax, %rdx
-	.loc 1 656 87 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
+	movq	%rbx, %rdi
 	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 656 127 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 656 133 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 656 159 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
+	.cfi_escape 0x2e,0x10
+	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
+	.loc 4 139 70 discriminator 3
+	addq	$16, %rsp
+	movl	%eax, %ebx
+	.loc 4 139 255 is_stmt 1 discriminator 3
+	jmp	.L196
+.L198:
+	.loc 4 141 12
+	movq	-248(%rbp), %rax
+	movq	16(%rax), %rax
+	movq	%rax, -232(%rbp)
+	.loc 4 143 5
+	jmp	.L199
+.L201:
+	.loc 4 145 50
+	movq	-224(%rbp), %rax
 	movq	%rax, %rdi
-	.loc 1 656 177 discriminator 5
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movl	$61, %ecx
-	movl	%eax, %edx
-	leaq	.LC70(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 656 265 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 656 309 discriminator 8
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 656 336 discriminator 8
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 656 346 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 656 365 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L362
-	.loc 1 656 382 discriminator 9
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 656 392 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 656 418 discriminator 9
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 656 402 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 656 365 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L363
-.L362:
-	.loc 1 656 365 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L363:
-	.loc 1 656 292 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 656 472 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 656 496 discriminator 14
-	movl	$656, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 656 717 discriminator 15
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 656 552 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 656 569 discriminator 15
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 656 596 discriminator 15
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 656 606 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 656 552 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L364
-	.loc 1 656 642 discriminator 16
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 656 652 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 656 678 discriminator 16
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 656 662 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 656 552 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L365
-.L364:
-	.loc 1 656 552 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L365:
-	.loc 1 656 552 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 657 35 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 657 51
-	movl	$657, %ecx
-	leaq	.LC68(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 657 110 discriminator 2
-	movl	$657, %r8d
-	leaq	.LC68(%rip), %rax
-	movq	%rax, %rcx
-	movl	$657, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 657 215 discriminator 3
-	movl	$0, %ebx
-	jmp	.L344
-.L359:
-	.loc 1 660 40
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 660 67
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 660 77
-	movl	8(%rax), %eax
-	.loc 1 660 96
-	cmpl	%eax, %edx
-	jge	.L366
-	.loc 1 660 113 discriminator 1
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 660 123 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 660 149 discriminator 1
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 660 133 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 660 96 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L367
-.L366:
-	.loc 1 660 96 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L367:
-	.loc 1 660 12 is_stmt 1 discriminator 4
-	movq	%rax, -64(%rbp)
-	.loc 1 661 19 discriminator 4
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 661 28 discriminator 4
-	leal	1(%rax), %edx
-	movq	-88(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 663 28 discriminator 4
-	movq	-64(%rbp), %rax
-	movq	-72(%rbp), %rdx
-	movq	%rdx, (%rax)
-	.loc 1 664 34 discriminator 4
-	movq	-88(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL4GetEP13ProgramBuffer
-	.loc 1 664 28 discriminator 4
-	movq	-64(%rbp), %rdx
+	.cfi_escape 0x2e,0
+	call	_ZL10GetProcessP10ProgramCtx
+	.loc 4 145 38
+	movq	-232(%rbp), %rdx
 	movq	%rax, 8(%rdx)
-	.loc 1 666 21 discriminator 4
-	movq	-64(%rbp), %rax
+	.loc 4 147 31
+	movq	-232(%rbp), %rax
 	movq	8(%rax), %rax
-	.loc 1 666 5 discriminator 4
+	.loc 4 147 9
 	testq	%rax, %rax
-	jne	.L368
-	.loc 1 668 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 668 81 discriminator 1
+	jne	.L200
+	.loc 4 148 39
 	call	_ZN6Logger11getInstanceEv@PLT
+	.loc 4 148 61
+	call	_ZN6Logger11getInstanceEv@PLT
+	.loc 4 148 61 is_stmt 0 discriminator 1
+	movq	%rax, %rbx
+	.loc 4 148 74 is_stmt 1 discriminator 1
+	movl	$148, %r9d
+	leaq	.LC59(%rip), %r8
+	movl	$148, %ecx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rdx
-	.loc 1 668 87 discriminator 1
-	leaq	.LC23(%rip), %rax
+	leaq	.LC63(%rip), %rax
 	movq	%rax, %rsi
-	movq	%rdx, %rdi
+	movl	$-1, %edi
 	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 668 127 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 668 133 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 668 159 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 668 177 discriminator 5
-	leaq	.LC71(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 668 208 discriminator 7
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 668 252 discriminator 8
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 668 279 discriminator 8
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 668 289 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 668 308 discriminator 8
-	cmpl	%eax, %edx
-	jge	.L369
-	.loc 1 668 325 discriminator 9
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 668 335 discriminator 9
-	movq	(%rax), %rcx
-	.loc 1 668 361 discriminator 9
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 668 345 discriminator 9
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 668 308 discriminator 9
-	addq	%rcx, %rax
-	jmp	.L370
-.L369:
-	.loc 1 668 308 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L370:
-	.loc 1 668 235 is_stmt 1 discriminator 12
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 668 415 discriminator 13
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 668 439 discriminator 14
-	movl	$668, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 668 660 discriminator 15
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 668 495 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 668 512 discriminator 15
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 668 539 discriminator 15
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 668 549 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 668 495 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L371
-	.loc 1 668 585 discriminator 16
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 668 595 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 668 621 discriminator 16
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 668 605 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 668 495 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L372
-.L371:
-	.loc 1 668 495 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L372:
-	.loc 1 668 495 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 669 15 is_stmt 1
-	movl	$0, %ebx
-	jmp	.L344
-.L368:
-	.loc 1 672 25
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 672 52
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 672 62
-	movl	8(%rax), %eax
-	.loc 1 672 81
-	cmpl	%eax, %edx
-	jge	.L373
-	.loc 1 672 98 discriminator 1
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 672 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 672 134 discriminator 1
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 672 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 672 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L374
-.L373:
-	.loc 1 672 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L374:
-	.loc 1 672 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 672 5 discriminator 4
-	cmpl	$59, %eax
-	je	.L375
-	.loc 1 672 202 discriminator 5
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 672 229 discriminator 5
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 672 239 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 672 258 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L376
-	.loc 1 672 275 discriminator 6
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 672 285 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 672 311 discriminator 6
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 672 295 discriminator 6
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 672 258 discriminator 6
-	addq	%rcx, %rax
-	jmp	.L377
-.L376:
-	.loc 1 672 258 is_stmt 0 discriminator 7
-	movl	$0, %eax
-.L377:
-	.loc 1 672 341 is_stmt 1 discriminator 9
-	movzbl	24(%rax), %eax
-	.loc 1 672 183 discriminator 9
-	cmpb	$59, %al
-	je	.L375
-	.loc 1 674 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 674 81 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 674 87 discriminator 1
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 674 127 discriminator 3
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 674 133 discriminator 3
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 674 159 discriminator 5
-	call	_ZN6Logger11getInstanceEv@PLT
+	call	_Z6MsgRetiPKcz@PLT
+	.loc 4 148 74 is_stmt 0 discriminator 2
+	movl	%eax, %esi
+	subq	$8, %rsp
+	pushq	$148
+	leaq	.LC59(%rip), %r9
+	movl	$148, %r8d
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rcx
-	.loc 1 674 177 discriminator 5
-	movl	$59, %edx
-	leaq	.LC72(%rip), %rax
+	leaq	.LC64(%rip), %rax
+	movq	%rax, %rdx
+	movq	%rbx, %rdi
+	movl	$0, %eax
+	.cfi_escape 0x2e,0x10
+	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
+	.loc 4 148 74 discriminator 3
+	addq	$16, %rsp
+	movl	%eax, %ebx
+	.loc 4 148 259 is_stmt 1 discriminator 3
+	jmp	.L196
+.L200:
+	.loc 4 150 25
+	movq	-232(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	%rax, -232(%rbp)
+.L199:
+	.loc 4 143 26
+	movq	-224(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 143 53
+	movq	-224(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 143 63
+	movl	8(%rax), %eax
+	.loc 4 143 36
+	cmpl	%eax, %edx
+	jl	.L201
+	.loc 4 153 23
+	movq	-224(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 153 51
+	movq	-224(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 153 61
+	movl	8(%rax), %eax
+	.loc 4 153 5
+	cmpl	%eax, %edx
+	je	.L202
+	.loc 4 155 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	.cfi_escape 0x2e,0
+	call	printf@PLT
+	.loc 4 155 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 155 87 discriminator 1
+	leaq	.LC26(%rip), %rax
 	movq	%rax, %rsi
-	movq	%rcx, %rdi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 155 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 155 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 155 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 155 263 discriminator 5
+	movq	-224(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 155 177 discriminator 5
+	movl	8(%rax), %edx
+	movq	-224(%rbp), %rax
+	movl	8(%rax), %eax
+	movl	%edx, %ecx
+	movl	%eax, %edx
+	leaq	.LC67(%rip), %rax
+	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 674 239 discriminator 7
-	leaq	.LC26(%rip), %rax
+	.loc 4 155 299 discriminator 7
+	leaq	.LC29(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 674 283 discriminator 8
-	movq	-88(%rbp), %rax
+	.loc 4 155 343 discriminator 8
+	movq	-224(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 674 310 discriminator 8
-	movq	-88(%rbp), %rax
+	.loc 4 155 370 discriminator 8
+	movq	-224(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 674 320 discriminator 8
+	.loc 4 155 380 discriminator 8
 	movl	8(%rax), %eax
-	.loc 1 674 339 discriminator 8
+	.loc 4 155 399 discriminator 8
 	cmpl	%eax, %edx
-	jge	.L378
-	.loc 1 674 356 discriminator 9
-	movq	-88(%rbp), %rax
+	jge	.L203
+	.loc 4 155 416 discriminator 9
+	movq	-224(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 674 366 discriminator 9
+	.loc 4 155 426 discriminator 9
 	movq	(%rax), %rcx
-	.loc 1 674 392 discriminator 9
-	movq	-88(%rbp), %rax
+	.loc 4 155 452 discriminator 9
+	movq	-224(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 674 376 discriminator 9
+	.loc 4 155 436 discriminator 9
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 674 339 discriminator 9
+	.loc 4 155 399 discriminator 9
 	addq	%rcx, %rax
-	jmp	.L379
-.L378:
-	.loc 1 674 339 is_stmt 0 discriminator 10
+	jmp	.L204
+.L203:
+	.loc 4 155 399 is_stmt 0 discriminator 10
 	movl	$0, %eax
-.L379:
-	.loc 1 674 266 is_stmt 1 discriminator 12
+.L204:
+	.loc 4 155 326 is_stmt 1 discriminator 12
 	movq	32(%rax), %rax
 	movl	$10, %esi
 	movq	%rax, %rdi
 	call	_Z6printlPKcc@PLT
-	.loc 1 674 446 discriminator 13
-	leaq	.LC27(%rip), %rax
+	.loc 4 155 506 discriminator 13
+	leaq	.LC30(%rip), %rax
 	movq	%rax, %rdi
 	call	puts@PLT
-	.loc 1 674 470 discriminator 14
-	movl	$674, %edx
-	leaq	.LC13(%rip), %rax
+	.loc 4 155 530 discriminator 14
+	movl	$155, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 674 691 discriminator 15
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 674 526 discriminator 15
-	movq	24(%rax), %rdx
-	.loc 1 674 543 discriminator 15
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 674 570 discriminator 15
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 674 580 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 674 526 discriminator 15
-	cmpl	%eax, %ecx
-	jge	.L380
-	.loc 1 674 616 discriminator 16
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 674 626 discriminator 16
-	movq	(%rax), %rsi
-	.loc 1 674 652 discriminator 16
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 674 636 discriminator 16
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 674 526 discriminator 16
-	addq	%rsi, %rax
-	jmp	.L381
-.L380:
-	.loc 1 674 526 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L381:
-	.loc 1 674 526 discriminator 19
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 675 35 is_stmt 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 675 51
-	movl	$675, %ecx
-	leaq	.LC68(%rip), %rax
-	movq	%rax, %rdx
 	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 675 110 discriminator 2
-	movl	$675, %r8d
-	leaq	.LC68(%rip), %rax
-	movq	%rax, %rcx
-	movl	$675, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-.LEHE16:
-	.loc 1 675 215 discriminator 3
-	movl	$0, %ebx
-	jmp	.L344
-.L375:
-	.loc 1 678 40
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 678 67
-	movq	-88(%rbp), %rax
+	call	printf@PLT
+	.loc 4 155 751 discriminator 15
+	movq	-224(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 678 77
-	movl	8(%rax), %eax
-	.loc 1 678 96
-	cmpl	%eax, %edx
-	jge	.L382
-	.loc 1 678 113 discriminator 1
-	movq	-88(%rbp), %rax
+	.loc 4 155 586 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 155 603 discriminator 15
+	movq	-224(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 155 630 discriminator 15
+	movq	-224(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 678 123 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 678 149 discriminator 1
-	movq	-88(%rbp), %rax
+	.loc 4 155 640 discriminator 15
 	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 678 133 discriminator 1
-	movq	%rdx, %rax
+	.loc 4 155 586 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L205
+	.loc 4 155 676 discriminator 16
+	movq	-224(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 155 686 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 155 712 discriminator 16
+	movq	-224(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 155 696 discriminator 16
+	movq	%rcx, %rax
 	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 678 96 discriminator 1
 	addq	%rcx, %rax
-	jmp	.L383
-.L382:
-	.loc 1 678 96 is_stmt 0 discriminator 2
+	salq	$3, %rax
+	.loc 4 155 586 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L206
+.L205:
+	.loc 4 155 586 is_stmt 0 discriminator 17
 	movl	$0, %eax
-.L383:
-	.loc 1 678 12 is_stmt 1 discriminator 4
-	movq	%rax, -56(%rbp)
-	.loc 1 679 19 discriminator 4
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 679 28 discriminator 4
-	leal	1(%rax), %edx
-	movq	-88(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 681 21 discriminator 4
-	movq	-56(%rbp), %rax
-	movl	$1, 16(%rax)
-	.loc 1 682 27 discriminator 4
-	movq	-56(%rbp), %rax
-	movq	-64(%rbp), %rdx
-	movq	%rdx, (%rax)
-	.loc 1 684 12 discriminator 4
-	movq	-56(%rbp), %rbx
-.L344:
-	.loc 1 685 5
-	leaq	-48(%rbp), %rax
+.L206:
+	.loc 4 155 586 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 156 35 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	.loc 4 156 57
+	call	_ZN6Logger11getInstanceEv@PLT
+	.loc 4 156 57 is_stmt 0 discriminator 1
+	movq	%rax, %rbx
+	.loc 4 156 70 is_stmt 1 discriminator 1
+	movl	$156, %r9d
+	leaq	.LC59(%rip), %r8
+	movl	$156, %ecx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC63(%rip), %rax
+	movq	%rax, %rsi
+	movl	$-1, %edi
+	movl	$0, %eax
+	call	_Z6MsgRetiPKcz@PLT
+	.loc 4 156 70 is_stmt 0 discriminator 2
+	movl	%eax, %esi
+	subq	$8, %rsp
+	pushq	$156
+	leaq	.LC59(%rip), %r9
+	movl	$156, %r8d
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rcx
+	leaq	.LC64(%rip), %rax
+	movq	%rax, %rdx
+	movq	%rbx, %rdi
+	movl	$0, %eax
+	.cfi_escape 0x2e,0x10
+	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
+.LEHE19:
+	.loc 4 156 70 discriminator 3
+	addq	$16, %rsp
+	movl	%eax, %ebx
+	.loc 4 156 255 is_stmt 1 discriminator 3
+	jmp	.L196
+.L202:
+	.loc 4 162 12
+	movl	$0, %ebx
+.L196:
+	.loc 4 163 5
+	leaq	-176(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
-	movq	%rbx, %rax
-	jmp	.L387
-.L386:
+	movl	%ebx, %eax
+	jmp	.L210
+.L209:
 	endbr64
 	movq	%rax, %rbx
-	leaq	-48(%rbp), %rax
+	leaq	-176(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
 	movq	%rbx, %rax
 	movq	%rax, %rdi
-.LEHB17:
+.LEHB20:
 	call	_Unwind_Resume@PLT
-.LEHE17:
-.L387:
+.LEHE20:
+.L210:
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
@@ -10584,34 +5536,38 @@ _ZL12GetAssigmentP13ProgramBuffer:
 	.byte	0x1
 	.uleb128 .LLSDACSE2279-.LLSDACSB2279
 .LLSDACSB2279:
-	.uleb128 .LEHB15-.LFB2279
-	.uleb128 .LEHE15-.LEHB15
+	.uleb128 .LEHB18-.LFB2279
+	.uleb128 .LEHE18-.LEHB18
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB16-.LFB2279
-	.uleb128 .LEHE16-.LEHB16
-	.uleb128 .L386-.LFB2279
+	.uleb128 .LEHB19-.LFB2279
+	.uleb128 .LEHE19-.LEHB19
+	.uleb128 .L209-.LFB2279
 	.uleb128 0
-	.uleb128 .LEHB17-.LFB2279
-	.uleb128 .LEHE17-.LEHB17
+	.uleb128 .LEHB20-.LFB2279
+	.uleb128 .LEHE20-.LEHB20
 	.uleb128 0
 	.uleb128 0
 .LLSDACSE2279:
 	.text
-	.size	_ZL12GetAssigmentP13ProgramBuffer, .-_ZL12GetAssigmentP13ProgramBuffer
+	.size	_Z4GetGP7Program, .-_Z4GetGP7Program
 	.section	.rodata
-.LC73:
-	.string	"GetE"
-.LC74:
-	.string	"token"
+	.align 8
+.LC68:
+	.string	"Token* GetProcess(ProgramCtx*)"
+.LC69:
+	.string	"GetProcess"
+.LC70:
+	.string	"Unknow Initializator type\n"
+	.align 8
+.LC71:
+	.string	"This token can't be in global scope\n"
 	.text
-	.type	_ZL4GetEP13ProgramBuffer, @function
-_ZL4GetEP13ProgramBuffer:
+	.type	_ZL10GetProcessP10ProgramCtx, @function
+_ZL10GetProcessP10ProgramCtx:
 .LFB2280:
-	.loc 1 691 5
+	.loc 4 166 5
 	.cfi_startproc
-	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2280
 	endbr64
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -10619,66 +5575,56 @@ _ZL4GetEP13ProgramBuffer:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	pushq	%rbx
-	subq	$88, %rsp
+	subq	$24, %rsp
 	.cfi_offset 3, -24
-	movq	%rdi, -88(%rbp)
-	.loc 1 692 49
-	leaq	-48(%rbp), %rax
-	leaq	.LC73(%rip), %rdx
-	movl	$1, %esi
-	movq	%rax, %rdi
-.LEHB18:
-	call	_ZN14FunctionLoggerC1EiPKc@PLT
-.LEHE18:
-	.loc 1 693 10
-	cmpq	$0, -88(%rbp)
-	jne	.L389
-.LEHB19:
-	.loc 1 693 51 discriminator 1
+	movq	%rdi, -24(%rbp)
+	.loc 4 167 10
+	cmpq	$0, -24(%rbp)
+	jne	.L212
+	.loc 4 167 51 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 693 57 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 4 167 57 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 693 109 discriminator 3
-	leaq	.LC29(%rip), %rax
+	.loc 4 167 121 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 693 198 discriminator 4
+	.loc 4 167 273 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 693 204 discriminator 4
-	movl	$693, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC73(%rip), %rax
+	.loc 4 167 279 discriminator 1
+	leaq	.LC68(%rip), %r8
+	movl	$167, %ecx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 693 297 discriminator 6
-	movl	$693, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC73(%rip), %rax
+	.loc 4 167 368 discriminator 1
+	leaq	.LC68(%rip), %rax
+	movq	%rax, %rcx
+	movl	$167, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 693 403 discriminator 7
+	.loc 4 167 470 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 693 409 discriminator 7
+	.loc 4 167 476 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -10688,368 +5634,600 @@ _ZL4GetEP13ProgramBuffer:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 693 27 discriminator 9
+	.loc 4 167 27 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 693 33 discriminator 9
-	movl	$693, %ecx
-	leaq	.LC73(%rip), %rax
+	.loc 4 167 33 discriminator 1
+	movl	$167, %ecx
+	leaq	.LC69(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 693 92 discriminator 11
-	leaq	.LC17(%rip), %rax
+	.loc 4 167 92 discriminator 1
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 693 131 discriminator 12
+	.loc 4 167 134 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 693 147 discriminator 12
-	movl	$693, %ecx
-	leaq	.LC73(%rip), %rax
+	.loc 4 167 150 discriminator 1
+	movl	$167, %ecx
+	leaq	.LC69(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 693 206 discriminator 14
-	movl	$693, %r8d
-	leaq	.LC73(%rip), %rax
+	.loc 4 167 209 discriminator 1
+	movl	$167, %r8d
+	leaq	.LC69(%rip), %rax
 	movq	%rax, %rcx
-	movl	$693, %edx
-	leaq	.LC13(%rip), %rax
+	movl	$167, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 693 311 discriminator 15
-	movl	$0, %ebx
-	jmp	.L390
-.L389:
-	.loc 1 695 23
-	movq	-88(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL4GetTP13ProgramBuffer
-	movq	%rax, -64(%rbp)
-	.loc 1 697 12
-	movq	-64(%rbp), %rax
-	movq	%rax, -72(%rbp)
-	.loc 1 698 5
-	jmp	.L391
-.L403:
-.LBB12:
-	.loc 1 700 191
-	movq	-88(%rbp), %rax
+	.loc 4 167 314 discriminator 1
+	movl	$0, %eax
+	jmp	.L213
+.L212:
+	.loc 4 169 29
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 169 56
+	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 700 17
-	movq	24(%rax), %rdx
-	.loc 1 700 34
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 700 61
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 700 71
+	.loc 4 169 66
 	movl	8(%rax), %eax
-	.loc 1 700 17
-	cmpl	%eax, %ecx
-	jge	.L392
-	.loc 1 700 107 discriminator 1
-	movq	-88(%rbp), %rax
+	.loc 4 169 85
+	cmpl	%eax, %edx
+	jge	.L214
+	.loc 4 169 102 discriminator 1
+	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 700 117 discriminator 1
+	.loc 4 169 112 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 169 138 discriminator 1
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 169 122 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 169 85 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L215
+.L214:
+	.loc 4 169 85 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L215:
+	.loc 4 169 162 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 169 5 discriminator 4
+	cmpl	$6, %eax
+	je	.L216
+	.loc 4 169 5 is_stmt 0
+	cmpl	$6, %eax
+	jg	.L217
+	cmpl	$3, %eax
+	je	.L218
+	cmpl	$4, %eax
+	je	.L219
+	jmp	.L217
+.L218:
+	.loc 4 173 29 is_stmt 1
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 173 56
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 173 66
+	movl	8(%rax), %eax
+	.loc 4 173 85
+	cmpl	%eax, %edx
+	jge	.L220
+	.loc 4 173 102 discriminator 1
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 173 112 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 173 138 discriminator 1
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 173 122 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 173 85 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L221
+.L220:
+	.loc 4 173 85 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L221:
+	.loc 4 173 168 is_stmt 1 discriminator 4
+	movl	24(%rax), %eax
+	.loc 4 173 9 discriminator 4
+	testl	%eax, %eax
+	jne	.L222
+	.loc 4 175 35
+	movq	-24(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL18FuncInitializationP10ProgramCtx
+	.loc 4 175 49
+	testl	%eax, %eax
+	setne	%al
+	.loc 4 175 13
+	testb	%al, %al
+	je	.L223
+	.loc 4 176 43
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 176 59
+	movl	$176, %ecx
+	leaq	.LC69(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 176 118
+	movl	$176, %r8d
+	leaq	.LC69(%rip), %rax
+	movq	%rax, %rcx
+	movl	$176, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 176 223
+	movl	$0, %eax
+	jmp	.L213
+.L223:
+	.loc 4 178 30
+	movq	-24(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL10GetProcessP10ProgramCtx
+	.loc 4 178 42
+	jmp	.L213
+.L222:
+	.loc 4 181 29
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 181 56
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 181 66
+	movl	8(%rax), %eax
+	.loc 4 181 85
+	cmpl	%eax, %edx
+	jge	.L224
+	.loc 4 181 102 discriminator 1
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 181 112 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 181 138 discriminator 1
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 181 122 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 181 85 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L225
+.L224:
+	.loc 4 181 85 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L225:
+	.loc 4 181 168 is_stmt 1 discriminator 4
+	movl	24(%rax), %eax
+	.loc 4 181 9 discriminator 4
+	cmpl	$1, %eax
+	jne	.L226
+	.loc 4 182 37
+	movq	-24(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL17VarInitializationP10ProgramCtx
+	.loc 4 182 49
+	jmp	.L213
+.L226:
+	.loc 4 184 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 184 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 184 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 184 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 184 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 184 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 184 177
+	leaq	.LC70(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 184 217
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 184 261
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 184 288
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 184 298
+	movl	8(%rax), %eax
+	.loc 4 184 317
+	cmpl	%eax, %edx
+	jge	.L227
+	.loc 4 184 334 discriminator 1
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 184 344 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 184 370 discriminator 1
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 184 354 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 184 317 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L228
+.L227:
+	.loc 4 184 317 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L228:
+	.loc 4 184 244 is_stmt 1 discriminator 4
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 184 424 discriminator 4
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 184 448 discriminator 4
+	movl	$184, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 184 669 discriminator 4
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 184 504 discriminator 4
+	movq	24(%rax), %rdx
+	.loc 4 184 521 discriminator 4
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 184 548 discriminator 4
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 184 558 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 184 504 discriminator 4
+	cmpl	%eax, %ecx
+	jge	.L229
+	.loc 4 184 594 discriminator 5
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 184 604 discriminator 5
 	movq	(%rax), %rsi
-	.loc 1 700 143 discriminator 1
-	movq	-88(%rbp), %rax
+	.loc 4 184 630 discriminator 5
+	movq	-24(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rcx
-	.loc 1 700 127 discriminator 1
+	.loc 4 184 614 discriminator 5
 	movq	%rcx, %rax
 	salq	$2, %rax
 	addq	%rcx, %rax
 	salq	$3, %rax
-	.loc 1 700 17 discriminator 1
+	.loc 4 184 504 discriminator 5
 	addq	%rsi, %rax
-	jmp	.L393
-.L392:
-	.loc 1 700 17 is_stmt 0 discriminator 2
+	jmp	.L230
+.L229:
+	.loc 4 184 504 is_stmt 0 discriminator 6
 	movl	$0, %eax
-.L393:
-	.loc 1 700 17 discriminator 4
-	leaq	.LC74(%rip), %rcx
-	movq	%rcx, %rsi
+.L230:
+	.loc 4 184 504 discriminator 8
+	movq	%rdx, %rsi
 	movq	%rax, %rdi
-	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
-	.loc 1 701 45 is_stmt 1
-	movq	-88(%rbp), %rax
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 185 35 is_stmt 1 discriminator 8
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 185 51 discriminator 8
+	movl	$185, %ecx
+	leaq	.LC69(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 185 110 discriminator 8
+	movl	$185, %r8d
+	leaq	.LC69(%rip), %rax
+	movq	%rax, %rcx
+	movl	$185, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 185 215 discriminator 8
+	movl	$0, %eax
+	jmp	.L213
+.L216:
+	.loc 4 189 23
+	movq	-24(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL10DefineNameP10ProgramCtx
+	.loc 4 189 37
+	testl	%eax, %eax
+	sete	%al
+	.loc 4 189 9
+	testb	%al, %al
+	je	.L231
+	.loc 4 190 39
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 190 55
+	movl	$190, %ecx
+	leaq	.LC69(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 190 114
+	movl	$190, %r8d
+	leaq	.LC69(%rip), %rax
+	movq	%rax, %rcx
+	movl	$190, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 190 219
+	movl	$0, %eax
+	jmp	.L213
+.L231:
+	.loc 4 192 26
+	movq	-24(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL10GetProcessP10ProgramCtx
+	.loc 4 192 38
+	jmp	.L213
+.L219:
+	.loc 4 200 27
+	movq	-24(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL11GetFunctionP10ProgramCtx
+	.loc 4 200 39
+	jmp	.L213
+.L217:
+	.loc 4 203 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 203 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 203 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 203 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 203 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 203 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 203 177
+	leaq	.LC71(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 203 227
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 203 271
+	movq	-24(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 701 72
-	movq	-88(%rbp), %rax
+	.loc 4 203 298
+	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 701 82
+	.loc 4 203 308
 	movl	8(%rax), %eax
-	.loc 1 701 101
+	.loc 4 203 327
 	cmpl	%eax, %edx
-	jge	.L394
-	.loc 1 701 118 discriminator 1
-	movq	-88(%rbp), %rax
+	jge	.L232
+	.loc 4 203 344 discriminator 1
+	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 701 128 discriminator 1
+	.loc 4 203 354 discriminator 1
 	movq	(%rax), %rcx
-	.loc 1 701 154 discriminator 1
-	movq	-88(%rbp), %rax
+	.loc 4 203 380 discriminator 1
+	movq	-24(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 701 138 discriminator 1
+	.loc 4 203 364 discriminator 1
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 701 101 discriminator 1
+	.loc 4 203 327 discriminator 1
 	addq	%rcx, %rax
-	jmp	.L395
-.L394:
-	.loc 1 701 101 is_stmt 0 discriminator 2
+	jmp	.L233
+.L232:
+	.loc 4 203 327 is_stmt 0 discriminator 2
 	movl	$0, %eax
-.L395:
-	.loc 1 701 16 is_stmt 1 discriminator 4
-	movq	%rax, -56(%rbp)
-	.loc 1 702 23 discriminator 4
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 702 32 discriminator 4
-	leal	1(%rax), %edx
-	movq	-88(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 704 33 discriminator 4
-	movq	-56(%rbp), %rax
-	movq	-72(%rbp), %rdx
-	movq	%rdx, (%rax)
-	.loc 1 705 39 discriminator 4
-	movq	-88(%rbp), %rax
+.L233:
+	.loc 4 203 254 is_stmt 1 discriminator 4
+	movq	32(%rax), %rax
+	movl	$10, %esi
 	movq	%rax, %rdi
-	call	_ZL4GetTP13ProgramBuffer
-.LEHE19:
-	.loc 1 705 33 discriminator 1
-	movq	-56(%rbp), %rdx
-	movq	%rax, 8(%rdx)
-	.loc 1 707 17 discriminator 1
-	movq	-56(%rbp), %rax
-	movq	%rax, -72(%rbp)
-.L391:
-.LBE12:
-	.loc 1 698 31
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 698 58
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 698 68
-	movl	8(%rax), %eax
-	.loc 1 698 87
-	cmpl	%eax, %edx
-	jge	.L396
-	.loc 1 698 104 discriminator 1
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 698 114 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 698 140 discriminator 1
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 698 124 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 698 87 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L397
-.L396:
-	.loc 1 698 87 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L397:
-	.loc 1 698 353 is_stmt 1 discriminator 4
-	testq	%rax, %rax
-	je	.L398
-	.loc 1 698 184 discriminator 5
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 698 211 discriminator 5
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 698 221 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 698 240 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L399
-	.loc 1 698 257 discriminator 6
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 698 267 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 698 293 discriminator 6
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 698 277 discriminator 6
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 698 240 discriminator 6
-	addq	%rcx, %rax
-	jmp	.L400
-.L399:
-	.loc 1 698 240 is_stmt 0 discriminator 7
-	movl	$0, %eax
-.L400:
-	.loc 1 698 317 is_stmt 1 discriminator 9
-	movl	16(%rax), %eax
-	.loc 1 698 336 discriminator 9
-	cmpl	$5, %eax
-	jne	.L398
-	.loc 1 698 373 discriminator 10
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 698 400 discriminator 10
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 698 410 discriminator 10
-	movl	8(%rax), %eax
-	.loc 1 698 429 discriminator 10
-	cmpl	%eax, %edx
-	jge	.L401
-	.loc 1 698 446 discriminator 11
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 698 456 discriminator 11
-	movq	(%rax), %rcx
-	.loc 1 698 482 discriminator 11
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 698 466 discriminator 11
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 698 429 discriminator 11
-	addq	%rcx, %rax
-	jmp	.L402
-.L401:
-	.loc 1 698 429 is_stmt 0 discriminator 12
-	movl	$0, %eax
-.L402:
-	.loc 1 698 512 is_stmt 1 discriminator 14
-	movzbl	24(%rax), %eax
-	.loc 1 698 353 discriminator 14
-	cmpb	$43, %al
-	je	.L403
-	.loc 1 698 549 discriminator 15
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 698 576 discriminator 15
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 698 586 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 698 605 discriminator 15
-	cmpl	%eax, %edx
-	jge	.L404
-	.loc 1 698 622 discriminator 16
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 698 632 discriminator 16
-	movq	(%rax), %rcx
-	.loc 1 698 658 discriminator 16
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 698 642 discriminator 16
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 698 605 discriminator 16
-	addq	%rcx, %rax
-	jmp	.L405
-.L404:
-	.loc 1 698 605 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L405:
-	.loc 1 698 688 is_stmt 1 discriminator 19
-	movzbl	24(%rax), %eax
-	.loc 1 698 530 discriminator 19
-	cmpb	$45, %al
-	je	.L403
-.L398:
-	.loc 1 710 12
-	movq	-72(%rbp), %rbx
-.L390:
-	.loc 1 711 5
-	leaq	-48(%rbp), %rax
+	call	_Z6printlPKcc@PLT
+	.loc 4 203 434 discriminator 4
+	leaq	.LC30(%rip), %rax
 	movq	%rax, %rdi
-	call	_ZN14FunctionLoggerD1Ev@PLT
-	movq	%rbx, %rax
-	jmp	.L409
-.L408:
-	endbr64
-	movq	%rax, %rbx
-	leaq	-48(%rbp), %rax
+	call	puts@PLT
+	.loc 4 203 458 discriminator 4
+	movl	$203, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
 	movq	%rax, %rdi
-	call	_ZN14FunctionLoggerD1Ev@PLT
-	movq	%rbx, %rax
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 203 679 discriminator 4
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 203 514 discriminator 4
+	movq	24(%rax), %rdx
+	.loc 4 203 531 discriminator 4
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 203 558 discriminator 4
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 203 568 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 203 514 discriminator 4
+	cmpl	%eax, %ecx
+	jge	.L234
+	.loc 4 203 604 discriminator 5
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 203 614 discriminator 5
+	movq	(%rax), %rsi
+	.loc 4 203 640 discriminator 5
+	movq	-24(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 203 624 discriminator 5
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 203 514 discriminator 5
+	addq	%rsi, %rax
+	jmp	.L235
+.L234:
+	.loc 4 203 514 is_stmt 0 discriminator 6
+	movl	$0, %eax
+.L235:
+	.loc 4 203 514 discriminator 8
+	movq	%rdx, %rsi
 	movq	%rax, %rdi
-.LEHB20:
-	call	_Unwind_Resume@PLT
-.LEHE20:
-.L409:
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 204 35 is_stmt 1 discriminator 8
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 204 51 discriminator 8
+	movl	$204, %ecx
+	leaq	.LC69(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 204 110 discriminator 8
+	movl	$204, %r8d
+	leaq	.LC69(%rip), %rax
+	movq	%rax, %rcx
+	movl	$204, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 204 215 discriminator 8
+	movl	$0, %eax
+.L213:
+	.loc 4 210 5
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE2280:
-	.section	.gcc_except_table
-.LLSDA2280:
-	.byte	0xff
-	.byte	0xff
-	.byte	0x1
-	.uleb128 .LLSDACSE2280-.LLSDACSB2280
-.LLSDACSB2280:
-	.uleb128 .LEHB18-.LFB2280
-	.uleb128 .LEHE18-.LEHB18
-	.uleb128 0
-	.uleb128 0
-	.uleb128 .LEHB19-.LFB2280
-	.uleb128 .LEHE19-.LEHB19
-	.uleb128 .L408-.LFB2280
-	.uleb128 0
-	.uleb128 .LEHB20-.LFB2280
-	.uleb128 .LEHE20-.LEHB20
-	.uleb128 0
-	.uleb128 0
-.LLSDACSE2280:
-	.text
-	.size	_ZL4GetEP13ProgramBuffer, .-_ZL4GetEP13ProgramBuffer
+	.size	_ZL10GetProcessP10ProgramCtx, .-_ZL10GetProcessP10ProgramCtx
 	.section	.rodata
+	.align 8
+.LC72:
+	.string	"int FuncInitialization(ProgramCtx*)"
+.LC73:
+	.string	"FuncInitialization"
+	.align 8
+.LC74:
+	.string	"Wrong token type for function initialization\n"
+	.align 8
 .LC75:
-	.string	"GetT"
+	.string	"Ebat, %s shadows previous declaration\n"
 .LC76:
-	.string	"node"
+	.string	"Missing '%c'\n"
 	.text
-	.type	_ZL4GetTP13ProgramBuffer, @function
-_ZL4GetTP13ProgramBuffer:
+	.type	_ZL18FuncInitializationP10ProgramCtx, @function
+_ZL18FuncInitializationP10ProgramCtx:
 .LFB2281:
-	.loc 1 714 5
+	.loc 4 213 5
 	.cfi_startproc
-	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2281
 	endbr64
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -11057,66 +6235,56 @@ _ZL4GetTP13ProgramBuffer:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	pushq	%rbx
-	subq	$88, %rsp
+	subq	$40, %rsp
 	.cfi_offset 3, -24
-	movq	%rdi, -88(%rbp)
-	.loc 1 715 49
-	leaq	-48(%rbp), %rax
-	leaq	.LC75(%rip), %rdx
-	movl	$1, %esi
-	movq	%rax, %rdi
-.LEHB21:
-	call	_ZN14FunctionLoggerC1EiPKc@PLT
-.LEHE21:
-	.loc 1 716 10
-	cmpq	$0, -88(%rbp)
-	jne	.L411
-.LEHB22:
-	.loc 1 716 51 discriminator 1
+	movq	%rdi, -40(%rbp)
+	.loc 4 214 10
+	cmpq	$0, -40(%rbp)
+	jne	.L237
+	.loc 4 214 51 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 716 57 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 4 214 57 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 716 109 discriminator 3
-	leaq	.LC29(%rip), %rax
+	.loc 4 214 121 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 716 198 discriminator 4
+	.loc 4 214 273 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 716 204 discriminator 4
-	movl	$716, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC75(%rip), %rax
+	.loc 4 214 279 discriminator 1
+	leaq	.LC72(%rip), %r8
+	movl	$214, %ecx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 716 297 discriminator 6
-	movl	$716, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC75(%rip), %rax
+	.loc 4 214 368 discriminator 1
+	leaq	.LC72(%rip), %rax
+	movq	%rax, %rcx
+	movl	$214, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 716 403 discriminator 7
+	.loc 4 214 470 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 716 409 discriminator 7
+	.loc 4 214 476 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -11126,775 +6294,743 @@ _ZL4GetTP13ProgramBuffer:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 716 27 discriminator 9
+	.loc 4 214 27 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 716 33 discriminator 9
-	movl	$716, %ecx
-	leaq	.LC75(%rip), %rax
+	.loc 4 214 33 discriminator 1
+	movl	$214, %ecx
+	leaq	.LC73(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 716 92 discriminator 11
-	leaq	.LC17(%rip), %rax
+	.loc 4 214 92 discriminator 1
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 716 131 discriminator 12
+	.loc 4 214 134 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 716 147 discriminator 12
-	movl	$716, %ecx
-	leaq	.LC75(%rip), %rax
+	.loc 4 214 156 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rbx
+	.loc 4 214 169 discriminator 1
+	movl	$214, %r9d
+	leaq	.LC73(%rip), %r8
+	movl	$214, %ecx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC63(%rip), %rax
 	movq	%rax, %rsi
+	movl	$-1, %edi
 	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 716 206 discriminator 14
-	movl	$716, %r8d
-	leaq	.LC75(%rip), %rax
+	call	_Z6MsgRetiPKcz@PLT
+	movl	%eax, %esi
+	subq	$8, %rsp
+	pushq	$214
+	leaq	.LC73(%rip), %r9
+	movl	$214, %r8d
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rcx
-	movl	$716, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC64(%rip), %rax
+	movq	%rax, %rdx
+	movq	%rbx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
+	addq	$16, %rsp
+	.loc 4 214 354 discriminator 1
+	jmp	.L261
+.L237:
+	.loc 4 216 25
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 216 52
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 216 62
+	movl	8(%rax), %eax
+	.loc 4 216 81
+	cmpl	%eax, %edx
+	jge	.L239
+	.loc 4 216 98 discriminator 1
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 216 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 216 134 discriminator 1
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 216 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 216 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L240
+.L239:
+	.loc 4 216 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L240:
+	.loc 4 216 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 216 5 discriminator 4
+	cmpl	$3, %eax
+	jne	.L241
+	.loc 4 216 199 discriminator 5
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 216 226 discriminator 5
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 216 236 discriminator 5
+	movl	8(%rax), %eax
+	.loc 4 216 255 discriminator 5
+	cmpl	%eax, %edx
+	jge	.L242
+	.loc 4 216 272 discriminator 6
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 216 282 discriminator 6
+	movq	(%rax), %rcx
+	.loc 4 216 308 discriminator 6
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 216 292 discriminator 6
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 216 255 discriminator 6
+	addq	%rcx, %rax
+	jmp	.L243
+.L242:
+	.loc 4 216 255 is_stmt 0 discriminator 7
+	movl	$0, %eax
+.L243:
+	.loc 4 216 338 is_stmt 1 discriminator 9
+	movl	24(%rax), %eax
+	.loc 4 216 180 discriminator 9
+	testl	%eax, %eax
+	je	.L244
+.L241:
+	.loc 4 218 20
+	leaq	.LC25(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 716 311 discriminator 15
-	movl	$0, %ebx
-	jmp	.L412
-.L411:
-	.loc 1 718 27
-	movq	-88(%rbp), %rax
+	call	printf@PLT
+	.loc 4 218 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 218 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 218 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 218 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 218 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 218 177
+	leaq	.LC74(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 218 236
+	leaq	.LC29(%rip), %rax
 	movq	%rax, %rdi
-	call	_ZL8GetPowerP13ProgramBuffer
-	movq	%rax, -64(%rbp)
-	.loc 1 719 43
-	movq	-88(%rbp), %rax
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 218 280
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 218 307
+	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 719 13
-	movq	24(%rax), %rdx
-	movq	-64(%rbp), %rax
-	leaq	.LC76(%rip), %rcx
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
-	.loc 1 721 12
-	movq	-64(%rbp), %rax
-	movq	%rax, -72(%rbp)
-	.loc 1 722 5
-	jmp	.L413
-.L425:
-.LBB13:
-	.loc 1 724 191
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 724 17
-	movq	24(%rax), %rdx
-	.loc 1 724 34
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 724 61
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 724 71
+	.loc 4 218 317
 	movl	8(%rax), %eax
-	.loc 1 724 17
-	cmpl	%eax, %ecx
-	jge	.L414
-	.loc 1 724 107 discriminator 1
-	movq	-88(%rbp), %rax
+	.loc 4 218 336
+	cmpl	%eax, %edx
+	jge	.L245
+	.loc 4 218 353 discriminator 9
+	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 724 117 discriminator 1
+	.loc 4 218 363 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 218 389 discriminator 9
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 218 373 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 218 336 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L246
+.L245:
+	.loc 4 218 336 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L246:
+	.loc 4 218 263 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 218 443 discriminator 12
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 218 467 discriminator 12
+	movl	$218, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 218 688 discriminator 12
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 218 523 discriminator 12
+	movq	24(%rax), %rdx
+	.loc 4 218 540 discriminator 12
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 218 567 discriminator 12
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 218 577 discriminator 12
+	movl	8(%rax), %eax
+	.loc 4 218 523 discriminator 12
+	cmpl	%eax, %ecx
+	jge	.L247
+	.loc 4 218 613 discriminator 16
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 218 623 discriminator 16
 	movq	(%rax), %rsi
-	.loc 1 724 143 discriminator 1
-	movq	-88(%rbp), %rax
+	.loc 4 218 649 discriminator 16
+	movq	-40(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rcx
-	.loc 1 724 127 discriminator 1
+	.loc 4 218 633 discriminator 16
 	movq	%rcx, %rax
 	salq	$2, %rax
 	addq	%rcx, %rax
 	salq	$3, %rax
-	.loc 1 724 17 discriminator 1
+	.loc 4 218 523 discriminator 16
 	addq	%rsi, %rax
-	jmp	.L415
-.L414:
-	.loc 1 724 17 is_stmt 0 discriminator 2
+	jmp	.L248
+.L247:
+	.loc 4 218 523 is_stmt 0 discriminator 17
 	movl	$0, %eax
-.L415:
-	.loc 1 724 17 discriminator 4
-	leaq	.LC74(%rip), %rcx
-	movq	%rcx, %rsi
+.L248:
+	.loc 4 218 523 discriminator 19
+	movq	%rdx, %rsi
 	movq	%rax, %rdi
-	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
-	.loc 1 725 45 is_stmt 1
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 725 72
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 725 82
-	movl	8(%rax), %eax
-	.loc 1 725 101
-	cmpl	%eax, %edx
-	jge	.L416
-	.loc 1 725 118 discriminator 1
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 725 128 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 725 154 discriminator 1
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 725 138 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 725 101 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L417
-.L416:
-	.loc 1 725 101 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L417:
-	.loc 1 725 16 is_stmt 1 discriminator 4
-	movq	%rax, -56(%rbp)
-	.loc 1 726 23 discriminator 4
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 726 32 discriminator 4
-	leal	1(%rax), %edx
-	movq	-88(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 728 33 discriminator 4
-	movq	-56(%rbp), %rax
-	movq	-72(%rbp), %rdx
-	movq	%rdx, (%rax)
-	.loc 1 729 43 discriminator 4
-	movq	-88(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL8GetPowerP13ProgramBuffer
-.LEHE22:
-	.loc 1 729 33 discriminator 1
-	movq	-56(%rbp), %rdx
-	movq	%rax, 8(%rdx)
-	.loc 1 731 17 discriminator 1
-	movq	-56(%rbp), %rax
-	movq	%rax, -72(%rbp)
-.L413:
-.LBE13:
-	.loc 1 722 31
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 722 58
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 722 68
-	movl	8(%rax), %eax
-	.loc 1 722 87
-	cmpl	%eax, %edx
-	jge	.L418
-	.loc 1 722 104 discriminator 1
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 722 114 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 722 140 discriminator 1
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 722 124 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 722 87 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L419
-.L418:
-	.loc 1 722 87 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L419:
-	.loc 1 722 353 is_stmt 1 discriminator 4
-	testq	%rax, %rax
-	je	.L420
-	.loc 1 722 184 discriminator 5
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 722 211 discriminator 5
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 722 221 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 722 240 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L421
-	.loc 1 722 257 discriminator 6
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 722 267 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 722 293 discriminator 6
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 722 277 discriminator 6
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 722 240 discriminator 6
-	addq	%rcx, %rax
-	jmp	.L422
-.L421:
-	.loc 1 722 240 is_stmt 0 discriminator 7
-	movl	$0, %eax
-.L422:
-	.loc 1 722 317 is_stmt 1 discriminator 9
-	movl	16(%rax), %eax
-	.loc 1 722 336 discriminator 9
-	cmpl	$5, %eax
-	jne	.L420
-	.loc 1 722 373 discriminator 10
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 722 400 discriminator 10
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 722 410 discriminator 10
-	movl	8(%rax), %eax
-	.loc 1 722 429 discriminator 10
-	cmpl	%eax, %edx
-	jge	.L423
-	.loc 1 722 446 discriminator 11
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 722 456 discriminator 11
-	movq	(%rax), %rcx
-	.loc 1 722 482 discriminator 11
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 722 466 discriminator 11
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 722 429 discriminator 11
-	addq	%rcx, %rax
-	jmp	.L424
-.L423:
-	.loc 1 722 429 is_stmt 0 discriminator 12
-	movl	$0, %eax
-.L424:
-	.loc 1 722 512 is_stmt 1 discriminator 14
-	movzbl	24(%rax), %eax
-	.loc 1 722 353 discriminator 14
-	cmpb	$42, %al
-	je	.L425
-	.loc 1 722 549 discriminator 15
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 722 576 discriminator 15
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 722 586 discriminator 15
-	movl	8(%rax), %eax
-	.loc 1 722 605 discriminator 15
-	cmpl	%eax, %edx
-	jge	.L426
-	.loc 1 722 622 discriminator 16
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 722 632 discriminator 16
-	movq	(%rax), %rcx
-	.loc 1 722 658 discriminator 16
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 722 642 discriminator 16
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 722 605 discriminator 16
-	addq	%rcx, %rax
-	jmp	.L427
-.L426:
-	.loc 1 722 605 is_stmt 0 discriminator 17
-	movl	$0, %eax
-.L427:
-	.loc 1 722 688 is_stmt 1 discriminator 19
-	movzbl	24(%rax), %eax
-	.loc 1 722 530 discriminator 19
-	cmpb	$47, %al
-	je	.L425
-.L420:
-	.loc 1 734 12
-	movq	-72(%rbp), %rbx
-.L412:
-	.loc 1 735 5
-	leaq	-48(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZN14FunctionLoggerD1Ev@PLT
-	movq	%rbx, %rax
-	jmp	.L431
-.L430:
-	endbr64
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 219 35 is_stmt 1 discriminator 19
+	call	_ZN6Logger11getInstanceEv@PLT
+	.loc 4 219 57 discriminator 19
+	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	leaq	-48(%rbp), %rax
+	.loc 4 219 70 discriminator 19
+	movl	$219, %r9d
+	leaq	.LC73(%rip), %r8
+	movl	$219, %ecx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC63(%rip), %rax
+	movq	%rax, %rsi
+	movl	$-1, %edi
+	movl	$0, %eax
+	call	_Z6MsgRetiPKcz@PLT
+	movl	%eax, %esi
+	subq	$8, %rsp
+	pushq	$219
+	leaq	.LC73(%rip), %r9
+	movl	$219, %r8d
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rcx
+	leaq	.LC64(%rip), %rax
+	movq	%rax, %rdx
+	movq	%rbx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
+	addq	$16, %rsp
+	.loc 4 219 255 discriminator 19
+	jmp	.L261
+.L244:
+	.loc 4 221 19
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 221 28
+	leal	1(%rax), %edx
+	movq	-40(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 223 12
+	movq	$0, -32(%rbp)
+	.loc 4 225 37
+	leaq	-32(%rbp), %rdx
+	movq	-40(%rbp), %rax
+	movq	%rdx, %rsi
 	movq	%rax, %rdi
-	call	_ZN14FunctionLoggerD1Ev@PLT
-	movq	%rbx, %rax
+	call	_ZL13MakeFuncLabelP10ProgramCtxPP5Token
+	movq	%rax, -24(%rbp)
+	.loc 4 226 20
+	movq	-40(%rbp), %rax
+	movq	16(%rax), %rdx
+	movq	-24(%rbp), %rax
+	movl	(%rax), %eax
+	movq	%rdx, %rsi
+	movl	%eax, %edi
+	call	_Z11IsFuncLabeliP9FuncTabel@PLT
+	testq	%rax, %rax
+	setne	%al
+	.loc 4 226 5
+	testb	%al, %al
+	je	.L249
+	.loc 4 228 20
+	leaq	.LC25(%rip), %rax
 	movq	%rax, %rdi
-.LEHB23:
-	call	_Unwind_Resume@PLT
-.LEHE23:
-.L431:
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 228 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 228 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 228 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 228 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 228 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 4 228 237
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 228 247
+	movq	24(%rax), %rdx
+	.loc 4 228 266
+	movq	-24(%rbp), %rax
+	movl	(%rax), %eax
+	cltq
+	.loc 4 228 270
+	salq	$3, %rax
+	addq	%rdx, %rax
+	.loc 4 228 177
+	movq	(%rax), %rax
+	movq	%rax, %rdx
+	leaq	.LC75(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 228 280
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 228 324
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 228 351
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 228 361
+	movl	8(%rax), %eax
+	.loc 4 228 380
+	cmpl	%eax, %edx
+	jge	.L250
+	.loc 4 228 397 discriminator 9
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 228 407 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 228 433 discriminator 9
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 228 417 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 228 380 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L251
+.L250:
+	.loc 4 228 380 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L251:
+	.loc 4 228 307 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 228 487 discriminator 12
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 228 511 discriminator 12
+	movl	$228, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 228 732 discriminator 12
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 228 567 discriminator 12
+	movq	24(%rax), %rdx
+	.loc 4 228 584 discriminator 12
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 228 611 discriminator 12
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 228 621 discriminator 12
+	movl	8(%rax), %eax
+	.loc 4 228 567 discriminator 12
+	cmpl	%eax, %ecx
+	jge	.L252
+	.loc 4 228 657 discriminator 16
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 228 667 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 228 693 discriminator 16
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 228 677 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 228 567 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L253
+.L252:
+	.loc 4 228 567 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L253:
+	.loc 4 228 567 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 229 35 is_stmt 1 discriminator 19
+	call	_ZN6Logger11getInstanceEv@PLT
+	.loc 4 229 57 discriminator 19
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rbx
+	.loc 4 229 70 discriminator 19
+	movl	$229, %r9d
+	leaq	.LC73(%rip), %r8
+	movl	$229, %ecx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC63(%rip), %rax
+	movq	%rax, %rsi
+	movl	$-1, %edi
+	movl	$0, %eax
+	call	_Z6MsgRetiPKcz@PLT
+	movl	%eax, %esi
+	subq	$8, %rsp
+	pushq	$229
+	leaq	.LC73(%rip), %r9
+	movl	$229, %r8d
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rcx
+	leaq	.LC64(%rip), %rax
+	movq	%rax, %rdx
+	movq	%rbx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
+	addq	$16, %rsp
+	.loc 4 229 255 discriminator 19
+	jmp	.L261
+.L249:
+	.loc 4 232 17
+	movq	-40(%rbp), %rax
+	movq	16(%rax), %rdx
+	movq	-24(%rbp), %rax
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z12AddFuncLabelP9FuncLabelP9FuncTabel@PLT
+	.loc 4 234 25
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 234 52
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 234 62
+	movl	8(%rax), %eax
+	.loc 4 234 81
+	cmpl	%eax, %edx
+	jge	.L254
+	.loc 4 234 98 discriminator 1
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 234 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 234 134 discriminator 1
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 234 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 234 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L255
+.L254:
+	.loc 4 234 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L255:
+	.loc 4 234 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 234 5 discriminator 4
+	cmpl	$59, %eax
+	je	.L256
+	.loc 4 236 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 236 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 236 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 236 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 236 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 236 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 4 236 177
+	movl	$59, %edx
+	leaq	.LC76(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 236 222
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 236 266
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 236 293
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 236 303
+	movl	8(%rax), %eax
+	.loc 4 236 322
+	cmpl	%eax, %edx
+	jge	.L257
+	.loc 4 236 339 discriminator 9
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 236 349 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 236 375 discriminator 9
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 236 359 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 236 322 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L258
+.L257:
+	.loc 4 236 322 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L258:
+	.loc 4 236 249 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 236 429 discriminator 12
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 236 453 discriminator 12
+	movl	$236, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 236 674 discriminator 12
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 236 509 discriminator 12
+	movq	24(%rax), %rdx
+	.loc 4 236 526 discriminator 12
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 236 553 discriminator 12
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 236 563 discriminator 12
+	movl	8(%rax), %eax
+	.loc 4 236 509 discriminator 12
+	cmpl	%eax, %ecx
+	jge	.L259
+	.loc 4 236 599 discriminator 16
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 236 609 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 236 635 discriminator 16
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 236 619 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 236 509 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L260
+.L259:
+	.loc 4 236 509 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L260:
+	.loc 4 236 509 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 237 35 is_stmt 1 discriminator 19
+	call	_ZN6Logger11getInstanceEv@PLT
+	.loc 4 237 57 discriminator 19
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rbx
+	.loc 4 237 70 discriminator 19
+	movl	$237, %r9d
+	leaq	.LC73(%rip), %r8
+	movl	$237, %ecx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC63(%rip), %rax
+	movq	%rax, %rsi
+	movl	$-1, %edi
+	movl	$0, %eax
+	call	_Z6MsgRetiPKcz@PLT
+	movl	%eax, %esi
+	subq	$8, %rsp
+	pushq	$237
+	leaq	.LC73(%rip), %r9
+	movl	$237, %r8d
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rcx
+	leaq	.LC64(%rip), %rax
+	movq	%rax, %rdx
+	movq	%rbx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
+	addq	$16, %rsp
+	.loc 4 237 255 discriminator 19
+	jmp	.L261
+.L256:
+	.loc 4 239 19
+	movq	-40(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 239 28
+	leal	1(%rax), %edx
+	movq	-40(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 241 12
+	movl	$0, %eax
+.L261:
+	.loc 4 242 5 discriminator 1
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE2281:
-	.section	.gcc_except_table
-.LLSDA2281:
-	.byte	0xff
-	.byte	0xff
-	.byte	0x1
-	.uleb128 .LLSDACSE2281-.LLSDACSB2281
-.LLSDACSB2281:
-	.uleb128 .LEHB21-.LFB2281
-	.uleb128 .LEHE21-.LEHB21
-	.uleb128 0
-	.uleb128 0
-	.uleb128 .LEHB22-.LFB2281
-	.uleb128 .LEHE22-.LEHB22
-	.uleb128 .L430-.LFB2281
-	.uleb128 0
-	.uleb128 .LEHB23-.LFB2281
-	.uleb128 .LEHE23-.LEHB23
-	.uleb128 0
-	.uleb128 0
-.LLSDACSE2281:
-	.text
-	.size	_ZL4GetTP13ProgramBuffer, .-_ZL4GetTP13ProgramBuffer
+	.size	_ZL18FuncInitializationP10ProgramCtx, .-_ZL18FuncInitializationP10ProgramCtx
 	.section	.rodata
+	.align 8
 .LC77:
-	.string	"GetPower"
-	.text
-	.type	_ZL8GetPowerP13ProgramBuffer, @function
-_ZL8GetPowerP13ProgramBuffer:
-.LFB2282:
-	.loc 1 738 5
-	.cfi_startproc
-	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2282
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	pushq	%rbx
-	subq	$88, %rsp
-	.cfi_offset 3, -24
-	movq	%rdi, -88(%rbp)
-	.loc 1 739 49
-	leaq	-48(%rbp), %rax
-	leaq	.LC77(%rip), %rdx
-	movl	$1, %esi
-	movq	%rax, %rdi
-.LEHB24:
-	call	_ZN14FunctionLoggerC1EiPKc@PLT
-.LEHE24:
-	.loc 1 740 10
-	cmpq	$0, -88(%rbp)
-	jne	.L433
-.LEHB25:
-	.loc 1 740 51 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rcx
-	.loc 1 740 57 discriminator 1
-	leaq	.LC29(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rcx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 740 109 discriminator 3
-	leaq	.LC29(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 740 198 discriminator 4
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 740 204 discriminator 4
-	movl	$740, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC77(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC14(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 740 297 discriminator 6
-	movl	$740, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC77(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC14(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 740 403 discriminator 7
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rbx
-	.loc 1 740 409 discriminator 7
-	movl	$14, %edi
-	call	strerror@PLT
-	movq	%rax, %rcx
-	movl	$14, %edx
-	leaq	.LC15(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rbx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 740 27 discriminator 9
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 740 33 discriminator 9
-	movl	$740, %ecx
-	leaq	.LC77(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 740 92 discriminator 11
-	leaq	.LC17(%rip), %rax
-	movq	%rax, %rdi
-	call	system@PLT
-	.loc 1 740 131 discriminator 12
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 740 147 discriminator 12
-	movl	$740, %ecx
-	leaq	.LC77(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 740 206 discriminator 14
-	movl	$740, %r8d
-	leaq	.LC77(%rip), %rax
-	movq	%rax, %rcx
-	movl	$740, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 740 311 discriminator 15
-	movl	$0, %ebx
-	jmp	.L434
-.L433:
-	.loc 1 742 23
-	movq	-88(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL4GetPP13ProgramBuffer
-	movq	%rax, -64(%rbp)
-	.loc 1 744 12
-	movq	-64(%rbp), %rax
-	movq	%rax, -72(%rbp)
-	.loc 1 745 5
-	jmp	.L435
-.L447:
-.LBB14:
-	.loc 1 747 191
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 747 17
-	movq	24(%rax), %rdx
-	.loc 1 747 34
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 747 61
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 747 71
-	movl	8(%rax), %eax
-	.loc 1 747 17
-	cmpl	%eax, %ecx
-	jge	.L436
-	.loc 1 747 107 discriminator 1
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 747 117 discriminator 1
-	movq	(%rax), %rsi
-	.loc 1 747 143 discriminator 1
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 747 127 discriminator 1
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 747 17 discriminator 1
-	addq	%rsi, %rax
-	jmp	.L437
-.L436:
-	.loc 1 747 17 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L437:
-	.loc 1 747 17 discriminator 4
-	leaq	.LC74(%rip), %rcx
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
-	.loc 1 748 45 is_stmt 1
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 748 72
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 748 82
-	movl	8(%rax), %eax
-	.loc 1 748 101
-	cmpl	%eax, %edx
-	jge	.L438
-	.loc 1 748 118 discriminator 1
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 748 128 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 748 154 discriminator 1
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 748 138 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 748 101 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L439
-.L438:
-	.loc 1 748 101 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L439:
-	.loc 1 748 16 is_stmt 1 discriminator 4
-	movq	%rax, -56(%rbp)
-	.loc 1 749 23 discriminator 4
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 749 32 discriminator 4
-	leal	1(%rax), %edx
-	movq	-88(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 751 33 discriminator 4
-	movq	-56(%rbp), %rax
-	movq	-72(%rbp), %rdx
-	movq	%rdx, (%rax)
-	.loc 1 752 39 discriminator 4
-	movq	-88(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL4GetPP13ProgramBuffer
-.LEHE25:
-	.loc 1 752 33 discriminator 1
-	movq	-56(%rbp), %rdx
-	movq	%rax, 8(%rdx)
-	.loc 1 754 17 discriminator 1
-	movq	-56(%rbp), %rax
-	movq	%rax, -72(%rbp)
-.L435:
-.LBE14:
-	.loc 1 745 31
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 745 58
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 745 68
-	movl	8(%rax), %eax
-	.loc 1 745 87
-	cmpl	%eax, %edx
-	jge	.L440
-	.loc 1 745 104 discriminator 1
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 745 114 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 745 140 discriminator 1
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 745 124 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 745 87 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L441
-.L440:
-	.loc 1 745 87 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L441:
-	.loc 1 745 353 is_stmt 1 discriminator 4
-	testq	%rax, %rax
-	je	.L442
-	.loc 1 745 184 discriminator 5
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 745 211 discriminator 5
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 745 221 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 745 240 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L443
-	.loc 1 745 257 discriminator 6
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 745 267 discriminator 6
-	movq	(%rax), %rcx
-	.loc 1 745 293 discriminator 6
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 745 277 discriminator 6
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 745 240 discriminator 6
-	addq	%rcx, %rax
-	jmp	.L444
-.L443:
-	.loc 1 745 240 is_stmt 0 discriminator 7
-	movl	$0, %eax
-.L444:
-	.loc 1 745 317 is_stmt 1 discriminator 9
-	movl	16(%rax), %eax
-	.loc 1 745 336 discriminator 9
-	cmpl	$5, %eax
-	jne	.L442
-	.loc 1 745 372 discriminator 10
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 745 399 discriminator 10
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 745 409 discriminator 10
-	movl	8(%rax), %eax
-	.loc 1 745 428 discriminator 10
-	cmpl	%eax, %edx
-	jge	.L445
-	.loc 1 745 445 discriminator 11
-	movq	-88(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 745 455 discriminator 11
-	movq	(%rax), %rcx
-	.loc 1 745 481 discriminator 11
-	movq	-88(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 745 465 discriminator 11
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 745 428 discriminator 11
-	addq	%rcx, %rax
-	jmp	.L446
-.L445:
-	.loc 1 745 428 is_stmt 0 discriminator 12
-	movl	$0, %eax
-.L446:
-	.loc 1 745 511 is_stmt 1 discriminator 14
-	movzbl	24(%rax), %eax
-	.loc 1 745 353 discriminator 14
-	cmpb	$94, %al
-	je	.L447
-.L442:
-	.loc 1 757 12
-	movq	-72(%rbp), %rbx
-.L434:
-	.loc 1 758 5
-	leaq	-48(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZN14FunctionLoggerD1Ev@PLT
-	movq	%rbx, %rax
-	jmp	.L451
-.L450:
-	endbr64
-	movq	%rax, %rbx
-	leaq	-48(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZN14FunctionLoggerD1Ev@PLT
-	movq	%rbx, %rax
-	movq	%rax, %rdi
-.LEHB26:
-	call	_Unwind_Resume@PLT
-.LEHE26:
-.L451:
-	movq	-8(%rbp), %rbx
-	leave
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2282:
-	.section	.gcc_except_table
-.LLSDA2282:
-	.byte	0xff
-	.byte	0xff
-	.byte	0x1
-	.uleb128 .LLSDACSE2282-.LLSDACSB2282
-.LLSDACSB2282:
-	.uleb128 .LEHB24-.LFB2282
-	.uleb128 .LEHE24-.LEHB24
-	.uleb128 0
-	.uleb128 0
-	.uleb128 .LEHB25-.LFB2282
-	.uleb128 .LEHE25-.LEHB25
-	.uleb128 .L450-.LFB2282
-	.uleb128 0
-	.uleb128 .LEHB26-.LFB2282
-	.uleb128 .LEHE26-.LEHB26
-	.uleb128 0
-	.uleb128 0
-.LLSDACSE2282:
-	.text
-	.size	_ZL8GetPowerP13ProgramBuffer, .-_ZL8GetPowerP13ProgramBuffer
-	.section	.rodata
+	.string	"Token* VarInitialization(ProgramCtx*)"
 .LC78:
-	.string	"GetP"
+	.string	"VarInitialization"
+	.align 8
+.LC79:
+	.string	"Wrong token type for variable initialization\n"
+.LC80:
+	.string	"not a name\n"
+.LC81:
+	.string	"Change to  AddVarLabel\n"
+	.align 8
+.LC82:
+	.string	"\033[96m#TODO Check this place to improve it (%s:%d)\n%s\033[0m"
+	.align 8
+.LC83:
+	.string	"#TODO Check this place to improve it (%s:%d)\n%s"
+	.align 8
+.LC84:
+	.string	"\033[95mWarning: unitializad variable \033[96m'%s'\n\033[0m"
+.LC85:
+	.string	"Must be assigment\n"
+.LC86:
+	.string	"Missing ';'\n"
 	.text
-	.type	_ZL4GetPP13ProgramBuffer, @function
-_ZL4GetPP13ProgramBuffer:
-.LFB2283:
-	.loc 1 761 5
+	.type	_ZL17VarInitializationP10ProgramCtx, @function
+_ZL17VarInitializationP10ProgramCtx:
+.LFB2282:
+	.loc 4 245 5
 	.cfi_startproc
-	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2283
 	endbr64
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -11905,63 +7041,53 @@ _ZL4GetPP13ProgramBuffer:
 	subq	$72, %rsp
 	.cfi_offset 3, -24
 	movq	%rdi, -72(%rbp)
-	.loc 1 762 49
-	leaq	-48(%rbp), %rax
-	leaq	.LC78(%rip), %rdx
-	movl	$1, %esi
-	movq	%rax, %rdi
-.LEHB27:
-	call	_ZN14FunctionLoggerC1EiPKc@PLT
-.LEHE27:
-	.loc 1 763 10
+	.loc 4 246 10
 	cmpq	$0, -72(%rbp)
-	jne	.L453
-.LEHB28:
-	.loc 1 763 51 discriminator 1
+	jne	.L263
+	.loc 4 246 51 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 763 57 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 4 246 57 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 763 109 discriminator 3
-	leaq	.LC29(%rip), %rax
+	.loc 4 246 121 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 763 198 discriminator 4
+	.loc 4 246 273 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 763 204 discriminator 4
-	movl	$763, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC78(%rip), %rax
+	.loc 4 246 279 discriminator 1
+	leaq	.LC77(%rip), %r8
+	movl	$246, %ecx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 763 297 discriminator 6
-	movl	$763, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC78(%rip), %rax
+	.loc 4 246 368 discriminator 1
+	leaq	.LC77(%rip), %rax
+	movq	%rax, %rcx
+	movl	$246, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 763 403 discriminator 7
+	.loc 4 246 470 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 763 409 discriminator 7
+	.loc 4 246 476 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -11971,320 +7097,2903 @@ _ZL4GetPP13ProgramBuffer:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 763 27 discriminator 9
+	.loc 4 246 27 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 763 33 discriminator 9
-	movl	$763, %ecx
+	.loc 4 246 33 discriminator 1
+	movl	$246, %ecx
 	leaq	.LC78(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 763 92 discriminator 11
-	leaq	.LC17(%rip), %rax
+	.loc 4 246 92 discriminator 1
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 763 131 discriminator 12
+	.loc 4 246 134 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 763 147 discriminator 12
-	movl	$763, %ecx
+	.loc 4 246 150 discriminator 1
+	movl	$246, %ecx
 	leaq	.LC78(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 763 206 discriminator 14
-	movl	$763, %r8d
+	.loc 4 246 209 discriminator 1
+	movl	$246, %r8d
 	leaq	.LC78(%rip), %rax
 	movq	%rax, %rcx
-	movl	$763, %edx
-	leaq	.LC13(%rip), %rax
+	movl	$246, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 763 311 discriminator 15
-	movl	$0, %ebx
-	jmp	.L454
-.L453:
-.LBB15:
-	.loc 1 765 25
+	.loc 4 246 314 discriminator 1
+	movl	$0, %eax
+	jmp	.L264
+.L263:
+	.loc 4 248 25
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 765 52
+	.loc 4 248 52
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 765 62
+	.loc 4 248 62
 	movl	8(%rax), %eax
-	.loc 1 765 81
+	.loc 4 248 81
 	cmpl	%eax, %edx
-	jge	.L455
-	.loc 1 765 98 discriminator 1
+	jge	.L265
+	.loc 4 248 98 discriminator 1
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 765 108 discriminator 1
+	.loc 4 248 108 discriminator 1
 	movq	(%rax), %rcx
-	.loc 1 765 134 discriminator 1
+	.loc 4 248 134 discriminator 1
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 765 118 discriminator 1
+	.loc 4 248 118 discriminator 1
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 765 81 discriminator 1
+	.loc 4 248 81 discriminator 1
 	addq	%rcx, %rax
-	jmp	.L456
-.L455:
-	.loc 1 765 81 is_stmt 0 discriminator 2
+	jmp	.L266
+.L265:
+	.loc 4 248 81 is_stmt 0 discriminator 2
 	movl	$0, %eax
-.L456:
-	.loc 1 765 158 is_stmt 1 discriminator 4
+.L266:
+	.loc 4 248 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
-	.loc 1 765 5 discriminator 4
-	cmpl	$40, %eax
-	jne	.L457
-.LBB16:
-	.loc 1 767 23
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 767 32
-	leal	1(%rax), %edx
-	movq	-72(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 769 33
-	movq	-72(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZL4GetEP13ProgramBuffer
-	movq	%rax, -56(%rbp)
-	.loc 1 771 29
+	.loc 4 248 5 discriminator 4
+	cmpl	$3, %eax
+	jne	.L267
+	.loc 4 248 199 discriminator 5
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 771 56
+	.loc 4 248 226 discriminator 5
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 771 66
+	.loc 4 248 236 discriminator 5
 	movl	8(%rax), %eax
-	.loc 1 771 85
+	.loc 4 248 255 discriminator 5
 	cmpl	%eax, %edx
-	jge	.L458
-	.loc 1 771 102 discriminator 1
+	jge	.L268
+	.loc 4 248 272 discriminator 6
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 771 112 discriminator 1
+	.loc 4 248 282 discriminator 6
 	movq	(%rax), %rcx
-	.loc 1 771 138 discriminator 1
+	.loc 4 248 308 discriminator 6
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 771 122 discriminator 1
+	.loc 4 248 292 discriminator 6
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 771 85 discriminator 1
+	.loc 4 248 255 discriminator 6
 	addq	%rcx, %rax
-	jmp	.L459
-.L458:
-	.loc 1 771 85 is_stmt 0 discriminator 2
+	jmp	.L269
+.L268:
+	.loc 4 248 255 is_stmt 0 discriminator 7
 	movl	$0, %eax
-.L459:
-	.loc 1 771 168 is_stmt 1 discriminator 4
-	movzbl	24(%rax), %eax
-	.loc 1 771 9 discriminator 4
-	cmpb	$41, %al
-	je	.L460
-	.loc 1 773 24
-	leaq	.LC22(%rip), %rax
+.L269:
+	.loc 4 248 338 is_stmt 1 discriminator 9
+	movl	24(%rax), %eax
+	.loc 4 248 180 discriminator 9
+	cmpl	$1, %eax
+	je	.L270
+.L267:
+	.loc 4 250 20
+	leaq	.LC25(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 773 85 discriminator 1
+	.loc 4 250 81
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
-	.loc 1 773 91 discriminator 1
-	leaq	.LC23(%rip), %rax
+	.loc 4 250 87
+	leaq	.LC26(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 773 131 discriminator 3
+	.loc 4 250 127
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
-	.loc 1 773 137 discriminator 3
-	leaq	.LC24(%rip), %rax
+	.loc 4 250 133
+	leaq	.LC27(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 773 163 discriminator 5
+	.loc 4 250 159
 	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rcx
-	.loc 1 773 181 discriminator 5
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movl	%eax, %edx
-	leaq	.LC55(%rip), %rax
+	movq	%rax, %rdx
+	.loc 4 250 177
+	leaq	.LC79(%rip), %rax
 	movq	%rax, %rsi
-	movq	%rcx, %rdi
+	movq	%rdx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 773 264 discriminator 7
-	leaq	.LC26(%rip), %rax
+	.loc 4 250 236
+	leaq	.LC29(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 773 308 discriminator 8
+	.loc 4 250 280
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 773 335 discriminator 8
+	.loc 4 250 307
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 773 345 discriminator 8
+	.loc 4 250 317
 	movl	8(%rax), %eax
-	.loc 1 773 364 discriminator 8
+	.loc 4 250 336
 	cmpl	%eax, %edx
-	jge	.L461
-	.loc 1 773 381 discriminator 9
+	jge	.L271
+	.loc 4 250 353 discriminator 1
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 773 391 discriminator 9
+	.loc 4 250 363 discriminator 1
 	movq	(%rax), %rcx
-	.loc 1 773 417 discriminator 9
+	.loc 4 250 389 discriminator 1
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 773 401 discriminator 9
+	.loc 4 250 373 discriminator 1
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 773 364 discriminator 9
+	.loc 4 250 336 discriminator 1
 	addq	%rcx, %rax
-	jmp	.L462
-.L461:
-	.loc 1 773 364 is_stmt 0 discriminator 10
+	jmp	.L272
+.L271:
+	.loc 4 250 336 is_stmt 0 discriminator 2
 	movl	$0, %eax
-.L462:
-	.loc 1 773 291 is_stmt 1 discriminator 12
+.L272:
+	.loc 4 250 263 is_stmt 1 discriminator 4
 	movq	32(%rax), %rax
 	movl	$10, %esi
 	movq	%rax, %rdi
 	call	_Z6printlPKcc@PLT
-	.loc 1 773 471 discriminator 13
-	leaq	.LC27(%rip), %rax
+	.loc 4 250 443 discriminator 4
+	leaq	.LC30(%rip), %rax
 	movq	%rax, %rdi
 	call	puts@PLT
-	.loc 1 773 495 discriminator 14
-	movl	$773, %edx
-	leaq	.LC13(%rip), %rax
+	.loc 4 250 467 discriminator 4
+	movl	$250, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
+	leaq	.LC31(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 773 716 discriminator 15
+	.loc 4 250 688 discriminator 4
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 773 551 discriminator 15
+	.loc 4 250 523 discriminator 4
 	movq	24(%rax), %rdx
-	.loc 1 773 568 discriminator 15
+	.loc 4 250 540 discriminator 4
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %ecx
-	.loc 1 773 595 discriminator 15
+	.loc 4 250 567 discriminator 4
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 773 605 discriminator 15
+	.loc 4 250 577 discriminator 4
 	movl	8(%rax), %eax
-	.loc 1 773 551 discriminator 15
+	.loc 4 250 523 discriminator 4
 	cmpl	%eax, %ecx
-	jge	.L463
-	.loc 1 773 641 discriminator 16
+	jge	.L273
+	.loc 4 250 613 discriminator 5
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 773 651 discriminator 16
+	.loc 4 250 623 discriminator 5
 	movq	(%rax), %rsi
-	.loc 1 773 677 discriminator 16
+	.loc 4 250 649 discriminator 5
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rcx
-	.loc 1 773 661 discriminator 16
+	.loc 4 250 633 discriminator 5
 	movq	%rcx, %rax
 	salq	$2, %rax
 	addq	%rcx, %rax
 	salq	$3, %rax
-	.loc 1 773 551 discriminator 16
+	.loc 4 250 523 discriminator 5
 	addq	%rsi, %rax
-	jmp	.L464
-.L463:
-	.loc 1 773 551 is_stmt 0 discriminator 17
+	jmp	.L274
+.L273:
+	.loc 4 250 523 is_stmt 0 discriminator 6
 	movl	$0, %eax
-.L464:
-	.loc 1 773 551 discriminator 19
+.L274:
+	.loc 4 250 523 discriminator 8
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 774 39 is_stmt 1
+	.loc 4 251 35 is_stmt 1 discriminator 8
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 774 55
-	movl	$774, %ecx
+	.loc 4 251 51 discriminator 8
+	movl	$251, %ecx
 	leaq	.LC78(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 774 114 discriminator 2
-	movl	$774, %r8d
+	.loc 4 251 110 discriminator 8
+	movl	$251, %r8d
 	leaq	.LC78(%rip), %rax
 	movq	%rax, %rcx
-	movl	$774, %edx
-	leaq	.LC13(%rip), %rax
+	movl	$251, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 774 219 discriminator 3
-	movl	$0, %ebx
-	jmp	.L454
-.L460:
-	.loc 1 777 23
+	.loc 4 251 215 discriminator 8
+	movl	$0, %eax
+	jmp	.L264
+.L270:
+	.loc 4 254 44
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 254 71
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 254 81
+	movl	8(%rax), %eax
+	.loc 4 254 100
+	cmpl	%eax, %edx
+	jge	.L275
+	.loc 4 254 117 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 254 127 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 254 153 discriminator 1
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
-	.loc 1 777 32
+	movslq	%eax, %rdx
+	.loc 4 254 137 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 254 100 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L276
+.L275:
+	.loc 4 254 100 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L276:
+	.loc 4 254 12 is_stmt 1 discriminator 4
+	movq	%rax, -56(%rbp)
+	.loc 4 255 19 discriminator 4
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 255 28 discriminator 4
 	leal	1(%rax), %edx
 	movq	-72(%rbp), %rax
 	movl	%edx, 8(%rax)
-	.loc 1 779 16
-	movq	-56(%rbp), %rbx
-	jmp	.L454
-.L457:
-.LBE16:
-.LBE15:
-	.loc 1 782 16
+	.loc 4 257 25 discriminator 4
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 257 52 discriminator 4
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 257 62 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 257 81 discriminator 4
+	cmpl	%eax, %edx
+	jge	.L277
+	.loc 4 257 98 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 257 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 257 134 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 257 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 257 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L278
+.L277:
+	.loc 4 257 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L278:
+	.loc 4 257 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 257 5 discriminator 4
+	cmpl	$6, %eax
+	je	.L279
+	.loc 4 259 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 259 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 259 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 259 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 259 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 259 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 259 177
+	leaq	.LC80(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 259 202
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 259 246
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 259 273
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 259 283
+	movl	8(%rax), %eax
+	.loc 4 259 302
+	cmpl	%eax, %edx
+	jge	.L280
+	.loc 4 259 319 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 259 329 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 259 355 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 259 339 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 259 302 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L281
+.L280:
+	.loc 4 259 302 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L281:
+	.loc 4 259 229 is_stmt 1 discriminator 4
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 259 409 discriminator 4
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 259 433 discriminator 4
+	movl	$259, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 259 654 discriminator 4
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 259 489 discriminator 4
+	movq	24(%rax), %rdx
+	.loc 4 259 506 discriminator 4
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 259 533 discriminator 4
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 259 543 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 259 489 discriminator 4
+	cmpl	%eax, %ecx
+	jge	.L282
+	.loc 4 259 579 discriminator 5
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 259 589 discriminator 5
+	movq	(%rax), %rsi
+	.loc 4 259 615 discriminator 5
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 259 599 discriminator 5
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 259 489 discriminator 5
+	addq	%rsi, %rax
+	jmp	.L283
+.L282:
+	.loc 4 259 489 is_stmt 0 discriminator 6
+	movl	$0, %eax
+.L283:
+	.loc 4 259 489 discriminator 8
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 260 35 is_stmt 1 discriminator 8
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 260 51 discriminator 8
+	movl	$260, %ecx
+	leaq	.LC78(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 260 110 discriminator 8
+	movl	$260, %r8d
+	leaq	.LC78(%rip), %rax
+	movq	%rax, %rcx
+	movl	$260, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 260 215 discriminator 8
+	movl	$0, %eax
+	jmp	.L264
+.L279:
+	.loc 4 263 39
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 263 66
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 263 76
+	movl	8(%rax), %eax
+	.loc 4 263 95
+	cmpl	%eax, %edx
+	jge	.L284
+	.loc 4 263 112 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 263 122 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 263 148 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 263 132 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 263 95 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L285
+.L284:
+	.loc 4 263 95 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L285:
+	.loc 4 263 12 is_stmt 1 discriminator 4
+	movq	%rax, -48(%rbp)
+	.loc 4 266 11 discriminator 4
+	leaq	.LC81(%rip), %rax
+	movq	%rax, %rcx
+	movl	$266, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC82(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 266 167 discriminator 4
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 266 173 discriminator 4
+	leaq	.LC81(%rip), %r8
+	movl	$266, %ecx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC83(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 266 308 discriminator 4
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 266 314 discriminator 4
+	leaq	.LC81(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 267 35 discriminator 4
 	movq	-72(%rbp), %rax
 	movq	%rax, %rdi
-	call	_ZL4GetNP13ProgramBuffer
-.LEHE28:
+	call	_ZL12MakeVarLabelP10ProgramCtx
+	movq	%rax, -40(%rbp)
+	.loc 4 269 20 discriminator 4
+	movq	-72(%rbp), %rax
+	movq	24(%rax), %rdx
+	movq	-40(%rbp), %rax
+	movl	(%rax), %eax
+	movq	%rdx, %rsi
+	movl	%eax, %edi
+	call	_ZL11GetVarLabeliP10SuperStack
+	testq	%rax, %rax
+	setne	%al
+	.loc 4 269 5 discriminator 4
+	testb	%al, %al
+	je	.L286
+	.loc 4 271 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 271 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 271 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 271 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 271 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 271 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 4 271 237
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 271 247
+	movq	24(%rax), %rsi
+	.loc 4 271 275
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 271 302
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 271 312
+	movl	8(%rax), %eax
+	.loc 4 271 331
+	cmpl	%eax, %edx
+	jge	.L287
+	.loc 4 271 348 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 271 358 discriminator 1
+	movq	(%rax), %rdi
+	.loc 4 271 384 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 271 368 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 271 331 discriminator 1
+	addq	%rdi, %rax
+	jmp	.L288
+.L287:
+	.loc 4 271 331 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L288:
+	.loc 4 271 414 is_stmt 1 discriminator 4
+	movl	24(%rax), %eax
+	cltq
+	.loc 4 271 423 discriminator 4
+	salq	$3, %rax
+	addq	%rsi, %rax
+	.loc 4 271 177 discriminator 4
+	movq	(%rax), %rax
+	movq	%rax, %rdx
+	leaq	.LC75(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 271 433 discriminator 4
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 271 477 discriminator 4
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 271 504 discriminator 4
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 271 514 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 271 533 discriminator 4
+	cmpl	%eax, %edx
+	jge	.L289
+	.loc 4 271 550 discriminator 5
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 271 560 discriminator 5
+	movq	(%rax), %rcx
+	.loc 4 271 586 discriminator 5
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 271 570 discriminator 5
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 271 533 discriminator 5
+	addq	%rcx, %rax
+	jmp	.L290
+.L289:
+	.loc 4 271 533 is_stmt 0 discriminator 6
+	movl	$0, %eax
+.L290:
+	.loc 4 271 460 is_stmt 1 discriminator 8
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 271 640 discriminator 8
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 271 664 discriminator 8
+	movl	$271, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 271 885 discriminator 8
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 271 720 discriminator 8
+	movq	24(%rax), %rdx
+	.loc 4 271 737 discriminator 8
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 271 764 discriminator 8
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 271 774 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 271 720 discriminator 8
+	cmpl	%eax, %ecx
+	jge	.L291
+	.loc 4 271 810 discriminator 9
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 271 820 discriminator 9
+	movq	(%rax), %rsi
+	.loc 4 271 846 discriminator 9
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 271 830 discriminator 9
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 271 720 discriminator 9
+	addq	%rsi, %rax
+	jmp	.L292
+.L291:
+	.loc 4 271 720 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L292:
+	.loc 4 271 720 discriminator 12
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 273 28 is_stmt 1 discriminator 12
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 273 40 discriminator 12
+	movq	-40(%rbp), %rax
+	movl	$273, %r8d
+	leaq	.LC78(%rip), %rdx
+	movq	%rdx, %rcx
+	leaq	.LC62(%rip), %rdx
+	movq	%rax, %rsi
+	call	_ZN6Logger8FREE_LOGEPvPKcS2_i@PLT
+	.loc 4 274 35 discriminator 12
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 274 51 discriminator 12
+	movl	$274, %ecx
+	leaq	.LC78(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 274 110 discriminator 12
+	movl	$274, %r8d
+	leaq	.LC78(%rip), %rax
+	movq	%rax, %rcx
+	movl	$274, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 274 215 discriminator 12
+	movl	$0, %eax
+	jmp	.L264
+.L286:
+	.loc 4 280 16
+	movq	-72(%rbp), %rax
+	movq	24(%rax), %rax
+	movq	%rax, %rdi
+	call	_Z5SStopP10SuperStack@PLT
+	movq	%rax, %rdx
+	movq	-40(%rbp), %rax
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z11AddVarLabelP8VarLabelP8VarTabel@PLT
+	.loc 4 282 19
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 282 28
+	leal	1(%rax), %edx
+	movq	-72(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 284 20
+	movq	-48(%rbp), %rax
+	movl	$7, 16(%rax)
+	.loc 4 286 32
+	movq	-56(%rbp), %rax
+	movq	-48(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 4 287 32
+	movq	-56(%rbp), %rax
+	movq	$0, 8(%rax)
+.LBB7:
+	.loc 4 289 25
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 289 52
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 289 62
+	movl	8(%rax), %eax
+	.loc 4 289 81
+	cmpl	%eax, %edx
+	jge	.L293
+	.loc 4 289 98 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 289 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 289 134 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 289 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 289 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L294
+.L293:
+	.loc 4 289 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L294:
+	.loc 4 289 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 289 5 discriminator 4
+	cmpl	$59, %eax
+	jne	.L295
+.LBB8:
+	.loc 4 291 107
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 291 117
+	movq	24(%rax), %rdx
+	.loc 4 291 136
+	movq	-40(%rbp), %rax
+	movl	(%rax), %eax
+	cltq
+	.loc 4 291 143
+	salq	$3, %rax
+	addq	%rdx, %rax
+	.loc 4 291 16
+	movq	(%rax), %rax
+	movq	%rax, %rsi
+	leaq	.LC84(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 293 44
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 293 71
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 293 81
+	movl	8(%rax), %eax
+	.loc 4 293 100
+	cmpl	%eax, %edx
+	jge	.L296
+	.loc 4 293 117 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 293 127 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 293 153 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 293 137 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 293 100 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L297
+.L296:
+	.loc 4 293 100 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L297:
+	.loc 4 293 16 is_stmt 1 discriminator 4
+	movq	%rax, -24(%rbp)
+	.loc 4 295 23 discriminator 4
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 295 32 discriminator 4
+	leal	1(%rax), %edx
+	movq	-72(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 297 25 discriminator 4
+	movq	-24(%rbp), %rax
+	movl	$1, 16(%rax)
+	.loc 4 298 31 discriminator 4
+	movq	-24(%rbp), %rax
+	movq	-56(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 4 300 16 discriminator 4
+	movq	-24(%rbp), %rax
+	jmp	.L264
+.L295:
+.LBE8:
+.LBE7:
+	.loc 4 303 25
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 303 52
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 303 62
+	movl	8(%rax), %eax
+	.loc 4 303 81
+	cmpl	%eax, %edx
+	jge	.L298
+	.loc 4 303 98 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 303 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 303 134 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 303 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 303 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L299
+.L298:
+	.loc 4 303 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L299:
+	.loc 4 303 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 303 5 discriminator 4
+	cmpl	$61, %eax
+	je	.L300
+	.loc 4 305 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 305 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 305 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 305 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 305 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 305 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 305 177
+	leaq	.LC85(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 305 209
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 305 253
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 305 280
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 305 290
+	movl	8(%rax), %eax
+	.loc 4 305 309
+	cmpl	%eax, %edx
+	jge	.L301
+	.loc 4 305 326 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 305 336 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 305 362 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 305 346 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 305 309 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L302
+.L301:
+	.loc 4 305 309 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L302:
+	.loc 4 305 236 is_stmt 1 discriminator 4
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 305 416 discriminator 4
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 305 440 discriminator 4
+	movl	$305, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 305 661 discriminator 4
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 305 496 discriminator 4
+	movq	24(%rax), %rdx
+	.loc 4 305 513 discriminator 4
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 305 540 discriminator 4
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 305 550 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 305 496 discriminator 4
+	cmpl	%eax, %ecx
+	jge	.L303
+	.loc 4 305 586 discriminator 5
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 305 596 discriminator 5
+	movq	(%rax), %rsi
+	.loc 4 305 622 discriminator 5
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 305 606 discriminator 5
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 305 496 discriminator 5
+	addq	%rsi, %rax
+	jmp	.L304
+.L303:
+	.loc 4 305 496 is_stmt 0 discriminator 6
+	movl	$0, %eax
+.L304:
+	.loc 4 305 496 discriminator 8
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 306 35 is_stmt 1 discriminator 8
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 306 51 discriminator 8
+	movl	$306, %ecx
+	leaq	.LC78(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 306 110 discriminator 8
+	movl	$306, %r8d
+	leaq	.LC78(%rip), %rax
+	movq	%rax, %rcx
+	movl	$306, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 306 215 discriminator 8
+	movl	$0, %eax
+	jmp	.L264
+.L300:
+	.loc 4 309 19
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 309 28
+	leal	1(%rax), %edx
+	movq	-72(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 311 39
+	movq	-72(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL4GetEP10ProgramCtx
+	.loc 4 311 32
+	movq	-56(%rbp), %rdx
+	movq	%rax, 8(%rdx)
+	.loc 4 313 25
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 313 52
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 313 62
+	movl	8(%rax), %eax
+	.loc 4 313 81
+	cmpl	%eax, %edx
+	jge	.L305
+	.loc 4 313 98 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 313 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 313 134 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 313 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 313 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L306
+.L305:
+	.loc 4 313 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L306:
+	.loc 4 313 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 313 5 discriminator 4
+	cmpl	$59, %eax
+	je	.L307
+	.loc 4 315 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 315 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 315 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 315 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 315 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 315 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 315 177
+	leaq	.LC86(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 315 203
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 315 247
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 315 274
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 315 284
+	movl	8(%rax), %eax
+	.loc 4 315 303
+	cmpl	%eax, %edx
+	jge	.L308
+	.loc 4 315 320 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 315 330 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 315 356 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 315 340 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 315 303 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L309
+.L308:
+	.loc 4 315 303 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L309:
+	.loc 4 315 230 is_stmt 1 discriminator 4
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 315 410 discriminator 4
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 315 434 discriminator 4
+	movl	$315, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 315 655 discriminator 4
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 315 490 discriminator 4
+	movq	24(%rax), %rdx
+	.loc 4 315 507 discriminator 4
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 315 534 discriminator 4
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 315 544 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 315 490 discriminator 4
+	cmpl	%eax, %ecx
+	jge	.L310
+	.loc 4 315 580 discriminator 5
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 315 590 discriminator 5
+	movq	(%rax), %rsi
+	.loc 4 315 616 discriminator 5
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 315 600 discriminator 5
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 315 490 discriminator 5
+	addq	%rsi, %rax
+	jmp	.L311
+.L310:
+	.loc 4 315 490 is_stmt 0 discriminator 6
+	movl	$0, %eax
+.L311:
+	.loc 4 315 490 discriminator 8
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 316 35 is_stmt 1 discriminator 8
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 316 51 discriminator 8
+	movl	$316, %ecx
+	leaq	.LC78(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 316 110 discriminator 8
+	movl	$316, %r8d
+	leaq	.LC78(%rip), %rax
+	movq	%rax, %rcx
+	movl	$316, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 316 215 discriminator 8
+	movl	$0, %eax
+	jmp	.L264
+.L307:
+	.loc 4 319 40
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 319 67
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 319 77
+	movl	8(%rax), %eax
+	.loc 4 319 96
+	cmpl	%eax, %edx
+	jge	.L312
+	.loc 4 319 113 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 319 123 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 319 149 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 319 133 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 319 96 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L313
+.L312:
+	.loc 4 319 96 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L313:
+	.loc 4 319 12 is_stmt 1 discriminator 4
+	movq	%rax, -32(%rbp)
+	.loc 4 320 19 discriminator 4
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 320 28 discriminator 4
+	leal	1(%rax), %edx
+	movq	-72(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 322 25 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	8(%rax), %rax
+	.loc 4 322 5 discriminator 4
+	testq	%rax, %rax
+	jne	.L314
+	.loc 4 323 35
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 323 51
+	movl	$323, %ecx
+	leaq	.LC78(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 323 110
+	movl	$323, %r8d
+	leaq	.LC78(%rip), %rax
+	movq	%rax, %rcx
+	movl	$323, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 323 215
+	movl	$0, %eax
+	jmp	.L264
+.L314:
+	.loc 4 325 21
+	movq	-32(%rbp), %rax
+	movl	$1, 16(%rax)
+	.loc 4 326 27
+	movq	-32(%rbp), %rax
+	movq	-56(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 4 328 12
+	movq	-32(%rbp), %rax
+.L264:
+	.loc 4 329 5
+	movq	-8(%rbp), %rbx
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2282:
+	.size	_ZL17VarInitializationP10ProgramCtx, .-_ZL17VarInitializationP10ProgramCtx
+	.section	.rodata
+.LC87:
+	.string	"GetFunction"
+	.align 8
+.LC88:
+	.string	"Token* GetFunction(ProgramCtx*)"
+	.align 8
+.LC89:
+	.string	"Conflict with prev declaration\n"
+.LC90:
+	.string	"Missing '{' in function body\n"
+.LC91:
+	.string	"%s:%d::CHECK: body is false\n"
+.LC92:
+	.string	"No return in function\n"
+	.align 8
+.LC93:
+	.string	"No return value in novoid function\n"
+.LC94:
+	.string	"Missing '}' in function body\n"
+	.text
+	.type	_ZL11GetFunctionP10ProgramCtx, @function
+_ZL11GetFunctionP10ProgramCtx:
+.LFB2283:
+	.loc 4 333 5
+	.cfi_startproc
+	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
+	.cfi_lsda 0x1b,.LLSDA2283
+	endbr64
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	pushq	%rbx
+	subq	$104, %rsp
+	.cfi_offset 3, -24
+	movq	%rdi, -104(%rbp)
+	.loc 4 334 45
+	leaq	-48(%rbp), %rax
+	leaq	.LC87(%rip), %rdx
+	movl	$2, %esi
+	movq	%rax, %rdi
+.LEHB21:
+	call	_ZN14FunctionLoggerC1EiPKc@PLT
+.LEHE21:
+	.loc 4 335 10
+	cmpq	$0, -104(%rbp)
+	jne	.L316
+.LEHB22:
+	.loc 4 335 51 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 4 335 57 discriminator 1
+	leaq	.LC21(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC10(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 335 121 discriminator 3
+	leaq	.LC21(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC11(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 335 273 discriminator 4
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 335 279 discriminator 4
+	leaq	.LC88(%rip), %r8
+	movl	$335, %ecx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC14(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 335 368 discriminator 6
+	leaq	.LC88(%rip), %rax
+	movq	%rax, %rcx
+	movl	$335, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC14(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 335 470 discriminator 7
+	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 782 28
-	nop
-.L454:
-	.loc 1 783 5
+	.loc 4 335 476 discriminator 7
+	movl	$14, %edi
+	call	strerror@PLT
+	movq	%rax, %rcx
+	movl	$14, %edx
+	leaq	.LC15(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rbx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 335 27 discriminator 9
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 335 33 discriminator 9
+	movl	$335, %ecx
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC17(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 335 92 discriminator 11
+	leaq	.LC18(%rip), %rax
+	movq	%rax, %rdi
+	call	system@PLT
+	.loc 4 335 134 discriminator 12
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 335 150 discriminator 12
+	movl	$335, %ecx
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 335 209 discriminator 14
+	movl	$335, %r8d
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rcx
+	movl	$335, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 335 314 discriminator 15
+	movl	$0, %ebx
+	jmp	.L317
+.L316:
+	.loc 4 338 12
+	movq	$0, -96(%rbp)
+	.loc 4 340 37
+	leaq	-96(%rbp), %rdx
+	movq	-104(%rbp), %rax
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_ZL13MakeFuncLabelP10ProgramCtxPP5Token
+	movq	%rax, -88(%rbp)
+	.loc 4 341 17
+	movq	-104(%rbp), %rax
+	movq	16(%rax), %rdx
+	movq	-88(%rbp), %rax
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z12AddFuncLabelP9FuncLabelP9FuncTabel@PLT
+	.loc 4 343 46
+	movq	-104(%rbp), %rax
+	movq	16(%rax), %rdx
+	movq	-88(%rbp), %rax
+	movl	(%rax), %eax
+	movq	%rdx, %rsi
+	movl	%eax, %edi
+	call	_Z11IsFuncLabeliP9FuncTabel@PLT
+	movq	%rax, -80(%rbp)
+	.loc 4 344 5
+	cmpq	$0, -80(%rbp)
+	je	.L318
+	.loc 4 346 32
+	movq	-80(%rbp), %rdx
+	movq	-88(%rbp), %rax
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z17CompareFuncLabelsP9FuncLabelS0_@PLT
+	.loc 4 346 13
+	testl	%eax, %eax
+	sete	%al
+	.loc 4 346 9
+	testb	%al, %al
+	je	.L318
+	.loc 4 348 24
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 348 85 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 348 91 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 348 131 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 348 137 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 348 163 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 348 181 discriminator 5
+	leaq	.LC89(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 348 226 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 348 270 discriminator 8
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 348 297 discriminator 8
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 348 307 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 348 326 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L319
+	.loc 4 348 343 discriminator 9
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 348 353 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 348 379 discriminator 9
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 348 363 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 348 326 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L320
+.L319:
+	.loc 4 348 326 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L320:
+	.loc 4 348 253 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 348 433 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 348 457 discriminator 14
+	movl	$348, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 348 678 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 348 513 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 348 530 discriminator 15
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 348 557 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 348 567 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 348 513 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L321
+	.loc 4 348 603 discriminator 16
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 348 613 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 348 639 discriminator 16
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 348 623 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 348 513 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L322
+.L321:
+	.loc 4 348 513 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L322:
+	.loc 4 348 513 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 349 39 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 349 55
+	movl	$349, %ecx
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 349 114 discriminator 2
+	movl	$349, %r8d
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rcx
+	movl	$349, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 349 219 discriminator 3
+	movl	$0, %ebx
+	jmp	.L317
+.L318:
+	.loc 4 354 25
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 354 52
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 354 62
+	movl	8(%rax), %eax
+	.loc 4 354 81
+	cmpl	%eax, %edx
+	jge	.L323
+	.loc 4 354 98 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 354 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 354 134 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 354 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 354 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L324
+.L323:
+	.loc 4 354 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L324:
+	.loc 4 354 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 354 5 discriminator 4
+	cmpl	$123, %eax
+	je	.L325
+	.loc 4 356 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 356 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 356 87 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 356 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 356 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 356 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 356 177 discriminator 5
+	leaq	.LC90(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 356 220 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 356 264 discriminator 8
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 356 291 discriminator 8
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 356 301 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 356 320 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L326
+	.loc 4 356 337 discriminator 9
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 356 347 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 356 373 discriminator 9
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 356 357 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 356 320 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L327
+.L326:
+	.loc 4 356 320 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L327:
+	.loc 4 356 247 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 356 427 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 356 451 discriminator 14
+	movl	$356, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 356 672 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 356 507 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 356 524 discriminator 15
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 356 551 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 356 561 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 356 507 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L328
+	.loc 4 356 597 discriminator 16
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 356 607 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 356 633 discriminator 16
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 356 617 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 356 507 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L329
+.L328:
+	.loc 4 356 507 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L329:
+	.loc 4 356 507 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 357 35 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 357 51
+	movl	$357, %ecx
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 357 110 discriminator 2
+	movl	$357, %r8d
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rcx
+	movl	$357, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 357 215 discriminator 3
+	movl	$0, %ebx
+	jmp	.L317
+.L325:
+	.loc 4 360 39
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 360 66
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 360 76
+	movl	8(%rax), %eax
+	.loc 4 360 95
+	cmpl	%eax, %edx
+	jge	.L330
+	.loc 4 360 112 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 360 122 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 360 148 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 360 132 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 360 95 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L331
+.L330:
+	.loc 4 360 95 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L331:
+	.loc 4 360 12 is_stmt 1 discriminator 4
+	movq	%rax, -72(%rbp)
+	.loc 4 361 20 discriminator 4
+	movq	-72(%rbp), %rax
+	movl	$9, 16(%rax)
+	.loc 4 363 19 discriminator 4
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 363 28 discriminator 4
+	leal	1(%rax), %edx
+	movq	-104(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 365 27 discriminator 4
+	movq	-104(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL8GetBlockP10ProgramCtx
+	movq	%rax, -64(%rbp)
+	.loc 4 366 10 discriminator 4
+	cmpq	$0, -64(%rbp)
+	jne	.L332
+	.loc 4 366 42 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 366 48 discriminator 1
+	movl	$366, %ecx
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC91(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 366 131 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 366 147 discriminator 3
+	movl	$366, %ecx
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 366 206 discriminator 5
+	movl	$366, %r8d
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rcx
+	movl	$366, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 366 311 discriminator 6
+	movl	$0, %ebx
+	jmp	.L317
+.L332:
+	.loc 4 368 25
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 368 52
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 368 62
+	movl	8(%rax), %eax
+	.loc 4 368 81
+	cmpl	%eax, %edx
+	jge	.L333
+	.loc 4 368 98 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 368 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 368 134 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 368 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 368 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L334
+.L333:
+	.loc 4 368 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L334:
+	.loc 4 368 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 368 5 discriminator 4
+	cmpl	$2, %eax
+	je	.L335
+	.loc 4 368 197 discriminator 5
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 368 224 discriminator 5
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 368 234 discriminator 5
+	movl	8(%rax), %eax
+	.loc 4 368 253 discriminator 5
+	cmpl	%eax, %edx
+	jge	.L336
+	.loc 4 368 270 discriminator 6
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 368 280 discriminator 6
+	movq	(%rax), %rcx
+	.loc 4 368 306 discriminator 6
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 368 290 discriminator 6
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 368 253 discriminator 6
+	addq	%rcx, %rax
+	jmp	.L337
+.L336:
+	.loc 4 368 253 is_stmt 0 discriminator 7
+	movl	$0, %eax
+.L337:
+	.loc 4 368 336 is_stmt 1 discriminator 9
+	movl	24(%rax), %eax
+	.loc 4 368 178 discriminator 9
+	cmpl	$4, %eax
+	je	.L335
+	.loc 4 370 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 370 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 370 87 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 370 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 370 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 370 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 370 177 discriminator 5
+	leaq	.LC92(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 370 213 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 370 257 discriminator 8
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 370 284 discriminator 8
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 370 294 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 370 313 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L338
+	.loc 4 370 330 discriminator 9
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 370 340 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 370 366 discriminator 9
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 370 350 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 370 313 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L339
+.L338:
+	.loc 4 370 313 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L339:
+	.loc 4 370 240 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 370 420 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 370 444 discriminator 14
+	movl	$370, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 370 665 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 370 500 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 370 517 discriminator 15
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 370 544 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 370 554 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 370 500 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L340
+	.loc 4 370 590 discriminator 16
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 370 600 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 370 626 discriminator 16
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 370 610 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 370 500 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L341
+.L340:
+	.loc 4 370 500 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L341:
+	.loc 4 370 500 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 371 35 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 371 51
+	movl	$371, %ecx
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 371 110 discriminator 2
+	movl	$371, %r8d
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rcx
+	movl	$371, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 371 215 discriminator 3
+	movl	$0, %ebx
+	jmp	.L317
+.L335:
+	.loc 4 374 19
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 374 28
+	leal	1(%rax), %edx
+	movq	-104(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 377 16
+	movq	-88(%rbp), %rax
+	movl	4(%rax), %eax
+	.loc 4 377 5
+	cmpl	$1, %eax
+	je	.L342
+	.loc 4 380 18
+	movq	-104(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL4GetEP10ProgramCtx
+	.loc 4 380 13
+	testq	%rax, %rax
+	sete	%al
+	.loc 4 380 9
+	testb	%al, %al
+	je	.L342
+	.loc 4 382 24
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 382 85 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 382 91 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 382 131 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 382 137 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 382 163 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 382 181 discriminator 5
+	leaq	.LC93(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 382 230 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 382 274 discriminator 8
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 382 301 discriminator 8
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 382 311 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 382 330 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L343
+	.loc 4 382 347 discriminator 9
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 382 357 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 382 383 discriminator 9
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 382 367 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 382 330 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L344
+.L343:
+	.loc 4 382 330 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L344:
+	.loc 4 382 257 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 382 437 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 382 461 discriminator 14
+	movl	$382, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 382 682 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 382 517 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 382 534 discriminator 15
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 382 561 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 382 571 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 382 517 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L345
+	.loc 4 382 607 discriminator 16
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 382 617 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 382 643 discriminator 16
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 382 627 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 382 517 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L346
+.L345:
+	.loc 4 382 517 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L346:
+	.loc 4 382 517 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 383 39 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 383 55
+	movl	$383, %ecx
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 383 114 discriminator 2
+	movl	$383, %r8d
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rcx
+	movl	$383, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 383 219 discriminator 3
+	movl	$0, %ebx
+	jmp	.L317
+.L342:
+	.loc 4 387 25
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 387 52
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 387 62
+	movl	8(%rax), %eax
+	.loc 4 387 81
+	cmpl	%eax, %edx
+	jge	.L347
+	.loc 4 387 98 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 387 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 387 134 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 387 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 387 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L348
+.L347:
+	.loc 4 387 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L348:
+	.loc 4 387 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 387 5 discriminator 4
+	cmpl	$59, %eax
+	je	.L349
+	.loc 4 389 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 389 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 389 87 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 389 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 389 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 389 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 4 389 177 discriminator 5
+	movl	$59, %edx
+	leaq	.LC76(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 389 222 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 389 266 discriminator 8
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 389 293 discriminator 8
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 389 303 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 389 322 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L350
+	.loc 4 389 339 discriminator 9
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 389 349 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 389 375 discriminator 9
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 389 359 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 389 322 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L351
+.L350:
+	.loc 4 389 322 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L351:
+	.loc 4 389 249 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 389 429 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 389 453 discriminator 14
+	movl	$389, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 389 674 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 389 509 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 389 526 discriminator 15
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 389 553 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 389 563 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 389 509 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L352
+	.loc 4 389 599 discriminator 16
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 389 609 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 389 635 discriminator 16
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 389 619 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 389 509 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L353
+.L352:
+	.loc 4 389 509 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L353:
+	.loc 4 389 509 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 390 35 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 390 51
+	movl	$390, %ecx
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 390 110 discriminator 2
+	movl	$390, %r8d
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rcx
+	movl	$390, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 390 215 discriminator 3
+	movl	$0, %ebx
+	jmp	.L317
+.L349:
+	.loc 4 393 19
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 393 28
+	leal	1(%rax), %edx
+	movq	-104(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 395 25
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 395 52
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 395 62
+	movl	8(%rax), %eax
+	.loc 4 395 81
+	cmpl	%eax, %edx
+	jge	.L354
+	.loc 4 395 98 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 395 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 395 134 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 395 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 395 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L355
+.L354:
+	.loc 4 395 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L355:
+	.loc 4 395 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 395 5 discriminator 4
+	cmpl	$125, %eax
+	je	.L356
+	.loc 4 397 19
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 397 80 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 397 86 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 397 126 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 397 132 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 397 158 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 397 176 discriminator 5
+	leaq	.LC94(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 397 219 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 397 263 discriminator 8
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 397 290 discriminator 8
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 397 300 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 397 319 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L357
+	.loc 4 397 336 discriminator 9
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 397 346 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 397 372 discriminator 9
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 397 356 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 397 319 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L358
+.L357:
+	.loc 4 397 319 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L358:
+	.loc 4 397 246 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 397 426 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 397 450 discriminator 14
+	movl	$397, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 397 671 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 397 506 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 397 523 discriminator 15
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 397 550 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 397 560 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 397 506 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L359
+	.loc 4 397 596 discriminator 16
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 397 606 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 397 632 discriminator 16
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 397 616 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 397 506 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L360
+.L359:
+	.loc 4 397 506 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L360:
+	.loc 4 397 506 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 398 34 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 398 50
+	movl	$398, %ecx
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 398 109 discriminator 2
+	movl	$398, %r8d
+	leaq	.LC87(%rip), %rax
+	movq	%rax, %rcx
+	movl	$398, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+.LEHE22:
+	.loc 4 398 214 discriminator 3
+	movl	$0, %ebx
+	jmp	.L317
+.L356:
+	.loc 4 401 40
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 401 67
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 401 77
+	movl	8(%rax), %eax
+	.loc 4 401 96
+	cmpl	%eax, %edx
+	jge	.L361
+	.loc 4 401 113 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 401 123 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 401 149 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 401 133 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 401 96 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L362
+.L361:
+	.loc 4 401 96 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L362:
+	.loc 4 401 12 is_stmt 1 discriminator 4
+	movq	%rax, -56(%rbp)
+	.loc 4 402 19 discriminator 4
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 402 28 discriminator 4
+	leal	1(%rax), %edx
+	movq	-104(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 406 27 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	-72(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 4 408 27 discriminator 4
+	movq	-96(%rbp), %rdx
+	movq	-72(%rbp), %rax
+	movq	%rdx, (%rax)
+	.loc 4 409 27 discriminator 4
+	movq	-72(%rbp), %rax
+	movq	-64(%rbp), %rdx
+	movq	%rdx, 8(%rax)
+	.loc 4 411 24 discriminator 4
+	movq	-88(%rbp), %rax
+	movl	$1, 8(%rax)
+	.loc 4 413 21 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	$1, 16(%rax)
+	.loc 4 414 27 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	-72(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 4 416 12 discriminator 4
+	movq	-56(%rbp), %rbx
+.L317:
+	.loc 4 417 5
 	leaq	-48(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
 	movq	%rbx, %rax
-	jmp	.L468
-.L467:
+	jmp	.L366
+.L365:
 	endbr64
 	movq	%rax, %rbx
 	leaq	-48(%rbp), %rax
@@ -12292,10 +10001,10 @@ _ZL4GetPP13ProgramBuffer:
 	call	_ZN14FunctionLoggerD1Ev@PLT
 	movq	%rbx, %rax
 	movq	%rax, %rdi
-.LEHB29:
+.LEHB23:
 	call	_Unwind_Resume@PLT
-.LEHE29:
-.L468:
+.LEHE23:
+.L366:
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
@@ -12309,34 +10018,33 @@ _ZL4GetPP13ProgramBuffer:
 	.byte	0x1
 	.uleb128 .LLSDACSE2283-.LLSDACSB2283
 .LLSDACSB2283:
-	.uleb128 .LEHB27-.LFB2283
-	.uleb128 .LEHE27-.LEHB27
+	.uleb128 .LEHB21-.LFB2283
+	.uleb128 .LEHE21-.LEHB21
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB28-.LFB2283
-	.uleb128 .LEHE28-.LEHB28
-	.uleb128 .L467-.LFB2283
+	.uleb128 .LEHB22-.LFB2283
+	.uleb128 .LEHE22-.LEHB22
+	.uleb128 .L365-.LFB2283
 	.uleb128 0
-	.uleb128 .LEHB29-.LFB2283
-	.uleb128 .LEHE29-.LEHB29
+	.uleb128 .LEHB23-.LFB2283
+	.uleb128 .LEHE23-.LEHB23
 	.uleb128 0
 	.uleb128 0
 .LLSDACSE2283:
 	.text
-	.size	_ZL4GetPP13ProgramBuffer, .-_ZL4GetPP13ProgramBuffer
+	.size	_ZL11GetFunctionP10ProgramCtx, .-_ZL11GetFunctionP10ProgramCtx
 	.section	.rodata
-.LC79:
-	.string	"GetN"
-	.align 8
-.LC80:
-	.string	"Cringe, this is not variable or constant node =(\n"
-.LC81:
-	.string	"result"
+.LC95:
+	.string	"GetBlock"
+.LC96:
+	.string	"Token* GetBlock(ProgramCtx*)"
+.LC97:
+	.string	"Empty block\n"
 	.text
-	.type	_ZL4GetNP13ProgramBuffer, @function
-_ZL4GetNP13ProgramBuffer:
+	.type	_ZL8GetBlockP10ProgramCtx, @function
+_ZL8GetBlockP10ProgramCtx:
 .LFB2284:
-	.loc 1 786 5
+	.loc 4 420 5
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA2284
@@ -12350,63 +10058,62 @@ _ZL4GetNP13ProgramBuffer:
 	subq	$72, %rsp
 	.cfi_offset 3, -24
 	movq	%rdi, -72(%rbp)
-	.loc 1 787 49
+	.loc 4 421 45
 	leaq	-48(%rbp), %rax
-	leaq	.LC79(%rip), %rdx
-	movl	$1, %esi
+	leaq	.LC95(%rip), %rdx
+	movl	$2, %esi
 	movq	%rax, %rdi
-.LEHB30:
+.LEHB24:
 	call	_ZN14FunctionLoggerC1EiPKc@PLT
-.LEHE30:
-	.loc 1 788 10
+.LEHE24:
+	.loc 4 422 10
 	cmpq	$0, -72(%rbp)
-	jne	.L470
-.LEHB31:
-	.loc 1 788 51 discriminator 1
+	jne	.L368
+.LEHB25:
+	.loc 4 422 51 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 788 57 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 4 422 57 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 788 109 discriminator 3
-	leaq	.LC29(%rip), %rax
+	.loc 4 422 121 discriminator 3
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 788 198 discriminator 4
+	.loc 4 422 273 discriminator 4
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 788 204 discriminator 4
-	movl	$788, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC79(%rip), %rax
+	.loc 4 422 279 discriminator 4
+	leaq	.LC96(%rip), %r8
+	movl	$422, %ecx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 788 297 discriminator 6
-	movl	$788, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC79(%rip), %rax
+	.loc 4 422 368 discriminator 6
+	leaq	.LC96(%rip), %rax
+	movq	%rax, %rcx
+	movl	$422, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 788 403 discriminator 7
+	.loc 4 422 470 discriminator 7
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 788 409 discriminator 7
+	.loc 4 422 476 discriminator 7
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -12416,450 +10123,240 @@ _ZL4GetNP13ProgramBuffer:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 788 27 discriminator 9
+	.loc 4 422 27 discriminator 9
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 788 33 discriminator 9
-	movl	$788, %ecx
-	leaq	.LC79(%rip), %rax
+	.loc 4 422 33 discriminator 9
+	movl	$422, %ecx
+	leaq	.LC95(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 788 92 discriminator 11
-	leaq	.LC17(%rip), %rax
+	.loc 4 422 92 discriminator 11
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 788 131 discriminator 12
+	.loc 4 422 134 discriminator 12
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 788 147 discriminator 12
-	movl	$788, %ecx
-	leaq	.LC79(%rip), %rax
+	.loc 4 422 150 discriminator 12
+	movl	$422, %ecx
+	leaq	.LC95(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 788 206 discriminator 14
-	movl	$788, %r8d
-	leaq	.LC79(%rip), %rax
+	.loc 4 422 209 discriminator 14
+	movl	$422, %r8d
+	leaq	.LC95(%rip), %rax
 	movq	%rax, %rcx
-	movl	$788, %edx
-	leaq	.LC13(%rip), %rax
+	movl	$422, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 788 311 discriminator 15
+	.loc 4 422 314 discriminator 15
 	movl	$0, %ebx
-	jmp	.L471
-.L470:
-	.loc 1 790 25
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 790 52
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 790 62
-	movl	8(%rax), %eax
-	.loc 1 790 81
-	cmpl	%eax, %edx
-	jge	.L472
-	.loc 1 790 98 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 790 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 790 134 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 790 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 790 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L473
-.L472:
-	.loc 1 790 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L473:
-	.loc 1 790 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 790 5 discriminator 4
-	cmpl	$6, %eax
-	jne	.L474
-	.loc 1 791 19
+	jmp	.L369
+.L368:
+	.loc 4 424 32
 	movq	-72(%rbp), %rax
 	movq	%rax, %rdi
-	call	_ZL10DefineNameP13ProgramBuffer
-.L474:
-	.loc 1 793 29
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 793 56
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 793 66
-	movl	8(%rax), %eax
-	.loc 1 793 85
-	cmpl	%eax, %edx
-	jge	.L475
-	.loc 1 793 102 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 793 112 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 793 138 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 793 122 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 793 85 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L476
-.L475:
-	.loc 1 793 85 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L476:
-	.loc 1 793 5 is_stmt 1 discriminator 4
-	testq	%rax, %rax
-	je	.L477
-	.loc 1 793 182 discriminator 6
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 793 209 discriminator 6
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 793 219 discriminator 6
-	movl	8(%rax), %eax
-	.loc 1 793 238 discriminator 6
-	cmpl	%eax, %edx
-	jge	.L478
-	.loc 1 793 255 discriminator 7
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 793 265 discriminator 7
-	movq	(%rax), %rcx
-	.loc 1 793 291 discriminator 7
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 793 275 discriminator 7
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 793 238 discriminator 7
-	addq	%rcx, %rax
-	jmp	.L479
-.L478:
-	.loc 1 793 238 is_stmt 0 discriminator 8
-	movl	$0, %eax
-.L479:
-	.loc 1 793 315 is_stmt 1 discriminator 10
-	movl	16(%rax), %eax
-	.loc 1 793 9 discriminator 10
-	cmpl	$8, %eax
-	je	.L480
-.L477:
-	.loc 1 793 374 discriminator 11
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 793 401 discriminator 11
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 793 411 discriminator 11
-	movl	8(%rax), %eax
-	.loc 1 793 430 discriminator 11
-	cmpl	%eax, %edx
-	jge	.L481
-	.loc 1 793 447 discriminator 12
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 793 457 discriminator 12
-	movq	(%rax), %rcx
-	.loc 1 793 483 discriminator 12
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 793 467 discriminator 12
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 793 430 discriminator 12
-	addq	%rcx, %rax
-	jmp	.L482
-.L481:
-	.loc 1 793 430 is_stmt 0 discriminator 13
-	movl	$0, %eax
-.L482:
-	.loc 1 793 351 is_stmt 1 discriminator 15
-	testq	%rax, %rax
-	je	.L483
-	.loc 1 793 527 discriminator 16
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 793 554 discriminator 16
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 793 564 discriminator 16
-	movl	8(%rax), %eax
-	.loc 1 793 583 discriminator 16
-	cmpl	%eax, %edx
-	jge	.L484
-	.loc 1 793 600 discriminator 17
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 793 610 discriminator 17
-	movq	(%rax), %rcx
-	.loc 1 793 636 discriminator 17
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 793 620 discriminator 17
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 793 583 discriminator 17
-	addq	%rcx, %rax
-	jmp	.L485
-.L484:
-	.loc 1 793 583 is_stmt 0 discriminator 18
-	movl	$0, %eax
-.L485:
-	.loc 1 793 660 is_stmt 1 discriminator 20
-	movl	16(%rax), %eax
-	.loc 1 793 354 discriminator 20
-	cmpl	$7, %eax
-	je	.L480
-.L483:
-	.loc 1 795 20
-	leaq	.LC22(%rip), %rax
+	call	_ZL12GetStatementP10ProgramCtx
+	movq	%rax, -56(%rbp)
+	.loc 4 425 5
+	cmpq	$0, -56(%rbp)
+	jne	.L370
+	.loc 4 427 20
+	leaq	.LC25(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 795 81 discriminator 1
+	.loc 4 427 81 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
-	.loc 1 795 87 discriminator 1
-	leaq	.LC23(%rip), %rax
+	.loc 4 427 87 discriminator 1
+	leaq	.LC26(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 795 127 discriminator 3
+	.loc 4 427 127 discriminator 3
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
-	.loc 1 795 133 discriminator 3
-	leaq	.LC24(%rip), %rax
+	.loc 4 427 133 discriminator 3
+	leaq	.LC27(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 795 159 discriminator 5
+	.loc 4 427 159 discriminator 5
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
-	.loc 1 795 177 discriminator 5
-	leaq	.LC80(%rip), %rax
+	.loc 4 427 177 discriminator 5
+	leaq	.LC97(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 795 240 discriminator 7
-	leaq	.LC26(%rip), %rax
+	.loc 4 427 203 discriminator 7
+	leaq	.LC29(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 795 284 discriminator 8
+	.loc 4 427 247 discriminator 8
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 795 311 discriminator 8
+	.loc 4 427 274 discriminator 8
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 795 321 discriminator 8
+	.loc 4 427 284 discriminator 8
 	movl	8(%rax), %eax
-	.loc 1 795 340 discriminator 8
+	.loc 4 427 303 discriminator 8
 	cmpl	%eax, %edx
-	jge	.L486
-	.loc 1 795 357 discriminator 9
+	jge	.L371
+	.loc 4 427 320 discriminator 9
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 795 367 discriminator 9
+	.loc 4 427 330 discriminator 9
 	movq	(%rax), %rcx
-	.loc 1 795 393 discriminator 9
+	.loc 4 427 356 discriminator 9
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 795 377 discriminator 9
+	.loc 4 427 340 discriminator 9
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 795 340 discriminator 9
+	.loc 4 427 303 discriminator 9
 	addq	%rcx, %rax
-	jmp	.L487
-.L486:
-	.loc 1 795 340 is_stmt 0 discriminator 10
+	jmp	.L372
+.L371:
+	.loc 4 427 303 is_stmt 0 discriminator 10
 	movl	$0, %eax
-.L487:
-	.loc 1 795 267 is_stmt 1 discriminator 12
+.L372:
+	.loc 4 427 230 is_stmt 1 discriminator 12
 	movq	32(%rax), %rax
 	movl	$10, %esi
 	movq	%rax, %rdi
 	call	_Z6printlPKcc@PLT
-	.loc 1 795 447 discriminator 13
-	leaq	.LC27(%rip), %rax
+	.loc 4 427 410 discriminator 13
+	leaq	.LC30(%rip), %rax
 	movq	%rax, %rdi
 	call	puts@PLT
-	.loc 1 795 471 discriminator 14
-	movl	$795, %edx
-	leaq	.LC13(%rip), %rax
+	.loc 4 427 434 discriminator 14
+	movl	$427, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
+	leaq	.LC31(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 795 692 discriminator 15
+	.loc 4 427 655 discriminator 15
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 795 527 discriminator 15
+	.loc 4 427 490 discriminator 15
 	movq	24(%rax), %rdx
-	.loc 1 795 544 discriminator 15
+	.loc 4 427 507 discriminator 15
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %ecx
-	.loc 1 795 571 discriminator 15
+	.loc 4 427 534 discriminator 15
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 795 581 discriminator 15
+	.loc 4 427 544 discriminator 15
 	movl	8(%rax), %eax
-	.loc 1 795 527 discriminator 15
+	.loc 4 427 490 discriminator 15
 	cmpl	%eax, %ecx
-	jge	.L488
-	.loc 1 795 617 discriminator 16
+	jge	.L373
+	.loc 4 427 580 discriminator 16
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 795 627 discriminator 16
+	.loc 4 427 590 discriminator 16
 	movq	(%rax), %rsi
-	.loc 1 795 653 discriminator 16
+	.loc 4 427 616 discriminator 16
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rcx
-	.loc 1 795 637 discriminator 16
+	.loc 4 427 600 discriminator 16
 	movq	%rcx, %rax
 	salq	$2, %rax
 	addq	%rcx, %rax
 	salq	$3, %rax
-	.loc 1 795 527 discriminator 16
+	.loc 4 427 490 discriminator 16
 	addq	%rsi, %rax
-	jmp	.L489
-.L488:
-	.loc 1 795 527 is_stmt 0 discriminator 17
+	jmp	.L374
+.L373:
+	.loc 4 427 490 is_stmt 0 discriminator 17
 	movl	$0, %eax
-.L489:
-	.loc 1 795 527 discriminator 19
+.L374:
+	.loc 4 427 490 discriminator 19
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 796 35 is_stmt 1
+	.loc 4 428 35 is_stmt 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 796 51
-	movl	$796, %ecx
-	leaq	.LC79(%rip), %rax
+	.loc 4 428 51
+	movl	$428, %ecx
+	leaq	.LC95(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 796 110 discriminator 2
-	movl	$796, %r8d
-	leaq	.LC79(%rip), %rax
+	.loc 4 428 110 discriminator 2
+	movl	$428, %r8d
+	leaq	.LC95(%rip), %rax
 	movq	%rax, %rcx
-	movl	$796, %edx
-	leaq	.LC13(%rip), %rax
+	movl	$428, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 796 215 discriminator 3
+	.loc 4 428 215 discriminator 3
 	movl	$0, %ebx
-	jmp	.L471
-.L480:
-	.loc 1 799 37
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 799 64
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 799 74
-	movl	8(%rax), %eax
-	.loc 1 799 93
-	cmpl	%eax, %edx
-	jge	.L490
-	.loc 1 799 110 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 799 120 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 799 146 discriminator 1
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 799 130 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 799 93 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L491
-.L490:
-	.loc 1 799 93 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L491:
-	.loc 1 799 12 is_stmt 1 discriminator 4
-	movq	%rax, -56(%rbp)
-	.loc 1 800 19 discriminator 4
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 800 28 discriminator 4
-	leal	1(%rax), %edx
-	movq	-72(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 802 47 discriminator 4
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 802 13 discriminator 4
-	movq	24(%rax), %rdx
+	jmp	.L369
+.L370:
+	.loc 4 431 12
 	movq	-56(%rbp), %rax
-	leaq	.LC81(%rip), %rcx
-	movq	%rcx, %rsi
+	movq	%rax, -64(%rbp)
+	.loc 4 432 5
+	jmp	.L375
+.L376:
+	.loc 4 434 54
+	movq	-72(%rbp), %rax
 	movq	%rax, %rdi
-	call	_Z8LogTokenPK5TokenPKcPS3_@PLT
-.LEHE31:
-	.loc 1 803 12
+	call	_ZL12GetStatementP10ProgramCtx
+.LEHE25:
+	.loc 4 434 40 discriminator 1
+	movq	-64(%rbp), %rdx
+	movq	%rax, 8(%rdx)
+	.loc 4 436 27 discriminator 1
+	movq	-64(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	%rax, -64(%rbp)
+.L375:
+	.loc 4 432 12
+	cmpq	$0, -64(%rbp)
+	jne	.L376
+	.loc 4 439 12
 	movq	-56(%rbp), %rbx
-.L471:
-	.loc 1 804 5
+.L369:
+	.loc 4 440 5
 	leaq	-48(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
 	movq	%rbx, %rax
-	jmp	.L495
-.L494:
+	jmp	.L380
+.L379:
 	endbr64
 	movq	%rax, %rbx
 	leaq	-48(%rbp), %rax
@@ -12867,10 +10364,10 @@ _ZL4GetNP13ProgramBuffer:
 	call	_ZN14FunctionLoggerD1Ev@PLT
 	movq	%rbx, %rax
 	movq	%rax, %rdi
-.LEHB32:
+.LEHB26:
 	call	_Unwind_Resume@PLT
-.LEHE32:
-.L495:
+.LEHE26:
+.L380:
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
@@ -12884,1691 +10381,35 @@ _ZL4GetNP13ProgramBuffer:
 	.byte	0x1
 	.uleb128 .LLSDACSE2284-.LLSDACSB2284
 .LLSDACSB2284:
-	.uleb128 .LEHB30-.LFB2284
-	.uleb128 .LEHE30-.LEHB30
+	.uleb128 .LEHB24-.LFB2284
+	.uleb128 .LEHE24-.LEHB24
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB31-.LFB2284
-	.uleb128 .LEHE31-.LEHB31
-	.uleb128 .L494-.LFB2284
+	.uleb128 .LEHB25-.LFB2284
+	.uleb128 .LEHE25-.LEHB25
+	.uleb128 .L379-.LFB2284
 	.uleb128 0
-	.uleb128 .LEHB32-.LFB2284
-	.uleb128 .LEHE32-.LEHB32
+	.uleb128 .LEHB26-.LFB2284
+	.uleb128 .LEHE26-.LEHB26
 	.uleb128 0
 	.uleb128 0
 .LLSDACSE2284:
 	.text
-	.size	_ZL4GetNP13ProgramBuffer, .-_ZL4GetNP13ProgramBuffer
+	.size	_ZL8GetBlockP10ProgramCtx, .-_ZL8GetBlockP10ProgramCtx
 	.section	.rodata
-.LC82:
-	.string	"DefineName"
-.LC83:
-	.string	"Not a name\n"
-.LC84:
-	.string	"%s wasn't decalred\n"
+.LC98:
+	.string	"GetStatement"
+	.align 8
+.LC99:
+	.string	"Token* GetStatement(ProgramCtx*)"
 	.text
-	.type	_ZL10DefineNameP13ProgramBuffer, @function
-_ZL10DefineNameP13ProgramBuffer:
+	.type	_ZL12GetStatementP10ProgramCtx, @function
+_ZL12GetStatementP10ProgramCtx:
 .LFB2285:
-	.loc 1 809 5
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	pushq	%rbx
-	subq	$24, %rsp
-	.cfi_offset 3, -24
-	movq	%rdi, -24(%rbp)
-	.loc 1 810 10
-	cmpq	$0, -24(%rbp)
-	jne	.L497
-	.loc 1 810 51 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rcx
-	.loc 1 810 57 discriminator 1
-	leaq	.LC29(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rcx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 810 109 discriminator 1
-	leaq	.LC29(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 810 198 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 810 204 discriminator 1
-	movl	$810, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC82(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC14(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 810 297 discriminator 1
-	movl	$810, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC82(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC14(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 810 403 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rbx
-	.loc 1 810 409 discriminator 1
-	movl	$14, %edi
-	call	strerror@PLT
-	movq	%rax, %rcx
-	movl	$14, %edx
-	leaq	.LC15(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rbx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 810 27 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 810 33 discriminator 1
-	movl	$810, %ecx
-	leaq	.LC82(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 810 92 discriminator 1
-	leaq	.LC17(%rip), %rax
-	movq	%rax, %rdi
-	call	system@PLT
-	.loc 1 810 112 discriminator 1
-	movl	$0, %eax
-	jmp	.L498
-.L497:
-	.loc 1 812 25
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 812 52
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 812 62
-	movl	8(%rax), %eax
-	.loc 1 812 81
-	cmpl	%eax, %edx
-	jge	.L499
-	.loc 1 812 98 discriminator 1
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 812 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 812 134 discriminator 1
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 812 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 812 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L500
-.L499:
-	.loc 1 812 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L500:
-	.loc 1 812 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 812 5 discriminator 4
-	cmpl	$6, %eax
-	je	.L501
-	.loc 1 814 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 814 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 814 87
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 814 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 814 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 814 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 814 177
-	leaq	.LC83(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 814 202
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 814 246
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 814 273
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 814 283
-	movl	8(%rax), %eax
-	.loc 1 814 302
-	cmpl	%eax, %edx
-	jge	.L502
-	.loc 1 814 319 discriminator 1
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 814 329 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 814 355 discriminator 1
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 814 339 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 814 302 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L503
-.L502:
-	.loc 1 814 302 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L503:
-	.loc 1 814 229 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 814 409 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 814 433 discriminator 4
-	movl	$814, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 814 654 discriminator 4
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 814 489 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 814 506 discriminator 4
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 814 533 discriminator 4
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 814 543 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 814 489 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L504
-	.loc 1 814 579 discriminator 5
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 814 589 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 814 615 discriminator 5
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 814 599 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 814 489 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L505
-.L504:
-	.loc 1 814 489 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L505:
-	.loc 1 814 489 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 815 16 is_stmt 1 discriminator 8
-	movl	$0, %eax
-	jmp	.L498
-.L501:
-	.loc 1 819 21
-	movq	-24(%rbp), %rax
-	movq	16(%rax), %rdx
-	.loc 1 819 38
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 819 65
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 819 75
-	movl	8(%rax), %eax
-	.loc 1 819 94
-	cmpl	%eax, %ecx
-	jge	.L506
-	.loc 1 819 111 discriminator 1
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 819 121 discriminator 1
-	movq	(%rax), %rsi
-	.loc 1 819 147 discriminator 1
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 819 131 discriminator 1
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 819 94 discriminator 1
-	addq	%rsi, %rax
-	jmp	.L507
-.L506:
-	.loc 1 819 94 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L507:
-	.loc 1 819 21 is_stmt 1 discriminator 4
-	movl	24(%rax), %eax
-	movq	%rdx, %rsi
-	movl	%eax, %edi
-	call	_Z11IsFuncLabeliP9FuncTabel@PLT
-	testq	%rax, %rax
-	setne	%al
-	.loc 1 819 5 discriminator 4
-	testb	%al, %al
-	je	.L508
-	.loc 1 821 25
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 821 52
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 821 62
-	movl	8(%rax), %eax
-	.loc 1 821 81
-	cmpl	%eax, %edx
-	jge	.L509
-	.loc 1 821 98 discriminator 1
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 821 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 821 134 discriminator 1
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 821 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 821 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L510
-.L509:
-	.loc 1 821 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L510:
-	.loc 1 821 163 is_stmt 1 discriminator 4
-	movl	$9, 16(%rax)
-	.loc 1 822 16 discriminator 4
-	movl	$9, %eax
-	jmp	.L498
-.L508:
-	.loc 1 825 21
-	movq	-24(%rbp), %rax
-	movq	24(%rax), %rdx
-	.loc 1 825 38
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 825 65
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 825 75
-	movl	8(%rax), %eax
-	.loc 1 825 94
-	cmpl	%eax, %ecx
-	jge	.L511
-	.loc 1 825 111 discriminator 1
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 825 121 discriminator 1
-	movq	(%rax), %rsi
-	.loc 1 825 147 discriminator 1
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 825 131 discriminator 1
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 825 94 discriminator 1
-	addq	%rsi, %rax
-	jmp	.L512
-.L511:
-	.loc 1 825 94 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L512:
-	.loc 1 825 21 is_stmt 1 discriminator 4
-	movl	24(%rax), %eax
-	movq	%rdx, %rsi
-	movl	%eax, %edi
-	call	_ZL11GetVarLabeliP10SuperStack
-	testq	%rax, %rax
-	setne	%al
-	.loc 1 825 5 discriminator 4
-	testb	%al, %al
-	je	.L513
-	.loc 1 827 25
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 827 52
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 827 62
-	movl	8(%rax), %eax
-	.loc 1 827 81
-	cmpl	%eax, %edx
-	jge	.L514
-	.loc 1 827 98 discriminator 1
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 827 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 827 134 discriminator 1
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 827 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 827 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L515
-.L514:
-	.loc 1 827 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L515:
-	.loc 1 827 163 is_stmt 1 discriminator 4
-	movl	$7, 16(%rax)
-	.loc 1 828 16 discriminator 4
-	movl	$7, %eax
-	jmp	.L498
-.L513:
-	.loc 1 831 16
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 831 77
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 831 83
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 831 123
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 831 129
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 831 155
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rcx
-	.loc 1 831 214
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 831 224
-	movq	24(%rax), %rsi
-	.loc 1 831 252
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 831 279
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 831 289
-	movl	8(%rax), %eax
-	.loc 1 831 308
-	cmpl	%eax, %edx
-	jge	.L516
-	.loc 1 831 325 discriminator 1
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 831 335 discriminator 1
-	movq	(%rax), %rdi
-	.loc 1 831 361 discriminator 1
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 831 345 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 831 308 discriminator 1
-	addq	%rdi, %rax
-	jmp	.L517
-.L516:
-	.loc 1 831 308 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L517:
-	.loc 1 831 391 is_stmt 1 discriminator 4
-	movl	24(%rax), %eax
-	cltq
-	.loc 1 831 400 discriminator 4
-	salq	$3, %rax
-	addq	%rsi, %rax
-	.loc 1 831 173 discriminator 4
-	movq	(%rax), %rax
-	movq	%rax, %rdx
-	leaq	.LC84(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rcx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 831 410 discriminator 4
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 831 454 discriminator 4
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 831 481 discriminator 4
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 831 491 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 831 510 discriminator 4
-	cmpl	%eax, %edx
-	jge	.L518
-	.loc 1 831 527 discriminator 5
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 831 537 discriminator 5
-	movq	(%rax), %rcx
-	.loc 1 831 563 discriminator 5
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 831 547 discriminator 5
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 831 510 discriminator 5
-	addq	%rcx, %rax
-	jmp	.L519
-.L518:
-	.loc 1 831 510 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L519:
-	.loc 1 831 437 is_stmt 1 discriminator 8
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 831 617 discriminator 8
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 831 641 discriminator 8
-	movl	$831, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 831 862 discriminator 8
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 831 697 discriminator 8
-	movq	24(%rax), %rdx
-	.loc 1 831 714 discriminator 8
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 831 741 discriminator 8
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 831 751 discriminator 8
-	movl	8(%rax), %eax
-	.loc 1 831 697 discriminator 8
-	cmpl	%eax, %ecx
-	jge	.L520
-	.loc 1 831 787 discriminator 9
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 831 797 discriminator 9
-	movq	(%rax), %rsi
-	.loc 1 831 823 discriminator 9
-	movq	-24(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 831 807 discriminator 9
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 831 697 discriminator 9
-	addq	%rsi, %rax
-	jmp	.L521
-.L520:
-	.loc 1 831 697 is_stmt 0 discriminator 10
-	movl	$0, %eax
-.L521:
-	.loc 1 831 697 discriminator 12
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 833 12 is_stmt 1 discriminator 12
-	movl	$0, %eax
-.L498:
-	.loc 1 834 5
-	movq	-8(%rbp), %rbx
-	leave
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2285:
-	.size	_ZL10DefineNameP13ProgramBuffer, .-_ZL10DefineNameP13ProgramBuffer
-	.section	.rodata
-.LC85:
-	.string	"MakeFuncLabel"
-.LC86:
-	.string	"No return type in function\n"
-.LC87:
-	.string	"No function name\n"
-	.align 8
-.LC88:
-	.string	"Missing '(' in function prototype\n"
-.LC89:
-	.string	"Missing ')' in function \n"
-	.text
-	.type	_ZL13MakeFuncLabelP13ProgramBuffer, @function
-_ZL13MakeFuncLabelP13ProgramBuffer:
-.LFB2286:
-	.loc 1 837 5
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	pushq	%rbx
-	subq	$40, %rsp
-	.cfi_offset 3, -24
-	movq	%rdi, -40(%rbp)
-	.loc 1 838 10
-	cmpq	$0, -40(%rbp)
-	jne	.L523
-	.loc 1 838 51 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rcx
-	.loc 1 838 57 discriminator 1
-	leaq	.LC29(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rcx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 838 109 discriminator 1
-	leaq	.LC29(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 838 198 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 838 204 discriminator 1
-	movl	$838, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC14(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 838 297 discriminator 1
-	movl	$838, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC14(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 838 403 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rbx
-	.loc 1 838 409 discriminator 1
-	movl	$14, %edi
-	call	strerror@PLT
-	movq	%rax, %rcx
-	movl	$14, %edx
-	leaq	.LC15(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rbx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 838 27 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 838 33 discriminator 1
-	movl	$838, %ecx
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 838 92 discriminator 1
-	leaq	.LC17(%rip), %rax
-	movq	%rax, %rdi
-	call	system@PLT
-	.loc 1 838 131 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 838 147 discriminator 1
-	movl	$838, %ecx
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 838 206 discriminator 1
-	movl	$838, %r8d
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rcx
-	movl	$838, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 838 311 discriminator 1
-	movl	$0, %eax
-	jmp	.L524
-.L523:
-	.loc 1 840 56
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 840 67
-	movl	$840, %r9d
-	leaq	.LC85(%rip), %r8
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	movl	$32, %edx
-	movl	$1, %esi
-	call	_ZN6Logger7CAL_LOGEmmPKcS1_i@PLT
-	movq	%rax, -24(%rbp)
-	.loc 1 841 5
-	cmpq	$0, -24(%rbp)
-	jne	.L525
-	.loc 1 841 43 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 841 59 discriminator 1
-	movl	$841, %ecx
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 841 118 discriminator 1
-	movl	$841, %r8d
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rcx
-	movl	$841, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 841 223 discriminator 1
-	movl	$0, %eax
-	jmp	.L524
-.L525:
-	.loc 1 843 25
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 843 52
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 843 62
-	movl	8(%rax), %eax
-	.loc 1 843 81
-	cmpl	%eax, %edx
-	jge	.L526
-	.loc 1 843 98 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 843 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 843 134 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 843 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 843 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L527
-.L526:
-	.loc 1 843 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L527:
-	.loc 1 843 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 843 5 discriminator 4
-	cmpl	$4, %eax
-	je	.L528
-	.loc 1 845 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 845 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 845 87
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 845 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 845 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 845 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 845 177
-	leaq	.LC86(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 845 218
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 845 262
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 845 289
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 845 299
-	movl	8(%rax), %eax
-	.loc 1 845 318
-	cmpl	%eax, %edx
-	jge	.L529
-	.loc 1 845 335 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 845 345 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 845 371 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 845 355 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 845 318 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L530
-.L529:
-	.loc 1 845 318 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L530:
-	.loc 1 845 245 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 845 425 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 845 449 discriminator 4
-	movl	$845, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 845 670 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 845 505 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 845 522 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 845 549 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 845 559 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 845 505 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L531
-	.loc 1 845 595 discriminator 5
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 845 605 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 845 631 discriminator 5
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 845 615 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 845 505 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L532
-.L531:
-	.loc 1 845 505 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L532:
-	.loc 1 845 505 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 846 35 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 846 51 discriminator 8
-	movl	$846, %ecx
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 846 110 discriminator 8
-	movl	$846, %r8d
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rcx
-	movl	$846, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 846 215 discriminator 8
-	movl	$0, %eax
-	jmp	.L524
-.L528:
-	.loc 1 849 39
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 849 66
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 849 76
-	movl	8(%rax), %eax
-	.loc 1 849 95
-	cmpl	%eax, %edx
-	jge	.L533
-	.loc 1 849 112 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 849 122 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 849 148 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 849 132 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 849 95 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L534
-.L533:
-	.loc 1 849 95 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L534:
-	.loc 1 849 178 is_stmt 1 discriminator 4
-	movl	24(%rax), %edx
-	.loc 1 849 21 discriminator 4
-	movq	-24(%rbp), %rax
-	movl	%edx, 4(%rax)
-	.loc 1 850 19 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 850 28 discriminator 4
-	leal	1(%rax), %edx
-	movq	-40(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 852 25 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 852 52 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 852 62 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 852 81 discriminator 4
-	cmpl	%eax, %edx
-	jge	.L535
-	.loc 1 852 98 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 852 108 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 852 134 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 852 118 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 852 81 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L536
-.L535:
-	.loc 1 852 81 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L536:
-	.loc 1 852 158 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 852 5 discriminator 4
-	cmpl	$6, %eax
-	je	.L537
-	.loc 1 854 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 854 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 854 87
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 854 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 854 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 854 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 854 177
-	leaq	.LC87(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 854 208
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 854 252
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 854 279
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 854 289
-	movl	8(%rax), %eax
-	.loc 1 854 308
-	cmpl	%eax, %edx
-	jge	.L538
-	.loc 1 854 325 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 854 335 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 854 361 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 854 345 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 854 308 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L539
-.L538:
-	.loc 1 854 308 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L539:
-	.loc 1 854 235 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 854 415 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 854 439 discriminator 4
-	movl	$854, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 854 660 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 854 495 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 854 512 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 854 539 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 854 549 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 854 495 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L540
-	.loc 1 854 585 discriminator 5
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 854 595 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 854 621 discriminator 5
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 854 605 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 854 495 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L541
-.L540:
-	.loc 1 854 495 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L541:
-	.loc 1 854 495 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 855 35 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 855 51 discriminator 8
-	movl	$855, %ecx
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 855 110 discriminator 8
-	movl	$855, %r8d
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rcx
-	movl	$855, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 855 215 discriminator 8
-	movl	$0, %eax
-	jmp	.L524
-.L537:
-	.loc 1 858 35
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 858 62
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 858 72
-	movl	8(%rax), %eax
-	.loc 1 858 91
-	cmpl	%eax, %edx
-	jge	.L542
-	.loc 1 858 108 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 858 118 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 858 144 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 858 128 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 858 91 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L543
-.L542:
-	.loc 1 858 91 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L543:
-	.loc 1 858 174 is_stmt 1 discriminator 4
-	movl	24(%rax), %edx
-	.loc 1 858 17 discriminator 4
-	movq	-24(%rbp), %rax
-	movl	%edx, (%rax)
-	.loc 1 859 19 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 859 28 discriminator 4
-	leal	1(%rax), %edx
-	movq	-40(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 862 24 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 862 51 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 862 61 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 862 80 discriminator 4
-	cmpl	%eax, %edx
-	jge	.L544
-	.loc 1 862 97 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 862 107 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 862 133 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 862 117 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 862 80 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L545
-.L544:
-	.loc 1 862 80 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L545:
-	.loc 1 862 157 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 862 5 discriminator 4
-	cmpl	$40, %eax
-	je	.L546
-	.loc 1 864 20
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 864 81
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 864 87
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 864 127
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 864 133
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 864 159
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 864 177
-	leaq	.LC88(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 864 225
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 864 269
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 864 296
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 864 306
-	movl	8(%rax), %eax
-	.loc 1 864 325
-	cmpl	%eax, %edx
-	jge	.L547
-	.loc 1 864 342 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 864 352 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 864 378 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 864 362 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 864 325 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L548
-.L547:
-	.loc 1 864 325 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L548:
-	.loc 1 864 252 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 864 432 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 864 456 discriminator 4
-	movl	$864, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 864 677 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 864 512 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 864 529 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 864 556 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 864 566 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 864 512 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L549
-	.loc 1 864 602 discriminator 5
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 864 612 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 864 638 discriminator 5
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 864 622 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 864 512 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L550
-.L549:
-	.loc 1 864 512 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L550:
-	.loc 1 864 512 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 865 35 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 865 51 discriminator 8
-	movl	$865, %ecx
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 865 110 discriminator 8
-	movl	$865, %r8d
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rcx
-	movl	$865, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 865 215 discriminator 8
-	movl	$0, %eax
-	jmp	.L524
-.L546:
-	.loc 1 867 19
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 867 28
-	leal	1(%rax), %edx
-	movq	-40(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 870 24
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 870 51
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 870 61
-	movl	8(%rax), %eax
-	.loc 1 870 80
-	cmpl	%eax, %edx
-	jge	.L551
-	.loc 1 870 97 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 870 107 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 870 133 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 870 117 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 870 80 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L552
-.L551:
-	.loc 1 870 80 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L552:
-	.loc 1 870 157 is_stmt 1 discriminator 4
-	movl	16(%rax), %eax
-	.loc 1 870 5 discriminator 4
-	cmpl	$41, %eax
-	je	.L553
-	.loc 1 872 19
-	leaq	.LC22(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 872 80
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 872 86
-	leaq	.LC23(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 872 126
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 872 132
-	leaq	.LC24(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 872 158
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdx
-	.loc 1 872 176
-	leaq	.LC89(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 872 215
-	leaq	.LC26(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 872 259
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 872 286
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 872 296
-	movl	8(%rax), %eax
-	.loc 1 872 315
-	cmpl	%eax, %edx
-	jge	.L554
-	.loc 1 872 332 discriminator 1
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 872 342 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 872 368 discriminator 1
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 872 352 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 872 315 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L555
-.L554:
-	.loc 1 872 315 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L555:
-	.loc 1 872 242 is_stmt 1 discriminator 4
-	movq	32(%rax), %rax
-	movl	$10, %esi
-	movq	%rax, %rdi
-	call	_Z6printlPKcc@PLT
-	.loc 1 872 422 discriminator 4
-	leaq	.LC27(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	.loc 1 872 446 discriminator 4
-	movl	$872, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 872 667 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 872 502 discriminator 4
-	movq	24(%rax), %rdx
-	.loc 1 872 519 discriminator 4
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %ecx
-	.loc 1 872 546 discriminator 4
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 872 556 discriminator 4
-	movl	8(%rax), %eax
-	.loc 1 872 502 discriminator 4
-	cmpl	%eax, %ecx
-	jge	.L556
-	.loc 1 872 592 discriminator 5
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 872 602 discriminator 5
-	movq	(%rax), %rsi
-	.loc 1 872 628 discriminator 5
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	movslq	%eax, %rcx
-	.loc 1 872 612 discriminator 5
-	movq	%rcx, %rax
-	salq	$2, %rax
-	addq	%rcx, %rax
-	salq	$3, %rax
-	.loc 1 872 502 discriminator 5
-	addq	%rsi, %rax
-	jmp	.L557
-.L556:
-	.loc 1 872 502 is_stmt 0 discriminator 6
-	movl	$0, %eax
-.L557:
-	.loc 1 872 502 discriminator 8
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 873 34 is_stmt 1 discriminator 8
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 873 50 discriminator 8
-	movl	$873, %ecx
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 873 109 discriminator 8
-	movl	$873, %r8d
-	leaq	.LC85(%rip), %rax
-	movq	%rax, %rcx
-	movl	$873, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 873 214 discriminator 8
-	movl	$0, %eax
-	jmp	.L524
-.L553:
-	.loc 1 875 19
-	movq	-40(%rbp), %rax
-	movl	8(%rax), %eax
-	.loc 1 875 28
-	leal	1(%rax), %edx
-	movq	-40(%rbp), %rax
-	movl	%edx, 8(%rax)
-	.loc 1 877 12
-	movq	-24(%rbp), %rax
-.L524:
-	.loc 1 878 5
-	movq	-8(%rbp), %rbx
-	leave
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2286:
-	.size	_ZL13MakeFuncLabelP13ProgramBuffer, .-_ZL13MakeFuncLabelP13ProgramBuffer
-	.section	.rodata
-.LC90:
-	.string	"MakeVarLabel"
-	.align 8
-.LC91:
-	.string	"Ebat, not a name for variable initialization\n"
-	.text
-	.type	_ZL12MakeVarLabelP13ProgramBuffer, @function
-_ZL12MakeVarLabelP13ProgramBuffer:
-.LFB2287:
-	.loc 1 881 5
+	.loc 4 443 5
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2287
+	.cfi_lsda 0x1b,.LLSDA2285
 	endbr64
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -14579,63 +10420,62 @@ _ZL12MakeVarLabelP13ProgramBuffer:
 	subq	$72, %rsp
 	.cfi_offset 3, -24
 	movq	%rdi, -72(%rbp)
-	.loc 1 882 41
+	.loc 4 444 41
 	leaq	-48(%rbp), %rax
-	leaq	.LC90(%rip), %rdx
+	leaq	.LC98(%rip), %rdx
 	movl	$1, %esi
 	movq	%rax, %rdi
-.LEHB33:
+.LEHB27:
 	call	_ZN14FunctionLoggerC1EiPKc@PLT
-.LEHE33:
-	.loc 1 883 10
+.LEHE27:
+	.loc 4 445 10
 	cmpq	$0, -72(%rbp)
-	jne	.L559
-.LEHB34:
-	.loc 1 883 51 discriminator 1
+	jne	.L382
+.LEHB28:
+	.loc 4 445 51 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 883 57 discriminator 1
-	leaq	.LC29(%rip), %rax
+	.loc 4 445 57 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 883 109 discriminator 3
-	leaq	.LC29(%rip), %rax
+	.loc 4 445 121 discriminator 3
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 883 198 discriminator 4
+	.loc 4 445 273 discriminator 4
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 883 204 discriminator 4
-	movl	$883, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC90(%rip), %rax
+	.loc 4 445 279 discriminator 4
+	leaq	.LC99(%rip), %r8
+	movl	$445, %ecx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 883 297 discriminator 6
-	movl	$883, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC90(%rip), %rax
+	.loc 4 445 368 discriminator 6
+	leaq	.LC99(%rip), %rax
+	movq	%rax, %rcx
+	movl	$445, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 883 403 discriminator 7
+	.loc 4 445 470 discriminator 7
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 883 409 discriminator 7
+	.loc 4 445 476 discriminator 7
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -14645,372 +10485,762 @@ _ZL12MakeVarLabelP13ProgramBuffer:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 883 27 discriminator 9
+	.loc 4 445 27 discriminator 9
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 883 33 discriminator 9
-	movl	$883, %ecx
-	leaq	.LC90(%rip), %rax
+	.loc 4 445 33 discriminator 9
+	movl	$445, %ecx
+	leaq	.LC98(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 883 92 discriminator 11
-	leaq	.LC17(%rip), %rax
+	.loc 4 445 92 discriminator 11
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 883 131 discriminator 12
+	.loc 4 445 134 discriminator 12
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 883 147 discriminator 12
-	movl	$883, %ecx
-	leaq	.LC90(%rip), %rax
+	.loc 4 445 150 discriminator 12
+	movl	$445, %ecx
+	leaq	.LC98(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 883 206 discriminator 14
-	movl	$883, %r8d
-	leaq	.LC90(%rip), %rax
+	.loc 4 445 209 discriminator 14
+	movl	$445, %r8d
+	leaq	.LC98(%rip), %rax
 	movq	%rax, %rcx
-	movl	$883, %edx
-	leaq	.LC13(%rip), %rax
+	movl	$445, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 883 311 discriminator 15
+	.loc 4 445 314 discriminator 15
 	movl	$0, %ebx
-	jmp	.L560
-.L559:
-	.loc 1 885 54
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 885 65
-	movl	$885, %r9d
-	leaq	.LC90(%rip), %r8
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	movl	$4, %edx
-	movl	$1, %esi
-	call	_ZN6Logger7CAL_LOGEmmPKcS1_i@PLT
-	.loc 1 885 65 is_stmt 0 discriminator 1
-	movq	%rax, -56(%rbp)
-	.loc 1 886 5 is_stmt 1 discriminator 1
-	cmpq	$0, -56(%rbp)
-	jne	.L561
-	.loc 1 886 43 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 886 59 discriminator 1
-	movl	$886, %ecx
-	leaq	.LC90(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 886 118 discriminator 3
-	movl	$886, %r8d
-	leaq	.LC90(%rip), %rax
-	movq	%rax, %rcx
-	movl	$886, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 886 223 discriminator 4
-	movl	$0, %ebx
-	jmp	.L560
-.L561:
-	.loc 1 888 25
+	jmp	.L383
+.L382:
+	.loc 4 447 25
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 888 52
+	.loc 4 447 52
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 888 62
+	.loc 4 447 62
 	movl	8(%rax), %eax
-	.loc 1 888 81
+	.loc 4 447 81
 	cmpl	%eax, %edx
-	jge	.L562
-	.loc 1 888 98 discriminator 1
+	jge	.L384
+	.loc 4 447 98 discriminator 1
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 888 108 discriminator 1
+	.loc 4 447 108 discriminator 1
 	movq	(%rax), %rcx
-	.loc 1 888 134 discriminator 1
+	.loc 4 447 134 discriminator 1
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 888 118 discriminator 1
+	.loc 4 447 118 discriminator 1
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 888 81 discriminator 1
+	.loc 4 447 81 discriminator 1
 	addq	%rcx, %rax
-	jmp	.L563
-.L562:
-	.loc 1 888 81 is_stmt 0 discriminator 2
+	jmp	.L385
+.L384:
+	.loc 4 447 81 is_stmt 0 discriminator 2
 	movl	$0, %eax
-.L563:
-	.loc 1 888 158 is_stmt 1 discriminator 4
+.L385:
+	.loc 4 447 158 is_stmt 1 discriminator 4
 	movl	16(%rax), %eax
-	.loc 1 888 5 discriminator 4
+	.loc 4 447 5 discriminator 4
 	cmpl	$6, %eax
-	je	.L564
-	.loc 1 890 20
-	leaq	.LC22(%rip), %rax
+	jne	.L386
+	.loc 4 449 23
+	movq	-72(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL10DefineNameP10ProgramCtx
+	.loc 4 449 37
+	testl	%eax, %eax
+	sete	%al
+	.loc 4 449 9
+	testb	%al, %al
+	je	.L387
+	.loc 4 450 39
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 450 55
+	movl	$450, %ecx
+	leaq	.LC98(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 450 114 discriminator 2
+	movl	$450, %r8d
+	leaq	.LC98(%rip), %rax
+	movq	%rax, %rcx
+	movl	$450, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 450 219 discriminator 3
+	movl	$0, %ebx
+	jmp	.L383
+.L387:
+	.loc 4 452 28
+	movq	-72(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL12GetStatementP10ProgramCtx
+	movq	%rax, %rbx
+	.loc 4 452 40
+	jmp	.L383
+.L386:
+	.loc 4 455 27
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 455 54
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 455 64
+	movl	8(%rax), %eax
+	.loc 4 455 83
+	cmpl	%eax, %edx
+	jge	.L388
+	.loc 4 455 100 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 455 110 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 455 136 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 455 120 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 455 83 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L389
+.L388:
+	.loc 4 455 83 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L389:
+	.loc 4 455 5 is_stmt 1 discriminator 4
+	testq	%rax, %rax
+	je	.L390
+	.loc 4 455 180 discriminator 5
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 455 207 discriminator 5
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 455 217 discriminator 5
+	movl	8(%rax), %eax
+	.loc 4 455 236 discriminator 5
+	cmpl	%eax, %edx
+	jge	.L391
+	.loc 4 455 253 discriminator 6
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 455 263 discriminator 6
+	movq	(%rax), %rcx
+	.loc 4 455 289 discriminator 6
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 455 273 discriminator 6
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 455 236 discriminator 6
+	addq	%rcx, %rax
+	jmp	.L392
+.L391:
+	.loc 4 455 236 is_stmt 0 discriminator 7
+	movl	$0, %eax
+.L392:
+	.loc 4 455 313 is_stmt 1 discriminator 9
+	movl	16(%rax), %eax
+	.loc 4 455 334 discriminator 9
+	cmpl	$2, %eax
+	jne	.L390
+	.loc 4 456 30
+	movq	-72(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL14GetInstructionP10ProgramCtx
+	movq	%rax, %rbx
+	.loc 4 456 42
+	jmp	.L383
+.L390:
+	.loc 4 458 28
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 458 55
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 458 65
+	movl	8(%rax), %eax
+	.loc 4 458 84
+	cmpl	%eax, %edx
+	jge	.L393
+	.loc 4 458 101 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 458 111 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 458 137 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 458 121 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 458 84 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L394
+.L393:
+	.loc 4 458 84 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L394:
+	.loc 4 458 5 is_stmt 1 discriminator 4
+	testq	%rax, %rax
+	je	.L395
+	.loc 4 458 181 discriminator 5
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 458 208 discriminator 5
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 458 218 discriminator 5
+	movl	8(%rax), %eax
+	.loc 4 458 237 discriminator 5
+	cmpl	%eax, %edx
+	jge	.L396
+	.loc 4 458 254 discriminator 6
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 458 264 discriminator 6
+	movq	(%rax), %rcx
+	.loc 4 458 290 discriminator 6
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 458 274 discriminator 6
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 458 237 discriminator 6
+	addq	%rcx, %rax
+	jmp	.L397
+.L396:
+	.loc 4 458 237 is_stmt 0 discriminator 7
+	movl	$0, %eax
+.L397:
+	.loc 4 458 314 is_stmt 1 discriminator 9
+	movl	16(%rax), %eax
+	.loc 4 458 333 discriminator 9
+	cmpl	$7, %eax
+	jne	.L395
+	.loc 4 459 28
+	movq	-72(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL12GetAssigmentP10ProgramCtx
+	movq	%rax, %rbx
+	.loc 4 459 40
+	jmp	.L383
+.L395:
+	.loc 4 461 25
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 461 52
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 461 62
+	movl	8(%rax), %eax
+	.loc 4 461 81
+	cmpl	%eax, %edx
+	jge	.L398
+	.loc 4 461 98 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 461 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 461 134 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 461 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 461 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L399
+.L398:
+	.loc 4 461 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L399:
+	.loc 4 461 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 461 5 discriminator 4
+	cmpl	$6, %eax
+	jne	.L400
+	.loc 4 463 23
+	movq	-72(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL10DefineNameP10ProgramCtx
+	.loc 4 463 37
+	testl	%eax, %eax
+	sete	%al
+	.loc 4 463 9
+	testb	%al, %al
+	je	.L401
+	.loc 4 464 39
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 464 55
+	movl	$464, %ecx
+	leaq	.LC98(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 464 114 discriminator 2
+	movl	$464, %r8d
+	leaq	.LC98(%rip), %rax
+	movq	%rax, %rcx
+	movl	$464, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 464 219 discriminator 3
+	movl	$0, %ebx
+	jmp	.L383
+.L401:
+	.loc 4 466 28
+	movq	-72(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL12GetStatementP10ProgramCtx
+	movq	%rax, %rbx
+	.loc 4 466 40
+	jmp	.L383
+.L400:
+	.loc 4 469 25
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 469 52
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 469 62
+	movl	8(%rax), %eax
+	.loc 4 469 81
+	cmpl	%eax, %edx
+	jge	.L402
+	.loc 4 469 98 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 469 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 469 134 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 469 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 469 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L403
+.L402:
+	.loc 4 469 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L403:
+	.loc 4 469 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 469 5 discriminator 4
+	cmpl	$3, %eax
+	jne	.L404
+	.loc 4 470 33
+	movq	-72(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL17VarInitializationP10ProgramCtx
+	movq	%rax, %rbx
+	.loc 4 470 45
+	jmp	.L383
+.L404:
+	.loc 4 472 27
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 472 54
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 472 64
+	movl	8(%rax), %eax
+	.loc 4 472 83
+	cmpl	%eax, %edx
+	jge	.L405
+	.loc 4 472 100 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 472 110 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 472 136 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 472 120 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 472 83 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L406
+.L405:
+	.loc 4 472 83 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L406:
+	.loc 4 472 5 is_stmt 1 discriminator 4
+	testq	%rax, %rax
+	je	.L407
+	.loc 4 472 180 discriminator 5
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 472 207 discriminator 5
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 472 217 discriminator 5
+	movl	8(%rax), %eax
+	.loc 4 472 236 discriminator 5
+	cmpl	%eax, %edx
+	jge	.L408
+	.loc 4 472 253 discriminator 6
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 472 263 discriminator 6
+	movq	(%rax), %rcx
+	.loc 4 472 289 discriminator 6
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 472 273 discriminator 6
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 472 236 discriminator 6
+	addq	%rcx, %rax
+	jmp	.L409
+.L408:
+	.loc 4 472 236 is_stmt 0 discriminator 7
+	movl	$0, %eax
+.L409:
+	.loc 4 472 313 is_stmt 1 discriminator 9
+	movl	16(%rax), %eax
+	.loc 4 472 332 discriminator 9
+	cmpl	$9, %eax
+	jne	.L407
+	.loc 4 473 23
+	movq	-72(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL7GetCallP10ProgramCtx
+	movq	%rax, %rbx
+	.loc 4 473 35
+	jmp	.L383
+.L407:
+.LBB9:
+	.loc 4 476 25
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 476 52
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 476 62
+	movl	8(%rax), %eax
+	.loc 4 476 81
+	cmpl	%eax, %edx
+	jge	.L410
+	.loc 4 476 98 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 476 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 476 134 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 476 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 476 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L411
+.L410:
+	.loc 4 476 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L411:
+	.loc 4 476 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 476 5 discriminator 4
+	cmpl	$123, %eax
+	jne	.L412
+.LBB10:
+	.loc 4 478 23
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 478 32
+	leal	1(%rax), %edx
+	movq	-72(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 480 32
+	movq	-72(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL8GetBlockP10ProgramCtx
+	movq	%rax, -56(%rbp)
+	.loc 4 482 29
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 482 56
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 482 66
+	movl	8(%rax), %eax
+	.loc 4 482 85
+	cmpl	%eax, %edx
+	jge	.L413
+	.loc 4 482 102 discriminator 1
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 482 112 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 482 138 discriminator 1
+	movq	-72(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 482 122 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 482 85 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L414
+.L413:
+	.loc 4 482 85 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L414:
+	.loc 4 482 168 is_stmt 1 discriminator 4
+	movzbl	24(%rax), %eax
+	.loc 4 482 9 discriminator 4
+	cmpb	$125, %al
+	je	.L415
+	.loc 4 484 24
+	leaq	.LC25(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 890 81 discriminator 1
+	.loc 4 484 85 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
-	.loc 1 890 87 discriminator 1
-	leaq	.LC23(%rip), %rax
+	.loc 4 484 91 discriminator 1
+	leaq	.LC26(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 890 127 discriminator 3
+	.loc 4 484 131 discriminator 3
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
-	.loc 1 890 133 discriminator 3
-	leaq	.LC24(%rip), %rax
+	.loc 4 484 137 discriminator 3
+	leaq	.LC27(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 890 159 discriminator 5
+	.loc 4 484 163 discriminator 5
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 890 244 discriminator 5
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 890 254 discriminator 5
-	movq	24(%rax), %rsi
-	.loc 1 890 282 discriminator 5
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 890 309 discriminator 5
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 890 319 discriminator 5
-	movl	8(%rax), %eax
-	.loc 1 890 338 discriminator 5
-	cmpl	%eax, %edx
-	jge	.L565
-	.loc 1 890 355 discriminator 7
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 890 365 discriminator 7
-	movq	(%rax), %rdi
-	.loc 1 890 391 discriminator 7
+	.loc 4 484 181 discriminator 5
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 890 375 discriminator 7
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 890 338 discriminator 7
-	addq	%rdi, %rax
-	jmp	.L566
-.L565:
-	.loc 1 890 338 is_stmt 0 discriminator 8
-	movl	$0, %eax
-.L566:
-	.loc 1 890 421 is_stmt 1 discriminator 10
-	movl	24(%rax), %eax
-	cltq
-	.loc 1 890 430 discriminator 10
-	salq	$3, %rax
-	addq	%rsi, %rax
-	.loc 1 890 177 discriminator 10
-	movq	(%rax), %rax
-	movq	%rax, %rdx
-	leaq	.LC91(%rip), %rax
+	movl	%eax, %edx
+	leaq	.LC54(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
-	.loc 1 890 440 discriminator 11
-	leaq	.LC26(%rip), %rax
+	.loc 4 484 264 discriminator 7
+	leaq	.LC29(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 890 484 discriminator 12
+	.loc 4 484 308 discriminator 8
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %edx
-	.loc 1 890 511 discriminator 12
+	.loc 4 484 335 discriminator 8
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 890 521 discriminator 12
+	.loc 4 484 345 discriminator 8
 	movl	8(%rax), %eax
-	.loc 1 890 540 discriminator 12
+	.loc 4 484 364 discriminator 8
 	cmpl	%eax, %edx
-	jge	.L567
-	.loc 1 890 557 discriminator 13
+	jge	.L416
+	.loc 4 484 381 discriminator 9
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 890 567 discriminator 13
+	.loc 4 484 391 discriminator 9
 	movq	(%rax), %rcx
-	.loc 1 890 593 discriminator 13
+	.loc 4 484 417 discriminator 9
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rdx
-	.loc 1 890 577 discriminator 13
+	.loc 4 484 401 discriminator 9
 	movq	%rdx, %rax
 	salq	$2, %rax
 	addq	%rdx, %rax
 	salq	$3, %rax
-	.loc 1 890 540 discriminator 13
+	.loc 4 484 364 discriminator 9
 	addq	%rcx, %rax
-	jmp	.L568
-.L567:
-	.loc 1 890 540 is_stmt 0 discriminator 14
+	jmp	.L417
+.L416:
+	.loc 4 484 364 is_stmt 0 discriminator 10
 	movl	$0, %eax
-.L568:
-	.loc 1 890 467 is_stmt 1 discriminator 16
+.L417:
+	.loc 4 484 291 is_stmt 1 discriminator 12
 	movq	32(%rax), %rax
 	movl	$10, %esi
 	movq	%rax, %rdi
 	call	_Z6printlPKcc@PLT
-	.loc 1 890 647 discriminator 17
-	leaq	.LC27(%rip), %rax
+	.loc 4 484 471 discriminator 13
+	leaq	.LC30(%rip), %rax
 	movq	%rax, %rdi
 	call	puts@PLT
-	.loc 1 890 671 discriminator 18
-	movl	$890, %edx
-	leaq	.LC13(%rip), %rax
+	.loc 4 484 495 discriminator 14
+	movl	$484, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC28(%rip), %rax
+	leaq	.LC31(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 890 892 discriminator 19
+	.loc 4 484 716 discriminator 15
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 890 727 discriminator 19
+	.loc 4 484 551 discriminator 15
 	movq	24(%rax), %rdx
-	.loc 1 890 744 discriminator 19
+	.loc 4 484 568 discriminator 15
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %ecx
-	.loc 1 890 771 discriminator 19
+	.loc 4 484 595 discriminator 15
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 890 781 discriminator 19
+	.loc 4 484 605 discriminator 15
 	movl	8(%rax), %eax
-	.loc 1 890 727 discriminator 19
+	.loc 4 484 551 discriminator 15
 	cmpl	%eax, %ecx
-	jge	.L569
-	.loc 1 890 817 discriminator 20
+	jge	.L418
+	.loc 4 484 641 discriminator 16
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 890 827 discriminator 20
+	.loc 4 484 651 discriminator 16
 	movq	(%rax), %rsi
-	.loc 1 890 853 discriminator 20
+	.loc 4 484 677 discriminator 16
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
 	movslq	%eax, %rcx
-	.loc 1 890 837 discriminator 20
+	.loc 4 484 661 discriminator 16
 	movq	%rcx, %rax
 	salq	$2, %rax
 	addq	%rcx, %rax
 	salq	$3, %rax
-	.loc 1 890 727 discriminator 20
+	.loc 4 484 551 discriminator 16
 	addq	%rsi, %rax
-	jmp	.L570
-.L569:
-	.loc 1 890 727 is_stmt 0 discriminator 21
+	jmp	.L419
+.L418:
+	.loc 4 484 551 is_stmt 0 discriminator 17
 	movl	$0, %eax
-.L570:
-	.loc 1 890 727 discriminator 23
+.L419:
+	.loc 4 484 551 discriminator 19
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_Z10PrintTokenPK5TokenPPKc@PLT
-	.loc 1 891 35 is_stmt 1
+	.loc 4 485 39 is_stmt 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 891 51
-	movl	$891, %ecx
-	leaq	.LC90(%rip), %rax
+	.loc 4 485 55
+	movl	$485, %ecx
+	leaq	.LC98(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 891 110 discriminator 2
-	movl	$891, %r8d
-	leaq	.LC90(%rip), %rax
+	.loc 4 485 114 discriminator 2
+	movl	$485, %r8d
+	leaq	.LC98(%rip), %rax
 	movq	%rax, %rcx
-	movl	$891, %edx
-	leaq	.LC13(%rip), %rax
+	movl	$485, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-.LEHE34:
-	.loc 1 891 215 discriminator 3
+.LEHE28:
+	.loc 4 485 219 discriminator 3
 	movl	$0, %ebx
-	jmp	.L560
-.L564:
-	.loc 1 894 35
-	movq	-72(%rbp), %rax
-	movl	8(%rax), %edx
-	.loc 1 894 62
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 894 72
-	movl	8(%rax), %eax
-	.loc 1 894 91
-	cmpl	%eax, %edx
-	jge	.L571
-	.loc 1 894 108 discriminator 1
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	.loc 1 894 118 discriminator 1
-	movq	(%rax), %rcx
-	.loc 1 894 144 discriminator 1
+	jmp	.L383
+.L415:
+	.loc 4 488 23
 	movq	-72(%rbp), %rax
 	movl	8(%rax), %eax
-	movslq	%eax, %rdx
-	.loc 1 894 128 discriminator 1
-	movq	%rdx, %rax
-	salq	$2, %rax
-	addq	%rdx, %rax
-	salq	$3, %rax
-	.loc 1 894 91 discriminator 1
-	addq	%rcx, %rax
-	jmp	.L572
-.L571:
-	.loc 1 894 91 is_stmt 0 discriminator 2
-	movl	$0, %eax
-.L572:
-	.loc 1 894 174 is_stmt 1 discriminator 4
-	movl	24(%rax), %edx
-	.loc 1 894 17 discriminator 4
-	movq	-56(%rbp), %rax
-	movl	%edx, (%rax)
-	.loc 1 896 12 discriminator 4
+	.loc 4 488 32
+	leal	1(%rax), %edx
+	movq	-72(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 490 16
 	movq	-56(%rbp), %rbx
-.L560:
-	.loc 1 897 5
+	jmp	.L383
+.L412:
+.LBE10:
+.LBE9:
+	.loc 4 493 11
+	movl	$0, %ebx
+.L383:
+	.loc 4 494 5
 	leaq	-48(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
 	movq	%rbx, %rax
-	jmp	.L576
-.L575:
+	jmp	.L423
+.L422:
 	endbr64
 	movq	%rax, %rbx
 	leaq	-48(%rbp), %rax
@@ -15018,10 +11248,3059 @@ _ZL12MakeVarLabelP13ProgramBuffer:
 	call	_ZN14FunctionLoggerD1Ev@PLT
 	movq	%rbx, %rax
 	movq	%rax, %rdi
-.LEHB35:
+.LEHB29:
 	call	_Unwind_Resume@PLT
-.LEHE35:
-.L576:
+.LEHE29:
+.L423:
+	movq	-8(%rbp), %rbx
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2285:
+	.section	.gcc_except_table
+.LLSDA2285:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 .LLSDACSE2285-.LLSDACSB2285
+.LLSDACSB2285:
+	.uleb128 .LEHB27-.LFB2285
+	.uleb128 .LEHE27-.LEHB27
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB28-.LFB2285
+	.uleb128 .LEHE28-.LEHB28
+	.uleb128 .L422-.LFB2285
+	.uleb128 0
+	.uleb128 .LEHB29-.LFB2285
+	.uleb128 .LEHE29-.LEHB29
+	.uleb128 0
+	.uleb128 0
+.LLSDACSE2285:
+	.text
+	.size	_ZL12GetStatementP10ProgramCtx, .-_ZL12GetStatementP10ProgramCtx
+	.section	.rodata
+.LC100:
+	.string	"Token* GetCall(ProgramCtx*)"
+.LC101:
+	.string	"GetCall"
+.LC102:
+	.string	"Not a function name\n"
+.LC103:
+	.string	"Missing '('\n"
+.LC104:
+	.string	"Missing ')'\n"
+	.text
+	.type	_ZL7GetCallP10ProgramCtx, @function
+_ZL7GetCallP10ProgramCtx:
+.LFB2286:
+	.loc 4 498 5
+	.cfi_startproc
+	endbr64
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	pushq	%rbx
+	subq	$56, %rsp
+	.cfi_offset 3, -24
+	movq	%rdi, -56(%rbp)
+	.loc 4 499 10
+	cmpq	$0, -56(%rbp)
+	jne	.L425
+	.loc 4 499 51 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 4 499 57 discriminator 1
+	leaq	.LC21(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC10(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 499 121 discriminator 1
+	leaq	.LC21(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC11(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 499 273 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 499 279 discriminator 1
+	leaq	.LC100(%rip), %r8
+	movl	$499, %ecx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC14(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 499 368 discriminator 1
+	leaq	.LC100(%rip), %rax
+	movq	%rax, %rcx
+	movl	$499, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC14(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 499 470 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rbx
+	.loc 4 499 476 discriminator 1
+	movl	$14, %edi
+	call	strerror@PLT
+	movq	%rax, %rcx
+	movl	$14, %edx
+	leaq	.LC15(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rbx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 499 27 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 499 33 discriminator 1
+	movl	$499, %ecx
+	leaq	.LC101(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC17(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 499 92 discriminator 1
+	leaq	.LC18(%rip), %rax
+	movq	%rax, %rdi
+	call	system@PLT
+	.loc 4 499 134 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 499 150 discriminator 1
+	movl	$499, %ecx
+	leaq	.LC101(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 499 209 discriminator 1
+	movl	$499, %r8d
+	leaq	.LC101(%rip), %rax
+	movq	%rax, %rcx
+	movl	$499, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 499 314 discriminator 1
+	movl	$0, %eax
+	jmp	.L426
+.L425:
+	.loc 4 501 25
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 501 52
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 501 62
+	movl	8(%rax), %eax
+	.loc 4 501 81
+	cmpl	%eax, %edx
+	jge	.L427
+	.loc 4 501 98 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 501 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 501 134 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 501 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 501 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L428
+.L427:
+	.loc 4 501 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L428:
+	.loc 4 501 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 501 5 discriminator 4
+	cmpl	$9, %eax
+	je	.L429
+	.loc 4 503 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 503 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 503 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 503 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 503 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 503 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 503 177
+	leaq	.LC102(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 503 211
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 503 255
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 503 282
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 503 292
+	movl	8(%rax), %eax
+	.loc 4 503 311
+	cmpl	%eax, %edx
+	jge	.L430
+	.loc 4 503 328 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 503 338 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 503 364 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 503 348 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 503 311 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L431
+.L430:
+	.loc 4 503 311 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L431:
+	.loc 4 503 238 is_stmt 1 discriminator 4
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 503 418 discriminator 4
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 503 442 discriminator 4
+	movl	$503, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 503 663 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 503 498 discriminator 4
+	movq	24(%rax), %rdx
+	.loc 4 503 515 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 503 542 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 503 552 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 503 498 discriminator 4
+	cmpl	%eax, %ecx
+	jge	.L432
+	.loc 4 503 588 discriminator 5
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 503 598 discriminator 5
+	movq	(%rax), %rsi
+	.loc 4 503 624 discriminator 5
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 503 608 discriminator 5
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 503 498 discriminator 5
+	addq	%rsi, %rax
+	jmp	.L433
+.L432:
+	.loc 4 503 498 is_stmt 0 discriminator 6
+	movl	$0, %eax
+.L433:
+	.loc 4 503 498 discriminator 8
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 504 35 is_stmt 1 discriminator 8
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 504 51 discriminator 8
+	movl	$504, %ecx
+	leaq	.LC101(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 504 110 discriminator 8
+	movl	$504, %r8d
+	leaq	.LC101(%rip), %rax
+	movq	%rax, %rcx
+	movl	$504, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 504 215 discriminator 8
+	movl	$0, %eax
+	jmp	.L426
+.L429:
+	.loc 4 507 40
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 507 67
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 507 77
+	movl	8(%rax), %eax
+	.loc 4 507 96
+	cmpl	%eax, %edx
+	jge	.L434
+	.loc 4 507 113 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 507 123 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 507 149 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 507 133 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 507 96 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L435
+.L434:
+	.loc 4 507 96 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L435:
+	.loc 4 507 12 is_stmt 1 discriminator 4
+	movq	%rax, -40(%rbp)
+	.loc 4 508 21 discriminator 4
+	movq	-40(%rbp), %rax
+	movl	$6, 16(%rax)
+	.loc 4 510 19 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 510 28 discriminator 4
+	leal	1(%rax), %edx
+	movq	-56(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 512 25 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 512 52 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 512 62 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 512 81 discriminator 4
+	cmpl	%eax, %edx
+	jge	.L436
+	.loc 4 512 98 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 512 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 512 134 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 512 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 512 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L437
+.L436:
+	.loc 4 512 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L437:
+	.loc 4 512 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 512 5 discriminator 4
+	cmpl	$40, %eax
+	je	.L438
+	.loc 4 514 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 514 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 514 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 514 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 514 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 514 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 514 177
+	leaq	.LC103(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 514 203
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 514 247
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 514 274
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 514 284
+	movl	8(%rax), %eax
+	.loc 4 514 303
+	cmpl	%eax, %edx
+	jge	.L439
+	.loc 4 514 320 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 514 330 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 514 356 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 514 340 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 514 303 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L440
+.L439:
+	.loc 4 514 303 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L440:
+	.loc 4 514 230 is_stmt 1 discriminator 4
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 514 410 discriminator 4
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 514 434 discriminator 4
+	movl	$514, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 514 655 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 514 490 discriminator 4
+	movq	24(%rax), %rdx
+	.loc 4 514 507 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 514 534 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 514 544 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 514 490 discriminator 4
+	cmpl	%eax, %ecx
+	jge	.L441
+	.loc 4 514 580 discriminator 5
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 514 590 discriminator 5
+	movq	(%rax), %rsi
+	.loc 4 514 616 discriminator 5
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 514 600 discriminator 5
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 514 490 discriminator 5
+	addq	%rsi, %rax
+	jmp	.L442
+.L441:
+	.loc 4 514 490 is_stmt 0 discriminator 6
+	movl	$0, %eax
+.L442:
+	.loc 4 514 490 discriminator 8
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 515 35 is_stmt 1 discriminator 8
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 515 51 discriminator 8
+	movl	$515, %ecx
+	leaq	.LC101(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 515 110 discriminator 8
+	movl	$515, %r8d
+	leaq	.LC101(%rip), %rax
+	movq	%rax, %rcx
+	movl	$515, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 515 215 discriminator 8
+	movl	$0, %eax
+	jmp	.L426
+.L438:
+	.loc 4 518 40
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 518 67
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 518 77
+	movl	8(%rax), %eax
+	.loc 4 518 96
+	cmpl	%eax, %edx
+	jge	.L443
+	.loc 4 518 113 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 518 123 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 518 149 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 518 133 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 518 96 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L444
+.L443:
+	.loc 4 518 96 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L444:
+	.loc 4 518 12 is_stmt 1 discriminator 4
+	movq	%rax, -32(%rbp)
+	.loc 4 519 21 discriminator 4
+	movq	-32(%rbp), %rax
+	movl	$1, 16(%rax)
+	.loc 4 521 19 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 521 28 discriminator 4
+	leal	1(%rax), %edx
+	movq	-56(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 523 25 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 523 52 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 523 62 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 523 81 discriminator 4
+	cmpl	%eax, %edx
+	jge	.L445
+	.loc 4 523 98 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 523 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 523 134 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 523 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 523 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L446
+.L445:
+	.loc 4 523 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L446:
+	.loc 4 523 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 523 5 discriminator 4
+	cmpl	$41, %eax
+	je	.L447
+	.loc 4 525 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 525 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 525 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 525 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 525 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 525 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 525 177
+	leaq	.LC104(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 525 203
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 525 247
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 525 274
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 525 284
+	movl	8(%rax), %eax
+	.loc 4 525 303
+	cmpl	%eax, %edx
+	jge	.L448
+	.loc 4 525 320 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 525 330 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 525 356 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 525 340 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 525 303 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L449
+.L448:
+	.loc 4 525 303 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L449:
+	.loc 4 525 230 is_stmt 1 discriminator 4
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 525 410 discriminator 4
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 525 434 discriminator 4
+	movl	$525, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 525 655 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 525 490 discriminator 4
+	movq	24(%rax), %rdx
+	.loc 4 525 507 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 525 534 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 525 544 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 525 490 discriminator 4
+	cmpl	%eax, %ecx
+	jge	.L450
+	.loc 4 525 580 discriminator 5
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 525 590 discriminator 5
+	movq	(%rax), %rsi
+	.loc 4 525 616 discriminator 5
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 525 600 discriminator 5
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 525 490 discriminator 5
+	addq	%rsi, %rax
+	jmp	.L451
+.L450:
+	.loc 4 525 490 is_stmt 0 discriminator 6
+	movl	$0, %eax
+.L451:
+	.loc 4 525 490 discriminator 8
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 526 35 is_stmt 1 discriminator 8
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 526 51 discriminator 8
+	movl	$526, %ecx
+	leaq	.LC101(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 526 110 discriminator 8
+	movl	$526, %r8d
+	leaq	.LC101(%rip), %rax
+	movq	%rax, %rcx
+	movl	$526, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 526 215 discriminator 8
+	movl	$0, %eax
+	jmp	.L426
+.L447:
+	.loc 4 529 19
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 529 28
+	leal	1(%rax), %edx
+	movq	-56(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 531 25
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 531 52
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 531 62
+	movl	8(%rax), %eax
+	.loc 4 531 81
+	cmpl	%eax, %edx
+	jge	.L452
+	.loc 4 531 98 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 531 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 531 134 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 531 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 531 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L453
+.L452:
+	.loc 4 531 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L453:
+	.loc 4 531 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 531 5 discriminator 4
+	cmpl	$59, %eax
+	je	.L454
+	.loc 4 533 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 533 81
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 533 87
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 533 127
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 533 133
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 533 159
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 533 177
+	leaq	.LC86(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 533 203
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 533 247
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 533 274
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 533 284
+	movl	8(%rax), %eax
+	.loc 4 533 303
+	cmpl	%eax, %edx
+	jge	.L455
+	.loc 4 533 320 discriminator 1
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 533 330 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 533 356 discriminator 1
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 533 340 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 533 303 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L456
+.L455:
+	.loc 4 533 303 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L456:
+	.loc 4 533 230 is_stmt 1 discriminator 4
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 533 410 discriminator 4
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 533 434 discriminator 4
+	movl	$533, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 533 655 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 533 490 discriminator 4
+	movq	24(%rax), %rdx
+	.loc 4 533 507 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 533 534 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 533 544 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 533 490 discriminator 4
+	cmpl	%eax, %ecx
+	jge	.L457
+	.loc 4 533 580 discriminator 5
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 533 590 discriminator 5
+	movq	(%rax), %rsi
+	.loc 4 533 616 discriminator 5
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 533 600 discriminator 5
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 533 490 discriminator 5
+	addq	%rsi, %rax
+	jmp	.L458
+.L457:
+	.loc 4 533 490 is_stmt 0 discriminator 6
+	movl	$0, %eax
+.L458:
+	.loc 4 533 490 discriminator 8
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 534 35 is_stmt 1 discriminator 8
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 534 51 discriminator 8
+	movl	$534, %ecx
+	leaq	.LC101(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 534 110 discriminator 8
+	movl	$534, %r8d
+	leaq	.LC101(%rip), %rax
+	movq	%rax, %rcx
+	movl	$534, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 534 215 discriminator 8
+	movl	$0, %eax
+	jmp	.L426
+.L454:
+	.loc 4 537 19
+	movq	-56(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 537 28
+	leal	1(%rax), %edx
+	movq	-56(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 540 27
+	movl	$0, %esi
+	movq	-40(%rbp), %rax
+	movl	$0, %ecx
+	movq	%rax, %rdx
+	movl	$10, %edi
+	call	_Z8NewTokeni10TokenValueP5TokenS1_@PLT
+	movq	%rax, -24(%rbp)
+	.loc 4 546 27
+	movq	-32(%rbp), %rax
+	movq	-24(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 4 548 12
+	movq	-32(%rbp), %rax
+.L426:
+	.loc 4 549 5
+	movq	-8(%rbp), %rbx
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2286:
+	.size	_ZL7GetCallP10ProgramCtx, .-_ZL7GetCallP10ProgramCtx
+	.section	.rodata
+.LC105:
+	.string	"GetInstruction"
+	.align 8
+.LC106:
+	.string	"Token* GetInstruction(ProgramCtx*)"
+	.align 8
+.LC107:
+	.string	"Ebat, not a instruction token\n"
+	.align 8
+.LC108:
+	.string	"Missing %c - end of statement after fout\n"
+	.align 8
+.LC109:
+	.string	"Missing openig bracket in instruction \n"
+.LC110:
+	.string	"No condition for instruction\n"
+	.align 8
+.LC111:
+	.string	"Missing closing bracket in instruction\n"
+	.align 8
+.LC112:
+	.string	"No condition for instruction (position %d)\n"
+	.align 8
+.LC113:
+	.string	"No commands for 'else' (position %d)\n"
+	.text
+	.type	_ZL14GetInstructionP10ProgramCtx, @function
+_ZL14GetInstructionP10ProgramCtx:
+.LFB2287:
+	.loc 4 552 5
+	.cfi_startproc
+	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
+	.cfi_lsda 0x1b,.LLSDA2287
+	endbr64
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	pushq	%rbx
+	subq	$104, %rsp
+	.cfi_offset 3, -24
+	movq	%rdi, -104(%rbp)
+	.loc 4 553 41
+	leaq	-48(%rbp), %rax
+	leaq	.LC105(%rip), %rdx
+	movl	$2, %esi
+	movq	%rax, %rdi
+.LEHB30:
+	call	_ZN14FunctionLoggerC1EiPKc@PLT
+.LEHE30:
+	.loc 4 554 10
+	cmpq	$0, -104(%rbp)
+	jne	.L460
+.LEHB31:
+	.loc 4 554 51 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 4 554 57 discriminator 1
+	leaq	.LC21(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC10(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 554 121 discriminator 3
+	leaq	.LC21(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC11(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 554 273 discriminator 4
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 554 279 discriminator 4
+	leaq	.LC106(%rip), %r8
+	movl	$554, %ecx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC14(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 554 368 discriminator 6
+	leaq	.LC106(%rip), %rax
+	movq	%rax, %rcx
+	movl	$554, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC14(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 554 470 discriminator 7
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rbx
+	.loc 4 554 476 discriminator 7
+	movl	$14, %edi
+	call	strerror@PLT
+	movq	%rax, %rcx
+	movl	$14, %edx
+	leaq	.LC15(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rbx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 554 27 discriminator 9
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 554 33 discriminator 9
+	movl	$554, %ecx
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC17(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 554 92 discriminator 11
+	leaq	.LC18(%rip), %rax
+	movq	%rax, %rdi
+	call	system@PLT
+	.loc 4 554 134 discriminator 12
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 554 150 discriminator 12
+	movl	$554, %ecx
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 554 209 discriminator 14
+	movl	$554, %r8d
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rcx
+	movl	$554, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 554 314 discriminator 15
+	movl	$0, %ebx
+	jmp	.L461
+.L460:
+	.loc 4 556 28
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 556 55
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 556 65
+	movl	8(%rax), %eax
+	.loc 4 556 84
+	cmpl	%eax, %edx
+	jge	.L462
+	.loc 4 556 101 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 556 111 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 556 137 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 556 121 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 556 84 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L463
+.L462:
+	.loc 4 556 84 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L463:
+	.loc 4 556 5 is_stmt 1 discriminator 4
+	testq	%rax, %rax
+	je	.L464
+	.loc 4 556 181 discriminator 5
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 556 208 discriminator 5
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 556 218 discriminator 5
+	movl	8(%rax), %eax
+	.loc 4 556 237 discriminator 5
+	cmpl	%eax, %edx
+	jge	.L465
+	.loc 4 556 254 discriminator 6
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 556 264 discriminator 6
+	movq	(%rax), %rcx
+	.loc 4 556 290 discriminator 6
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 556 274 discriminator 6
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 556 237 discriminator 6
+	addq	%rcx, %rax
+	jmp	.L466
+.L465:
+	.loc 4 556 237 is_stmt 0 discriminator 7
+	movl	$0, %eax
+.L466:
+	.loc 4 556 314 is_stmt 1 discriminator 9
+	movl	16(%rax), %eax
+	.loc 4 556 9 discriminator 9
+	cmpl	$2, %eax
+	je	.L467
+.L464:
+	.loc 4 558 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 558 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 558 87 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 558 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 558 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 558 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 558 177 discriminator 5
+	leaq	.LC107(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 558 221 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 558 265 discriminator 8
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 558 292 discriminator 8
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 558 302 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 558 321 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L468
+	.loc 4 558 338 discriminator 9
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 558 348 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 558 374 discriminator 9
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 558 358 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 558 321 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L469
+.L468:
+	.loc 4 558 321 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L469:
+	.loc 4 558 248 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 558 428 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 558 452 discriminator 14
+	movl	$558, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 558 673 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 558 508 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 558 525 discriminator 15
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 558 552 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 558 562 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 558 508 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L470
+	.loc 4 558 598 discriminator 16
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 558 608 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 558 634 discriminator 16
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 558 618 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 558 508 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L471
+.L470:
+	.loc 4 558 508 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L471:
+	.loc 4 558 508 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 559 35 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 559 51
+	movl	$559, %ecx
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 559 110 discriminator 2
+	movl	$559, %r8d
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rcx
+	movl	$559, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 559 215 discriminator 3
+	movl	$0, %ebx
+	jmp	.L461
+.L467:
+	.loc 4 562 25
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 562 52
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 562 62
+	movl	8(%rax), %eax
+	.loc 4 562 81
+	cmpl	%eax, %edx
+	jge	.L472
+	.loc 4 562 98 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 562 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 562 134 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 562 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 562 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L473
+.L472:
+	.loc 4 562 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L473:
+	.loc 4 562 164 is_stmt 1 discriminator 4
+	movl	24(%rax), %eax
+	.loc 4 562 5 discriminator 4
+	cmpl	$4, %eax
+	jne	.L474
+	.loc 4 563 15
+	movl	$0, %ebx
+	jmp	.L461
+.L474:
+.LBB11:
+	.loc 4 566 25
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 566 52
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 566 62
+	movl	8(%rax), %eax
+	.loc 4 566 81
+	cmpl	%eax, %edx
+	jge	.L475
+	.loc 4 566 98 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 566 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 566 134 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 566 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 566 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L476
+.L475:
+	.loc 4 566 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L476:
+	.loc 4 566 164 is_stmt 1 discriminator 4
+	movl	24(%rax), %eax
+	.loc 4 566 5 discriminator 4
+	cmpl	$3, %eax
+	jne	.L477
+.LBB12:
+	.loc 4 568 39
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 568 66
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 568 76
+	movl	8(%rax), %eax
+	.loc 4 568 95
+	cmpl	%eax, %edx
+	jge	.L478
+	.loc 4 568 112 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 568 122 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 568 148 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 568 132 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 568 95 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L479
+.L478:
+	.loc 4 568 95 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L479:
+	.loc 4 568 16 is_stmt 1 discriminator 4
+	movq	%rax, -72(%rbp)
+	.loc 4 569 23 discriminator 4
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 569 32 discriminator 4
+	leal	1(%rax), %edx
+	movq	-104(%rbp), %rax
+	movl	%edx, 8(%rax)
+.LBB13:
+	.loc 4 571 29 discriminator 4
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 571 56 discriminator 4
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 571 66 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 571 85 discriminator 4
+	cmpl	%eax, %edx
+	jge	.L480
+	.loc 4 571 102 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 571 112 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 571 138 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 571 122 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 571 85 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L481
+.L480:
+	.loc 4 571 85 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L481:
+	.loc 4 571 162 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 571 9 discriminator 4
+	cmpl	$5, %eax
+	jne	.L482
+	.loc 4 571 198 discriminator 5
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 571 225 discriminator 5
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 571 235 discriminator 5
+	movl	8(%rax), %eax
+	.loc 4 571 254 discriminator 5
+	cmpl	%eax, %edx
+	jge	.L483
+	.loc 4 571 271 discriminator 6
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 571 281 discriminator 6
+	movq	(%rax), %rcx
+	.loc 4 571 307 discriminator 6
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 571 291 discriminator 6
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 571 254 discriminator 6
+	addq	%rcx, %rax
+	jmp	.L484
+.L483:
+	.loc 4 571 254 is_stmt 0 discriminator 7
+	movl	$0, %eax
+.L484:
+	.loc 4 571 337 is_stmt 1 discriminator 9
+	movzbl	24(%rax), %eax
+	.loc 4 571 179 discriminator 9
+	cmpb	$60, %al
+	jne	.L482
+.LBB14:
+	.loc 4 573 27
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 573 36
+	leal	1(%rax), %edx
+	movq	-104(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 575 33
+	movq	-104(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL4GetEP10ProgramCtx
+	movq	%rax, -64(%rbp)
+	.loc 4 577 30
+	movq	-72(%rbp), %rax
+	movq	-64(%rbp), %rdx
+	movq	%rdx, (%rax)
+.L482:
+.LBE14:
+.LBE13:
+	.loc 4 580 29
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 580 56
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 580 66
+	movl	8(%rax), %eax
+	.loc 4 580 85
+	cmpl	%eax, %edx
+	jge	.L485
+	.loc 4 580 102 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 580 112 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 580 138 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 580 122 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 580 85 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L486
+.L485:
+	.loc 4 580 85 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L486:
+	.loc 4 580 162 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 580 9 discriminator 4
+	cmpl	$59, %eax
+	je	.L487
+	.loc 4 580 206 discriminator 5
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 580 233 discriminator 5
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 580 243 discriminator 5
+	movl	8(%rax), %eax
+	.loc 4 580 262 discriminator 5
+	cmpl	%eax, %edx
+	jge	.L488
+	.loc 4 580 279 discriminator 6
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 580 289 discriminator 6
+	movq	(%rax), %rcx
+	.loc 4 580 315 discriminator 6
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 580 299 discriminator 6
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 580 262 discriminator 6
+	addq	%rcx, %rax
+	jmp	.L489
+.L488:
+	.loc 4 580 262 is_stmt 0 discriminator 7
+	movl	$0, %eax
+.L489:
+	.loc 4 580 345 is_stmt 1 discriminator 9
+	movzbl	24(%rax), %eax
+	.loc 4 580 187 discriminator 9
+	cmpb	$59, %al
+	je	.L487
+	.loc 4 582 24
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 582 85 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 582 91 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 582 131 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 582 137 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 582 163 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 4 582 181 discriminator 5
+	movl	$59, %edx
+	leaq	.LC108(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 582 254 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 582 298 discriminator 8
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 582 325 discriminator 8
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 582 335 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 582 354 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L490
+	.loc 4 582 371 discriminator 9
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 582 381 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 582 407 discriminator 9
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 582 391 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 582 354 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L491
+.L490:
+	.loc 4 582 354 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L491:
+	.loc 4 582 281 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 582 461 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 582 485 discriminator 14
+	movl	$582, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 582 706 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 582 541 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 582 558 discriminator 15
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 582 585 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 582 595 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 582 541 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L492
+	.loc 4 582 631 discriminator 16
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 582 641 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 582 667 discriminator 16
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 582 651 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 582 541 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L493
+.L492:
+	.loc 4 582 541 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L493:
+	.loc 4 582 541 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 583 39 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 583 55
+	movl	$583, %ecx
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 583 114 discriminator 2
+	movl	$583, %r8d
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rcx
+	movl	$583, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 583 219 discriminator 3
+	movl	$0, %ebx
+	jmp	.L461
+.L487:
+	.loc 4 586 44
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 586 71
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 586 81
+	movl	8(%rax), %eax
+	.loc 4 586 100
+	cmpl	%eax, %edx
+	jge	.L494
+	.loc 4 586 117 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 586 127 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 586 153 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 586 137 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 586 100 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L495
+.L494:
+	.loc 4 586 100 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L495:
+	.loc 4 586 16 is_stmt 1 discriminator 4
+	movq	%rax, -56(%rbp)
+	.loc 4 587 23 discriminator 4
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 587 32 discriminator 4
+	leal	1(%rax), %edx
+	movq	-104(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 589 25 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	$1, 16(%rax)
+	.loc 4 590 31 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	-72(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 4 592 16 discriminator 4
+	movq	-56(%rbp), %rbx
+	jmp	.L461
+.L477:
+.LBE12:
+.LBE11:
+	.loc 4 596 42
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 596 69
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 596 79
+	movl	8(%rax), %eax
+	.loc 4 596 98
+	cmpl	%eax, %edx
+	jge	.L496
+	.loc 4 596 115 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 596 125 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 596 151 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 596 135 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 596 98 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L497
+.L496:
+	.loc 4 596 98 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L497:
+	.loc 4 596 12 is_stmt 1 discriminator 4
+	movq	%rax, -96(%rbp)
+	.loc 4 597 19 discriminator 4
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 597 28 discriminator 4
+	leal	1(%rax), %edx
+	movq	-104(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 599 25 discriminator 4
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 599 52 discriminator 4
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 599 62 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 599 81 discriminator 4
+	cmpl	%eax, %edx
+	jge	.L498
+	.loc 4 599 98 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 599 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 599 134 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 599 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 599 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L499
+.L498:
+	.loc 4 599 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L499:
+	.loc 4 599 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 599 5 discriminator 4
+	cmpl	$40, %eax
+	je	.L500
+	.loc 4 601 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 601 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 601 87 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 601 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 601 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 601 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 601 177 discriminator 5
+	leaq	.LC109(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 601 230 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 601 274 discriminator 8
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 601 301 discriminator 8
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 601 311 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 601 330 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L501
+	.loc 4 601 347 discriminator 9
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 601 357 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 601 383 discriminator 9
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 601 367 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 601 330 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L502
+.L501:
+	.loc 4 601 330 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L502:
+	.loc 4 601 257 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 601 437 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 601 461 discriminator 14
+	movl	$601, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 601 682 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 601 517 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 601 534 discriminator 15
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 601 561 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 601 571 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 601 517 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L503
+	.loc 4 601 607 discriminator 16
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 601 617 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 601 643 discriminator 16
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 601 627 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 601 517 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L504
+.L503:
+	.loc 4 601 517 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L504:
+	.loc 4 601 517 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 602 35 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 602 51
+	movl	$602, %ecx
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 602 110 discriminator 2
+	movl	$602, %r8d
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rcx
+	movl	$602, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 602 215 discriminator 3
+	movl	$0, %ebx
+	jmp	.L461
+.L500:
+	.loc 4 605 40
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 605 67
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 605 77
+	movl	8(%rax), %eax
+	.loc 4 605 96
+	cmpl	%eax, %edx
+	jge	.L505
+	.loc 4 605 113 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 605 123 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 605 149 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 605 133 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 605 96 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L506
+.L505:
+	.loc 4 605 96 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L506:
+	.loc 4 605 12 is_stmt 1 discriminator 4
+	movq	%rax, -88(%rbp)
+	.loc 4 606 21 discriminator 4
+	movq	-88(%rbp), %rax
+	movl	$1, 16(%rax)
+	.loc 4 607 27 discriminator 4
+	movq	-88(%rbp), %rax
+	movq	-96(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 4 609 19 discriminator 4
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 609 28 discriminator 4
+	leal	1(%rax), %edx
+	movq	-104(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 611 35 discriminator 4
+	movq	-104(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL4GetEP10ProgramCtx
+	.loc 4 611 29 discriminator 4
+	movq	-96(%rbp), %rdx
+	movq	%rax, (%rdx)
+	.loc 4 612 23 discriminator 4
+	movq	-96(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 612 5 discriminator 4
+	testq	%rax, %rax
+	jne	.L507
+	.loc 4 614 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 614 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 614 87 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 614 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 614 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 614 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 614 177 discriminator 5
+	leaq	.LC110(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 614 220 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 614 264 discriminator 8
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 614 291 discriminator 8
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 614 301 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 614 320 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L508
+	.loc 4 614 337 discriminator 9
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 614 347 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 614 373 discriminator 9
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 614 357 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 614 320 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L509
+.L508:
+	.loc 4 614 320 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L509:
+	.loc 4 614 247 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 614 427 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 614 451 discriminator 14
+	movl	$614, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 614 672 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 614 507 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 614 524 discriminator 15
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 614 551 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 614 561 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 614 507 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L510
+	.loc 4 614 597 discriminator 16
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 614 607 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 614 633 discriminator 16
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 614 617 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 614 507 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L511
+.L510:
+	.loc 4 614 507 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L511:
+	.loc 4 614 507 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 615 35 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 615 51
+	movl	$615, %ecx
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 615 110 discriminator 2
+	movl	$615, %r8d
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rcx
+	movl	$615, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 615 215 discriminator 3
+	movl	$0, %ebx
+	jmp	.L461
+.L507:
+	.loc 4 618 25
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 618 52
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 618 62
+	movl	8(%rax), %eax
+	.loc 4 618 81
+	cmpl	%eax, %edx
+	jge	.L512
+	.loc 4 618 98 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 618 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 618 134 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 618 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 618 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L513
+.L512:
+	.loc 4 618 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L513:
+	.loc 4 618 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 618 5 discriminator 4
+	cmpl	$41, %eax
+	je	.L514
+	.loc 4 620 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 620 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 620 87 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 620 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 620 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 620 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 620 177 discriminator 5
+	leaq	.LC111(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 620 230 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 620 274 discriminator 8
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 620 301 discriminator 8
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 620 311 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 620 330 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L515
+	.loc 4 620 347 discriminator 9
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 620 357 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 620 383 discriminator 9
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 620 367 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 620 330 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L516
+.L515:
+	.loc 4 620 330 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L516:
+	.loc 4 620 257 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 620 437 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 620 461 discriminator 14
+	movl	$620, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 620 682 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 620 517 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 620 534 discriminator 15
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 620 561 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 620 571 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 620 517 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L517
+	.loc 4 620 607 discriminator 16
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 620 617 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 620 643 discriminator 16
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 620 627 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 620 517 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L518
+.L517:
+	.loc 4 620 517 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L518:
+	.loc 4 620 517 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 621 35 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 621 51
+	movl	$621, %ecx
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 621 110 discriminator 2
+	movl	$621, %r8d
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rcx
+	movl	$621, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 621 215 discriminator 3
+	movl	$0, %ebx
+	jmp	.L461
+.L514:
+	.loc 4 624 19
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 624 28
+	leal	1(%rax), %edx
+	movq	-104(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 627 44
+	movq	-104(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL12GetStatementP10ProgramCtx
+	.loc 4 627 30
+	movq	-96(%rbp), %rdx
+	movq	%rax, 8(%rdx)
+	.loc 4 628 23
+	movq	-96(%rbp), %rax
+	movq	8(%rax), %rax
+	.loc 4 628 5
+	testq	%rax, %rax
+	jne	.L519
+	.loc 4 630 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 630 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 630 87 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 630 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 630 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 630 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 4 630 177 discriminator 5
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movl	%eax, %edx
+	leaq	.LC112(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 630 259 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 630 303 discriminator 8
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 630 330 discriminator 8
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 630 340 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 630 359 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L520
+	.loc 4 630 376 discriminator 9
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 630 386 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 630 412 discriminator 9
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 630 396 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 630 359 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L521
+.L520:
+	.loc 4 630 359 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L521:
+	.loc 4 630 286 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 630 466 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 630 490 discriminator 14
+	movl	$630, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 630 711 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 630 546 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 630 563 discriminator 15
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 630 590 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 630 600 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 630 546 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L522
+	.loc 4 630 636 discriminator 16
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 630 646 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 630 672 discriminator 16
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 630 656 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 630 546 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L523
+.L522:
+	.loc 4 630 546 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L523:
+	.loc 4 630 546 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 631 35 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 631 51
+	movl	$631, %ecx
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 631 110 discriminator 2
+	movl	$631, %r8d
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rcx
+	movl	$631, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 631 215 discriminator 3
+	movl	$0, %ebx
+	jmp	.L461
+.L519:
+.LBB15:
+	.loc 4 635 28
+	movq	-96(%rbp), %rax
+	movl	24(%rax), %eax
+	.loc 4 635 5
+	testl	%eax, %eax
+	jne	.L524
+	.loc 4 635 67 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 635 94 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 635 104 discriminator 1
+	movl	8(%rax), %eax
+	.loc 4 635 123 discriminator 1
+	cmpl	%eax, %edx
+	jge	.L525
+	.loc 4 635 140 discriminator 2
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 635 150 discriminator 2
+	movq	(%rax), %rcx
+	.loc 4 635 176 discriminator 2
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 635 160 discriminator 2
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 635 123 discriminator 2
+	addq	%rcx, %rax
+	jmp	.L526
+.L525:
+	.loc 4 635 123 is_stmt 0 discriminator 3
+	movl	$0, %eax
+.L526:
+	.loc 4 635 200 is_stmt 1 discriminator 5
+	movl	16(%rax), %eax
+	.loc 4 635 48 discriminator 5
+	cmpl	$2, %eax
+	jne	.L524
+	.loc 4 635 239 discriminator 6
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 635 266 discriminator 6
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 635 276 discriminator 6
+	movl	8(%rax), %eax
+	.loc 4 635 295 discriminator 6
+	cmpl	%eax, %edx
+	jge	.L527
+	.loc 4 635 312 discriminator 7
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 635 322 discriminator 7
+	movq	(%rax), %rcx
+	.loc 4 635 348 discriminator 7
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 635 332 discriminator 7
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 635 295 discriminator 7
+	addq	%rcx, %rax
+	jmp	.L528
+.L527:
+	.loc 4 635 295 is_stmt 0 discriminator 8
+	movl	$0, %eax
+.L528:
+	.loc 4 635 378 is_stmt 1 discriminator 10
+	movl	24(%rax), %eax
+	.loc 4 635 220 discriminator 10
+	cmpl	$1, %eax
+	jne	.L524
+.LBB16:
+	.loc 4 637 45
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 637 72
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 637 82
+	movl	8(%rax), %eax
+	.loc 4 637 101
+	cmpl	%eax, %edx
+	jge	.L529
+	.loc 4 637 118 discriminator 1
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 637 128 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 637 154 discriminator 1
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 637 138 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 637 101 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L530
+.L529:
+	.loc 4 637 101 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L530:
+	.loc 4 637 16 is_stmt 1 discriminator 4
+	movq	%rax, -80(%rbp)
+	.loc 4 638 23 discriminator 4
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 638 32 discriminator 4
+	leal	1(%rax), %edx
+	movq	-104(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 640 48 discriminator 4
+	movq	-96(%rbp), %rax
+	movq	8(%rax), %rdx
+	.loc 4 640 33 discriminator 4
+	movq	-80(%rbp), %rax
+	movq	%rdx, (%rax)
+	.loc 4 641 47 discriminator 4
+	movq	-104(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL12GetStatementP10ProgramCtx
+	.loc 4 641 33 discriminator 4
+	movq	-80(%rbp), %rdx
+	movq	%rax, 8(%rdx)
+	.loc 4 642 26 discriminator 4
+	movq	-80(%rbp), %rax
+	movq	8(%rax), %rax
+	.loc 4 642 9 discriminator 4
+	testq	%rax, %rax
+	jne	.L531
+	.loc 4 644 24
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 644 85 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 644 91 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 644 131 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 644 137 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 644 163 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 4 644 181 discriminator 5
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movl	%eax, %edx
+	leaq	.LC113(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 644 257 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 644 301 discriminator 8
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 644 328 discriminator 8
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 644 338 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 644 357 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L532
+	.loc 4 644 374 discriminator 9
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 644 384 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 644 410 discriminator 9
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 644 394 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 644 357 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L533
+.L532:
+	.loc 4 644 357 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L533:
+	.loc 4 644 284 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 644 464 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 644 488 discriminator 14
+	movl	$644, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 644 709 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 644 544 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 644 561 discriminator 15
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 644 588 discriminator 15
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 644 598 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 644 544 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L534
+	.loc 4 644 634 discriminator 16
+	movq	-104(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 644 644 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 644 670 discriminator 16
+	movq	-104(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 644 654 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 644 544 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L535
+.L534:
+	.loc 4 644 544 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L535:
+	.loc 4 644 544 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 645 39 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 645 55
+	movl	$645, %ecx
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 645 114 discriminator 2
+	movl	$645, %r8d
+	leaq	.LC105(%rip), %rax
+	movq	%rax, %rcx
+	movl	$645, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+.LEHE31:
+	.loc 4 645 219 discriminator 3
+	movl	$0, %ebx
+	jmp	.L461
+.L531:
+	.loc 4 648 34
+	movq	-96(%rbp), %rax
+	movq	-80(%rbp), %rdx
+	movq	%rdx, 8(%rax)
+.L524:
+.LBE16:
+.LBE15:
+	.loc 4 651 12
+	movq	-88(%rbp), %rbx
+.L461:
+	.loc 4 652 5
+	leaq	-48(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZN14FunctionLoggerD1Ev@PLT
+	movq	%rbx, %rax
+	jmp	.L539
+.L538:
+	endbr64
+	movq	%rax, %rbx
+	leaq	-48(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZN14FunctionLoggerD1Ev@PLT
+	movq	%rbx, %rax
+	movq	%rax, %rdi
+.LEHB32:
+	call	_Unwind_Resume@PLT
+.LEHE32:
+.L539:
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
@@ -15035,32 +14314,46 @@ _ZL12MakeVarLabelP13ProgramBuffer:
 	.byte	0x1
 	.uleb128 .LLSDACSE2287-.LLSDACSB2287
 .LLSDACSB2287:
-	.uleb128 .LEHB33-.LFB2287
-	.uleb128 .LEHE33-.LEHB33
+	.uleb128 .LEHB30-.LFB2287
+	.uleb128 .LEHE30-.LEHB30
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB34-.LFB2287
-	.uleb128 .LEHE34-.LEHB34
-	.uleb128 .L575-.LFB2287
+	.uleb128 .LEHB31-.LFB2287
+	.uleb128 .LEHE31-.LEHB31
+	.uleb128 .L538-.LFB2287
 	.uleb128 0
-	.uleb128 .LEHB35-.LFB2287
-	.uleb128 .LEHE35-.LEHB35
+	.uleb128 .LEHB32-.LFB2287
+	.uleb128 .LEHE32-.LEHB32
 	.uleb128 0
 	.uleb128 0
 .LLSDACSE2287:
 	.text
-	.size	_ZL12MakeVarLabelP13ProgramBuffer, .-_ZL12MakeVarLabelP13ProgramBuffer
+	.size	_ZL14GetInstructionP10ProgramCtx, .-_ZL14GetInstructionP10ProgramCtx
 	.section	.rodata
-.LC92:
-	.string	"label"
-.LC93:
-	.string	"FuncLabelToTokens"
+.LC114:
+	.string	"GetAssigment"
+	.align 8
+.LC115:
+	.string	"Token* GetAssigment(ProgramCtx*)"
+	.align 8
+.LC116:
+	.string	"Error %d token must be variable\n"
+	.align 8
+.LC117:
+	.string	"Error %d token must be assigment (%c)\n"
+.LC118:
+	.string	"Empty assigment!\n"
+	.align 8
+.LC119:
+	.string	"Missing %c - end of statement\n"
 	.text
-	.type	_ZL17FuncLabelToTokensP9FuncLabel, @function
-_ZL17FuncLabelToTokensP9FuncLabel:
+	.type	_ZL12GetAssigmentP10ProgramCtx, @function
+_ZL12GetAssigmentP10ProgramCtx:
 .LFB2288:
-	.loc 1 900 5
+	.loc 4 655 5
 	.cfi_startproc
+	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
+	.cfi_lsda 0x1b,.LLSDA2288
 	endbr64
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -15068,57 +14361,65 @@ _ZL17FuncLabelToTokensP9FuncLabel:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	pushq	%rbx
-	subq	$40, %rsp
+	subq	$88, %rsp
 	.cfi_offset 3, -24
-	movq	%rdi, -40(%rbp)
-	.loc 1 901 10
-	cmpq	$0, -40(%rbp)
-	jne	.L578
-	.loc 1 901 45 discriminator 1
+	movq	%rdi, -88(%rbp)
+	.loc 4 656 41
+	leaq	-48(%rbp), %rax
+	leaq	.LC114(%rip), %rdx
+	movl	$2, %esi
+	movq	%rax, %rdi
+.LEHB33:
+	call	_ZN14FunctionLoggerC1EiPKc@PLT
+.LEHE33:
+	.loc 4 657 10
+	cmpq	$0, -88(%rbp)
+	jne	.L541
+.LEHB34:
+	.loc 4 657 51 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 901 51 discriminator 1
-	leaq	.LC92(%rip), %rax
+	.loc 4 657 57 discriminator 1
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 901 97 discriminator 1
-	leaq	.LC92(%rip), %rax
+	.loc 4 657 121 discriminator 3
+	leaq	.LC21(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 901 180 discriminator 1
+	.loc 4 657 273 discriminator 4
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 901 186 discriminator 1
-	movl	$901, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC93(%rip), %rax
+	.loc 4 657 279 discriminator 4
+	leaq	.LC115(%rip), %r8
+	movl	$657, %ecx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 901 279 discriminator 1
-	movl	$901, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC93(%rip), %rax
+	.loc 4 657 368 discriminator 6
+	leaq	.LC115(%rip), %rax
+	movq	%rax, %rcx
+	movl	$657, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 901 385 discriminator 1
+	.loc 4 657 470 discriminator 7
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 901 391 discriminator 1
+	.loc 4 657 476 discriminator 7
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -15128,239 +14429,1066 @@ _ZL17FuncLabelToTokensP9FuncLabel:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 901 27 discriminator 1
+	.loc 4 657 27 discriminator 9
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 901 33 discriminator 1
-	movl	$901, %ecx
-	leaq	.LC93(%rip), %rax
+	.loc 4 657 33 discriminator 9
+	movl	$657, %ecx
+	leaq	.LC114(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
+	leaq	.LC17(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 901 92 discriminator 1
-	leaq	.LC17(%rip), %rax
+	.loc 4 657 92 discriminator 11
+	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 901 131 discriminator 1
+	.loc 4 657 134 discriminator 12
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 901 147 discriminator 1
-	movl	$901, %ecx
-	leaq	.LC93(%rip), %rax
+	.loc 4 657 150 discriminator 12
+	movl	$657, %ecx
+	leaq	.LC114(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
+	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 901 206 discriminator 1
-	movl	$901, %r8d
-	leaq	.LC93(%rip), %rax
+	.loc 4 657 209 discriminator 14
+	movl	$657, %r8d
+	leaq	.LC114(%rip), %rax
 	movq	%rax, %rcx
-	movl	$901, %edx
-	leaq	.LC13(%rip), %rax
+	movl	$657, %edx
+	leaq	.LC62(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
+	leaq	.LC20(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 901 311 discriminator 1
+	.loc 4 657 314 discriminator 15
+	movl	$0, %ebx
+	jmp	.L542
+.L541:
+	.loc 4 659 29
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 659 56
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 659 66
+	movl	8(%rax), %eax
+	.loc 4 659 85
+	cmpl	%eax, %edx
+	jge	.L543
+	.loc 4 659 102 discriminator 1
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 659 112 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 659 138 discriminator 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 659 122 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 659 85 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L544
+.L543:
+	.loc 4 659 85 is_stmt 0 discriminator 2
 	movl	$0, %eax
+.L544:
+	.loc 4 659 5 is_stmt 1 discriminator 4
+	testq	%rax, %rax
+	je	.L545
+	.loc 4 659 182 discriminator 5
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 659 209 discriminator 5
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 659 219 discriminator 5
+	movl	8(%rax), %eax
+	.loc 4 659 238 discriminator 5
+	cmpl	%eax, %edx
+	jge	.L546
+	.loc 4 659 255 discriminator 6
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 659 265 discriminator 6
+	movq	(%rax), %rcx
+	.loc 4 659 291 discriminator 6
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 659 275 discriminator 6
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 659 238 discriminator 6
+	addq	%rcx, %rax
+	jmp	.L547
+.L546:
+	.loc 4 659 238 is_stmt 0 discriminator 7
+	movl	$0, %eax
+.L547:
+	.loc 4 659 315 is_stmt 1 discriminator 9
+	movl	16(%rax), %eax
+	.loc 4 659 9 discriminator 9
+	cmpl	$7, %eax
+	je	.L548
+.L545:
+	.loc 4 661 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 661 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 661 87 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 661 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 661 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 661 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 4 661 177 discriminator 5
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movl	%eax, %edx
+	leaq	.LC116(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 661 248 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 661 292 discriminator 8
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 661 319 discriminator 8
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 661 329 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 661 348 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L549
+	.loc 4 661 365 discriminator 9
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 661 375 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 661 401 discriminator 9
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 661 385 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 661 348 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L550
+.L549:
+	.loc 4 661 348 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L550:
+	.loc 4 661 275 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 661 455 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 661 479 discriminator 14
+	movl	$661, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 661 700 discriminator 15
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 661 535 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 661 552 discriminator 15
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 661 579 discriminator 15
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 661 589 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 661 535 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L551
+	.loc 4 661 625 discriminator 16
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 661 635 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 661 661 discriminator 16
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 661 645 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 661 535 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L552
+.L551:
+	.loc 4 661 535 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L552:
+	.loc 4 661 535 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 662 35 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 662 51
+	movl	$662, %ecx
+	leaq	.LC114(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 662 110 discriminator 2
+	movl	$662, %r8d
+	leaq	.LC114(%rip), %rax
+	movq	%rax, %rcx
+	movl	$662, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 662 215 discriminator 3
+	movl	$0, %ebx
+	jmp	.L542
+.L548:
+	.loc 4 665 34
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 665 61
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 665 71
+	movl	8(%rax), %eax
+	.loc 4 665 90
+	cmpl	%eax, %edx
+	jge	.L553
+	.loc 4 665 107 discriminator 1
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 665 117 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 665 143 discriminator 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 665 127 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 665 90 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L554
+.L553:
+	.loc 4 665 90 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L554:
+	.loc 4 665 12 is_stmt 1 discriminator 4
+	movq	%rax, -72(%rbp)
+	.loc 4 666 19 discriminator 4
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 666 28 discriminator 4
+	leal	1(%rax), %edx
+	movq	-88(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 668 25 discriminator 4
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 668 52 discriminator 4
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 668 62 discriminator 4
+	movl	8(%rax), %eax
+	.loc 4 668 81 discriminator 4
+	cmpl	%eax, %edx
+	jge	.L555
+	.loc 4 668 98 discriminator 1
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 668 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 668 134 discriminator 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 668 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 668 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L556
+.L555:
+	.loc 4 668 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L556:
+	.loc 4 668 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 668 5 discriminator 4
+	cmpl	$61, %eax
+	je	.L557
+	.loc 4 668 195 discriminator 5
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 668 222 discriminator 5
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 668 232 discriminator 5
+	movl	8(%rax), %eax
+	.loc 4 668 251 discriminator 5
+	cmpl	%eax, %edx
+	jge	.L558
+	.loc 4 668 268 discriminator 6
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 668 278 discriminator 6
+	movq	(%rax), %rcx
+	.loc 4 668 304 discriminator 6
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 668 288 discriminator 6
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 668 251 discriminator 6
+	addq	%rcx, %rax
+	jmp	.L559
+.L558:
+	.loc 4 668 251 is_stmt 0 discriminator 7
+	movl	$0, %eax
+.L559:
+	.loc 4 668 334 is_stmt 1 discriminator 9
+	movzbl	24(%rax), %eax
+	.loc 4 668 176 discriminator 9
+	cmpb	$61, %al
+	je	.L557
+	.loc 4 670 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 670 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 670 87 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 670 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 670 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 670 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 670 177 discriminator 5
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movl	$61, %ecx
+	movl	%eax, %edx
+	leaq	.LC117(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 670 265 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 670 309 discriminator 8
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 670 336 discriminator 8
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 670 346 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 670 365 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L560
+	.loc 4 670 382 discriminator 9
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 670 392 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 670 418 discriminator 9
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 670 402 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 670 365 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L561
+.L560:
+	.loc 4 670 365 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L561:
+	.loc 4 670 292 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 670 472 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 670 496 discriminator 14
+	movl	$670, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 670 717 discriminator 15
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 670 552 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 670 569 discriminator 15
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 670 596 discriminator 15
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 670 606 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 670 552 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L562
+	.loc 4 670 642 discriminator 16
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 670 652 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 670 678 discriminator 16
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 670 662 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 670 552 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L563
+.L562:
+	.loc 4 670 552 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L563:
+	.loc 4 670 552 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 671 35 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 671 51
+	movl	$671, %ecx
+	leaq	.LC114(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 671 110 discriminator 2
+	movl	$671, %r8d
+	leaq	.LC114(%rip), %rax
+	movq	%rax, %rcx
+	movl	$671, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+	.loc 4 671 215 discriminator 3
+	movl	$0, %ebx
+	jmp	.L542
+.L557:
+	.loc 4 674 40
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 674 67
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 674 77
+	movl	8(%rax), %eax
+	.loc 4 674 96
+	cmpl	%eax, %edx
+	jge	.L564
+	.loc 4 674 113 discriminator 1
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 674 123 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 674 149 discriminator 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 674 133 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 674 96 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L565
+.L564:
+	.loc 4 674 96 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L565:
+	.loc 4 674 12 is_stmt 1 discriminator 4
+	movq	%rax, -64(%rbp)
+	.loc 4 675 19 discriminator 4
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 675 28 discriminator 4
+	leal	1(%rax), %edx
+	movq	-88(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 677 28 discriminator 4
+	movq	-64(%rbp), %rax
+	movq	-72(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 4 678 34 discriminator 4
+	movq	-88(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZL4GetEP10ProgramCtx
+	.loc 4 678 28 discriminator 4
+	movq	-64(%rbp), %rdx
+	movq	%rax, 8(%rdx)
+	.loc 4 680 21 discriminator 4
+	movq	-64(%rbp), %rax
+	movq	8(%rax), %rax
+	.loc 4 680 5 discriminator 4
+	testq	%rax, %rax
+	jne	.L566
+	.loc 4 682 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 682 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 682 87 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 682 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 682 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 682 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 682 177 discriminator 5
+	leaq	.LC118(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 682 208 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 682 252 discriminator 8
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 682 279 discriminator 8
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 682 289 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 682 308 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L567
+	.loc 4 682 325 discriminator 9
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 682 335 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 682 361 discriminator 9
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 682 345 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 682 308 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L568
+.L567:
+	.loc 4 682 308 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L568:
+	.loc 4 682 235 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 682 415 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 682 439 discriminator 14
+	movl	$682, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 682 660 discriminator 15
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 682 495 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 682 512 discriminator 15
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 682 539 discriminator 15
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 682 549 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 682 495 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L569
+	.loc 4 682 585 discriminator 16
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 682 595 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 682 621 discriminator 16
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 682 605 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 682 495 discriminator 16
+	addq	%rsi, %rax
+	jmp	.L570
+.L569:
+	.loc 4 682 495 is_stmt 0 discriminator 17
+	movl	$0, %eax
+.L570:
+	.loc 4 682 495 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 683 15 is_stmt 1
+	movl	$0, %ebx
+	jmp	.L542
+.L566:
+	.loc 4 686 25
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 686 52
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 686 62
+	movl	8(%rax), %eax
+	.loc 4 686 81
+	cmpl	%eax, %edx
+	jge	.L571
+	.loc 4 686 98 discriminator 1
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 686 108 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 686 134 discriminator 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 686 118 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 686 81 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L572
+.L571:
+	.loc 4 686 81 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L572:
+	.loc 4 686 158 is_stmt 1 discriminator 4
+	movl	16(%rax), %eax
+	.loc 4 686 5 discriminator 4
+	cmpl	$59, %eax
+	je	.L573
+	.loc 4 686 202 discriminator 5
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 686 229 discriminator 5
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 686 239 discriminator 5
+	movl	8(%rax), %eax
+	.loc 4 686 258 discriminator 5
+	cmpl	%eax, %edx
+	jge	.L574
+	.loc 4 686 275 discriminator 6
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 686 285 discriminator 6
+	movq	(%rax), %rcx
+	.loc 4 686 311 discriminator 6
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 686 295 discriminator 6
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 686 258 discriminator 6
+	addq	%rcx, %rax
+	jmp	.L575
+.L574:
+	.loc 4 686 258 is_stmt 0 discriminator 7
+	movl	$0, %eax
+.L575:
+	.loc 4 686 341 is_stmt 1 discriminator 9
+	movzbl	24(%rax), %eax
+	.loc 4 686 183 discriminator 9
+	cmpb	$59, %al
+	je	.L573
+	.loc 4 688 20
+	leaq	.LC25(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 688 81 discriminator 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 688 87 discriminator 1
+	leaq	.LC26(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 688 127 discriminator 3
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdx
+	.loc 4 688 133 discriminator 3
+	leaq	.LC27(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger3logEPKcz@PLT
+	.loc 4 688 159 discriminator 5
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rcx
+	.loc 4 688 177 discriminator 5
+	movl	$59, %edx
+	leaq	.LC119(%rip), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
+	movl	$0, %eax
+	call	_ZN6Logger15log_dup_consoleEPKcz@PLT
+	.loc 4 688 239 discriminator 7
+	leaq	.LC29(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 688 283 discriminator 8
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 688 310 discriminator 8
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 688 320 discriminator 8
+	movl	8(%rax), %eax
+	.loc 4 688 339 discriminator 8
+	cmpl	%eax, %edx
+	jge	.L576
+	.loc 4 688 356 discriminator 9
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 688 366 discriminator 9
+	movq	(%rax), %rcx
+	.loc 4 688 392 discriminator 9
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 688 376 discriminator 9
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 688 339 discriminator 9
+	addq	%rcx, %rax
+	jmp	.L577
+.L576:
+	.loc 4 688 339 is_stmt 0 discriminator 10
+	movl	$0, %eax
+.L577:
+	.loc 4 688 266 is_stmt 1 discriminator 12
+	movq	32(%rax), %rax
+	movl	$10, %esi
+	movq	%rax, %rdi
+	call	_Z6printlPKcc@PLT
+	.loc 4 688 446 discriminator 13
+	leaq	.LC30(%rip), %rax
+	movq	%rax, %rdi
+	call	puts@PLT
+	.loc 4 688 470 discriminator 14
+	movl	$688, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC31(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	.loc 4 688 691 discriminator 15
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 688 526 discriminator 15
+	movq	24(%rax), %rdx
+	.loc 4 688 543 discriminator 15
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %ecx
+	.loc 4 688 570 discriminator 15
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 688 580 discriminator 15
+	movl	8(%rax), %eax
+	.loc 4 688 526 discriminator 15
+	cmpl	%eax, %ecx
+	jge	.L578
+	.loc 4 688 616 discriminator 16
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 688 626 discriminator 16
+	movq	(%rax), %rsi
+	.loc 4 688 652 discriminator 16
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rcx
+	.loc 4 688 636 discriminator 16
+	movq	%rcx, %rax
+	salq	$2, %rax
+	addq	%rcx, %rax
+	salq	$3, %rax
+	.loc 4 688 526 discriminator 16
+	addq	%rsi, %rax
 	jmp	.L579
 .L578:
-	.loc 1 903 28
+	.loc 4 688 526 is_stmt 0 discriminator 17
 	movl	$0, %eax
-	.loc 1 903 56
-	movq	-40(%rbp), %rdx
-	movl	(%rdx), %edx
-	.loc 1 903 28
-	movl	%edx, %ecx
-	movabsq	$-4294967296, %rdx
-	andq	%rdx, %rax
-	orq	%rcx, %rax
-	movl	$0, %ecx
-	movl	$0, %edx
-	movq	%rax, %rsi
-	movl	$6, %edi
-	call	_Z8NewTokeni10TokenValueP5TokenS1_@PLT
-	movq	%rax, -24(%rbp)
-	.loc 1 905 34
-	movl	$0, %eax
-	.loc 1 905 85
-	movq	-40(%rbp), %rdx
-	movl	4(%rdx), %edx
-	.loc 1 905 34
-	movl	%edx, %ecx
-	movabsq	$-4294967296, %rdx
-	andq	%rdx, %rax
-	orq	%rcx, %rax
-	movl	$0, %ecx
-	movl	$0, %edx
-	movq	%rax, %rsi
-	movl	$4, %edi
-	call	_Z8NewTokeni10TokenValueP5TokenS1_@PLT
-	.loc 1 905 23
-	movq	-24(%rbp), %rdx
-	movq	%rax, 8(%rdx)
-	.loc 1 914 12
-	movq	-24(%rbp), %rax
 .L579:
-	.loc 1 915 5
+	.loc 4 688 526 discriminator 19
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
+	call	_Z10PrintTokenPK5TokenPPKc@PLT
+	.loc 4 689 35 is_stmt 1
+	call	_ZN6Logger11getInstanceEv@PLT
+	movq	%rax, %rdi
+	.loc 4 689 51
+	movl	$689, %ecx
+	leaq	.LC114(%rip), %rax
+	movq	%rax, %rdx
+	leaq	.LC19(%rip), %rax
+	movq	%rax, %rsi
+	movl	$0, %eax
+	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
+	.loc 4 689 110 discriminator 2
+	movl	$689, %r8d
+	leaq	.LC114(%rip), %rax
+	movq	%rax, %rcx
+	movl	$689, %edx
+	leaq	.LC62(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC20(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	_Z13LogMsgNullRetPKcz@PLT
+.LEHE34:
+	.loc 4 689 215 discriminator 3
+	movl	$0, %ebx
+	jmp	.L542
+.L573:
+	.loc 4 692 40
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %edx
+	.loc 4 692 67
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 692 77
+	movl	8(%rax), %eax
+	.loc 4 692 96
+	cmpl	%eax, %edx
+	jge	.L580
+	.loc 4 692 113 discriminator 1
+	movq	-88(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 4 692 123 discriminator 1
+	movq	(%rax), %rcx
+	.loc 4 692 149 discriminator 1
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	movslq	%eax, %rdx
+	.loc 4 692 133 discriminator 1
+	movq	%rdx, %rax
+	salq	$2, %rax
+	addq	%rdx, %rax
+	salq	$3, %rax
+	.loc 4 692 96 discriminator 1
+	addq	%rcx, %rax
+	jmp	.L581
+.L580:
+	.loc 4 692 96 is_stmt 0 discriminator 2
+	movl	$0, %eax
+.L581:
+	.loc 4 692 12 is_stmt 1 discriminator 4
+	movq	%rax, -56(%rbp)
+	.loc 4 693 19 discriminator 4
+	movq	-88(%rbp), %rax
+	movl	8(%rax), %eax
+	.loc 4 693 28 discriminator 4
+	leal	1(%rax), %edx
+	movq	-88(%rbp), %rax
+	movl	%edx, 8(%rax)
+	.loc 4 695 21 discriminator 4
+	movq	-56(%rbp), %rax
+	movl	$1, 16(%rax)
+	.loc 4 696 27 discriminator 4
+	movq	-56(%rbp), %rax
+	movq	-64(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 4 698 12 discriminator 4
+	movq	-56(%rbp), %rbx
+.L542:
+	.loc 4 699 5
+	leaq	-48(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZN14FunctionLoggerD1Ev@PLT
+	movq	%rbx, %rax
+	jmp	.L585
+.L584:
+	endbr64
+	movq	%rax, %rbx
+	leaq	-48(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZN14FunctionLoggerD1Ev@PLT
+	movq	%rbx, %rax
+	movq	%rax, %rdi
+.LEHB35:
+	call	_Unwind_Resume@PLT
+.LEHE35:
+.L585:
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE2288:
-	.size	_ZL17FuncLabelToTokensP9FuncLabel, .-_ZL17FuncLabelToTokensP9FuncLabel
-	.section	.rodata
-.LC94:
-	.string	"var_tabels"
-.LC95:
-	.string	"GetVarLabel"
+	.section	.gcc_except_table
+.LLSDA2288:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 .LLSDACSE2288-.LLSDACSB2288
+.LLSDACSB2288:
+	.uleb128 .LEHB33-.LFB2288
+	.uleb128 .LEHE33-.LEHB33
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB34-.LFB2288
+	.uleb128 .LEHE34-.LEHB34
+	.uleb128 .L584-.LFB2288
+	.uleb128 0
+	.uleb128 .LEHB35-.LFB2288
+	.uleb128 .LEHE35-.LEHB35
+	.uleb128 0
+	.uleb128 0
+.LLSDACSE2288:
 	.text
-	.type	_ZL11GetVarLabeliP10SuperStack, @function
-_ZL11GetVarLabeliP10SuperStack:
-.LFB2289:
-	.loc 1 918 5
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	pushq	%rbx
-	subq	$40, %rsp
-	.cfi_offset 3, -24
-	movl	%edi, -36(%rbp)
-	movq	%rsi, -48(%rbp)
-	.loc 1 919 10
-	cmpq	$0, -48(%rbp)
-	jne	.L581
-	.loc 1 919 50 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rcx
-	.loc 1 919 56 discriminator 1
-	leaq	.LC94(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC11(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rcx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 919 107 discriminator 1
-	leaq	.LC94(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC12(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 919 195 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 919 201 discriminator 1
-	movl	$919, %r8d
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rcx
-	leaq	.LC95(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC14(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 919 294 discriminator 1
-	movl	$919, %ecx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC95(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC14(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	.loc 1 919 400 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rbx
-	.loc 1 919 406 discriminator 1
-	movl	$14, %edi
-	call	strerror@PLT
-	movq	%rax, %rcx
-	movl	$14, %edx
-	leaq	.LC15(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rbx, %rdi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 919 27 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 919 33 discriminator 1
-	movl	$919, %ecx
-	leaq	.LC95(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC16(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 919 92 discriminator 1
-	leaq	.LC17(%rip), %rax
-	movq	%rax, %rdi
-	call	system@PLT
-	.loc 1 919 131 discriminator 1
-	call	_ZN6Logger11getInstanceEv@PLT
-	movq	%rax, %rdi
-	.loc 1 919 147 discriminator 1
-	movl	$919, %ecx
-	leaq	.LC95(%rip), %rax
-	movq	%rax, %rdx
-	leaq	.LC31(%rip), %rax
-	movq	%rax, %rsi
-	movl	$0, %eax
-	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
-	.loc 1 919 206 discriminator 1
-	movl	$919, %r8d
-	leaq	.LC95(%rip), %rax
-	movq	%rax, %rcx
-	movl	$919, %edx
-	leaq	.LC13(%rip), %rax
-	movq	%rax, %rsi
-	leaq	.LC32(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	_Z13LogMsgNullRetPKcz@PLT
-	.loc 1 919 311 discriminator 1
-	movl	$0, %eax
-	jmp	.L582
-.L581:
-	.loc 1 921 29
-	movq	-48(%rbp), %rax
-	movq	%rax, %rdi
-	call	_Z5SStopP10SuperStack@PLT
-	movq	%rax, -32(%rbp)
-	.loc 1 924 32
-	movq	-32(%rbp), %rdx
-	movl	-36(%rbp), %eax
-	movq	%rdx, %rsi
-	movl	%eax, %edi
-	call	_Z10IsVarLabeliP8VarTabel@PLT
-	movq	%rax, -24(%rbp)
-	.loc 1 925 12
-	movq	-24(%rbp), %rax
-.L582:
-	.loc 1 926 5
-	movq	-8(%rbp), %rbx
-	leave
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2289:
-	.size	_ZL11GetVarLabeliP10SuperStack, .-_ZL11GetVarLabeliP10SuperStack
+	.size	_ZL12GetAssigmentP10ProgramCtx, .-_ZL12GetAssigmentP10ProgramCtx
 	.type	_Z41__static_initialization_and_destruction_0ii, @function
 _Z41__static_initialization_and_destruction_0ii:
-.LFB2956:
-	.loc 1 926 5
+.LFB2955:
+	.loc 4 699 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -15371,14 +15499,14 @@ _Z41__static_initialization_and_destruction_0ii:
 	subq	$16, %rsp
 	movl	%edi, -4(%rbp)
 	movl	%esi, -8(%rbp)
-	.loc 1 926 5
+	.loc 4 699 5
 	cmpl	$1, -4(%rbp)
-	jne	.L585
-	.loc 1 926 5 is_stmt 0 discriminator 1
+	jne	.L588
+	.loc 4 699 5 is_stmt 0 discriminator 1
 	cmpl	$65535, -8(%rbp)
-	jne	.L585
-	.file 2 "/usr/include/c++/11/iostream"
-	.loc 2 74 25 is_stmt 1
+	jne	.L588
+	.file 5 "/usr/include/c++/11/iostream"
+	.loc 5 74 25 is_stmt 1
 	leaq	_ZStL8__ioinit(%rip), %rax
 	movq	%rax, %rdi
 	call	_ZNSt8ios_base4InitC1Ev@PLT
@@ -15389,19 +15517,19 @@ _Z41__static_initialization_and_destruction_0ii:
 	movq	_ZNSt8ios_base4InitD1Ev@GOTPCREL(%rip), %rax
 	movq	%rax, %rdi
 	call	__cxa_atexit@PLT
-.L585:
-	.loc 1 926 5
+.L588:
+	.loc 4 699 5
 	nop
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2956:
+.LFE2955:
 	.size	_Z41__static_initialization_and_destruction_0ii, .-_Z41__static_initialization_and_destruction_0ii
 	.type	_GLOBAL__sub_I__Z4GetGP7Program, @function
 _GLOBAL__sub_I__Z4GetGP7Program:
-.LFB2957:
-	.loc 1 926 5
+.LFB2956:
+	.loc 4 699 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -15409,7 +15537,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	.loc 1 926 5
+	.loc 4 699 5
 	movl	$65535, %esi
 	movl	$1, %edi
 	call	_Z41__static_initialization_and_destruction_0ii
@@ -15417,79 +15545,79 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2957:
+.LFE2956:
 	.size	_GLOBAL__sub_I__Z4GetGP7Program, .-_GLOBAL__sub_I__Z4GetGP7Program
 	.section	.init_array,"aw"
 	.align 8
 	.quad	_GLOBAL__sub_I__Z4GetGP7Program
 	.text
 .Letext0:
-	.file 3 "./headers/Token.h"
-	.file 4 "./headers/Tabels.h"
-	.file 5 "./headers/Program.h"
-	.file 6 "<built-in>"
-	.file 7 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h"
-	.file 8 "/usr/include/x86_64-linux-gnu/bits/types.h"
-	.file 9 "/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h"
-	.file 10 "/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h"
-	.file 11 "/usr/include/x86_64-linux-gnu/bits/types/__FILE.h"
-	.file 12 "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h"
-	.file 13 "/usr/include/x86_64-linux-gnu/bits/types/FILE.h"
-	.file 14 "/usr/include/stdio.h"
-	.file 15 "./headers/Grammar.h"
-	.file 16 "/usr/include/x86_64-linux-gnu/bits/types/wint_t.h"
-	.file 17 "/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h"
-	.file 18 "/usr/include/c++/11/cwchar"
-	.file 19 "/usr/include/c++/11/type_traits"
-	.file 20 "/usr/include/c++/11/bits/exception_ptr.h"
-	.file 21 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h"
-	.file 22 "/usr/include/c++/11/concepts"
-	.file 23 "/usr/include/c++/11/bits/iterator_concepts.h"
-	.file 24 "/usr/include/c++/11/bits/ranges_cmp.h"
-	.file 25 "/usr/include/c++/11/compare"
-	.file 26 "/usr/include/c++/11/debug/debug.h"
-	.file 27 "/usr/include/c++/11/cstdint"
-	.file 28 "/usr/include/c++/11/clocale"
-	.file 29 "/usr/include/c++/11/cstdlib"
-	.file 30 "/usr/include/c++/11/numbers"
-	.file 31 "/usr/include/c++/11/cstdio"
-	.file 32 "/usr/include/c++/11/bits/ios_base.h"
-	.file 33 "/usr/include/c++/11/cwctype"
-	.file 34 "/usr/include/c++/11/bits/std_abs.h"
-	.file 35 "/usr/include/wchar.h"
-	.file 36 "/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h"
-	.file 37 "/usr/include/c++/11/bits/predefined_ops.h"
-	.file 38 "/usr/include/c++/11/bits/ptr_traits.h"
-	.file 39 "/usr/include/x86_64-linux-gnu/bits/stdint-intn.h"
-	.file 40 "/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h"
-	.file 41 "/usr/include/stdint.h"
-	.file 42 "/usr/include/locale.h"
-	.file 43 "/usr/include/stdlib.h"
-	.file 44 "/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h"
-	.file 45 "/usr/include/wctype.h"
-	.file 46 "../ATC/Logger/LogConfig.h"
-	.file 47 "../ATC/Logger/FunctionLogger.h"
-	.file 48 "../ATC/RandomStuff/CommonEnums.h"
-	.file 49 "../ATC/SuperStack/SuperStackConfig.h"
-	.file 50 "../ATC/my_safety/my_safety.h"
-	.file 51 "../ATC/SuperStack/SuperStack.h"
-	.file 52 "/usr/include/c++/11/stdlib.h"
-	.file 53 "../ATC/Buffer/my_buffer.h"
-	.file 54 "../ATC/Logger/Logger.h"
-	.file 55 "./headers/LangUtils.h"
-	.file 56 "../ATC/Utils/Utils.h"
-	.file 57 "../ATC/RandomStuff/SomeStuff.h"
-	.file 58 "/usr/include/string.h"
-	.file 59 "/usr/include/c++/11/bits/algorithmfwd.h"
+	.file 6 "./headers/Token.h"
+	.file 7 "./headers/Tabels.h"
+	.file 8 "./headers/Program.h"
+	.file 9 "<built-in>"
+	.file 10 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h"
+	.file 11 "/usr/include/x86_64-linux-gnu/bits/types.h"
+	.file 12 "/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h"
+	.file 13 "/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h"
+	.file 14 "/usr/include/x86_64-linux-gnu/bits/types/__FILE.h"
+	.file 15 "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h"
+	.file 16 "/usr/include/x86_64-linux-gnu/bits/types/FILE.h"
+	.file 17 "/usr/include/stdio.h"
+	.file 18 "./headers/Grammar.h"
+	.file 19 "/usr/include/x86_64-linux-gnu/bits/types/wint_t.h"
+	.file 20 "/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h"
+	.file 21 "/usr/include/c++/11/cwchar"
+	.file 22 "/usr/include/c++/11/type_traits"
+	.file 23 "/usr/include/c++/11/bits/exception_ptr.h"
+	.file 24 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h"
+	.file 25 "/usr/include/c++/11/concepts"
+	.file 26 "/usr/include/c++/11/bits/iterator_concepts.h"
+	.file 27 "/usr/include/c++/11/bits/ranges_cmp.h"
+	.file 28 "/usr/include/c++/11/compare"
+	.file 29 "/usr/include/c++/11/debug/debug.h"
+	.file 30 "/usr/include/c++/11/cstdint"
+	.file 31 "/usr/include/c++/11/clocale"
+	.file 32 "/usr/include/c++/11/cstdlib"
+	.file 33 "/usr/include/c++/11/numbers"
+	.file 34 "/usr/include/c++/11/cstdio"
+	.file 35 "/usr/include/c++/11/bits/ios_base.h"
+	.file 36 "/usr/include/c++/11/cwctype"
+	.file 37 "/usr/include/c++/11/bits/std_abs.h"
+	.file 38 "/usr/include/wchar.h"
+	.file 39 "/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h"
+	.file 40 "/usr/include/c++/11/bits/predefined_ops.h"
+	.file 41 "/usr/include/c++/11/bits/ptr_traits.h"
+	.file 42 "/usr/include/x86_64-linux-gnu/bits/stdint-intn.h"
+	.file 43 "/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h"
+	.file 44 "/usr/include/stdint.h"
+	.file 45 "/usr/include/locale.h"
+	.file 46 "/usr/include/stdlib.h"
+	.file 47 "/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h"
+	.file 48 "/usr/include/wctype.h"
+	.file 49 "./ATC/Logger/LogConfig.h"
+	.file 50 "./ATC/Logger/FunctionLogger.h"
+	.file 51 "./ATC/RandomStuff/CommonEnums.h"
+	.file 52 "./ATC/SuperStack/SuperStackConfig.h"
+	.file 53 "./ATC/my_safety/my_safety.h"
+	.file 54 "./ATC/SuperStack/SuperStack.h"
+	.file 55 "/usr/include/c++/11/stdlib.h"
+	.file 56 "./ATC/Buffer/my_buffer.h"
+	.file 57 "./ATC/Logger/Logger.h"
+	.file 58 "./ATC/Utils/Utils.h"
+	.file 59 "./headers/LangUtils.h"
+	.file 60 "./ATC/RandomStuff/SomeStuff.h"
+	.file 61 "/usr/include/string.h"
+	.file 62 "/usr/include/c++/11/bits/algorithmfwd.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x37e2
+	.long	0x3a60
 	.value	0x5
 	.byte	0x1
 	.byte	0x8
 	.long	.Ldebug_abbrev0
 	.uleb128 0x37
-	.long	.LASF593
+	.long	.LASF598
 	.byte	0x21
 	.long	.LASF0
 	.long	.LASF1
@@ -15497,51 +15625,51 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.quad	.Letext0-.Ltext0
 	.long	.Ldebug_line0
 	.uleb128 0x38
-	.long	.LASF594
+	.long	.LASF599
 	.byte	0x8
-	.byte	0x3
+	.byte	0x6
 	.byte	0x3
 	.byte	0x7
 	.long	0x90
 	.uleb128 0x17
 	.long	.LASF2
-	.byte	0x3
+	.byte	0x6
 	.byte	0x5
 	.byte	0x9
 	.long	0x90
 	.uleb128 0x17
 	.long	.LASF3
-	.byte	0x3
+	.byte	0x6
 	.byte	0x6
 	.byte	0xa
 	.long	0x9c
 	.uleb128 0x17
 	.long	.LASF4
-	.byte	0x3
+	.byte	0x6
 	.byte	0x7
 	.byte	0xc
 	.long	0xa8
 	.uleb128 0x17
 	.long	.LASF5
-	.byte	0x3
+	.byte	0x6
 	.byte	0x8
 	.byte	0x9
 	.long	0x90
 	.uleb128 0x17
 	.long	.LASF6
-	.byte	0x3
+	.byte	0x6
 	.byte	0x9
 	.byte	0x9
 	.long	0x90
 	.uleb128 0x17
 	.long	.LASF7
-	.byte	0x3
+	.byte	0x6
 	.byte	0xb
 	.byte	0xb
 	.long	0xaf
 	.uleb128 0x17
 	.long	.LASF8
-	.byte	0x3
+	.byte	0x6
 	.byte	0xc
 	.byte	0x9
 	.long	0x90
@@ -15550,15 +15678,15 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x4
 	.byte	0x5
 	.string	"int"
-	.uleb128 0xc
+	.uleb128 0x8
 	.long	0x90
-	.uleb128 0xe
+	.uleb128 0x11
 	.byte	0x1
 	.byte	0x6
 	.long	.LASF9
-	.uleb128 0xc
+	.uleb128 0x8
 	.long	0x9c
-	.uleb128 0xe
+	.uleb128 0x11
 	.byte	0x8
 	.byte	0x4
 	.long	.LASF10
@@ -15567,237 +15695,251 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x16
 	.long	.LASF20
 	.byte	0x28
-	.byte	0x3
+	.byte	0x6
 	.byte	0x11
 	.byte	0x8
 	.long	0x103
 	.uleb128 0x3
 	.long	.LASF11
-	.byte	0x3
+	.byte	0x6
 	.byte	0x13
 	.byte	0xc
 	.long	0x108
 	.byte	0
 	.uleb128 0x3
 	.long	.LASF12
-	.byte	0x3
+	.byte	0x6
 	.byte	0x14
 	.byte	0xc
 	.long	0x108
 	.byte	0x8
 	.uleb128 0x3
 	.long	.LASF13
-	.byte	0x3
+	.byte	0x6
 	.byte	0x16
 	.byte	0x9
 	.long	0x90
 	.byte	0x10
 	.uleb128 0x3
 	.long	.LASF14
-	.byte	0x3
+	.byte	0x6
 	.byte	0x18
 	.byte	0x10
 	.long	0x2e
 	.byte	0x18
 	.uleb128 0x3
 	.long	.LASF15
-	.byte	0x3
+	.byte	0x6
 	.byte	0x1a
 	.byte	0x11
 	.long	0x10d
 	.byte	0x20
 	.byte	0
-	.uleb128 0xc
+	.uleb128 0x8
 	.long	0xb4
 	.uleb128 0x7
 	.long	0xb4
 	.uleb128 0x7
 	.long	0xa3
-	.uleb128 0xc
+	.uleb128 0x8
 	.long	0x10d
-	.uleb128 0xe
+	.uleb128 0x11
 	.byte	0x4
 	.byte	0x7
 	.long	.LASF16
 	.uleb128 0x18
-	.long	.LASF121
+	.long	.LASF124
 	.byte	0x7
 	.long	0x117
-	.byte	0x4
+	.byte	0x7
 	.byte	0xc
 	.long	0x141
-	.uleb128 0x9
+	.uleb128 0xb
 	.long	.LASF17
 	.byte	0
-	.uleb128 0x9
+	.uleb128 0xb
 	.long	.LASF18
 	.byte	0x1
-	.uleb128 0x9
+	.uleb128 0xb
 	.long	.LASF19
 	.byte	0x2
 	.byte	0
 	.uleb128 0x16
 	.long	.LASF21
-	.byte	0x4
-	.byte	0x4
+	.byte	0x8
+	.byte	0x7
 	.byte	0x13
 	.byte	0x8
-	.long	0x15c
+	.long	0x169
 	.uleb128 0x3
 	.long	.LASF22
-	.byte	0x4
+	.byte	0x7
 	.byte	0x15
 	.byte	0x9
 	.long	0x90
 	.byte	0
+	.uleb128 0x3
+	.long	.LASF23
+	.byte	0x7
+	.byte	0x16
+	.byte	0x9
+	.long	0x90
+	.byte	0x4
 	.byte	0
 	.uleb128 0x16
-	.long	.LASF23
-	.byte	0x10
-	.byte	0x4
-	.byte	0x18
-	.byte	0x8
-	.long	0x191
-	.uleb128 0x3
 	.long	.LASF24
-	.byte	0x4
-	.byte	0x1a
-	.byte	0x10
-	.long	0x191
-	.byte	0
+	.byte	0x18
+	.byte	0x7
+	.byte	0x19
+	.byte	0x8
+	.long	0x1ab
 	.uleb128 0x3
 	.long	.LASF25
-	.byte	0x4
+	.byte	0x7
 	.byte	0x1b
+	.byte	0x10
+	.long	0x1ab
+	.byte	0
+	.uleb128 0x3
+	.long	.LASF26
+	.byte	0x7
+	.byte	0x1c
 	.byte	0x9
 	.long	0x90
 	.byte	0x8
 	.uleb128 0x3
-	.long	.LASF26
-	.byte	0x4
-	.byte	0x1d
+	.long	.LASF27
+	.byte	0x7
+	.byte	0x1e
 	.byte	0x9
 	.long	0x90
 	.byte	0xc
+	.uleb128 0x3
+	.long	.LASF28
+	.byte	0x7
+	.byte	0x1f
+	.byte	0x9
+	.long	0x90
+	.byte	0x10
 	.byte	0
 	.uleb128 0x7
-	.long	0x196
+	.long	0x1b0
 	.uleb128 0x7
 	.long	0x141
 	.uleb128 0x16
-	.long	.LASF27
-	.byte	0x20
-	.byte	0x4
-	.byte	0x20
-	.byte	0x8
-	.long	0x1ea
-	.uleb128 0x3
-	.long	.LASF22
-	.byte	0x4
-	.byte	0x22
-	.byte	0x9
-	.long	0x90
-	.byte	0
-	.uleb128 0x3
-	.long	.LASF28
-	.byte	0x4
-	.byte	0x23
-	.byte	0x9
-	.long	0x90
-	.byte	0x4
-	.uleb128 0x3
 	.long	.LASF29
-	.byte	0x4
+	.byte	0x28
+	.byte	0x7
+	.byte	0x22
+	.byte	0x8
+	.long	0x204
+	.uleb128 0x3
+	.long	.LASF30
+	.byte	0x7
 	.byte	0x24
 	.byte	0x9
 	.long	0x90
-	.byte	0x8
+	.byte	0
 	.uleb128 0x3
-	.long	.LASF30
-	.byte	0x4
+	.long	.LASF31
+	.byte	0x7
 	.byte	0x25
 	.byte	0x9
 	.long	0x90
-	.byte	0xc
-	.uleb128 0x3
-	.long	.LASF31
 	.byte	0x4
-	.byte	0x27
-	.byte	0xe
-	.long	0x15c
-	.byte	0x10
-	.byte	0
-	.uleb128 0x16
+	.uleb128 0x3
 	.long	.LASF32
-	.byte	0x10
-	.byte	0x4
-	.byte	0x2a
-	.byte	0x8
-	.long	0x21f
-	.uleb128 0x3
-	.long	.LASF24
-	.byte	0x4
-	.byte	0x2c
-	.byte	0x11
-	.long	0x21f
-	.byte	0
-	.uleb128 0x3
-	.long	.LASF25
-	.byte	0x4
-	.byte	0x2d
+	.byte	0x7
+	.byte	0x26
 	.byte	0x9
 	.long	0x90
 	.byte	0x8
 	.uleb128 0x3
+	.long	.LASF33
+	.byte	0x7
+	.byte	0x27
+	.byte	0x9
+	.long	0x90
+	.byte	0xc
+	.uleb128 0x3
+	.long	.LASF34
+	.byte	0x7
+	.byte	0x29
+	.byte	0xe
+	.long	0x169
+	.byte	0x10
+	.byte	0
+	.uleb128 0x16
+	.long	.LASF35
+	.byte	0x10
+	.byte	0x7
+	.byte	0x2c
+	.byte	0x8
+	.long	0x239
+	.uleb128 0x3
+	.long	.LASF25
+	.byte	0x7
+	.byte	0x2e
+	.byte	0x11
+	.long	0x239
+	.byte	0
+	.uleb128 0x3
 	.long	.LASF26
-	.byte	0x4
+	.byte	0x7
 	.byte	0x2f
 	.byte	0x9
 	.long	0x90
+	.byte	0x8
+	.uleb128 0x3
+	.long	.LASF28
+	.byte	0x7
+	.byte	0x31
+	.byte	0x9
+	.long	0x90
 	.byte	0xc
 	.byte	0
 	.uleb128 0x7
-	.long	0x224
+	.long	0x23e
 	.uleb128 0x7
-	.long	0x19b
+	.long	0x1b5
 	.uleb128 0x16
-	.long	.LASF33
+	.long	.LASF36
 	.byte	0x28
-	.byte	0x5
+	.byte	0x8
 	.byte	0x6
 	.byte	0x8
-	.long	0x278
+	.long	0x292
 	.uleb128 0x3
-	.long	.LASF34
-	.byte	0x5
+	.long	.LASF37
+	.byte	0x8
 	.byte	0x8
 	.byte	0xc
 	.long	0x108
 	.byte	0
 	.uleb128 0x3
-	.long	.LASF35
-	.byte	0x5
+	.long	.LASF38
+	.byte	0x8
 	.byte	0x9
 	.byte	0x9
 	.long	0x90
 	.byte	0x8
 	.uleb128 0x3
-	.long	.LASF36
-	.byte	0x5
+	.long	.LASF39
+	.byte	0x8
 	.byte	0xb
 	.byte	0xc
 	.long	0x108
 	.byte	0x10
 	.uleb128 0x3
-	.long	.LASF37
-	.byte	0x5
+	.long	.LASF40
+	.byte	0x8
 	.byte	0xd
 	.byte	0x12
-	.long	0x278
+	.long	0x292
 	.byte	0x18
 	.uleb128 0x3
-	.long	.LASF38
-	.byte	0x5
+	.long	.LASF41
+	.byte	0x8
 	.byte	0xe
 	.byte	0x9
 	.long	0x90
@@ -15806,809 +15948,809 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x7
 	.long	0x10d
 	.uleb128 0x4
-	.long	.LASF46
-	.byte	0x7
+	.long	.LASF49
+	.byte	0xa
 	.byte	0xd1
 	.byte	0x1b
-	.long	0x28e
-	.uleb128 0xc
-	.long	0x27d
-	.uleb128 0xe
+	.long	0x2a8
+	.uleb128 0x8
+	.long	0x297
+	.uleb128 0x11
 	.byte	0x8
 	.byte	0x7
-	.long	.LASF39
+	.long	.LASF42
 	.uleb128 0x3a
-	.long	.LASF595
+	.long	.LASF600
 	.byte	0x18
-	.byte	0x6
+	.byte	0x9
 	.byte	0
-	.long	0x2ca
-	.uleb128 0x23
-	.long	.LASF40
+	.long	0x2e4
+	.uleb128 0x25
+	.long	.LASF43
 	.long	0x117
 	.byte	0
-	.uleb128 0x23
-	.long	.LASF41
+	.uleb128 0x25
+	.long	.LASF44
 	.long	0x117
 	.byte	0x4
-	.uleb128 0x23
-	.long	.LASF42
-	.long	0x2ca
+	.uleb128 0x25
+	.long	.LASF45
+	.long	0x2e4
 	.byte	0x8
-	.uleb128 0x23
-	.long	.LASF43
-	.long	0x2ca
+	.uleb128 0x25
+	.long	.LASF46
+	.long	0x2e4
 	.byte	0x10
 	.byte	0
 	.uleb128 0x3b
 	.byte	0x8
-	.uleb128 0xe
+	.uleb128 0x11
 	.byte	0x1
 	.byte	0x8
-	.long	.LASF44
-	.uleb128 0xe
+	.long	.LASF47
+	.uleb128 0x11
 	.byte	0x2
 	.byte	0x7
-	.long	.LASF45
-	.uleb128 0x4
-	.long	.LASF47
-	.byte	0x8
-	.byte	0x25
-	.byte	0x15
-	.long	0x2e6
-	.uleb128 0xe
-	.byte	0x1
-	.byte	0x6
 	.long	.LASF48
 	.uleb128 0x4
-	.long	.LASF49
-	.byte	0x8
-	.byte	0x26
-	.byte	0x17
-	.long	0x2cc
-	.uleb128 0x4
 	.long	.LASF50
-	.byte	0x8
-	.byte	0x27
-	.byte	0x1a
-	.long	0x305
-	.uleb128 0xe
-	.byte	0x2
-	.byte	0x5
+	.byte	0xb
+	.byte	0x25
+	.byte	0x15
+	.long	0x300
+	.uleb128 0x11
+	.byte	0x1
+	.byte	0x6
 	.long	.LASF51
 	.uleb128 0x4
 	.long	.LASF52
-	.byte	0x8
-	.byte	0x28
-	.byte	0x1c
-	.long	0x2d3
+	.byte	0xb
+	.byte	0x26
+	.byte	0x17
+	.long	0x2e6
 	.uleb128 0x4
 	.long	.LASF53
-	.byte	0x8
+	.byte	0xb
+	.byte	0x27
+	.byte	0x1a
+	.long	0x31f
+	.uleb128 0x11
+	.byte	0x2
+	.byte	0x5
+	.long	.LASF54
+	.uleb128 0x4
+	.long	.LASF55
+	.byte	0xb
+	.byte	0x28
+	.byte	0x1c
+	.long	0x2ed
+	.uleb128 0x4
+	.long	.LASF56
+	.byte	0xb
 	.byte	0x29
 	.byte	0x14
 	.long	0x90
-	.uleb128 0xc
-	.long	0x318
+	.uleb128 0x8
+	.long	0x332
 	.uleb128 0x4
-	.long	.LASF54
-	.byte	0x8
+	.long	.LASF57
+	.byte	0xb
 	.byte	0x2a
 	.byte	0x16
 	.long	0x117
 	.uleb128 0x4
-	.long	.LASF55
-	.byte	0x8
+	.long	.LASF58
+	.byte	0xb
 	.byte	0x2c
 	.byte	0x19
-	.long	0x341
-	.uleb128 0xe
+	.long	0x35b
+	.uleb128 0x11
 	.byte	0x8
 	.byte	0x5
-	.long	.LASF56
-	.uleb128 0x4
-	.long	.LASF57
-	.byte	0x8
-	.byte	0x2d
-	.byte	0x1b
-	.long	0x28e
-	.uleb128 0x4
-	.long	.LASF58
-	.byte	0x8
-	.byte	0x34
-	.byte	0x12
-	.long	0x2da
-	.uleb128 0x4
 	.long	.LASF59
-	.byte	0x8
-	.byte	0x35
-	.byte	0x13
-	.long	0x2ed
 	.uleb128 0x4
 	.long	.LASF60
-	.byte	0x8
-	.byte	0x36
-	.byte	0x13
-	.long	0x2f9
+	.byte	0xb
+	.byte	0x2d
+	.byte	0x1b
+	.long	0x2a8
 	.uleb128 0x4
 	.long	.LASF61
-	.byte	0x8
-	.byte	0x37
-	.byte	0x14
-	.long	0x30c
+	.byte	0xb
+	.byte	0x34
+	.byte	0x12
+	.long	0x2f4
 	.uleb128 0x4
 	.long	.LASF62
-	.byte	0x8
-	.byte	0x38
+	.byte	0xb
+	.byte	0x35
 	.byte	0x13
-	.long	0x318
+	.long	0x307
 	.uleb128 0x4
 	.long	.LASF63
-	.byte	0x8
-	.byte	0x39
-	.byte	0x14
-	.long	0x329
+	.byte	0xb
+	.byte	0x36
+	.byte	0x13
+	.long	0x313
 	.uleb128 0x4
 	.long	.LASF64
-	.byte	0x8
-	.byte	0x3a
-	.byte	0x13
-	.long	0x335
+	.byte	0xb
+	.byte	0x37
+	.byte	0x14
+	.long	0x326
 	.uleb128 0x4
 	.long	.LASF65
-	.byte	0x8
-	.byte	0x3b
-	.byte	0x14
-	.long	0x348
+	.byte	0xb
+	.byte	0x38
+	.byte	0x13
+	.long	0x332
 	.uleb128 0x4
 	.long	.LASF66
-	.byte	0x8
-	.byte	0x48
-	.byte	0x12
-	.long	0x341
+	.byte	0xb
+	.byte	0x39
+	.byte	0x14
+	.long	0x343
 	.uleb128 0x4
 	.long	.LASF67
-	.byte	0x8
-	.byte	0x49
-	.byte	0x1b
-	.long	0x28e
+	.byte	0xb
+	.byte	0x3a
+	.byte	0x13
+	.long	0x34f
 	.uleb128 0x4
 	.long	.LASF68
-	.byte	0x8
-	.byte	0x98
-	.byte	0x12
-	.long	0x341
+	.byte	0xb
+	.byte	0x3b
+	.byte	0x14
+	.long	0x362
 	.uleb128 0x4
 	.long	.LASF69
-	.byte	0x8
-	.byte	0x99
+	.byte	0xb
+	.byte	0x48
 	.byte	0x12
-	.long	0x341
+	.long	0x35b
 	.uleb128 0x4
 	.long	.LASF70
-	.byte	0x8
+	.byte	0xb
+	.byte	0x49
+	.byte	0x1b
+	.long	0x2a8
+	.uleb128 0x4
+	.long	.LASF71
+	.byte	0xb
+	.byte	0x98
+	.byte	0x12
+	.long	0x35b
+	.uleb128 0x4
+	.long	.LASF72
+	.byte	0xb
+	.byte	0x99
+	.byte	0x12
+	.long	0x35b
+	.uleb128 0x4
+	.long	.LASF73
+	.byte	0xb
 	.byte	0xc2
 	.byte	0x12
-	.long	0x341
-	.uleb128 0x24
+	.long	0x35b
+	.uleb128 0x26
 	.byte	0x8
-	.byte	0x9
+	.byte	0xc
 	.byte	0xe
 	.byte	0x1
-	.long	.LASF361
-	.long	0x43a
+	.long	.LASF364
+	.long	0x454
 	.uleb128 0x3c
 	.byte	0x4
-	.byte	0x9
+	.byte	0xc
 	.byte	0x11
 	.byte	0x3
-	.long	0x41f
+	.long	0x439
 	.uleb128 0x17
-	.long	.LASF71
-	.byte	0x9
+	.long	.LASF74
+	.byte	0xc
 	.byte	0x12
 	.byte	0x12
 	.long	0x117
 	.uleb128 0x17
-	.long	.LASF72
-	.byte	0x9
+	.long	.LASF75
+	.byte	0xc
 	.byte	0x13
 	.byte	0xa
-	.long	0x43a
+	.long	0x454
 	.byte	0
 	.uleb128 0x3
-	.long	.LASF73
-	.byte	0x9
+	.long	.LASF76
+	.byte	0xc
 	.byte	0xf
 	.byte	0x7
 	.long	0x90
 	.byte	0
 	.uleb128 0x3
-	.long	.LASF74
-	.byte	0x9
+	.long	.LASF77
+	.byte	0xc
 	.byte	0x14
 	.byte	0x5
-	.long	0x3fd
+	.long	0x417
 	.byte	0x4
 	.byte	0
-	.uleb128 0x12
+	.uleb128 0xe
 	.long	0x9c
-	.long	0x44a
-	.uleb128 0x13
-	.long	0x28e
+	.long	0x464
+	.uleb128 0xf
+	.long	0x2a8
 	.byte	0x3
 	.byte	0
 	.uleb128 0x4
-	.long	.LASF75
-	.byte	0x9
+	.long	.LASF78
+	.byte	0xc
 	.byte	0x15
 	.byte	0x3
-	.long	0x3f0
+	.long	0x40a
 	.uleb128 0x16
-	.long	.LASF76
+	.long	.LASF79
 	.byte	0x10
-	.byte	0xa
+	.byte	0xd
 	.byte	0xa
 	.byte	0x10
-	.long	0x47e
+	.long	0x498
 	.uleb128 0x3
-	.long	.LASF77
-	.byte	0xa
+	.long	.LASF80
+	.byte	0xd
 	.byte	0xc
 	.byte	0xb
-	.long	0x3cc
+	.long	0x3e6
 	.byte	0
 	.uleb128 0x3
-	.long	.LASF78
-	.byte	0xa
+	.long	.LASF81
+	.byte	0xd
 	.byte	0xd
 	.byte	0xf
-	.long	0x44a
+	.long	0x464
 	.byte	0x8
 	.byte	0
 	.uleb128 0x4
-	.long	.LASF79
-	.byte	0xa
+	.long	.LASF82
+	.byte	0xd
 	.byte	0xe
 	.byte	0x3
-	.long	0x456
+	.long	0x470
 	.uleb128 0x4
-	.long	.LASF80
-	.byte	0xb
+	.long	.LASF83
+	.byte	0xe
 	.byte	0x5
 	.byte	0x19
-	.long	0x496
+	.long	0x4b0
 	.uleb128 0x16
-	.long	.LASF81
+	.long	.LASF84
 	.byte	0xd8
-	.byte	0xc
+	.byte	0xf
 	.byte	0x31
 	.byte	0x8
-	.long	0x61d
+	.long	0x637
 	.uleb128 0x3
-	.long	.LASF82
-	.byte	0xc
+	.long	.LASF85
+	.byte	0xf
 	.byte	0x33
 	.byte	0x7
 	.long	0x90
 	.byte	0
 	.uleb128 0x3
-	.long	.LASF83
-	.byte	0xc
+	.long	.LASF86
+	.byte	0xf
 	.byte	0x36
 	.byte	0x9
 	.long	0xaf
 	.byte	0x8
 	.uleb128 0x3
-	.long	.LASF84
-	.byte	0xc
+	.long	.LASF87
+	.byte	0xf
 	.byte	0x37
 	.byte	0x9
 	.long	0xaf
 	.byte	0x10
 	.uleb128 0x3
-	.long	.LASF85
-	.byte	0xc
+	.long	.LASF88
+	.byte	0xf
 	.byte	0x38
 	.byte	0x9
 	.long	0xaf
 	.byte	0x18
 	.uleb128 0x3
-	.long	.LASF86
-	.byte	0xc
+	.long	.LASF89
+	.byte	0xf
 	.byte	0x39
 	.byte	0x9
 	.long	0xaf
 	.byte	0x20
 	.uleb128 0x3
-	.long	.LASF87
-	.byte	0xc
+	.long	.LASF90
+	.byte	0xf
 	.byte	0x3a
 	.byte	0x9
 	.long	0xaf
 	.byte	0x28
 	.uleb128 0x3
-	.long	.LASF88
-	.byte	0xc
+	.long	.LASF91
+	.byte	0xf
 	.byte	0x3b
 	.byte	0x9
 	.long	0xaf
 	.byte	0x30
 	.uleb128 0x3
-	.long	.LASF89
-	.byte	0xc
+	.long	.LASF92
+	.byte	0xf
 	.byte	0x3c
 	.byte	0x9
 	.long	0xaf
 	.byte	0x38
 	.uleb128 0x3
-	.long	.LASF90
-	.byte	0xc
+	.long	.LASF93
+	.byte	0xf
 	.byte	0x3d
 	.byte	0x9
 	.long	0xaf
 	.byte	0x40
 	.uleb128 0x3
-	.long	.LASF91
-	.byte	0xc
+	.long	.LASF94
+	.byte	0xf
 	.byte	0x40
 	.byte	0x9
 	.long	0xaf
 	.byte	0x48
 	.uleb128 0x3
-	.long	.LASF92
-	.byte	0xc
+	.long	.LASF95
+	.byte	0xf
 	.byte	0x41
 	.byte	0x9
 	.long	0xaf
 	.byte	0x50
 	.uleb128 0x3
-	.long	.LASF93
-	.byte	0xc
+	.long	.LASF96
+	.byte	0xf
 	.byte	0x42
 	.byte	0x9
 	.long	0xaf
 	.byte	0x58
 	.uleb128 0x3
-	.long	.LASF94
-	.byte	0xc
+	.long	.LASF97
+	.byte	0xf
 	.byte	0x44
 	.byte	0x16
-	.long	0x636
+	.long	0x650
 	.byte	0x60
 	.uleb128 0x3
-	.long	.LASF95
-	.byte	0xc
+	.long	.LASF98
+	.byte	0xf
 	.byte	0x46
 	.byte	0x14
-	.long	0x63b
+	.long	0x655
 	.byte	0x68
 	.uleb128 0x3
-	.long	.LASF96
-	.byte	0xc
+	.long	.LASF99
+	.byte	0xf
 	.byte	0x48
 	.byte	0x7
 	.long	0x90
 	.byte	0x70
 	.uleb128 0x3
-	.long	.LASF97
-	.byte	0xc
+	.long	.LASF100
+	.byte	0xf
 	.byte	0x49
 	.byte	0x7
 	.long	0x90
 	.byte	0x74
 	.uleb128 0x3
-	.long	.LASF98
-	.byte	0xc
+	.long	.LASF101
+	.byte	0xf
 	.byte	0x4a
 	.byte	0xb
-	.long	0x3cc
+	.long	0x3e6
 	.byte	0x78
 	.uleb128 0x3
-	.long	.LASF99
-	.byte	0xc
+	.long	.LASF102
+	.byte	0xf
 	.byte	0x4d
 	.byte	0x12
-	.long	0x2d3
+	.long	0x2ed
 	.byte	0x80
 	.uleb128 0x3
-	.long	.LASF100
-	.byte	0xc
+	.long	.LASF103
+	.byte	0xf
 	.byte	0x4e
 	.byte	0xf
-	.long	0x2e6
+	.long	0x300
 	.byte	0x82
 	.uleb128 0x3
-	.long	.LASF101
-	.byte	0xc
+	.long	.LASF104
+	.byte	0xf
 	.byte	0x4f
 	.byte	0x8
-	.long	0x640
+	.long	0x65a
 	.byte	0x83
 	.uleb128 0x3
-	.long	.LASF102
-	.byte	0xc
+	.long	.LASF105
+	.byte	0xf
 	.byte	0x51
 	.byte	0xf
-	.long	0x650
+	.long	0x66a
 	.byte	0x88
 	.uleb128 0x3
-	.long	.LASF103
-	.byte	0xc
+	.long	.LASF106
+	.byte	0xf
 	.byte	0x59
 	.byte	0xd
-	.long	0x3d8
+	.long	0x3f2
 	.byte	0x90
 	.uleb128 0x3
-	.long	.LASF104
-	.byte	0xc
+	.long	.LASF107
+	.byte	0xf
 	.byte	0x5b
 	.byte	0x17
-	.long	0x65a
+	.long	0x674
 	.byte	0x98
 	.uleb128 0x3
-	.long	.LASF105
-	.byte	0xc
+	.long	.LASF108
+	.byte	0xf
 	.byte	0x5c
 	.byte	0x19
-	.long	0x664
+	.long	0x67e
 	.byte	0xa0
 	.uleb128 0x3
-	.long	.LASF106
-	.byte	0xc
+	.long	.LASF109
+	.byte	0xf
 	.byte	0x5d
 	.byte	0x14
-	.long	0x63b
+	.long	0x655
 	.byte	0xa8
 	.uleb128 0x3
-	.long	.LASF107
-	.byte	0xc
+	.long	.LASF110
+	.byte	0xf
 	.byte	0x5e
 	.byte	0x9
-	.long	0x2ca
+	.long	0x2e4
 	.byte	0xb0
 	.uleb128 0x3
-	.long	.LASF108
-	.byte	0xc
+	.long	.LASF111
+	.byte	0xf
 	.byte	0x5f
 	.byte	0xa
-	.long	0x27d
+	.long	0x297
 	.byte	0xb8
 	.uleb128 0x3
-	.long	.LASF109
-	.byte	0xc
+	.long	.LASF112
+	.byte	0xf
 	.byte	0x60
 	.byte	0x7
 	.long	0x90
 	.byte	0xc0
 	.uleb128 0x3
-	.long	.LASF110
-	.byte	0xc
+	.long	.LASF113
+	.byte	0xf
 	.byte	0x62
 	.byte	0x8
-	.long	0x669
+	.long	0x683
 	.byte	0xc4
 	.byte	0
 	.uleb128 0x4
-	.long	.LASF111
-	.byte	0xd
+	.long	.LASF114
+	.byte	0x10
 	.byte	0x7
 	.byte	0x19
-	.long	0x496
+	.long	0x4b0
 	.uleb128 0x3d
-	.long	.LASF596
-	.byte	0xc
+	.long	.LASF601
+	.byte	0xf
 	.byte	0x2b
 	.byte	0xe
-	.uleb128 0x29
-	.long	.LASF112
+	.uleb128 0x2a
+	.long	.LASF115
 	.uleb128 0x7
-	.long	0x631
+	.long	0x64b
 	.uleb128 0x7
-	.long	0x496
-	.uleb128 0x12
+	.long	0x4b0
+	.uleb128 0xe
 	.long	0x9c
-	.long	0x650
-	.uleb128 0x13
-	.long	0x28e
+	.long	0x66a
+	.uleb128 0xf
+	.long	0x2a8
 	.byte	0
 	.byte	0
 	.uleb128 0x7
-	.long	0x629
-	.uleb128 0x29
-	.long	.LASF113
+	.long	0x643
+	.uleb128 0x2a
+	.long	.LASF116
 	.uleb128 0x7
-	.long	0x655
-	.uleb128 0x29
-	.long	.LASF114
+	.long	0x66f
+	.uleb128 0x2a
+	.long	.LASF117
 	.uleb128 0x7
-	.long	0x65f
-	.uleb128 0x12
-	.long	0x9c
 	.long	0x679
-	.uleb128 0x13
-	.long	0x28e
+	.uleb128 0xe
+	.long	0x9c
+	.long	0x693
+	.uleb128 0xf
+	.long	0x2a8
 	.byte	0x13
 	.byte	0
 	.uleb128 0x4
-	.long	.LASF115
-	.byte	0xe
+	.long	.LASF118
+	.byte	0x11
 	.byte	0x4d
 	.byte	0x13
-	.long	0x3e4
+	.long	0x3fe
 	.uleb128 0x4
-	.long	.LASF116
-	.byte	0xe
+	.long	.LASF119
+	.byte	0x11
 	.byte	0x54
 	.byte	0x12
-	.long	0x47e
-	.uleb128 0xc
-	.long	0x685
+	.long	0x498
+	.uleb128 0x8
+	.long	0x69f
 	.uleb128 0x7
-	.long	0x61d
-	.uleb128 0xe
+	.long	0x637
+	.uleb128 0x11
 	.byte	0x20
 	.byte	0x3
-	.long	.LASF117
-	.uleb128 0xe
-	.byte	0x10
-	.byte	0x4
-	.long	.LASF118
-	.uleb128 0xe
-	.byte	0x4
-	.byte	0x4
-	.long	.LASF119
-	.uleb128 0xe
-	.byte	0x10
-	.byte	0x4
 	.long	.LASF120
-	.uleb128 0x18
+	.uleb128 0x11
+	.byte	0x10
+	.byte	0x4
+	.long	.LASF121
+	.uleb128 0x11
+	.byte	0x4
+	.byte	0x4
 	.long	.LASF122
+	.uleb128 0x11
+	.byte	0x10
+	.byte	0x4
+	.long	.LASF123
+	.uleb128 0x18
+	.long	.LASF125
 	.byte	0x5
 	.long	0x90
-	.byte	0xf
+	.byte	0x12
 	.byte	0x3
-	.long	0x72f
-	.uleb128 0x9
-	.long	.LASF123
-	.byte	0x1
-	.uleb128 0x9
-	.long	.LASF124
-	.byte	0x2
-	.uleb128 0x9
-	.long	.LASF125
-	.byte	0x3
-	.uleb128 0x9
+	.long	0x749
+	.uleb128 0xb
 	.long	.LASF126
-	.byte	0x4
-	.uleb128 0x9
+	.byte	0x1
+	.uleb128 0xb
 	.long	.LASF127
-	.byte	0x5
-	.uleb128 0x9
+	.byte	0x2
+	.uleb128 0xb
 	.long	.LASF128
-	.byte	0x6
-	.uleb128 0x9
+	.byte	0x3
+	.uleb128 0xb
 	.long	.LASF129
-	.byte	0x7
-	.uleb128 0x9
+	.byte	0x4
+	.uleb128 0xb
 	.long	.LASF130
-	.byte	0x8
-	.uleb128 0x9
+	.byte	0x5
+	.uleb128 0xb
 	.long	.LASF131
-	.byte	0x9
-	.uleb128 0x9
+	.byte	0x6
+	.uleb128 0xb
 	.long	.LASF132
-	.byte	0xa
-	.uleb128 0x9
+	.byte	0x7
+	.uleb128 0xb
 	.long	.LASF133
-	.byte	0x3d
-	.uleb128 0x9
+	.byte	0x8
+	.uleb128 0xb
 	.long	.LASF134
-	.byte	0x7b
-	.uleb128 0x9
+	.byte	0x9
+	.uleb128 0xb
 	.long	.LASF135
-	.byte	0x7d
-	.uleb128 0x9
+	.byte	0xa
+	.uleb128 0xb
 	.long	.LASF136
-	.byte	0x28
-	.uleb128 0x9
+	.byte	0x3d
+	.uleb128 0xb
 	.long	.LASF137
-	.byte	0x29
-	.uleb128 0x9
+	.byte	0x7b
+	.uleb128 0xb
 	.long	.LASF138
+	.byte	0x7d
+	.uleb128 0xb
+	.long	.LASF139
+	.byte	0x28
+	.uleb128 0xb
+	.long	.LASF140
+	.byte	0x29
+	.uleb128 0xb
+	.long	.LASF141
 	.byte	0x3b
 	.uleb128 0x2e
-	.long	.LASF139
+	.long	.LASF142
 	.sleb128 -999
 	.byte	0
-	.uleb128 0xa
-	.long	.LASF140
-	.byte	0xf
+	.uleb128 0x6
+	.long	.LASF143
+	.byte	0x12
 	.byte	0xd
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL21NUMBER_OF_INSTUCTIONS
-	.uleb128 0x12
+	.uleb128 0xe
 	.long	0x112
-	.long	0x755
-	.uleb128 0x13
-	.long	0x28e
+	.long	0x76f
+	.uleb128 0xf
+	.long	0x2a8
 	.byte	0x4
 	.byte	0
-	.uleb128 0xc
-	.long	0x745
-	.uleb128 0xa
-	.long	.LASF141
-	.byte	0xf
+	.uleb128 0x8
+	.long	0x75f
+	.uleb128 0x6
+	.long	.LASF144
+	.byte	0x12
 	.byte	0xe
 	.byte	0x13
-	.long	0x755
+	.long	0x76f
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL12INSTRUCTIONS
 	.uleb128 0x18
-	.long	.LASF142
+	.long	.LASF145
 	.byte	0x7
 	.long	0x117
+	.byte	0x12
 	.byte	0xf
-	.byte	0xf
-	.long	0x79e
-	.uleb128 0x1c
+	.long	0x7b8
+	.uleb128 0x1d
 	.string	"IF"
 	.byte	0
-	.uleb128 0x9
-	.long	.LASF143
-	.byte	0x1
-	.uleb128 0x9
-	.long	.LASF144
-	.byte	0x2
-	.uleb128 0x9
-	.long	.LASF145
-	.byte	0x3
-	.uleb128 0x9
+	.uleb128 0xb
 	.long	.LASF146
+	.byte	0x1
+	.uleb128 0xb
+	.long	.LASF147
+	.byte	0x2
+	.uleb128 0xb
+	.long	.LASF148
+	.byte	0x3
+	.uleb128 0xb
+	.long	.LASF149
 	.byte	0x4
 	.byte	0
-	.uleb128 0xa
-	.long	.LASF147
-	.byte	0xf
+	.uleb128 0x6
+	.long	.LASF150
+	.byte	0x12
 	.byte	0x18
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL24NUMBER_OF_INITIALIZATORS
-	.uleb128 0x12
+	.uleb128 0xe
 	.long	0x112
-	.long	0x7c4
-	.uleb128 0x13
-	.long	0x28e
+	.long	0x7de
+	.uleb128 0xf
+	.long	0x2a8
 	.byte	0x1
 	.byte	0
-	.uleb128 0xc
-	.long	0x7b4
-	.uleb128 0xa
-	.long	.LASF148
-	.byte	0xf
+	.uleb128 0x8
+	.long	0x7ce
+	.uleb128 0x6
+	.long	.LASF151
+	.byte	0x12
 	.byte	0x19
 	.byte	0x13
-	.long	0x7c4
+	.long	0x7de
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL14INITIALIZATORS
 	.uleb128 0x18
-	.long	.LASF149
+	.long	.LASF152
 	.byte	0x7
 	.long	0x117
-	.byte	0xf
+	.byte	0x12
 	.byte	0x1a
-	.long	0x7fc
-	.uleb128 0x9
-	.long	.LASF150
+	.long	0x816
+	.uleb128 0xb
+	.long	.LASF153
 	.byte	0
-	.uleb128 0x9
-	.long	.LASF151
+	.uleb128 0xb
+	.long	.LASF154
 	.byte	0x1
 	.byte	0
-	.uleb128 0xa
-	.long	.LASF152
-	.byte	0xf
+	.uleb128 0x6
+	.long	.LASF155
+	.byte	0x12
 	.byte	0x20
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL28NUMBER_OF_FUNCTION_RET_TYPES
-	.uleb128 0xa
-	.long	.LASF153
-	.byte	0xf
+	.uleb128 0x6
+	.long	.LASF156
+	.byte	0x12
 	.byte	0x21
 	.byte	0x13
-	.long	0x7c4
+	.long	0x7de
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL18FUNCTION_RET_TYPES
 	.uleb128 0x18
-	.long	.LASF154
+	.long	.LASF157
 	.byte	0x7
 	.long	0x117
-	.byte	0xf
+	.byte	0x12
 	.byte	0x22
-	.long	0x845
-	.uleb128 0x9
-	.long	.LASF155
+	.long	0x85f
+	.uleb128 0xb
+	.long	.LASF158
 	.byte	0
-	.uleb128 0x9
-	.long	.LASF156
+	.uleb128 0xb
+	.long	.LASF159
 	.byte	0x1
 	.byte	0
-	.uleb128 0x12
+	.uleb128 0xe
 	.long	0xa3
-	.long	0x855
-	.uleb128 0x13
-	.long	0x28e
+	.long	0x86f
+	.uleb128 0xf
+	.long	0x2a8
 	.byte	0x7
 	.byte	0
-	.uleb128 0xc
-	.long	0x845
-	.uleb128 0xa
-	.long	.LASF157
-	.byte	0xf
+	.uleb128 0x8
+	.long	0x85f
+	.uleb128 0x6
+	.long	.LASF160
+	.byte	0x12
 	.byte	0x28
 	.byte	0xc
-	.long	0x855
+	.long	0x86f
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL9OPERATORS
 	.uleb128 0x18
-	.long	.LASF158
+	.long	.LASF161
 	.byte	0x7
 	.long	0x117
-	.byte	0xf
+	.byte	0x12
 	.byte	0x29
-	.long	0x8a5
-	.uleb128 0x1c
+	.long	0x8bf
+	.uleb128 0x1d
 	.string	"ADD"
 	.byte	0x2b
-	.uleb128 0x1c
+	.uleb128 0x1d
 	.string	"SUB"
 	.byte	0x2d
-	.uleb128 0x1c
+	.uleb128 0x1d
 	.string	"DIV"
 	.byte	0x2f
-	.uleb128 0x1c
+	.uleb128 0x1d
 	.string	"MUL"
 	.byte	0x2a
-	.uleb128 0x1c
+	.uleb128 0x1d
 	.string	"POW"
 	.byte	0x5e
-	.uleb128 0x1c
+	.uleb128 0x1d
 	.string	"OUT"
 	.byte	0x3c
 	.byte	0
-	.uleb128 0xa
-	.long	.LASF159
-	.byte	0xf
+	.uleb128 0x6
+	.long	.LASF162
+	.byte	0x12
 	.byte	0x33
 	.byte	0xc
 	.long	0xa3
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL7COMMENT
-	.uleb128 0xa
-	.long	.LASF160
-	.byte	0xf
+	.uleb128 0x6
+	.long	.LASF163
+	.byte	0x12
 	.byte	0x35
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL24MAX_FUNCTION_NAME_LENGTH
-	.uleb128 0xa
-	.long	.LASF161
-	.byte	0xf
+	.uleb128 0x6
+	.long	.LASF164
+	.byte	0x12
 	.byte	0x36
 	.byte	0xb
 	.long	0x97
@@ -16616,3670 +16758,3670 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x3
 	.quad	_ZL15MAX_WORD_LENGTH
 	.uleb128 0x4
-	.long	.LASF162
-	.byte	0x10
+	.long	.LASF165
+	.byte	0x13
 	.byte	0x14
 	.byte	0x16
 	.long	0x117
 	.uleb128 0x4
-	.long	.LASF163
-	.byte	0x11
-	.byte	0x6
-	.byte	0x15
-	.long	0x44a
-	.uleb128 0xc
-	.long	0x8f3
-	.uleb128 0x3e
-	.string	"std"
-	.byte	0x15
-	.value	0x116
-	.byte	0xb
-	.long	0x123a
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x40
-	.byte	0xb
-	.long	0x8f3
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x8d
-	.byte	0xb
-	.long	0x8e7
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x8f
-	.byte	0xb
-	.long	0x123a
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x90
-	.byte	0xb
-	.long	0x1251
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x91
-	.byte	0xb
-	.long	0x126d
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x92
-	.byte	0xb
-	.long	0x129f
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x93
-	.byte	0xb
-	.long	0x12bb
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x94
-	.byte	0xb
-	.long	0x12dc
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x95
-	.byte	0xb
-	.long	0x12f8
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x96
-	.byte	0xb
-	.long	0x1315
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x97
-	.byte	0xb
-	.long	0x1336
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x98
-	.byte	0xb
-	.long	0x134d
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x99
-	.byte	0xb
-	.long	0x135a
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x9a
-	.byte	0xb
-	.long	0x1380
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x9b
-	.byte	0xb
-	.long	0x13a6
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x9c
-	.byte	0xb
-	.long	0x13c2
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x9d
-	.byte	0xb
-	.long	0x13e8
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0x9e
-	.byte	0xb
-	.long	0x1404
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xa0
-	.byte	0xb
-	.long	0x141b
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xa2
-	.byte	0xb
-	.long	0x143d
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xa3
-	.byte	0xb
-	.long	0x145e
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xa4
-	.byte	0xb
-	.long	0x147a
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xa6
-	.byte	0xb
-	.long	0x14a0
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xa9
-	.byte	0xb
-	.long	0x14c5
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xac
-	.byte	0xb
-	.long	0x14eb
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xae
-	.byte	0xb
-	.long	0x1510
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xb0
-	.byte	0xb
-	.long	0x152c
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xb2
-	.byte	0xb
-	.long	0x154c
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xb3
-	.byte	0xb
-	.long	0x156d
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xb4
-	.byte	0xb
-	.long	0x1588
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xb5
-	.byte	0xb
-	.long	0x15a3
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xb6
-	.byte	0xb
-	.long	0x15be
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xb7
-	.byte	0xb
-	.long	0x15d9
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xb8
-	.byte	0xb
-	.long	0x15f4
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xb9
-	.byte	0xb
-	.long	0x16c0
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xba
-	.byte	0xb
-	.long	0x16d6
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xbb
-	.byte	0xb
-	.long	0x16f6
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xbc
-	.byte	0xb
-	.long	0x1716
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xbd
-	.byte	0xb
-	.long	0x1736
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xbe
-	.byte	0xb
-	.long	0x1761
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xbf
-	.byte	0xb
-	.long	0x177c
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xc1
-	.byte	0xb
-	.long	0x179d
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xc3
-	.byte	0xb
-	.long	0x17b9
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xc4
-	.byte	0xb
-	.long	0x17d9
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xc5
-	.byte	0xb
-	.long	0x17fa
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xc6
-	.byte	0xb
-	.long	0x181b
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xc7
-	.byte	0xb
-	.long	0x183b
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xc8
-	.byte	0xb
-	.long	0x1852
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xc9
-	.byte	0xb
-	.long	0x1873
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xca
-	.byte	0xb
-	.long	0x1894
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xcb
-	.byte	0xb
-	.long	0x18b5
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xcc
-	.byte	0xb
-	.long	0x18d6
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xcd
-	.byte	0xb
-	.long	0x18ee
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xce
-	.byte	0xb
-	.long	0x190a
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xce
-	.byte	0xb
-	.long	0x1929
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xcf
-	.byte	0xb
-	.long	0x1948
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xcf
-	.byte	0xb
-	.long	0x1967
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xd0
-	.byte	0xb
-	.long	0x1986
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xd0
-	.byte	0xb
-	.long	0x19a5
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xd1
-	.byte	0xb
-	.long	0x19c4
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xd1
-	.byte	0xb
-	.long	0x19e3
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xd2
-	.byte	0xb
-	.long	0x1a02
-	.uleb128 0x2
-	.byte	0x12
-	.byte	0xd2
-	.byte	0xb
-	.long	0x1a26
-	.uleb128 0x15
-	.value	0x10b
-	.byte	0x16
-	.long	0x1ac9
-	.uleb128 0x15
-	.value	0x10c
-	.byte	0x16
-	.long	0x1ae5
-	.uleb128 0x15
-	.value	0x10d
-	.byte	0x16
-	.long	0x1b0d
-	.uleb128 0x15
-	.value	0x11b
-	.byte	0xe
-	.long	0x179d
-	.uleb128 0x15
-	.value	0x11e
-	.byte	0xe
-	.long	0x14a0
-	.uleb128 0x15
-	.value	0x121
-	.byte	0xe
-	.long	0x14eb
-	.uleb128 0x15
-	.value	0x124
-	.byte	0xe
-	.long	0x152c
-	.uleb128 0x15
-	.value	0x128
-	.byte	0xe
-	.long	0x1ac9
-	.uleb128 0x15
-	.value	0x129
-	.byte	0xe
-	.long	0x1ae5
-	.uleb128 0x15
-	.value	0x12a
-	.byte	0xe
-	.long	0x1b0d
-	.uleb128 0x20
-	.long	.LASF164
-	.byte	0x13
-	.value	0xa86
-	.byte	0xd
-	.uleb128 0x20
-	.long	.LASF165
-	.byte	0x13
-	.value	0xadc
-	.byte	0xd
-	.uleb128 0x2a
 	.long	.LASF166
 	.byte	0x14
+	.byte	0x6
+	.byte	0x15
+	.long	0x464
+	.uleb128 0x8
+	.long	0x90d
+	.uleb128 0x3e
+	.string	"std"
+	.byte	0x18
+	.value	0x116
+	.byte	0xb
+	.long	0x1254
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x40
+	.byte	0xb
+	.long	0x90d
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x8d
+	.byte	0xb
+	.long	0x901
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x8f
+	.byte	0xb
+	.long	0x1254
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x90
+	.byte	0xb
+	.long	0x126b
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x91
+	.byte	0xb
+	.long	0x1287
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x92
+	.byte	0xb
+	.long	0x12b9
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x93
+	.byte	0xb
+	.long	0x12d5
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x94
+	.byte	0xb
+	.long	0x12f6
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x95
+	.byte	0xb
+	.long	0x1312
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x96
+	.byte	0xb
+	.long	0x132f
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x97
+	.byte	0xb
+	.long	0x1350
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x98
+	.byte	0xb
+	.long	0x1367
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x99
+	.byte	0xb
+	.long	0x1374
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x9a
+	.byte	0xb
+	.long	0x139a
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x9b
+	.byte	0xb
+	.long	0x13c0
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x9c
+	.byte	0xb
+	.long	0x13dc
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x9d
+	.byte	0xb
+	.long	0x1402
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0x9e
+	.byte	0xb
+	.long	0x141e
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xa0
+	.byte	0xb
+	.long	0x1435
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xa2
+	.byte	0xb
+	.long	0x1457
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xa3
+	.byte	0xb
+	.long	0x1478
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xa4
+	.byte	0xb
+	.long	0x1494
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xa6
+	.byte	0xb
+	.long	0x14ba
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xa9
+	.byte	0xb
+	.long	0x14df
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xac
+	.byte	0xb
+	.long	0x1505
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xae
+	.byte	0xb
+	.long	0x152a
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xb0
+	.byte	0xb
+	.long	0x1546
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xb2
+	.byte	0xb
+	.long	0x1566
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xb3
+	.byte	0xb
+	.long	0x1587
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xb4
+	.byte	0xb
+	.long	0x15a2
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xb5
+	.byte	0xb
+	.long	0x15bd
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xb6
+	.byte	0xb
+	.long	0x15d8
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xb7
+	.byte	0xb
+	.long	0x15f3
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xb8
+	.byte	0xb
+	.long	0x160e
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xb9
+	.byte	0xb
+	.long	0x16da
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xba
+	.byte	0xb
+	.long	0x16f0
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xbb
+	.byte	0xb
+	.long	0x1710
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xbc
+	.byte	0xb
+	.long	0x1730
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xbd
+	.byte	0xb
+	.long	0x1750
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xbe
+	.byte	0xb
+	.long	0x177b
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xbf
+	.byte	0xb
+	.long	0x1796
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xc1
+	.byte	0xb
+	.long	0x17b7
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xc3
+	.byte	0xb
+	.long	0x17d3
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xc4
+	.byte	0xb
+	.long	0x17f3
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xc5
+	.byte	0xb
+	.long	0x1814
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xc6
+	.byte	0xb
+	.long	0x1835
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xc7
+	.byte	0xb
+	.long	0x1855
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xc8
+	.byte	0xb
+	.long	0x186c
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xc9
+	.byte	0xb
+	.long	0x188d
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xca
+	.byte	0xb
+	.long	0x18ae
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xcb
+	.byte	0xb
+	.long	0x18cf
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xcc
+	.byte	0xb
+	.long	0x18f0
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xcd
+	.byte	0xb
+	.long	0x1908
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xce
+	.byte	0xb
+	.long	0x1924
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xce
+	.byte	0xb
+	.long	0x1943
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xcf
+	.byte	0xb
+	.long	0x1962
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xcf
+	.byte	0xb
+	.long	0x1981
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xd0
+	.byte	0xb
+	.long	0x19a0
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xd0
+	.byte	0xb
+	.long	0x19bf
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xd1
+	.byte	0xb
+	.long	0x19de
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xd1
+	.byte	0xb
+	.long	0x19fd
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xd2
+	.byte	0xb
+	.long	0x1a1c
+	.uleb128 0x2
+	.byte	0x15
+	.byte	0xd2
+	.byte	0xb
+	.long	0x1a40
+	.uleb128 0x14
+	.value	0x10b
+	.byte	0x16
+	.long	0x1ae3
+	.uleb128 0x14
+	.value	0x10c
+	.byte	0x16
+	.long	0x1aff
+	.uleb128 0x14
+	.value	0x10d
+	.byte	0x16
+	.long	0x1b27
+	.uleb128 0x14
+	.value	0x11b
+	.byte	0xe
+	.long	0x17b7
+	.uleb128 0x14
+	.value	0x11e
+	.byte	0xe
+	.long	0x14ba
+	.uleb128 0x14
+	.value	0x121
+	.byte	0xe
+	.long	0x1505
+	.uleb128 0x14
+	.value	0x124
+	.byte	0xe
+	.long	0x1546
+	.uleb128 0x14
+	.value	0x128
+	.byte	0xe
+	.long	0x1ae3
+	.uleb128 0x14
+	.value	0x129
+	.byte	0xe
+	.long	0x1aff
+	.uleb128 0x14
+	.value	0x12a
+	.byte	0xe
+	.long	0x1b27
+	.uleb128 0x22
+	.long	.LASF167
+	.byte	0x16
+	.value	0xa86
+	.byte	0xd
+	.uleb128 0x22
+	.long	.LASF168
+	.byte	0x16
+	.value	0xadc
+	.byte	0xd
+	.uleb128 0x2b
+	.long	.LASF169
+	.byte	0x17
 	.byte	0x3f
 	.byte	0xd
-	.long	0xd42
+	.long	0xd5c
 	.uleb128 0x2f
-	.long	.LASF172
+	.long	.LASF175
 	.byte	0x8
-	.byte	0x14
+	.byte	0x17
 	.byte	0x5a
 	.byte	0xb
-	.long	0xd34
+	.long	0xd4e
 	.uleb128 0x3
-	.long	.LASF167
-	.byte	0x14
+	.long	.LASF170
+	.byte	0x17
 	.byte	0x5c
 	.byte	0xd
-	.long	0x2ca
+	.long	0x2e4
 	.byte	0
 	.uleb128 0x3f
-	.long	.LASF172
-	.byte	0x14
+	.long	.LASF175
+	.byte	0x17
 	.byte	0x5e
 	.byte	0x10
-	.long	.LASF174
-	.long	0xba5
-	.long	0xbb0
-	.uleb128 0xb
-	.long	0x1b56
+	.long	.LASF177
+	.long	0xbbf
+	.long	0xbca
+	.uleb128 0xc
+	.long	0x1b70
 	.uleb128 0x1
-	.long	0x2ca
+	.long	0x2e4
 	.byte	0
 	.uleb128 0x30
-	.long	.LASF168
-	.byte	0x60
-	.long	.LASF170
-	.long	0xbc2
-	.long	0xbc8
-	.uleb128 0xb
-	.long	0x1b56
-	.byte	0
-	.uleb128 0x30
-	.long	.LASF169
-	.byte	0x61
 	.long	.LASF171
-	.long	0xbda
-	.long	0xbe0
-	.uleb128 0xb
-	.long	0x1b56
+	.byte	0x60
+	.long	.LASF173
+	.long	0xbdc
+	.long	0xbe2
+	.uleb128 0xc
+	.long	0x1b70
+	.byte	0
+	.uleb128 0x30
+	.long	.LASF172
+	.byte	0x61
+	.long	.LASF174
+	.long	0xbf4
+	.long	0xbfa
+	.uleb128 0xc
+	.long	0x1b70
 	.byte	0
 	.uleb128 0x40
-	.long	.LASF173
-	.byte	0x14
+	.long	.LASF176
+	.byte	0x17
 	.byte	0x63
 	.byte	0xd
-	.long	.LASF175
-	.long	0x2ca
-	.long	0xbf8
-	.long	0xbfe
-	.uleb128 0xb
-	.long	0x1b5b
-	.byte	0
-	.uleb128 0x19
-	.long	.LASF172
-	.byte	0x14
-	.byte	0x6b
-	.byte	0x7
-	.long	.LASF176
+	.long	.LASF178
+	.long	0x2e4
 	.long	0xc12
 	.long	0xc18
-	.uleb128 0xb
-	.long	0x1b56
+	.uleb128 0xc
+	.long	0x1b75
 	.byte	0
 	.uleb128 0x19
-	.long	.LASF172
-	.byte	0x14
-	.byte	0x6d
-	.byte	0x7
-	.long	.LASF177
-	.long	0xc2c
-	.long	0xc37
-	.uleb128 0xb
-	.long	0x1b56
-	.uleb128 0x1
-	.long	0x1b60
-	.byte	0
-	.uleb128 0x19
-	.long	.LASF172
-	.byte	0x14
-	.byte	0x70
-	.byte	0x7
-	.long	.LASF178
-	.long	0xc4b
-	.long	0xc56
-	.uleb128 0xb
-	.long	0x1b56
-	.uleb128 0x1
-	.long	0xd60
-	.byte	0
-	.uleb128 0x19
-	.long	.LASF172
-	.byte	0x14
-	.byte	0x74
+	.long	.LASF175
+	.byte	0x17
+	.byte	0x6b
 	.byte	0x7
 	.long	.LASF179
-	.long	0xc6a
-	.long	0xc75
-	.uleb128 0xb
-	.long	0x1b56
-	.uleb128 0x1
-	.long	0x1b65
-	.byte	0
-	.uleb128 0x21
-	.long	.LASF180
-	.byte	0x14
-	.byte	0x81
-	.byte	0x7
-	.long	.LASF181
-	.long	0x1b6b
-	.long	0xc8d
-	.long	0xc98
-	.uleb128 0xb
-	.long	0x1b56
-	.uleb128 0x1
-	.long	0x1b60
-	.byte	0
-	.uleb128 0x21
-	.long	.LASF180
-	.byte	0x14
-	.byte	0x85
-	.byte	0x7
-	.long	.LASF182
-	.long	0x1b6b
-	.long	0xcb0
-	.long	0xcbb
-	.uleb128 0xb
-	.long	0x1b56
-	.uleb128 0x1
-	.long	0x1b65
+	.long	0xc2c
+	.long	0xc32
+	.uleb128 0xc
+	.long	0x1b70
 	.byte	0
 	.uleb128 0x19
+	.long	.LASF175
+	.byte	0x17
+	.byte	0x6d
+	.byte	0x7
+	.long	.LASF180
+	.long	0xc46
+	.long	0xc51
+	.uleb128 0xc
+	.long	0x1b70
+	.uleb128 0x1
+	.long	0x1b7a
+	.byte	0
+	.uleb128 0x19
+	.long	.LASF175
+	.byte	0x17
+	.byte	0x70
+	.byte	0x7
+	.long	.LASF181
+	.long	0xc65
+	.long	0xc70
+	.uleb128 0xc
+	.long	0x1b70
+	.uleb128 0x1
+	.long	0xd7a
+	.byte	0
+	.uleb128 0x19
+	.long	.LASF175
+	.byte	0x17
+	.byte	0x74
+	.byte	0x7
+	.long	.LASF182
+	.long	0xc84
+	.long	0xc8f
+	.uleb128 0xc
+	.long	0x1b70
+	.uleb128 0x1
+	.long	0x1b7f
+	.byte	0
+	.uleb128 0x23
 	.long	.LASF183
-	.byte	0x14
-	.byte	0x8c
+	.byte	0x17
+	.byte	0x81
 	.byte	0x7
 	.long	.LASF184
-	.long	0xccf
-	.long	0xcda
-	.uleb128 0xb
-	.long	0x1b56
-	.uleb128 0xb
+	.long	0x1b85
+	.long	0xca7
+	.long	0xcb2
+	.uleb128 0xc
+	.long	0x1b70
+	.uleb128 0x1
+	.long	0x1b7a
+	.byte	0
+	.uleb128 0x23
+	.long	.LASF183
+	.byte	0x17
+	.byte	0x85
+	.byte	0x7
+	.long	.LASF185
+	.long	0x1b85
+	.long	0xcca
+	.long	0xcd5
+	.uleb128 0xc
+	.long	0x1b70
+	.uleb128 0x1
+	.long	0x1b7f
+	.byte	0
+	.uleb128 0x19
+	.long	.LASF186
+	.byte	0x17
+	.byte	0x8c
+	.byte	0x7
+	.long	.LASF187
+	.long	0xce9
+	.long	0xcf4
+	.uleb128 0xc
+	.long	0x1b70
+	.uleb128 0xc
 	.long	0x90
 	.byte	0
 	.uleb128 0x19
-	.long	.LASF185
-	.byte	0x14
+	.long	.LASF188
+	.byte	0x17
 	.byte	0x8f
 	.byte	0x7
-	.long	.LASF186
-	.long	0xcee
-	.long	0xcf9
-	.uleb128 0xb
-	.long	0x1b56
+	.long	.LASF189
+	.long	0xd08
+	.long	0xd13
+	.uleb128 0xc
+	.long	0x1b70
 	.uleb128 0x1
-	.long	0x1b6b
+	.long	0x1b85
 	.byte	0
 	.uleb128 0x41
-	.long	.LASF597
-	.byte	0x14
+	.long	.LASF564
+	.byte	0x17
 	.byte	0x9b
 	.byte	0x10
-	.long	.LASF598
-	.long	0x1b3a
+	.long	.LASF566
+	.long	0x1b54
 	.byte	0x1
-	.long	0xd12
-	.long	0xd18
-	.uleb128 0xb
-	.long	0x1b5b
+	.long	0xd2c
+	.long	0xd32
+	.uleb128 0xc
+	.long	0x1b75
 	.byte	0
 	.uleb128 0x42
-	.long	.LASF187
-	.byte	0x14
+	.long	.LASF190
+	.byte	0x17
 	.byte	0xb0
 	.byte	0x7
-	.long	.LASF188
-	.long	0x1b70
+	.long	.LASF191
+	.long	0x1b8a
 	.byte	0x1
-	.long	0xd2d
-	.uleb128 0xb
-	.long	0x1b5b
-	.byte	0
-	.byte	0
+	.long	0xd47
 	.uleb128 0xc
-	.long	0xb77
+	.long	0x1b75
+	.byte	0
+	.byte	0
+	.uleb128 0x8
+	.long	0xb91
 	.uleb128 0x2
-	.byte	0x14
+	.byte	0x17
 	.byte	0x54
 	.byte	0x10
-	.long	0xd4a
+	.long	0xd64
 	.byte	0
 	.uleb128 0x2
-	.byte	0x14
+	.byte	0x17
 	.byte	0x44
 	.byte	0x1a
-	.long	0xb77
+	.long	0xb91
 	.uleb128 0x43
-	.long	.LASF189
-	.byte	0x14
+	.long	.LASF192
+	.byte	0x17
 	.byte	0x50
 	.byte	0x8
-	.long	.LASF190
-	.long	0xd60
+	.long	.LASF193
+	.long	0xd7a
 	.uleb128 0x1
-	.long	0xb77
+	.long	0xb91
 	.byte	0
 	.uleb128 0x31
-	.long	.LASF191
-	.byte	0x15
+	.long	.LASF194
+	.byte	0x18
 	.value	0x11c
 	.byte	0x1d
-	.long	0x1b35
+	.long	0x1b4f
 	.uleb128 0x44
-	.long	.LASF599
-	.uleb128 0xc
-	.long	0xd6d
-	.uleb128 0x2a
-	.long	.LASF192
-	.byte	0x16
+	.long	.LASF602
+	.uleb128 0x8
+	.long	0xd87
+	.uleb128 0x2b
+	.long	.LASF195
+	.byte	0x19
 	.byte	0xa3
 	.byte	0xd
-	.long	0xdb6
+	.long	0xdd0
 	.uleb128 0x1a
-	.long	.LASF193
-	.byte	0x16
+	.long	.LASF196
+	.byte	0x19
 	.byte	0xa5
 	.byte	0xf
 	.uleb128 0x45
-	.long	.LASF200
-	.byte	0x16
+	.long	.LASF203
+	.byte	0x19
 	.byte	0xe1
 	.byte	0x16
 	.uleb128 0x1a
-	.long	.LASF194
-	.byte	0x17
+	.long	.LASF197
+	.byte	0x1a
 	.byte	0x50
 	.byte	0xf
-	.uleb128 0x20
-	.long	.LASF195
-	.byte	0x17
+	.uleb128 0x22
+	.long	.LASF198
+	.byte	0x1a
 	.value	0x31d
 	.byte	0xd
-	.uleb128 0x20
-	.long	.LASF196
-	.byte	0x17
+	.uleb128 0x22
+	.long	.LASF199
+	.byte	0x1a
 	.value	0x3a0
 	.byte	0x15
 	.uleb128 0x1a
-	.long	.LASF197
-	.byte	0x18
+	.long	.LASF200
+	.byte	0x1b
 	.byte	0x40
 	.byte	0xd
 	.byte	0
 	.uleb128 0x1a
-	.long	.LASF198
-	.byte	0x19
+	.long	.LASF201
+	.byte	0x1c
 	.byte	0x31
 	.byte	0xd
 	.uleb128 0x1a
-	.long	.LASF197
-	.byte	0x16
+	.long	.LASF200
+	.byte	0x19
 	.byte	0x36
 	.byte	0xd
-	.uleb128 0x20
-	.long	.LASF199
-	.byte	0x19
+	.uleb128 0x22
+	.long	.LASF202
+	.byte	0x1c
 	.value	0x20e
 	.byte	0xd
 	.uleb128 0x32
-	.long	.LASF201
-	.byte	0x19
+	.long	.LASF204
+	.byte	0x1c
 	.value	0x357
 	.byte	0x14
 	.uleb128 0x1a
-	.long	.LASF202
-	.byte	0x1a
+	.long	.LASF205
+	.byte	0x1d
 	.byte	0x32
 	.byte	0xd
 	.uleb128 0x2
-	.byte	0x1b
+	.byte	0x1e
 	.byte	0x2f
 	.byte	0xb
-	.long	0x1b91
+	.long	0x1bab
 	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x30
-	.byte	0xb
-	.long	0x1b9d
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x31
-	.byte	0xb
-	.long	0x1ba9
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x32
-	.byte	0xb
-	.long	0x1bb5
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x34
-	.byte	0xb
-	.long	0x1c51
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x35
-	.byte	0xb
-	.long	0x1c5d
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x36
-	.byte	0xb
-	.long	0x1c69
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x37
-	.byte	0xb
-	.long	0x1c75
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x39
-	.byte	0xb
-	.long	0x1bf1
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x3a
-	.byte	0xb
-	.long	0x1bfd
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x3b
-	.byte	0xb
-	.long	0x1c09
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x3c
-	.byte	0xb
-	.long	0x1c15
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x3e
-	.byte	0xb
-	.long	0x1cc9
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x3f
-	.byte	0xb
-	.long	0x1cb1
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x41
-	.byte	0xb
-	.long	0x1bc1
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x42
-	.byte	0xb
-	.long	0x1bcd
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x43
-	.byte	0xb
-	.long	0x1bd9
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x44
-	.byte	0xb
-	.long	0x1be5
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x46
-	.byte	0xb
-	.long	0x1c81
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x47
-	.byte	0xb
-	.long	0x1c8d
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x48
-	.byte	0xb
-	.long	0x1c99
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x49
-	.byte	0xb
-	.long	0x1ca5
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x4b
-	.byte	0xb
-	.long	0x1c21
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x4c
-	.byte	0xb
-	.long	0x1c2d
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x4d
-	.byte	0xb
-	.long	0x1c39
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x4e
-	.byte	0xb
-	.long	0x1c45
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x50
-	.byte	0xb
-	.long	0x1cd5
-	.uleb128 0x2
-	.byte	0x1b
-	.byte	0x51
-	.byte	0xb
-	.long	0x1cbd
-	.uleb128 0x2
-	.byte	0x1c
-	.byte	0x35
-	.byte	0xb
-	.long	0x1ce1
-	.uleb128 0x2
-	.byte	0x1c
-	.byte	0x36
-	.byte	0xb
-	.long	0x1e27
-	.uleb128 0x2
-	.byte	0x1c
-	.byte	0x37
-	.byte	0xb
-	.long	0x1e42
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x7f
-	.byte	0xb
-	.long	0x1e81
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x80
-	.byte	0xb
-	.long	0x1eb5
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x86
-	.byte	0xb
-	.long	0x1f1b
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x89
-	.byte	0xb
-	.long	0x1f38
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x8c
-	.byte	0xb
-	.long	0x1f53
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x8d
-	.byte	0xb
-	.long	0x1f69
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x8e
-	.byte	0xb
-	.long	0x1f7f
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x8f
-	.byte	0xb
-	.long	0x1f95
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x91
-	.byte	0xb
-	.long	0x1fc0
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x94
-	.byte	0xb
-	.long	0x1fdc
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x96
-	.byte	0xb
-	.long	0x1ff3
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x99
-	.byte	0xb
-	.long	0x200f
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x9a
-	.byte	0xb
-	.long	0x202b
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x9b
-	.byte	0xb
-	.long	0x204c
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0x9d
-	.byte	0xb
-	.long	0x206d
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xa0
-	.byte	0xb
-	.long	0x208e
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xa3
-	.byte	0xb
-	.long	0x20a1
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xa5
-	.byte	0xb
-	.long	0x20ae
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xa6
-	.byte	0xb
-	.long	0x20c0
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xa7
-	.byte	0xb
-	.long	0x20e0
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xa8
-	.byte	0xb
-	.long	0x2100
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xa9
-	.byte	0xb
-	.long	0x2120
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xab
-	.byte	0xb
-	.long	0x2137
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xac
-	.byte	0xb
-	.long	0x2158
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xf0
-	.byte	0x16
-	.long	0x1ee9
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xf5
-	.byte	0x16
-	.long	0x1aaf
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xf6
-	.byte	0x16
-	.long	0x2174
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xf8
-	.byte	0x16
-	.long	0x2190
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xf9
-	.byte	0x16
-	.long	0x21e6
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xfa
-	.byte	0x16
-	.long	0x21a6
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xfb
-	.byte	0x16
-	.long	0x21c6
-	.uleb128 0x2
-	.byte	0x1d
-	.byte	0xfc
-	.byte	0x16
-	.long	0x2201
-	.uleb128 0x1a
-	.long	.LASF203
 	.byte	0x1e
 	.byte	0x30
 	.byte	0xb
+	.long	0x1bb7
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x62
+	.byte	0x1e
+	.byte	0x31
 	.byte	0xb
-	.long	0x61d
+	.long	0x1bc3
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x63
+	.byte	0x1e
+	.byte	0x32
 	.byte	0xb
-	.long	0x685
+	.long	0x1bcf
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x65
+	.byte	0x1e
+	.byte	0x34
 	.byte	0xb
-	.long	0x2223
+	.long	0x1c6b
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x66
+	.byte	0x1e
+	.byte	0x35
 	.byte	0xb
-	.long	0x2235
+	.long	0x1c77
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x67
+	.byte	0x1e
+	.byte	0x36
 	.byte	0xb
-	.long	0x224b
+	.long	0x1c83
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x68
+	.byte	0x1e
+	.byte	0x37
 	.byte	0xb
-	.long	0x2262
+	.long	0x1c8f
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x69
+	.byte	0x1e
+	.byte	0x39
 	.byte	0xb
-	.long	0x2279
+	.long	0x1c0b
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x6a
+	.byte	0x1e
+	.byte	0x3a
 	.byte	0xb
-	.long	0x228f
+	.long	0x1c17
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x6b
+	.byte	0x1e
+	.byte	0x3b
 	.byte	0xb
-	.long	0x22a6
+	.long	0x1c23
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x6c
+	.byte	0x1e
+	.byte	0x3c
 	.byte	0xb
-	.long	0x22c7
+	.long	0x1c2f
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x6d
+	.byte	0x1e
+	.byte	0x3e
 	.byte	0xb
-	.long	0x22e8
+	.long	0x1ce3
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x71
+	.byte	0x1e
+	.byte	0x3f
 	.byte	0xb
-	.long	0x2304
+	.long	0x1ccb
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x72
+	.byte	0x1e
+	.byte	0x41
 	.byte	0xb
-	.long	0x232a
+	.long	0x1bdb
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x74
+	.byte	0x1e
+	.byte	0x42
 	.byte	0xb
-	.long	0x234b
+	.long	0x1be7
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x75
+	.byte	0x1e
+	.byte	0x43
 	.byte	0xb
-	.long	0x236c
+	.long	0x1bf3
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x76
+	.byte	0x1e
+	.byte	0x44
 	.byte	0xb
-	.long	0x238d
+	.long	0x1bff
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x78
+	.byte	0x1e
+	.byte	0x46
 	.byte	0xb
-	.long	0x23a4
+	.long	0x1c9b
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x79
+	.byte	0x1e
+	.byte	0x47
 	.byte	0xb
-	.long	0x23bb
+	.long	0x1ca7
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x7e
+	.byte	0x1e
+	.byte	0x48
 	.byte	0xb
-	.long	0x23c8
+	.long	0x1cb3
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x83
+	.byte	0x1e
+	.byte	0x49
 	.byte	0xb
-	.long	0x23da
+	.long	0x1cbf
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x84
+	.byte	0x1e
+	.byte	0x4b
 	.byte	0xb
-	.long	0x23f0
+	.long	0x1c3b
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x85
+	.byte	0x1e
+	.byte	0x4c
 	.byte	0xb
-	.long	0x240b
+	.long	0x1c47
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x87
+	.byte	0x1e
+	.byte	0x4d
 	.byte	0xb
-	.long	0x241d
+	.long	0x1c53
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x88
+	.byte	0x1e
+	.byte	0x4e
 	.byte	0xb
-	.long	0x2434
+	.long	0x1c5f
 	.uleb128 0x2
-	.byte	0x1f
-	.byte	0x8b
+	.byte	0x1e
+	.byte	0x50
 	.byte	0xb
-	.long	0x245a
+	.long	0x1cef
+	.uleb128 0x2
+	.byte	0x1e
+	.byte	0x51
+	.byte	0xb
+	.long	0x1cd7
 	.uleb128 0x2
 	.byte	0x1f
+	.byte	0x35
+	.byte	0xb
+	.long	0x1cfb
+	.uleb128 0x2
+	.byte	0x1f
+	.byte	0x36
+	.byte	0xb
+	.long	0x1e41
+	.uleb128 0x2
+	.byte	0x1f
+	.byte	0x37
+	.byte	0xb
+	.long	0x1e5c
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0x7f
+	.byte	0xb
+	.long	0x1e9b
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0x80
+	.byte	0xb
+	.long	0x1ecf
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0x86
+	.byte	0xb
+	.long	0x1f35
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0x89
+	.byte	0xb
+	.long	0x1f52
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0x8c
+	.byte	0xb
+	.long	0x1f6d
+	.uleb128 0x2
+	.byte	0x20
 	.byte	0x8d
 	.byte	0xb
-	.long	0x2466
+	.long	0x1f83
 	.uleb128 0x2
-	.byte	0x1f
+	.byte	0x20
+	.byte	0x8e
+	.byte	0xb
+	.long	0x1f99
+	.uleb128 0x2
+	.byte	0x20
 	.byte	0x8f
 	.byte	0xb
-	.long	0x247c
+	.long	0x1faf
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0x91
+	.byte	0xb
+	.long	0x1fda
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0x94
+	.byte	0xb
+	.long	0x1ff6
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0x96
+	.byte	0xb
+	.long	0x200d
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0x99
+	.byte	0xb
+	.long	0x2029
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0x9a
+	.byte	0xb
+	.long	0x2045
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0x9b
+	.byte	0xb
+	.long	0x2066
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0x9d
+	.byte	0xb
+	.long	0x2087
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xa0
+	.byte	0xb
+	.long	0x20a8
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xa3
+	.byte	0xb
+	.long	0x20bb
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xa5
+	.byte	0xb
+	.long	0x20c8
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xa6
+	.byte	0xb
+	.long	0x20da
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xa7
+	.byte	0xb
+	.long	0x20fa
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xa8
+	.byte	0xb
+	.long	0x211a
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xa9
+	.byte	0xb
+	.long	0x213a
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xab
+	.byte	0xb
+	.long	0x2151
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xac
+	.byte	0xb
+	.long	0x2172
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xf0
+	.byte	0x16
+	.long	0x1f03
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xf5
+	.byte	0x16
+	.long	0x1ac9
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xf6
+	.byte	0x16
+	.long	0x218e
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xf8
+	.byte	0x16
+	.long	0x21aa
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xf9
+	.byte	0x16
+	.long	0x2200
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xfa
+	.byte	0x16
+	.long	0x21c0
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xfb
+	.byte	0x16
+	.long	0x21e0
+	.uleb128 0x2
+	.byte	0x20
+	.byte	0xfc
+	.byte	0x16
+	.long	0x221b
+	.uleb128 0x1a
+	.long	.LASF206
+	.byte	0x21
+	.byte	0x30
+	.byte	0xb
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x62
+	.byte	0xb
+	.long	0x637
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x63
+	.byte	0xb
+	.long	0x69f
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x65
+	.byte	0xb
+	.long	0x223d
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x66
+	.byte	0xb
+	.long	0x224f
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x67
+	.byte	0xb
+	.long	0x2265
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x68
+	.byte	0xb
+	.long	0x227c
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x69
+	.byte	0xb
+	.long	0x2293
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x6a
+	.byte	0xb
+	.long	0x22a9
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x6b
+	.byte	0xb
+	.long	0x22c0
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x6c
+	.byte	0xb
+	.long	0x22e1
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x6d
+	.byte	0xb
+	.long	0x2302
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x71
+	.byte	0xb
+	.long	0x231e
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x72
+	.byte	0xb
+	.long	0x2344
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x74
+	.byte	0xb
+	.long	0x2365
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x75
+	.byte	0xb
+	.long	0x2386
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x76
+	.byte	0xb
+	.long	0x23a7
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x78
+	.byte	0xb
+	.long	0x23be
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x79
+	.byte	0xb
+	.long	0x23d5
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x7e
+	.byte	0xb
+	.long	0x23e2
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x83
+	.byte	0xb
+	.long	0x23f4
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x84
+	.byte	0xb
+	.long	0x240a
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x85
+	.byte	0xb
+	.long	0x2425
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x87
+	.byte	0xb
+	.long	0x2437
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x88
+	.byte	0xb
+	.long	0x244e
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x8b
+	.byte	0xb
+	.long	0x2474
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x8d
+	.byte	0xb
+	.long	0x2480
+	.uleb128 0x2
+	.byte	0x22
+	.byte	0x8f
+	.byte	0xb
+	.long	0x2496
 	.uleb128 0x32
-	.long	.LASF204
-	.byte	0x15
+	.long	.LASF207
+	.byte	0x18
 	.value	0x12e
 	.byte	0x41
 	.uleb128 0x46
 	.string	"_V2"
-	.byte	0x3b
+	.byte	0x3e
 	.value	0x25c
 	.byte	0x14
 	.uleb128 0x33
-	.long	.LASF479
-	.long	0x1164
+	.long	.LASF485
+	.long	0x117e
 	.uleb128 0x47
-	.long	.LASF205
+	.long	.LASF208
 	.byte	0x1
-	.byte	0x20
+	.byte	0x23
 	.value	0x272
 	.byte	0xb
 	.byte	0x1
-	.long	0x115e
+	.long	0x1178
 	.uleb128 0x34
-	.long	.LASF205
+	.long	.LASF208
 	.value	0x276
-	.long	.LASF207
-	.long	0x10f5
-	.long	0x10fb
-	.uleb128 0xb
-	.long	0x2498
+	.long	.LASF210
+	.long	0x110f
+	.long	0x1115
+	.uleb128 0xc
+	.long	0x24b2
 	.byte	0
 	.uleb128 0x34
-	.long	.LASF206
+	.long	.LASF209
 	.value	0x277
-	.long	.LASF208
-	.long	0x110e
-	.long	0x1119
-	.uleb128 0xb
-	.long	0x2498
-	.uleb128 0xb
+	.long	.LASF211
+	.long	0x1128
+	.long	0x1133
+	.uleb128 0xc
+	.long	0x24b2
+	.uleb128 0xc
 	.long	0x90
 	.byte	0
 	.uleb128 0x48
-	.long	.LASF205
-	.byte	0x20
+	.long	.LASF208
+	.byte	0x23
 	.value	0x27a
 	.byte	0x7
-	.long	.LASF209
+	.long	.LASF212
 	.byte	0x1
 	.byte	0x1
-	.long	0x1130
-	.long	0x113b
-	.uleb128 0xb
-	.long	0x2498
+	.long	0x114a
+	.long	0x1155
+	.uleb128 0xc
+	.long	0x24b2
 	.uleb128 0x1
-	.long	0x24a2
+	.long	0x24bc
 	.byte	0
 	.uleb128 0x49
-	.long	.LASF180
-	.byte	0x20
+	.long	.LASF183
+	.byte	0x23
 	.value	0x27b
 	.byte	0xd
-	.long	.LASF210
-	.long	0x24a7
+	.long	.LASF213
+	.long	0x24c1
 	.byte	0x1
 	.byte	0x1
-	.long	0x1152
-	.uleb128 0xb
-	.long	0x2498
-	.uleb128 0x1
-	.long	0x24a2
-	.byte	0
-	.byte	0
+	.long	0x116c
 	.uleb128 0xc
-	.long	0x10d3
+	.long	0x24b2
+	.uleb128 0x1
+	.long	0x24bc
+	.byte	0
+	.byte	0
+	.uleb128 0x8
+	.long	0x10ed
 	.byte	0
 	.uleb128 0x2
-	.byte	0x21
+	.byte	0x24
 	.byte	0x52
 	.byte	0xb
-	.long	0x24b8
+	.long	0x24d2
 	.uleb128 0x2
-	.byte	0x21
+	.byte	0x24
 	.byte	0x53
 	.byte	0xb
-	.long	0x24ac
+	.long	0x24c6
 	.uleb128 0x2
-	.byte	0x21
+	.byte	0x24
 	.byte	0x54
 	.byte	0xb
-	.long	0x8e7
+	.long	0x901
 	.uleb128 0x2
-	.byte	0x21
+	.byte	0x24
 	.byte	0x5c
 	.byte	0xb
-	.long	0x24c9
+	.long	0x24e3
 	.uleb128 0x2
-	.byte	0x21
+	.byte	0x24
 	.byte	0x65
 	.byte	0xb
-	.long	0x24e4
+	.long	0x24fe
 	.uleb128 0x2
-	.byte	0x21
+	.byte	0x24
 	.byte	0x68
 	.byte	0xb
-	.long	0x24ff
+	.long	0x2519
 	.uleb128 0x2
-	.byte	0x21
+	.byte	0x24
 	.byte	0x69
 	.byte	0xb
-	.long	0x2515
+	.long	0x252f
 	.uleb128 0x4a
-	.long	.LASF211
-	.byte	0x2
+	.long	.LASF214
+	.byte	0x5
 	.byte	0x4a
 	.byte	0x19
-	.long	0x10d3
-	.uleb128 0x22
+	.long	0x10ed
+	.uleb128 0x24
 	.string	"abs"
 	.byte	0x4f
-	.long	.LASF212
-	.long	0x6b0
-	.long	0x11c0
+	.long	.LASF215
+	.long	0x6ca
+	.long	0x11da
 	.uleb128 0x1
-	.long	0x6b0
+	.long	0x6ca
 	.byte	0
-	.uleb128 0x22
+	.uleb128 0x24
 	.string	"abs"
 	.byte	0x4b
-	.long	.LASF213
-	.long	0x6a9
-	.long	0x11d8
+	.long	.LASF216
+	.long	0x6c3
+	.long	0x11f2
 	.uleb128 0x1
-	.long	0x6a9
+	.long	0x6c3
 	.byte	0
-	.uleb128 0x22
+	.uleb128 0x24
 	.string	"abs"
 	.byte	0x47
-	.long	.LASF214
+	.long	.LASF217
 	.long	0xa8
-	.long	0x11f0
+	.long	0x120a
 	.uleb128 0x1
 	.long	0xa8
 	.byte	0
-	.uleb128 0x22
+	.uleb128 0x24
 	.string	"abs"
 	.byte	0x3d
-	.long	.LASF215
-	.long	0x1b06
-	.long	0x1208
+	.long	.LASF218
+	.long	0x1b20
+	.long	0x1222
 	.uleb128 0x1
-	.long	0x1b06
+	.long	0x1b20
 	.byte	0
-	.uleb128 0x22
+	.uleb128 0x24
 	.string	"abs"
 	.byte	0x38
-	.long	.LASF216
-	.long	0x341
-	.long	0x1220
+	.long	.LASF219
+	.long	0x35b
+	.long	0x123a
 	.uleb128 0x1
-	.long	0x341
+	.long	0x35b
 	.byte	0
 	.uleb128 0x35
 	.string	"div"
 	.byte	0xb1
-	.long	.LASF292
-	.long	0x1eb5
+	.long	.LASF295
+	.long	0x1ecf
 	.uleb128 0x1
-	.long	0x341
+	.long	0x35b
 	.uleb128 0x1
-	.long	0x341
+	.long	0x35b
 	.byte	0
 	.byte	0
 	.uleb128 0x5
-	.long	.LASF217
-	.byte	0x23
+	.long	.LASF220
+	.byte	0x26
 	.value	0x11d
 	.byte	0xf
-	.long	0x8e7
-	.long	0x1251
+	.long	0x901
+	.long	0x126b
 	.uleb128 0x1
 	.long	0x90
 	.byte	0
-	.uleb128 0x5
-	.long	.LASF218
-	.byte	0x23
-	.value	0x2e8
-	.byte	0xf
-	.long	0x8e7
-	.long	0x1268
-	.uleb128 0x1
-	.long	0x1268
-	.byte	0
-	.uleb128 0x7
-	.long	0x48a
-	.uleb128 0x5
-	.long	.LASF219
-	.byte	0x23
-	.value	0x305
-	.byte	0x11
-	.long	0x128e
-	.long	0x128e
-	.uleb128 0x1
-	.long	0x128e
-	.uleb128 0x1
-	.long	0x90
-	.uleb128 0x1
-	.long	0x1268
-	.byte	0
-	.uleb128 0x7
-	.long	0x1293
-	.uleb128 0xe
-	.byte	0x4
-	.byte	0x5
-	.long	.LASF220
-	.uleb128 0xc
-	.long	0x1293
 	.uleb128 0x5
 	.long	.LASF221
-	.byte	0x23
-	.value	0x2f6
+	.byte	0x26
+	.value	0x2e8
 	.byte	0xf
-	.long	0x8e7
-	.long	0x12bb
+	.long	0x901
+	.long	0x1282
 	.uleb128 0x1
-	.long	0x1293
-	.uleb128 0x1
-	.long	0x1268
+	.long	0x1282
 	.byte	0
+	.uleb128 0x7
+	.long	0x4a4
 	.uleb128 0x5
 	.long	.LASF222
-	.byte	0x23
+	.byte	0x26
+	.value	0x305
+	.byte	0x11
+	.long	0x12a8
+	.long	0x12a8
+	.uleb128 0x1
+	.long	0x12a8
+	.uleb128 0x1
+	.long	0x90
+	.uleb128 0x1
+	.long	0x1282
+	.byte	0
+	.uleb128 0x7
+	.long	0x12ad
+	.uleb128 0x11
+	.byte	0x4
+	.byte	0x5
+	.long	.LASF223
+	.uleb128 0x8
+	.long	0x12ad
+	.uleb128 0x5
+	.long	.LASF224
+	.byte	0x26
+	.value	0x2f6
+	.byte	0xf
+	.long	0x901
+	.long	0x12d5
+	.uleb128 0x1
+	.long	0x12ad
+	.uleb128 0x1
+	.long	0x1282
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF225
+	.byte	0x26
 	.value	0x30c
 	.byte	0xc
 	.long	0x90
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x1268
+	.long	0x1282
 	.byte	0
 	.uleb128 0x7
-	.long	0x129a
+	.long	0x12b4
 	.uleb128 0x5
-	.long	.LASF223
-	.byte	0x23
+	.long	.LASF226
+	.byte	0x26
 	.value	0x24c
 	.byte	0xc
 	.long	0x90
-	.long	0x12f8
+	.long	0x1312
 	.uleb128 0x1
-	.long	0x1268
+	.long	0x1282
 	.uleb128 0x1
 	.long	0x90
 	.byte	0
 	.uleb128 0x5
-	.long	.LASF224
-	.byte	0x23
+	.long	.LASF227
+	.byte	0x26
 	.value	0x253
 	.byte	0xc
 	.long	0x90
-	.long	0x1315
+	.long	0x132f
 	.uleb128 0x1
-	.long	0x1268
+	.long	0x1282
 	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x14
+	.long	0x12f1
+	.uleb128 0x13
 	.byte	0
-	.uleb128 0x1d
-	.long	.LASF225
-	.byte	0x23
+	.uleb128 0x1e
+	.long	.LASF228
+	.byte	0x26
 	.value	0x291
 	.byte	0xc
-	.long	.LASF235
+	.long	.LASF238
 	.long	0x90
-	.long	0x1336
+	.long	0x1350
 	.uleb128 0x1
-	.long	0x1268
+	.long	0x1282
 	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x14
-	.byte	0
-	.uleb128 0x5
-	.long	.LASF226
-	.byte	0x23
-	.value	0x2e9
-	.byte	0xf
-	.long	0x8e7
-	.long	0x134d
-	.uleb128 0x1
-	.long	0x1268
-	.byte	0
-	.uleb128 0x2b
-	.long	.LASF359
-	.byte	0x23
-	.value	0x2ef
-	.byte	0xf
-	.long	0x8e7
-	.uleb128 0x5
-	.long	.LASF227
-	.byte	0x23
-	.value	0x134
-	.byte	0xf
-	.long	0x27d
-	.long	0x137b
-	.uleb128 0x1
-	.long	0x10d
-	.uleb128 0x1
-	.long	0x27d
-	.uleb128 0x1
-	.long	0x137b
-	.byte	0
-	.uleb128 0x7
-	.long	0x8f3
-	.uleb128 0x5
-	.long	.LASF228
-	.byte	0x23
-	.value	0x129
-	.byte	0xf
-	.long	0x27d
-	.long	0x13a6
-	.uleb128 0x1
-	.long	0x128e
-	.uleb128 0x1
-	.long	0x10d
-	.uleb128 0x1
-	.long	0x27d
-	.uleb128 0x1
-	.long	0x137b
+	.long	0x12f1
+	.uleb128 0x13
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF229
-	.byte	0x23
-	.value	0x125
-	.byte	0xc
-	.long	0x90
-	.long	0x13bd
+	.byte	0x26
+	.value	0x2e9
+	.byte	0xf
+	.long	0x901
+	.long	0x1367
 	.uleb128 0x1
-	.long	0x13bd
+	.long	0x1282
 	.byte	0
-	.uleb128 0x7
-	.long	0x8ff
+	.uleb128 0x2c
+	.long	.LASF362
+	.byte	0x26
+	.value	0x2ef
+	.byte	0xf
+	.long	0x901
 	.uleb128 0x5
 	.long	.LASF230
-	.byte	0x23
-	.value	0x152
+	.byte	0x26
+	.value	0x134
 	.byte	0xf
-	.long	0x27d
-	.long	0x13e8
+	.long	0x297
+	.long	0x1395
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x10d
 	.uleb128 0x1
-	.long	0x278
+	.long	0x297
 	.uleb128 0x1
-	.long	0x27d
-	.uleb128 0x1
-	.long	0x137b
+	.long	0x1395
 	.byte	0
+	.uleb128 0x7
+	.long	0x90d
 	.uleb128 0x5
 	.long	.LASF231
-	.byte	0x23
-	.value	0x2f7
+	.byte	0x26
+	.value	0x129
 	.byte	0xf
-	.long	0x8e7
-	.long	0x1404
+	.long	0x297
+	.long	0x13c0
 	.uleb128 0x1
-	.long	0x1293
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x1268
+	.long	0x10d
+	.uleb128 0x1
+	.long	0x297
+	.uleb128 0x1
+	.long	0x1395
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF232
-	.byte	0x23
-	.value	0x2fd
-	.byte	0xf
-	.long	0x8e7
-	.long	0x141b
+	.byte	0x26
+	.value	0x125
+	.byte	0xc
+	.long	0x90
+	.long	0x13d7
 	.uleb128 0x1
-	.long	0x1293
+	.long	0x13d7
 	.byte	0
+	.uleb128 0x7
+	.long	0x919
 	.uleb128 0x5
 	.long	.LASF233
-	.byte	0x23
+	.byte	0x26
+	.value	0x152
+	.byte	0xf
+	.long	0x297
+	.long	0x1402
+	.uleb128 0x1
+	.long	0x12a8
+	.uleb128 0x1
+	.long	0x292
+	.uleb128 0x1
+	.long	0x297
+	.uleb128 0x1
+	.long	0x1395
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF234
+	.byte	0x26
+	.value	0x2f7
+	.byte	0xf
+	.long	0x901
+	.long	0x141e
+	.uleb128 0x1
+	.long	0x12ad
+	.uleb128 0x1
+	.long	0x1282
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF235
+	.byte	0x26
+	.value	0x2fd
+	.byte	0xf
+	.long	0x901
+	.long	0x1435
+	.uleb128 0x1
+	.long	0x12ad
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF236
+	.byte	0x26
 	.value	0x25d
 	.byte	0xc
 	.long	0x90
-	.long	0x143d
+	.long	0x1457
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x297
 	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x14
+	.long	0x12f1
+	.uleb128 0x13
 	.byte	0
-	.uleb128 0x1d
-	.long	.LASF234
-	.byte	0x23
+	.uleb128 0x1e
+	.long	.LASF237
+	.byte	0x26
 	.value	0x298
 	.byte	0xc
-	.long	.LASF236
+	.long	.LASF239
 	.long	0x90
-	.long	0x145e
+	.long	0x1478
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x14
+	.long	0x12f1
+	.uleb128 0x13
 	.byte	0
 	.uleb128 0x5
-	.long	.LASF237
-	.byte	0x23
+	.long	.LASF240
+	.byte	0x26
 	.value	0x314
 	.byte	0xf
-	.long	0x8e7
-	.long	0x147a
+	.long	0x901
+	.long	0x1494
 	.uleb128 0x1
-	.long	0x8e7
+	.long	0x901
 	.uleb128 0x1
-	.long	0x1268
-	.byte	0
-	.uleb128 0x5
-	.long	.LASF238
-	.byte	0x23
-	.value	0x265
-	.byte	0xc
-	.long	0x90
-	.long	0x149b
-	.uleb128 0x1
-	.long	0x1268
-	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x1
-	.long	0x149b
-	.byte	0
-	.uleb128 0x7
-	.long	0x295
-	.uleb128 0x1d
-	.long	.LASF239
-	.byte	0x23
-	.value	0x2c7
-	.byte	0xc
-	.long	.LASF240
-	.long	0x90
-	.long	0x14c5
-	.uleb128 0x1
-	.long	0x1268
-	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x1
-	.long	0x149b
+	.long	0x1282
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF241
-	.byte	0x23
-	.value	0x272
+	.byte	0x26
+	.value	0x265
 	.byte	0xc
 	.long	0x90
-	.long	0x14eb
+	.long	0x14b5
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x1282
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x1
-	.long	0x149b
+	.long	0x14b5
 	.byte	0
-	.uleb128 0x1d
+	.uleb128 0x7
+	.long	0x2af
+	.uleb128 0x1e
 	.long	.LASF242
-	.byte	0x23
-	.value	0x2ce
+	.byte	0x26
+	.value	0x2c7
 	.byte	0xc
 	.long	.LASF243
 	.long	0x90
-	.long	0x1510
+	.long	0x14df
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x1282
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x149b
+	.long	0x14b5
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF244
-	.byte	0x23
-	.value	0x26d
+	.byte	0x26
+	.value	0x272
 	.byte	0xc
 	.long	0x90
-	.long	0x152c
+	.long	0x1505
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x149b
+	.long	0x297
+	.uleb128 0x1
+	.long	0x12f1
+	.uleb128 0x1
+	.long	0x14b5
 	.byte	0
-	.uleb128 0x1d
+	.uleb128 0x1e
 	.long	.LASF245
-	.byte	0x23
-	.value	0x2cb
+	.byte	0x26
+	.value	0x2ce
 	.byte	0xc
 	.long	.LASF246
 	.long	0x90
-	.long	0x154c
+	.long	0x152a
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x149b
+	.long	0x12f1
+	.uleb128 0x1
+	.long	0x14b5
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF247
-	.byte	0x23
+	.byte	0x26
+	.value	0x26d
+	.byte	0xc
+	.long	0x90
+	.long	0x1546
+	.uleb128 0x1
+	.long	0x12f1
+	.uleb128 0x1
+	.long	0x14b5
+	.byte	0
+	.uleb128 0x1e
+	.long	.LASF248
+	.byte	0x26
+	.value	0x2cb
+	.byte	0xc
+	.long	.LASF249
+	.long	0x90
+	.long	0x1566
+	.uleb128 0x1
+	.long	0x12f1
+	.uleb128 0x1
+	.long	0x14b5
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF250
+	.byte	0x26
 	.value	0x12e
 	.byte	0xf
-	.long	0x27d
-	.long	0x156d
+	.long	0x297
+	.long	0x1587
 	.uleb128 0x1
 	.long	0xaf
 	.uleb128 0x1
-	.long	0x1293
+	.long	0x12ad
 	.uleb128 0x1
-	.long	0x137b
+	.long	0x1395
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF248
-	.byte	0x23
+	.uleb128 0xa
+	.long	.LASF251
+	.byte	0x26
 	.byte	0x61
 	.byte	0x11
-	.long	0x128e
-	.long	0x1588
+	.long	0x12a8
+	.long	0x15a2
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF249
-	.byte	0x23
+	.uleb128 0xa
+	.long	.LASF252
+	.byte	0x26
 	.byte	0x6a
 	.byte	0xc
 	.long	0x90
-	.long	0x15a3
+	.long	0x15bd
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF250
-	.byte	0x23
+	.uleb128 0xa
+	.long	.LASF253
+	.byte	0x26
 	.byte	0x83
 	.byte	0xc
 	.long	0x90
-	.long	0x15be
+	.long	0x15d8
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF251
-	.byte	0x23
+	.uleb128 0xa
+	.long	.LASF254
+	.byte	0x26
 	.byte	0x57
 	.byte	0x11
-	.long	0x128e
-	.long	0x15d9
+	.long	0x12a8
+	.long	0x15f3
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF252
-	.byte	0x23
+	.uleb128 0xa
+	.long	.LASF255
+	.byte	0x26
 	.byte	0xbc
 	.byte	0xf
-	.long	0x27d
-	.long	0x15f4
+	.long	0x297
+	.long	0x160e
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.byte	0
 	.uleb128 0x5
-	.long	.LASF253
-	.byte	0x23
+	.long	.LASF256
+	.byte	0x26
 	.value	0x354
 	.byte	0xf
-	.long	0x27d
-	.long	0x161a
+	.long	0x297
+	.long	0x1634
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x297
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x161a
+	.long	0x1634
 	.byte	0
 	.uleb128 0x7
-	.long	0x16bb
+	.long	0x16d5
 	.uleb128 0x4b
 	.string	"tm"
 	.byte	0x38
-	.byte	0x24
+	.byte	0x27
 	.byte	0x7
 	.byte	0x8
-	.long	0x16bb
+	.long	0x16d5
 	.uleb128 0x3
-	.long	.LASF254
-	.byte	0x24
+	.long	.LASF257
+	.byte	0x27
 	.byte	0x9
 	.byte	0x7
 	.long	0x90
 	.byte	0
 	.uleb128 0x3
-	.long	.LASF255
-	.byte	0x24
+	.long	.LASF258
+	.byte	0x27
 	.byte	0xa
 	.byte	0x7
 	.long	0x90
 	.byte	0x4
 	.uleb128 0x3
-	.long	.LASF256
-	.byte	0x24
+	.long	.LASF259
+	.byte	0x27
 	.byte	0xb
 	.byte	0x7
 	.long	0x90
 	.byte	0x8
 	.uleb128 0x3
-	.long	.LASF257
-	.byte	0x24
+	.long	.LASF260
+	.byte	0x27
 	.byte	0xc
 	.byte	0x7
 	.long	0x90
 	.byte	0xc
 	.uleb128 0x3
-	.long	.LASF258
-	.byte	0x24
+	.long	.LASF261
+	.byte	0x27
 	.byte	0xd
 	.byte	0x7
 	.long	0x90
 	.byte	0x10
 	.uleb128 0x3
-	.long	.LASF259
-	.byte	0x24
+	.long	.LASF262
+	.byte	0x27
 	.byte	0xe
 	.byte	0x7
 	.long	0x90
 	.byte	0x14
 	.uleb128 0x3
-	.long	.LASF260
-	.byte	0x24
+	.long	.LASF263
+	.byte	0x27
 	.byte	0xf
 	.byte	0x7
 	.long	0x90
 	.byte	0x18
 	.uleb128 0x3
-	.long	.LASF261
-	.byte	0x24
+	.long	.LASF264
+	.byte	0x27
 	.byte	0x10
 	.byte	0x7
 	.long	0x90
 	.byte	0x1c
 	.uleb128 0x3
-	.long	.LASF262
-	.byte	0x24
+	.long	.LASF265
+	.byte	0x27
 	.byte	0x11
 	.byte	0x7
 	.long	0x90
 	.byte	0x20
 	.uleb128 0x3
-	.long	.LASF263
-	.byte	0x24
+	.long	.LASF266
+	.byte	0x27
 	.byte	0x14
 	.byte	0xc
-	.long	0x341
+	.long	0x35b
 	.byte	0x28
 	.uleb128 0x3
-	.long	.LASF264
-	.byte	0x24
+	.long	.LASF267
+	.byte	0x27
 	.byte	0x15
 	.byte	0xf
 	.long	0x10d
 	.byte	0x30
 	.byte	0
-	.uleb128 0xc
-	.long	0x161f
 	.uleb128 0x8
-	.long	.LASF265
-	.byte	0x23
+	.long	0x1639
+	.uleb128 0xa
+	.long	.LASF268
+	.byte	0x26
 	.byte	0xdf
 	.byte	0xf
-	.long	0x27d
-	.long	0x16d6
+	.long	0x297
+	.long	0x16f0
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF266
-	.byte	0x23
+	.uleb128 0xa
+	.long	.LASF269
+	.byte	0x26
 	.byte	0x65
 	.byte	0x11
-	.long	0x128e
-	.long	0x16f6
+	.long	0x12a8
+	.long	0x1710
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x297
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF267
-	.byte	0x23
+	.uleb128 0xa
+	.long	.LASF270
+	.byte	0x26
 	.byte	0x6d
 	.byte	0xc
 	.long	0x90
-	.long	0x1716
+	.long	0x1730
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x297
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF268
-	.byte	0x23
+	.uleb128 0xa
+	.long	.LASF271
+	.byte	0x26
 	.byte	0x5c
 	.byte	0x11
-	.long	0x128e
-	.long	0x1736
+	.long	0x12a8
+	.long	0x1750
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x297
 	.byte	0
 	.uleb128 0x5
-	.long	.LASF269
-	.byte	0x23
+	.long	.LASF272
+	.byte	0x26
 	.value	0x158
 	.byte	0xf
-	.long	0x27d
-	.long	0x175c
+	.long	0x297
+	.long	0x1776
 	.uleb128 0x1
 	.long	0xaf
 	.uleb128 0x1
-	.long	0x175c
+	.long	0x1776
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x297
 	.uleb128 0x1
-	.long	0x137b
+	.long	0x1395
 	.byte	0
 	.uleb128 0x7
-	.long	0x12d7
-	.uleb128 0x8
-	.long	.LASF270
-	.byte	0x23
+	.long	0x12f1
+	.uleb128 0xa
+	.long	.LASF273
+	.byte	0x26
 	.byte	0xc0
 	.byte	0xf
-	.long	0x27d
-	.long	0x177c
+	.long	0x297
+	.long	0x1796
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x12d7
-	.byte	0
-	.uleb128 0x5
-	.long	.LASF271
-	.byte	0x23
-	.value	0x17a
-	.byte	0xf
-	.long	0xa8
-	.long	0x1798
-	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x1
-	.long	0x1798
-	.byte	0
-	.uleb128 0x7
-	.long	0x128e
-	.uleb128 0x5
-	.long	.LASF272
-	.byte	0x23
-	.value	0x17f
-	.byte	0xe
-	.long	0x6a9
-	.long	0x17b9
-	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x1
-	.long	0x1798
-	.byte	0
-	.uleb128 0x8
-	.long	.LASF273
-	.byte	0x23
-	.byte	0xda
-	.byte	0x11
-	.long	0x128e
-	.long	0x17d9
-	.uleb128 0x1
-	.long	0x128e
-	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x1
-	.long	0x1798
+	.long	0x12f1
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF274
-	.byte	0x23
-	.value	0x1ad
-	.byte	0x11
-	.long	0x341
-	.long	0x17fa
+	.byte	0x26
+	.value	0x17a
+	.byte	0xf
+	.long	0xa8
+	.long	0x17b2
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x1798
-	.uleb128 0x1
-	.long	0x90
+	.long	0x17b2
 	.byte	0
+	.uleb128 0x7
+	.long	0x12a8
 	.uleb128 0x5
 	.long	.LASF275
-	.byte	0x23
-	.value	0x1b2
-	.byte	0x1a
-	.long	0x28e
-	.long	0x181b
+	.byte	0x26
+	.value	0x17f
+	.byte	0xe
+	.long	0x6c3
+	.long	0x17d3
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x1798
-	.uleb128 0x1
-	.long	0x90
+	.long	0x17b2
 	.byte	0
-	.uleb128 0x8
+	.uleb128 0xa
 	.long	.LASF276
-	.byte	0x23
-	.byte	0x87
-	.byte	0xf
-	.long	0x27d
-	.long	0x183b
+	.byte	0x26
+	.byte	0xda
+	.byte	0x11
+	.long	0x12a8
+	.long	0x17f3
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x17b2
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF277
-	.byte	0x23
-	.value	0x121
-	.byte	0xc
-	.long	0x90
-	.long	0x1852
+	.byte	0x26
+	.value	0x1ad
+	.byte	0x11
+	.long	0x35b
+	.long	0x1814
 	.uleb128 0x1
-	.long	0x8e7
+	.long	0x12f1
+	.uleb128 0x1
+	.long	0x17b2
+	.uleb128 0x1
+	.long	0x90
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF278
-	.byte	0x23
-	.value	0x103
-	.byte	0xc
+	.byte	0x26
+	.value	0x1b2
+	.byte	0x1a
+	.long	0x2a8
+	.long	0x1835
+	.uleb128 0x1
+	.long	0x12f1
+	.uleb128 0x1
+	.long	0x17b2
+	.uleb128 0x1
 	.long	0x90
-	.long	0x1873
-	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x1
-	.long	0x27d
 	.byte	0
-	.uleb128 0x5
+	.uleb128 0xa
 	.long	.LASF279
-	.byte	0x23
-	.value	0x107
-	.byte	0x11
-	.long	0x128e
-	.long	0x1894
+	.byte	0x26
+	.byte	0x87
+	.byte	0xf
+	.long	0x297
+	.long	0x1855
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x297
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF280
-	.byte	0x23
-	.value	0x10c
-	.byte	0x11
-	.long	0x128e
-	.long	0x18b5
+	.byte	0x26
+	.value	0x121
+	.byte	0xc
+	.long	0x90
+	.long	0x186c
 	.uleb128 0x1
-	.long	0x128e
-	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x1
-	.long	0x27d
+	.long	0x901
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF281
-	.byte	0x23
-	.value	0x110
-	.byte	0x11
-	.long	0x128e
-	.long	0x18d6
+	.byte	0x26
+	.value	0x103
+	.byte	0xc
+	.long	0x90
+	.long	0x188d
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x1293
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x297
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF282
-	.byte	0x23
+	.byte	0x26
+	.value	0x107
+	.byte	0x11
+	.long	0x12a8
+	.long	0x18ae
+	.uleb128 0x1
+	.long	0x12a8
+	.uleb128 0x1
+	.long	0x12f1
+	.uleb128 0x1
+	.long	0x297
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF283
+	.byte	0x26
+	.value	0x10c
+	.byte	0x11
+	.long	0x12a8
+	.long	0x18cf
+	.uleb128 0x1
+	.long	0x12a8
+	.uleb128 0x1
+	.long	0x12f1
+	.uleb128 0x1
+	.long	0x297
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF284
+	.byte	0x26
+	.value	0x110
+	.byte	0x11
+	.long	0x12a8
+	.long	0x18f0
+	.uleb128 0x1
+	.long	0x12a8
+	.uleb128 0x1
+	.long	0x12ad
+	.uleb128 0x1
+	.long	0x297
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF285
+	.byte	0x26
 	.value	0x25a
 	.byte	0xc
 	.long	0x90
-	.long	0x18ee
+	.long	0x1908
 	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x14
+	.long	0x12f1
+	.uleb128 0x13
 	.byte	0
-	.uleb128 0x1d
-	.long	.LASF283
-	.byte	0x23
+	.uleb128 0x1e
+	.long	.LASF286
+	.byte	0x26
 	.value	0x295
 	.byte	0xc
-	.long	.LASF284
+	.long	.LASF287
 	.long	0x90
-	.long	0x190a
+	.long	0x1924
 	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x14
+	.long	0x12f1
+	.uleb128 0x13
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF285
-	.byte	0x23
+	.uleb128 0x10
+	.long	.LASF288
+	.byte	0x26
 	.byte	0xa2
 	.byte	0x1d
-	.long	.LASF285
-	.long	0x12d7
-	.long	0x1929
+	.long	.LASF288
+	.long	0x12f1
+	.long	0x1943
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x1293
+	.long	0x12ad
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF285
-	.byte	0x23
+	.uleb128 0x10
+	.long	.LASF288
+	.byte	0x26
 	.byte	0xa0
 	.byte	0x17
-	.long	.LASF285
-	.long	0x128e
-	.long	0x1948
+	.long	.LASF288
+	.long	0x12a8
+	.long	0x1962
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x1293
+	.long	0x12ad
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF286
-	.byte	0x23
+	.uleb128 0x10
+	.long	.LASF289
+	.byte	0x26
 	.byte	0xc6
 	.byte	0x1d
-	.long	.LASF286
-	.long	0x12d7
-	.long	0x1967
+	.long	.LASF289
+	.long	0x12f1
+	.long	0x1981
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF286
-	.byte	0x23
+	.uleb128 0x10
+	.long	.LASF289
+	.byte	0x26
 	.byte	0xc4
 	.byte	0x17
-	.long	.LASF286
-	.long	0x128e
-	.long	0x1986
+	.long	.LASF289
+	.long	0x12a8
+	.long	0x19a0
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF287
-	.byte	0x23
+	.uleb128 0x10
+	.long	.LASF290
+	.byte	0x26
 	.byte	0xac
 	.byte	0x1d
-	.long	.LASF287
-	.long	0x12d7
-	.long	0x19a5
+	.long	.LASF290
+	.long	0x12f1
+	.long	0x19bf
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x1293
+	.long	0x12ad
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF287
-	.byte	0x23
+	.uleb128 0x10
+	.long	.LASF290
+	.byte	0x26
 	.byte	0xaa
 	.byte	0x17
-	.long	.LASF287
-	.long	0x128e
-	.long	0x19c4
+	.long	.LASF290
+	.long	0x12a8
+	.long	0x19de
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x1293
+	.long	0x12ad
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF288
-	.byte	0x23
+	.uleb128 0x10
+	.long	.LASF291
+	.byte	0x26
 	.byte	0xd1
 	.byte	0x1d
-	.long	.LASF288
-	.long	0x12d7
-	.long	0x19e3
+	.long	.LASF291
+	.long	0x12f1
+	.long	0x19fd
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF288
-	.byte	0x23
+	.uleb128 0x10
+	.long	.LASF291
+	.byte	0x26
 	.byte	0xcf
 	.byte	0x17
-	.long	.LASF288
-	.long	0x128e
-	.long	0x1a02
+	.long	.LASF291
+	.long	0x12a8
+	.long	0x1a1c
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF289
-	.byte	0x23
+	.uleb128 0x10
+	.long	.LASF292
+	.byte	0x26
 	.byte	0xfa
 	.byte	0x1d
-	.long	.LASF289
-	.long	0x12d7
-	.long	0x1a26
+	.long	.LASF292
+	.long	0x12f1
+	.long	0x1a40
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x1293
+	.long	0x12ad
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x297
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF289
-	.byte	0x23
+	.uleb128 0x10
+	.long	.LASF292
+	.byte	0x26
 	.byte	0xf8
 	.byte	0x17
-	.long	.LASF289
-	.long	0x128e
-	.long	0x1a4a
+	.long	.LASF292
+	.long	0x12a8
+	.long	0x1a64
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12a8
 	.uleb128 0x1
-	.long	0x1293
+	.long	0x12ad
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x297
 	.byte	0
 	.uleb128 0x4c
-	.long	.LASF290
-	.byte	0x15
+	.long	.LASF293
+	.byte	0x18
 	.value	0x130
 	.byte	0xb
-	.long	0x1ac9
+	.long	0x1ae3
 	.uleb128 0x2
-	.byte	0x12
+	.byte	0x15
 	.byte	0xfb
 	.byte	0xb
-	.long	0x1ac9
-	.uleb128 0x15
+	.long	0x1ae3
+	.uleb128 0x14
 	.value	0x104
 	.byte	0xb
-	.long	0x1ae5
-	.uleb128 0x15
+	.long	0x1aff
+	.uleb128 0x14
 	.value	0x105
 	.byte	0xb
-	.long	0x1b0d
+	.long	0x1b27
 	.uleb128 0x1a
-	.long	.LASF291
-	.byte	0x25
+	.long	.LASF294
+	.byte	0x28
 	.byte	0x25
 	.byte	0xb
 	.uleb128 0x2
-	.byte	0x1d
+	.byte	0x20
 	.byte	0xc8
 	.byte	0xb
-	.long	0x1ee9
+	.long	0x1f03
 	.uleb128 0x2
-	.byte	0x1d
+	.byte	0x20
 	.byte	0xd8
 	.byte	0xb
-	.long	0x2174
+	.long	0x218e
 	.uleb128 0x2
-	.byte	0x1d
+	.byte	0x20
 	.byte	0xe3
 	.byte	0xb
-	.long	0x2190
+	.long	0x21aa
 	.uleb128 0x2
-	.byte	0x1d
+	.byte	0x20
 	.byte	0xe4
 	.byte	0xb
-	.long	0x21a6
+	.long	0x21c0
 	.uleb128 0x2
-	.byte	0x1d
+	.byte	0x20
 	.byte	0xe5
 	.byte	0xb
-	.long	0x21c6
+	.long	0x21e0
 	.uleb128 0x2
-	.byte	0x1d
+	.byte	0x20
 	.byte	0xe7
 	.byte	0xb
-	.long	0x21e6
+	.long	0x2200
 	.uleb128 0x2
-	.byte	0x1d
+	.byte	0x20
 	.byte	0xe8
 	.byte	0xb
-	.long	0x2201
+	.long	0x221b
 	.uleb128 0x35
 	.string	"div"
 	.byte	0xd5
-	.long	.LASF293
-	.long	0x1ee9
-	.uleb128 0x1
-	.long	0x1b06
-	.uleb128 0x1
-	.long	0x1b06
-	.byte	0
-	.byte	0
-	.uleb128 0x5
-	.long	.LASF294
-	.byte	0x23
-	.value	0x181
-	.byte	0x14
-	.long	0x6b0
-	.long	0x1ae5
-	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x1
-	.long	0x1798
-	.byte	0
-	.uleb128 0x5
-	.long	.LASF295
-	.byte	0x23
-	.value	0x1ba
-	.byte	0x16
-	.long	0x1b06
-	.long	0x1b06
-	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x1
-	.long	0x1798
-	.uleb128 0x1
-	.long	0x90
-	.byte	0
-	.uleb128 0xe
-	.byte	0x8
-	.byte	0x5
 	.long	.LASF296
+	.long	0x1f03
+	.uleb128 0x1
+	.long	0x1b20
+	.uleb128 0x1
+	.long	0x1b20
+	.byte	0
+	.byte	0
 	.uleb128 0x5
 	.long	.LASF297
-	.byte	0x23
-	.value	0x1c1
-	.byte	0x1f
-	.long	0x1b2e
-	.long	0x1b2e
+	.byte	0x26
+	.value	0x181
+	.byte	0x14
+	.long	0x6ca
+	.long	0x1aff
 	.uleb128 0x1
-	.long	0x12d7
+	.long	0x12f1
 	.uleb128 0x1
-	.long	0x1798
+	.long	0x17b2
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF298
+	.byte	0x26
+	.value	0x1ba
+	.byte	0x16
+	.long	0x1b20
+	.long	0x1b20
+	.uleb128 0x1
+	.long	0x12f1
+	.uleb128 0x1
+	.long	0x17b2
 	.uleb128 0x1
 	.long	0x90
 	.byte	0
-	.uleb128 0xe
+	.uleb128 0x11
+	.byte	0x8
+	.byte	0x5
+	.long	.LASF299
+	.uleb128 0x5
+	.long	.LASF300
+	.byte	0x26
+	.value	0x1c1
+	.byte	0x1f
+	.long	0x1b48
+	.long	0x1b48
+	.uleb128 0x1
+	.long	0x12f1
+	.uleb128 0x1
+	.long	0x17b2
+	.uleb128 0x1
+	.long	0x90
+	.byte	0
+	.uleb128 0x11
 	.byte	0x8
 	.byte	0x7
-	.long	.LASF298
+	.long	.LASF301
 	.uleb128 0x4d
-	.long	.LASF600
-	.uleb128 0xe
+	.long	.LASF603
+	.uleb128 0x11
 	.byte	0x1
 	.byte	0x2
-	.long	.LASF299
-	.uleb128 0xe
+	.long	.LASF302
+	.uleb128 0x11
 	.byte	0x1
 	.byte	0x7
-	.long	.LASF300
-	.uleb128 0xe
+	.long	.LASF303
+	.uleb128 0x11
 	.byte	0x2
 	.byte	0x10
-	.long	.LASF301
-	.uleb128 0xe
+	.long	.LASF304
+	.uleb128 0x11
 	.byte	0x4
 	.byte	0x10
-	.long	.LASF302
+	.long	.LASF305
 	.uleb128 0x7
-	.long	0xb77
+	.long	0xb91
 	.uleb128 0x7
-	.long	0xd34
-	.uleb128 0x1e
-	.long	0xd34
+	.long	0xd4e
+	.uleb128 0x1f
+	.long	0xd4e
 	.uleb128 0x4e
 	.byte	0x8
-	.long	0xb77
-	.uleb128 0x1e
-	.long	0xb77
+	.long	0xb91
+	.uleb128 0x1f
+	.long	0xb91
 	.uleb128 0x7
-	.long	0xd72
-	.uleb128 0xe
+	.long	0xd8c
+	.uleb128 0x11
 	.byte	0x10
 	.byte	0x5
-	.long	.LASF303
-	.uleb128 0x2a
-	.long	.LASF304
-	.byte	0x26
+	.long	.LASF306
+	.uleb128 0x2b
+	.long	.LASF307
+	.byte	0x29
 	.byte	0x27
 	.byte	0xb
-	.long	0x1b91
+	.long	0x1bab
 	.uleb128 0x4f
-	.byte	0x1a
+	.byte	0x1d
 	.byte	0x3a
 	.byte	0x18
-	.long	0xdd8
+	.long	0xdf2
 	.byte	0
 	.uleb128 0x4
-	.long	.LASF305
-	.byte	0x27
+	.long	.LASF308
+	.byte	0x2a
 	.byte	0x18
 	.byte	0x12
-	.long	0x2da
-	.uleb128 0x4
-	.long	.LASF306
-	.byte	0x27
-	.byte	0x19
-	.byte	0x13
-	.long	0x2f9
-	.uleb128 0x4
-	.long	.LASF307
-	.byte	0x27
-	.byte	0x1a
-	.byte	0x13
-	.long	0x318
-	.uleb128 0x4
-	.long	.LASF308
-	.byte	0x27
-	.byte	0x1b
-	.byte	0x13
-	.long	0x335
+	.long	0x2f4
 	.uleb128 0x4
 	.long	.LASF309
-	.byte	0x28
-	.byte	0x18
+	.byte	0x2a
+	.byte	0x19
 	.byte	0x13
-	.long	0x2ed
+	.long	0x313
 	.uleb128 0x4
 	.long	.LASF310
-	.byte	0x28
-	.byte	0x19
-	.byte	0x14
-	.long	0x30c
+	.byte	0x2a
+	.byte	0x1a
+	.byte	0x13
+	.long	0x332
 	.uleb128 0x4
 	.long	.LASF311
-	.byte	0x28
-	.byte	0x1a
-	.byte	0x14
-	.long	0x329
+	.byte	0x2a
+	.byte	0x1b
+	.byte	0x13
+	.long	0x34f
 	.uleb128 0x4
 	.long	.LASF312
-	.byte	0x28
-	.byte	0x1b
-	.byte	0x14
-	.long	0x348
-	.uleb128 0x4
-	.long	.LASF313
-	.byte	0x29
 	.byte	0x2b
 	.byte	0x18
-	.long	0x354
+	.byte	0x13
+	.long	0x307
+	.uleb128 0x4
+	.long	.LASF313
+	.byte	0x2b
+	.byte	0x19
+	.byte	0x14
+	.long	0x326
 	.uleb128 0x4
 	.long	.LASF314
-	.byte	0x29
-	.byte	0x2c
-	.byte	0x19
-	.long	0x36c
+	.byte	0x2b
+	.byte	0x1a
+	.byte	0x14
+	.long	0x343
 	.uleb128 0x4
 	.long	.LASF315
-	.byte	0x29
-	.byte	0x2d
-	.byte	0x19
-	.long	0x384
+	.byte	0x2b
+	.byte	0x1b
+	.byte	0x14
+	.long	0x362
 	.uleb128 0x4
 	.long	.LASF316
-	.byte	0x29
-	.byte	0x2e
-	.byte	0x19
-	.long	0x39c
+	.byte	0x2c
+	.byte	0x2b
+	.byte	0x18
+	.long	0x36e
 	.uleb128 0x4
 	.long	.LASF317
-	.byte	0x29
-	.byte	0x31
+	.byte	0x2c
+	.byte	0x2c
 	.byte	0x19
-	.long	0x360
+	.long	0x386
 	.uleb128 0x4
 	.long	.LASF318
-	.byte	0x29
-	.byte	0x32
-	.byte	0x1a
-	.long	0x378
+	.byte	0x2c
+	.byte	0x2d
+	.byte	0x19
+	.long	0x39e
 	.uleb128 0x4
 	.long	.LASF319
-	.byte	0x29
-	.byte	0x33
-	.byte	0x1a
-	.long	0x390
+	.byte	0x2c
+	.byte	0x2e
+	.byte	0x19
+	.long	0x3b6
 	.uleb128 0x4
 	.long	.LASF320
-	.byte	0x29
-	.byte	0x34
-	.byte	0x1a
-	.long	0x3a8
+	.byte	0x2c
+	.byte	0x31
+	.byte	0x19
+	.long	0x37a
 	.uleb128 0x4
 	.long	.LASF321
-	.byte	0x29
-	.byte	0x3a
-	.byte	0x15
-	.long	0x2e6
+	.byte	0x2c
+	.byte	0x32
+	.byte	0x1a
+	.long	0x392
 	.uleb128 0x4
 	.long	.LASF322
-	.byte	0x29
-	.byte	0x3c
-	.byte	0x12
-	.long	0x341
+	.byte	0x2c
+	.byte	0x33
+	.byte	0x1a
+	.long	0x3aa
 	.uleb128 0x4
 	.long	.LASF323
-	.byte	0x29
-	.byte	0x3d
-	.byte	0x12
-	.long	0x341
+	.byte	0x2c
+	.byte	0x34
+	.byte	0x1a
+	.long	0x3c2
 	.uleb128 0x4
 	.long	.LASF324
-	.byte	0x29
-	.byte	0x3e
-	.byte	0x12
-	.long	0x341
+	.byte	0x2c
+	.byte	0x3a
+	.byte	0x15
+	.long	0x300
 	.uleb128 0x4
 	.long	.LASF325
-	.byte	0x29
-	.byte	0x47
-	.byte	0x17
-	.long	0x2cc
+	.byte	0x2c
+	.byte	0x3c
+	.byte	0x12
+	.long	0x35b
 	.uleb128 0x4
 	.long	.LASF326
-	.byte	0x29
-	.byte	0x49
-	.byte	0x1b
-	.long	0x28e
+	.byte	0x2c
+	.byte	0x3d
+	.byte	0x12
+	.long	0x35b
 	.uleb128 0x4
 	.long	.LASF327
-	.byte	0x29
-	.byte	0x4a
-	.byte	0x1b
-	.long	0x28e
+	.byte	0x2c
+	.byte	0x3e
+	.byte	0x12
+	.long	0x35b
 	.uleb128 0x4
 	.long	.LASF328
-	.byte	0x29
-	.byte	0x4b
-	.byte	0x1b
-	.long	0x28e
+	.byte	0x2c
+	.byte	0x47
+	.byte	0x17
+	.long	0x2e6
 	.uleb128 0x4
 	.long	.LASF329
-	.byte	0x29
-	.byte	0x57
-	.byte	0x12
-	.long	0x341
+	.byte	0x2c
+	.byte	0x49
+	.byte	0x1b
+	.long	0x2a8
 	.uleb128 0x4
 	.long	.LASF330
-	.byte	0x29
-	.byte	0x5a
+	.byte	0x2c
+	.byte	0x4a
 	.byte	0x1b
-	.long	0x28e
+	.long	0x2a8
 	.uleb128 0x4
 	.long	.LASF331
-	.byte	0x29
-	.byte	0x65
-	.byte	0x14
-	.long	0x3b4
+	.byte	0x2c
+	.byte	0x4b
+	.byte	0x1b
+	.long	0x2a8
 	.uleb128 0x4
 	.long	.LASF332
-	.byte	0x29
+	.byte	0x2c
+	.byte	0x57
+	.byte	0x12
+	.long	0x35b
+	.uleb128 0x4
+	.long	.LASF333
+	.byte	0x2c
+	.byte	0x5a
+	.byte	0x1b
+	.long	0x2a8
+	.uleb128 0x4
+	.long	.LASF334
+	.byte	0x2c
+	.byte	0x65
+	.byte	0x14
+	.long	0x3ce
+	.uleb128 0x4
+	.long	.LASF335
+	.byte	0x2c
 	.byte	0x66
 	.byte	0x15
-	.long	0x3c0
+	.long	0x3da
 	.uleb128 0x16
-	.long	.LASF333
+	.long	.LASF336
 	.byte	0x60
-	.byte	0x2a
+	.byte	0x2d
 	.byte	0x33
 	.byte	0x8
-	.long	0x1e27
+	.long	0x1e41
 	.uleb128 0x3
-	.long	.LASF334
-	.byte	0x2a
+	.long	.LASF337
+	.byte	0x2d
 	.byte	0x37
 	.byte	0x9
 	.long	0xaf
 	.byte	0
 	.uleb128 0x3
-	.long	.LASF335
-	.byte	0x2a
+	.long	.LASF338
+	.byte	0x2d
 	.byte	0x38
 	.byte	0x9
 	.long	0xaf
 	.byte	0x8
 	.uleb128 0x3
-	.long	.LASF336
-	.byte	0x2a
+	.long	.LASF339
+	.byte	0x2d
 	.byte	0x3e
 	.byte	0x9
 	.long	0xaf
 	.byte	0x10
 	.uleb128 0x3
-	.long	.LASF337
-	.byte	0x2a
+	.long	.LASF340
+	.byte	0x2d
 	.byte	0x44
 	.byte	0x9
 	.long	0xaf
 	.byte	0x18
 	.uleb128 0x3
-	.long	.LASF338
-	.byte	0x2a
+	.long	.LASF341
+	.byte	0x2d
 	.byte	0x45
 	.byte	0x9
 	.long	0xaf
 	.byte	0x20
 	.uleb128 0x3
-	.long	.LASF339
-	.byte	0x2a
+	.long	.LASF342
+	.byte	0x2d
 	.byte	0x46
 	.byte	0x9
 	.long	0xaf
 	.byte	0x28
 	.uleb128 0x3
-	.long	.LASF340
-	.byte	0x2a
+	.long	.LASF343
+	.byte	0x2d
 	.byte	0x47
 	.byte	0x9
 	.long	0xaf
 	.byte	0x30
 	.uleb128 0x3
-	.long	.LASF341
-	.byte	0x2a
+	.long	.LASF344
+	.byte	0x2d
 	.byte	0x48
 	.byte	0x9
 	.long	0xaf
 	.byte	0x38
 	.uleb128 0x3
-	.long	.LASF342
-	.byte	0x2a
+	.long	.LASF345
+	.byte	0x2d
 	.byte	0x49
 	.byte	0x9
 	.long	0xaf
 	.byte	0x40
 	.uleb128 0x3
-	.long	.LASF343
-	.byte	0x2a
+	.long	.LASF346
+	.byte	0x2d
 	.byte	0x4a
 	.byte	0x9
 	.long	0xaf
 	.byte	0x48
 	.uleb128 0x3
-	.long	.LASF344
-	.byte	0x2a
+	.long	.LASF347
+	.byte	0x2d
 	.byte	0x4b
 	.byte	0x8
 	.long	0x9c
 	.byte	0x50
 	.uleb128 0x3
-	.long	.LASF345
-	.byte	0x2a
+	.long	.LASF348
+	.byte	0x2d
 	.byte	0x4c
 	.byte	0x8
 	.long	0x9c
 	.byte	0x51
 	.uleb128 0x3
-	.long	.LASF346
-	.byte	0x2a
+	.long	.LASF349
+	.byte	0x2d
 	.byte	0x4e
 	.byte	0x8
 	.long	0x9c
 	.byte	0x52
 	.uleb128 0x3
-	.long	.LASF347
-	.byte	0x2a
+	.long	.LASF350
+	.byte	0x2d
 	.byte	0x50
 	.byte	0x8
 	.long	0x9c
 	.byte	0x53
 	.uleb128 0x3
-	.long	.LASF348
-	.byte	0x2a
+	.long	.LASF351
+	.byte	0x2d
 	.byte	0x52
 	.byte	0x8
 	.long	0x9c
 	.byte	0x54
 	.uleb128 0x3
-	.long	.LASF349
-	.byte	0x2a
+	.long	.LASF352
+	.byte	0x2d
 	.byte	0x54
 	.byte	0x8
 	.long	0x9c
 	.byte	0x55
 	.uleb128 0x3
-	.long	.LASF350
-	.byte	0x2a
+	.long	.LASF353
+	.byte	0x2d
 	.byte	0x5b
 	.byte	0x8
 	.long	0x9c
 	.byte	0x56
 	.uleb128 0x3
-	.long	.LASF351
-	.byte	0x2a
+	.long	.LASF354
+	.byte	0x2d
 	.byte	0x5c
 	.byte	0x8
 	.long	0x9c
 	.byte	0x57
 	.uleb128 0x3
-	.long	.LASF352
-	.byte	0x2a
+	.long	.LASF355
+	.byte	0x2d
 	.byte	0x5f
 	.byte	0x8
 	.long	0x9c
 	.byte	0x58
 	.uleb128 0x3
-	.long	.LASF353
-	.byte	0x2a
+	.long	.LASF356
+	.byte	0x2d
 	.byte	0x61
 	.byte	0x8
 	.long	0x9c
 	.byte	0x59
 	.uleb128 0x3
-	.long	.LASF354
-	.byte	0x2a
+	.long	.LASF357
+	.byte	0x2d
 	.byte	0x63
 	.byte	0x8
 	.long	0x9c
 	.byte	0x5a
 	.uleb128 0x3
-	.long	.LASF355
-	.byte	0x2a
+	.long	.LASF358
+	.byte	0x2d
 	.byte	0x65
 	.byte	0x8
 	.long	0x9c
 	.byte	0x5b
 	.uleb128 0x3
-	.long	.LASF356
-	.byte	0x2a
+	.long	.LASF359
+	.byte	0x2d
 	.byte	0x6c
 	.byte	0x8
 	.long	0x9c
 	.byte	0x5c
 	.uleb128 0x3
-	.long	.LASF357
-	.byte	0x2a
+	.long	.LASF360
+	.byte	0x2d
 	.byte	0x6d
 	.byte	0x8
 	.long	0x9c
 	.byte	0x5d
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF358
-	.byte	0x2a
+	.uleb128 0xa
+	.long	.LASF361
+	.byte	0x2d
 	.byte	0x7a
 	.byte	0xe
 	.long	0xaf
-	.long	0x1e42
+	.long	0x1e5c
 	.uleb128 0x1
 	.long	0x90
 	.uleb128 0x1
 	.long	0x10d
 	.byte	0
 	.uleb128 0x36
-	.long	.LASF360
-	.byte	0x2a
+	.long	.LASF363
+	.byte	0x2d
 	.byte	0x7d
 	.byte	0x16
-	.long	0x1e4e
+	.long	0x1e68
 	.uleb128 0x7
-	.long	0x1ce1
+	.long	0x1cfb
 	.uleb128 0x7
-	.long	0x1e58
+	.long	0x1e72
 	.uleb128 0x50
-	.uleb128 0x24
+	.uleb128 0x26
 	.byte	0x8
-	.byte	0x2b
+	.byte	0x2e
 	.byte	0x3c
 	.byte	0x3
-	.long	.LASF362
-	.long	0x1e81
+	.long	.LASF365
+	.long	0x1e9b
 	.uleb128 0x3
-	.long	.LASF363
-	.byte	0x2b
+	.long	.LASF366
+	.byte	0x2e
 	.byte	0x3d
 	.byte	0x9
 	.long	0x90
 	.byte	0
-	.uleb128 0x25
+	.uleb128 0x27
 	.string	"rem"
-	.byte	0x2b
+	.byte	0x2e
 	.byte	0x3e
 	.byte	0x9
 	.long	0x90
 	.byte	0x4
 	.byte	0
 	.uleb128 0x4
-	.long	.LASF364
-	.byte	0x2b
+	.long	.LASF367
+	.byte	0x2e
 	.byte	0x3f
 	.byte	0x5
-	.long	0x1e59
-	.uleb128 0x24
+	.long	0x1e73
+	.uleb128 0x26
 	.byte	0x10
-	.byte	0x2b
+	.byte	0x2e
 	.byte	0x44
 	.byte	0x3
-	.long	.LASF365
-	.long	0x1eb5
+	.long	.LASF368
+	.long	0x1ecf
 	.uleb128 0x3
-	.long	.LASF363
-	.byte	0x2b
+	.long	.LASF366
+	.byte	0x2e
 	.byte	0x45
 	.byte	0xe
-	.long	0x341
+	.long	0x35b
 	.byte	0
-	.uleb128 0x25
+	.uleb128 0x27
 	.string	"rem"
-	.byte	0x2b
+	.byte	0x2e
 	.byte	0x46
 	.byte	0xe
-	.long	0x341
+	.long	0x35b
 	.byte	0x8
 	.byte	0
 	.uleb128 0x4
-	.long	.LASF366
-	.byte	0x2b
+	.long	.LASF369
+	.byte	0x2e
 	.byte	0x47
 	.byte	0x5
-	.long	0x1e8d
-	.uleb128 0x24
+	.long	0x1ea7
+	.uleb128 0x26
 	.byte	0x10
-	.byte	0x2b
+	.byte	0x2e
 	.byte	0x4e
 	.byte	0x3
-	.long	.LASF367
-	.long	0x1ee9
+	.long	.LASF370
+	.long	0x1f03
 	.uleb128 0x3
-	.long	.LASF363
-	.byte	0x2b
+	.long	.LASF366
+	.byte	0x2e
 	.byte	0x4f
 	.byte	0x13
-	.long	0x1b06
+	.long	0x1b20
 	.byte	0
-	.uleb128 0x25
+	.uleb128 0x27
 	.string	"rem"
-	.byte	0x2b
+	.byte	0x2e
 	.byte	0x50
 	.byte	0x13
-	.long	0x1b06
+	.long	0x1b20
 	.byte	0x8
 	.byte	0
 	.uleb128 0x4
-	.long	.LASF368
-	.byte	0x2b
+	.long	.LASF371
+	.byte	0x2e
 	.byte	0x51
 	.byte	0x5
-	.long	0x1ec1
+	.long	0x1edb
 	.uleb128 0x31
-	.long	.LASF369
-	.byte	0x2b
+	.long	.LASF372
+	.byte	0x2e
 	.value	0x330
 	.byte	0xf
-	.long	0x1f02
+	.long	0x1f1c
 	.uleb128 0x7
-	.long	0x1f07
+	.long	0x1f21
 	.uleb128 0x51
 	.long	0x90
-	.long	0x1f1b
+	.long	0x1f35
 	.uleb128 0x1
-	.long	0x1e53
+	.long	0x1e6d
 	.uleb128 0x1
-	.long	0x1e53
+	.long	0x1e6d
 	.byte	0
 	.uleb128 0x5
-	.long	.LASF370
-	.byte	0x2b
+	.long	.LASF373
+	.byte	0x2e
 	.value	0x25a
 	.byte	0xc
 	.long	0x90
-	.long	0x1f32
+	.long	0x1f4c
 	.uleb128 0x1
-	.long	0x1f32
+	.long	0x1f4c
 	.byte	0
 	.uleb128 0x7
-	.long	0x1f37
+	.long	0x1f51
 	.uleb128 0x52
-	.uleb128 0x1d
-	.long	.LASF371
-	.byte	0x2b
+	.uleb128 0x1e
+	.long	.LASF374
+	.byte	0x2e
 	.value	0x25f
 	.byte	0x12
-	.long	.LASF371
+	.long	.LASF374
 	.long	0x90
-	.long	0x1f53
+	.long	0x1f6d
 	.uleb128 0x1
-	.long	0x1f32
+	.long	0x1f4c
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF372
-	.byte	0x2b
+	.uleb128 0xa
+	.long	.LASF375
+	.byte	0x2e
 	.byte	0x66
 	.byte	0xf
 	.long	0xa8
-	.long	0x1f69
+	.long	0x1f83
 	.uleb128 0x1
 	.long	0x10d
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF373
-	.byte	0x2b
+	.uleb128 0xa
+	.long	.LASF376
+	.byte	0x2e
 	.byte	0x69
 	.byte	0xc
 	.long	0x90
-	.long	0x1f7f
+	.long	0x1f99
 	.uleb128 0x1
 	.long	0x10d
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF374
-	.byte	0x2b
+	.uleb128 0xa
+	.long	.LASF377
+	.byte	0x2e
 	.byte	0x6c
 	.byte	0x11
-	.long	0x341
-	.long	0x1f95
+	.long	0x35b
+	.long	0x1faf
 	.uleb128 0x1
 	.long	0x10d
-	.byte	0
-	.uleb128 0x5
-	.long	.LASF375
-	.byte	0x2b
-	.value	0x33c
-	.byte	0xe
-	.long	0x2ca
-	.long	0x1fc0
-	.uleb128 0x1
-	.long	0x1e53
-	.uleb128 0x1
-	.long	0x1e53
-	.uleb128 0x1
-	.long	0x27d
-	.uleb128 0x1
-	.long	0x27d
-	.uleb128 0x1
-	.long	0x1ef5
-	.byte	0
-	.uleb128 0x53
-	.string	"div"
-	.byte	0x2b
-	.value	0x35c
-	.byte	0xe
-	.long	0x1e81
-	.long	0x1fdc
-	.uleb128 0x1
-	.long	0x90
-	.uleb128 0x1
-	.long	0x90
-	.byte	0
-	.uleb128 0x5
-	.long	.LASF376
-	.byte	0x2b
-	.value	0x281
-	.byte	0xe
-	.long	0xaf
-	.long	0x1ff3
-	.uleb128 0x1
-	.long	0x10d
-	.byte	0
-	.uleb128 0x5
-	.long	.LASF377
-	.byte	0x2b
-	.value	0x35e
-	.byte	0xf
-	.long	0x1eb5
-	.long	0x200f
-	.uleb128 0x1
-	.long	0x341
-	.uleb128 0x1
-	.long	0x341
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF378
-	.byte	0x2b
-	.value	0x3a2
-	.byte	0xc
+	.byte	0x2e
+	.value	0x33c
+	.byte	0xe
+	.long	0x2e4
+	.long	0x1fda
+	.uleb128 0x1
+	.long	0x1e6d
+	.uleb128 0x1
+	.long	0x1e6d
+	.uleb128 0x1
+	.long	0x297
+	.uleb128 0x1
+	.long	0x297
+	.uleb128 0x1
+	.long	0x1f0f
+	.byte	0
+	.uleb128 0x53
+	.string	"div"
+	.byte	0x2e
+	.value	0x35c
+	.byte	0xe
+	.long	0x1e9b
+	.long	0x1ff6
+	.uleb128 0x1
 	.long	0x90
-	.long	0x202b
 	.uleb128 0x1
-	.long	0x10d
-	.uleb128 0x1
-	.long	0x27d
+	.long	0x90
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF379
-	.byte	0x2b
-	.value	0x3ad
-	.byte	0xf
-	.long	0x27d
-	.long	0x204c
-	.uleb128 0x1
-	.long	0x128e
+	.byte	0x2e
+	.value	0x281
+	.byte	0xe
+	.long	0xaf
+	.long	0x200d
 	.uleb128 0x1
 	.long	0x10d
-	.uleb128 0x1
-	.long	0x27d
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF380
-	.byte	0x2b
+	.byte	0x2e
+	.value	0x35e
+	.byte	0xf
+	.long	0x1ecf
+	.long	0x2029
+	.uleb128 0x1
+	.long	0x35b
+	.uleb128 0x1
+	.long	0x35b
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF381
+	.byte	0x2e
+	.value	0x3a2
+	.byte	0xc
+	.long	0x90
+	.long	0x2045
+	.uleb128 0x1
+	.long	0x10d
+	.uleb128 0x1
+	.long	0x297
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF382
+	.byte	0x2e
+	.value	0x3ad
+	.byte	0xf
+	.long	0x297
+	.long	0x2066
+	.uleb128 0x1
+	.long	0x12a8
+	.uleb128 0x1
+	.long	0x10d
+	.uleb128 0x1
+	.long	0x297
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF383
+	.byte	0x2e
 	.value	0x3a5
 	.byte	0xc
 	.long	0x90
-	.long	0x206d
+	.long	0x2087
 	.uleb128 0x1
-	.long	0x128e
+	.long	0x12a8
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x297
 	.byte	0
-	.uleb128 0x1f
-	.long	.LASF383
-	.byte	0x2b
+	.uleb128 0x20
+	.long	.LASF386
+	.byte	0x2e
 	.value	0x346
-	.long	0x208e
+	.long	0x20a8
 	.uleb128 0x1
-	.long	0x2ca
+	.long	0x2e4
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x297
 	.uleb128 0x1
-	.long	0x27d
+	.long	0x297
 	.uleb128 0x1
-	.long	0x1ef5
+	.long	0x1f0f
 	.byte	0
 	.uleb128 0x54
-	.long	.LASF381
-	.byte	0x2b
+	.long	.LASF384
+	.byte	0x2e
 	.value	0x276
 	.byte	0xd
-	.long	0x20a1
+	.long	0x20bb
 	.uleb128 0x1
 	.long	0x90
 	.byte	0
-	.uleb128 0x2b
-	.long	.LASF382
-	.byte	0x2b
+	.uleb128 0x2c
+	.long	.LASF385
+	.byte	0x2e
 	.value	0x1c6
 	.byte	0xc
 	.long	0x90
-	.uleb128 0x1f
-	.long	.LASF384
-	.byte	0x2b
+	.uleb128 0x20
+	.long	.LASF387
+	.byte	0x2e
 	.value	0x1c8
-	.long	0x20c0
+	.long	0x20da
 	.uleb128 0x1
 	.long	0x117
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF385
-	.byte	0x2b
+	.uleb128 0xa
+	.long	.LASF388
+	.byte	0x2e
 	.byte	0x76
 	.byte	0xf
 	.long	0xa8
-	.long	0x20db
+	.long	0x20f5
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x1
-	.long	0x20db
+	.long	0x20f5
 	.byte	0
 	.uleb128 0x7
 	.long	0xaf
-	.uleb128 0x8
-	.long	.LASF386
-	.byte	0x2b
+	.uleb128 0xa
+	.long	.LASF389
+	.byte	0x2e
 	.byte	0xb1
 	.byte	0x11
-	.long	0x341
-	.long	0x2100
+	.long	0x35b
+	.long	0x211a
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x1
-	.long	0x20db
+	.long	0x20f5
 	.uleb128 0x1
 	.long	0x90
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF387
-	.byte	0x2b
+	.uleb128 0xa
+	.long	.LASF390
+	.byte	0x2e
 	.byte	0xb5
 	.byte	0x1a
-	.long	0x28e
-	.long	0x2120
+	.long	0x2a8
+	.long	0x213a
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x1
-	.long	0x20db
+	.long	0x20f5
 	.uleb128 0x1
 	.long	0x90
-	.byte	0
-	.uleb128 0x5
-	.long	.LASF388
-	.byte	0x2b
-	.value	0x317
-	.byte	0xc
-	.long	0x90
-	.long	0x2137
-	.uleb128 0x1
-	.long	0x10d
-	.byte	0
-	.uleb128 0x5
-	.long	.LASF389
-	.byte	0x2b
-	.value	0x3b1
-	.byte	0xf
-	.long	0x27d
-	.long	0x2158
-	.uleb128 0x1
-	.long	0xaf
-	.uleb128 0x1
-	.long	0x12d7
-	.uleb128 0x1
-	.long	0x27d
-	.byte	0
-	.uleb128 0x5
-	.long	.LASF390
-	.byte	0x2b
-	.value	0x3a9
-	.byte	0xc
-	.long	0x90
-	.long	0x2174
-	.uleb128 0x1
-	.long	0xaf
-	.uleb128 0x1
-	.long	0x1293
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF391
-	.byte	0x2b
+	.byte	0x2e
+	.value	0x317
+	.byte	0xc
+	.long	0x90
+	.long	0x2151
+	.uleb128 0x1
+	.long	0x10d
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF392
+	.byte	0x2e
+	.value	0x3b1
+	.byte	0xf
+	.long	0x297
+	.long	0x2172
+	.uleb128 0x1
+	.long	0xaf
+	.uleb128 0x1
+	.long	0x12f1
+	.uleb128 0x1
+	.long	0x297
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF393
+	.byte	0x2e
+	.value	0x3a9
+	.byte	0xc
+	.long	0x90
+	.long	0x218e
+	.uleb128 0x1
+	.long	0xaf
+	.uleb128 0x1
+	.long	0x12ad
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF394
+	.byte	0x2e
 	.value	0x362
 	.byte	0x1e
-	.long	0x1ee9
-	.long	0x2190
+	.long	0x1f03
+	.long	0x21aa
 	.uleb128 0x1
-	.long	0x1b06
+	.long	0x1b20
 	.uleb128 0x1
-	.long	0x1b06
+	.long	0x1b20
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF392
-	.byte	0x2b
+	.uleb128 0xa
+	.long	.LASF395
+	.byte	0x2e
 	.byte	0x71
 	.byte	0x24
-	.long	0x1b06
-	.long	0x21a6
+	.long	0x1b20
+	.long	0x21c0
 	.uleb128 0x1
 	.long	0x10d
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF393
-	.byte	0x2b
+	.uleb128 0xa
+	.long	.LASF396
+	.byte	0x2e
 	.byte	0xc9
 	.byte	0x16
-	.long	0x1b06
-	.long	0x21c6
+	.long	0x1b20
+	.long	0x21e0
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x1
-	.long	0x20db
+	.long	0x20f5
 	.uleb128 0x1
 	.long	0x90
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF394
-	.byte	0x2b
+	.uleb128 0xa
+	.long	.LASF397
+	.byte	0x2e
 	.byte	0xce
 	.byte	0x1f
-	.long	0x1b2e
-	.long	0x21e6
+	.long	0x1b48
+	.long	0x2200
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x1
-	.long	0x20db
+	.long	0x20f5
 	.uleb128 0x1
 	.long	0x90
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF395
-	.byte	0x2b
+	.uleb128 0xa
+	.long	.LASF398
+	.byte	0x2e
 	.byte	0x7c
 	.byte	0xe
-	.long	0x6a9
-	.long	0x2201
+	.long	0x6c3
+	.long	0x221b
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x1
-	.long	0x20db
+	.long	0x20f5
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF396
-	.byte	0x2b
+	.uleb128 0xa
+	.long	.LASF399
+	.byte	0x2e
 	.byte	0x7f
 	.byte	0x14
-	.long	0x6b0
-	.long	0x221c
+	.long	0x6ca
+	.long	0x2236
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x1
-	.long	0x20db
+	.long	0x20f5
 	.byte	0
-	.uleb128 0xe
+	.uleb128 0x11
 	.byte	0x10
 	.byte	0x7
-	.long	.LASF397
-	.uleb128 0x1f
-	.long	.LASF398
-	.byte	0xe
+	.long	.LASF400
+	.uleb128 0x20
+	.long	.LASF401
+	.byte	0x11
 	.value	0x312
-	.long	0x2235
+	.long	0x224f
 	.uleb128 0x1
-	.long	0x696
+	.long	0x6b0
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF399
-	.byte	0xe
+	.uleb128 0xa
+	.long	.LASF402
+	.byte	0x11
 	.byte	0xb2
 	.byte	0xc
 	.long	0x90
-	.long	0x224b
+	.long	0x2265
 	.uleb128 0x1
-	.long	0x696
-	.byte	0
-	.uleb128 0x5
-	.long	.LASF400
-	.byte	0xe
-	.value	0x314
-	.byte	0xc
-	.long	0x90
-	.long	0x2262
-	.uleb128 0x1
-	.long	0x696
-	.byte	0
-	.uleb128 0x5
-	.long	.LASF401
-	.byte	0xe
-	.value	0x316
-	.byte	0xc
-	.long	0x90
-	.long	0x2279
-	.uleb128 0x1
-	.long	0x696
-	.byte	0
-	.uleb128 0x8
-	.long	.LASF402
-	.byte	0xe
-	.byte	0xe6
-	.byte	0xc
-	.long	0x90
-	.long	0x228f
-	.uleb128 0x1
-	.long	0x696
+	.long	0x6b0
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF403
-	.byte	0xe
-	.value	0x201
+	.byte	0x11
+	.value	0x314
 	.byte	0xc
 	.long	0x90
-	.long	0x22a6
+	.long	0x227c
 	.uleb128 0x1
-	.long	0x696
+	.long	0x6b0
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF404
-	.byte	0xe
-	.value	0x2f8
+	.byte	0x11
+	.value	0x316
 	.byte	0xc
 	.long	0x90
-	.long	0x22c2
+	.long	0x2293
 	.uleb128 0x1
-	.long	0x696
-	.uleb128 0x1
-	.long	0x22c2
+	.long	0x6b0
 	.byte	0
-	.uleb128 0x7
-	.long	0x685
-	.uleb128 0x5
+	.uleb128 0xa
 	.long	.LASF405
-	.byte	0xe
-	.value	0x250
-	.byte	0xe
-	.long	0xaf
-	.long	0x22e8
-	.uleb128 0x1
-	.long	0xaf
-	.uleb128 0x1
+	.byte	0x11
+	.byte	0xe6
+	.byte	0xc
 	.long	0x90
+	.long	0x22a9
 	.uleb128 0x1
-	.long	0x696
+	.long	0x6b0
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF406
-	.byte	0xe
-	.value	0x102
-	.byte	0xe
-	.long	0x696
-	.long	0x2304
+	.byte	0x11
+	.value	0x201
+	.byte	0xc
+	.long	0x90
+	.long	0x22c0
 	.uleb128 0x1
-	.long	0x10d
-	.uleb128 0x1
-	.long	0x10d
+	.long	0x6b0
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF407
-	.byte	0xe
-	.value	0x2a3
-	.byte	0xf
-	.long	0x27d
-	.long	0x232a
+	.byte	0x11
+	.value	0x2f8
+	.byte	0xc
+	.long	0x90
+	.long	0x22dc
 	.uleb128 0x1
-	.long	0x2ca
+	.long	0x6b0
 	.uleb128 0x1
-	.long	0x27d
-	.uleb128 0x1
-	.long	0x27d
-	.uleb128 0x1
-	.long	0x696
+	.long	0x22dc
 	.byte	0
+	.uleb128 0x7
+	.long	0x69f
 	.uleb128 0x5
 	.long	.LASF408
+	.byte	0x11
+	.value	0x250
 	.byte	0xe
-	.value	0x109
-	.byte	0xe
-	.long	0x696
-	.long	0x234b
+	.long	0xaf
+	.long	0x2302
 	.uleb128 0x1
-	.long	0x10d
+	.long	0xaf
 	.uleb128 0x1
-	.long	0x10d
+	.long	0x90
 	.uleb128 0x1
-	.long	0x696
+	.long	0x6b0
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF409
+	.byte	0x11
+	.value	0x102
 	.byte	0xe
-	.value	0x2c9
-	.byte	0xc
-	.long	0x90
-	.long	0x236c
+	.long	0x6b0
+	.long	0x231e
 	.uleb128 0x1
-	.long	0x696
+	.long	0x10d
 	.uleb128 0x1
-	.long	0x341
-	.uleb128 0x1
-	.long	0x90
+	.long	0x10d
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF410
-	.byte	0xe
-	.value	0x2fd
-	.byte	0xc
-	.long	0x90
-	.long	0x2388
+	.byte	0x11
+	.value	0x2a3
+	.byte	0xf
+	.long	0x297
+	.long	0x2344
 	.uleb128 0x1
-	.long	0x696
+	.long	0x2e4
 	.uleb128 0x1
-	.long	0x2388
+	.long	0x297
+	.uleb128 0x1
+	.long	0x297
+	.uleb128 0x1
+	.long	0x6b0
 	.byte	0
-	.uleb128 0x7
-	.long	0x691
 	.uleb128 0x5
 	.long	.LASF411
-	.byte	0xe
-	.value	0x2ce
 	.byte	0x11
-	.long	0x341
-	.long	0x23a4
+	.value	0x109
+	.byte	0xe
+	.long	0x6b0
+	.long	0x2365
 	.uleb128 0x1
-	.long	0x696
+	.long	0x10d
+	.uleb128 0x1
+	.long	0x10d
+	.uleb128 0x1
+	.long	0x6b0
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF412
-	.byte	0xe
+	.byte	0x11
+	.value	0x2c9
+	.byte	0xc
+	.long	0x90
+	.long	0x2386
+	.uleb128 0x1
+	.long	0x6b0
+	.uleb128 0x1
+	.long	0x35b
+	.uleb128 0x1
+	.long	0x90
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF413
+	.byte	0x11
+	.value	0x2fd
+	.byte	0xc
+	.long	0x90
+	.long	0x23a2
+	.uleb128 0x1
+	.long	0x6b0
+	.uleb128 0x1
+	.long	0x23a2
+	.byte	0
+	.uleb128 0x7
+	.long	0x6ab
+	.uleb128 0x5
+	.long	.LASF414
+	.byte	0x11
+	.value	0x2ce
+	.byte	0x11
+	.long	0x35b
+	.long	0x23be
+	.uleb128 0x1
+	.long	0x6b0
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF415
+	.byte	0x11
 	.value	0x202
 	.byte	0xc
 	.long	0x90
-	.long	0x23bb
+	.long	0x23d5
 	.uleb128 0x1
-	.long	0x696
+	.long	0x6b0
 	.byte	0
-	.uleb128 0x2b
-	.long	.LASF413
-	.byte	0xe
+	.uleb128 0x2c
+	.long	.LASF416
+	.byte	0x11
 	.value	0x208
 	.byte	0xc
 	.long	0x90
-	.uleb128 0x1f
-	.long	.LASF414
-	.byte	0xe
+	.uleb128 0x20
+	.long	.LASF417
+	.byte	0x11
 	.value	0x324
-	.long	0x23da
+	.long	0x23f4
 	.uleb128 0x1
 	.long	0x10d
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF415
-	.byte	0xe
+	.uleb128 0xa
+	.long	.LASF418
+	.byte	0x11
 	.byte	0x98
 	.byte	0xc
 	.long	0x90
-	.long	0x23f0
+	.long	0x240a
 	.uleb128 0x1
 	.long	0x10d
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF416
-	.byte	0xe
+	.uleb128 0xa
+	.long	.LASF419
+	.byte	0x11
 	.byte	0x9a
 	.byte	0xc
 	.long	0x90
-	.long	0x240b
+	.long	0x2425
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x1
 	.long	0x10d
 	.byte	0
-	.uleb128 0x1f
-	.long	.LASF417
-	.byte	0xe
-	.value	0x2d3
-	.long	0x241d
-	.uleb128 0x1
-	.long	0x696
-	.byte	0
-	.uleb128 0x1f
-	.long	.LASF418
-	.byte	0xe
-	.value	0x148
-	.long	0x2434
-	.uleb128 0x1
-	.long	0x696
-	.uleb128 0x1
-	.long	0xaf
-	.byte	0
-	.uleb128 0x5
-	.long	.LASF419
-	.byte	0xe
-	.value	0x14c
-	.byte	0xc
-	.long	0x90
-	.long	0x245a
-	.uleb128 0x1
-	.long	0x696
-	.uleb128 0x1
-	.long	0xaf
-	.uleb128 0x1
-	.long	0x90
-	.uleb128 0x1
-	.long	0x27d
-	.byte	0
-	.uleb128 0x36
+	.uleb128 0x20
 	.long	.LASF420
-	.byte	0xe
-	.byte	0xbc
-	.byte	0xe
-	.long	0x696
-	.uleb128 0x8
+	.byte	0x11
+	.value	0x2d3
+	.long	0x2437
+	.uleb128 0x1
+	.long	0x6b0
+	.byte	0
+	.uleb128 0x20
 	.long	.LASF421
-	.byte	0xe
-	.byte	0xcd
-	.byte	0xe
-	.long	0xaf
-	.long	0x247c
+	.byte	0x11
+	.value	0x148
+	.long	0x244e
+	.uleb128 0x1
+	.long	0x6b0
 	.uleb128 0x1
 	.long	0xaf
 	.byte	0
 	.uleb128 0x5
 	.long	.LASF422
+	.byte	0x11
+	.value	0x14c
+	.byte	0xc
+	.long	0x90
+	.long	0x2474
+	.uleb128 0x1
+	.long	0x6b0
+	.uleb128 0x1
+	.long	0xaf
+	.uleb128 0x1
+	.long	0x90
+	.uleb128 0x1
+	.long	0x297
+	.byte	0
+	.uleb128 0x36
+	.long	.LASF423
+	.byte	0x11
+	.byte	0xbc
 	.byte	0xe
+	.long	0x6b0
+	.uleb128 0xa
+	.long	.LASF424
+	.byte	0x11
+	.byte	0xcd
+	.byte	0xe
+	.long	0xaf
+	.long	0x2496
+	.uleb128 0x1
+	.long	0xaf
+	.byte	0
+	.uleb128 0x5
+	.long	.LASF425
+	.byte	0x11
 	.value	0x29c
 	.byte	0xc
 	.long	0x90
-	.long	0x2498
+	.long	0x24b2
 	.uleb128 0x1
 	.long	0x90
 	.uleb128 0x1
-	.long	0x696
+	.long	0x6b0
 	.byte	0
 	.uleb128 0x7
-	.long	0x10d3
-	.uleb128 0xc
-	.long	0x2498
-	.uleb128 0x1e
-	.long	0x115e
-	.uleb128 0x1e
-	.long	0x10d3
+	.long	0x10ed
+	.uleb128 0x8
+	.long	0x24b2
+	.uleb128 0x1f
+	.long	0x1178
+	.uleb128 0x1f
+	.long	0x10ed
 	.uleb128 0x4
-	.long	.LASF423
-	.byte	0x2c
+	.long	.LASF426
+	.byte	0x2f
 	.byte	0x26
 	.byte	0x1b
-	.long	0x28e
+	.long	0x2a8
 	.uleb128 0x4
-	.long	.LASF424
-	.byte	0x2d
+	.long	.LASF427
+	.byte	0x30
 	.byte	0x30
 	.byte	0x1a
-	.long	0x24c4
+	.long	0x24de
 	.uleb128 0x7
-	.long	0x324
-	.uleb128 0x8
-	.long	.LASF425
-	.byte	0x2c
+	.long	0x33e
+	.uleb128 0xa
+	.long	.LASF428
+	.byte	0x2f
 	.byte	0x9f
 	.byte	0xc
 	.long	0x90
-	.long	0x24e4
+	.long	0x24fe
 	.uleb128 0x1
-	.long	0x8e7
+	.long	0x901
 	.uleb128 0x1
-	.long	0x24ac
+	.long	0x24c6
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF426
-	.byte	0x2d
+	.uleb128 0xa
+	.long	.LASF429
+	.byte	0x30
 	.byte	0x37
 	.byte	0xf
-	.long	0x8e7
-	.long	0x24ff
+	.long	0x901
+	.long	0x2519
 	.uleb128 0x1
-	.long	0x8e7
+	.long	0x901
 	.uleb128 0x1
-	.long	0x24b8
+	.long	0x24d2
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF427
-	.byte	0x2d
+	.uleb128 0xa
+	.long	.LASF430
+	.byte	0x30
 	.byte	0x34
 	.byte	0x12
-	.long	0x24b8
-	.long	0x2515
+	.long	0x24d2
+	.long	0x252f
 	.uleb128 0x1
 	.long	0x10d
 	.byte	0
-	.uleb128 0x8
-	.long	.LASF428
-	.byte	0x2c
+	.uleb128 0xa
+	.long	.LASF431
+	.byte	0x2f
 	.byte	0x9b
 	.byte	0x11
-	.long	0x24ac
-	.long	0x252b
+	.long	0x24c6
+	.long	0x2545
 	.uleb128 0x1
 	.long	0x10d
 	.byte	0
 	.uleb128 0x55
-	.long	0x119c
+	.long	0x11b6
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZStL8__ioinit
-	.uleb128 0x12
+	.uleb128 0xe
 	.long	0xa3
-	.long	0x254a
-	.uleb128 0x13
-	.long	0x28e
+	.long	0x2564
+	.uleb128 0xf
+	.long	0x2a8
 	.byte	0x11
 	.byte	0
-	.uleb128 0xc
-	.long	0x253a
-	.uleb128 0xa
-	.long	.LASF429
-	.byte	0x2e
+	.uleb128 0x8
+	.long	0x2554
+	.uleb128 0x6
+	.long	.LASF432
+	.byte	0x31
 	.byte	0x3
 	.byte	0xc
-	.long	0x254a
+	.long	0x2564
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL12STD_LOG_NAME
 	.uleb128 0x18
-	.long	.LASF430
+	.long	.LASF433
 	.byte	0x7
 	.long	0x117
-	.byte	0x2e
+	.byte	0x31
 	.byte	0x9
-	.long	0x2595
-	.uleb128 0x9
-	.long	.LASF431
-	.byte	0
-	.uleb128 0x9
-	.long	.LASF432
-	.byte	0x1
-	.uleb128 0x9
-	.long	.LASF433
-	.byte	0x2
-	.uleb128 0x9
+	.long	0x25af
+	.uleb128 0xb
 	.long	.LASF434
+	.byte	0
+	.uleb128 0xb
+	.long	.LASF435
+	.byte	0x1
+	.uleb128 0xb
+	.long	.LASF436
+	.byte	0x2
+	.uleb128 0xb
+	.long	.LASF437
 	.byte	0x3
 	.uleb128 0x56
-	.long	.LASF435
+	.long	.LASF438
 	.value	0x29a
 	.byte	0
 	.uleb128 0x2f
-	.long	.LASF436
+	.long	.LASF439
 	.byte	0x18
-	.byte	0x2f
+	.byte	0x32
 	.byte	0xb
 	.byte	0x7
-	.long	0x265c
+	.long	0x2676
 	.uleb128 0x3
-	.long	.LASF437
-	.byte	0x2f
+	.long	.LASF440
+	.byte	0x32
 	.byte	0xe
 	.byte	0xd
 	.long	0x90
 	.byte	0
 	.uleb128 0x3
-	.long	.LASF438
-	.byte	0x2f
+	.long	.LASF441
+	.byte	0x32
 	.byte	0x10
 	.byte	0xd
 	.long	0x90
 	.byte	0x4
 	.uleb128 0x3
-	.long	.LASF439
-	.byte	0x2f
+	.long	.LASF442
+	.byte	0x32
 	.byte	0x11
 	.byte	0xd
 	.long	0x90
 	.byte	0x8
 	.uleb128 0x3
-	.long	.LASF440
-	.byte	0x2f
+	.long	.LASF443
+	.byte	0x32
 	.byte	0x12
 	.byte	0x15
 	.long	0x10d
 	.byte	0x10
 	.uleb128 0x57
-	.long	.LASF436
-	.byte	0x2f
+	.long	.LASF439
+	.byte	0x32
 	.byte	0x14
 	.byte	0x9
-	.long	.LASF441
-	.long	0x25ea
-	.long	0x25f5
-	.uleb128 0xb
-	.long	0x2661
+	.long	.LASF444
+	.long	0x2604
+	.long	0x260f
+	.uleb128 0xc
+	.long	0x267b
 	.uleb128 0x1
-	.long	0x266b
+	.long	0x2685
 	.byte	0
 	.uleb128 0x58
-	.long	.LASF180
-	.byte	0x2f
+	.long	.LASF183
+	.byte	0x32
 	.byte	0x15
 	.byte	0x19
-	.long	.LASF442
-	.long	0x2670
-	.long	0x260d
-	.long	0x2618
-	.uleb128 0xb
-	.long	0x2661
+	.long	.LASF445
+	.long	0x268a
+	.long	0x2627
+	.long	0x2632
+	.uleb128 0xc
+	.long	0x267b
 	.uleb128 0x1
-	.long	0x266b
+	.long	0x2685
 	.byte	0
 	.uleb128 0x59
-	.long	.LASF436
-	.byte	0x2f
+	.long	.LASF439
+	.byte	0x32
 	.byte	0x18
 	.byte	0x9
-	.long	.LASF443
+	.long	.LASF446
 	.byte	0x1
-	.long	0x262e
+	.long	0x2648
 	.byte	0
-	.long	0x263e
-	.uleb128 0xb
-	.long	0x2661
+	.long	0x2658
+	.uleb128 0xc
+	.long	0x267b
 	.uleb128 0x1
 	.long	0x90
 	.uleb128 0x1
 	.long	0x10d
 	.byte	0
 	.uleb128 0x5a
-	.long	.LASF444
-	.byte	0x2f
+	.long	.LASF447
+	.byte	0x32
 	.byte	0x19
 	.byte	0x9
-	.long	.LASF445
+	.long	.LASF448
 	.byte	0x1
-	.long	0x2650
+	.long	0x266a
 	.byte	0
-	.uleb128 0xb
-	.long	0x2661
-	.uleb128 0xb
+	.uleb128 0xc
+	.long	0x267b
+	.uleb128 0xc
 	.long	0x90
 	.byte	0
 	.byte	0
-	.uleb128 0xc
-	.long	0x2595
+	.uleb128 0x8
+	.long	0x25af
 	.uleb128 0x7
-	.long	0x2595
-	.uleb128 0xc
-	.long	0x2661
-	.uleb128 0x1e
-	.long	0x265c
-	.uleb128 0x1e
-	.long	0x2595
-	.uleb128 0xa
-	.long	.LASF446
-	.byte	0x30
+	.long	0x25af
+	.uleb128 0x8
+	.long	0x267b
+	.uleb128 0x1f
+	.long	0x2676
+	.uleb128 0x1f
+	.long	0x25af
+	.uleb128 0x6
+	.long	.LASF449
+	.byte	0x33
 	.byte	0x3
 	.byte	0xb
 	.long	0x97
@@ -20287,320 +20429,320 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x3
 	.quad	_ZL6CRINGE
 	.uleb128 0x18
-	.long	.LASF447
+	.long	.LASF450
 	.byte	0x5
 	.long	0x90
-	.byte	0x30
+	.byte	0x33
 	.byte	0x5
-	.long	0x26a8
-	.uleb128 0x9
-	.long	.LASF448
+	.long	0x26c2
+	.uleb128 0xb
+	.long	.LASF451
 	.byte	0
 	.uleb128 0x2e
-	.long	.LASF449
+	.long	.LASF452
 	.sleb128 -1
 	.byte	0
 	.uleb128 0x4
-	.long	.LASF450
-	.byte	0x31
+	.long	.LASF453
+	.byte	0x34
 	.byte	0x8
 	.byte	0x13
-	.long	0x26b4
+	.long	0x26ce
 	.uleb128 0x7
-	.long	0x15c
+	.long	0x169
 	.uleb128 0x4
-	.long	.LASF451
-	.byte	0x32
+	.long	.LASF454
+	.byte	0x35
 	.byte	0x7
 	.byte	0x13
-	.long	0x1b06
-	.uleb128 0xa
-	.long	.LASF452
-	.byte	0x32
+	.long	0x1b20
+	.uleb128 0x6
+	.long	.LASF455
+	.byte	0x35
 	.byte	0x9
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL13_CANARY_SIZE_
-	.uleb128 0xa
-	.long	.LASF453
-	.byte	0x32
+	.uleb128 0x6
+	.long	.LASF456
+	.byte	0x35
 	.byte	0xb
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL16_OPENING_CANARY_
-	.uleb128 0xa
-	.long	.LASF454
-	.byte	0x32
+	.uleb128 0x6
+	.long	.LASF457
+	.byte	0x35
 	.byte	0xc
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL16_CLOSING_CANARY_
-	.uleb128 0xa
-	.long	.LASF455
-	.byte	0x33
+	.uleb128 0x6
+	.long	.LASF458
+	.byte	0x36
 	.byte	0x15
 	.byte	0xe
-	.long	0x289
+	.long	0x2a3
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL19_HEAP_MIN_CAPACITY_
-	.uleb128 0xa
-	.long	.LASF456
-	.byte	0x33
+	.uleb128 0x6
+	.long	.LASF459
+	.byte	0x36
 	.byte	0x16
 	.byte	0xe
-	.long	0x289
+	.long	0x2a3
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL16_ELEMENT_T_SIZE_
 	.uleb128 0x16
-	.long	.LASF457
+	.long	.LASF460
 	.byte	0x38
-	.byte	0x33
+	.byte	0x36
 	.byte	0x2c
 	.byte	0x8
-	.long	0x27a9
-	.uleb128 0x3
-	.long	.LASF458
-	.byte	0x33
-	.byte	0x2f
-	.byte	0xc
-	.long	0x26b9
-	.byte	0
-	.uleb128 0x3
-	.long	.LASF459
-	.byte	0x33
-	.byte	0x32
-	.byte	0x10
-	.long	0x27a9
-	.byte	0x8
-	.uleb128 0x3
-	.long	.LASF460
-	.byte	0x33
-	.byte	0x33
-	.byte	0xc
-	.long	0x27d
-	.byte	0x10
-	.uleb128 0x25
-	.string	"top"
-	.byte	0x33
-	.byte	0x34
-	.byte	0xd
-	.long	0x679
-	.byte	0x18
+	.long	0x27c3
 	.uleb128 0x3
 	.long	.LASF461
+	.byte	0x36
+	.byte	0x2f
+	.byte	0xc
+	.long	0x26d3
+	.byte	0
+	.uleb128 0x3
+	.long	.LASF462
+	.byte	0x36
+	.byte	0x32
+	.byte	0x10
+	.long	0x27c3
+	.byte	0x8
+	.uleb128 0x3
+	.long	.LASF463
+	.byte	0x36
 	.byte	0x33
+	.byte	0xc
+	.long	0x297
+	.byte	0x10
+	.uleb128 0x27
+	.string	"top"
+	.byte	0x36
+	.byte	0x34
+	.byte	0xd
+	.long	0x693
+	.byte	0x18
+	.uleb128 0x3
+	.long	.LASF464
+	.byte	0x36
 	.byte	0x36
 	.byte	0x9
 	.long	0x90
 	.byte	0x20
 	.uleb128 0x3
-	.long	.LASF462
-	.byte	0x33
+	.long	.LASF465
+	.byte	0x36
 	.byte	0x3d
 	.byte	0x9
 	.long	0x90
 	.byte	0x24
 	.uleb128 0x3
-	.long	.LASF463
-	.byte	0x33
+	.long	.LASF466
+	.byte	0x36
 	.byte	0x3e
 	.byte	0x9
 	.long	0x90
 	.byte	0x28
 	.uleb128 0x3
-	.long	.LASF464
-	.byte	0x33
+	.long	.LASF467
+	.byte	0x36
 	.byte	0x42
 	.byte	0xc
-	.long	0x26b9
+	.long	0x26d3
 	.byte	0x30
 	.byte	0
 	.uleb128 0x7
-	.long	0x26a8
+	.long	0x26c2
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x27
 	.byte	0xc
-	.long	0x1f1b
+	.long	0x1f35
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x2b
 	.byte	0xe
-	.long	0x1f38
+	.long	0x1f52
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x2e
 	.byte	0xe
-	.long	0x208e
+	.long	0x20a8
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x33
 	.byte	0xc
-	.long	0x1e81
+	.long	0x1e9b
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x34
 	.byte	0xc
-	.long	0x1eb5
+	.long	0x1ecf
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x36
 	.byte	0xc
-	.long	0x11a8
+	.long	0x11c2
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x36
 	.byte	0xc
-	.long	0x11c0
+	.long	0x11da
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x36
 	.byte	0xc
-	.long	0x11d8
+	.long	0x11f2
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x36
 	.byte	0xc
-	.long	0x11f0
+	.long	0x120a
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x36
 	.byte	0xc
-	.long	0x1208
+	.long	0x1222
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x37
 	.byte	0xc
-	.long	0x1f53
+	.long	0x1f6d
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x38
 	.byte	0xc
-	.long	0x1f69
+	.long	0x1f83
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x39
 	.byte	0xc
-	.long	0x1f7f
+	.long	0x1f99
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x3a
 	.byte	0xc
-	.long	0x1f95
+	.long	0x1faf
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x3c
 	.byte	0xc
-	.long	0x1aaf
+	.long	0x1ac9
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x3c
 	.byte	0xc
-	.long	0x1220
+	.long	0x123a
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x3c
 	.byte	0xc
-	.long	0x1fc0
+	.long	0x1fda
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x3e
 	.byte	0xc
-	.long	0x1fdc
+	.long	0x1ff6
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x40
 	.byte	0xc
-	.long	0x1ff3
+	.long	0x200d
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x43
 	.byte	0xc
-	.long	0x200f
+	.long	0x2029
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x44
 	.byte	0xc
-	.long	0x202b
+	.long	0x2045
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x45
 	.byte	0xc
-	.long	0x204c
+	.long	0x2066
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x47
 	.byte	0xc
-	.long	0x206d
+	.long	0x2087
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x48
 	.byte	0xc
-	.long	0x20a1
+	.long	0x20bb
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x4a
 	.byte	0xc
-	.long	0x20ae
+	.long	0x20c8
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x4b
 	.byte	0xc
-	.long	0x20c0
+	.long	0x20da
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x4c
 	.byte	0xc
-	.long	0x20e0
+	.long	0x20fa
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x4d
 	.byte	0xc
-	.long	0x2100
+	.long	0x211a
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x4e
 	.byte	0xc
-	.long	0x2120
+	.long	0x213a
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x50
 	.byte	0xc
-	.long	0x2137
+	.long	0x2151
 	.uleb128 0x2
-	.byte	0x34
+	.byte	0x37
 	.byte	0x51
 	.byte	0xc
-	.long	0x2158
-	.uleb128 0xa
-	.long	.LASF465
-	.byte	0x35
+	.long	0x2172
+	.uleb128 0x6
+	.long	.LASF468
+	.byte	0x38
 	.byte	0x20
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL11INDENT_SIZE
-	.uleb128 0xa
-	.long	.LASF466
-	.byte	0x1
+	.uleb128 0x6
+	.long	.LASF469
+	.byte	0x4
 	.byte	0x18
 	.byte	0xb
 	.long	0x97
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_ZL11GROWTH_RATE
-	.uleb128 0xa
-	.long	.LASF467
-	.byte	0x1
+	.uleb128 0x6
+	.long	.LASF470
+	.byte	0x4
 	.byte	0x1a
 	.byte	0xb
 	.long	0x97
@@ -20608,227 +20750,83 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x3
 	.quad	_ZL30START_NUMBER_OF_MAIN_PROCESSES
 	.uleb128 0x16
-	.long	.LASF468
+	.long	.LASF471
 	.byte	0x20
-	.byte	0x1
-	.byte	0x1c
+	.byte	0x4
+	.byte	0x1d
 	.byte	0x8
-	.long	0x2937
+	.long	0x2951
 	.uleb128 0x3
-	.long	.LASF469
-	.byte	0x1
-	.byte	0x1e
+	.long	.LASF472
+	.byte	0x4
+	.byte	0x1f
 	.byte	0xe
-	.long	0x2937
+	.long	0x2951
 	.byte	0
 	.uleb128 0x3
-	.long	.LASF470
-	.byte	0x1
-	.byte	0x20
+	.long	.LASF23
+	.byte	0x4
+	.byte	0x21
 	.byte	0x9
 	.long	0x90
 	.byte	0x8
 	.uleb128 0x3
-	.long	.LASF471
-	.byte	0x1
-	.byte	0x21
+	.long	.LASF473
+	.byte	0x4
+	.byte	0x22
 	.byte	0x9
 	.long	0x90
 	.byte	0xc
 	.uleb128 0x3
-	.long	.LASF472
-	.byte	0x1
-	.byte	0x23
+	.long	.LASF474
+	.byte	0x4
+	.byte	0x24
 	.byte	0x10
-	.long	0x293c
+	.long	0x2956
 	.byte	0x10
 	.uleb128 0x3
-	.long	.LASF473
-	.byte	0x1
-	.byte	0x24
-	.byte	0x11
-	.long	0x2941
-	.byte	0x18
-	.byte	0
-	.uleb128 0x7
-	.long	0x229
-	.uleb128 0x7
-	.long	0x1ea
-	.uleb128 0x7
-	.long	0x2733
-	.uleb128 0x5b
-	.long	.LASF528
-	.long	0x2ca
-	.uleb128 0x26
-	.long	0x10fb
-	.long	.LASF474
-	.long	0x2960
-	.long	0x296a
-	.uleb128 0x27
-	.long	.LASF476
-	.long	0x249d
-	.byte	0
-	.uleb128 0x26
-	.long	0x10e2
 	.long	.LASF475
-	.long	0x297b
-	.long	0x2985
-	.uleb128 0x27
-	.long	.LASF476
-	.long	0x249d
-	.byte	0
-	.uleb128 0xd
-	.long	.LASF477
 	.byte	0x4
-	.byte	0x3d
-	.byte	0xb
+	.byte	0x25
+	.byte	0x11
+	.long	0x295b
+	.byte	0x18
+	.byte	0
+	.uleb128 0x7
+	.long	0x243
+	.uleb128 0x7
+	.long	0x204
+	.uleb128 0x7
+	.long	0x274d
+	.uleb128 0x5b
+	.long	.LASF531
+	.long	0x2e4
+	.uleb128 0x28
+	.long	0x1115
+	.long	.LASF476
+	.long	0x297a
+	.long	0x2984
+	.uleb128 0x29
 	.long	.LASF478
-	.long	0x196
-	.long	0x29a4
-	.uleb128 0x1
-	.long	0x90
-	.uleb128 0x1
-	.long	0x26b4
+	.long	0x24b7
 	.byte	0
-	.uleb128 0x33
-	.long	.LASF480
-	.long	0x2ab2
-	.uleb128 0x21
-	.long	.LASF481
-	.byte	0x36
-	.byte	0x2a
-	.byte	0xf
-	.long	.LASF482
-	.long	0x2ca
-	.long	0x29c5
-	.long	0x29e4
-	.uleb128 0xb
-	.long	0x2ab2
-	.uleb128 0x1
-	.long	0x27d
-	.uleb128 0x1
-	.long	0x27d
-	.uleb128 0x1
-	.long	0x10d
-	.uleb128 0x1
-	.long	0x10d
-	.uleb128 0x1
-	.long	0x90
+	.uleb128 0x28
+	.long	0x10fc
+	.long	.LASF477
+	.long	0x2995
+	.long	0x299f
+	.uleb128 0x29
+	.long	.LASF478
+	.long	0x24b7
 	.byte	0
-	.uleb128 0x19
-	.long	.LASF483
-	.byte	0x36
-	.byte	0x2b
-	.byte	0xe
-	.long	.LASF484
-	.long	0x29f8
-	.long	0x2a12
-	.uleb128 0xb
-	.long	0x2ab2
-	.uleb128 0x1
-	.long	0x2ca
-	.uleb128 0x1
-	.long	0x10d
-	.uleb128 0x1
-	.long	0x10d
-	.uleb128 0x1
-	.long	0x90
-	.byte	0
-	.uleb128 0x21
-	.long	.LASF485
-	.byte	0x36
-	.byte	0x35
-	.byte	0x18
-	.long	.LASF486
-	.long	0xd60
-	.long	0x2a2a
-	.long	0x2a36
-	.uleb128 0xb
-	.long	0x2ab2
-	.uleb128 0x1
-	.long	0x10d
-	.uleb128 0x14
-	.byte	0
-	.uleb128 0x19
-	.long	.LASF487
-	.byte	0x36
-	.byte	0x27
-	.byte	0xe
-	.long	.LASF488
-	.long	0x2a4a
-	.long	0x2a56
-	.uleb128 0xb
-	.long	0x2ab2
-	.uleb128 0x1
-	.long	0x10d
-	.uleb128 0x14
-	.byte	0
-	.uleb128 0x21
-	.long	.LASF489
-	.byte	0x36
-	.byte	0x33
-	.byte	0xd
-	.long	.LASF490
-	.long	0x90
-	.long	0x2a6e
-	.long	0x2a7f
-	.uleb128 0xb
-	.long	0x2ab2
-	.uleb128 0x1
-	.long	0x90
-	.uleb128 0x1
-	.long	0x10d
-	.uleb128 0x14
-	.byte	0
-	.uleb128 0x5c
-	.string	"log"
-	.byte	0x36
-	.byte	0x24
-	.byte	0xe
-	.long	.LASF601
-	.byte	0x1
-	.long	0x2a94
-	.long	0x2aa0
-	.uleb128 0xb
-	.long	0x2ab2
-	.uleb128 0x1
-	.long	0x10d
-	.uleb128 0x14
-	.byte	0
-	.uleb128 0x5d
-	.long	.LASF602
-	.byte	0x36
-	.byte	0x19
-	.byte	0x18
-	.long	.LASF603
-	.long	0x2cc5
-	.byte	0x1
-	.byte	0
-	.uleb128 0x7
-	.long	0x29a4
-	.uleb128 0x2c
-	.long	.LASF491
-	.byte	0x37
-	.byte	0x7
-	.long	.LASF507
-	.long	0x2ad6
-	.uleb128 0x1
-	.long	0x2ad6
-	.uleb128 0x1
-	.long	0x10d
-	.uleb128 0x1
-	.long	0x278
-	.byte	0
-	.uleb128 0x7
-	.long	0x103
-	.uleb128 0xd
-	.long	.LASF492
-	.byte	0x3
+	.uleb128 0x10
+	.long	.LASF479
+	.byte	0x6
 	.byte	0x1d
 	.byte	0x8
-	.long	.LASF493
+	.long	.LASF480
 	.long	0x108
-	.long	0x2b04
+	.long	0x29c8
 	.uleb128 0x1
 	.long	0x90
 	.uleb128 0x1
@@ -20838,886 +20836,554 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x1
 	.long	0x108
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF494
-	.byte	0x4
-	.byte	0x38
+	.uleb128 0x10
+	.long	.LASF481
+	.byte	0x7
+	.byte	0x3a
 	.byte	0x5
-	.long	.LASF495
+	.long	.LASF482
 	.long	0x90
-	.long	0x2b23
+	.long	0x29e7
 	.uleb128 0x1
-	.long	0x224
+	.long	0x23e
 	.uleb128 0x1
-	.long	0x224
+	.long	0x23e
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF496
-	.byte	0x4
-	.byte	0x3f
+	.uleb128 0x10
+	.long	.LASF483
+	.byte	0x7
+	.byte	0x41
 	.byte	0x5
-	.long	.LASF497
+	.long	.LASF484
 	.long	0x90
-	.long	0x2b42
+	.long	0x2a06
 	.uleb128 0x1
-	.long	0x196
+	.long	0x1b0
 	.uleb128 0x1
-	.long	0x26b4
+	.long	0x26ce
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF498
-	.byte	0x33
-	.byte	0x52
-	.byte	0xb
-	.long	.LASF499
-	.long	0x26a8
-	.long	0x2b5c
+	.uleb128 0x33
+	.long	.LASF486
+	.long	0x2b14
+	.uleb128 0x19
+	.long	.LASF487
+	.byte	0x39
+	.byte	0x2b
+	.byte	0xe
+	.long	.LASF488
+	.long	0x2a23
+	.long	0x2a3d
+	.uleb128 0xc
+	.long	0x2b14
 	.uleb128 0x1
-	.long	0x2941
-	.byte	0
-	.uleb128 0xd
-	.long	.LASF500
-	.byte	0x4
-	.byte	0x36
-	.byte	0x5
-	.long	.LASF501
-	.long	0x90
-	.long	0x2b7b
-	.uleb128 0x1
-	.long	0x224
-	.uleb128 0x1
-	.long	0x293c
-	.byte	0
-	.uleb128 0xd
-	.long	.LASF502
-	.byte	0x4
-	.byte	0x33
-	.byte	0xc
-	.long	.LASF503
-	.long	0x224
-	.long	0x2b9a
-	.uleb128 0x1
-	.long	0x90
-	.uleb128 0x1
-	.long	0x293c
-	.byte	0
-	.uleb128 0xd
-	.long	.LASF485
-	.byte	0x38
-	.byte	0x9
-	.byte	0x13
-	.long	.LASF504
-	.long	0x1b35
-	.long	0x2bb5
+	.long	0x2e4
 	.uleb128 0x1
 	.long	0x10d
-	.uleb128 0x14
-	.byte	0
-	.uleb128 0x26
-	.long	0x263e
-	.long	.LASF505
-	.long	0x2bc6
-	.long	0x2bd0
-	.uleb128 0x27
-	.long	.LASF476
-	.long	0x2666
-	.byte	0
-	.uleb128 0x2c
-	.long	.LASF506
-	.byte	0x37
-	.byte	0x5
-	.long	.LASF508
-	.long	0x2bea
 	.uleb128 0x1
-	.long	0x2ad6
+	.long	0x10d
 	.uleb128 0x1
-	.long	0x278
+	.long	0x90
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF509
+	.uleb128 0x23
+	.long	.LASF489
 	.byte	0x39
+	.byte	0x33
+	.byte	0xd
+	.long	.LASF490
+	.long	0x90
+	.long	0x2a55
+	.long	0x2a66
+	.uleb128 0xc
+	.long	0x2b14
+	.uleb128 0x1
+	.long	0x90
+	.uleb128 0x1
+	.long	0x10d
+	.uleb128 0x13
+	.byte	0
+	.uleb128 0x23
+	.long	.LASF491
+	.byte	0x39
+	.byte	0x2a
+	.byte	0xf
+	.long	.LASF492
+	.long	0x2e4
+	.long	0x2a7e
+	.long	0x2a9d
+	.uleb128 0xc
+	.long	0x2b14
+	.uleb128 0x1
+	.long	0x297
+	.uleb128 0x1
+	.long	0x297
+	.uleb128 0x1
+	.long	0x10d
+	.uleb128 0x1
+	.long	0x10d
+	.uleb128 0x1
+	.long	0x90
+	.byte	0
+	.uleb128 0x19
+	.long	.LASF493
+	.byte	0x39
+	.byte	0x27
+	.byte	0xe
+	.long	.LASF494
+	.long	0x2ab1
+	.long	0x2abd
+	.uleb128 0xc
+	.long	0x2b14
+	.uleb128 0x1
+	.long	0x10d
+	.uleb128 0x13
+	.byte	0
+	.uleb128 0x23
+	.long	.LASF495
+	.byte	0x39
+	.byte	0x35
+	.byte	0x18
+	.long	.LASF496
+	.long	0xd7a
+	.long	0x2ad5
+	.long	0x2ae1
+	.uleb128 0xc
+	.long	0x2b14
+	.uleb128 0x1
+	.long	0x10d
+	.uleb128 0x13
+	.byte	0
+	.uleb128 0x5c
+	.string	"log"
+	.byte	0x39
+	.byte	0x24
+	.byte	0xe
+	.long	.LASF604
+	.byte	0x1
+	.long	0x2af6
+	.long	0x2b02
+	.uleb128 0xc
+	.long	0x2b14
+	.uleb128 0x1
+	.long	0x10d
+	.uleb128 0x13
+	.byte	0
+	.uleb128 0x5d
+	.long	.LASF605
+	.byte	0x39
+	.byte	0x19
+	.byte	0x18
+	.long	.LASF606
+	.long	0x2d12
+	.byte	0x1
+	.byte	0
+	.uleb128 0x7
+	.long	0x2a06
+	.uleb128 0x10
+	.long	.LASF497
+	.byte	0x7
+	.byte	0x38
+	.byte	0x5
+	.long	.LASF498
+	.long	0x90
+	.long	0x2b38
+	.uleb128 0x1
+	.long	0x23e
+	.uleb128 0x1
+	.long	0x2956
+	.byte	0
+	.uleb128 0x10
+	.long	.LASF499
+	.byte	0x7
+	.byte	0x34
+	.byte	0x5
+	.long	.LASF500
+	.long	0x90
+	.long	0x2b52
+	.uleb128 0x1
+	.long	0x2956
+	.byte	0
+	.uleb128 0x2d
+	.long	.LASF501
+	.byte	0x36
+	.byte	0x4c
+	.long	.LASF509
+	.long	0x2b6c
+	.uleb128 0x1
+	.long	0x295b
+	.uleb128 0x1
+	.long	0x26c2
+	.byte	0
+	.uleb128 0x10
+	.long	.LASF502
+	.byte	0x7
+	.byte	0x3e
+	.byte	0x5
+	.long	.LASF503
+	.long	0x90
+	.long	0x2b86
+	.uleb128 0x1
+	.long	0x26ce
+	.byte	0
+	.uleb128 0x10
+	.long	.LASF504
+	.byte	0x36
+	.byte	0x46
+	.byte	0x5
+	.long	.LASF505
+	.long	0x90
+	.long	0x2ba5
+	.uleb128 0x1
+	.long	0x295b
+	.uleb128 0x1
+	.long	0x297
+	.byte	0
+	.uleb128 0x10
+	.long	.LASF506
+	.byte	0x3a
+	.byte	0x6
+	.byte	0x5
+	.long	.LASF507
+	.long	0x90
+	.long	0x2bc5
+	.uleb128 0x1
+	.long	0x90
+	.uleb128 0x1
+	.long	0x10d
+	.uleb128 0x13
+	.byte	0
+	.uleb128 0x2d
+	.long	.LASF508
+	.byte	0x3b
+	.byte	0x7
+	.long	.LASF510
+	.long	0x2be4
+	.uleb128 0x1
+	.long	0x2be4
+	.uleb128 0x1
+	.long	0x10d
+	.uleb128 0x1
+	.long	0x292
+	.byte	0
+	.uleb128 0x7
+	.long	0x103
+	.uleb128 0x28
+	.long	0x2658
+	.long	.LASF511
+	.long	0x2bfa
+	.long	0x2c04
+	.uleb128 0x29
+	.long	.LASF478
+	.long	0x2680
+	.byte	0
+	.uleb128 0x28
+	.long	0x2632
+	.long	.LASF512
+	.long	0x2c15
+	.long	0x2c37
+	.uleb128 0x29
+	.long	.LASF478
+	.long	0x2680
+	.uleb128 0x5e
+	.string	"lvl"
+	.byte	0x32
+	.byte	0x18
+	.byte	0x1c
+	.long	0x90
+	.uleb128 0x5f
+	.long	.LASF513
+	.byte	0x32
+	.byte	0x18
+	.byte	0x2d
+	.long	0x10d
+	.byte	0
+	.uleb128 0x10
+	.long	.LASF514
+	.byte	0x7
+	.byte	0x35
+	.byte	0xc
+	.long	.LASF515
+	.long	0x23e
+	.long	0x2c56
+	.uleb128 0x1
+	.long	0x90
+	.uleb128 0x1
+	.long	0x2956
+	.byte	0
+	.uleb128 0x2d
+	.long	.LASF516
+	.byte	0x3b
+	.byte	0x5
+	.long	.LASF517
+	.long	0x2c70
+	.uleb128 0x1
+	.long	0x2be4
+	.uleb128 0x1
+	.long	0x292
+	.byte	0
+	.uleb128 0x10
+	.long	.LASF518
+	.byte	0x3c
 	.byte	0x8
 	.byte	0x5
-	.long	.LASF510
+	.long	.LASF519
 	.long	0x90
-	.long	0x2c09
+	.long	0x2c8f
 	.uleb128 0x1
 	.long	0x10d
 	.uleb128 0x1
 	.long	0x9c
 	.byte	0
-	.uleb128 0xd
-	.long	.LASF511
-	.byte	0x4
-	.byte	0x32
-	.byte	0x5
-	.long	.LASF512
-	.long	0x90
-	.long	0x2c23
-	.uleb128 0x1
-	.long	0x293c
-	.byte	0
-	.uleb128 0x2c
-	.long	.LASF513
-	.byte	0x33
-	.byte	0x4c
-	.long	.LASF514
-	.long	0x2c3d
-	.uleb128 0x1
-	.long	0x2941
-	.uleb128 0x1
-	.long	0x26a8
-	.byte	0
-	.uleb128 0xd
-	.long	.LASF515
-	.byte	0x4
-	.byte	0x3c
-	.byte	0x5
-	.long	.LASF516
-	.long	0x90
-	.long	0x2c57
-	.uleb128 0x1
-	.long	0x26b4
-	.byte	0
-	.uleb128 0xd
-	.long	.LASF517
-	.byte	0x33
-	.byte	0x46
-	.byte	0x5
-	.long	.LASF518
-	.long	0x90
-	.long	0x2c76
-	.uleb128 0x1
-	.long	0x2941
-	.uleb128 0x1
-	.long	0x27d
-	.byte	0
-	.uleb128 0xd
-	.long	.LASF519
-	.byte	0x38
-	.byte	0x6
-	.byte	0x5
+	.uleb128 0x10
 	.long	.LASF520
-	.long	0x90
-	.long	0x2c96
+	.byte	0x7
+	.byte	0x3f
+	.byte	0xb
+	.long	.LASF521
+	.long	0x1b0
+	.long	0x2cae
 	.uleb128 0x1
 	.long	0x90
+	.uleb128 0x1
+	.long	0x26ce
+	.byte	0
+	.uleb128 0x10
+	.long	.LASF522
+	.byte	0x36
+	.byte	0x52
+	.byte	0xb
+	.long	.LASF523
+	.long	0x26c2
+	.long	0x2cc8
+	.uleb128 0x1
+	.long	0x295b
+	.byte	0
+	.uleb128 0x10
+	.long	.LASF495
+	.byte	0x3a
+	.byte	0x9
+	.byte	0x13
+	.long	.LASF524
+	.long	0x1b4f
+	.long	0x2ce3
 	.uleb128 0x1
 	.long	0x10d
-	.uleb128 0x14
+	.uleb128 0x13
 	.byte	0
 	.uleb128 0x5
-	.long	.LASF521
-	.byte	0x3a
+	.long	.LASF525
+	.byte	0x3d
 	.value	0x1a3
 	.byte	0xe
 	.long	0xaf
-	.long	0x2cad
+	.long	0x2cfa
 	.uleb128 0x1
 	.long	0x90
 	.byte	0
 	.uleb128 0x5
-	.long	.LASF522
-	.byte	0xe
+	.long	.LASF526
+	.byte	0x11
 	.value	0x164
 	.byte	0xc
 	.long	0x90
-	.long	0x2cc5
+	.long	0x2d12
 	.uleb128 0x1
 	.long	0x10d
-	.uleb128 0x14
+	.uleb128 0x13
 	.byte	0
-	.uleb128 0x1e
-	.long	0x29a4
-	.uleb128 0x26
-	.long	0x2618
-	.long	.LASF523
-	.long	0x2cdb
-	.long	0x2cfd
-	.uleb128 0x27
-	.long	.LASF476
-	.long	0x2666
-	.uleb128 0x5e
-	.string	"lvl"
-	.byte	0x2f
-	.byte	0x18
-	.byte	0x1c
-	.long	0x90
-	.uleb128 0x5f
-	.long	.LASF524
-	.byte	0x2f
-	.byte	0x18
-	.byte	0x2d
-	.long	0x10d
-	.byte	0
+	.uleb128 0x1f
+	.long	0x2a06
 	.uleb128 0x60
-	.long	.LASF604
-	.quad	.LFB2957
-	.quad	.LFE2957-.LFB2957
-	.uleb128 0x1
-	.byte	0x9c
-	.uleb128 0x61
-	.long	.LASF605
+	.long	.LASF607
 	.quad	.LFB2956
 	.quad	.LFE2956-.LFB2956
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2d4e
-	.uleb128 0x10
-	.long	.LASF525
-	.value	0x39e
+	.uleb128 0x61
+	.long	.LASF608
+	.quad	.LFB2955
+	.quad	.LFE2955-.LFB2955
+	.uleb128 0x1
+	.byte	0x9c
+	.long	0x2d68
+	.uleb128 0x1b
+	.long	.LASF527
+	.value	0x2bb
 	.byte	0x5
 	.long	0x90
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -20
-	.uleb128 0x10
-	.long	.LASF526
-	.value	0x39e
+	.uleb128 0x1b
+	.long	.LASF528
+	.value	0x2bb
 	.byte	0x5
 	.long	0x90
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
 	.byte	0
-	.uleb128 0x11
-	.long	.LASF532
-	.value	0x395
-	.byte	0x12
-	.long	0x196
-	.quad	.LFB2289
-	.quad	.LFE2289-.LFB2289
-	.uleb128 0x1
-	.byte	0x9c
-	.long	0x2dc0
-	.uleb128 0x10
-	.long	.LASF527
-	.value	0x395
-	.byte	0x23
-	.long	0x90
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -52
-	.uleb128 0x10
-	.long	.LASF473
-	.value	0x395
-	.byte	0x38
-	.long	0x2941
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -64
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x2dd0
-	.uleb128 0x9
-	.byte	0x3
-	.quad	.LC95
-	.uleb128 0x6
-	.long	.LASF530
-	.value	0x399
-	.byte	0xf
-	.long	0x26b4
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -48
-	.uleb128 0x6
-	.long	.LASF531
-	.value	0x39c
-	.byte	0xf
-	.long	0x196
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -40
-	.byte	0
-	.uleb128 0x12
-	.long	0xa3
-	.long	0x2dd0
-	.uleb128 0x13
-	.long	0x28e
-	.byte	0xb
-	.byte	0
-	.uleb128 0xc
-	.long	0x2dc0
-	.uleb128 0x11
-	.long	.LASF533
-	.value	0x383
-	.byte	0xf
+	.uleb128 0x21
+	.long	.LASF536
+	.value	0x28e
 	.long	0x108
 	.quad	.LFB2288
 	.quad	.LFE2288-.LFB2288
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2e29
-	.uleb128 0x10
-	.long	.LASF534
-	.value	0x383
-	.byte	0x2d
-	.long	0x224
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -56
-	.uleb128 0xf
+	.long	0x2e00
+	.uleb128 0x1b
 	.long	.LASF529
-	.long	0x254a
-	.uleb128 0x9
-	.byte	0x3
-	.quad	.LC93
-	.uleb128 0x6
-	.long	.LASF22
-	.value	0x387
-	.byte	0xc
-	.long	0x108
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -40
-	.byte	0
-	.uleb128 0x11
-	.long	.LASF535
-	.value	0x370
-	.byte	0x12
-	.long	0x196
-	.quad	.LFB2287
-	.quad	.LFE2287-.LFB2287
-	.uleb128 0x1
-	.byte	0x9c
-	.long	0x2e8e
-	.uleb128 0x10
-	.long	.LASF536
-	.value	0x370
-	.byte	0x2e
-	.long	0x2e8e
+	.value	0x28e
+	.byte	0x29
+	.long	0x2e00
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -88
-	.uleb128 0x6
-	.long	.LASF537
-	.value	0x372
+	.sleb128 -104
+	.uleb128 0xd
+	.long	.LASF530
+	.value	0x290
 	.byte	0x14
-	.long	0x2595
+	.long	0x25af
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x2ea3
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x2e15
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC90
-	.uleb128 0x6
+	.quad	.LC114
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x2e2a
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC115
+	.uleb128 0x62
+	.string	"var"
+	.byte	0x4
+	.value	0x299
+	.byte	0xc
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -88
+	.uleb128 0xd
 	.long	.LASF534
-	.value	0x375
-	.byte	0xf
-	.long	0x196
+	.value	0x2a2
+	.byte	0xc
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -80
+	.uleb128 0xd
+	.long	.LASF535
+	.value	0x2b4
+	.byte	0xc
+	.long	0x108
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -72
 	.byte	0
 	.uleb128 0x7
-	.long	0x28e8
-	.uleb128 0x12
+	.long	0x2902
+	.uleb128 0xe
 	.long	0xa3
-	.long	0x2ea3
-	.uleb128 0x13
-	.long	0x28e
+	.long	0x2e15
+	.uleb128 0xf
+	.long	0x2a8
 	.byte	0xc
 	.byte	0
-	.uleb128 0xc
-	.long	0x2e93
-	.uleb128 0x11
-	.long	.LASF538
-	.value	0x344
-	.byte	0x13
-	.long	0x224
-	.quad	.LFB2286
-	.quad	.LFE2286-.LFB2286
-	.uleb128 0x1
-	.byte	0x9c
-	.long	0x2efc
-	.uleb128 0x10
-	.long	.LASF536
-	.value	0x344
-	.byte	0x30
-	.long	0x2e8e
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -56
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x2f0c
-	.uleb128 0x9
-	.byte	0x3
-	.quad	.LC85
-	.uleb128 0x6
-	.long	.LASF534
-	.value	0x348
-	.byte	0x10
-	.long	0x224
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -40
-	.byte	0
-	.uleb128 0x12
+	.uleb128 0x8
+	.long	0x2e05
+	.uleb128 0xe
 	.long	0xa3
-	.long	0x2f0c
-	.uleb128 0x13
-	.long	0x28e
-	.byte	0xd
+	.long	0x2e2a
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0x20
 	.byte	0
-	.uleb128 0xc
-	.long	0x2efc
-	.uleb128 0x11
-	.long	.LASF539
-	.value	0x328
-	.byte	0xc
-	.long	0x90
-	.quad	.LFB2285
-	.quad	.LFE2285-.LFB2285
+	.uleb128 0x8
+	.long	0x2e1a
+	.uleb128 0x21
+	.long	.LASF537
+	.value	0x227
+	.long	0x108
+	.quad	.LFB2287
+	.quad	.LFE2287-.LFB2287
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x2f56
-	.uleb128 0x10
-	.long	.LASF536
-	.value	0x328
-	.byte	0x26
-	.long	0x2e8e
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -40
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x2f66
-	.uleb128 0x9
-	.byte	0x3
-	.quad	.LC82
-	.byte	0
-	.uleb128 0x12
-	.long	0xa3
-	.long	0x2f66
-	.uleb128 0x13
-	.long	0x28e
-	.byte	0xa
-	.byte	0
-	.uleb128 0xc
-	.long	0x2f56
-	.uleb128 0x11
-	.long	.LASF540
-	.value	0x311
-	.byte	0xf
-	.long	0x108
-	.quad	.LFB2284
-	.quad	.LFE2284-.LFB2284
-	.uleb128 0x1
-	.byte	0x9c
-	.long	0x2fd0
-	.uleb128 0x10
-	.long	.LASF536
-	.value	0x311
-	.byte	0x24
-	.long	0x2e8e
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -88
-	.uleb128 0x6
-	.long	.LASF541
-	.value	0x313
-	.byte	0x14
-	.long	0x2595
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -64
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x2fe0
-	.uleb128 0x9
-	.byte	0x3
-	.quad	.LC79
-	.uleb128 0x6
-	.long	.LASF542
-	.value	0x31f
-	.byte	0xc
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -72
-	.byte	0
-	.uleb128 0x12
-	.long	0xa3
-	.long	0x2fe0
-	.uleb128 0x13
-	.long	0x28e
-	.byte	0x4
-	.byte	0
-	.uleb128 0xc
-	.long	0x2fd0
-	.uleb128 0x11
-	.long	.LASF543
-	.value	0x2f8
-	.byte	0xf
-	.long	0x108
-	.quad	.LFB2283
-	.quad	.LFE2283-.LFB2283
-	.uleb128 0x1
-	.byte	0x9c
-	.long	0x305c
-	.uleb128 0x10
-	.long	.LASF536
-	.value	0x2f8
-	.byte	0x24
-	.long	0x2e8e
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -88
-	.uleb128 0x6
-	.long	.LASF544
-	.value	0x2fa
-	.byte	0x14
-	.long	0x2595
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -64
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x2fe0
-	.uleb128 0x9
-	.byte	0x3
-	.quad	.LC78
+	.long	0x2f30
 	.uleb128 0x1b
-	.quad	.LBB16
-	.quad	.LBE16-.LBB16
-	.uleb128 0x6
-	.long	.LASF545
-	.value	0x301
-	.byte	0x10
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -72
-	.byte	0
-	.byte	0
-	.uleb128 0x11
-	.long	.LASF546
-	.value	0x2e1
-	.byte	0x8
-	.long	0x108
-	.quad	.LFB2282
-	.quad	.LFE2282-.LFB2282
-	.uleb128 0x1
-	.byte	0x9c
-	.long	0x30f3
-	.uleb128 0x10
-	.long	.LASF536
-	.value	0x2e1
-	.byte	0x21
-	.long	0x2e8e
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -104
-	.uleb128 0x6
-	.long	.LASF547
-	.value	0x2e3
-	.byte	0x14
-	.long	0x2595
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -64
-	.uleb128 0xf
 	.long	.LASF529
-	.long	0x3103
-	.uleb128 0x9
-	.byte	0x3
-	.quad	.LC77
-	.uleb128 0x6
-	.long	.LASF548
-	.value	0x2e6
-	.byte	0xc
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -80
-	.uleb128 0x6
-	.long	.LASF549
-	.value	0x2e8
-	.byte	0xc
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -88
-	.uleb128 0x1b
-	.quad	.LBB14
-	.quad	.LBE14-.LBB14
-	.uleb128 0x6
-	.long	.LASF550
-	.value	0x2ec
-	.byte	0x10
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -72
-	.byte	0
-	.byte	0
-	.uleb128 0x12
-	.long	0xa3
-	.long	0x3103
-	.uleb128 0x13
-	.long	0x28e
-	.byte	0x8
-	.byte	0
-	.uleb128 0xc
-	.long	0x30f3
-	.uleb128 0x11
-	.long	.LASF551
-	.value	0x2c9
-	.byte	0xf
-	.long	0x108
-	.quad	.LFB2281
-	.quad	.LFE2281-.LFB2281
-	.uleb128 0x1
-	.byte	0x9c
-	.long	0x319f
-	.uleb128 0x10
-	.long	.LASF536
-	.value	0x2c9
-	.byte	0x24
-	.long	0x2e8e
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -104
-	.uleb128 0x6
-	.long	.LASF552
-	.value	0x2cb
-	.byte	0x14
-	.long	0x2595
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -64
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x2fe0
-	.uleb128 0x9
-	.byte	0x3
-	.quad	.LC75
-	.uleb128 0x6
-	.long	.LASF548
-	.value	0x2ce
-	.byte	0xc
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -80
-	.uleb128 0x6
-	.long	.LASF549
-	.value	0x2d1
-	.byte	0xc
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -88
-	.uleb128 0x1b
-	.quad	.LBB13
-	.quad	.LBE13-.LBB13
-	.uleb128 0x6
-	.long	.LASF550
-	.value	0x2d5
-	.byte	0x10
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -72
-	.byte	0
-	.byte	0
-	.uleb128 0x11
-	.long	.LASF553
-	.value	0x2b2
-	.byte	0xf
-	.long	0x108
-	.quad	.LFB2280
-	.quad	.LFE2280-.LFB2280
-	.uleb128 0x1
-	.byte	0x9c
-	.long	0x3236
-	.uleb128 0x10
-	.long	.LASF536
-	.value	0x2b2
-	.byte	0x24
-	.long	0x2e8e
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -104
-	.uleb128 0x6
-	.long	.LASF554
-	.value	0x2b4
-	.byte	0x14
-	.long	0x2595
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -64
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x2fe0
-	.uleb128 0x9
-	.byte	0x3
-	.quad	.LC73
-	.uleb128 0x6
-	.long	.LASF548
-	.value	0x2b7
-	.byte	0xc
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -80
-	.uleb128 0x6
-	.long	.LASF549
-	.value	0x2b9
-	.byte	0xc
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -88
-	.uleb128 0x1b
-	.quad	.LBB12
-	.quad	.LBE12-.LBB12
-	.uleb128 0x6
-	.long	.LASF550
-	.value	0x2bd
-	.byte	0x10
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -72
-	.byte	0
-	.byte	0
-	.uleb128 0x11
-	.long	.LASF555
-	.value	0x280
-	.byte	0xf
-	.long	0x108
-	.quad	.LFB2279
-	.quad	.LFE2279-.LFB2279
-	.uleb128 0x1
-	.byte	0x9c
-	.long	0x32bc
-	.uleb128 0x10
-	.long	.LASF536
-	.value	0x280
-	.byte	0x2c
-	.long	0x2e8e
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -104
-	.uleb128 0x6
-	.long	.LASF556
-	.value	0x282
-	.byte	0x14
-	.long	0x2595
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -64
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x2ea3
-	.uleb128 0x9
-	.byte	0x3
-	.quad	.LC68
-	.uleb128 0x62
-	.string	"var"
-	.byte	0x1
-	.value	0x28b
-	.byte	0xc
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -88
-	.uleb128 0x6
-	.long	.LASF557
-	.value	0x294
-	.byte	0xc
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -80
-	.uleb128 0x6
-	.long	.LASF558
-	.value	0x2a6
-	.byte	0xc
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -72
-	.byte	0
-	.uleb128 0x11
-	.long	.LASF559
-	.value	0x219
-	.byte	0xf
-	.long	0x108
-	.quad	.LFB2278
-	.quad	.LFE2278-.LFB2278
-	.uleb128 0x1
-	.byte	0x9c
-	.long	0x33ab
-	.uleb128 0x10
-	.long	.LASF536
-	.value	0x219
-	.byte	0x2e
-	.long	0x2e8e
+	.value	0x227
+	.byte	0x2b
+	.long	0x2e00
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -120
-	.uleb128 0x6
-	.long	.LASF560
-	.value	0x21b
+	.uleb128 0xd
+	.long	.LASF538
+	.value	0x229
 	.byte	0x14
-	.long	0x2595
+	.long	0x25af
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x33bb
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x2f40
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC60
-	.uleb128 0x6
-	.long	.LASF561
-	.value	0x246
+	.quad	.LC105
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x2f55
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC106
+	.uleb128 0xd
+	.long	.LASF539
+	.value	0x254
 	.byte	0xc
 	.long	0x108
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -112
-	.uleb128 0x6
-	.long	.LASF558
-	.value	0x24f
+	.uleb128 0xd
+	.long	.LASF535
+	.value	0x25d
 	.byte	0xc
 	.long	0x108
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -104
 	.uleb128 0x63
-	.quad	.LBB7
-	.quad	.LBE7-.LBB7
-	.long	0x3388
-	.uleb128 0x6
-	.long	.LASF562
-	.value	0x22a
+	.quad	.LBB12
+	.quad	.LBE12-.LBB12
+	.long	0x2f0d
+	.uleb128 0xd
+	.long	.LASF540
+	.value	0x238
 	.byte	0x10
 	.long	0x108
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -88
-	.uleb128 0x6
-	.long	.LASF558
-	.value	0x23c
+	.uleb128 0xd
+	.long	.LASF535
+	.value	0x24a
 	.byte	0x10
 	.long	0x108
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -72
-	.uleb128 0x1b
-	.quad	.LBB9
-	.quad	.LBE9-.LBB9
-	.uleb128 0x6
-	.long	.LASF563
-	.value	0x231
+	.uleb128 0x1c
+	.quad	.LBB14
+	.quad	.LBE14-.LBB14
+	.uleb128 0xd
+	.long	.LASF541
+	.value	0x23f
 	.byte	0x14
 	.long	0x108
 	.uleb128 0x3
@@ -21725,12 +21391,12 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -80
 	.byte	0
 	.byte	0
-	.uleb128 0x1b
-	.quad	.LBB11
-	.quad	.LBE11-.LBB11
-	.uleb128 0x6
-	.long	.LASF564
-	.value	0x26f
+	.uleb128 0x1c
+	.quad	.LBB16
+	.quad	.LBE16-.LBB16
+	.uleb128 0xd
+	.long	.LASF542
+	.value	0x27d
 	.byte	0x10
 	.long	0x108
 	.uleb128 0x3
@@ -21738,94 +21404,130 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -96
 	.byte	0
 	.byte	0
-	.uleb128 0x12
+	.uleb128 0xe
 	.long	0xa3
-	.long	0x33bb
-	.uleb128 0x13
-	.long	0x28e
+	.long	0x2f40
+	.uleb128 0xf
+	.long	0x2a8
 	.byte	0xe
 	.byte	0
-	.uleb128 0xc
-	.long	0x33ab
-	.uleb128 0x11
-	.long	.LASF565
-	.value	0x1ea
-	.byte	0xf
+	.uleb128 0x8
+	.long	0x2f30
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x2f55
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0x22
+	.byte	0
+	.uleb128 0x8
+	.long	0x2f45
+	.uleb128 0x21
+	.long	.LASF543
+	.value	0x1f1
 	.long	0x108
-	.quad	.LFB2277
-	.quad	.LFE2277-.LFB2277
+	.quad	.LFB2286
+	.quad	.LFE2286-.LFB2286
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x3423
-	.uleb128 0x10
-	.long	.LASF536
-	.value	0x1ea
-	.byte	0x27
-	.long	0x2e8e
+	.long	0x2fdf
+	.uleb128 0x1b
+	.long	.LASF529
+	.value	0x1f1
+	.byte	0x24
+	.long	0x2e00
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -72
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x2fef
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC100
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x86f
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC101
+	.uleb128 0xd
+	.long	.LASF513
+	.value	0x1fb
+	.byte	0xc
+	.long	0x108
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x855
-	.uleb128 0x9
-	.byte	0x3
-	.quad	.LC56
-	.uleb128 0x6
-	.long	.LASF524
-	.value	0x1f4
+	.uleb128 0xd
+	.long	.LASF535
+	.value	0x206
 	.byte	0xc
 	.long	0x108
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
-	.uleb128 0x6
-	.long	.LASF566
-	.value	0x212
+	.uleb128 0xd
+	.long	.LASF544
+	.value	0x21c
 	.byte	0xc
 	.long	0x108
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
 	.byte	0
-	.uleb128 0x11
-	.long	.LASF567
-	.value	0x1b3
-	.byte	0xf
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x2fef
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0x1b
+	.byte	0
+	.uleb128 0x8
+	.long	0x2fdf
+	.uleb128 0x21
+	.long	.LASF545
+	.value	0x1ba
 	.long	0x108
-	.quad	.LFB2276
-	.quad	.LFE2276-.LFB2276
+	.quad	.LFB2285
+	.quad	.LFE2285-.LFB2285
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x349a
-	.uleb128 0x10
-	.long	.LASF536
-	.value	0x1b3
-	.byte	0x2c
-	.long	0x2e8e
+	.long	0x307d
+	.uleb128 0x1b
+	.long	.LASF529
+	.value	0x1ba
+	.byte	0x29
+	.long	0x2e00
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -88
-	.uleb128 0x6
-	.long	.LASF568
-	.value	0x1b5
+	.uleb128 0xd
+	.long	.LASF546
+	.value	0x1bc
 	.byte	0x14
-	.long	0x2595
+	.long	0x25af
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x2ea3
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x2e15
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC54
-	.uleb128 0x1b
-	.quad	.LBB5
-	.quad	.LBE5-.LBB5
-	.uleb128 0x6
-	.long	.LASF569
-	.value	0x1d9
+	.quad	.LC98
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x2e2a
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC99
+	.uleb128 0x1c
+	.quad	.LBB10
+	.quad	.LBE10-.LBB10
+	.uleb128 0xd
+	.long	.LASF547
+	.value	0x1e0
 	.byte	0x10
 	.long	0x108
 	.uleb128 0x3
@@ -21833,121 +21535,157 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -72
 	.byte	0
 	.byte	0
-	.uleb128 0x11
-	.long	.LASF570
-	.value	0x19c
-	.byte	0xf
+	.uleb128 0x21
+	.long	.LASF548
+	.value	0x1a3
 	.long	0x108
-	.quad	.LFB2275
-	.quad	.LFE2275-.LFB2275
+	.quad	.LFB2284
+	.quad	.LFE2284-.LFB2284
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x350f
-	.uleb128 0x10
-	.long	.LASF536
-	.value	0x19c
-	.byte	0x28
-	.long	0x2e8e
+	.long	0x3104
+	.uleb128 0x1b
+	.long	.LASF529
+	.value	0x1a3
+	.byte	0x25
+	.long	0x2e00
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -88
-	.uleb128 0x6
-	.long	.LASF571
-	.value	0x19e
+	.uleb128 0xd
+	.long	.LASF549
+	.value	0x1a5
 	.byte	0x14
-	.long	0x2595
+	.long	0x25af
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x3103
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x3114
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC52
-	.uleb128 0x6
-	.long	.LASF569
-	.value	0x1a1
-	.byte	0xc
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -72
-	.uleb128 0x6
-	.long	.LASF572
+	.quad	.LC95
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x3129
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC96
+	.uleb128 0xd
+	.long	.LASF547
 	.value	0x1a8
 	.byte	0xc
 	.long	0x108
 	.uleb128 0x3
 	.byte	0x91
+	.sleb128 -72
+	.uleb128 0xd
+	.long	.LASF550
+	.value	0x1af
+	.byte	0xc
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
 	.sleb128 -80
 	.byte	0
-	.uleb128 0x11
-	.long	.LASF573
-	.value	0x14e
-	.byte	0xf
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x3114
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0x8
+	.byte	0
+	.uleb128 0x8
+	.long	0x3104
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x3129
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0x1c
+	.byte	0
+	.uleb128 0x8
+	.long	0x3119
+	.uleb128 0x21
+	.long	.LASF551
+	.value	0x14c
 	.long	0x108
-	.quad	.LFB2274
-	.quad	.LFE2274-.LFB2274
+	.quad	.LFB2283
+	.quad	.LFE2283-.LFB2283
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x35b4
-	.uleb128 0x10
-	.long	.LASF536
-	.value	0x14e
-	.byte	0x2b
-	.long	0x2e8e
+	.long	0x31f5
+	.uleb128 0x1b
+	.long	.LASF529
+	.value	0x14c
+	.byte	0x28
+	.long	0x2e00
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -120
-	.uleb128 0x6
-	.long	.LASF574
-	.value	0x150
+	.uleb128 0xd
+	.long	.LASF552
+	.value	0x14e
 	.byte	0x14
-	.long	0x2595
+	.long	0x25af
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x2dd0
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x3205
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC45
-	.uleb128 0x6
-	.long	.LASF534
+	.quad	.LC87
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x321a
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC88
+	.uleb128 0xd
+	.long	.LASF553
+	.value	0x152
+	.byte	0xc
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -112
+	.uleb128 0xd
+	.long	.LASF554
 	.value	0x154
 	.byte	0x10
-	.long	0x224
+	.long	0x23e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -104
-	.uleb128 0x6
-	.long	.LASF575
+	.uleb128 0xd
+	.long	.LASF555
 	.value	0x157
 	.byte	0x10
-	.long	0x224
+	.long	0x23e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -96
-	.uleb128 0x6
-	.long	.LASF576
-	.value	0x16a
+	.uleb128 0xd
+	.long	.LASF556
+	.value	0x168
 	.byte	0xc
 	.long	0x108
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -88
-	.uleb128 0x6
-	.long	.LASF558
-	.value	0x18e
+	.uleb128 0xd
+	.long	.LASF557
+	.value	0x16d
 	.byte	0xc
 	.long	0x108
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -80
-	.uleb128 0x6
-	.long	.LASF577
+	.uleb128 0xd
+	.long	.LASF535
 	.value	0x191
 	.byte	0xc
 	.long	0x108
@@ -21955,68 +21693,95 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0x91
 	.sleb128 -72
 	.byte	0
-	.uleb128 0x2d
-	.long	.LASF578
-	.byte	0xf8
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x3205
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0xb
+	.byte	0
+	.uleb128 0x8
+	.long	0x31f5
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x321a
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0x1f
+	.byte	0
+	.uleb128 0x8
+	.long	0x320a
+	.uleb128 0x15
+	.long	.LASF558
+	.byte	0x4
+	.byte	0xf4
 	.byte	0xf
 	.long	0x108
-	.quad	.LFB2273
-	.quad	.LFE2273-.LFB2273
+	.quad	.LFB2282
+	.quad	.LFE2282-.LFB2282
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x3656
-	.uleb128 0x28
-	.long	.LASF536
-	.byte	0xf8
-	.byte	0x31
-	.long	0x2e8e
+	.long	0x32d6
+	.uleb128 0x12
+	.long	.LASF529
+	.byte	0x4
+	.byte	0xf4
+	.byte	0x2e
+	.long	0x2e00
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -88
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x254a
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x32e6
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC39
+	.quad	.LC77
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x2564
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC78
 	.uleb128 0x6
-	.long	.LASF579
-	.value	0x102
+	.long	.LASF559
+	.byte	0x4
+	.byte	0xfe
 	.byte	0xc
 	.long	0x108
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -72
-	.uleb128 0x6
-	.long	.LASF580
-	.value	0x10b
+	.uleb128 0xd
+	.long	.LASF560
+	.value	0x107
 	.byte	0xc
 	.long	0x108
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
-	.uleb128 0x6
-	.long	.LASF534
-	.value	0x10d
+	.uleb128 0xd
+	.long	.LASF554
+	.value	0x10b
 	.byte	0xf
-	.long	0x196
+	.long	0x1b0
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
-	.uleb128 0x6
-	.long	.LASF558
-	.value	0x141
+	.uleb128 0xd
+	.long	.LASF535
+	.value	0x13f
 	.byte	0xc
 	.long	0x108
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
-	.uleb128 0x1b
-	.quad	.LBB3
-	.quad	.LBE3-.LBB3
-	.uleb128 0x6
-	.long	.LASF558
-	.value	0x127
+	.uleb128 0x1c
+	.quad	.LBB8
+	.quad	.LBE8-.LBB8
+	.uleb128 0xd
+	.long	.LASF535
+	.value	0x125
 	.byte	0x10
 	.long	0x108
 	.uleb128 0x2
@@ -22024,190 +21789,844 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.sleb128 -40
 	.byte	0
 	.byte	0
-	.uleb128 0x2d
-	.long	.LASF581
-	.byte	0xda
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x32e6
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0x25
+	.byte	0
+	.uleb128 0x8
+	.long	0x32d6
+	.uleb128 0x15
+	.long	.LASF561
+	.byte	0x4
+	.byte	0xd4
 	.byte	0xc
 	.long	0x90
+	.quad	.LFB2281
+	.quad	.LFE2281-.LFB2281
+	.uleb128 0x1
+	.byte	0x9c
+	.long	0x3361
+	.uleb128 0x12
+	.long	.LASF529
+	.byte	0x4
+	.byte	0xd4
+	.byte	0x2c
+	.long	0x2e00
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -56
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x3371
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC72
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x3386
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC73
+	.uleb128 0x6
+	.long	.LASF562
+	.byte	0x4
+	.byte	0xdf
+	.byte	0xc
+	.long	0x108
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -48
+	.uleb128 0x6
+	.long	.LASF554
+	.byte	0x4
+	.byte	0xe1
+	.byte	0x10
+	.long	0x23e
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -40
+	.byte	0
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x3371
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0x23
+	.byte	0
+	.uleb128 0x8
+	.long	0x3361
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x3386
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0x12
+	.byte	0
+	.uleb128 0x8
+	.long	0x3376
+	.uleb128 0x15
+	.long	.LASF563
+	.byte	0x4
+	.byte	0xa5
+	.byte	0xf
+	.long	0x108
+	.quad	.LFB2280
+	.quad	.LFE2280-.LFB2280
+	.uleb128 0x1
+	.byte	0x9c
+	.long	0x33e3
+	.uleb128 0x12
+	.long	.LASF529
+	.byte	0x4
+	.byte	0xa5
+	.byte	0x27
+	.long	0x2e00
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -40
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x33f3
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC68
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x3408
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC69
+	.byte	0
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x33f3
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0x1e
+	.byte	0
+	.uleb128 0x8
+	.long	0x33e3
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x3408
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0xa
+	.byte	0
+	.uleb128 0x8
+	.long	0x33f8
+	.uleb128 0x64
+	.long	.LASF565
+	.byte	0x4
+	.byte	0x65
+	.byte	0x5
+	.long	.LASF567
+	.long	0x90
+	.quad	.LFB2279
+	.quad	.LFE2279-.LFB2279
+	.uleb128 0x1
+	.byte	0x9c
+	.long	0x350a
+	.uleb128 0x12
+	.long	.LASF472
+	.byte	0x4
+	.byte	0x65
+	.byte	0x14
+	.long	0x2951
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -264
+	.uleb128 0x6
+	.long	.LASF568
+	.byte	0x4
+	.byte	0x67
+	.byte	0x14
+	.long	0x25af
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -192
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x351a
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC59
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x3386
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC61
+	.uleb128 0x6
+	.long	.LASF569
+	.byte	0x4
+	.byte	0x70
+	.byte	0x10
+	.long	0x2902
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -128
+	.uleb128 0x6
+	.long	.LASF529
+	.byte	0x4
+	.byte	0x71
+	.byte	0x11
+	.long	0x2e00
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -240
+	.uleb128 0x6
+	.long	.LASF570
+	.byte	0x4
+	.byte	0x73
+	.byte	0x10
+	.long	0x274d
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -96
+	.uleb128 0x6
+	.long	.LASF475
+	.byte	0x4
+	.byte	0x74
+	.byte	0x11
+	.long	0x295b
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -232
+	.uleb128 0x6
+	.long	.LASF571
+	.byte	0x4
+	.byte	0x77
+	.byte	0xe
+	.long	0x169
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -160
+	.uleb128 0x6
+	.long	.LASF572
+	.byte	0x4
+	.byte	0x78
+	.byte	0xf
+	.long	0x26ce
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -224
+	.uleb128 0x6
+	.long	.LASF573
+	.byte	0x4
+	.byte	0x83
+	.byte	0xf
+	.long	0x204
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -208
+	.uleb128 0x6
+	.long	.LASF574
+	.byte	0x4
+	.byte	0x84
+	.byte	0x10
+	.long	0x2956
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -216
+	.uleb128 0x6
+	.long	.LASF575
+	.byte	0x4
+	.byte	0x8d
+	.byte	0xc
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -248
+	.byte	0
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x351a
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0x4
+	.byte	0
+	.uleb128 0x8
+	.long	0x350a
+	.uleb128 0x15
+	.long	.LASF576
+	.byte	0x3
+	.byte	0x61
+	.byte	0xf
+	.long	0x108
+	.quad	.LFB2278
+	.quad	.LFE2278-.LFB2278
+	.uleb128 0x1
+	.byte	0x9c
+	.long	0x3597
+	.uleb128 0x12
+	.long	.LASF529
+	.byte	0x3
+	.byte	0x61
+	.byte	0x21
+	.long	0x2e00
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -88
+	.uleb128 0x6
+	.long	.LASF577
+	.byte	0x3
+	.byte	0x63
+	.byte	0x14
+	.long	0x25af
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -64
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x351a
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC55
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x35a7
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC56
+	.uleb128 0x6
+	.long	.LASF578
+	.byte	0x3
+	.byte	0x72
+	.byte	0xc
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -72
+	.byte	0
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x35a7
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0x18
+	.byte	0
+	.uleb128 0x8
+	.long	0x3597
+	.uleb128 0x15
+	.long	.LASF579
+	.byte	0x3
+	.byte	0x48
+	.byte	0xf
+	.long	0x108
+	.quad	.LFB2277
+	.quad	.LFE2277-.LFB2277
+	.uleb128 0x1
+	.byte	0x9c
+	.long	0x3636
+	.uleb128 0x12
+	.long	.LASF529
+	.byte	0x3
+	.byte	0x48
+	.byte	0x21
+	.long	0x2e00
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -88
+	.uleb128 0x6
+	.long	.LASF580
+	.byte	0x3
+	.byte	0x4a
+	.byte	0x14
+	.long	0x25af
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -64
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x351a
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC52
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x35a7
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC53
+	.uleb128 0x1c
+	.quad	.LBB6
+	.quad	.LBE6-.LBB6
+	.uleb128 0x6
+	.long	.LASF581
+	.byte	0x3
+	.byte	0x51
+	.byte	0x10
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -72
+	.byte	0
+	.byte	0
+	.uleb128 0x15
+	.long	.LASF582
+	.byte	0x3
+	.byte	0x31
+	.byte	0x8
+	.long	0x108
+	.quad	.LFB2276
+	.quad	.LFE2276-.LFB2276
+	.uleb128 0x1
+	.byte	0x9c
+	.long	0x36e0
+	.uleb128 0x12
+	.long	.LASF529
+	.byte	0x3
+	.byte	0x31
+	.byte	0x1e
+	.long	0x2e00
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -104
+	.uleb128 0x6
+	.long	.LASF583
+	.byte	0x3
+	.byte	0x33
+	.byte	0x14
+	.long	0x25af
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -64
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x3114
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC50
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x3129
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC51
+	.uleb128 0x6
+	.long	.LASF584
+	.byte	0x3
+	.byte	0x36
+	.byte	0xc
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -80
+	.uleb128 0x6
+	.long	.LASF585
+	.byte	0x3
+	.byte	0x38
+	.byte	0xc
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -88
+	.uleb128 0x1c
+	.quad	.LBB4
+	.quad	.LBE4-.LBB4
+	.uleb128 0x6
+	.long	.LASF586
+	.byte	0x3
+	.byte	0x3c
+	.byte	0x10
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -72
+	.byte	0
+	.byte	0
+	.uleb128 0x15
+	.long	.LASF587
+	.byte	0x3
+	.byte	0x19
+	.byte	0xf
+	.long	0x108
+	.quad	.LFB2275
+	.quad	.LFE2275-.LFB2275
+	.uleb128 0x1
+	.byte	0x9c
+	.long	0x378a
+	.uleb128 0x12
+	.long	.LASF529
+	.byte	0x3
+	.byte	0x19
+	.byte	0x21
+	.long	0x2e00
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -104
+	.uleb128 0x6
+	.long	.LASF588
+	.byte	0x3
+	.byte	0x1b
+	.byte	0x14
+	.long	0x25af
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -64
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x351a
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC47
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x35a7
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC48
+	.uleb128 0x6
+	.long	.LASF584
+	.byte	0x3
+	.byte	0x1e
+	.byte	0xc
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -80
+	.uleb128 0x6
+	.long	.LASF585
+	.byte	0x3
+	.byte	0x21
+	.byte	0xc
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -88
+	.uleb128 0x1c
+	.quad	.LBB3
+	.quad	.LBE3-.LBB3
+	.uleb128 0x6
+	.long	.LASF586
+	.byte	0x3
+	.byte	0x25
+	.byte	0x10
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -72
+	.byte	0
+	.byte	0
+	.uleb128 0x15
+	.long	.LASF589
+	.byte	0x3
+	.byte	0x2
+	.byte	0xf
+	.long	0x108
+	.quad	.LFB2274
+	.quad	.LFE2274-.LFB2274
+	.uleb128 0x1
+	.byte	0x9c
+	.long	0x3834
+	.uleb128 0x12
+	.long	.LASF529
+	.byte	0x3
+	.byte	0x2
+	.byte	0x21
+	.long	0x2e00
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -104
+	.uleb128 0x6
+	.long	.LASF590
+	.byte	0x3
+	.byte	0x4
+	.byte	0x14
+	.long	0x25af
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -64
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x351a
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC43
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x35a7
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC44
+	.uleb128 0x6
+	.long	.LASF584
+	.byte	0x3
+	.byte	0x7
+	.byte	0xc
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -80
+	.uleb128 0x6
+	.long	.LASF585
+	.byte	0x3
+	.byte	0x9
+	.byte	0xc
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -88
+	.uleb128 0x1c
+	.quad	.LBB2
+	.quad	.LBE2-.LBB2
+	.uleb128 0x6
+	.long	.LASF586
+	.byte	0x3
+	.byte	0xd
+	.byte	0x10
+	.long	0x108
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -72
+	.byte	0
+	.byte	0
+	.uleb128 0x15
+	.long	.LASF591
+	.byte	0x2
+	.byte	0x5f
+	.byte	0x12
+	.long	0x1b0
+	.quad	.LFB2273
+	.quad	.LFE2273-.LFB2273
+	.uleb128 0x1
+	.byte	0x9c
+	.long	0x38ac
+	.uleb128 0x12
+	.long	.LASF529
+	.byte	0x2
+	.byte	0x5f
+	.byte	0x2b
+	.long	0x2e00
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -88
+	.uleb128 0x6
+	.long	.LASF592
+	.byte	0x2
+	.byte	0x61
+	.byte	0x14
+	.long	0x25af
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -64
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x2e15
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC40
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x3371
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC41
+	.uleb128 0x6
+	.long	.LASF554
+	.byte	0x2
+	.byte	0x64
+	.byte	0xf
+	.long	0x1b0
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -72
+	.byte	0
+	.uleb128 0x15
+	.long	.LASF593
+	.byte	0x2
+	.byte	0x29
+	.byte	0x13
+	.long	0x23e
 	.quad	.LFB2272
 	.quad	.LFE2272-.LFB2272
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x36a8
-	.uleb128 0x28
-	.long	.LASF536
-	.byte	0xda
-	.byte	0x2f
-	.long	0x2e8e
+	.long	0x3942
+	.uleb128 0x12
+	.long	.LASF529
+	.byte	0x2
+	.byte	0x29
+	.byte	0x2d
+	.long	0x2e00
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -72
+	.uleb128 0x12
+	.long	.LASF553
+	.byte	0x2
+	.byte	0x29
+	.byte	0x42
+	.long	0x3942
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -80
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x3957
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC33
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x396c
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC34
+	.uleb128 0x6
+	.long	.LASF554
+	.byte	0x2
+	.byte	0x2e
+	.byte	0x10
+	.long	0x23e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x36b8
-	.uleb128 0x9
-	.byte	0x3
-	.quad	.LC35
-	.uleb128 0xa
-	.long	.LASF534
-	.byte	0x1
-	.byte	0xe5
-	.byte	0x10
-	.long	0x224
+	.uleb128 0x6
+	.long	.LASF31
+	.byte	0x2
+	.byte	0x37
+	.byte	0xc
+	.long	0x108
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -48
+	.uleb128 0x6
+	.long	.LASF30
+	.byte	0x2
+	.byte	0x42
+	.byte	0xc
+	.long	0x108
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
 	.byte	0
-	.uleb128 0x12
-	.long	0xa3
-	.long	0x36b8
-	.uleb128 0x13
-	.long	0x28e
-	.byte	0x12
-	.byte	0
-	.uleb128 0xc
-	.long	0x36a8
-	.uleb128 0x2d
-	.long	.LASF582
-	.byte	0xab
-	.byte	0xf
+	.uleb128 0x7
 	.long	0x108
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x3957
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0x2e
+	.byte	0
+	.uleb128 0x8
+	.long	0x3947
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x396c
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0xd
+	.byte	0
+	.uleb128 0x8
+	.long	0x395c
+	.uleb128 0x15
+	.long	.LASF594
+	.byte	0x2
+	.byte	0xd
+	.byte	0xc
+	.long	0x90
 	.quad	.LFB2271
 	.quad	.LFE2271-.LFB2271
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x3700
-	.uleb128 0x28
-	.long	.LASF536
-	.byte	0xab
-	.byte	0x2a
-	.long	0x2e8e
+	.long	0x39c9
+	.uleb128 0x12
+	.long	.LASF529
+	.byte	0x2
+	.byte	0xd
+	.byte	0x23
+	.long	0x2e00
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x2f66
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x2fef
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC30
+	.quad	.LC22
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x3408
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC24
 	.byte	0
-	.uleb128 0x64
-	.long	.LASF583
+	.uleb128 0x15
+	.long	.LASF595
 	.byte	0x1
-	.byte	0x6b
-	.byte	0x5
-	.long	.LASF584
-	.long	0x90
+	.byte	0x4
+	.byte	0x12
+	.long	0x1b0
 	.quad	.LFB2270
 	.quad	.LFE2270-.LFB2270
 	.uleb128 0x1
 	.byte	0x9c
-	.uleb128 0x28
-	.long	.LASF469
-	.byte	0x6b
-	.byte	0x14
-	.long	0x2937
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -248
-	.uleb128 0xa
-	.long	.LASF585
+	.long	0x3a4e
+	.uleb128 0x12
+	.long	.LASF22
 	.byte	0x1
-	.byte	0x6d
-	.byte	0x14
-	.long	0x2595
-	.uleb128 0x3
+	.byte	0x4
+	.byte	0x23
+	.long	0x90
+	.uleb128 0x2
 	.byte	0x91
-	.sleb128 -160
-	.uleb128 0xf
-	.long	.LASF529
-	.long	0x2fe0
+	.sleb128 -52
+	.uleb128 0x12
+	.long	.LASF475
+	.byte	0x1
+	.byte	0x4
+	.byte	0x38
+	.long	0x295b
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -64
+	.uleb128 0x9
+	.long	.LASF533
+	.long	0x3a5e
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC9
-	.uleb128 0xa
-	.long	.LASF586
+	.quad	.LC12
+	.uleb128 0x9
+	.long	.LASF532
+	.long	0x3205
+	.uleb128 0x9
+	.byte	0x3
+	.quad	.LC16
+	.uleb128 0x6
+	.long	.LASF596
 	.byte	0x1
-	.byte	0x76
-	.byte	0x13
-	.long	0x28e8
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -128
-	.uleb128 0xa
-	.long	.LASF536
-	.byte	0x1
-	.byte	0x77
-	.byte	0x14
-	.long	0x2e8e
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -224
-	.uleb128 0xa
-	.long	.LASF587
-	.byte	0x1
-	.byte	0x79
-	.byte	0x10
-	.long	0x2733
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -96
-	.uleb128 0xa
-	.long	.LASF473
-	.byte	0x1
-	.byte	0x7a
-	.byte	0x11
-	.long	0x2941
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -216
-	.uleb128 0xa
-	.long	.LASF588
-	.byte	0x1
-	.byte	0x7d
-	.byte	0xe
-	.long	0x15c
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -192
-	.uleb128 0xa
-	.long	.LASF589
-	.byte	0x1
-	.byte	0x7e
+	.byte	0x8
 	.byte	0xf
-	.long	0x26b4
-	.uleb128 0x3
+	.long	0x26ce
+	.uleb128 0x2
 	.byte	0x91
-	.sleb128 -208
-	.uleb128 0xa
-	.long	.LASF590
+	.sleb128 -48
+	.uleb128 0x6
+	.long	.LASF597
 	.byte	0x1
-	.byte	0x89
+	.byte	0xb
 	.byte	0xf
-	.long	0x1ea
-	.uleb128 0x3
+	.long	0x1b0
+	.uleb128 0x2
 	.byte	0x91
-	.sleb128 -176
-	.uleb128 0xa
-	.long	.LASF591
-	.byte	0x1
-	.byte	0x8a
-	.byte	0x10
-	.long	0x293c
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -200
-	.uleb128 0xa
-	.long	.LASF592
-	.byte	0x1
-	.byte	0x93
-	.byte	0xc
-	.long	0x108
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -232
+	.sleb128 -40
 	.byte	0
+	.uleb128 0xe
+	.long	0xa3
+	.long	0x3a5e
+	.uleb128 0xf
+	.long	0x2a8
+	.byte	0x27
+	.byte	0
+	.uleb128 0x8
+	.long	0x3a4e
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
 .Ldebug_abbrev0:
@@ -22290,10 +22709,9 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x3
 	.uleb128 0xe
 	.uleb128 0x3a
-	.uleb128 0x21
-	.sleb128 1
+	.uleb128 0xb
 	.uleb128 0x3b
-	.uleb128 0x5
+	.uleb128 0xb
 	.uleb128 0x39
 	.uleb128 0xb
 	.uleb128 0x49
@@ -22313,6 +22731,28 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0
 	.byte	0
 	.uleb128 0x8
+	.uleb128 0x26
+	.byte	0
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x9
+	.uleb128 0x34
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x34
+	.uleb128 0x19
+	.uleb128 0x6c
+	.uleb128 0x19
+	.uleb128 0x2
+	.uleb128 0x18
+	.byte	0
+	.byte	0
+	.uleb128 0xa
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -22333,7 +22773,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x9
+	.uleb128 0xb
 	.uleb128 0x28
 	.byte	0
 	.uleb128 0x3
@@ -22342,24 +22782,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xb
 	.byte	0
 	.byte	0
-	.uleb128 0xa
-	.uleb128 0x34
-	.byte	0
-	.uleb128 0x3
-	.uleb128 0xe
-	.uleb128 0x3a
-	.uleb128 0xb
-	.uleb128 0x3b
-	.uleb128 0xb
-	.uleb128 0x39
-	.uleb128 0xb
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x2
-	.uleb128 0x18
-	.byte	0
-	.byte	0
-	.uleb128 0xb
+	.uleb128 0xc
 	.uleb128 0x5
 	.byte	0
 	.uleb128 0x49
@@ -22368,14 +22791,43 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x19
 	.byte	0
 	.byte	0
-	.uleb128 0xc
-	.uleb128 0x26
+	.uleb128 0xd
+	.uleb128 0x34
 	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0x21
+	.sleb128 4
+	.uleb128 0x3b
+	.uleb128 0x5
+	.uleb128 0x39
+	.uleb128 0xb
 	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x18
+	.byte	0
+	.byte	0
+	.uleb128 0xe
+	.uleb128 0x1
+	.byte	0x1
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x1
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0xd
+	.uleb128 0xf
+	.uleb128 0x21
+	.byte	0
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2f
+	.uleb128 0xb
+	.byte	0
+	.byte	0
+	.uleb128 0x10
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -22398,7 +22850,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0xe
+	.uleb128 0x11
 	.uleb128 0x24
 	.byte	0
 	.uleb128 0xb
@@ -22409,31 +22861,15 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xe
 	.byte	0
 	.byte	0
-	.uleb128 0xf
-	.uleb128 0x34
-	.byte	0
-	.uleb128 0x3
-	.uleb128 0xe
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x34
-	.uleb128 0x19
-	.uleb128 0x6c
-	.uleb128 0x19
-	.uleb128 0x2
-	.uleb128 0x18
-	.byte	0
-	.byte	0
-	.uleb128 0x10
+	.uleb128 0x12
 	.uleb128 0x5
 	.byte	0
 	.uleb128 0x3
 	.uleb128 0xe
 	.uleb128 0x3a
-	.uleb128 0x21
-	.sleb128 1
+	.uleb128 0xb
 	.uleb128 0x3b
-	.uleb128 0x5
+	.uleb128 0xb
 	.uleb128 0x39
 	.uleb128 0xb
 	.uleb128 0x49
@@ -22442,16 +22878,34 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x18
 	.byte	0
 	.byte	0
-	.uleb128 0x11
+	.uleb128 0x13
+	.uleb128 0x18
+	.byte	0
+	.byte	0
+	.byte	0
+	.uleb128 0x14
+	.uleb128 0x8
+	.byte	0
+	.uleb128 0x3a
+	.uleb128 0x21
+	.sleb128 21
+	.uleb128 0x3b
+	.uleb128 0x5
+	.uleb128 0x39
+	.uleb128 0xb
+	.uleb128 0x18
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x15
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3
 	.uleb128 0xe
 	.uleb128 0x3a
-	.uleb128 0x21
-	.sleb128 1
+	.uleb128 0xb
 	.uleb128 0x3b
-	.uleb128 0x5
+	.uleb128 0xb
 	.uleb128 0x39
 	.uleb128 0xb
 	.uleb128 0x49
@@ -22465,43 +22919,6 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x7c
 	.uleb128 0x19
 	.uleb128 0x1
-	.uleb128 0x13
-	.byte	0
-	.byte	0
-	.uleb128 0x12
-	.uleb128 0x1
-	.byte	0x1
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x1
-	.uleb128 0x13
-	.byte	0
-	.byte	0
-	.uleb128 0x13
-	.uleb128 0x21
-	.byte	0
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x2f
-	.uleb128 0xb
-	.byte	0
-	.byte	0
-	.uleb128 0x14
-	.uleb128 0x18
-	.byte	0
-	.byte	0
-	.byte	0
-	.uleb128 0x15
-	.uleb128 0x8
-	.byte	0
-	.uleb128 0x3a
-	.uleb128 0x21
-	.sleb128 18
-	.uleb128 0x3b
-	.uleb128 0x5
-	.uleb128 0x39
-	.uleb128 0xb
-	.uleb128 0x18
 	.uleb128 0x13
 	.byte	0
 	.byte	0
@@ -22600,6 +23017,24 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.byte	0
 	.byte	0
 	.uleb128 0x1b
+	.uleb128 0x5
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0x21
+	.sleb128 4
+	.uleb128 0x3b
+	.uleb128 0x5
+	.uleb128 0x39
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x18
+	.byte	0
+	.byte	0
+	.uleb128 0x1c
 	.uleb128 0xb
 	.byte	0x1
 	.uleb128 0x11
@@ -22608,7 +23043,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x7
 	.byte	0
 	.byte	0
-	.uleb128 0x1c
+	.uleb128 0x1d
 	.uleb128 0x28
 	.byte	0
 	.uleb128 0x3
@@ -22617,7 +23052,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xb
 	.byte	0
 	.byte	0
-	.uleb128 0x1d
+	.uleb128 0x1e
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -22640,7 +23075,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x1e
+	.uleb128 0x1f
 	.uleb128 0x10
 	.byte	0
 	.uleb128 0xb
@@ -22650,7 +23085,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x1f
+	.uleb128 0x20
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -22670,7 +23105,34 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x20
+	.uleb128 0x21
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0x21
+	.sleb128 4
+	.uleb128 0x3b
+	.uleb128 0x5
+	.uleb128 0x39
+	.uleb128 0x21
+	.sleb128 15
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x7
+	.uleb128 0x40
+	.uleb128 0x18
+	.uleb128 0x7c
+	.uleb128 0x19
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x22
 	.uleb128 0x39
 	.byte	0
 	.uleb128 0x3
@@ -22683,7 +23145,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xb
 	.byte	0
 	.byte	0
-	.uleb128 0x21
+	.uleb128 0x23
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -22711,7 +23173,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x22
+	.uleb128 0x24
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -22720,7 +23182,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x8
 	.uleb128 0x3a
 	.uleb128 0x21
-	.sleb128 34
+	.sleb128 37
 	.uleb128 0x3b
 	.uleb128 0xb
 	.uleb128 0x39
@@ -22736,14 +23198,14 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x23
+	.uleb128 0x25
 	.uleb128 0xd
 	.byte	0
 	.uleb128 0x3
 	.uleb128 0xe
 	.uleb128 0x3a
 	.uleb128 0x21
-	.sleb128 6
+	.sleb128 9
 	.uleb128 0x3b
 	.uleb128 0x21
 	.sleb128 0
@@ -22753,7 +23215,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xb
 	.byte	0
 	.byte	0
-	.uleb128 0x24
+	.uleb128 0x26
 	.uleb128 0x13
 	.byte	0x1
 	.uleb128 0xb
@@ -22770,7 +23232,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x25
+	.uleb128 0x27
 	.uleb128 0xd
 	.byte	0
 	.uleb128 0x3
@@ -22787,7 +23249,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xb
 	.byte	0
 	.byte	0
-	.uleb128 0x26
+	.uleb128 0x28
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x31
@@ -22800,7 +23262,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x27
+	.uleb128 0x29
 	.uleb128 0x5
 	.byte	0
 	.uleb128 0x3
@@ -22811,25 +23273,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x19
 	.byte	0
 	.byte	0
-	.uleb128 0x28
-	.uleb128 0x5
-	.byte	0
-	.uleb128 0x3
-	.uleb128 0xe
-	.uleb128 0x3a
-	.uleb128 0x21
-	.sleb128 1
-	.uleb128 0x3b
-	.uleb128 0xb
-	.uleb128 0x39
-	.uleb128 0xb
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x2
-	.uleb128 0x18
-	.byte	0
-	.byte	0
-	.uleb128 0x29
+	.uleb128 0x2a
 	.uleb128 0x13
 	.byte	0
 	.uleb128 0x3
@@ -22838,7 +23282,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x19
 	.byte	0
 	.byte	0
-	.uleb128 0x2a
+	.uleb128 0x2b
 	.uleb128 0x39
 	.byte	0x1
 	.uleb128 0x3
@@ -22853,7 +23297,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x2b
+	.uleb128 0x2c
 	.uleb128 0x2e
 	.byte	0
 	.uleb128 0x3f
@@ -22872,7 +23316,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x19
 	.byte	0
 	.byte	0
-	.uleb128 0x2c
+	.uleb128 0x2d
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -22889,32 +23333,6 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x6e
 	.uleb128 0xe
 	.uleb128 0x3c
-	.uleb128 0x19
-	.uleb128 0x1
-	.uleb128 0x13
-	.byte	0
-	.byte	0
-	.uleb128 0x2d
-	.uleb128 0x2e
-	.byte	0x1
-	.uleb128 0x3
-	.uleb128 0xe
-	.uleb128 0x3a
-	.uleb128 0x21
-	.sleb128 1
-	.uleb128 0x3b
-	.uleb128 0xb
-	.uleb128 0x39
-	.uleb128 0xb
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x11
-	.uleb128 0x1
-	.uleb128 0x12
-	.uleb128 0x7
-	.uleb128 0x40
-	.uleb128 0x18
-	.uleb128 0x7c
 	.uleb128 0x19
 	.uleb128 0x1
 	.uleb128 0x13
@@ -22955,7 +23373,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xe
 	.uleb128 0x3a
 	.uleb128 0x21
-	.sleb128 20
+	.sleb128 23
 	.uleb128 0x3b
 	.uleb128 0xb
 	.uleb128 0x39
@@ -23021,7 +23439,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0xe
 	.uleb128 0x3a
 	.uleb128 0x21
-	.sleb128 32
+	.sleb128 35
 	.uleb128 0x3b
 	.uleb128 0x5
 	.uleb128 0x39
@@ -23052,7 +23470,7 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x8
 	.uleb128 0x3a
 	.uleb128 0x21
-	.sleb128 29
+	.sleb128 32
 	.uleb128 0x3b
 	.uleb128 0xb
 	.uleb128 0x39
@@ -23879,6 +24297,8 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.uleb128 0x18
 	.uleb128 0x7c
 	.uleb128 0x19
+	.uleb128 0x1
+	.uleb128 0x13
 	.byte	0
 	.byte	0
 	.byte	0
@@ -23899,1211 +24319,1217 @@ _GLOBAL__sub_I__Z4GetGP7Program:
 	.section	.debug_str,"MS",@progbits,1
 .LASF7:
 	.string	"t_name_ptr"
-.LASF214:
+.LASF217:
 	.string	"_ZSt3absd"
-.LASF212:
+.LASF215:
 	.string	"_ZSt3abse"
-.LASF213:
-	.string	"_ZSt3absf"
-.LASF403:
-	.string	"fgetc"
-.LASF305:
-	.string	"int8_t"
 .LASF216:
+	.string	"_ZSt3absf"
+.LASF406:
+	.string	"fgetc"
+.LASF308:
+	.string	"int8_t"
+.LASF219:
 	.string	"_ZSt3absl"
-.LASF195:
+.LASF198:
 	.string	"__cust_iswap"
-.LASF147:
+.LASF150:
 	.string	"NUMBER_OF_INITIALIZATORS"
-.LASF435:
+.LASF438:
 	.string	"RELEASE"
-.LASF46:
+.LASF49:
 	.string	"size_t"
-.LASF433:
+.LASF436:
 	.string	"DEBUG"
-.LASF405:
+.LASF408:
 	.string	"fgets"
-.LASF256:
+.LASF259:
 	.string	"tm_hour"
-.LASF483:
+.LASF487:
 	.string	"FREE_LOG"
-.LASF74:
+.LASF77:
 	.string	"__value"
-.LASF550:
+.LASF553:
+	.string	"func_head"
+.LASF586:
 	.string	"current_op"
-.LASF482:
+.LASF492:
 	.string	"_ZN6Logger7CAL_LOGEmmPKcS1_i"
-.LASF158:
+.LASF161:
 	.string	"OPERATOR_NUM"
-.LASF70:
+.LASF73:
 	.string	"__ssize_t"
-.LASF113:
+.LASF116:
 	.string	"_IO_codecvt"
-.LASF122:
-	.string	"TokenType"
-.LASF530:
+.LASF596:
 	.string	"tabel"
-.LASF571:
-	.string	"func_414"
-.LASF328:
+.LASF331:
 	.string	"uint_fast64_t"
-.LASF48:
+.LASF51:
 	.string	"signed char"
-.LASF59:
+.LASF62:
 	.string	"__uint_least8_t"
-.LASF36:
+.LASF39:
 	.string	"root"
-.LASF93:
+.LASF96:
 	.string	"_IO_save_end"
-.LASF529:
+.LASF532:
 	.string	"__func__"
-.LASF391:
+.LASF394:
 	.string	"lldiv"
-.LASF555:
+.LASF536:
 	.string	"GetAssigment"
-.LASF194:
+.LASF197:
 	.string	"__cust_imove"
-.LASF252:
+.LASF255:
 	.string	"wcscspn"
-.LASF360:
+.LASF363:
 	.string	"localeconv"
-.LASF168:
+.LASF171:
 	.string	"_M_addref"
-.LASF173:
+.LASF176:
 	.string	"_M_get"
-.LASF396:
+.LASF399:
 	.string	"strtold"
-.LASF393:
+.LASF396:
 	.string	"strtoll"
-.LASF209:
+.LASF212:
 	.string	"_ZNSt8ios_base4InitC4ERKS0_"
-.LASF372:
+.LASF375:
 	.string	"atof"
-.LASF495:
+.LASF549:
+	.string	"func_421"
+.LASF482:
 	.string	"_Z17CompareFuncLabelsP9FuncLabelS0_"
-.LASF86:
+.LASF89:
 	.string	"_IO_write_base"
-.LASF493:
+.LASF480:
 	.string	"_Z8NewTokeni10TokenValueP5TokenS1_"
-.LASF537:
-	.string	"func_882"
-.LASF421:
+.LASF424:
 	.string	"tmpnam"
-.LASF364:
+.LASF367:
 	.string	"div_t"
-.LASF601:
+.LASF604:
 	.string	"_ZN6Logger3logEPKcz"
-.LASF575:
+.LASF555:
 	.string	"prev_declaration"
-.LASF135:
+.LASF138:
 	.string	"BLOCK_CLOSING_BRACKET"
-.LASF481:
+.LASF491:
 	.string	"CAL_LOG"
-.LASF102:
+.LASF105:
 	.string	"_lock"
-.LASF371:
+.LASF374:
 	.string	"at_quick_exit"
-.LASF337:
+.LASF340:
 	.string	"int_curr_symbol"
-.LASF129:
+.LASF132:
 	.string	"VARIABLE"
-.LASF196:
+.LASF199:
 	.string	"__cust_access"
-.LASF321:
+.LASF324:
 	.string	"int_fast8_t"
-.LASF285:
+.LASF288:
 	.string	"wcschr"
-.LASF123:
+.LASF126:
 	.string	"STATEMENT"
 .LASF13:
 	.string	"type"
-.LASF348:
+.LASF351:
 	.string	"n_cs_precedes"
-.LASF161:
+.LASF164:
 	.string	"MAX_WORD_LENGTH"
-.LASF569:
+.LASF547:
 	.string	"block"
-.LASF91:
+.LASF94:
 	.string	"_IO_save_base"
-.LASF228:
+.LASF231:
 	.string	"mbrtowc"
-.LASF148:
+.LASF151:
 	.string	"INITIALIZATORS"
-.LASF568:
-	.string	"func_437"
-.LASF138:
+.LASF141:
 	.string	"END_OF_STATEMENT"
-.LASF276:
+.LASF279:
 	.string	"wcsxfrm"
-.LASF392:
+.LASF395:
 	.string	"atoll"
-.LASF344:
+.LASF347:
 	.string	"int_frac_digits"
-.LASF174:
+.LASF177:
 	.string	"_ZNSt15__exception_ptr13exception_ptrC4EPv"
-.LASF404:
+.LASF407:
 	.string	"fgetpos"
-.LASF77:
+.LASF80:
 	.string	"__pos"
-.LASF29:
+.LASF32:
 	.string	"body_status"
-.LASF115:
+.LASF118:
 	.string	"ssize_t"
-.LASF250:
+.LASF253:
 	.string	"wcscoll"
-.LASF398:
+.LASF401:
 	.string	"clearerr"
-.LASF99:
+.LASF102:
 	.string	"_cur_column"
-.LASF327:
+.LASF330:
 	.string	"uint_fast32_t"
-.LASF342:
+.LASF345:
 	.string	"positive_sign"
-.LASF128:
+.LASF131:
 	.string	"NAME"
-.LASF553:
+.LASF589:
 	.string	"GetE"
-.LASF583:
+.LASF565:
 	.string	"GetG"
-.LASF49:
+.LASF52:
 	.string	"__uint8_t"
-.LASF540:
+.LASF506:
+	.string	"MsgRet"
+.LASF576:
 	.string	"GetN"
-.LASF543:
+.LASF579:
 	.string	"GetP"
-.LASF551:
+.LASF587:
 	.string	"GetT"
-.LASF542:
-	.string	"result"
-.LASF373:
-	.string	"atoi"
-.LASF374:
-	.string	"atol"
-.LASF31:
-	.string	"local_args"
-.LASF71:
-	.string	"__wch"
-.LASF524:
-	.string	"func_name"
-.LASF287:
-	.string	"wcsrchr"
-.LASF425:
-	.string	"iswctype"
-.LASF473:
-	.string	"var_tabels"
-.LASF121:
-	.string	"FuncType"
-.LASF339:
-	.string	"mon_decimal_point"
-.LASF452:
-	.string	"_CANARY_SIZE_"
-.LASF111:
-	.string	"FILE"
-.LASF376:
-	.string	"getenv"
-.LASF56:
-	.string	"long int"
-.LASF432:
-	.string	"DEBUG_ALL"
-.LASF181:
-	.string	"_ZNSt15__exception_ptr13exception_ptraSERKS0_"
-.LASF126:
-	.string	"FUNCTION_RET_TYPE"
-.LASF262:
-	.string	"tm_isdst"
-.LASF513:
-	.string	"SSpush"
-.LASF586:
-	.string	"program_buf_"
-.LASF487:
-	.string	"log_dup_console"
-.LASF244:
-	.string	"vwprintf"
-.LASF149:
-	.string	"INITIALIZATORS_NUM"
 .LASF578:
+	.string	"result"
+.LASF376:
+	.string	"atoi"
+.LASF377:
+	.string	"atol"
+.LASF34:
+	.string	"local_args"
+.LASF74:
+	.string	"__wch"
+.LASF562:
+	.string	"dummy"
+.LASF290:
+	.string	"wcsrchr"
+.LASF428:
+	.string	"iswctype"
+.LASF475:
+	.string	"var_tabels"
+.LASF124:
+	.string	"FuncType"
+.LASF342:
+	.string	"mon_decimal_point"
+.LASF455:
+	.string	"_CANARY_SIZE_"
+.LASF114:
+	.string	"FILE"
+.LASF379:
+	.string	"getenv"
+.LASF59:
+	.string	"long int"
+.LASF435:
+	.string	"DEBUG_ALL"
+.LASF184:
+	.string	"_ZNSt15__exception_ptr13exception_ptraSERKS0_"
+.LASF129:
+	.string	"FUNCTION_RET_TYPE"
+.LASF265:
+	.string	"tm_isdst"
+.LASF501:
+	.string	"SSpush"
+.LASF569:
+	.string	"program_buf_"
+.LASF493:
+	.string	"log_dup_console"
+.LASF247:
+	.string	"vwprintf"
+.LASF152:
+	.string	"INITIALIZATORS_NUM"
+.LASF558:
 	.string	"VarInitialization"
-.LASF112:
+.LASF115:
 	.string	"_IO_marker"
-.LASF146:
+.LASF149:
 	.string	"RETURN"
-.LASF116:
+.LASF119:
 	.string	"fpos_t"
-.LASF354:
+.LASF357:
 	.string	"int_n_cs_precedes"
-.LASF206:
+.LASF209:
 	.string	"~Init"
-.LASF426:
+.LASF429:
 	.string	"towctrans"
-.LASF192:
+.LASF195:
 	.string	"ranges"
-.LASF445:
+.LASF448:
 	.string	"_ZN14FunctionLoggerD4Ev"
-.LASF453:
+.LASF456:
 	.string	"_OPENING_CANARY_"
-.LASF382:
+.LASF385:
 	.string	"rand"
 .LASF18:
 	.string	"DECLARED"
-.LASF533:
-	.string	"FuncLabelToTokens"
-.LASF475:
-	.string	"_ZNSt8ios_base4InitC1Ev"
-.LASF163:
-	.string	"mbstate_t"
-.LASF211:
-	.string	"__ioinit"
-.LASF145:
-	.string	"FOUT"
-.LASF459:
-	.string	"heap"
-.LASF191:
-	.string	"nullptr_t"
-.LASF378:
-	.string	"mblen"
-.LASF320:
-	.string	"uint_least64_t"
 .LASF477:
+	.string	"_ZNSt8ios_base4InitC1Ev"
+.LASF166:
+	.string	"mbstate_t"
+.LASF214:
+	.string	"__ioinit"
+.LASF148:
+	.string	"FOUT"
+.LASF462:
+	.string	"heap"
+.LASF194:
+	.string	"nullptr_t"
+.LASF381:
+	.string	"mblen"
+.LASF323:
+	.string	"uint_least64_t"
+.LASF520:
 	.string	"IsVarLabel"
-.LASF456:
+.LASF459:
 	.string	"_ELEMENT_T_SIZE_"
-.LASF261:
+.LASF264:
 	.string	"tm_yday"
-.LASF589:
+.LASF572:
 	.string	"global_var_tabel"
-.LASF394:
-	.string	"strtoull"
-.LASF581:
-	.string	"FuncInitialization"
-.LASF309:
-	.string	"uint8_t"
-.LASF81:
-	.string	"_IO_FILE"
-.LASF415:
-	.string	"remove"
-.LASF114:
-	.string	"_IO_wide_data"
-.LASF566:
-	.string	"call"
-.LASF180:
-	.string	"operator="
-.LASF236:
-	.string	"__isoc99_swscanf"
-.LASF218:
-	.string	"fgetwc"
-.LASF359:
-	.string	"getwchar"
-.LASF61:
-	.string	"__uint_least16_t"
-.LASF219:
-	.string	"fgetws"
-.LASF44:
-	.string	"unsigned char"
 .LASF397:
-	.string	"__int128 unsigned"
-.LASF349:
-	.string	"n_sep_by_space"
-.LASF399:
-	.string	"fclose"
-.LASF289:
-	.string	"wmemchr"
-.LASF301:
-	.string	"char16_t"
-.LASF588:
-	.string	"global_var_tabel_"
-.LASF593:
-	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
-.LASF511:
-	.string	"FuncTabelCtor"
-.LASF235:
-	.string	"__isoc99_fwscanf"
-.LASF367:
-	.string	"7lldiv_t"
-.LASF249:
-	.string	"wcscmp"
-.LASF384:
-	.string	"srand"
-.LASF233:
-	.string	"swprintf"
+	.string	"strtoull"
 .LASF561:
+	.string	"FuncInitialization"
+.LASF312:
+	.string	"uint8_t"
+.LASF84:
+	.string	"_IO_FILE"
+.LASF418:
+	.string	"remove"
+.LASF117:
+	.string	"_IO_wide_data"
+.LASF544:
+	.string	"call"
+.LASF183:
+	.string	"operator="
+.LASF239:
+	.string	"__isoc99_swscanf"
+.LASF221:
+	.string	"fgetwc"
+.LASF362:
+	.string	"getwchar"
+.LASF64:
+	.string	"__uint_least16_t"
+.LASF222:
+	.string	"fgetws"
+.LASF47:
+	.string	"unsigned char"
+.LASF400:
+	.string	"__int128 unsigned"
+.LASF352:
+	.string	"n_sep_by_space"
+.LASF402:
+	.string	"fclose"
+.LASF292:
+	.string	"wmemchr"
+.LASF304:
+	.string	"char16_t"
+.LASF571:
+	.string	"global_var_tabel_"
+.LASF598:
+	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
+.LASF499:
+	.string	"FuncTabelCtor"
+.LASF238:
+	.string	"__isoc99_fwscanf"
+.LASF370:
+	.string	"7lldiv_t"
+.LASF252:
+	.string	"wcscmp"
+.LASF387:
+	.string	"srand"
+.LASF236:
+	.string	"swprintf"
+.LASF72:
+	.string	"__off64_t"
+.LASF539:
 	.string	"instruction"
 .LASF21:
 	.string	"VarLabel"
-.LASF286:
+.LASF289:
 	.string	"wcspbrk"
-.LASF189:
+.LASF192:
 	.string	"rethrow_exception"
-.LASF33:
+.LASF36:
 	.string	"Program"
-.LASF464:
+.LASF467:
 	.string	"closing_canary"
-.LASF549:
+.LASF585:
 	.string	"prev_op"
-.LASF137:
+.LASF140:
 	.string	"EXPRESSION_CLOSING_BRACKET"
 .LASF14:
 	.string	"value"
-.LASF567:
+.LASF545:
 	.string	"GetStatement"
-.LASF34:
+.LASF37:
 	.string	"token_arr"
 .LASF9:
 	.string	"char"
-.LASF377:
+.LASF380:
 	.string	"ldiv"
-.LASF563:
+.LASF541:
 	.string	"output"
-.LASF293:
+.LASF296:
 	.string	"_ZN9__gnu_cxx3divExx"
-.LASF576:
+.LASF557:
 	.string	"body"
-.LASF503:
+.LASF515:
 	.string	"_Z11IsFuncLabeliP9FuncTabel"
-.LASF428:
+.LASF431:
 	.string	"wctype"
-.LASF319:
+.LASF322:
 	.string	"uint_least32_t"
 .LASF8:
 	.string	"t_name_id"
-.LASF467:
+.LASF470:
 	.string	"START_NUMBER_OF_MAIN_PROCESSES"
-.LASF267:
+.LASF270:
 	.string	"wcsncmp"
-.LASF596:
+.LASF601:
 	.string	"_IO_lock_t"
-.LASF52:
+.LASF55:
 	.string	"__uint16_t"
-.LASF351:
+.LASF354:
 	.string	"n_sign_posn"
-.LASF208:
+.LASF211:
 	.string	"_ZNSt8ios_base4InitD4Ev"
-.LASF139:
+.LASF142:
 	.string	"UNKNOWN_TYPE"
-.LASF280:
+.LASF283:
 	.string	"wmemmove"
-.LASF527:
+.LASF22:
 	.string	"name_id"
-.LASF203:
+.LASF206:
 	.string	"numbers"
-.LASF362:
+.LASF365:
 	.string	"5div_t"
-.LASF412:
+.LASF415:
 	.string	"getc"
-.LASF186:
+.LASF189:
 	.string	"_ZNSt15__exception_ptr13exception_ptr4swapERS0_"
-.LASF560:
-	.string	"func_539"
 .LASF6:
 	.string	"t_function_ret_type"
-.LASF506:
+.LASF516:
 	.string	"PrintToken"
-.LASF155:
+.LASF158:
 	.string	"DOUBLE"
-.LASF255:
+.LASF258:
 	.string	"tm_min"
-.LASF226:
+.LASF229:
 	.string	"getwc"
-.LASF83:
+.LASF86:
 	.string	"_IO_read_ptr"
-.LASF283:
+.LASF286:
 	.string	"wscanf"
-.LASF38:
-	.string	"number_of_strings"
-.LASF340:
-	.string	"mon_thousands_sep"
-.LASF237:
-	.string	"ungetwc"
 .LASF41:
-	.string	"fp_offset"
-.LASF411:
-	.string	"ftell"
-.LASF584:
-	.string	"_Z4GetGP7Program"
-.LASF210:
-	.string	"_ZNSt8ios_base4InitaSERKS0_"
-.LASF227:
-	.string	"mbrlen"
-.LASF559:
-	.string	"GetInstruction"
+	.string	"number_of_strings"
 .LASF343:
+	.string	"mon_thousands_sep"
+.LASF240:
+	.string	"ungetwc"
+.LASF44:
+	.string	"fp_offset"
+.LASF414:
+	.string	"ftell"
+.LASF567:
+	.string	"_Z4GetGP7Program"
+.LASF213:
+	.string	"_ZNSt8ios_base4InitaSERKS0_"
+.LASF230:
+	.string	"mbrlen"
+.LASF537:
+	.string	"GetInstruction"
+.LASF346:
 	.string	"negative_sign"
-.LASF507:
+.LASF510:
 	.string	"_Z8LogTokenPK5TokenPKcPS3_"
-.LASF548:
+.LASF584:
 	.string	"node"
-.LASF125:
+.LASF128:
 	.string	"INITIALIZATOR"
-.LASF352:
+.LASF355:
 	.string	"int_p_cs_precedes"
-.LASF582:
+.LASF563:
 	.string	"GetProcess"
-.LASF224:
+.LASF227:
 	.string	"fwprintf"
-.LASF514:
+.LASF509:
 	.string	"_Z6SSpushP10SuperStackP8VarTabel"
-.LASF538:
+.LASF593:
 	.string	"MakeFuncLabel"
-.LASF504:
+.LASF524:
 	.string	"_Z13LogMsgNullRetPKcz"
-.LASF94:
+.LASF97:
 	.string	"_markers"
-.LASF297:
+.LASF300:
 	.string	"wcstoull"
+.LASF3:
+	.string	"t_operator"
 .LASF2:
 	.string	"t_instruction"
-.LASF76:
+.LASF79:
 	.string	"_G_fpos_t"
-.LASF65:
+.LASF68:
 	.string	"__uint_least64_t"
 .LASF15:
 	.string	"ptr_to_src_code"
-.LASF251:
-	.string	"wcscpy"
-.LASF539:
-	.string	"DefineName"
-.LASF522:
-	.string	"printf"
-.LASF241:
-	.string	"vswprintf"
-.LASF387:
-	.string	"strtoul"
-.LASF509:
-	.string	"printl"
-.LASF25:
-	.string	"arr_size"
-.LASF281:
-	.string	"wmemset"
-.LASF451:
-	.string	"CANARY"
-.LASF246:
-	.string	"__isoc99_vwscanf"
-.LASF207:
-	.string	"_ZNSt8ios_base4InitC4Ev"
-.LASF223:
-	.string	"fwide"
-.LASF300:
-	.string	"char8_t"
-.LASF82:
-	.string	"_flags"
 .LASF254:
-	.string	"tm_sec"
-.LASF500:
-	.string	"AddFuncLabel"
-.LASF187:
-	.string	"__cxa_exception_type"
-.LASF103:
-	.string	"_offset"
-.LASF478:
-	.string	"_Z10IsVarLabeliP8VarTabel"
-.LASF160:
-	.string	"MAX_FUNCTION_NAME_LENGTH"
-.LASF268:
-	.string	"wcsncpy"
-.LASF577:
-	.string	"function"
-.LASF232:
-	.string	"putwchar"
-.LASF182:
-	.string	"_ZNSt15__exception_ptr13exception_ptraSEOS0_"
-.LASF585:
-	.string	"func_109"
-.LASF278:
-	.string	"wmemcmp"
-.LASF516:
-	.string	"_Z12VarTabelCtorP8VarTabel"
-.LASF57:
-	.string	"__uint64_t"
-.LASF604:
-	.string	"_GLOBAL__sub_I__Z4GetGP7Program"
-.LASF37:
-	.string	"string_arr"
-.LASF526:
-	.string	"__priority"
-.LASF492:
-	.string	"NewToken"
-.LASF318:
-	.string	"uint_least16_t"
-.LASF127:
-	.string	"OPERATOR"
-.LASF39:
-	.string	"long unsigned int"
-.LASF472:
-	.string	"global_func"
-.LASF368:
-	.string	"lldiv_t"
-.LASF176:
-	.string	"_ZNSt15__exception_ptr13exception_ptrC4Ev"
+	.string	"wcscpy"
 .LASF594:
-	.string	"TokenValue"
-.LASF169:
-	.string	"_M_release"
-.LASF535:
-	.string	"MakeVarLabel"
-.LASF499:
-	.string	"_Z5SStopP10SuperStack"
-.LASF315:
-	.string	"int_least32_t"
-.LASF304:
-	.string	"__gnu_debug"
-.LASF63:
-	.string	"__uint_least32_t"
-.LASF365:
-	.string	"6ldiv_t"
+	.string	"DefineName"
+.LASF526:
+	.string	"printf"
+.LASF590:
+	.string	"func_4"
+.LASF390:
+	.string	"strtoul"
+.LASF518:
+	.string	"printl"
+.LASF26:
+	.string	"arr_size"
+.LASF284:
+	.string	"wmemset"
+.LASF454:
+	.string	"CANARY"
+.LASF538:
+	.string	"func_553"
+.LASF249:
+	.string	"__isoc99_vwscanf"
+.LASF210:
+	.string	"_ZNSt8ios_base4InitC4Ev"
+.LASF226:
+	.string	"fwide"
+.LASF303:
+	.string	"char8_t"
+.LASF27:
+	.string	"memory_adress"
 .LASF85:
-	.string	"_IO_read_base"
-.LASF316:
-	.string	"int_least64_t"
-.LASF238:
-	.string	"vfwprintf"
+	.string	"_flags"
+.LASF257:
+	.string	"tm_sec"
+.LASF497:
+	.string	"AddFuncLabel"
+.LASF190:
+	.string	"__cxa_exception_type"
+.LASF106:
+	.string	"_offset"
+.LASF521:
+	.string	"_Z10IsVarLabeliP8VarTabel"
+.LASF163:
+	.string	"MAX_FUNCTION_NAME_LENGTH"
+.LASF271:
+	.string	"wcsncpy"
+.LASF556:
+	.string	"function"
+.LASF235:
+	.string	"putwchar"
+.LASF568:
+	.string	"func_103"
+.LASF185:
+	.string	"_ZNSt15__exception_ptr13exception_ptraSEOS0_"
+.LASF125:
+	.string	"TokenType"
+.LASF281:
+	.string	"wmemcmp"
+.LASF503:
+	.string	"_Z12VarTabelCtorP8VarTabel"
+.LASF60:
+	.string	"__uint64_t"
+.LASF607:
+	.string	"_GLOBAL__sub_I__Z4GetGP7Program"
+.LASF40:
+	.string	"string_arr"
+.LASF528:
+	.string	"__priority"
+.LASF479:
+	.string	"NewToken"
+.LASF321:
+	.string	"uint_least16_t"
+.LASF130:
+	.string	"OPERATOR"
+.LASF42:
+	.string	"long unsigned int"
+.LASF474:
+	.string	"global_func"
+.LASF371:
+	.string	"lldiv_t"
+.LASF179:
+	.string	"_ZNSt15__exception_ptr13exception_ptrC4Ev"
+.LASF599:
+	.string	"TokenValue"
+.LASF172:
+	.string	"_M_release"
+.LASF591:
+	.string	"MakeVarLabel"
+.LASF523:
+	.string	"_Z5SStopP10SuperStack"
+.LASF318:
+	.string	"int_least32_t"
 .LASF307:
+	.string	"__gnu_debug"
+.LASF66:
+	.string	"__uint_least32_t"
+.LASF368:
+	.string	"6ldiv_t"
+.LASF88:
+	.string	"_IO_read_base"
+.LASF546:
+	.string	"func_444"
+.LASF319:
+	.string	"int_least64_t"
+.LASF241:
+	.string	"vfwprintf"
+.LASF310:
 	.string	"int32_t"
-.LASF476:
+.LASF478:
 	.string	"this"
-.LASF302:
+.LASF305:
 	.string	"char32_t"
-.LASF110:
+.LASF113:
 	.string	"_unused2"
-.LASF389:
+.LASF392:
 	.string	"wcstombs"
-.LASF263:
+.LASF266:
 	.string	"tm_gmtoff"
-.LASF502:
+.LASF514:
 	.string	"IsFuncLabel"
 .LASF12:
 	.string	"right_child"
-.LASF23:
+.LASF24:
 	.string	"VarTabel"
-.LASF330:
+.LASF333:
 	.string	"uintptr_t"
-.LASF347:
+.LASF350:
 	.string	"p_sep_by_space"
-.LASF141:
+.LASF144:
 	.string	"INSTRUCTIONS"
-.LASF175:
+.LASF178:
 	.string	"_ZNKSt15__exception_ptr13exception_ptr6_M_getEv"
-.LASF118:
+.LASF121:
 	.string	"__float128"
-.LASF430:
+.LASF433:
 	.string	"LoggingLevels"
-.LASF26:
+.LASF28:
 	.string	"number_of_labels"
-.LASF590:
+.LASF573:
 	.string	"global_functions_"
-.LASF471:
+.LASF269:
+	.string	"wcsncat"
+.LASF473:
 	.string	"current_func_tabel"
-.LASF98:
+.LASF101:
 	.string	"_old_offset"
-.LASF410:
+.LASF413:
 	.string	"fsetpos"
-.LASF355:
+.LASF358:
 	.string	"int_n_sep_by_space"
-.LASF457:
+.LASF460:
 	.string	"SuperStack"
-.LASF570:
+.LASF548:
 	.string	"GetBlock"
-.LASF95:
+.LASF98:
 	.string	"_chain"
-.LASF525:
+.LASF527:
 	.string	"__initialize_p"
-.LASF423:
+.LASF426:
 	.string	"wctype_t"
-.LASF496:
+.LASF483:
 	.string	"AddVarLabel"
-.LASF491:
+.LASF508:
 	.string	"LogToken"
-.LASF54:
+.LASF57:
 	.string	"__uint32_t"
-.LASF450:
+.LASF453:
 	.string	"element_t"
-.LASF296:
+.LASF450:
+	.string	"ReturnStatus"
+.LASF299:
 	.string	"long long int"
-.LASF130:
+.LASF133:
 	.string	"CONSTANT"
-.LASF75:
+.LASF78:
 	.string	"__mbstate_t"
-.LASF469:
+.LASF472:
 	.string	"program"
-.LASF279:
+.LASF282:
 	.string	"wmemcpy"
-.LASF390:
+.LASF393:
 	.string	"wctomb"
-.LASF258:
+.LASF261:
 	.string	"tm_mon"
-.LASF198:
+.LASF201:
 	.string	"__cmp_cat"
-.LASF454:
+.LASF457:
 	.string	"_CLOSING_CANARY_"
-.LASF106:
+.LASF109:
 	.string	"_freeres_list"
-.LASF441:
+.LASF444:
 	.string	"_ZN14FunctionLoggerC4ERKS_"
-.LASF274:
+.LASF277:
 	.string	"wcstol"
 .LASF10:
 	.string	"double"
-.LASF380:
+.LASF383:
 	.string	"mbtowc"
-.LASF193:
+.LASF196:
 	.string	"__cust_swap"
-.LASF88:
+.LASF91:
 	.string	"_IO_write_end"
-.LASF603:
+.LASF606:
 	.string	"_ZN6Logger11getInstanceEv"
-.LASF332:
+.LASF335:
 	.string	"uintmax_t"
-.LASF277:
+.LASF280:
 	.string	"wctob"
-.LASF132:
+.LASF135:
 	.string	"CALL"
-.LASF556:
-	.string	"func_642"
-.LASF40:
+.LASF43:
 	.string	"gp_offset"
 .LASF4:
 	.string	"t_constant"
-.LASF521:
+.LASF525:
 	.string	"strerror"
-.LASF431:
+.LASF434:
 	.string	"FULL_MAXIMUM_ULTRA_TOTAL_FUCKING_LOGGING"
-.LASF119:
+.LASF122:
 	.string	"float"
-.LASF587:
+.LASF570:
 	.string	"var_tabels_"
-.LASF369:
+.LASF372:
 	.string	"__compar_fn_t"
-.LASF600:
+.LASF603:
 	.string	"decltype(nullptr)"
-.LASF172:
+.LASF175:
 	.string	"exception_ptr"
-.LASF350:
+.LASF353:
 	.string	"p_sign_posn"
-.LASF520:
+.LASF507:
 	.string	"_Z6MsgRetiPKcz"
-.LASF66:
+.LASF69:
 	.string	"__intmax_t"
-.LASF89:
+.LASF92:
 	.string	"_IO_buf_base"
-.LASF97:
+.LASF100:
 	.string	"_flags2"
 .LASF20:
 	.string	"Token"
-.LASF497:
+.LASF484:
 	.string	"_Z11AddVarLabelP8VarLabelP8VarTabel"
 .LASF16:
 	.string	"unsigned int"
-.LASF449:
+.LASF452:
 	.string	"FAILURE"
-.LASF515:
+.LASF502:
 	.string	"VarTabelCtor"
-.LASF414:
+.LASF417:
 	.string	"perror"
-.LASF200:
+.LASF203:
 	.string	"__cust"
-.LASF329:
+.LASF332:
 	.string	"intptr_t"
-.LASF270:
+.LASF530:
+	.string	"func_656"
+.LASF273:
 	.string	"wcsspn"
-.LASF153:
+.LASF156:
 	.string	"FUNCTION_RET_TYPES"
-.LASF597:
+.LASF564:
 	.string	"operator bool"
-.LASF470:
+.LASF23:
 	.string	"position"
-.LASF460:
+.LASF463:
 	.string	"capacity"
-.LASF409:
+.LASF412:
 	.string	"fseek"
-.LASF108:
+.LASF111:
 	.string	"__pad5"
-.LASF419:
+.LASF422:
 	.string	"setvbuf"
-.LASF591:
+.LASF588:
+	.string	"func_27"
+.LASF574:
 	.string	"global_functions"
-.LASF547:
-	.string	"func_739"
-.LASF517:
+.LASF504:
 	.string	"SuperStackCtor"
 .LASF490:
 	.string	"_ZN6Logger9LogMsgRetEiPKcz"
-.LASF580:
+.LASF560:
 	.string	"var_name"
-.LASF388:
+.LASF391:
 	.string	"system"
-.LASF322:
+.LASF325:
 	.string	"int_fast16_t"
-.LASF424:
+.LASF427:
 	.string	"wctrans_t"
-.LASF42:
+.LASF45:
 	.string	"overflow_arg_area"
-.LASF416:
+.LASF419:
 	.string	"rename"
-.LASF599:
+.LASF602:
 	.string	"type_info"
-.LASF159:
+.LASF162:
 	.string	"COMMENT"
-.LASF157:
+.LASF160:
 	.string	"OPERATORS"
-.LASF536:
+.LASF529:
 	.string	"program_buf"
-.LASF205:
+.LASF208:
 	.string	"Init"
-.LASF201:
+.LASF204:
 	.string	"__cmp_alg"
-.LASF109:
+.LASF112:
 	.string	"_mode"
-.LASF183:
+.LASF186:
 	.string	"~exception_ptr"
-.LASF334:
+.LASF337:
 	.string	"decimal_point"
-.LASF239:
+.LASF242:
 	.string	"vfwscanf"
-.LASF30:
+.LASF33:
 	.string	"number_of_arguments"
-.LASF413:
+.LASF416:
 	.string	"getchar"
-.LASF104:
+.LASF107:
 	.string	"_codecvt"
-.LASF73:
+.LASF76:
 	.string	"__count"
-.LASF290:
+.LASF293:
 	.string	"__gnu_cxx"
-.LASF166:
+.LASF169:
 	.string	"__exception_ptr"
-.LASF299:
+.LASF302:
 	.string	"bool"
-.LASF317:
+.LASF320:
 	.string	"uint_least8_t"
-.LASF400:
+.LASF403:
 	.string	"feof"
-.LASF313:
+.LASF316:
 	.string	"int_least8_t"
-.LASF117:
-	.string	"__unknown__"
-.LASF434:
-	.string	"INTERMEDIATE"
-.LASF552:
-	.string	"func_715"
-.LASF32:
-	.string	"FuncTabel"
-.LASF217:
-	.string	"btowc"
-.LASF383:
-	.string	"qsort"
-.LASF284:
-	.string	"__isoc99_wscanf"
-.LASF455:
-	.string	"_HEAP_MIN_CAPACITY_"
 .LASF120:
+	.string	"__unknown__"
+.LASF437:
+	.string	"INTERMEDIATE"
+.LASF513:
+	.string	"func_name"
+.LASF35:
+	.string	"FuncTabel"
+.LASF220:
+	.string	"btowc"
+.LASF386:
+	.string	"qsort"
+.LASF287:
+	.string	"__isoc99_wscanf"
+.LASF458:
+	.string	"_HEAP_MIN_CAPACITY_"
+.LASF123:
 	.string	"long double"
-.LASF231:
+.LASF234:
 	.string	"putwc"
-.LASF133:
+.LASF136:
 	.string	"ASSIGMENT"
-.LASF323:
+.LASF326:
 	.string	"int_fast32_t"
-.LASF532:
+.LASF595:
 	.string	"GetVarLabel"
-.LASF366:
+.LASF369:
 	.string	"ldiv_t"
 .LASF19:
 	.string	"INITIALIZED"
-.LASF257:
+.LASF260:
 	.string	"tm_mday"
 .LASF17:
 	.string	"NOT_DECLARED"
 .LASF489:
 	.string	"LogMsgRet"
-.LASF72:
+.LASF75:
 	.string	"__wchb"
-.LASF375:
+.LASF378:
 	.string	"bsearch"
-.LASF266:
-	.string	"wcsncat"
-.LASF505:
+.LASF583:
+	.string	"func_51"
+.LASF511:
 	.string	"_ZN14FunctionLoggerD1Ev"
-.LASF142:
+.LASF145:
 	.string	"INSTUCTIONS_NUM"
-.LASF47:
-	.string	"__int8_t"
-.LASF579:
-	.string	"initializator"
-.LASF474:
-	.string	"_ZNSt8ios_base4InitD1Ev"
-.LASF605:
-	.string	"__static_initialization_and_destruction_0"
-.LASF298:
-	.string	"long long unsigned int"
-.LASF185:
-	.string	"swap"
-.LASF43:
-	.string	"reg_save_area"
-.LASF294:
-	.string	"wcstold"
-.LASF353:
-	.string	"int_p_sep_by_space"
-.LASF144:
-	.string	"WHILE"
-.LASF554:
-	.string	"func_692"
-.LASF310:
-	.string	"uint16_t"
-.LASF295:
-	.string	"wcstoll"
-.LASF68:
-	.string	"__off_t"
-.LASF288:
-	.string	"wcsstr"
-.LASF480:
-	.string	"Logger"
-.LASF523:
-	.string	"_ZN14FunctionLoggerC1EiPKc"
-.LASF178:
-	.string	"_ZNSt15__exception_ptr13exception_ptrC4EDn"
-.LASF190:
-	.string	"_ZSt17rethrow_exceptionNSt15__exception_ptr13exception_ptrE"
-.LASF418:
-	.string	"setbuf"
-.LASF248:
-	.string	"wcscat"
-.LASF498:
-	.string	"SStop"
-.LASF269:
-	.string	"wcsrtombs"
-.LASF60:
-	.string	"__int_least16_t"
-.LASF324:
-	.string	"int_fast64_t"
-.LASF107:
-	.string	"_freeres_buf"
-.LASF260:
-	.string	"tm_wday"
-.LASF486:
-	.string	"_ZN6Logger13LogMsgNullRetEPKcz"
-.LASF215:
-	.string	"_ZSt3absx"
-.LASF448:
-	.string	"SUCCESS"
-.LASF140:
-	.string	"NUMBER_OF_INSTUCTIONS"
-.LASF229:
-	.string	"mbsinit"
-.LASF234:
-	.string	"swscanf"
-.LASF152:
-	.string	"NUMBER_OF_FUNCTION_RET_TYPES"
-.LASF271:
-	.string	"wcstod"
-.LASF272:
-	.string	"wcstof"
-.LASF273:
-	.string	"wcstok"
-.LASF204:
-	.string	"__cxx11"
-.LASF314:
-	.string	"int_least16_t"
-.LASF79:
-	.string	"__fpos_t"
-.LASF292:
-	.string	"_ZSt3divll"
-.LASF429:
-	.string	"STD_LOG_NAME"
-.LASF363:
-	.string	"quot"
-.LASF80:
-	.string	"__FILE"
 .LASF50:
-	.string	"__int16_t"
-.LASF325:
-	.string	"uint_fast8_t"
-.LASF92:
-	.string	"_IO_backup_base"
-.LASF358:
-	.string	"setlocale"
-.LASF101:
-	.string	"_shortbuf"
-.LASF150:
-	.string	"FUNCTION_INITIALIZATOR"
-.LASF243:
-	.string	"__isoc99_vswscanf"
-.LASF225:
-	.string	"fwscanf"
-.LASF162:
-	.string	"wint_t"
-.LASF558:
-	.string	"statement"
-.LASF303:
-	.string	"__int128"
-.LASF28:
-	.string	"ret_type"
-.LASF124:
-	.string	"INSTRUCTION"
-.LASF479:
-	.string	"ios_base"
-.LASF69:
-	.string	"__off64_t"
+	.string	"__int8_t"
+.LASF559:
+	.string	"initializator"
+.LASF476:
+	.string	"_ZNSt8ios_base4InitD1Ev"
+.LASF608:
+	.string	"__static_initialization_and_destruction_0"
+.LASF301:
+	.string	"long long unsigned int"
 .LASF188:
-	.string	"_ZNKSt15__exception_ptr13exception_ptr20__cxa_exception_typeEv"
-.LASF406:
-	.string	"fopen"
-.LASF501:
-	.string	"_Z12AddFuncLabelP9FuncLabelP9FuncTabel"
-.LASF544:
-	.string	"func_762"
-.LASF602:
-	.string	"getInstance"
-.LASF53:
-	.string	"__int32_t"
-.LASF439:
-	.string	"current_indent"
-.LASF427:
-	.string	"wctrans"
-.LASF335:
-	.string	"thousands_sep"
-.LASF240:
-	.string	"__isoc99_vfwscanf"
-.LASF466:
-	.string	"GROWTH_RATE"
-.LASF164:
-	.string	"__swappable_details"
-.LASF545:
-	.string	"expression"
-.LASF417:
-	.string	"rewind"
-.LASF90:
-	.string	"_IO_buf_end"
-.LASF265:
-	.string	"wcslen"
-.LASF35:
-	.string	"number_of_tokens"
-.LASF22:
-	.string	"name"
-.LASF24:
-	.string	"label_arr"
-.LASF484:
-	.string	"_ZN6Logger8FREE_LOGEPvPKcS2_i"
-.LASF565:
-	.string	"GetCall"
-.LASF385:
-	.string	"strtod"
-.LASF395:
-	.string	"strtof"
-.LASF199:
-	.string	"__cmp_cust"
-.LASF386:
-	.string	"strtol"
-.LASF202:
-	.string	"__debug"
-.LASF345:
-	.string	"frac_digits"
-.LASF447:
-	.string	"ReturnStatus"
-.LASF401:
-	.string	"ferror"
-.LASF338:
-	.string	"currency_symbol"
-.LASF51:
-	.string	"short int"
-.LASF167:
-	.string	"_M_exception_object"
-.LASF488:
-	.string	"_ZN6Logger15log_dup_consoleEPKcz"
-.LASF312:
-	.string	"uint64_t"
-.LASF253:
-	.string	"wcsftime"
-.LASF546:
-	.string	"GetPower"
-.LASF78:
-	.string	"__state"
-.LASF131:
-	.string	"FUNCTION"
-.LASF306:
-	.string	"int16_t"
-.LASF494:
-	.string	"CompareFuncLabels"
-.LASF370:
-	.string	"atexit"
-.LASF598:
-	.string	"_ZNKSt15__exception_ptr13exception_ptrcvbEv"
-.LASF134:
-	.string	"BLOCK_OPENING_BRACKET"
-.LASF462:
-	.string	"heapHash"
-.LASF64:
-	.string	"__int_least64_t"
-.LASF100:
-	.string	"_vtable_offset"
-.LASF341:
-	.string	"mon_grouping"
-.LASF67:
-	.string	"__uintmax_t"
-.LASF156:
-	.string	"VOID"
-.LASF592:
-	.string	"current_process"
-.LASF562:
-	.string	"fout"
-.LASF573:
-	.string	"GetFunction"
-.LASF420:
-	.string	"tmpfile"
-.LASF468:
-	.string	"ProgramBuffer"
-.LASF361:
-	.string	"11__mbstate_t"
-.LASF436:
-	.string	"FunctionLogger"
+	.string	"swap"
+.LASF46:
+	.string	"reg_save_area"
+.LASF297:
+	.string	"wcstold"
 .LASF356:
-	.string	"int_p_sign_posn"
-.LASF165:
-	.string	"__swappable_with_details"
-.LASF541:
-	.string	"func_787"
-.LASF264:
-	.string	"tm_zone"
-.LASF55:
-	.string	"__int64_t"
-.LASF422:
-	.string	"ungetc"
-.LASF443:
-	.string	"_ZN14FunctionLoggerC4EiPKc"
-.LASF27:
-	.string	"FuncLabel"
-.LASF245:
-	.string	"vwscanf"
-.LASF247:
-	.string	"wcrtomb"
-.LASF333:
-	.string	"lconv"
-.LASF518:
-	.string	"_Z14SuperStackCtorP10SuperStackm"
-.LASF84:
-	.string	"_IO_read_end"
-.LASF151:
-	.string	"VARIABLE_INITIALIZATOR"
+	.string	"int_p_sep_by_space"
+.LASF147:
+	.string	"WHILE"
+.LASF313:
+	.string	"uint16_t"
+.LASF298:
+	.string	"wcstoll"
+.LASF71:
+	.string	"__off_t"
+.LASF291:
+	.string	"wcsstr"
+.LASF486:
+	.string	"Logger"
 .LASF512:
+	.string	"_ZN14FunctionLoggerC1EiPKc"
+.LASF181:
+	.string	"_ZNSt15__exception_ptr13exception_ptrC4EDn"
+.LASF193:
+	.string	"_ZSt17rethrow_exceptionNSt15__exception_ptr13exception_ptrE"
+.LASF421:
+	.string	"setbuf"
+.LASF251:
+	.string	"wcscat"
+.LASF522:
+	.string	"SStop"
+.LASF272:
+	.string	"wcsrtombs"
+.LASF63:
+	.string	"__int_least16_t"
+.LASF327:
+	.string	"int_fast64_t"
+.LASF110:
+	.string	"_freeres_buf"
+.LASF263:
+	.string	"tm_wday"
+.LASF496:
+	.string	"_ZN6Logger13LogMsgNullRetEPKcz"
+.LASF218:
+	.string	"_ZSt3absx"
+.LASF451:
+	.string	"SUCCESS"
+.LASF143:
+	.string	"NUMBER_OF_INSTUCTIONS"
+.LASF232:
+	.string	"mbsinit"
+.LASF237:
+	.string	"swscanf"
+.LASF155:
+	.string	"NUMBER_OF_FUNCTION_RET_TYPES"
+.LASF274:
+	.string	"wcstod"
+.LASF275:
+	.string	"wcstof"
+.LASF276:
+	.string	"wcstok"
+.LASF207:
+	.string	"__cxx11"
+.LASF317:
+	.string	"int_least16_t"
+.LASF82:
+	.string	"__fpos_t"
+.LASF295:
+	.string	"_ZSt3divll"
+.LASF432:
+	.string	"STD_LOG_NAME"
+.LASF366:
+	.string	"quot"
+.LASF83:
+	.string	"__FILE"
+.LASF580:
+	.string	"func_74"
+.LASF53:
+	.string	"__int16_t"
+.LASF328:
+	.string	"uint_fast8_t"
+.LASF95:
+	.string	"_IO_backup_base"
+.LASF361:
+	.string	"setlocale"
+.LASF104:
+	.string	"_shortbuf"
+.LASF153:
+	.string	"FUNCTION_INITIALIZATOR"
+.LASF246:
+	.string	"__isoc99_vswscanf"
+.LASF228:
+	.string	"fwscanf"
+.LASF165:
+	.string	"wint_t"
+.LASF535:
+	.string	"statement"
+.LASF306:
+	.string	"__int128"
+.LASF31:
+	.string	"ret_type"
+.LASF127:
+	.string	"INSTRUCTION"
+.LASF485:
+	.string	"ios_base"
+.LASF244:
+	.string	"vswprintf"
+.LASF191:
+	.string	"_ZNKSt15__exception_ptr13exception_ptr20__cxa_exception_typeEv"
+.LASF409:
+	.string	"fopen"
+.LASF498:
+	.string	"_Z12AddFuncLabelP9FuncLabelP9FuncTabel"
+.LASF605:
+	.string	"getInstance"
+.LASF56:
+	.string	"__int32_t"
+.LASF442:
+	.string	"current_indent"
+.LASF430:
+	.string	"wctrans"
+.LASF338:
+	.string	"thousands_sep"
+.LASF243:
+	.string	"__isoc99_vfwscanf"
+.LASF469:
+	.string	"GROWTH_RATE"
+.LASF167:
+	.string	"__swappable_details"
+.LASF581:
+	.string	"expression"
+.LASF420:
+	.string	"rewind"
+.LASF93:
+	.string	"_IO_buf_end"
+.LASF268:
+	.string	"wcslen"
+.LASF38:
+	.string	"number_of_tokens"
+.LASF30:
+	.string	"name"
+.LASF25:
+	.string	"label_arr"
+.LASF488:
+	.string	"_ZN6Logger8FREE_LOGEPvPKcS2_i"
+.LASF543:
+	.string	"GetCall"
+.LASF388:
+	.string	"strtod"
+.LASF398:
+	.string	"strtof"
+.LASF202:
+	.string	"__cmp_cust"
+.LASF389:
+	.string	"strtol"
+.LASF205:
+	.string	"__debug"
+.LASF348:
+	.string	"frac_digits"
+.LASF592:
+	.string	"func_97"
+.LASF404:
+	.string	"ferror"
+.LASF577:
+	.string	"func_99"
+.LASF341:
+	.string	"currency_symbol"
+.LASF54:
+	.string	"short int"
+.LASF170:
+	.string	"_M_exception_object"
+.LASF494:
+	.string	"_ZN6Logger15log_dup_consoleEPKcz"
+.LASF315:
+	.string	"uint64_t"
+.LASF256:
+	.string	"wcsftime"
+.LASF582:
+	.string	"GetPower"
+.LASF81:
+	.string	"__state"
+.LASF134:
+	.string	"FUNCTION"
+.LASF309:
+	.string	"int16_t"
+.LASF481:
+	.string	"CompareFuncLabels"
+.LASF373:
+	.string	"atexit"
+.LASF566:
+	.string	"_ZNKSt15__exception_ptr13exception_ptrcvbEv"
+.LASF137:
+	.string	"BLOCK_OPENING_BRACKET"
+.LASF465:
+	.string	"heapHash"
+.LASF67:
+	.string	"__int_least64_t"
+.LASF103:
+	.string	"_vtable_offset"
+.LASF344:
+	.string	"mon_grouping"
+.LASF70:
+	.string	"__uintmax_t"
+.LASF159:
+	.string	"VOID"
+.LASF575:
+	.string	"current_process"
+.LASF540:
+	.string	"fout"
+.LASF551:
+	.string	"GetFunction"
+.LASF423:
+	.string	"tmpfile"
+.LASF364:
+	.string	"11__mbstate_t"
+.LASF439:
+	.string	"FunctionLogger"
+.LASF359:
+	.string	"int_p_sign_posn"
+.LASF168:
+	.string	"__swappable_with_details"
+.LASF267:
+	.string	"tm_zone"
+.LASF58:
+	.string	"__int64_t"
+.LASF425:
+	.string	"ungetc"
+.LASF446:
+	.string	"_ZN14FunctionLoggerC4EiPKc"
+.LASF29:
+	.string	"FuncLabel"
+.LASF248:
+	.string	"vwscanf"
+.LASF250:
+	.string	"wcrtomb"
+.LASF336:
+	.string	"lconv"
+.LASF505:
+	.string	"_Z14SuperStackCtorP10SuperStackm"
+.LASF87:
+	.string	"_IO_read_end"
+.LASF154:
+	.string	"VARIABLE_INITIALIZATOR"
+.LASF500:
 	.string	"_Z13FuncTabelCtorP9FuncTabel"
-.LASF379:
+.LASF382:
 	.string	"mbstowcs"
 .LASF11:
 	.string	"left_child"
-.LASF461:
+.LASF464:
 	.string	"status"
-.LASF177:
+.LASF180:
 	.string	"_ZNSt15__exception_ptr13exception_ptrC4ERKS0_"
-.LASF3:
-	.string	"t_operator"
-.LASF528:
-	.string	"__dso_handle"
-.LASF574:
-	.string	"func_336"
-.LASF311:
-	.string	"uint32_t"
-.LASF357:
-	.string	"int_n_sign_posn"
-.LASF96:
-	.string	"_fileno"
-.LASF326:
-	.string	"uint_fast16_t"
-.LASF222:
-	.string	"fputws"
-.LASF242:
-	.string	"vswscanf"
-.LASF485:
-	.string	"LogMsgNullRet"
-.LASF230:
-	.string	"mbsrtowcs"
-.LASF105:
-	.string	"_wide_data"
-.LASF171:
-	.string	"_ZNSt15__exception_ptr13exception_ptr10_M_releaseEv"
-.LASF62:
-	.string	"__int_least32_t"
-.LASF184:
-	.string	"_ZNSt15__exception_ptr13exception_ptrD4Ev"
-.LASF136:
-	.string	"EXPRESSION_OPENING_BRACKET"
-.LASF221:
-	.string	"fputwc"
-.LASF346:
-	.string	"p_cs_precedes"
-.LASF259:
-	.string	"tm_year"
-.LASF179:
-	.string	"_ZNSt15__exception_ptr13exception_ptrC4EOS0_"
-.LASF45:
-	.string	"short unsigned int"
-.LASF510:
-	.string	"_Z6printlPKcc"
-.LASF58:
-	.string	"__int_least8_t"
-.LASF564:
-	.string	"else_instr"
-.LASF438:
-	.string	"guard_level"
-.LASF407:
-	.string	"fread"
-.LASF444:
-	.string	"~FunctionLogger"
-.LASF291:
-	.string	"__ops"
-.LASF197:
-	.string	"__detail"
-.LASF87:
-	.string	"_IO_write_ptr"
-.LASF519:
-	.string	"MsgRet"
-.LASF534:
-	.string	"label"
-.LASF557:
-	.string	"assigment"
-.LASF465:
-	.string	"INDENT_SIZE"
-.LASF308:
-	.string	"int64_t"
-.LASF437:
-	.string	"old_level"
-.LASF170:
-	.string	"_ZNSt15__exception_ptr13exception_ptr9_M_addrefEv"
+.LASF552:
+	.string	"func_334"
 .LASF531:
+	.string	"__dso_handle"
+.LASF314:
+	.string	"uint32_t"
+.LASF360:
+	.string	"int_n_sign_posn"
+.LASF99:
+	.string	"_fileno"
+.LASF329:
+	.string	"uint_fast16_t"
+.LASF225:
+	.string	"fputws"
+.LASF245:
+	.string	"vswscanf"
+.LASF495:
+	.string	"LogMsgNullRet"
+.LASF233:
+	.string	"mbsrtowcs"
+.LASF108:
+	.string	"_wide_data"
+.LASF174:
+	.string	"_ZNSt15__exception_ptr13exception_ptr10_M_releaseEv"
+.LASF65:
+	.string	"__int_least32_t"
+.LASF187:
+	.string	"_ZNSt15__exception_ptr13exception_ptrD4Ev"
+.LASF139:
+	.string	"EXPRESSION_OPENING_BRACKET"
+.LASF224:
+	.string	"fputwc"
+.LASF349:
+	.string	"p_cs_precedes"
+.LASF262:
+	.string	"tm_year"
+.LASF182:
+	.string	"_ZNSt15__exception_ptr13exception_ptrC4EOS0_"
+.LASF48:
+	.string	"short unsigned int"
+.LASF519:
+	.string	"_Z6printlPKcc"
+.LASF61:
+	.string	"__int_least8_t"
+.LASF542:
+	.string	"else_instr"
+.LASF441:
+	.string	"guard_level"
+.LASF410:
+	.string	"fread"
+.LASF447:
+	.string	"~FunctionLogger"
+.LASF294:
+	.string	"__ops"
+.LASF200:
+	.string	"__detail"
+.LASF90:
+	.string	"_IO_write_ptr"
+.LASF533:
+	.string	"__PRETTY_FUNCTION__"
+.LASF554:
+	.string	"label"
+.LASF471:
+	.string	"ProgramCtx"
+.LASF534:
+	.string	"assigment"
+.LASF468:
+	.string	"INDENT_SIZE"
+.LASF311:
+	.string	"int64_t"
+.LASF440:
+	.string	"old_level"
+.LASF173:
+	.string	"_ZNSt15__exception_ptr13exception_ptr9_M_addrefEv"
+.LASF597:
 	.string	"temp"
-.LASF446:
+.LASF449:
 	.string	"CRINGE"
-.LASF336:
+.LASF339:
 	.string	"grouping"
-.LASF463:
+.LASF466:
 	.string	"hash"
-.LASF458:
+.LASF461:
 	.string	"opening_canary"
 .LASF5:
 	.string	"t_initializator"
-.LASF508:
+.LASF517:
 	.string	"_Z10PrintTokenPK5TokenPPKc"
-.LASF282:
+.LASF285:
 	.string	"wprintf"
-.LASF442:
+.LASF445:
 	.string	"_ZN14FunctionLoggeraSERKS_"
-.LASF402:
+.LASF405:
 	.string	"fflush"
-.LASF381:
+.LASF384:
 	.string	"quick_exit"
-.LASF143:
+.LASF146:
 	.string	"ELSE"
-.LASF220:
+.LASF223:
 	.string	"wchar_t"
-.LASF595:
+.LASF600:
 	.string	"typedef __va_list_tag __va_list_tag"
-.LASF331:
+.LASF334:
 	.string	"intmax_t"
-.LASF440:
+.LASF443:
 	.string	"function_name"
-.LASF572:
+.LASF550:
 	.string	"current_statement"
-.LASF275:
+.LASF278:
 	.string	"wcstoul"
-.LASF408:
+.LASF411:
 	.string	"freopen"
-.LASF154:
+.LASF157:
 	.string	"FUNCTION_RET_TYPES_NUM"
 	.section	.debug_line_str,"MS",@progbits,1
 .LASF0:

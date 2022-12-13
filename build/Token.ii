@@ -40,7 +40,7 @@ Token* NewToken (int type = 0, TokenValue value = {0},
 int DeleteBranch (Token* def_node);
 # 2 "./src/Token.cpp" 2
 
-# 1 "../ATC/Logger/LogMacroses.h" 1
+# 1 "./ATC/Logger/LogMacroses.h" 1
        
 
 # 1 "/usr/include/c++/11/iostream" 1 3
@@ -43480,7 +43480,7 @@ namespace std __attribute__ ((__visibility__ ("default")))
 
 
 }
-# 4 "../ATC/Logger/LogMacroses.h" 2
+# 4 "./ATC/Logger/LogMacroses.h" 2
 
 # 1 "/usr/include/string.h" 1 3 4
 # 26 "/usr/include/string.h" 3 4
@@ -43898,18 +43898,18 @@ extern "C++" const char *basename (const char *__filename)
      noexcept (true) __asm ("basename") __attribute__ ((__nonnull__ (1)));
 # 539 "/usr/include/string.h" 3 4
 }
-# 6 "../ATC/Logger/LogMacroses.h" 2
+# 6 "./ATC/Logger/LogMacroses.h" 2
 
-# 1 "../ATC/Logger/Logger.h" 1
+# 1 "./ATC/Logger/Logger.h" 1
        
 
 
 
-# 1 "../ATC/Logger/LogConfig.h" 1
+# 1 "./ATC/Logger/LogConfig.h" 1
        
 
 
-# 3 "../ATC/Logger/LogConfig.h"
+# 3 "./ATC/Logger/LogConfig.h"
 const char STD_LOG_NAME[] = "./logs/stdlog.ars";
 
 
@@ -43926,8 +43926,8 @@ enum LoggingLevels
 
     RELEASE = 666,
     };
-# 6 "../ATC/Logger/Logger.h" 2
-# 1 "../ATC/Logger/tostring.h" 1
+# 6 "./ATC/Logger/Logger.h" 2
+# 1 "./ATC/Logger/tostring.h" 1
        
 
 char* tostring(short);
@@ -43941,7 +43941,7 @@ char* tostring(double);
 
 char* tostring(char);
 char* tostring(const char*);
-# 7 "../ATC/Logger/Logger.h" 2
+# 7 "./ATC/Logger/Logger.h" 2
 
 class Logger : public std::ostream
     {
@@ -44002,10 +44002,10 @@ Logger& operator<<(Logger& log_out, const Type& value)
          free(message);
          return log_out;
          }
-# 8 "../ATC/Logger/LogMacroses.h" 2
-# 1 "../ATC/Logger/FunctionLogger.h" 1
+# 8 "./ATC/Logger/LogMacroses.h" 2
+# 1 "./ATC/Logger/FunctionLogger.h" 1
        
-# 11 "../ATC/Logger/FunctionLogger.h"
+# 11 "./ATC/Logger/FunctionLogger.h"
 class FunctionLogger
     {
     private:
@@ -44022,9 +44022,9 @@ class FunctionLogger
         FunctionLogger(int lvl, const char* func_name);
         ~FunctionLogger();
     };
-# 9 "../ATC/Logger/LogMacroses.h" 2
+# 9 "./ATC/Logger/LogMacroses.h" 2
 
-# 1 "../ATC/RandomStuff/CommonEnums.h" 1
+# 1 "./ATC/RandomStuff/CommonEnums.h" 1
        
 
 const int CRINGE = 0xDED;
@@ -44069,15 +44069,15 @@ enum CommonErrors
     SYNTAX_ERROR = 13,
     LOX = 0xDED,
     };
-# 11 "../ATC/Logger/LogMacroses.h" 2
-# 1 "../ATC/ConsoleColors/LinuxColors.h" 1
+# 11 "./ATC/Logger/LogMacroses.h" 2
+# 1 "./ATC/ConsoleColors/LinuxColors.h" 1
        
-# 12 "../ATC/Logger/LogMacroses.h" 2
-# 1 "../ATC/Utils/Utils.h" 1
+# 12 "./ATC/Logger/LogMacroses.h" 2
+# 1 "./ATC/Utils/Utils.h" 1
        
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 1 3 4
-# 4 "../ATC/Utils/Utils.h" 2
+# 4 "./ATC/Utils/Utils.h" 2
 
 
 int MsgRet (int return_value, const char* format, ...);
@@ -44091,7 +44091,7 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 
 
 int SYSTEM(const char* format, ...);
-# 13 "../ATC/Logger/LogMacroses.h" 2
+# 13 "./ATC/Logger/LogMacroses.h" 2
 # 4 "./src/Token.cpp" 2
 
 Token* NewToken (int type, TokenValue value,

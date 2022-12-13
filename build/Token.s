@@ -539,11 +539,11 @@ _GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_:
 	.file 39 "/usr/include/stdio.h"
 	.file 40 "/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h"
 	.file 41 "/usr/include/wctype.h"
-	.file 42 "../ATC/Logger/LogConfig.h"
-	.file 43 "../ATC/Logger/FunctionLogger.h"
-	.file 44 "../ATC/RandomStuff/CommonEnums.h"
-	.file 45 "../ATC/Logger/Logger.h"
-	.file 46 "../ATC/Utils/Utils.h"
+	.file 42 "./ATC/Logger/LogConfig.h"
+	.file 43 "./ATC/Logger/FunctionLogger.h"
+	.file 44 "./ATC/RandomStuff/CommonEnums.h"
+	.file 45 "./ATC/Logger/Logger.h"
+	.file 46 "./ATC/Utils/Utils.h"
 	.file 47 "/usr/include/c++/11/bits/algorithmfwd.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:

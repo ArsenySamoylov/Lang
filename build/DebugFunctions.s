@@ -1,7 +1,7 @@
 	.file	"DebugFunctions.cpp"
 	.text
 .Ltext0:
-	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/SuperStack/DebugFunctions.cpp"
+	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "./ATC/SuperStack/DebugFunctions.cpp"
 	.section	.text._ZSt5isnand,"axG",@progbits,_ZSt5isnand,comdat
 	.weak	_ZSt5isnand
 	.type	_ZSt5isnand, @function
@@ -78,7 +78,7 @@ _ZL16_ELEMENT_T_SIZE_:
 	.type	_Z14MedComissionSSP10SuperStack, @function
 _Z14MedComissionSSP10SuperStack:
 .LFB1112:
-	.file 2 "../ATC/SuperStack/DebugFunctions.cpp"
+	.file 2 "./ATC/SuperStack/DebugFunctions.cpp"
 	.loc 2 7 5
 	.cfi_startproc
 	endbr64
@@ -679,20 +679,20 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.file 17 "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h"
 	.file 18 "/usr/include/x86_64-linux-gnu/bits/types/FILE.h"
 	.file 19 "./headers/Tabels.h"
-	.file 20 "../ATC/SuperStack/SuperStackConfig.h"
-	.file 21 "../ATC/SuperStack/DebugFunctions.h"
-	.file 22 "../ATC/my_safety/my_safety.h"
-	.file 23 "../ATC/SuperStack/SuperStack.h"
+	.file 20 "./ATC/SuperStack/SuperStackConfig.h"
+	.file 21 "./ATC/SuperStack/DebugFunctions.h"
+	.file 22 "./ATC/my_safety/my_safety.h"
+	.file 23 "./ATC/SuperStack/SuperStack.h"
 	.file 24 "/usr/include/stdio.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x1e26
+	.long	0x1e40
 	.value	0x5
 	.byte	0x1
 	.byte	0x8
 	.long	.Ldebug_abbrev0
 	.uleb128 0x1c
-	.long	.LASF366
+	.long	.LASF368
 	.byte	0x21
 	.long	.LASF0
 	.long	.LASF1
@@ -2350,7 +2350,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x1
 	.value	0x777
 	.byte	0x3
-	.long	.LASF367
+	.long	.LASF369
 	.long	0x1209
 	.uleb128 0x1
 	.long	0x1209
@@ -3234,7 +3234,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x19
 	.long	0x169c
 	.uleb128 0x25
-	.long	.LASF368
+	.long	.LASF370
 	.byte	0x11
 	.byte	0x2b
 	.byte	0xe
@@ -3271,7 +3271,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.uleb128 0x6
 	.long	0x1822
 	.uleb128 0x1b
-	.long	.LASF310
+	.long	.LASF312
 	.long	0x118e
 	.byte	0x13
 	.byte	0xc
@@ -3289,10 +3289,10 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0
 	.uleb128 0x12
 	.long	.LASF303
-	.byte	0x4
+	.byte	0x8
 	.byte	0x13
 	.byte	0x13
-	.long	0x18c0
+	.long	0x18cd
 	.uleb128 0x4
 	.long	.LASF304
 	.byte	0x13
@@ -3300,92 +3300,106 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x9
 	.long	0x11dc
 	.byte	0
+	.uleb128 0x4
+	.long	.LASF305
+	.byte	0x13
+	.byte	0x16
+	.byte	0x9
+	.long	0x11dc
+	.byte	0x4
 	.byte	0
 	.uleb128 0x12
-	.long	.LASF305
-	.byte	0x10
-	.byte	0x13
-	.byte	0x18
-	.long	0x18f4
-	.uleb128 0x4
 	.long	.LASF306
+	.byte	0x18
 	.byte	0x13
-	.byte	0x1a
-	.byte	0x10
-	.long	0x18f9
-	.byte	0
+	.byte	0x19
+	.long	0x190e
 	.uleb128 0x4
 	.long	.LASF307
 	.byte	0x13
 	.byte	0x1b
+	.byte	0x10
+	.long	0x1913
+	.byte	0
+	.uleb128 0x4
+	.long	.LASF308
+	.byte	0x13
+	.byte	0x1c
 	.byte	0x9
 	.long	0x11dc
 	.byte	0x8
 	.uleb128 0x4
-	.long	.LASF308
+	.long	.LASF309
 	.byte	0x13
-	.byte	0x1d
+	.byte	0x1e
 	.byte	0x9
 	.long	0x11dc
 	.byte	0xc
+	.uleb128 0x4
+	.long	.LASF310
+	.byte	0x13
+	.byte	0x1f
+	.byte	0x9
+	.long	0x11dc
+	.byte	0x10
 	.byte	0
 	.uleb128 0x10
-	.long	0x18c0
+	.long	0x18cd
 	.uleb128 0x6
-	.long	0x18fe
+	.long	0x1918
 	.uleb128 0x6
 	.long	0x18a6
 	.uleb128 0xb
-	.long	.LASF309
+	.long	.LASF311
 	.byte	0x14
 	.byte	0x8
 	.byte	0x13
-	.long	0x190f
+	.long	0x1929
 	.uleb128 0x6
-	.long	0x18c0
+	.long	0x18cd
 	.uleb128 0x1b
-	.long	.LASF311
+	.long	.LASF313
 	.long	0x118e
 	.byte	0x15
 	.byte	0x7
 	.byte	0xf
-	.long	0x196a
-	.uleb128 0xa
-	.long	.LASF312
-	.byte	0x1
-	.uleb128 0xa
-	.long	.LASF313
-	.byte	0x2
+	.long	0x1984
 	.uleb128 0xa
 	.long	.LASF314
-	.byte	0x4
+	.byte	0x1
 	.uleb128 0xa
 	.long	.LASF315
-	.byte	0x8
+	.byte	0x2
 	.uleb128 0xa
 	.long	.LASF316
-	.byte	0x10
+	.byte	0x4
 	.uleb128 0xa
 	.long	.LASF317
-	.byte	0x20
+	.byte	0x8
 	.uleb128 0xa
 	.long	.LASF318
-	.byte	0x40
+	.byte	0x10
 	.uleb128 0xa
 	.long	.LASF319
+	.byte	0x20
+	.uleb128 0xa
+	.long	.LASF320
+	.byte	0x40
+	.uleb128 0xa
+	.long	.LASF321
 	.byte	0x80
 	.uleb128 0x16
-	.long	.LASF320
+	.long	.LASF322
 	.value	0x100
 	.uleb128 0x16
-	.long	.LASF321
+	.long	.LASF323
 	.value	0x200
 	.uleb128 0x16
-	.long	.LASF322
+	.long	.LASF324
 	.value	0x400
 	.byte	0
 	.uleb128 0xd
-	.long	.LASF323
+	.long	.LASF325
 	.byte	0x15
 	.byte	0x16
 	.byte	0xb
@@ -3394,7 +3408,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x3
 	.quad	_ZL9IntPoison
 	.uleb128 0xd
-	.long	.LASF324
+	.long	.LASF326
 	.byte	0x15
 	.byte	0x17
 	.byte	0xc
@@ -3403,7 +3417,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x3
 	.quad	_ZL10CharPoison
 	.uleb128 0xd
-	.long	.LASF325
+	.long	.LASF327
 	.byte	0x15
 	.byte	0x18
 	.byte	0xe
@@ -3412,15 +3426,15 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x3
 	.quad	_ZL12DoublePoison
 	.uleb128 0x26
-	.long	.LASF369
+	.long	.LASF371
 	.uleb128 0xb
-	.long	.LASF326
+	.long	.LASF328
 	.byte	0x16
 	.byte	0x7
 	.byte	0x13
 	.long	0x11ef
 	.uleb128 0xd
-	.long	.LASF327
+	.long	.LASF329
 	.byte	0x16
 	.byte	0x9
 	.byte	0xb
@@ -3429,7 +3443,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x3
 	.quad	_ZL13_CANARY_SIZE_
 	.uleb128 0xd
-	.long	.LASF328
+	.long	.LASF330
 	.byte	0x16
 	.byte	0xb
 	.byte	0xb
@@ -3438,7 +3452,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x3
 	.quad	_ZL16_OPENING_CANARY_
 	.uleb128 0xd
-	.long	.LASF329
+	.long	.LASF331
 	.byte	0x16
 	.byte	0xc
 	.byte	0xb
@@ -3447,7 +3461,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x3
 	.quad	_ZL16_CLOSING_CANARY_
 	.uleb128 0xd
-	.long	.LASF330
+	.long	.LASF332
 	.byte	0x17
 	.byte	0x15
 	.byte	0xe
@@ -3456,7 +3470,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x3
 	.quad	_ZL19_HEAP_MIN_CAPACITY_
 	.uleb128 0xd
-	.long	.LASF331
+	.long	.LASF333
 	.byte	0x17
 	.byte	0x16
 	.byte	0xe
@@ -3465,27 +3479,27 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x3
 	.quad	_ZL16_ELEMENT_T_SIZE_
 	.uleb128 0x12
-	.long	.LASF332
+	.long	.LASF334
 	.byte	0x38
 	.byte	0x17
 	.byte	0x2c
-	.long	0x1aa0
+	.long	0x1aba
 	.uleb128 0x4
-	.long	.LASF333
+	.long	.LASF335
 	.byte	0x17
 	.byte	0x2f
 	.byte	0xc
-	.long	0x19b1
+	.long	0x19cb
 	.byte	0
 	.uleb128 0x4
-	.long	.LASF334
+	.long	.LASF336
 	.byte	0x17
 	.byte	0x32
 	.byte	0x10
-	.long	0x1aa0
+	.long	0x1aba
 	.byte	0x8
 	.uleb128 0x4
-	.long	.LASF335
+	.long	.LASF337
 	.byte	0x17
 	.byte	0x33
 	.byte	0xc
@@ -3499,43 +3513,43 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.long	0x1288
 	.byte	0x18
 	.uleb128 0x4
-	.long	.LASF336
+	.long	.LASF338
 	.byte	0x17
 	.byte	0x36
 	.byte	0x9
 	.long	0x11dc
 	.byte	0x20
 	.uleb128 0x4
-	.long	.LASF337
+	.long	.LASF339
 	.byte	0x17
 	.byte	0x3d
 	.byte	0x9
 	.long	0x11dc
 	.byte	0x24
 	.uleb128 0x4
-	.long	.LASF338
+	.long	.LASF340
 	.byte	0x17
 	.byte	0x3e
 	.byte	0x9
 	.long	0x11dc
 	.byte	0x28
 	.uleb128 0x4
-	.long	.LASF339
+	.long	.LASF341
 	.byte	0x17
 	.byte	0x42
 	.byte	0xc
-	.long	0x19b1
+	.long	0x19cb
 	.byte	0x30
 	.byte	0
 	.uleb128 0x6
-	.long	0x1903
+	.long	0x191d
 	.uleb128 0x28
-	.long	.LASF340
+	.long	.LASF342
 	.byte	0x18
 	.value	0x15e
 	.byte	0xc
 	.long	0x11dc
-	.long	0x1ac2
+	.long	0x1adc
 	.uleb128 0x1
 	.long	0x187e
 	.uleb128 0x1
@@ -3543,16 +3557,16 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.uleb128 0x29
 	.byte	0
 	.uleb128 0x13
-	.long	.LASF343
+	.long	.LASF345
 	.byte	0x9a
-	.long	.LASF344
+	.long	.LASF346
 	.quad	.LFB1125
 	.quad	.LFE1125-.LFB1125
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1aff
+	.long	0x1b19
 	.uleb128 0x7
-	.long	.LASF341
+	.long	.LASF343
 	.byte	0x9a
 	.byte	0x20
 	.long	0x187e
@@ -3560,10 +3574,10 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x91
 	.sleb128 -24
 	.uleb128 0x7
-	.long	.LASF342
+	.long	.LASF344
 	.byte	0x9a
 	.byte	0x2e
-	.long	0x1aff
+	.long	0x1b19
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
@@ -3571,16 +3585,16 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.uleb128 0x6
 	.long	0x11fd
 	.uleb128 0x13
-	.long	.LASF343
-	.byte	0x92
 	.long	.LASF345
+	.byte	0x92
+	.long	.LASF347
 	.quad	.LFB1124
 	.quad	.LFE1124-.LFB1124
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1b41
+	.long	0x1b5b
 	.uleb128 0x7
-	.long	.LASF341
+	.long	.LASF343
 	.byte	0x92
 	.byte	0x20
 	.long	0x187e
@@ -3588,7 +3602,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x91
 	.sleb128 -24
 	.uleb128 0x7
-	.long	.LASF342
+	.long	.LASF344
 	.byte	0x92
 	.byte	0x2c
 	.long	0x1236
@@ -3597,16 +3611,16 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.sleb128 -32
 	.byte	0
 	.uleb128 0x13
-	.long	.LASF343
+	.long	.LASF345
 	.byte	0x8a
-	.long	.LASF346
+	.long	.LASF348
 	.quad	.LFB1123
 	.quad	.LFE1123-.LFB1123
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1b7e
+	.long	0x1b98
 	.uleb128 0x7
-	.long	.LASF341
+	.long	.LASF343
 	.byte	0x8a
 	.byte	0x20
 	.long	0x187e
@@ -3614,7 +3628,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x91
 	.sleb128 -24
 	.uleb128 0x7
-	.long	.LASF342
+	.long	.LASF344
 	.byte	0x8a
 	.byte	0x2b
 	.long	0x1375
@@ -3623,46 +3637,46 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.sleb128 -32
 	.byte	0
 	.uleb128 0x14
-	.long	.LASF347
+	.long	.LASF349
 	.byte	0x82
 	.byte	0x5
-	.long	.LASF348
+	.long	.LASF350
 	.long	0x11dc
 	.quad	.LFB1122
 	.quad	.LFE1122-.LFB1122
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1bb2
+	.long	0x1bcc
 	.uleb128 0x7
-	.long	.LASF342
+	.long	.LASF344
 	.byte	0x82
 	.byte	0x1f
-	.long	0x1bb2
+	.long	0x1bcc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
 	.byte	0
 	.uleb128 0x6
-	.long	0x1bb7
+	.long	0x1bd1
 	.uleb128 0x6
-	.long	0x18f4
+	.long	0x190e
 	.uleb128 0x2a
-	.long	.LASF347
+	.long	.LASF349
 	.byte	0x2
 	.byte	0x7a
 	.byte	0x5
-	.long	.LASF349
+	.long	.LASF351
 	.long	0x11dc
 	.quad	.LFB1121
 	.quad	.LFE1121-.LFB1121
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1bf1
+	.long	0x1c0b
 	.uleb128 0x7
-	.long	.LASF342
+	.long	.LASF344
 	.byte	0x7a
 	.byte	0x1d
-	.long	0x1bf1
+	.long	0x1c0b
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -3670,18 +3684,18 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.uleb128 0x6
 	.long	0x1204
 	.uleb128 0x14
-	.long	.LASF347
+	.long	.LASF349
 	.byte	0x72
 	.byte	0x5
-	.long	.LASF350
+	.long	.LASF352
 	.long	0x11dc
 	.quad	.LFB1120
 	.quad	.LFE1120-.LFB1120
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1c2a
+	.long	0x1c44
 	.uleb128 0x7
-	.long	.LASF342
+	.long	.LASF344
 	.byte	0x72
 	.byte	0x1b
 	.long	0x1283
@@ -3690,18 +3704,18 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.sleb128 -24
 	.byte	0
 	.uleb128 0x14
-	.long	.LASF347
+	.long	.LASF349
 	.byte	0x6a
 	.byte	0x5
-	.long	.LASF351
+	.long	.LASF353
 	.long	0x11dc
 	.quad	.LFB1119
 	.quad	.LFE1119-.LFB1119
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1c5e
+	.long	0x1c78
 	.uleb128 0x7
-	.long	.LASF342
+	.long	.LASF344
 	.byte	0x6a
 	.byte	0x1a
 	.long	0x127e
@@ -3710,54 +3724,54 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.sleb128 -24
 	.byte	0
 	.uleb128 0x11
-	.long	.LASF352
+	.long	.LASF354
 	.byte	0x64
-	.long	.LASF353
+	.long	.LASF355
 	.quad	.LFB1118
 	.quad	.LFE1118-.LFB1118
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1c8d
+	.long	0x1ca7
 	.uleb128 0x7
-	.long	.LASF342
+	.long	.LASF344
 	.byte	0x64
 	.byte	0x1c
-	.long	0x1c8d
+	.long	0x1ca7
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
 	.byte	0
 	.uleb128 0x6
-	.long	0x190f
+	.long	0x1929
 	.uleb128 0x11
-	.long	.LASF352
-	.byte	0x5e
 	.long	.LASF354
+	.byte	0x5e
+	.long	.LASF356
 	.quad	.LFB1117
 	.quad	.LFE1117-.LFB1117
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1cc1
+	.long	0x1cdb
 	.uleb128 0x7
-	.long	.LASF342
+	.long	.LASF344
 	.byte	0x5e
 	.byte	0x19
-	.long	0x1aff
+	.long	0x1b19
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
 	.byte	0
 	.uleb128 0x11
-	.long	.LASF352
+	.long	.LASF354
 	.byte	0x58
-	.long	.LASF355
+	.long	.LASF357
 	.quad	.LFB1116
 	.quad	.LFE1116-.LFB1116
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1cf0
+	.long	0x1d0a
 	.uleb128 0x7
-	.long	.LASF342
+	.long	.LASF344
 	.byte	0x58
 	.byte	0x17
 	.long	0x1236
@@ -3766,16 +3780,16 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.sleb128 -24
 	.byte	0
 	.uleb128 0x11
-	.long	.LASF352
+	.long	.LASF354
 	.byte	0x52
-	.long	.LASF356
+	.long	.LASF358
 	.quad	.LFB1115
 	.quad	.LFE1115-.LFB1115
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1d1f
+	.long	0x1d39
 	.uleb128 0x7
-	.long	.LASF342
+	.long	.LASF344
 	.byte	0x52
 	.byte	0x16
 	.long	0x1375
@@ -3784,24 +3798,24 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.sleb128 -24
 	.byte	0
 	.uleb128 0x13
-	.long	.LASF357
+	.long	.LASF359
 	.byte	0x49
-	.long	.LASF358
+	.long	.LASF360
 	.quad	.LFB1114
 	.quad	.LFE1114-.LFB1114
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1d7b
+	.long	0x1d95
 	.uleb128 0x7
-	.long	.LASF334
+	.long	.LASF336
 	.byte	0x49
 	.byte	0x21
-	.long	0x1aa0
+	.long	0x1aba
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
 	.uleb128 0x7
-	.long	.LASF359
+	.long	.LASF361
 	.byte	0x49
 	.byte	0x2e
 	.long	0x126d
@@ -3823,16 +3837,16 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0
 	.byte	0
 	.uleb128 0x11
-	.long	.LASF360
+	.long	.LASF362
 	.byte	0x3d
-	.long	.LASF361
+	.long	.LASF363
 	.quad	.LFB1113
 	.quad	.LFE1113-.LFB1113
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1db9
+	.long	0x1dd3
 	.uleb128 0x7
-	.long	.LASF341
+	.long	.LASF343
 	.byte	0x3d
 	.byte	0x1e
 	.long	0x187e
@@ -3844,32 +3858,32 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.byte	0x2
 	.byte	0x3d
 	.byte	0x2f
-	.long	0x1aa0
+	.long	0x1aba
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
 	.byte	0
 	.uleb128 0x14
-	.long	.LASF362
+	.long	.LASF364
 	.byte	0x6
 	.byte	0xa
-	.long	.LASF363
+	.long	.LASF365
 	.long	0x118e
 	.quad	.LFB1112
 	.quad	.LFE1112-.LFB1112
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x1dfc
+	.long	0x1e16
 	.uleb128 0x7
-	.long	.LASF364
+	.long	.LASF366
 	.byte	0x6
 	.byte	0x26
-	.long	0x1dfc
+	.long	0x1e16
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
 	.uleb128 0xd
-	.long	.LASF365
+	.long	.LASF367
 	.byte	0x2
 	.byte	0x8
 	.byte	0xe
@@ -3879,7 +3893,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.sleb128 -20
 	.byte	0
 	.uleb128 0x6
-	.long	0x1a2b
+	.long	0x1a45
 	.uleb128 0x2e
 	.long	0x6a9
 	.quad	.LFB107
@@ -4706,15 +4720,15 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_shortbuf"
 .LASF87:
 	.string	"_ZSt8isfinitef"
-.LASF321:
+.LASF323:
 	.string	"STACK_HASH_IS_DAMAGED"
-.LASF368:
+.LASF370:
 	.string	"_IO_lock_t"
 .LASF77:
 	.string	"fmod"
 .LASF119:
 	.string	"_ZSt11islessequalff"
-.LASF335:
+.LASF337:
 	.string	"capacity"
 .LASF40:
 	.string	"_ZSt4coshf"
@@ -4742,7 +4756,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"__cust"
 .LASF256:
 	.string	"double_t"
-.LASF312:
+.LASF314:
 	.string	"NULL_STK_PTR_ERR"
 .LASF180:
 	.string	"llround"
@@ -4760,19 +4774,19 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt4fdimee"
 .LASF266:
 	.string	"_flags"
-.LASF310:
+.LASF312:
 	.string	"FuncType"
 .LASF259:
 	.string	"wchar_t"
-.LASF334:
+.LASF336:
 	.string	"heap"
 .LASF281:
 	.string	"_flags2"
 .LASF282:
 	.string	"_old_offset"
-.LASF319:
+.LASF321:
 	.string	"DEAD_HEAPOPENING_CANARY"
-.LASF318:
+.LASF320:
 	.string	"DEAD_STACKCLOSING_CANARY"
 .LASF278:
 	.string	"_markers"
@@ -4782,7 +4796,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"scalbln"
 .LASF74:
 	.string	"floor"
-.LASF309:
+.LASF311:
 	.string	"element_t"
 .LASF53:
 	.string	"_ZSt5ldexpei"
@@ -4792,11 +4806,11 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"erfc"
 .LASF260:
 	.string	"char8_t"
-.LASF357:
+.LASF359:
 	.string	"FillPoisonHeap"
 .LASF137:
 	.string	"cbrt"
-.LASF305:
+.LASF306:
 	.string	"VarTabel"
 .LASF156:
 	.string	"_ZSt4fdimff"
@@ -4804,7 +4818,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt4rintf"
 .LASF220:
 	.string	"_ZSt7scalblnel"
-.LASF366:
+.LASF368:
 	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF199:
 	.string	"_ZSt9nearbyinte"
@@ -4814,9 +4828,9 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt9nextafteree"
 .LASF207:
 	.string	"remainder"
-.LASF306:
+.LASF307:
 	.string	"label_arr"
-.LASF327:
+.LASF329:
 	.string	"_CANARY_SIZE_"
 .LASF17:
 	.string	"_ZSt3absd"
@@ -4862,35 +4876,37 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt9nextafterff"
 .LASF80:
 	.string	"fpclassify"
-.LASF322:
+.LASF324:
 	.string	"HEAP_HASH_IS_DAMAGED"
-.LASF360:
+.LASF362:
 	.string	"fprintf_element_t"
 .LASF241:
 	.string	"long long unsigned int"
 .LASF201:
 	.string	"nextafter"
-.LASF341:
+.LASF343:
 	.string	"file"
-.LASF307:
+.LASF308:
 	.string	"arr_size"
 .LASF159:
 	.string	"fmax"
-.LASF345:
+.LASF309:
+	.string	"memory_adress"
+.LASF347:
 	.string	"_Z19fprint_element_typeP8_IO_FILEPc"
-.LASF344:
+.LASF346:
 	.string	"_Z19fprint_element_typeP8_IO_FILEPd"
 .LASF38:
 	.string	"cosh"
 .LASF61:
 	.string	"_ZSt4modfePe"
-.LASF346:
+.LASF348:
 	.string	"_Z19fprint_element_typeP8_IO_FILEPi"
 .LASF63:
 	.string	"_ZSt3powee"
-.LASF328:
+.LASF330:
 	.string	"_OPENING_CANARY_"
-.LASF356:
+.LASF358:
 	.string	"_Z10FillPoisonPi"
 .LASF186:
 	.string	"log2"
@@ -4900,7 +4916,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_IO_backup_base"
 .LASF6:
 	.string	"__cust_imove"
-.LASF342:
+.LASF344:
 	.string	"element"
 .LASF287:
 	.string	"_offset"
@@ -4914,11 +4930,11 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt10fpclassifyf"
 .LASF51:
 	.string	"_ZSt5frexpfPi"
-.LASF340:
+.LASF342:
 	.string	"fprintf"
 .LASF280:
 	.string	"_fileno"
-.LASF331:
+.LASF333:
 	.string	"_ELEMENT_T_SIZE_"
 .LASF208:
 	.string	"_ZSt9remainderee"
@@ -4926,11 +4942,11 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt6llrinte"
 .LASF179:
 	.string	"_ZSt6llrintf"
-.LASF317:
+.LASF319:
 	.string	"DEAD_STACKOPENING_CANARY"
 .LASF126:
 	.string	"_ZSt11isunordereddd"
-.LASF315:
+.LASF317:
 	.string	"WRONG_STK_CAPACITY"
 .LASF257:
 	.string	"size_t"
@@ -4952,7 +4968,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_IO_read_base"
 .LASF163:
 	.string	"_ZSt4fminee"
-.LASF367:
+.LASF369:
 	.string	"_ZSt4lerpfff"
 .LASF110:
 	.string	"_ZSt14isgreaterequaldd"
@@ -4966,7 +4982,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt5truncf"
 .LASF209:
 	.string	"_ZSt9remainderff"
-.LASF351:
+.LASF353:
 	.string	"_Z8IsPoisonPKi"
 .LASF125:
 	.string	"_ZSt11isunorderedee"
@@ -4974,7 +4990,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt4exp2e"
 .LASF123:
 	.string	"_ZSt13islessgreaterff"
-.LASF362:
+.LASF364:
 	.string	"MedComissionSS"
 .LASF9:
 	.string	"__cmp_cat"
@@ -4982,9 +4998,9 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt13islessgreaterdd"
 .LASF255:
 	.string	"float_t"
-.LASF350:
+.LASF352:
 	.string	"_Z8IsPoisonPKc"
-.LASF349:
+.LASF351:
 	.string	"_Z8IsPoisonPKd"
 .LASF8:
 	.string	"__cust_access"
@@ -4994,7 +5010,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt4fminff"
 .LASF223:
 	.string	"_ZSt6scalbnei"
-.LASF311:
+.LASF313:
 	.string	"MedComissionSS_err"
 .LASF36:
 	.string	"_ZSt3tane"
@@ -5002,7 +5018,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt3tanf"
 .LASF293:
 	.string	"_mode"
-.LASF308:
+.LASF310:
 	.string	"number_of_labels"
 .LASF233:
 	.string	"_ZSt4lerpddd"
@@ -5018,13 +5034,13 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_IO_read_ptr"
 .LASF13:
 	.string	"__cmp_alg"
-.LASF325:
+.LASF327:
 	.string	"DoublePoison"
 .LASF258:
 	.string	"ssize_t"
 .LASF127:
 	.string	"_ZSt11isunorderedff"
-.LASF336:
+.LASF338:
 	.string	"status"
 .LASF189:
 	.string	"logb"
@@ -5044,11 +5060,11 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt4asine"
 .LASF25:
 	.string	"_ZSt4asinf"
-.LASF353:
+.LASF355:
 	.string	"_Z10FillPoisonPP8VarTabel"
 .LASF224:
 	.string	"_ZSt6scalbnfi"
-.LASF313:
+.LASF315:
 	.string	"NULL_STK_HEAP"
 .LASF270:
 	.string	"_IO_write_base"
@@ -5062,21 +5078,23 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"islessgreater"
 .LASF275:
 	.string	"_IO_save_base"
-.LASF361:
+.LASF363:
 	.string	"_Z17fprintf_element_tP8_IO_FILEPP8VarTabel"
-.LASF339:
+.LASF341:
 	.string	"closing_canary"
-.LASF324:
+.LASF326:
 	.string	"CharPoison"
+.LASF304:
+	.string	"name_id"
 .LASF235:
 	.string	"bool"
 .LASF231:
 	.string	"lerp"
 .LASF183:
 	.string	"log1p"
-.LASF355:
+.LASF357:
 	.string	"_Z10FillPoisonPc"
-.LASF354:
+.LASF356:
 	.string	"_Z10FillPoisonPd"
 .LASF212:
 	.string	"_ZSt6remquoffPi"
@@ -5090,7 +5108,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt5ilogbe"
 .LASF173:
 	.string	"_ZSt5ilogbf"
-.LASF359:
+.LASF361:
 	.string	"size"
 .LASF291:
 	.string	"_freeres_buf"
@@ -5118,7 +5136,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt4erfcf"
 .LASF157:
 	.string	"_ZSt3fmaeee"
-.LASF333:
+.LASF335:
 	.string	"opening_canary"
 .LASF187:
 	.string	"_ZSt4log2e"
@@ -5144,7 +5162,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"long double"
 .LASF228:
 	.string	"trunc"
-.LASF332:
+.LASF334:
 	.string	"SuperStack"
 .LASF124:
 	.string	"isunordered"
@@ -5154,7 +5172,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"fmin"
 .LASF62:
 	.string	"_ZSt4modffPf"
-.LASF326:
+.LASF328:
 	.string	"CANARY"
 .LASF268:
 	.string	"_IO_read_end"
@@ -5162,7 +5180,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt5expm1e"
 .LASF153:
 	.string	"_ZSt5expm1f"
-.LASF329:
+.LASF331:
 	.string	"_CLOSING_CANARY_"
 .LASF88:
 	.string	"isinf"
@@ -5174,7 +5192,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"long int"
 .LASF115:
 	.string	"_ZSt6islessff"
-.LASF338:
+.LASF340:
 	.string	"hash"
 .LASF90:
 	.string	"_ZSt5isinfd"
@@ -5192,7 +5210,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt5log10e"
 .LASF59:
 	.string	"_ZSt5log10f"
-.LASF358:
+.LASF360:
 	.string	"_Z14FillPoisonHeapPP8VarTabelm"
 .LASF298:
 	.string	"_IO_wide_data"
@@ -5214,12 +5232,10 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt4logbe"
 .LASF191:
 	.string	"_ZSt4logbf"
-.LASF352:
+.LASF354:
 	.string	"FillPoison"
-.LASF348:
+.LASF350:
 	.string	"_Z8IsPoisonPPK8VarTabel"
-.LASF304:
-	.string	"name"
 .LASF2:
 	.string	"__swappable_details"
 .LASF30:
@@ -5252,7 +5268,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt5hypotfff"
 .LASF302:
 	.string	"_IO_FILE"
-.LASF365:
+.LASF367:
 	.string	"flag_error"
 .LASF150:
 	.string	"_ZSt4exp2f"
@@ -5266,7 +5282,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"__int128"
 .LASF31:
 	.string	"_ZSt5atan2ff"
-.LASF330:
+.LASF332:
 	.string	"_HEAP_MIN_CAPACITY_"
 .LASF238:
 	.string	"unsigned char"
@@ -5278,7 +5294,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"tgamma"
 .LASF106:
 	.string	"_ZSt9isgreaterdd"
-.LASF314:
+.LASF316:
 	.string	"WRONG_STK_STATUS"
 .LASF271:
 	.string	"_IO_write_ptr"
@@ -5286,9 +5302,9 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt6lrounde"
 .LASF197:
 	.string	"_ZSt6lroundf"
-.LASF337:
+.LASF339:
 	.string	"heapHash"
-.LASF369:
+.LASF371:
 	.string	"decltype(nullptr)"
 .LASF134:
 	.string	"atanh"
@@ -5304,7 +5320,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt4atanf"
 .LASF288:
 	.string	"_codecvt"
-.LASF364:
+.LASF366:
 	.string	"soldat"
 .LASF232:
 	.string	"_ZSt4lerpeee"
@@ -5328,9 +5344,9 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt4fmodff"
 .LASF105:
 	.string	"_ZSt9isgreateree"
-.LASF316:
+.LASF318:
 	.string	"WRONG_STK_TOP"
-.LASF347:
+.LASF349:
 	.string	"IsPoison"
 .LASF104:
 	.string	"isgreater"
@@ -5340,9 +5356,9 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt6lgammae"
 .LASF176:
 	.string	"_ZSt6lgammaf"
-.LASF323:
+.LASF325:
 	.string	"IntPoison"
-.LASF320:
+.LASF322:
 	.string	"DEAD_HEAPCLOSING_CANARY"
 .LASF101:
 	.string	"_ZSt7signbite"
@@ -5354,7 +5370,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt4cbrte"
 .LASF139:
 	.string	"_ZSt4cbrtf"
-.LASF363:
+.LASF365:
 	.string	"_Z14MedComissionSSP10SuperStack"
 .LASF128:
 	.string	"acosh"
@@ -5376,7 +5392,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt4acosf"
 .LASF44:
 	.string	"tanh"
-.LASF343:
+.LASF345:
 	.string	"fprint_element_type"
 .LASF279:
 	.string	"_chain"
@@ -5406,6 +5422,8 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 	.string	"_ZSt3erfe"
 .LASF144:
 	.string	"_ZSt3erff"
+.LASF305:
+	.string	"position"
 .LASF250:
 	.string	"__off64_t"
 .LASF294:
@@ -5418,7 +5436,7 @@ _Z19fprint_element_typeP8_IO_FILEPd:
 .LASF1:
 	.string	"/home/arsenyfucker/Cprojects/Lang/Translator"
 .LASF0:
-	.string	"../ATC/SuperStack/DebugFunctions.cpp"
+	.string	"./ATC/SuperStack/DebugFunctions.cpp"
 	.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"
 	.section	.note.GNU-stack,"",@progbits
 	.section	.note.gnu.property,"a"

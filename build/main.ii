@@ -66,7 +66,8 @@ enum FuncType
 
 struct VarLabel
     {
-    int name;
+    int name_id;
+    int position;
     };
 
 struct VarTabel
@@ -74,6 +75,7 @@ struct VarTabel
     VarLabel** label_arr;
     int arr_size;
 
+    int memory_adress;
     int number_of_labels;
     };
 
@@ -109,6 +111,7 @@ int VarTabelCtor (VarTabel* tabel);
 VarLabel* IsVarLabel (int name_id, VarTabel* tabel);
 
 int AddVarLabel (VarLabel* label, VarTabel* tabel);
+int AddVarLabel (int name_id, VarTabel* tabel);
 # 5 "./headers/Program.h" 2
 
 struct Program
@@ -143,7 +146,7 @@ int GetG (Program* program);
 
 
 
-int TranslateToAsm (const Token *const root, const char *const name);
+int TranslateToAsm (const Program *const root, const char *const name);
 # 4 "./src/main.cpp" 2
 
 # 1 "./headers/DefGraphVis.h" 1
@@ -2650,11 +2653,11 @@ extern int __overflow (FILE *, int);
 
 
 
-# 1 "../ATC/GraphVis/GVConfig.h" 1
+# 1 "./ATC/GraphVis/GVConfig.h" 1
        
 
 
-# 3 "../ATC/GraphVis/GVConfig.h"
+# 3 "./ATC/GraphVis/GVConfig.h"
 const int MAX_GRAPH_NAME_LENGTH = 128;
 const int IMAGE_NAME_LENGTH = 128;
 
@@ -2674,12 +2677,12 @@ void CloseDotFile ();
 const char* MakeImg (const char* img_name, const Program *const program);
 # 6 "./src/main.cpp" 2
 
-# 1 "../ATC/Buffer/my_buffer.h" 1
+# 1 "./ATC/Buffer/my_buffer.h" 1
 
 
 
 # 1 "/usr/include/c++/11/stdlib.h" 1 3
-# 5 "../ATC/Buffer/my_buffer.h" 2
+# 5 "./ATC/Buffer/my_buffer.h" 2
 
 
 
@@ -2730,7 +2733,7 @@ int BufferPutDouble (Buffer* buf, double val);
 int BufferPutChar (Buffer* buf, char ch);
 int BufferPutString (Buffer* buf, const char* str);
 # 8 "./src/main.cpp" 2
-# 1 "../ATC/Logger/LogMacroses.h" 1
+# 1 "./ATC/Logger/LogMacroses.h" 1
        
 
 # 1 "/usr/include/c++/11/iostream" 1 3
@@ -43727,7 +43730,7 @@ namespace std __attribute__ ((__visibility__ ("default")))
 
 
 }
-# 4 "../ATC/Logger/LogMacroses.h" 2
+# 4 "./ATC/Logger/LogMacroses.h" 2
 
 # 1 "/usr/include/string.h" 1 3 4
 # 26 "/usr/include/string.h" 3 4
@@ -44145,18 +44148,18 @@ extern "C++" const char *basename (const char *__filename)
      noexcept (true) __asm ("basename") __attribute__ ((__nonnull__ (1)));
 # 539 "/usr/include/string.h" 3 4
 }
-# 6 "../ATC/Logger/LogMacroses.h" 2
+# 6 "./ATC/Logger/LogMacroses.h" 2
 
-# 1 "../ATC/Logger/Logger.h" 1
+# 1 "./ATC/Logger/Logger.h" 1
        
 
 
 
-# 1 "../ATC/Logger/LogConfig.h" 1
+# 1 "./ATC/Logger/LogConfig.h" 1
        
 
 
-# 3 "../ATC/Logger/LogConfig.h"
+# 3 "./ATC/Logger/LogConfig.h"
 const char STD_LOG_NAME[] = "./logs/stdlog.ars";
 
 
@@ -44173,8 +44176,8 @@ enum LoggingLevels
 
     RELEASE = 666,
     };
-# 6 "../ATC/Logger/Logger.h" 2
-# 1 "../ATC/Logger/tostring.h" 1
+# 6 "./ATC/Logger/Logger.h" 2
+# 1 "./ATC/Logger/tostring.h" 1
        
 
 char* tostring(short);
@@ -44188,7 +44191,7 @@ char* tostring(double);
 
 char* tostring(char);
 char* tostring(const char*);
-# 7 "../ATC/Logger/Logger.h" 2
+# 7 "./ATC/Logger/Logger.h" 2
 
 class Logger : public std::ostream
     {
@@ -44249,10 +44252,10 @@ Logger& operator<<(Logger& log_out, const Type& value)
          free(message);
          return log_out;
          }
-# 8 "../ATC/Logger/LogMacroses.h" 2
-# 1 "../ATC/Logger/FunctionLogger.h" 1
+# 8 "./ATC/Logger/LogMacroses.h" 2
+# 1 "./ATC/Logger/FunctionLogger.h" 1
        
-# 11 "../ATC/Logger/FunctionLogger.h"
+# 11 "./ATC/Logger/FunctionLogger.h"
 class FunctionLogger
     {
     private:
@@ -44269,9 +44272,9 @@ class FunctionLogger
         FunctionLogger(int lvl, const char* func_name);
         ~FunctionLogger();
     };
-# 9 "../ATC/Logger/LogMacroses.h" 2
+# 9 "./ATC/Logger/LogMacroses.h" 2
 
-# 1 "../ATC/RandomStuff/CommonEnums.h" 1
+# 1 "./ATC/RandomStuff/CommonEnums.h" 1
        
 
 const int CRINGE = 0xDED;
@@ -44316,15 +44319,15 @@ enum CommonErrors
     SYNTAX_ERROR = 13,
     LOX = 0xDED,
     };
-# 11 "../ATC/Logger/LogMacroses.h" 2
-# 1 "../ATC/ConsoleColors/LinuxColors.h" 1
+# 11 "./ATC/Logger/LogMacroses.h" 2
+# 1 "./ATC/ConsoleColors/LinuxColors.h" 1
        
-# 12 "../ATC/Logger/LogMacroses.h" 2
-# 1 "../ATC/Utils/Utils.h" 1
+# 12 "./ATC/Logger/LogMacroses.h" 2
+# 1 "./ATC/Utils/Utils.h" 1
        
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 1 3 4
-# 4 "../ATC/Utils/Utils.h" 2
+# 4 "./ATC/Utils/Utils.h" 2
 
 
 int MsgRet (int return_value, const char* format, ...);
@@ -44338,9 +44341,9 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 
 
 int SYSTEM(const char* format, ...);
-# 13 "../ATC/Logger/LogMacroses.h" 2
+# 13 "./ATC/Logger/LogMacroses.h" 2
 # 9 "./src/main.cpp" 2
-# 1 "../ATC/Debug/EasyDebug.h" 1
+# 1 "./ATC/Debug/EasyDebug.h" 1
 # 10 "./src/main.cpp" 2
 # 27 "./src/main.cpp"
 void CloseProgram(Program* );
@@ -44348,7 +44351,7 @@ void CloseProgram(Program* );
 int ProgramCtor(Program* program);
 int ProgramCtor(Program* program)
     {
-    do { if (!(program)) { Logger::getInstance().log("Condition (%s) is false\n", "program"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/main.cpp", 32); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/main.cpp", 32); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/main.cpp", 32, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/main.cpp", 32, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
 # 32 "./src/main.cpp" 3 4
    14
 # 32 "./src/main.cpp"
@@ -44356,7 +44359,7 @@ int ProgramCtor(Program* program)
 # 32 "./src/main.cpp" 3 4
    14
 # 32 "./src/main.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 32); system("powerof"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 32, __func__, 32), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 32, __func__, 32); } } while (0);
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 32); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 32, __func__, 32), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 32, __func__, 32); } } while (0);
 
     program->token_arr = 
 # 34 "./src/main.cpp" 3 4
@@ -44385,7 +44388,7 @@ int ProgramCtor(Program* program)
 
 void CloseProgram(Program* program)
     {
-    do { if (!(program)) { Logger::getInstance().log("Condition (%s) is false\n", "program"); printf("Condition" "\033[91m" " (%s) is false\n" "\033[0m", "program"); Logger::getInstance().log("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/main.cpp", 53); printf("\t(function: %s, file: %s, line: %d)\n", __func__, "./src/main.cpp", 53); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/main.cpp", 53, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/main.cpp", 53, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
 # 53 "./src/main.cpp" 3 4
    14
 # 53 "./src/main.cpp"
@@ -44393,8 +44396,8 @@ void CloseProgram(Program* program)
 # 53 "./src/main.cpp" 3 4
    14
 # 53 "./src/main.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 53); system("powerof"); return; } } while (0);;
-    printf("\033[96m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/main.cpp", 54, "сделаю потом"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/main.cpp", 54, "сделаю потом"); Logger::getInstance().log("сделаю потом" );;
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 53); system("echo LOX\n"); return; } } while (0);;
+    printf("\033[96m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/main.cpp", 54, "сделаю потом\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/main.cpp", 54, "сделаю потом\n"); Logger::getInstance().log("сделаю потом\n" );;
 
     return;
     }
@@ -44405,10 +44408,16 @@ int main()
     {
     FunctionLogger func_63 {RELEASE, __func__};
 
-    char path[] = "test.GARS";
+    char path[] = "../TEST/test0.gars";
 
 
     char* src_code = GetSrcFile (path);
+    if (!src_code)
+        {
+        printf("\033[91m" "Can't open file %s\n" "\033[0m", path);
+
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 73, __func__, 73), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 73, __func__, 73);
+        }
 
     Program program{};
     ProgramCtor(&program);
@@ -44419,7 +44428,7 @@ int main()
     if (run_time_status != SUCCESS)
         {
         printf("\033[91m" "Can't tokenize file " "\033[0m" "%s\n", path);
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 79, __func__, 79), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 79, __func__, 79);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 85, __func__, 85), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 85, __func__, 85);
         }
 
 
@@ -44427,24 +44436,24 @@ int main()
     if (run_time_status != SUCCESS)
         {
         CloseProgram(&program);
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 87, __func__, 87), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 87, __func__, 87);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 93, __func__, 93), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 93, __func__, 93);
         }
 
     MakeImg("kek", &program);
 
-    do { printf("Enter any key to continue (line %d, func %s)\n", 92, __func__); getchar(); } while (0);
 
-    run_time_status |= TranslateToAsm (program.root, "test.ars");
+
+    run_time_status |= TranslateToAsm (&program, "../TEST/test0");
     if (run_time_status != SUCCESS)
         {
         CloseProgram(&program);
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 98, __func__, 98), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 98, __func__, 98);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 104, __func__, 104), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 104, __func__, 104);
         }
 
 
 
     CloseProgram(&program);
-    Logger::getInstance().FREE_LOG (src_code, "./src/main.cpp", __func__, 104);;
+    Logger::getInstance().FREE_LOG (src_code, "./src/main.cpp", __func__, 110);;
 
     return 0;
     }

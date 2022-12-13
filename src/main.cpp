@@ -51,7 +51,7 @@ int ProgramCtor(Program* program)
 void CloseProgram(Program* program)
     {
     assertlog(program, EFAULT, return);
-    TODO("сделаю потом");
+    TODO("сделаю потом\n");
 
     return;
     }
@@ -62,10 +62,16 @@ int main()
     {
     $log(RELEASE)
     // arguments
-    char path[] = "test.GARS";
+    char path[] = "../TEST/test0.gars";
 
     ////////// FRONT END ///////////////////////    
     char* src_code = GetSrcFile (path);
+    if (!src_code)
+        {
+        printf(redcolor "Can't open file %s\n" resetconsole, path);
+
+        return LFAILURE;
+        }
     
     Program program{};
     ProgramCtor(&program);
@@ -89,9 +95,9 @@ int main()
 
     MakeImg("kek", &program); 
     // SYSTEM("xdg-open graphics/kek.png");
-    $$
+
     /////// BACK   END /////////////////////////
-    run_time_status |= TranslateToAsm (program.root, "test.ars");
+    run_time_status |= TranslateToAsm (&program, "../TEST/test0");
     if (run_time_status != SUCCESS)
         {
         CloseProgram(&program);

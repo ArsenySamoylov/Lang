@@ -11,45 +11,121 @@
 
 #include "LogMacroses.h"
 #include "EasyDebug.h"
+#include "SomeStuff.h"
 
 static FILE* ASM_FILE = NULL;
+
+const int START_RAM_ADRESS    = 0;
+const int MAX_RAM_USABLE_SIZE = 1024;
+
+const int START_NUMBER_OF_VAR_TABELS_STK_CAPACITY = 5;
+
+struct ProgramCtx
+    {
+    const char** string_arr;
+
+    FuncTabel*  global_func;
+    VarTabel*   global_vars;
+
+    ;SuperStack* var_tabels;
+
+    int free_ram_adress;
+    };
 
 static int  OpenAsmFile  (const char *const name);
 static void CloseAsmFile ();
 
-static int  AddToAsm (const Token *const token);
+static int  AddToAsm (ProgramCtx* program_buf, const Token *const token);
 
 static void assprint(const char* format, ...);
-#define STRING_ARR(PROGRAM_BUF)
 
 #pragma GCC diagnostic ignored "-Wmissing-declarations"
 
-struct ProgramBuffer
+#define report_translator_error(format, ...)                                \
+        do                                                                  \
+            {                                                               \
+            printf(redcolor "Report translator ERORR\n" yellowcolor);       \
+            logf("Translator ERROR\n");                                     \
+            logf("");                                                       \
+            LOG__.log_dup_console(format __VA_OPT__(,) __VA_ARGS__);        \
+            printf("In: " purplecolor);                                     \
+            printl(token->ptr_to_src_code, '\n');                           \
+            printf(resetconsole "\n");                                      \
+            printf("%s:%d\n", __FILE__, __LINE__);                          \
+            PrintToken(token, STRING_ARR(program_buf));                     \
+            }                                                               \
+        while(0);
+
+#define VAR_TABELS_STK(PROGRAM_BUF)    ((PROGRAM_BUF)->var_tabels)
+#define TOP_VAR_TABEL(PROGRAM_BUF)    (StackTop(VAR_TABELS_STK(PROGRAM_BUF)))
+#define FUNC_TABEL(PROGRAM_BUF)       ((PROGRAM_BUF)->global_func)
+#define STRING_ARR(PROGRAM_BUF)       ((PROGRAM_BUF)->string_arr) 
+
+#define FREE_RAM_ADDRESS(PROGRAM_BUF) ((PROGRAM_BUF)->free_RAM_addres)
+
+const int VARIABLES_ADDRESS_REG = 2; // rbx
+
+#include "../src/AnalysUtils_.ars"
+
+int TranslateToAsm (const Program *const program, const char *const name)
     {
-    Program* program;
+    // BASIK CHECK
+    assertlog(program, EFAULT, return LFAILURE);
+    assertlog(name,    EFAULT, return LFAILURE);
 
-    int position;
-    int current_func_tabel;
-    
-    FuncTabel*  global_func;
-    SuperStack* var_tabels;
-    };
-
-
-int TranslateToAsm (const Token *const root, const char *const name)
-    {
-    assertlog(root, EFAULT, return LFAILURE);
-    assertlog(name, EFAULT, return LFAILURE);
-
-    if (OpenAsmFile(name) != SUCCESS)
+    // CHECK 
+    if (!program->root)
         {
-        printf("Couldn't open %s for ASM file\n", name);
-          logf("Couldn't open %s for ASM file\n", name);
-
+        func_message("Program root can't be NULL, %p\n", (void*) program->root);
         return LFAILURE;
         }
 
-    if (AddToAsm(root) != SUCCESS)
+    if (!program->string_arr)
+        {
+        func_message("Program must have string arr to work properly\n");
+        return LFAILURE;
+        }
+
+    if (OpenAsmFile(name) != SUCCESS)
+        {
+        func_message("Couldn't open %s for ASM file\n", name);
+        return LFAILURE;
+        }
+
+    FREE_RAM_ADRESS(program_buf) = START_RAM_ADRESS; 
+    
+    AddGlobalVars(
+    
+    // SETTING EVERYTHING
+    // TODO -> move to program buf ctor
+    /*
+    ProgramCtx  program_buf_ {program->string_arr};
+    ProgramCtx* program_buf  = &program_buf_;
+
+    SuperStack var_tabels_stk_ {};
+    SuperStack* var_tabels_stk = &var_tabels_;
+    StackCtor(var_tabels, START_NUMBER_OF_VAR_TABELS_STK_CAPACITY);
+
+    VarTabel  global_var_tabel_{};
+    VarTabel* global_var_tabel = &global_var_tabel_;
+    VarTabelCtor(global_var_tabel);
+    
+
+    StackPush(var_tabels_stk, global_var_tabel);
+
+    VAR_TABELS_STK(program_buf)  = var_tabels_stk;
+    */
+
+    SuperStack var_tabels_stk_ {};
+    SuperStack* var_tabels_stk = &var_tabels_;
+    StackCtor(var_tabels, START_NUMBER_OF_VAR_TABELS_STK_CAPACITY);
+    
+    // StackPush(var_tabels_stk, global_var_tabel);
+
+   
+
+    // ADD TO ASM
+    if (AddToAsm(program_buf, program->root) != SUCCESS)
         {
         printf("Couldn't make ASM file\n");
           logf("Couldn't make ASM file\n");
@@ -58,7 +134,11 @@ int TranslateToAsm (const Token *const root, const char *const name)
         }
 
     CloseAsmFile();
+
+    // STAFF ROOM
     
+    // kILL EVERYTHING 
+
     return LSUCCESS;
     }
 
@@ -80,16 +160,105 @@ const int PRECISION = 100;
                                 default: break;                         \
                                 }
 
-static int AddToAsm (const Token *const token)
+static int AddToAsm (ProgramCtx* program_buf, const Token *const token)
     {
     $log(3)
-    assertlog(token, EFAULT, return LFAILURE);
-    // $LOG_TOKEN(token, STRING_ARR(token)) // change!!!!!!!!
+    assertlog(program_buf, EFAULT, return LFAILURE);
+    
+    if (!token)
+        return SUCCESS;
+    
+    $LOG_TOKEN(token, STRING_ARR(program_buf)) 
+     
+    // TEMPRARY 
+    if (IS_VAR(token))
+        {
+        VarLabel* var = GetVarLabel (NAME_ID(token), VAR_TABEL_STK(program_ctx));
+
+        if (!var)
+            {
+            report_translator_error("'%s' - wasn't declared\n", SRTING_ARR(program_ctx)[NAME_ID(token)]);
+            return LFAILURE;
+            }
+
+        PUSH_RAM
+        return SUCCESS;
+        }
+
+    if (TYPE(token) == INITIALIZATOR)
+        {
+        // #pragma GCC diagnostic ignored "-Wunused-variable"
+        Token* var_name = LEFT(token);
+
+        if (GetVarLabel(NAME_ID(var_name), VAR_TABELS_STK(program_buf)))
+            {
+            report_translator_error("Redeclaration of variable %s\n", STRING_ARR(program_buf)[NAME_ID(var_name)]);
+            return FAILURE;
+            }
+
+        AddVarLabel (NAME_ID(var_name), TOP_VAR_TABEL(program_buf)); 
+        
+        if (RIGHT(token))
+            {
+            CHECK(AddToAsm(program_buf, RIGHT(token)) == SUCCESS, return LFAILURE);
+            CHECK(AddToAsm(program_buf,  LEFT(token)) == SUCCESS, return LFAILURE);
+            
+            // POP_REG(1);     
+            // assprint("\n");
+
+            return SUCCESS;
+            }
+
+        return SUCCESS;
+        }
 
     if (TYPE(token) == FUNCTION)
         {
-        // add to func tabel
-        // put label
+        Token* name     = LEFT(token);
+        Token* ret_type = RIGHT(name);
+
+        // arguments 
+        if (IsFuncLabel (NAME_ID(name), FUNC_TABEL(program_ctx)))
+            {
+            report_translator_error("Redeclaration of function %s\n", STRING_ARR(progam_ctx)[NAME_ID(name)]);
+            return LNULL;
+            }
+
+        FuncLabel* func = MakeFuncLabel(NAME_ID(name), RET_TYPE(ret_type), -1); 
+        if (!func)
+            return LNULL;
+
+        func->local_vars.memory_adress = FREE_RAM_ADRESS(program_ctx);
+
+        PUSH_TO_VAR_TABEL_STK(program_ctx, &func->local_vars);
+
+        PUSH(FREE_RAM_ADDRESS(program_ctx));
+        POP_REG(VARIABLES_ADDRES_REG);
+
+        assprint(": %s\n", STRING_ARR(program_buf)[NAME_ID(name)]);
+
+        CHECK(AddToAsm(program_buf, RIGHT(token)) == SUCCESS, return FAILURE);
+
+        VarTabel* check = POP_VAR_TABEL(program_ctx);
+        
+        if (check != &func->local_vars)
+            {
+            report_translator_error("Var tabels addresses doesn't math (%p - original, %p - pop), \
+                                    function - '%s'\n", &func->local_vars, check, STRING_ARR(program_ctx)[NAME_ID(name)]);
+            return LFAILURE;
+            }
+
+        return SUCCESS;
+        }
+
+    if (TYPE(token) == CALL)
+        {
+        Token* name = LEFT(token);
+
+        assprint("call :%s\n", STRING_ARR(program_buf)[NAME_ID(name)]);
+        
+        // work with arguments
+        return SUCCESS;
         }
 
     if (IS_CONST(token))
@@ -117,27 +286,27 @@ static int AddToAsm (const Token *const token)
                     Token* else_body = RIGHT(RIGHT(token));
 
                     assprint ("; condition for %s_%d with else \n", INSTR_STR(token), current_instruction); 
-                    CHECK(AddToAsm( LEFT(token)) == SUCCESS, return FAILURE);
+                    CHECK(AddToAsm(program_buf, LEFT(token)) == SUCCESS, return FAILURE);
 
                     assprint("\n");
                     PUSH(0);
                     assprint ("je : else_label_%d\n", current_instruction);
-                    assprint ("; end of condition\n\n");
+                    // assprint ("; end of condition\n\n");
 
                     assprint("; if body\n");
-                    CHECK(AddToAsm(if_body) == SUCCESS, return FAILURE);
+                    CHECK(AddToAsm(program_buf, if_body) == SUCCESS, return FAILURE);
                     assprint ("jmp : else_end_label_%d\n", current_instruction);
 
                     assprint("; else body\n");
                     assprint(": else_label_%d\n", current_instruction);
-                    CHECK(AddToAsm(else_body) == SUCCESS, return FAILURE);
+                    CHECK(AddToAsm(program_buf, else_body) == SUCCESS, return FAILURE);
 
                     assprint (": else_end_label_%d\n", current_instruction);
                     }
                 else
                     {
                     assprint ("; condition for %s_%d\n", INSTR_STR(token), current_instruction); 
-                    CHECK(AddToAsm( LEFT(token)) == SUCCESS, return FAILURE);
+                    CHECK(AddToAsm(program_buf, LEFT(token)) == SUCCESS, return FAILURE);
 
                     assprint("\n");
                     PUSH(0);
@@ -145,7 +314,7 @@ static int AddToAsm (const Token *const token)
                     assprint ("; end of condition\n\n");
 
                     assprint("; %s body\n", INSTR_STR(token));
-                    CHECK(AddToAsm(RIGHT(token)) == SUCCESS, return FAILURE);
+                    CHECK(AddToAsm(program_buf, RIGHT(token)) == SUCCESS, return FAILURE);
                     assprint (": %s_end_label_%d\n", INSTR_STR(token), current_instruction);
                     }
                 
@@ -154,7 +323,7 @@ static int AddToAsm (const Token *const token)
             case WHILE:
                 {
                 assprint ("; condition for %s_%d\n", INSTR_STR(token), current_instruction); 
-                CHECK(AddToAsm( LEFT(token)) == SUCCESS, return FAILURE);
+                CHECK(AddToAsm(program_buf, LEFT(token)) == SUCCESS, return FAILURE);
 
                 assprint("\n");
                 PUSH(0);
@@ -162,7 +331,7 @@ static int AddToAsm (const Token *const token)
                 assprint ("; end of condition\n\n");
 
                 assprint("; %s body\n", INSTR_STR(token));
-                CHECK(AddToAsm(RIGHT(token)) == SUCCESS, return FAILURE);
+                CHECK(AddToAsm(program_buf, RIGHT(token)) == SUCCESS, return FAILURE);
                 assprint (": %s_end_label_%d\n", INSTR_STR(token), current_instruction);
 
                 break;
@@ -170,7 +339,7 @@ static int AddToAsm (const Token *const token)
             case FOUT:
                 {
                  if (LEFT(token))
-                    CHECK(AddToAsm (LEFT(token)) == SUCCESS, return FAILURE);
+                    CHECK(AddToAsm(program_buf, LEFT(token)) == SUCCESS, return FAILURE);
                 
                 assprint("FOUT\n");
                 
@@ -187,17 +356,13 @@ static int AddToAsm (const Token *const token)
 
     if (IS_ASSIGMENT(token))
         {
-        CHECK(AddToAsm (RIGHT(token)) == SUCCESS, return FAILURE);
+        CHECK(AddToAsm (program_buf, RIGHT(token)) == SUCCESS, return FAILURE);
 
         POP_REG(1);     
         assprint("\n");
 
         return SUCCESS;
         }
-
-    // TEMPRARY 
-    if (IS_VAR(token))
-        return PUSH_REG(1), SUCCESS;
 
     if (IS_OP(token))
         {
@@ -209,8 +374,8 @@ static int AddToAsm (const Token *const token)
             case DIV:
             case POW:
 
-                CHECK(AddToAsm (RIGHT(token)) == SUCCESS, return FAILURE);
-                CHECK(AddToAsm ( LEFT(token)) == SUCCESS, return FAILURE);
+                CHECK(AddToAsm (program_buf, RIGHT(token)) == SUCCESS, return FAILURE);
+                CHECK(AddToAsm (program_buf,  LEFT(token)) == SUCCESS, return FAILURE);
                 ASM_OP_CMD (token);
                 
                 return SUCCESS;
@@ -223,19 +388,19 @@ static int AddToAsm (const Token *const token)
                 return LFAILURE;
             }
         }
-            
+        
     if (IS_STATEMENT(token))
         {
-        CHECK(AddToAsm ( LEFT(token)) == SUCCESS, return FAILURE);
+        CHECK(AddToAsm(program_buf, LEFT(token)) == SUCCESS, return FAILURE);
 
         if (RIGHT(token))
-             CHECK(AddToAsm (RIGHT(token)) == SUCCESS, return FAILURE);
+             CHECK(AddToAsm(program_buf, RIGHT(token)) == SUCCESS, return FAILURE);
 
         return SUCCESS;
         }
 
     YOU_SHALL_NOT_PASS
-    PrintToken(token, NULL);
+    PrintToken(token, STRING_ARR(program_buf));
 
     return LFAILURE;
     }

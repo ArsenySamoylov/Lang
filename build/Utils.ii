@@ -1,11 +1,11 @@
-# 0 "../ATC/Utils/Utils.cpp"
+# 0 "./ATC/Utils/Utils.cpp"
 # 1 "/home/arsenyfucker/Cprojects/Lang/Translator//"
 # 0 "<built-in>"
 # 0 "<command-line>"
 # 1 "/usr/include/stdc-predef.h" 1 3 4
 # 0 "<command-line>" 2
-# 1 "../ATC/Utils/Utils.cpp"
-# 1 "../ATC/Utils/Utils.h" 1
+# 1 "./ATC/Utils/Utils.cpp"
+# 1 "./ATC/Utils/Utils.h" 1
        
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 1 3 4
@@ -15,7 +15,7 @@
 typedef __builtin_va_list __gnuc_va_list;
 # 99 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 3 4
 typedef __gnuc_va_list va_list;
-# 4 "../ATC/Utils/Utils.h" 2
+# 4 "./ATC/Utils/Utils.h" 2
 # 1 "/usr/include/stdio.h" 1 3 4
 # 27 "/usr/include/stdio.h" 3 4
 # 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
@@ -903,10 +903,10 @@ extern int __uflow (FILE *);
 extern int __overflow (FILE *, int);
 # 902 "/usr/include/stdio.h" 3 4
 }
-# 5 "../ATC/Utils/Utils.h" 2
+# 5 "./ATC/Utils/Utils.h" 2
 
 
-# 6 "../ATC/Utils/Utils.h"
+# 6 "./ATC/Utils/Utils.h"
 int MsgRet (int return_value, const char* format, ...);
 void MsgNoRet (const char* format, ...);
 
@@ -918,12 +918,12 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 
 
 int SYSTEM(const char* format, ...);
-# 2 "../ATC/Utils/Utils.cpp" 2
-# 1 "../ATC/Debug/EasyDebug.h" 1
+# 2 "./ATC/Utils/Utils.cpp" 2
+# 1 "./ATC/Debug/EasyDebug.h" 1
 
 
 
-# 1 "../ATC/Buffer/my_buffer.h" 1
+# 1 "./ATC/Buffer/my_buffer.h" 1
 
 
 
@@ -2528,14 +2528,14 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 5 "../ATC/Buffer/my_buffer.h" 2
+# 5 "./ATC/Buffer/my_buffer.h" 2
 
 
 
 
 
 
-# 10 "../ATC/Buffer/my_buffer.h"
+# 10 "./ATC/Buffer/my_buffer.h"
 char* GetSrcFile (const char *file_direction);
 
 
@@ -2580,8 +2580,8 @@ int BufferGetDouble (Buffer* buf, double* val);
 int BufferPutDouble (Buffer* buf, double val);
 int BufferPutChar (Buffer* buf, char ch);
 int BufferPutString (Buffer* buf, const char* str);
-# 5 "../ATC/Debug/EasyDebug.h" 2
-# 3 "../ATC/Utils/Utils.cpp" 2
+# 5 "./ATC/Debug/EasyDebug.h" 2
+# 3 "./ATC/Utils/Utils.cpp" 2
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
 # 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
@@ -2601,37 +2601,37 @@ typedef struct {
 
 
   typedef decltype(nullptr) nullptr_t;
-# 5 "../ATC/Utils/Utils.cpp" 2
+# 5 "./ATC/Utils/Utils.cpp" 2
 
 
-# 6 "../ATC/Utils/Utils.cpp"
+# 6 "./ATC/Utils/Utils.cpp"
 int MsgRet (int return_value, const char* format, ... )
     {
     va_list ptr;
     
-# 9 "../ATC/Utils/Utils.cpp" 3 4
+# 9 "./ATC/Utils/Utils.cpp" 3 4
    __builtin_va_start(
-# 9 "../ATC/Utils/Utils.cpp"
+# 9 "./ATC/Utils/Utils.cpp"
    ptr
-# 9 "../ATC/Utils/Utils.cpp" 3 4
+# 9 "./ATC/Utils/Utils.cpp" 3 4
    ,
-# 9 "../ATC/Utils/Utils.cpp"
+# 9 "./ATC/Utils/Utils.cpp"
    format
-# 9 "../ATC/Utils/Utils.cpp" 3 4
+# 9 "./ATC/Utils/Utils.cpp" 3 4
    )
-# 9 "../ATC/Utils/Utils.cpp"
+# 9 "./ATC/Utils/Utils.cpp"
                         ;
 
     vprintf (format, ptr);
 
     
-# 13 "../ATC/Utils/Utils.cpp" 3 4
+# 13 "./ATC/Utils/Utils.cpp" 3 4
    __builtin_va_end(
-# 13 "../ATC/Utils/Utils.cpp"
+# 13 "./ATC/Utils/Utils.cpp"
    ptr
-# 13 "../ATC/Utils/Utils.cpp" 3 4
+# 13 "./ATC/Utils/Utils.cpp" 3 4
    )
-# 13 "../ATC/Utils/Utils.cpp"
+# 13 "./ATC/Utils/Utils.cpp"
               ;
 
     return return_value;
@@ -2641,29 +2641,29 @@ void MsgNoRet (const char* format, ... )
     {
     va_list ptr;
     
-# 21 "../ATC/Utils/Utils.cpp" 3 4
+# 21 "./ATC/Utils/Utils.cpp" 3 4
    __builtin_va_start(
-# 21 "../ATC/Utils/Utils.cpp"
+# 21 "./ATC/Utils/Utils.cpp"
    ptr
-# 21 "../ATC/Utils/Utils.cpp" 3 4
+# 21 "./ATC/Utils/Utils.cpp" 3 4
    ,
-# 21 "../ATC/Utils/Utils.cpp"
+# 21 "./ATC/Utils/Utils.cpp"
    format
-# 21 "../ATC/Utils/Utils.cpp" 3 4
+# 21 "./ATC/Utils/Utils.cpp" 3 4
    )
-# 21 "../ATC/Utils/Utils.cpp"
+# 21 "./ATC/Utils/Utils.cpp"
                         ;
 
     vprintf (format, ptr);
 
     
-# 25 "../ATC/Utils/Utils.cpp" 3 4
+# 25 "./ATC/Utils/Utils.cpp" 3 4
    __builtin_va_end(
-# 25 "../ATC/Utils/Utils.cpp"
+# 25 "./ATC/Utils/Utils.cpp"
    ptr
-# 25 "../ATC/Utils/Utils.cpp" 3 4
+# 25 "./ATC/Utils/Utils.cpp" 3 4
    )
-# 25 "../ATC/Utils/Utils.cpp"
+# 25 "./ATC/Utils/Utils.cpp"
               ;
 
     return;
@@ -2677,17 +2677,17 @@ int SYSTEM(const char* format, ...)
 
     va_list ptr;
     
-# 37 "../ATC/Utils/Utils.cpp" 3 4
+# 37 "./ATC/Utils/Utils.cpp" 3 4
    __builtin_va_start(
-# 37 "../ATC/Utils/Utils.cpp"
+# 37 "./ATC/Utils/Utils.cpp"
    ptr
-# 37 "../ATC/Utils/Utils.cpp" 3 4
+# 37 "./ATC/Utils/Utils.cpp" 3 4
    ,
-# 37 "../ATC/Utils/Utils.cpp"
+# 37 "./ATC/Utils/Utils.cpp"
    format
-# 37 "../ATC/Utils/Utils.cpp" 3 4
+# 37 "./ATC/Utils/Utils.cpp" 3 4
    )
-# 37 "../ATC/Utils/Utils.cpp"
+# 37 "./ATC/Utils/Utils.cpp"
                         ;
 
     char system_command [SYSTEM_COMMAND_LENGTH + 16] = {};
@@ -2695,13 +2695,13 @@ int SYSTEM(const char* format, ...)
 
 
     
-# 43 "../ATC/Utils/Utils.cpp" 3 4
+# 43 "./ATC/Utils/Utils.cpp" 3 4
    __builtin_va_end(
-# 43 "../ATC/Utils/Utils.cpp"
+# 43 "./ATC/Utils/Utils.cpp"
    ptr
-# 43 "../ATC/Utils/Utils.cpp" 3 4
+# 43 "./ATC/Utils/Utils.cpp" 3 4
    )
-# 43 "../ATC/Utils/Utils.cpp"
+# 43 "./ATC/Utils/Utils.cpp"
               ;
 
     return system (system_command);
@@ -2711,29 +2711,29 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...)
     {
     va_list ptr;
     
-# 51 "../ATC/Utils/Utils.cpp" 3 4
+# 51 "./ATC/Utils/Utils.cpp" 3 4
    __builtin_va_start(
-# 51 "../ATC/Utils/Utils.cpp"
+# 51 "./ATC/Utils/Utils.cpp"
    ptr
-# 51 "../ATC/Utils/Utils.cpp" 3 4
+# 51 "./ATC/Utils/Utils.cpp" 3 4
    ,
-# 51 "../ATC/Utils/Utils.cpp"
+# 51 "./ATC/Utils/Utils.cpp"
    format
-# 51 "../ATC/Utils/Utils.cpp" 3 4
+# 51 "./ATC/Utils/Utils.cpp" 3 4
    )
-# 51 "../ATC/Utils/Utils.cpp"
+# 51 "./ATC/Utils/Utils.cpp"
                         ;
 
     vprintf (format, ptr);
 
     
-# 55 "../ATC/Utils/Utils.cpp" 3 4
+# 55 "./ATC/Utils/Utils.cpp" 3 4
    __builtin_va_end(
-# 55 "../ATC/Utils/Utils.cpp"
+# 55 "./ATC/Utils/Utils.cpp"
    ptr
-# 55 "../ATC/Utils/Utils.cpp" 3 4
+# 55 "./ATC/Utils/Utils.cpp" 3 4
    )
-# 55 "../ATC/Utils/Utils.cpp"
+# 55 "./ATC/Utils/Utils.cpp"
               ;
 
     return nullptr;

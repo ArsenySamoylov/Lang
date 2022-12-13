@@ -1,7 +1,7 @@
 	.file	"Utils.cpp"
 	.text
 .Ltext0:
-	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/Utils/Utils.cpp"
+	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "./ATC/Utils/Utils.cpp"
 	.section	.rodata
 	.align 4
 	.type	_ZL11INDENT_SIZE, @object
@@ -13,7 +13,7 @@ _ZL11INDENT_SIZE:
 	.type	_Z6MsgRetiPKcz, @function
 _Z6MsgRetiPKcz:
 .LFB13:
-	.file 1 "../ATC/Utils/Utils.cpp"
+	.file 1 "./ATC/Utils/Utils.cpp"
 	.loc 1 7 5
 	.cfi_startproc
 	endbr64
@@ -274,7 +274,7 @@ _Z13LogMsgNullRetPKcz:
 	.file 6 "/usr/include/c++/11/cstdlib"
 	.file 7 "/usr/include/c++/11/bits/std_abs.h"
 	.file 8 "/usr/include/c++/11/stdlib.h"
-	.file 9 "../ATC/Buffer/my_buffer.h"
+	.file 9 "./ATC/Buffer/my_buffer.h"
 	.file 10 "/usr/include/stdio.h"
 	.file 11 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h"
 	.section	.debug_info,"",@progbits
@@ -2322,7 +2322,7 @@ _Z13LogMsgNullRetPKcz:
 	.string	"_ZSt3absf"
 	.section	.debug_line_str,"MS",@progbits,1
 .LASF0:
-	.string	"../ATC/Utils/Utils.cpp"
+	.string	"./ATC/Utils/Utils.cpp"
 .LASF1:
 	.string	"/home/arsenyfucker/Cprojects/Lang/Translator"
 	.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"

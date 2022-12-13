@@ -1,7 +1,7 @@
 	.file	"Logger.cpp"
 	.text
 .Ltext0:
-	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/Logger/Logger.cpp"
+	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "./ATC/Logger/Logger.cpp"
 	.local	_ZStL8__ioinit
 	.comm	_ZStL8__ioinit,1,1
 	.section	.rodata
@@ -28,7 +28,7 @@ _ZL11INDENT_SIZE:
 	.type	_ZN6LoggerC2EPKc, @function
 _ZN6LoggerC2EPKc:
 .LFB2271:
-	.file 1 "../ATC/Logger/Logger.cpp"
+	.file 1 "./ATC/Logger/Logger.cpp"
 	.loc 1 18 1
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
@@ -789,7 +789,7 @@ _ZN6LoggerD1Ev:
 	.type	_ZTv0_n24_N6LoggerD1Ev, @function
 _ZTv0_n24_N6LoggerD1Ev:
 .LFB2979:
-	.file 2 "../ATC/Logger/Logger.h"
+	.file 2 "./ATC/Logger/Logger.h"
 	.loc 2 26 9
 	.cfi_startproc
 	endbr64
@@ -1253,7 +1253,7 @@ _ZN6Logger15log_dup_consoleEPKcz:
 .LC6:
 	.string	"void Logger::logmsg(char*)"
 .LC7:
-	.string	"../ATC/Logger/Logger.cpp"
+	.string	"./ATC/Logger/Logger.cpp"
 .LC8:
 	.string	"message"
 	.text
@@ -2382,9 +2382,9 @@ _GLOBAL__sub_I__ZN6LoggerC2EPKc:
 	.file 45 "/usr/include/stdio.h"
 	.file 46 "/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h"
 	.file 47 "/usr/include/wctype.h"
-	.file 48 "../ATC/Logger/LogConfig.h"
+	.file 48 "./ATC/Logger/LogConfig.h"
 	.file 49 "/usr/include/c++/11/stdlib.h"
-	.file 50 "../ATC/Buffer/my_buffer.h"
+	.file 50 "./ATC/Buffer/my_buffer.h"
 	.file 51 "/usr/include/errno.h"
 	.file 52 "/usr/include/string.h"
 	.file 53 "/usr/include/malloc.h"
@@ -11855,7 +11855,7 @@ _GLOBAL__sub_I__ZN6LoggerC2EPKc:
 	.string	"freopen"
 	.section	.debug_line_str,"MS",@progbits,1
 .LASF0:
-	.string	"../ATC/Logger/Logger.cpp"
+	.string	"./ATC/Logger/Logger.cpp"
 .LASF1:
 	.string	"/home/arsenyfucker/Cprojects/Lang/Translator"
 	.hidden	DW.ref._ZTIPKc

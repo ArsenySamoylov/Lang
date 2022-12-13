@@ -1,7 +1,7 @@
 // define TOKEN befire implemanting
 // TOKEN_TYPE(name, val,  specificator, ... - arguments)
 
-TOKEN_TYPE(STATEMENT,             1, "%c", OP(TOKEN))
+TOKEN_TYPE(STATEMENT,             1, "%c", OP(TOKEN) == '{' ? '[' :  OP(TOKEN) == '}' ? ']' : OP(TOKEN))
 TOKEN_TYPE(INSTRUCTION,           2, "%s", INSTRUCTIONS[INSTR(TOKEN)])
 TOKEN_TYPE(INITIALIZATOR,         3, "%s", INITIALIZATORS[INITIALIZATOR(TOKEN)])
 TOKEN_TYPE(FUNCTION_RET_TYPE,     4, "%s", FUNCTION_RET_TYPES[RET_TYPE(TOKEN)] )
@@ -10,7 +10,7 @@ TOKEN_TYPE(OPERATOR,              5, "%c", OP(TOKEN))
 TOKEN_TYPE(NAME,                  6, "%s", STRING_ARR[NAME_ID(TOKEN)])
 TOKEN_TYPE(VARIABLE,              7, "%s", STRING_ARR[NAME_ID(TOKEN)])
 TOKEN_TYPE(CONSTANT,              8, "%lg", CONST(TOKEN))
-TOKEN_TYPE(FUNCTION,              9, "%c", OP(TOKEN))
+TOKEN_TYPE(FUNCTION,              9, "%c", OP(TOKEN) == '{' ? '[' :  OP(TOKEN) == '}' ? ']' : OP(TOKEN))
 TOKEN_TYPE(CALL,                  10, "%s", " ")
 
 TOKEN_TYPE(ASSIGMENT,                  '=', "%c", OP(TOKEN))

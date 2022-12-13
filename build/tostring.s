@@ -1,7 +1,7 @@
 	.file	"tostring.cpp"
 	.text
 .Ltext0:
-	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "../ATC/Logger/tostring.cpp"
+	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator" "./ATC/Logger/tostring.cpp"
 	.section	.rodata
 	.align 4
 	.type	_ZL11INDENT_SIZE, @object
@@ -30,7 +30,7 @@ _ZL14MAX_LENGTH_INT:
 	.type	_Z8tostringPKc, @function
 _Z8tostringPKc:
 .LFB2270:
-	.file 1 "../ATC/Logger/tostring.cpp"
+	.file 1 "./ATC/Logger/tostring.cpp"
 	.loc 1 13 5
 	.cfi_startproc
 	endbr64
@@ -56,7 +56,7 @@ _Z8tostringPKc:
 .LC0:
 	.string	"tostring"
 .LC1:
-	.string	"../ATC/Logger/tostring.cpp"
+	.string	"./ATC/Logger/tostring.cpp"
 .LC2:
 	.string	"PRINTF BESIT CALLOC (%s)\n"
 .LC3:
@@ -249,7 +249,7 @@ _GLOBAL__sub_I__Z8tostringPKc:
 	.file 30 "/usr/include/c++/11/cwctype"
 	.file 31 "/usr/include/c++/11/bits/predefined_ops.h"
 	.file 32 "/usr/include/c++/11/stdlib.h"
-	.file 33 "../ATC/Buffer/my_buffer.h"
+	.file 33 "./ATC/Buffer/my_buffer.h"
 	.file 34 "/usr/include/x86_64-linux-gnu/bits/types/wint_t.h"
 	.file 35 "/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h"
 	.file 36 "/usr/include/wchar.h"
@@ -260,9 +260,9 @@ _GLOBAL__sub_I__Z8tostringPKc:
 	.file 41 "/usr/include/locale.h"
 	.file 42 "/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h"
 	.file 43 "/usr/include/wctype.h"
-	.file 44 "../ATC/Logger/LogConfig.h"
-	.file 45 "../ATC/RandomStuff/CommonEnums.h"
-	.file 46 "../ATC/Logger/Logger.h"
+	.file 44 "./ATC/Logger/LogConfig.h"
+	.file 45 "./ATC/RandomStuff/CommonEnums.h"
+	.file 46 "./ATC/Logger/Logger.h"
 	.file 47 "/usr/include/string.h"
 	.file 48 "/usr/include/c++/11/bits/algorithmfwd.h"
 	.section	.debug_info,"",@progbits
@@ -6859,10 +6859,10 @@ _GLOBAL__sub_I__Z8tostringPKc:
 .LASF211:
 	.string	"__isoc99_vfwscanf"
 	.section	.debug_line_str,"MS",@progbits,1
+.LASF0:
+	.string	"./ATC/Logger/tostring.cpp"
 .LASF1:
 	.string	"/home/arsenyfucker/Cprojects/Lang/Translator"
-.LASF0:
-	.string	"../ATC/Logger/tostring.cpp"
 	.hidden	__dso_handle
 	.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"
 	.section	.note.GNU-stack,"",@progbits

@@ -99,43 +99,43 @@ _ZL6CRINGE:
 .LC10:
 	.string	"type: (%d) "
 .LC11:
-	.string	"STATEMENT | {'%c'}"
+	.string	"STATEMENT | {'%c'}\n"
 .LC12:
-	.string	"INSTRUCTION | {'%s'}"
+	.string	"INSTRUCTION | {'%s'}\n"
 .LC13:
-	.string	"INITIALIZATOR | {'%s'}"
+	.string	"INITIALIZATOR | {'%s'}\n"
 .LC14:
-	.string	"FUNCTION_RET_TYPE | {'%s'}"
+	.string	"FUNCTION_RET_TYPE | {'%s'}\n"
 .LC15:
-	.string	"OPERATOR | {'%c'}"
+	.string	"OPERATOR | {'%c'}\n"
 .LC16:
-	.string	"NAME | {'%s'}"
+	.string	"NAME | {'%s'}\n"
 .LC17:
-	.string	"VARIABLE | {'%s'}"
+	.string	"VARIABLE | {'%s'}\n"
 .LC18:
-	.string	"CONSTANT | {'%lg'}"
+	.string	"CONSTANT | {'%lg'}\n"
 .LC19:
-	.string	"FUNCTION | {'%c'}"
+	.string	"FUNCTION | {'%c'}\n"
 .LC20:
 	.string	" "
 .LC21:
-	.string	"CALL | {'%s'}"
+	.string	"CALL | {'%s'}\n"
 .LC22:
-	.string	"ASSIGMENT | {'%c'}"
+	.string	"ASSIGMENT | {'%c'}\n"
 	.align 8
 .LC23:
-	.string	"BLOCK_OPENING_BRACKET | {'%c'}"
+	.string	"BLOCK_OPENING_BRACKET | {'%c'}\n"
 	.align 8
 .LC24:
-	.string	"BLOCK_CLOSING_BRACKET | {'%c'}"
+	.string	"BLOCK_CLOSING_BRACKET | {'%c'}\n"
 	.align 8
 .LC25:
-	.string	"EXPRESSION_OPENING_BRACKET | {'%c'}"
+	.string	"EXPRESSION_OPENING_BRACKET | {'%c'}\n"
 	.align 8
 .LC26:
-	.string	"EXPRESSION_CLOSING_BRACKET | {'%c'}"
+	.string	"EXPRESSION_CLOSING_BRACKET | {'%c'}\n"
 .LC27:
-	.string	"END_OF_STATEMENT | {'%c'}"
+	.string	"END_OF_STATEMENT | {'%c'}\n"
 .LC28:
 	.string	"UNCKNOWN TYPE"
 	.text
@@ -157,7 +157,7 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rsi, -16(%rbp)
 	.loc 1 12 5
 	cmpq	$0, -8(%rbp)
-	je	.L23
+	je	.L31
 	.loc 1 14 11
 	movq	-8(%rbp), %rax
 	movq	%rax, %rsi
@@ -321,23 +321,45 @@ _Z10PrintTokenPK5TokenPPKc:
 	.text
 .L21:
 	.file 2 "./headers/TokenTypes.h"
-	.loc 2 4 69
+	.loc 2 4 71
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 4 24
+	cmpb	$123, %al
+	je	.L22
+	.loc 2 4 110 discriminator 1
+	movq	-8(%rbp), %rax
+	movzbl	24(%rax), %eax
+	.loc 2 4 89 discriminator 1
+	cmpb	$125, %al
+	je	.L23
+	.loc 2 4 149 discriminator 3
+	movq	-8(%rbp), %rax
+	movzbl	24(%rax), %eax
+	.loc 2 4 89 discriminator 3
 	movsbl	%al, %eax
+	jmp	.L25
+.L23:
+	.loc 2 4 89 is_stmt 0 discriminator 4
+	movl	$93, %eax
+	jmp	.L25
+.L22:
+	.loc 2 4 24 is_stmt 1 discriminator 2
+	movl	$91, %eax
+.L25:
+	.loc 2 4 24 is_stmt 0 discriminator 8
 	movl	%eax, %esi
 	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 4 82
-	jmp	.L22
+	.loc 2 4 162 is_stmt 1 discriminator 8
+	jmp	.L26
 .L20:
-	.loc 2 5 86
+	.loc 2 5 88
 	movq	-8(%rbp), %rax
 	movl	24(%rax), %eax
-	.loc 2 5 99
+	.loc 2 5 101
 	cltq
 	leaq	0(,%rax,8), %rdx
 	leaq	_ZL12INSTRUCTIONS(%rip), %rax
@@ -348,13 +370,13 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 5 103
-	jmp	.L22
+	.loc 2 5 105
+	jmp	.L26
 .L19:
-	.loc 2 6 92
+	.loc 2 6 94
 	movq	-8(%rbp), %rax
 	movl	24(%rax), %eax
-	.loc 2 6 107
+	.loc 2 6 109
 	cltq
 	leaq	0(,%rax,8), %rdx
 	leaq	_ZL14INITIALIZATORS(%rip), %rax
@@ -365,13 +387,13 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 6 111
-	jmp	.L22
+	.loc 2 6 113
+	jmp	.L26
 .L18:
-	.loc 2 7 104
+	.loc 2 7 106
 	movq	-8(%rbp), %rax
 	movl	24(%rax), %eax
-	.loc 2 7 123
+	.loc 2 7 125
 	cltq
 	leaq	0(,%rax,8), %rdx
 	leaq	_ZL18FUNCTION_RET_TYPES(%rip), %rax
@@ -382,10 +404,10 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 7 127
-	jmp	.L22
+	.loc 2 7 129
+	jmp	.L26
 .L17:
-	.loc 2 8 67
+	.loc 2 8 69
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 8 23
@@ -395,14 +417,14 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 8 80
-	jmp	.L22
+	.loc 2 8 82
+	jmp	.L26
 .L16:
-	.loc 2 10 70
+	.loc 2 10 72
 	movq	-8(%rbp), %rax
 	movl	24(%rax), %eax
 	cltq
-	.loc 2 10 79
+	.loc 2 10 81
 	leaq	0(,%rax,8), %rdx
 	movq	-16(%rbp), %rax
 	addq	%rdx, %rax
@@ -413,14 +435,14 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 10 83
-	jmp	.L22
+	.loc 2 10 85
+	jmp	.L26
 .L15:
-	.loc 2 11 78
+	.loc 2 11 80
 	movq	-8(%rbp), %rax
 	movl	24(%rax), %eax
 	cltq
-	.loc 2 11 87
+	.loc 2 11 89
 	leaq	0(,%rax,8), %rdx
 	movq	-16(%rbp), %rax
 	addq	%rdx, %rax
@@ -431,10 +453,10 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 11 91
-	jmp	.L22
+	.loc 2 11 93
+	jmp	.L26
 .L14:
-	.loc 2 12 68
+	.loc 2 12 70
 	movq	-8(%rbp), %rax
 	movq	24(%rax), %rax
 	.loc 2 12 23
@@ -443,21 +465,43 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rax, %rdi
 	movl	$1, %eax
 	call	printf@PLT
-	.loc 2 12 81
-	jmp	.L22
+	.loc 2 12 83
+	jmp	.L26
 .L13:
-	.loc 2 13 67
+	.loc 2 13 69
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 13 23
+	cmpb	$123, %al
+	je	.L27
+	.loc 2 13 108 discriminator 1
+	movq	-8(%rbp), %rax
+	movzbl	24(%rax), %eax
+	.loc 2 13 87 discriminator 1
+	cmpb	$125, %al
+	je	.L28
+	.loc 2 13 147 discriminator 3
+	movq	-8(%rbp), %rax
+	movzbl	24(%rax), %eax
+	.loc 2 13 87 discriminator 3
 	movsbl	%al, %eax
+	jmp	.L30
+.L28:
+	.loc 2 13 87 is_stmt 0 discriminator 4
+	movl	$93, %eax
+	jmp	.L30
+.L27:
+	.loc 2 13 23 is_stmt 1 discriminator 2
+	movl	$91, %eax
+.L30:
+	.loc 2 13 23 is_stmt 0 discriminator 8
 	movl	%eax, %esi
 	leaq	.LC19(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 13 80
-	jmp	.L22
+	.loc 2 13 160 is_stmt 1 discriminator 8
+	jmp	.L26
 .L12:
 	.loc 2 14 19
 	leaq	.LC20(%rip), %rax
@@ -466,10 +510,10 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 14 52
-	jmp	.L22
+	.loc 2 14 54
+	jmp	.L26
 .L8:
-	.loc 2 16 69
+	.loc 2 16 71
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 16 24
@@ -479,10 +523,10 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 16 82
-	jmp	.L22
+	.loc 2 16 84
+	jmp	.L26
 .L7:
-	.loc 2 17 93
+	.loc 2 17 95
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 17 36
@@ -492,10 +536,10 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 17 106
-	jmp	.L22
+	.loc 2 17 108
+	jmp	.L26
 .L5:
-	.loc 2 18 93
+	.loc 2 18 95
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 18 36
@@ -505,10 +549,10 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 18 106
-	jmp	.L22
+	.loc 2 18 108
+	jmp	.L26
 .L11:
-	.loc 2 19 103
+	.loc 2 19 105
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 19 41
@@ -518,10 +562,10 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 19 116
-	jmp	.L22
+	.loc 2 19 118
+	jmp	.L26
 .L10:
-	.loc 2 20 103
+	.loc 2 20 105
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 20 41
@@ -531,10 +575,10 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 20 116
-	jmp	.L22
+	.loc 2 20 118
+	jmp	.L26
 .L9:
-	.loc 2 21 83
+	.loc 2 21 85
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 21 31
@@ -544,8 +588,8 @@ _Z10PrintTokenPK5TokenPPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 2 21 96
-	jmp	.L22
+	.loc 2 21 98
+	jmp	.L26
 .L4:
 	.loc 1 30 20
 	leaq	.LC28(%rip), %rax
@@ -553,10 +597,10 @@ _Z10PrintTokenPK5TokenPPKc:
 	call	puts@PLT
 	.loc 1 30 41
 	nop
-.L22:
+.L26:
 	.loc 1 33 5
 	jmp	.L1
-.L23:
+.L31:
 	.loc 1 12 17
 	nop
 .L1:
@@ -601,7 +645,7 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rdx, -24(%rbp)
 	.loc 1 38 5
 	cmpq	$0, -8(%rbp)
-	je	.L46
+	je	.L62
 	.loc 1 40 24
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
@@ -664,171 +708,193 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movl	16(%rax), %eax
 	.loc 1 46 5
 	cmpl	$125, %eax
-	ja	.L27
+	ja	.L35
 	movl	%eax, %eax
 	leaq	0(,%rax,4), %rdx
-	leaq	.L29(%rip), %rax
+	leaq	.L37(%rip), %rax
 	movl	(%rdx,%rax), %eax
 	cltq
-	leaq	.L29(%rip), %rdx
+	leaq	.L37(%rip), %rdx
 	addq	%rdx, %rax
 	notrack jmp	*%rax
 	.section	.rodata
 	.align 4
 	.align 4
-.L29:
-	.long	.L27-.L29
-	.long	.L44-.L29
-	.long	.L43-.L29
-	.long	.L42-.L29
-	.long	.L41-.L29
-	.long	.L40-.L29
-	.long	.L39-.L29
-	.long	.L38-.L29
-	.long	.L37-.L29
-	.long	.L36-.L29
-	.long	.L35-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L34-.L29
-	.long	.L33-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L32-.L29
-	.long	.L27-.L29
-	.long	.L31-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L27-.L29
-	.long	.L30-.L29
-	.long	.L27-.L29
-	.long	.L28-.L29
+.L37:
+	.long	.L35-.L37
+	.long	.L52-.L37
+	.long	.L51-.L37
+	.long	.L50-.L37
+	.long	.L49-.L37
+	.long	.L48-.L37
+	.long	.L47-.L37
+	.long	.L46-.L37
+	.long	.L45-.L37
+	.long	.L44-.L37
+	.long	.L43-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L42-.L37
+	.long	.L41-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L40-.L37
+	.long	.L35-.L37
+	.long	.L39-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L35-.L37
+	.long	.L38-.L37
+	.long	.L35-.L37
+	.long	.L36-.L37
 	.text
-.L44:
+.L52:
 	.loc 2 4 36
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 2 4 98
+	.loc 2 4 100
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 4 52
+	cmpb	$123, %al
+	je	.L53
+	.loc 2 4 139 discriminator 1
+	movq	-8(%rbp), %rax
+	movzbl	24(%rax), %eax
+	.loc 2 4 118 discriminator 1
+	cmpb	$125, %al
+	je	.L54
+	.loc 2 4 178 discriminator 3
+	movq	-8(%rbp), %rax
+	movzbl	24(%rax), %eax
+	.loc 2 4 118 discriminator 3
 	movsbl	%al, %eax
+	jmp	.L56
+.L54:
+	.loc 2 4 118 is_stmt 0 discriminator 4
+	movl	$93, %eax
+	jmp	.L56
+.L53:
+	.loc 2 4 52 is_stmt 1 discriminator 2
+	movl	$91, %eax
+.L56:
+	.loc 2 4 52 is_stmt 0 discriminator 8
 	movl	%eax, %edx
 	leaq	.LC11(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 4 111
-	jmp	.L45
-.L43:
+	.loc 2 4 191 is_stmt 1 discriminator 8
+	jmp	.L57
+.L51:
 	.loc 2 5 38
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 2 5 115
+	.loc 2 5 117
 	movq	-8(%rbp), %rax
 	movl	24(%rax), %eax
-	.loc 2 5 128
+	.loc 2 5 130
 	cltq
 	leaq	0(,%rax,8), %rdx
 	leaq	_ZL12INSTRUCTIONS(%rip), %rax
@@ -840,16 +906,16 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 5 132
-	jmp	.L45
-.L42:
+	.loc 2 5 134
+	jmp	.L57
+.L50:
 	.loc 2 6 40
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 2 6 121
+	.loc 2 6 123
 	movq	-8(%rbp), %rax
 	movl	24(%rax), %eax
-	.loc 2 6 136
+	.loc 2 6 138
 	cltq
 	leaq	0(,%rax,8), %rdx
 	leaq	_ZL14INITIALIZATORS(%rip), %rax
@@ -861,16 +927,16 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 6 140
-	jmp	.L45
-.L41:
+	.loc 2 6 142
+	jmp	.L57
+.L49:
 	.loc 2 7 44
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 2 7 133
+	.loc 2 7 135
 	movq	-8(%rbp), %rax
 	movl	24(%rax), %eax
-	.loc 2 7 152
+	.loc 2 7 154
 	cltq
 	leaq	0(,%rax,8), %rdx
 	leaq	_ZL18FUNCTION_RET_TYPES(%rip), %rax
@@ -882,13 +948,13 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 7 156
-	jmp	.L45
-.L40:
+	.loc 2 7 158
+	jmp	.L57
+.L48:
 	.loc 2 8 35
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 2 8 96
+	.loc 2 8 98
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 8 51
@@ -899,17 +965,17 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 8 109
-	jmp	.L45
-.L39:
+	.loc 2 8 111
+	jmp	.L57
+.L47:
 	.loc 2 10 31
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 2 10 99
+	.loc 2 10 101
 	movq	-8(%rbp), %rax
 	movl	24(%rax), %eax
 	cltq
-	.loc 2 10 108
+	.loc 2 10 110
 	leaq	0(,%rax,8), %rdx
 	movq	-24(%rbp), %rax
 	addq	%rdx, %rax
@@ -921,17 +987,17 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 10 112
-	jmp	.L45
-.L38:
+	.loc 2 10 114
+	jmp	.L57
+.L46:
 	.loc 2 11 35
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 2 11 107
+	.loc 2 11 109
 	movq	-8(%rbp), %rax
 	movl	24(%rax), %eax
 	cltq
-	.loc 2 11 116
+	.loc 2 11 118
 	leaq	0(,%rax,8), %rdx
 	movq	-24(%rbp), %rax
 	addq	%rdx, %rax
@@ -943,13 +1009,13 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 11 120
-	jmp	.L45
-.L37:
+	.loc 2 11 122
+	jmp	.L57
+.L45:
 	.loc 2 12 35
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
-	.loc 2 12 97
+	.loc 2 12 99
 	movq	-8(%rbp), %rax
 	movq	24(%rax), %rax
 	.loc 2 12 51
@@ -959,26 +1025,48 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rdx, %rdi
 	movl	$1, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 12 110
-	jmp	.L45
-.L36:
+	.loc 2 12 112
+	jmp	.L57
+.L44:
 	.loc 2 13 35
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 2 13 96
+	.loc 2 13 98
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 13 51
+	cmpb	$123, %al
+	je	.L58
+	.loc 2 13 137 discriminator 1
+	movq	-8(%rbp), %rax
+	movzbl	24(%rax), %eax
+	.loc 2 13 116 discriminator 1
+	cmpb	$125, %al
+	je	.L59
+	.loc 2 13 176 discriminator 3
+	movq	-8(%rbp), %rax
+	movzbl	24(%rax), %eax
+	.loc 2 13 116 discriminator 3
 	movsbl	%al, %eax
+	jmp	.L61
+.L59:
+	.loc 2 13 116 is_stmt 0 discriminator 4
+	movl	$93, %eax
+	jmp	.L61
+.L58:
+	.loc 2 13 51 is_stmt 1 discriminator 2
+	movl	$91, %eax
+.L61:
+	.loc 2 13 51 is_stmt 0 discriminator 8
 	movl	%eax, %edx
 	leaq	.LC19(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 13 109
-	jmp	.L45
-.L35:
+	.loc 2 13 189 is_stmt 1 discriminator 8
+	jmp	.L57
+.L43:
 	.loc 2 14 31
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
@@ -990,13 +1078,13 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 14 81
-	jmp	.L45
-.L31:
+	.loc 2 14 83
+	jmp	.L57
+.L39:
 	.loc 2 16 36
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 2 16 98
+	.loc 2 16 100
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 16 52
@@ -1007,13 +1095,13 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 16 111
-	jmp	.L45
-.L30:
+	.loc 2 16 113
+	jmp	.L57
+.L38:
 	.loc 2 17 48
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 2 17 122
+	.loc 2 17 124
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 17 64
@@ -1024,13 +1112,13 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 17 135
-	jmp	.L45
-.L28:
+	.loc 2 17 137
+	jmp	.L57
+.L36:
 	.loc 2 18 48
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 2 18 122
+	.loc 2 18 124
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 18 64
@@ -1041,13 +1129,13 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 18 135
-	jmp	.L45
-.L34:
+	.loc 2 18 137
+	jmp	.L57
+.L42:
 	.loc 2 19 53
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 2 19 132
+	.loc 2 19 134
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 19 69
@@ -1058,13 +1146,13 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 19 145
-	jmp	.L45
-.L33:
+	.loc 2 19 147
+	jmp	.L57
+.L41:
 	.loc 2 20 53
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 2 20 132
+	.loc 2 20 134
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 20 69
@@ -1075,13 +1163,13 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 20 145
-	jmp	.L45
-.L32:
+	.loc 2 20 147
+	jmp	.L57
+.L40:
 	.loc 2 21 43
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 2 21 112
+	.loc 2 21 114
 	movq	-8(%rbp), %rax
 	movzbl	24(%rax), %eax
 	.loc 2 21 59
@@ -1092,9 +1180,9 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
-	.loc 2 21 125
-	jmp	.L45
-.L27:
+	.loc 2 21 127
+	jmp	.L57
+.L35:
 	.loc 1 59 37
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
@@ -1106,7 +1194,7 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	call	_ZN6Logger13log_no_indentEPKcz@PLT
 	.loc 1 60 18
 	nop
-.L45:
+.L57:
 	.loc 1 63 24
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
@@ -1117,11 +1205,11 @@ _Z8LogTokenPK5TokenPKcPS3_:
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
 	.loc 1 65 5
-	jmp	.L24
-.L46:
+	jmp	.L32
+.L62:
 	.loc 1 38 17
 	nop
-.L24:
+.L32:
 	.loc 1 66 5
 	leave
 	.cfi_def_cfa 7, 8
@@ -1145,10 +1233,10 @@ _Z41__static_initialization_and_destruction_0ii:
 	movl	%esi, -8(%rbp)
 	.loc 1 66 5
 	cmpl	$1, -4(%rbp)
-	jne	.L49
+	jne	.L65
 	.loc 1 66 5 is_stmt 0 discriminator 1
 	cmpl	$65535, -8(%rbp)
-	jne	.L49
+	jne	.L65
 	.file 3 "/usr/include/c++/11/iostream"
 	.loc 3 74 25 is_stmt 1
 	leaq	_ZStL8__ioinit(%rip), %rax
@@ -1161,7 +1249,7 @@ _Z41__static_initialization_and_destruction_0ii:
 	movq	_ZNSt8ios_base4InitD1Ev@GOTPCREL(%rip), %rax
 	movq	%rax, %rdi
 	call	__cxa_atexit@PLT
-.L49:
+.L65:
 	.loc 1 66 5
 	nop
 	leave
@@ -1236,9 +1324,9 @@ _GLOBAL__sub_I__Z10PrintTokenPK5TokenPPKc:
 	.file 41 "/usr/include/stdlib.h"
 	.file 42 "/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h"
 	.file 43 "/usr/include/wctype.h"
-	.file 44 "../ATC/Logger/LogConfig.h"
-	.file 45 "../ATC/RandomStuff/CommonEnums.h"
-	.file 46 "../ATC/Logger/Logger.h"
+	.file 44 "./ATC/Logger/LogConfig.h"
+	.file 45 "./ATC/RandomStuff/CommonEnums.h"
+	.file 46 "./ATC/Logger/Logger.h"
 	.file 47 "/usr/include/c++/11/bits/algorithmfwd.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:

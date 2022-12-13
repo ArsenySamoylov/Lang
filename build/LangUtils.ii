@@ -66,7 +66,8 @@ enum FuncType
 
 struct VarLabel
     {
-    int name;
+    int name_id;
+    int position;
     };
 
 struct VarTabel
@@ -74,6 +75,7 @@ struct VarTabel
     VarLabel** label_arr;
     int arr_size;
 
+    int memory_adress;
     int number_of_labels;
     };
 
@@ -109,6 +111,7 @@ int VarTabelCtor (VarTabel* tabel);
 VarLabel* IsVarLabel (int name_id, VarTabel* tabel);
 
 int AddVarLabel (VarLabel* label, VarTabel* tabel);
+int AddVarLabel (int name_id, VarTabel* tabel);
 # 5 "./headers/Program.h" 2
 
 struct Program
@@ -1113,7 +1116,7 @@ const int MAX_WORD_LENGTH = 16;
 # 6 "./src/LangUtils.cpp" 2
 # 1 "./headers/DSL.h" 1
        
-# 1 "../ATC/Logger/LogMacroses.h" 1
+# 1 "./ATC/Logger/LogMacroses.h" 1
        
 
 # 1 "/usr/include/c++/11/iostream" 1 3
@@ -43658,7 +43661,7 @@ namespace std __attribute__ ((__visibility__ ("default")))
 
 
 }
-# 4 "../ATC/Logger/LogMacroses.h" 2
+# 4 "./ATC/Logger/LogMacroses.h" 2
 
 # 1 "/usr/include/string.h" 1 3 4
 # 26 "/usr/include/string.h" 3 4
@@ -44076,18 +44079,18 @@ extern "C++" const char *basename (const char *__filename)
      noexcept (true) __asm ("basename") __attribute__ ((__nonnull__ (1)));
 # 539 "/usr/include/string.h" 3 4
 }
-# 6 "../ATC/Logger/LogMacroses.h" 2
+# 6 "./ATC/Logger/LogMacroses.h" 2
 
-# 1 "../ATC/Logger/Logger.h" 1
+# 1 "./ATC/Logger/Logger.h" 1
        
 
 
 
-# 1 "../ATC/Logger/LogConfig.h" 1
+# 1 "./ATC/Logger/LogConfig.h" 1
        
 
 
-# 3 "../ATC/Logger/LogConfig.h"
+# 3 "./ATC/Logger/LogConfig.h"
 const char STD_LOG_NAME[] = "./logs/stdlog.ars";
 
 
@@ -44104,8 +44107,8 @@ enum LoggingLevels
 
     RELEASE = 666,
     };
-# 6 "../ATC/Logger/Logger.h" 2
-# 1 "../ATC/Logger/tostring.h" 1
+# 6 "./ATC/Logger/Logger.h" 2
+# 1 "./ATC/Logger/tostring.h" 1
        
 
 char* tostring(short);
@@ -44119,7 +44122,7 @@ char* tostring(double);
 
 char* tostring(char);
 char* tostring(const char*);
-# 7 "../ATC/Logger/Logger.h" 2
+# 7 "./ATC/Logger/Logger.h" 2
 
 class Logger : public std::ostream
     {
@@ -44180,10 +44183,10 @@ Logger& operator<<(Logger& log_out, const Type& value)
          free(message);
          return log_out;
          }
-# 8 "../ATC/Logger/LogMacroses.h" 2
-# 1 "../ATC/Logger/FunctionLogger.h" 1
+# 8 "./ATC/Logger/LogMacroses.h" 2
+# 1 "./ATC/Logger/FunctionLogger.h" 1
        
-# 11 "../ATC/Logger/FunctionLogger.h"
+# 11 "./ATC/Logger/FunctionLogger.h"
 class FunctionLogger
     {
     private:
@@ -44200,9 +44203,9 @@ class FunctionLogger
         FunctionLogger(int lvl, const char* func_name);
         ~FunctionLogger();
     };
-# 9 "../ATC/Logger/LogMacroses.h" 2
+# 9 "./ATC/Logger/LogMacroses.h" 2
 
-# 1 "../ATC/RandomStuff/CommonEnums.h" 1
+# 1 "./ATC/RandomStuff/CommonEnums.h" 1
        
 
 const int CRINGE = 0xDED;
@@ -44247,15 +44250,15 @@ enum CommonErrors
     SYNTAX_ERROR = 13,
     LOX = 0xDED,
     };
-# 11 "../ATC/Logger/LogMacroses.h" 2
-# 1 "../ATC/ConsoleColors/LinuxColors.h" 1
+# 11 "./ATC/Logger/LogMacroses.h" 2
+# 1 "./ATC/ConsoleColors/LinuxColors.h" 1
        
-# 12 "../ATC/Logger/LogMacroses.h" 2
-# 1 "../ATC/Utils/Utils.h" 1
+# 12 "./ATC/Logger/LogMacroses.h" 2
+# 1 "./ATC/Utils/Utils.h" 1
        
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 1 3 4
-# 4 "../ATC/Utils/Utils.h" 2
+# 4 "./ATC/Utils/Utils.h" 2
 
 
 int MsgRet (int return_value, const char* format, ...);
@@ -44269,7 +44272,7 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 
 
 int SYSTEM(const char* format, ...);
-# 13 "../ATC/Logger/LogMacroses.h" 2
+# 13 "./ATC/Logger/LogMacroses.h" 2
 # 3 "./headers/DSL.h" 2
 # 7 "./src/LangUtils.cpp" 2
 
@@ -44294,24 +44297,24 @@ void PrintToken (const Token *const token, const char** STRING_ARR)
 
 
 
-case STATEMENT: printf ("STATEMENT" " | {'" "%c" "'}", token->value.t_operator); break;
-case INSTRUCTION: printf ("INSTRUCTION" " | {'" "%s" "'}", INSTRUCTIONS[token->value.t_instruction]); break;
-case INITIALIZATOR: printf ("INITIALIZATOR" " | {'" "%s" "'}", INITIALIZATORS[token->value.t_initializator]); break;
-case FUNCTION_RET_TYPE: printf ("FUNCTION_RET_TYPE" " | {'" "%s" "'}", FUNCTION_RET_TYPES[token->value.t_function_ret_type]); break;
-case OPERATOR: printf ("OPERATOR" " | {'" "%c" "'}", token->value.t_operator); break;
+case STATEMENT: printf ("STATEMENT" " | {'" "%c" "'}\n", token->value.t_operator == '{' ? '[' : token->value.t_operator == '}' ? ']' : token->value.t_operator); break;
+case INSTRUCTION: printf ("INSTRUCTION" " | {'" "%s" "'}\n", INSTRUCTIONS[token->value.t_instruction]); break;
+case INITIALIZATOR: printf ("INITIALIZATOR" " | {'" "%s" "'}\n", INITIALIZATORS[token->value.t_initializator]); break;
+case FUNCTION_RET_TYPE: printf ("FUNCTION_RET_TYPE" " | {'" "%s" "'}\n", FUNCTION_RET_TYPES[token->value.t_function_ret_type]); break;
+case OPERATOR: printf ("OPERATOR" " | {'" "%c" "'}\n", token->value.t_operator); break;
 
-case NAME: printf ("NAME" " | {'" "%s" "'}", STRING_ARR[token->value.t_name_id]); break;
-case VARIABLE: printf ("VARIABLE" " | {'" "%s" "'}", STRING_ARR[token->value.t_name_id]); break;
-case CONSTANT: printf ("CONSTANT" " | {'" "%lg" "'}", token->value.t_constant); break;
-case FUNCTION: printf ("FUNCTION" " | {'" "%c" "'}", token->value.t_operator); break;
-case CALL: printf ("CALL" " | {'" "%s" "'}", " "); break;
+case NAME: printf ("NAME" " | {'" "%s" "'}\n", STRING_ARR[token->value.t_name_id]); break;
+case VARIABLE: printf ("VARIABLE" " | {'" "%s" "'}\n", STRING_ARR[token->value.t_name_id]); break;
+case CONSTANT: printf ("CONSTANT" " | {'" "%lg" "'}\n", token->value.t_constant); break;
+case FUNCTION: printf ("FUNCTION" " | {'" "%c" "'}\n", token->value.t_operator == '{' ? '[' : token->value.t_operator == '}' ? ']' : token->value.t_operator); break;
+case CALL: printf ("CALL" " | {'" "%s" "'}\n", " "); break;
 
-case ASSIGMENT: printf ("ASSIGMENT" " | {'" "%c" "'}", token->value.t_operator); break;
-case BLOCK_OPENING_BRACKET: printf ("BLOCK_OPENING_BRACKET" " | {'" "%c" "'}", token->value.t_operator); break;
-case BLOCK_CLOSING_BRACKET: printf ("BLOCK_CLOSING_BRACKET" " | {'" "%c" "'}", token->value.t_operator); break;
-case EXPRESSION_OPENING_BRACKET: printf ("EXPRESSION_OPENING_BRACKET" " | {'" "%c" "'}", token->value.t_operator); break;
-case EXPRESSION_CLOSING_BRACKET: printf ("EXPRESSION_CLOSING_BRACKET" " | {'" "%c" "'}", token->value.t_operator); break;
-case END_OF_STATEMENT: printf ("END_OF_STATEMENT" " | {'" "%c" "'}", token->value.t_operator); break;
+case ASSIGMENT: printf ("ASSIGMENT" " | {'" "%c" "'}\n", token->value.t_operator); break;
+case BLOCK_OPENING_BRACKET: printf ("BLOCK_OPENING_BRACKET" " | {'" "%c" "'}\n", token->value.t_operator); break;
+case BLOCK_CLOSING_BRACKET: printf ("BLOCK_CLOSING_BRACKET" " | {'" "%c" "'}\n", token->value.t_operator); break;
+case EXPRESSION_OPENING_BRACKET: printf ("EXPRESSION_OPENING_BRACKET" " | {'" "%c" "'}\n", token->value.t_operator); break;
+case EXPRESSION_CLOSING_BRACKET: printf ("EXPRESSION_CLOSING_BRACKET" " | {'" "%c" "'}\n", token->value.t_operator); break;
+case END_OF_STATEMENT: printf ("END_OF_STATEMENT" " | {'" "%c" "'}\n", token->value.t_operator); break;
 # 26 "./src/LangUtils.cpp" 2
 
 
@@ -44345,24 +44348,24 @@ void LogToken (const Token *const token, const char* name, const char** STRING_A
 
 
 
-case STATEMENT: Logger::getInstance().log_no_indent("STATEMENT" " | {'" "%c" "'}" , token->value.t_operator); break;
-case INSTRUCTION: Logger::getInstance().log_no_indent("INSTRUCTION" " | {'" "%s" "'}" , INSTRUCTIONS[token->value.t_instruction]); break;
-case INITIALIZATOR: Logger::getInstance().log_no_indent("INITIALIZATOR" " | {'" "%s" "'}" , INITIALIZATORS[token->value.t_initializator]); break;
-case FUNCTION_RET_TYPE: Logger::getInstance().log_no_indent("FUNCTION_RET_TYPE" " | {'" "%s" "'}" , FUNCTION_RET_TYPES[token->value.t_function_ret_type]); break;
-case OPERATOR: Logger::getInstance().log_no_indent("OPERATOR" " | {'" "%c" "'}" , token->value.t_operator); break;
+case STATEMENT: Logger::getInstance().log_no_indent("STATEMENT" " | {'" "%c" "'}\n" , token->value.t_operator == '{' ? '[' : token->value.t_operator == '}' ? ']' : token->value.t_operator); break;
+case INSTRUCTION: Logger::getInstance().log_no_indent("INSTRUCTION" " | {'" "%s" "'}\n" , INSTRUCTIONS[token->value.t_instruction]); break;
+case INITIALIZATOR: Logger::getInstance().log_no_indent("INITIALIZATOR" " | {'" "%s" "'}\n" , INITIALIZATORS[token->value.t_initializator]); break;
+case FUNCTION_RET_TYPE: Logger::getInstance().log_no_indent("FUNCTION_RET_TYPE" " | {'" "%s" "'}\n" , FUNCTION_RET_TYPES[token->value.t_function_ret_type]); break;
+case OPERATOR: Logger::getInstance().log_no_indent("OPERATOR" " | {'" "%c" "'}\n" , token->value.t_operator); break;
 
-case NAME: Logger::getInstance().log_no_indent("NAME" " | {'" "%s" "'}" , STRING_ARR[token->value.t_name_id]); break;
-case VARIABLE: Logger::getInstance().log_no_indent("VARIABLE" " | {'" "%s" "'}" , STRING_ARR[token->value.t_name_id]); break;
-case CONSTANT: Logger::getInstance().log_no_indent("CONSTANT" " | {'" "%lg" "'}" , token->value.t_constant); break;
-case FUNCTION: Logger::getInstance().log_no_indent("FUNCTION" " | {'" "%c" "'}" , token->value.t_operator); break;
-case CALL: Logger::getInstance().log_no_indent("CALL" " | {'" "%s" "'}" , " "); break;
+case NAME: Logger::getInstance().log_no_indent("NAME" " | {'" "%s" "'}\n" , STRING_ARR[token->value.t_name_id]); break;
+case VARIABLE: Logger::getInstance().log_no_indent("VARIABLE" " | {'" "%s" "'}\n" , STRING_ARR[token->value.t_name_id]); break;
+case CONSTANT: Logger::getInstance().log_no_indent("CONSTANT" " | {'" "%lg" "'}\n" , token->value.t_constant); break;
+case FUNCTION: Logger::getInstance().log_no_indent("FUNCTION" " | {'" "%c" "'}\n" , token->value.t_operator == '{' ? '[' : token->value.t_operator == '}' ? ']' : token->value.t_operator); break;
+case CALL: Logger::getInstance().log_no_indent("CALL" " | {'" "%s" "'}\n" , " "); break;
 
-case ASSIGMENT: Logger::getInstance().log_no_indent("ASSIGMENT" " | {'" "%c" "'}" , token->value.t_operator); break;
-case BLOCK_OPENING_BRACKET: Logger::getInstance().log_no_indent("BLOCK_OPENING_BRACKET" " | {'" "%c" "'}" , token->value.t_operator); break;
-case BLOCK_CLOSING_BRACKET: Logger::getInstance().log_no_indent("BLOCK_CLOSING_BRACKET" " | {'" "%c" "'}" , token->value.t_operator); break;
-case EXPRESSION_OPENING_BRACKET: Logger::getInstance().log_no_indent("EXPRESSION_OPENING_BRACKET" " | {'" "%c" "'}" , token->value.t_operator); break;
-case EXPRESSION_CLOSING_BRACKET: Logger::getInstance().log_no_indent("EXPRESSION_CLOSING_BRACKET" " | {'" "%c" "'}" , token->value.t_operator); break;
-case END_OF_STATEMENT: Logger::getInstance().log_no_indent("END_OF_STATEMENT" " | {'" "%c" "'}" , token->value.t_operator); break;
+case ASSIGMENT: Logger::getInstance().log_no_indent("ASSIGMENT" " | {'" "%c" "'}\n" , token->value.t_operator); break;
+case BLOCK_OPENING_BRACKET: Logger::getInstance().log_no_indent("BLOCK_OPENING_BRACKET" " | {'" "%c" "'}\n" , token->value.t_operator); break;
+case BLOCK_CLOSING_BRACKET: Logger::getInstance().log_no_indent("BLOCK_CLOSING_BRACKET" " | {'" "%c" "'}\n" , token->value.t_operator); break;
+case EXPRESSION_OPENING_BRACKET: Logger::getInstance().log_no_indent("EXPRESSION_OPENING_BRACKET" " | {'" "%c" "'}\n" , token->value.t_operator); break;
+case EXPRESSION_CLOSING_BRACKET: Logger::getInstance().log_no_indent("EXPRESSION_CLOSING_BRACKET" " | {'" "%c" "'}\n" , token->value.t_operator); break;
+case END_OF_STATEMENT: Logger::getInstance().log_no_indent("END_OF_STATEMENT" " | {'" "%c" "'}\n" , token->value.t_operator); break;
 # 55 "./src/LangUtils.cpp" 2
 
 
