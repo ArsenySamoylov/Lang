@@ -2,6 +2,11 @@
     "files.associations": {
         "iostream": "cpp",
         "typeinfo": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "string_view": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp",
+        "architecture": "cpp",
+        "*.ars": "cpp"
     }
 }

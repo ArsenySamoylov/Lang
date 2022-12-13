@@ -1,0 +1,31 @@
+func void helloworld(); 
+
+var x = 30 * 56;
+var y = 0;
+
+void helloworld()
+    {
+    fout << 101;
+    return ;
+    }
+
+double main()
+    {
+    #var y = 1;
+    
+    if (y)
+        {
+        x = 45;
+        x = 10;
+        }
+    else
+        x = 20;
+
+    fout << x; 
+
+    helloworld();
+
+    x = 1 * (4 + 5);
+
+    return y;
+    }

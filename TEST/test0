@@ -1,0 +1,45 @@
+;Tue Dec 13 18:59:34 2022
+
+push 5600
+push 3000
+FMUL
+pop  rax
+
+push 0
+pop  rax
+
+: main
+; condition for if_0 with else 
+push rax
+
+push 0
+je : else_label_0
+; if body
+push 4500
+pop  rax
+
+push 1000
+pop  rax
+
+jmp : else_end_label_0
+; else body
+: else_label_0
+push 2000
+pop  rax
+
+: else_end_label_0
+push rax
+FOUT
+call :helloworld
+push 500
+push 400
+ADD
+push 100
+FMUL
+pop  rax
+
+: helloworld
+push 10100
+FOUT
+hlt
+;end {document}
