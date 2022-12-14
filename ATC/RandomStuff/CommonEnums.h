@@ -6,6 +6,7 @@ enum ReturnStatus
     {
     SUCCESS = 0,
     FAILURE = -1, 
+    BAD_ARGUMENT = -2,
     };
 
 enum ObjectStatus

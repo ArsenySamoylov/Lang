@@ -46,7 +46,7 @@ int SuperStackCtor (SuperStack* stk, size_t capacity
 
     stk->capacity = capacity;
     stk->top      = -1;
-    stk->status   = INITIALIZED;
+    stk->status   = ACTIVE;
 
     if (capacity > 0) 
         stk->heap = (element_t*) canary_calloc (capacity, sizeof (element_t));

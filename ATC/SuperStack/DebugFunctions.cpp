@@ -10,8 +10,8 @@ unsigned MedComissionSS (SuperStack* soldat)
     if (soldat == NULL)
         return NULL_STK_PTR_ERR;
     
-    if (soldat->status != INITIALIZED)
-         flag_error |= WRONG_STK_STATUS;
+    // if (soldat->status != INITIALIZED)
+        //  flag_error |= WRONG_STK_STATUS;
 
     if (!soldat->heap)
         flag_error |= NULL_STK_HEAP;

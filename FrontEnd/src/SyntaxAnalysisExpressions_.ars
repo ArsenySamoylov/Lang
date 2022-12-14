@@ -1,0 +1,119 @@
+// Epressions
+static Token* GetE (ProgramCtx* program_ctx)
+    {
+    $log(DEBUG_ALL)
+    assertlog (program_ctx, EFAULT, return LNULL);
+
+    Token* node = GetT(program_ctx);
+
+    Token* prev_op = node;
+    while (IS_OP(token) && (OP(token) ==  ADD || OP(token) == SUB))
+        { 
+        $LOG_TOKEN(token, STRING_ARR(program_ctx))
+        Token* current_op = token;
+        POSITION(program_ctx)++;
+
+         LEFT(current_op) = prev_op;
+        RIGHT(current_op) = GetT(program_ctx);
+
+        prev_op = current_op;
+        }
+
+    return prev_op;
+    } 
+
+static Token* GetT (ProgramCtx* program_ctx)
+    {
+    $log(DEBUG_ALL)
+    assertlog (program_ctx, EFAULT, return LNULL);
+
+    Token* node = GetPower(program_ctx);
+    $LOG_TOKEN(node, STRING_ARR(program_ctx))
+
+    Token* prev_op = node;
+    while (IS_OP(token) && (OP(token) ==  MUL || OP(token) == DIV))
+        {
+        $LOG_TOKEN(token, STRING_ARR(program_ctx))
+        Token* current_op = token;
+        POSITION(program_ctx)++;
+        
+         LEFT(current_op) = prev_op;
+        RIGHT(current_op) = GetPower(program_ctx);
+
+        prev_op = current_op;
+        }
+    
+    return prev_op;
+    }
+
+Token* GetPower (ProgramCtx* program_ctx)
+    {
+    $log(DEBUG_ALL)
+    assertlog (program_ctx, EFAULT, return LNULL);
+
+    Token* node = GetP(program_ctx);
+
+    Token* prev_op = node;
+    while (IS_OP(token) && OP(token) ==  POW)
+        {
+        $LOG_TOKEN(token, STRING_ARR(program_ctx))
+        Token* current_op = token;
+        POSITION(program_ctx)++;
+
+         LEFT(current_op) = prev_op;
+        RIGHT(current_op) = GetP(program_ctx);
+
+        prev_op = current_op;
+        }
+    
+    return prev_op;
+    }
+
+static Token* GetP (ProgramCtx* program_ctx)
+    {
+    $log(DEBUG_ALL)
+    assertlog (program_ctx, EFAULT, return LNULL);
+
+    if (TYPE(token) == EXPRESSION_OPENING_BRACKET)
+        {
+        POSITION(program_ctx)++;
+
+        Token* expression = GetE(program_ctx); 
+
+        if (OP(token) != EXPRESSION_CLOSING_BRACKET)
+            {
+            report_syntax_error("Missing closing bracket (token position %d)\n", POSITION(program_ctx));
+            return LNULL;
+            }
+
+        POSITION(program_ctx)++;
+        
+        return expression; 
+        }
+
+    return GetN(program_ctx);
+    }
+
+static Token* GetN (ProgramCtx* program_ctx)
+    {
+    $log(DEBUG_ALL)
+    assertlog(program_ctx, EFAULT, return LNULL);
+
+    if (TYPE(token) == NAME)
+        {
+        if (DefineName(program_ctx) == NOT_DECLARED)
+            return NULL;
+        }
+
+    if (!IS_CONST(token) && !IS_VAR(token))
+        {
+        report_syntax_error("Cringe, this is not variable or constant node =(\n");
+        return LNULL;
+        } 
+    
+    Token* result = token;
+    POSITION(program_ctx)++;
+
+    $LOG_TOKEN(result, STRING_ARR(program_ctx))
+    return result;
+    }
