@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
+#include <stddef.h>
 
 #include "Grammar.h"
 #include "DSL.h"
@@ -20,10 +21,13 @@
 
 #pragma GCC diagnostic ignored "-Wconversion"
 #pragma GCC diagnostic ignored "-Wsign-conversion"
-
+#pragma GCC diagnostic ignored "-Wcast-qual" // for returning BLOCK_CLOSING_BRACKET_FLAG
+                                
 const int GROWTH_RATE = 2;
 
 const int START_NUMBER_OF_VAR_TABELS_STK = 5;
+
+const Token* BLOCK_CLOSING_BRACKET_FLAG = (Token*) 0x1;
 
 struct ProgramCtx
     {
@@ -81,14 +85,14 @@ static Token* GetN     (ProgramCtx* program_ctx);
                                            token->line, token->indent);     \
             printl(token->ptr_to_src_code, '\n');                           \
             printf(resetconsole "\n");                                      \
-            printf("%s:%d\n", __FILE__, __LINE__);                          \
+            printf("%s:%d, %s\n", __FILE__, __LINE__, __func__);            \
             PrintToken(token, STRING_ARR(program_ctx));                     \
             }                                                               \
         while(0);
 
 #define MISSING_EOS()   report_syntax_error("Missing '%c'\n", END_OF_STATEMENT)
 #define MISSING_BOB()   report_syntax_error("Missing '%c'\n", BLOCK_OPENING_BRACKET)
-#define MISSING_CB()    report_syntax_error("Missing '%c'\n", BLOCK_CLOSING_BRACOPENING_BRACKETOPENING_BRACKETET)
+#define MISSING_BCB()   report_syntax_error("Missing '%c'\n", BLOCK_CLOSING_BRACKET)
 #define MISSING_EOP()   report_syntax_error("Missing '%c'\n", EXPRESSION_OPENING_BRACKET)
 #define MISSING_ECB()   report_syntax_error("Missing '%c'\n", EXPRESSION_CLOSING_BRACKET)
 
@@ -97,6 +101,7 @@ static Token* GetN     (ProgramCtx* program_ctx);
 #include "../src/SyntaxAnalysisUtils_.ars"
 #include "../src/SyntaxAnalysisExpressions_.ars"
 
+// Add checking funclabels for DECLARED and look for MAIN
 int GetG (Program* program)
     {
     $log(DEBUG)
@@ -147,7 +152,7 @@ int GetG (Program* program)
     FAIL_EXIT:
 
     ProgramCtxDtor(program_ctx);
-    
+
     return FAILURE;
     }
 
@@ -162,7 +167,7 @@ static Token* GetProcess (ProgramCtx* program_ctx)
         if (INITIALIZATOR(token) == FUNCTION_INITIALIZATOR)
             {
             if (FuncInitialization(program_ctx) != SUCCESS)
-                return LNULL;
+                return NULL;
 
             return GetProcess(program_ctx);
             }
@@ -173,14 +178,6 @@ static Token* GetProcess (ProgramCtx* program_ctx)
         report_syntax_error("Unknow Initializator type\n");
         return NULL;    
 
-    /*
-    case NAME:  
-        
-        if (DefineName(program_ctx) == NOT_DECLARED)
-            return LNULL;
-
-        return GetProcess(program_ctx);
-    */
 
     case FUNCTION_RET_TYPE: 
 
@@ -198,6 +195,7 @@ static Token* GetProcess (ProgramCtx* program_ctx)
 
 static int FuncInitialization (ProgramCtx* program_ctx)
     {
+    $log(DEBUG)
     assertlog(program_ctx, EFAULT, return FAILURE);
 
     if (TYPE(token) != INITIALIZATOR || INITIALIZATOR(token) != FUNCTION_INITIALIZATOR)
@@ -208,22 +206,15 @@ static int FuncInitialization (ProgramCtx* program_ctx)
 
     POSITION(program_ctx)++;
     
-    Token* dummy = NULL;
-
-    FuncLabel* label = MakeFuncLabel(program_ctx, &dummy);
-    if (IsFuncLabel(label->name, FUNC_TABEL(program_ctx)))
-        {
-        report_syntax_error("Ebat, %s shadows previous declaration\n", STRING_ARR(program_ctx)[label->name]);
+    if (MakeFuncLabel(program_ctx) < 0)
         return FAILURE;
-        }
-
-    AddFuncLabel(label, FUNC_TABEL(program_ctx));
 
     if (TYPE(token) != END_OF_STATEMENT)
         {
         MISSING_EOS();
         return FAILURE;
         }
+
     POSITION(program_ctx)++;
 
     return SUCCESS;
@@ -249,13 +240,14 @@ static Token* VarInitialization (ProgramCtx* program_ctx)
         }
 
     Token* var_name = token;
-    POSITION(program_ctx)++;
 
     if (GetVarLabel(NAME_ID(var_name), VAR_TABELS_STK(program_ctx)))
         {
-        report_syntax_error("Ebat, %s shadows previous declaration\n", STRING_ARR(program_ctx)[NAME_ID(token)]);
+        report_syntax_error("Ebat, %s shadows previous declaration\n", STRING_ARR(program_ctx)[NAME_ID(var_name)]);
         return NULL;
         }
+
+    POSITION(program_ctx)++;
 
     if (AddVarLabel(NAME_ID(var_name), TOP_VAR_TABEL(program_ctx)) != SUCCESS)
         return NULL;    
@@ -307,7 +299,6 @@ static Token* VarInitialization (ProgramCtx* program_ctx)
     return statement;
     }
 
-// CHANGE RETURN SYSTEM (move to get block or get statement) (return can be not only in the end of function)
 static Token* GetFunction (ProgramCtx* program_ctx)
     {
     $log(DEBUG)
@@ -316,102 +307,83 @@ static Token* GetFunction (ProgramCtx* program_ctx)
     // get function name, parametrs and etc
     Token* func_head = NULL;
 
-    FuncLabel* label = MakeFuncLabel(program_ctx, &func_head);    
+    int func_label_position = MakeFuncLabel(program_ctx, &func_head);    
 
-    // change to int - position in functabel 
-    FuncLabel* prev_declaration = IsFuncLabel(label->name, FUNC_TABEL(program_ctx));
-    if (prev_declaration)
-        {
-        if (!CompareFuncLabels (label, prev_declaration))
-            {
-            report_syntax_error("'%s' conflict with prev declaration\n", STRING_ARR(program_ctx)[label->name]);
-            return NULL;
-            }
-        
-        if (prev_declaration->body_status == DEFINED)
-            {
-            report_syntax_error("Redefinition of function '%s'\n", STRING_ARR(program_ctx)[label->name]);
-            return NULL;
-            }
-        }
-
-    AddFuncLabel(label, FUNC_TABEL(program_ctx));
-
-    // function body
-    if (TYPE(token) != BLOCK_OPENING_BRACKET)
-        {
-        report_syntax_error("Missing '{' in function body\n");
+    if (func_label_position < 0)
         return NULL;
-        }
 
-    Token* function = token;
-    TYPE(function) = FUNCTION;
+    if (!func_head)
+        return NULL;
 
-    POSITION(program_ctx)++;
+    FuncLabel* label = *(FUNC_TABEL(program_ctx)->label_arr + func_label_position);
+    program_ctx->current_func_label = func_label_position;
+
+    $lzu(FUNC_TABEL(program_ctx)->number_of_labels)
+    $lzu(program_ctx->current_func_label)
 
     Token* body = GetBlock(program_ctx);
-    CHECK(body, return LNULL);
 
-    if (TYPE(token) != INSTRUCTION && INSTR(token) != RETURN)
+    if (!body)
+        return NULL;
+
+    if (label->number_of_return < 1)
         {
-        report_syntax_error("No return in function\n");
+        report_syntax_error("No return in function %s\n", STRING_ARR(program_ctx)[label->name]);
         return NULL;
         }
 
-    POSITION(program_ctx)++;
-
-    // chek if void so to do;
-    if (label->ret_type != VOID)
-        {
-        // TODO("Function return\n");
-        if (!GetE(program_ctx))
-            {
-            report_syntax_error("No return value in novoid function\n");
-            return NULL;
-            }
-        }
-
-    if (TYPE(token) != END_OF_STATEMENT)
-        {
-        MISSING_EOS();
-        return NULL;
-        }
-
-    POSITION(program_ctx)++;
+    // THIS is костыль, I need extra token for statement
+    POSITION(program_ctx)--;
 
     if (TYPE(token) != BLOCK_CLOSING_BRACKET)
-       {
-       report_syntax_error("Missing '}' in function body\n");
-       return NULL;
-       }
+        {
+        report_syntax_error("This is костыль, prev token HAVE to be '}'\n");
+        return NULL;
+        }
 
     Token* statement = token;
     POSITION(program_ctx)++;
 
-    LEFT(statement) = function;
-
-     LEFT(function) = func_head;
-    RIGHT(function) = body;
-
-    label->body_status = DECLARED;
+    RIGHT(func_head) = body;
 
     TYPE(statement) = STATEMENT;
-    LEFT(statement) = function;
+    LEFT(statement) = func_head;
+
+
+    label->body_status = DECLARED;
 
     return statement;
     }
 
-// add creating new variable table in new block
+// MUST use FIRST bracket as statement (cause GetFunction, GetStatement uses second one)
 static Token* GetBlock (ProgramCtx* program_ctx)
     {
     $log(DEBUG)
     assertlog(program_ctx, EFAULT, return NULL);
     
+    if (TYPE(token) != BLOCK_OPENING_BRACKET)
+        {
+        MISSING_BOB();
+        return NULL;
+        }
+        
+    POSITION(program_ctx)++;
+    
+    VarTabel* var_tabel = NewVarTabel();
+    if (!var_tabel)
+        goto FAIL_EXIT;
+
+    StackPush(VAR_TABELS_STK(program_ctx), var_tabel);
+
+    {
     Token* block = GetStatement(program_ctx);
     if (!block) 
+        goto FAIL_EXIT;
+    
+    if (block == BLOCK_CLOSING_BRACKET_FLAG)
         {
         report_syntax_error("Empty block\n");
-        return NULL;
+        goto FAIL_EXIT;
         }
 
     Token* current_statement = block;
@@ -419,10 +391,44 @@ static Token* GetBlock (ProgramCtx* program_ctx)
         {
         RIGHT(current_statement) = GetStatement(program_ctx);
 
+        if (RIGHT(current_statement) == BLOCK_CLOSING_BRACKET_FLAG)
+            {
+            RIGHT(current_statement) = NULL;
+
+            break;
+            }
+
+        if (!RIGHT(current_statement))
+            goto FAIL_EXIT;
+
         current_statement = RIGHT(current_statement);    
         }
 
+    if (OP(token) != BLOCK_CLOSING_BRACKET)
+        {
+        MISSING_BCB();        
+        goto FAIL_EXIT;
+        }
+
+    POSITION(program_ctx)++;
+    
+    // POP
+    if (StackPop(VAR_TABELS_STK(program_ctx)) != var_tabel)
+        {
+        report_syntax_error("Stack tables doesn't match\n");
+        goto FAIL_EXIT;
+        }   
+
+    CloseVarTabel(var_tabel);
+
     return block;
+    }
+
+    FAIL_EXIT:
+
+    CloseVarTabel(var_tabel);
+
+    return NULL;
     }
 
 static Token* GetStatement (ProgramCtx* program_ctx)
@@ -430,10 +436,13 @@ static Token* GetStatement (ProgramCtx* program_ctx)
     $log(1)
     assertlog(program_ctx, EFAULT, return NULL);
 
+    if (TYPE(token) == BLOCK_CLOSING_BRACKET)
+        return (Token*) BLOCK_CLOSING_BRACKET_FLAG;
+
     if (TYPE(token) == NAME)
         {
         if (DefineName(program_ctx) == NOT_DECLARED)
-            return LNULL;
+            return NULL;
 
         return GetStatement(program_ctx);
         }
@@ -464,20 +473,30 @@ static Token* GetStatement (ProgramCtx* program_ctx)
 
     if (TYPE(token) == BLOCK_OPENING_BRACKET)
         {
-        POSITION(program_ctx)++;
-
         Token* block = GetBlock(program_ctx);
 
-        if (OP(token) != BLOCK_CLOSING_BRACKET)
+        if (!block)
+            return NULL;
+
+        // This is костыль
+        POSITION(program_ctx)--;
+
+        if (TYPE(token) != BLOCK_CLOSING_BRACKET)
             {
-            report_syntax_error("Missing closing bracket (token position %d)\n", POSITION(program_ctx));
+            report_syntax_error("This is костыль, prev token HAVE to be '}'\n");
             return NULL;
             }
 
+        Token* statement = token;
         POSITION(program_ctx)++;
 
-        return block;
+        TYPE(statement) = STATEMENT;
+        LEFT(statement) = block;
+
+        return statement;
         }
+
+    report_syntax_error("Not supported token\n");
 
     return NULL;
     }
@@ -581,21 +600,58 @@ static Token* GetNativeFunction (ProgramCtx* program_ctx)
     return LNULL;
     }
 
-// NOT READY FOR USE
 static Token* GetReturn (ProgramCtx* program_ctx)
     {
     assertlog(program_ctx, EFAULT, return LNULL);
 
-    if (TYPE(token) != RETURN)
+    if (TYPE(token) != INSTRUCTION || INSTR(token) != RETURN)
         {
         report_syntax_error("Not a return token\n");
         return NULL;
         }
 
-    return LNULL;
+    Token* ret = token;
+    POSITION(program_ctx)++;
+    
+    FuncLabel* function = *(FUNC_TABEL(program_ctx)->label_arr + program_ctx->current_func_label);
+    
+    $lzu(FUNC_TABEL(program_ctx)->number_of_labels)
+    $lzu(program_ctx->current_func_label)
+
+    if (!function)
+        {
+        report_syntax_error("Missing function label \\_('')_/\n");
+        return NULL;
+        }
+
+    if (function->ret_type == DOUBLE)
+        {
+        LEFT(ret) = GetE(program_ctx);
+
+        if (!LEFT(ret))
+            return NULL;
+        }
+    
+    if (function->ret_type == VOID)
+        {
+        if (TYPE(token) != END_OF_STATEMENT)
+            {
+            report_syntax_error("Wrong return value in void function '%s'\n", STRING_ARR(program_ctx)[function->name]);
+            return NULL;
+            }
+        }
+
+    Token* statement = token;
+    POSITION(program_ctx)++;
+
+    TYPE(statement) = STATEMENT;
+    LEFT(statement) = ret;
+
+    function->number_of_return++;
+
+    return statement;
     }
 
-// change Return
 static Token* GetInstruction (ProgramCtx* program_ctx)
     {
     $log(2)
@@ -607,13 +663,8 @@ static Token* GetInstruction (ProgramCtx* program_ctx)
         return NULL;
         }
     
-    /*
     if (INSTR(token) == RETURN)
         return GetReturn(program_ctx);
-    */
-
-    if (INSTR(token) == RETURN)
-        return NULL;
 
     // Condition
     Token* instruction = token;
@@ -650,7 +701,7 @@ static Token* GetInstruction (ProgramCtx* program_ctx)
     RIGHT (instruction) = GetStatement(program_ctx);
     if (!RIGHT(instruction))
         {
-        report_syntax_error("No condition for instruction (position %d)\n", POSITION(program_ctx));
+        // report_syntax_error("No condition for instruction (position %d)\n", POSITION(program_ctx));
         return NULL;
         }
 

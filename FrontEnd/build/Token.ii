@@ -8,6 +8,8 @@
 # 1 "../Common/Structures/Token/Token.h" 1
        
 
+#pragma GCC diagnostic ignored "-Wlarger-than="
+
 union TokenValue
     {
     int t_instruction;

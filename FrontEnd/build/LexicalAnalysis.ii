@@ -14,6 +14,8 @@
 # 1 "../Common/Structures/Token/Token.h" 1
        
 
+#pragma GCC diagnostic ignored "-Wlarger-than="
+
 union TokenValue
     {
     int t_instruction;
@@ -80,6 +82,7 @@ typedef struct {
 
 # 7 "../Common/Structures/Tabels/Tabels.h"
 const int NOT_DECLARED = - 111;
+const int NOT_A_LABEL = -9;
 
 enum VarStorageType
     {
@@ -114,6 +117,8 @@ struct FuncLabel
     int ret_type;
     int body_status;
 
+    int number_of_return;
+
 
 
     size_t number_of_local_variables;
@@ -135,10 +140,12 @@ int CloseFuncTabel (FuncTabel* tabel);
 
 
 
-FuncLabel* IsFuncLabel (int name_id, FuncTabel* func_tabel);
+int IsFuncLabel (int name_id, FuncTabel* func_tabel);
 
 int AddFuncLabel (FuncLabel* label, FuncTabel* tabel);
 int AddFuncLabel (int name_id, int return_type, int body_status, FuncTabel* func_tabel);
+
+FuncLabel* NewFuncLabel (int name_id, int return_type);
 
 
 int CompareFuncLabels (FuncLabel* label1, FuncLabel* label2);

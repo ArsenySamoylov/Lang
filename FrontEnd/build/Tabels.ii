@@ -11,6 +11,8 @@
 # 1 "../Common/Structures/Token/Token.h" 1
        
 
+#pragma GCC diagnostic ignored "-Wlarger-than="
+
 union TokenValue
     {
     int t_instruction;
@@ -73,6 +75,7 @@ typedef struct {
 
 # 7 "../Common/Structures/Tabels/Tabels.h"
 const int NOT_DECLARED = - 111;
+const int NOT_A_LABEL = -9;
 
 enum VarStorageType
     {
@@ -107,6 +110,8 @@ struct FuncLabel
     int ret_type;
     int body_status;
 
+    int number_of_return;
+
 
 
     size_t number_of_local_variables;
@@ -128,10 +133,12 @@ int CloseFuncTabel (FuncTabel* tabel);
 
 
 
-FuncLabel* IsFuncLabel (int name_id, FuncTabel* func_tabel);
+int IsFuncLabel (int name_id, FuncTabel* func_tabel);
 
 int AddFuncLabel (FuncLabel* label, FuncTabel* tabel);
 int AddFuncLabel (int name_id, int return_type, int body_status, FuncTabel* func_tabel);
+
+FuncLabel* NewFuncLabel (int name_id, int return_type);
 
 
 int CompareFuncLabels (FuncLabel* label1, FuncLabel* label2);
@@ -44263,7 +44270,7 @@ int CloseFuncTabel (FuncTabel* tabel)
     return SUCCESS;
     }
 
-FuncLabel* IsFuncLabel (int name_id, FuncTabel* func_tabel)
+int IsFuncLabel (int name_id, FuncTabel* func_tabel)
     {
     do { if (!(func_tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "func_tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "func_tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 75, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 75, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
 # 75 "../Common/Structures/Tabels/Tabels.cpp" 3 4
@@ -44273,34 +44280,26 @@ FuncLabel* IsFuncLabel (int name_id, FuncTabel* func_tabel)
 # 75 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
 # 75 "../Common/Structures/Tabels/Tabels.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 75); system("echo LOX\n"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 75), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 75, __func__, 75); } } while (0);;
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 75); system("echo LOX\n"); return NOT_A_LABEL; } } while (0);;
 
     size_t number_of_labels = func_tabel->number_of_labels;
     if (number_of_labels < 1)
-        return 
-# 79 "../Common/Structures/Tabels/Tabels.cpp" 3 4
-              __null
-# 79 "../Common/Structures/Tabels/Tabels.cpp"
-                  ;
+        return NOT_A_LABEL;
 
     FuncLabel** label_arr = func_tabel->label_arr;
     if (!label_arr)
         {
         { printf("\t%s: ", __func__); printf("Empty label array in func tabel %p\n", (void*) func_tabel); };
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 85), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 85, __func__, 85);
+        return NOT_A_LABEL;
         }
 
     for(size_t i = 0; i < number_of_labels; i++)
         {
         if (name_id == (*(label_arr + i))->name )
-            return *(label_arr + i);
+            return (int) i;
         }
 
-    return 
-# 94 "../Common/Structures/Tabels/Tabels.cpp" 3 4
-          __null
-# 94 "../Common/Structures/Tabels/Tabels.cpp"
-              ;
+    return NOT_A_LABEL;
     }
 
 int AddFuncLabel (int name_id, int return_type, int body_status,
@@ -44317,75 +44316,98 @@ int AddFuncLabel (int name_id, int return_type, int body_status,
    )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 100); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 100, __func__, 100), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 100, __func__, 100); } } while (0);;
 
     if ((func_tabel->arr_size) <= (func_tabel->number_of_labels))
-        do { if (!ResizeFuncTabel(func_tabel) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ResizeFuncTabel(func_tabel) == SUCCESS" " is false\n" , __func__, 103); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 103, __func__, 103), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 103, __func__, 103) ; } }while (0);;
+        do { if (!ResizeFuncTabel(func_tabel) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ResizeFuncTabel(func_tabel) == SUCCESS" " is false\n" , __func__, 103); return FAILURE ; } }while (0);;
 
     FuncLabel* new_label = (FuncLabel*) Logger::getInstance().CAL_LOG (1, sizeof(new_label[0]), "../Common/Structures/Tabels/Tabels.cpp", __func__, 105);;
     if (!new_label)
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 107, __func__, 107), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 107, __func__, 107);
+        return FAILURE;
 
     new_label->name = name_id;
     new_label->ret_type = return_type;
     new_label->body_status = body_status;
 
+    new_label->number_of_return = 0;
 
     new_label->number_of_local_variables = 0;
 
     *((func_tabel->label_arr) + (func_tabel->number_of_labels)) = new_label;
-    (func_tabel->number_of_labels)++;
 
-    return SUCCESS;
+    do { Logger::getInstance().log("\t%s: %zu\n" , "NUMBER_OF_LABELS(func_tabel)", (func_tabel->number_of_labels)); } while(0);
+
+    return (int) (func_tabel->number_of_labels)++;
     }
 
 int AddFuncLabel (FuncLabel* label, FuncTabel* func_tabel)
     {
-    do { if (!(label)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "label"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "label"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 124, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 124, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 124 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+    do { if (!(label)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "label"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "label"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 126, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 126, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 126 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 124 "../Common/Structures/Tabels/Tabels.cpp"
+# 126 "../Common/Structures/Tabels/Tabels.cpp"
    , strerror(
-# 124 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 126 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 124 "../Common/Structures/Tabels/Tabels.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 124); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 124, __func__, 124), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 124, __func__, 124); } } while (0);;
-    do { if (!(func_tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "func_tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "func_tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 125, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 125, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 125 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 126 "../Common/Structures/Tabels/Tabels.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 126); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 126, __func__, 126), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 126, __func__, 126); } } while (0);;
+    do { if (!(func_tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "func_tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "func_tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 127, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 127, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 127 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 125 "../Common/Structures/Tabels/Tabels.cpp"
+# 127 "../Common/Structures/Tabels/Tabels.cpp"
    , strerror(
-# 125 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 127 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 125 "../Common/Structures/Tabels/Tabels.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 125); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 125, __func__, 125), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 125, __func__, 125); } } while (0);;
+# 127 "../Common/Structures/Tabels/Tabels.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 127); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 127, __func__, 127), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 127, __func__, 127); } } while (0);;
 
     if ((func_tabel->arr_size) <= (func_tabel->number_of_labels))
-        do { if (!ResizeFuncTabel(func_tabel) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ResizeFuncTabel(func_tabel) == SUCCESS" " is false\n" , __func__, 128); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 128, __func__, 128), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 128, __func__, 128) ; } }while (0);;
+        do { if (!ResizeFuncTabel(func_tabel) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ResizeFuncTabel(func_tabel) == SUCCESS" " is false\n" , __func__, 130); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 130, __func__, 130), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 130, __func__, 130) ; } }while (0);;
 
     *((func_tabel->label_arr) + (func_tabel->number_of_labels)) = label;
-    (func_tabel->number_of_labels)++;
 
-    return SUCCESS;
+    return (int) (func_tabel->number_of_labels)++;
+    }
+
+FuncLabel* NewFuncLabel (int name_id, int return_type)
+    {
+    FuncLabel* new_label = (FuncLabel*) Logger::getInstance().CAL_LOG (1, sizeof(new_label[0]), "../Common/Structures/Tabels/Tabels.cpp", __func__, 139);;
+    if (!new_label)
+        return 
+# 141 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+              __null
+# 141 "../Common/Structures/Tabels/Tabels.cpp"
+                  ;
+
+    new_label->name = name_id;
+    new_label->ret_type = return_type;
+
+    new_label->body_status = NOT_DECLARED;
+    new_label->number_of_return = 0;
+
+
+    new_label->number_of_local_variables = 0;
+
+    return new_label;
     }
 
 int CompareFuncLabels (FuncLabel* label1, FuncLabel* label2)
     {
-    do { if (!(label1)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "label1"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "label1"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 138, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 138, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 138 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+    do { if (!(label1)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "label1"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "label1"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 157, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 157, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 157 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 138 "../Common/Structures/Tabels/Tabels.cpp"
+# 157 "../Common/Structures/Tabels/Tabels.cpp"
    , strerror(
-# 138 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 157 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 138 "../Common/Structures/Tabels/Tabels.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 138); system("echo LOX\n"); return false; } } while (0);;
-    do { if (!(label2)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "label2"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "label2"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 139, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 139, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 139 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 157 "../Common/Structures/Tabels/Tabels.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 157); system("echo LOX\n"); return false; } } while (0);;
+    do { if (!(label2)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "label2"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "label2"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 158, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 158, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 158 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 139 "../Common/Structures/Tabels/Tabels.cpp"
+# 158 "../Common/Structures/Tabels/Tabels.cpp"
    , strerror(
-# 139 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 158 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 139 "../Common/Structures/Tabels/Tabels.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 139); system("echo LOX\n"); return false; } } while (0);;
+# 158 "../Common/Structures/Tabels/Tabels.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 158); system("echo LOX\n"); return false; } } while (0);;
 
     if (label1->name != label2-> name)
         return false;
@@ -44393,6 +44415,8 @@ int CompareFuncLabels (FuncLabel* label1, FuncLabel* label2)
     if (label1->ret_type != label2->ret_type)
         return false;
 
+    if (label1->body_status != label2->body_status)
+        return false;
 
 
 
@@ -44405,19 +44429,19 @@ int CompareFuncLabels (FuncLabel* label1, FuncLabel* label2)
 
 static int ResizeFuncTabel (FuncTabel* func_tabel)
     {
-    do { if (!(func_tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "func_tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "func_tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 159, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 159, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 159 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+    do { if (!(func_tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "func_tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "func_tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 180, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 180, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 180 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 159 "../Common/Structures/Tabels/Tabels.cpp"
+# 180 "../Common/Structures/Tabels/Tabels.cpp"
    , strerror(
-# 159 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 180 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 159 "../Common/Structures/Tabels/Tabels.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 159); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 159, __func__, 159), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 159, __func__, 159); } } while (0);;
+# 180 "../Common/Structures/Tabels/Tabels.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 180); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 180, __func__, 180), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 180, __func__, 180); } } while (0);;
 
-    FuncLabel** temp_arr = (FuncLabel**) Logger::getInstance().RECAL_LOG ((func_tabel->label_arr), (func_tabel->arr_size) * GROWTH_RATE * sizeof(temp_arr[0]), "../Common/Structures/Tabels/Tabels.cpp", __func__, 161);;
+    FuncLabel** temp_arr = (FuncLabel**) Logger::getInstance().RECAL_LOG ((func_tabel->label_arr), (func_tabel->arr_size) * GROWTH_RATE * sizeof(temp_arr[0]), "../Common/Structures/Tabels/Tabels.cpp", __func__, 182);;
     if (!temp_arr)
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 163, __func__, 163), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 163, __func__, 163);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 184, __func__, 184), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 184, __func__, 184);
 
     (func_tabel->label_arr) = temp_arr;
      (func_tabel->arr_size) *= GROWTH_RATE;
@@ -44428,11 +44452,11 @@ static int ResizeFuncTabel (FuncTabel* func_tabel)
 
 VarTabel* NewVarTabel ()
     {
-    VarTabel* tabel = (VarTabel*) Logger::getInstance().CAL_LOG (1, sizeof(tabel[0]), "../Common/Structures/Tabels/Tabels.cpp", __func__, 174);;
+    VarTabel* tabel = (VarTabel*) Logger::getInstance().CAL_LOG (1, sizeof(tabel[0]), "../Common/Structures/Tabels/Tabels.cpp", __func__, 195);;
     if (!tabel)
         return nullptr;
 
-    (tabel->label_arr) = (VarLabel**) Logger::getInstance().CAL_LOG (START_LABEL_ARR_SIZE, sizeof(VarLabel**), "../Common/Structures/Tabels/Tabels.cpp", __func__, 178);;
+    (tabel->label_arr) = (VarLabel**) Logger::getInstance().CAL_LOG (START_LABEL_ARR_SIZE, sizeof(VarLabel**), "../Common/Structures/Tabels/Tabels.cpp", __func__, 199);;
     if (!(tabel->label_arr))
         {
         free(tabel);
@@ -44447,15 +44471,15 @@ VarTabel* NewVarTabel ()
 
 int CloseVarTabel (VarTabel* tabel)
     {
-    do { if (!(tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 193, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 193, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 193 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+    do { if (!(tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 214, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 214, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 214 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 193 "../Common/Structures/Tabels/Tabels.cpp"
+# 214 "../Common/Structures/Tabels/Tabels.cpp"
    , strerror(
-# 193 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 214 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 193 "../Common/Structures/Tabels/Tabels.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 193); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 193, __func__, 193), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 193, __func__, 193); } } while (0);;
+# 214 "../Common/Structures/Tabels/Tabels.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 214); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 214, __func__, 214), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 214, __func__, 214); } } while (0);;
 
     if (!(tabel->label_arr))
         {
@@ -44491,29 +44515,29 @@ int CloseVarTabel (VarTabel* tabel)
 
 VarLabel* IsVarLabel (int name_id, VarTabel* tabel)
     {
-    do { if (!(tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 229, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 229, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 229 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+    do { if (!(tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 250, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 250, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 250 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 229 "../Common/Structures/Tabels/Tabels.cpp"
+# 250 "../Common/Structures/Tabels/Tabels.cpp"
    , strerror(
-# 229 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 250 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 229 "../Common/Structures/Tabels/Tabels.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 229); system("echo LOX\n"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 229), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 229, __func__, 229); } } while (0);;
+# 250 "../Common/Structures/Tabels/Tabels.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 250); system("echo LOX\n"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 250), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 250, __func__, 250); } } while (0);;
 
     size_t number_of_labels = tabel->number_of_labels;
     if (number_of_labels < 1)
         return 
-# 233 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 254 "../Common/Structures/Tabels/Tabels.cpp" 3 4
               __null
-# 233 "../Common/Structures/Tabels/Tabels.cpp"
+# 254 "../Common/Structures/Tabels/Tabels.cpp"
                   ;
 
     VarLabel** label_arr = tabel->label_arr;
     if (!label_arr)
         {
         { printf("\t%s: ", __func__); printf("Empty label array in var tabel %p\n", (void*) tabel); };
-        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 239), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 239, __func__, 239);
+        return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 260), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 260, __func__, 260);
         }
 
     for(size_t i = 0; i < number_of_labels; i++)
@@ -44523,35 +44547,35 @@ VarLabel* IsVarLabel (int name_id, VarTabel* tabel)
         }
 
     return 
-# 248 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 269 "../Common/Structures/Tabels/Tabels.cpp" 3 4
           __null
-# 248 "../Common/Structures/Tabels/Tabels.cpp"
+# 269 "../Common/Structures/Tabels/Tabels.cpp"
               ;
     }
 
 int AddVarLabel (VarLabel* label, VarTabel* tabel)
     {
-    do { if (!(label)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "label"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "label"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 253, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 253, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 253 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+    do { if (!(label)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "label"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "label"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 274, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 274, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 274 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 253 "../Common/Structures/Tabels/Tabels.cpp"
+# 274 "../Common/Structures/Tabels/Tabels.cpp"
    , strerror(
-# 253 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 274 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 253 "../Common/Structures/Tabels/Tabels.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 253); system("echo LOX\n"); return FAILURE; } } while (0);;
-    do { if (!(tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 254, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 254, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 254 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 274 "../Common/Structures/Tabels/Tabels.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 274); system("echo LOX\n"); return FAILURE; } } while (0);;
+    do { if (!(tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 275, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 275, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 275 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 254 "../Common/Structures/Tabels/Tabels.cpp"
+# 275 "../Common/Structures/Tabels/Tabels.cpp"
    , strerror(
-# 254 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 275 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 254 "../Common/Structures/Tabels/Tabels.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 254); system("echo LOX\n"); return FAILURE; } } while (0);;
+# 275 "../Common/Structures/Tabels/Tabels.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 275); system("echo LOX\n"); return FAILURE; } } while (0);;
 
     if ((tabel->arr_size) <= (tabel->number_of_labels))
-        do { if (!ResizeVarTabel(tabel) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ResizeVarTabel(tabel) == SUCCESS" " is false\n" , __func__, 257); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 257, __func__, 257), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 257, __func__, 257) ; } }while (0);;
+        do { if (!ResizeVarTabel(tabel) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ResizeVarTabel(tabel) == SUCCESS" " is false\n" , __func__, 278); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 278, __func__, 278), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 278, __func__, 278) ; } }while (0);;
 
     *((tabel->label_arr) + (tabel->number_of_labels)) = label;
     (tabel->number_of_labels)++;
@@ -44561,23 +44585,23 @@ int AddVarLabel (VarLabel* label, VarTabel* tabel)
 
 int AddVarLabel (int name_id, VarTabel* tabel)
     {
-    do { if (!(tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 267, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 267, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 267 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+    do { if (!(tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 288, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 288, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 288 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 267 "../Common/Structures/Tabels/Tabels.cpp"
+# 288 "../Common/Structures/Tabels/Tabels.cpp"
    , strerror(
-# 267 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 288 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 267 "../Common/Structures/Tabels/Tabels.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 267); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 267, __func__, 267), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 267, __func__, 267); } } while (0);;
+# 288 "../Common/Structures/Tabels/Tabels.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 288); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 288, __func__, 288), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 288, __func__, 288); } } while (0);;
 
     if ((tabel->arr_size) <= (tabel->number_of_labels))
-        do { if (!ResizeVarTabel(tabel) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ResizeVarTabel(tabel) == SUCCESS" " is false\n" , __func__, 270); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 270, __func__, 270), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 270, __func__, 270) ; } }while (0);;
+        do { if (!ResizeVarTabel(tabel) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ResizeVarTabel(tabel) == SUCCESS" " is false\n" , __func__, 291); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 291, __func__, 291), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 291, __func__, 291) ; } }while (0);;
 
-    VarLabel* new_label = (VarLabel*) Logger::getInstance().CAL_LOG (1, sizeof(new_label[0]), "../Common/Structures/Tabels/Tabels.cpp", __func__, 272);;
+    VarLabel* new_label = (VarLabel*) Logger::getInstance().CAL_LOG (1, sizeof(new_label[0]), "../Common/Structures/Tabels/Tabels.cpp", __func__, 293);;
 
     if (!new_label)
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 275, __func__, 275), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 275, __func__, 275);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 296, __func__, 296), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 296, __func__, 296);
 
     new_label->name_id = name_id;
 
@@ -44589,19 +44613,19 @@ int AddVarLabel (int name_id, VarTabel* tabel)
 
 static int ResizeVarTabel (VarTabel* tabel)
     {
-    do { if (!(tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 287, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 287, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 287 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+    do { if (!(tabel)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "tabel"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "tabel"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 308, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Tabels/Tabels.cpp", 308, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 308 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 287 "../Common/Structures/Tabels/Tabels.cpp"
+# 308 "../Common/Structures/Tabels/Tabels.cpp"
    , strerror(
-# 287 "../Common/Structures/Tabels/Tabels.cpp" 3 4
+# 308 "../Common/Structures/Tabels/Tabels.cpp" 3 4
    14
-# 287 "../Common/Structures/Tabels/Tabels.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 287); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 287, __func__, 287), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 287, __func__, 287); } } while (0);;
+# 308 "../Common/Structures/Tabels/Tabels.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 308); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 308, __func__, 308), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 308, __func__, 308); } } while (0);;
 
-    VarLabel** temp_arr = (VarLabel**) Logger::getInstance().RECAL_LOG ((tabel->label_arr), (tabel->arr_size) * GROWTH_RATE * sizeof(temp_arr[0]), "../Common/Structures/Tabels/Tabels.cpp", __func__, 289);;
+    VarLabel** temp_arr = (VarLabel**) Logger::getInstance().RECAL_LOG ((tabel->label_arr), (tabel->arr_size) * GROWTH_RATE * sizeof(temp_arr[0]), "../Common/Structures/Tabels/Tabels.cpp", __func__, 310);;
     if (!temp_arr)
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 291, __func__, 291), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 291, __func__, 291);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 312, __func__, 312), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Tabels/Tabels.cpp", 312, __func__, 312);
 
     (tabel->label_arr) = temp_arr;
      (tabel->arr_size) *= GROWTH_RATE;

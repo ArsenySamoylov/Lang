@@ -6,9 +6,10 @@ static Token* VarInitialization (ProgramCtx* program_ctx);
 static int   FuncInitialization (ProgramCtx* program_ctx);
 
 
-static FuncLabel* MakeFuncLabel (ProgramCtx* program_ctx, Token** func_head);
+static int MakeFuncLabel (ProgramCtx* program_ctx, Token** func_head = NULL);
 // static VarLabel*  MakeVarLabel  (ProgramCtx* program_ctx);
 
+// PROBELM WITH FUNCTIONS AND VARIABLES HAVING SAME NAME
 static int DefineName (ProgramCtx* program_ctx);
 
 ///////////////////////////////////////////////////////////////////////////
@@ -67,6 +68,7 @@ static int ProgramCtxDtor(ProgramCtx* program_ctx)
     return SUCCESS;
     }
 
+// PROBELM WITH FUNCTIONS AND VARIABLES HAVING SAME NAME
 static int DefineName(ProgramCtx* program_ctx)
     {
     assertlog(program_ctx, EFAULT, return NOT_DECLARED);
@@ -78,7 +80,7 @@ static int DefineName(ProgramCtx* program_ctx)
         }
 
     // what if function and variable has same name ? 
-    if (IsFuncLabel (NAME_ID(token), FUNC_TABEL(program_ctx)))
+    if (IsFuncLabel (NAME_ID(token), FUNC_TABEL(program_ctx)) != NOT_A_LABEL)
         {
         TYPE(token) = FUNCTION;
         return FUNCTION;
@@ -95,58 +97,105 @@ static int DefineName(ProgramCtx* program_ctx)
     return NOT_DECLARED;
     } 
 
-static FuncLabel* MakeFuncLabel(ProgramCtx* program_ctx, Token** func_head)
+static int MakeFuncLabel(ProgramCtx* program_ctx, Token** func_head)
     {
-    assertlog(program_ctx, EFAULT, return LNULL);
-    assertlog(func_head,   EFAULT, return LNULL);
-
-    FuncLabel* label = (FuncLabel*) CALLOC (1, sizeof(label[0]));
-    if (!label) return LNULL;
+    assertlog(program_ctx, EFAULT, return BAD_ARGUMENT);
 
     if (TYPE(token) != FUNCTION_RET_TYPE)
         {
         report_syntax_error("No return type in function\n");
-        return LNULL;
+        return FAILURE;
         }
     
     Token* ret_type = token;
     POSITION(program_ctx)++;
 
-    label->ret_type = RET_TYPE(ret_type);
-
     if (TYPE(token) != NAME)
         {
         report_syntax_error("No function name\n");
-        return LNULL;
+        return FAILURE;
         }
 
     Token* name = token;
     POSITION(program_ctx)++;
-
-    label->name = NAME_ID(name);
             
     // argument
     if(TYPE(token) != EXPRESSION_OPENING_BRACKET)
         {
-        report_syntax_error("Missing '(' in function prototype\n");
-        return LNULL;
+        report_syntax_error("Missing '(' in function head\n");
+        return FAILURE;
         }
     POSITION(program_ctx)++;
     // TO_DO
 
     if(TYPE(token) != EXPRESSION_CLOSING_BRACKET)
        {
-       report_syntax_error("Missing ')' in function \n");
-       return LNULL;
+       report_syntax_error("Missing ')' in function head\n");
+       return FAILURE;
        }
+    
+    Token* function = token; // for head
     POSITION(program_ctx)++;
 
-    // set func_head
-    RIGHT(name) = ret_type;
+    // ADD PARAMETRS
+    //
 
-    *func_head = name;
+    FuncLabel* label = NewFuncLabel (NAME_ID(name), RET_TYPE(ret_type));
+    if (!label)
+        return FAILURE;
 
-    return label;
+    // set head
+    if (func_head)
+        {
+        TYPE(function) = FUNCTION;
+        LEFT(function) = name;
+        
+        RIGHT(name) = ret_type;
+
+        *func_head = function;
+        }
+
+    // check for previous declaration
+    int prev_decl_pos = IsFuncLabel(NAME_ID(name), FUNC_TABEL(program_ctx));
+    
+    if (prev_decl_pos != NOT_A_LABEL)
+        {
+        if (!func_head)  // this for prototype
+            {
+            report_syntax_error("Ebat, '%s' shadows previous declaration\n", STRING_ARR(program_ctx)[label->name]);
+            goto FAIL_EXIT;
+            }
+
+        {   
+        FuncLabel* prev_declaration =  *(FUNC_TABEL(program_ctx)->label_arr + prev_decl_pos);
+
+        if (!prev_declaration)
+            {
+            report_syntax_error("Something went wrong, (null prev declaration ptr)\n");
+            goto FAIL_EXIT;
+            }
+
+        // compare
+        if (!CompareFuncLabels(label, prev_declaration))
+            {
+            report_syntax_error("Prototype is different from function\n");
+            goto FAIL_EXIT;
+            }
+        
+        return prev_decl_pos;
+        }
+
+        FAIL_EXIT:
+
+        KILL(label);
+
+        return FAILURE;
+        }
+    
+    // how to get position ??, last + 1?
+    int position = AddFuncLabel(label, FUNC_TABEL(program_ctx));
+    $li(position)
+    return position;
     } 
 
 /*
