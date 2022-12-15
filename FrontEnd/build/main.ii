@@ -52,13 +52,36 @@ int DeleteBranch (Token* def_node);
 
 
 
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long int ptrdiff_t;
+# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long unsigned int size_t;
+# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef struct {
+  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
+  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
+# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+} max_align_t;
+
+
+
+
+
+
+  typedef decltype(nullptr) nullptr_t;
+# 6 "../Common/Structures/Tabels/Tabels.h" 2
+
+
+# 7 "../Common/Structures/Tabels/Tabels.h"
 const int NOT_DECLARED = - 111;
 
-enum VarType
+enum VarStorageType
     {
     REGISTER,
     RAM,
-    LOCAL,
     };
 
 enum FuncType
@@ -73,13 +96,13 @@ struct VarLabel
     int position;
     };
 
+
 struct VarTabel
     {
     VarLabel** label_arr;
-    int arr_size;
+    size_t arr_size;
 
-    int memory_adress;
-    int number_of_labels;
+    size_t number_of_labels;
     };
 
 struct FuncLabel
@@ -87,30 +110,43 @@ struct FuncLabel
     int name;
     int ret_type;
     int body_status;
-    int number_of_arguments;
 
-    VarTabel local_args;
+
+
+    size_t number_of_local_variables;
     };
 
 struct FuncTabel
     {
     FuncLabel** label_arr;
-    int arr_size;
+    size_t arr_size;
 
-    int number_of_labels;
+    size_t number_of_labels;
     };
 
-int FuncTabelCtor (FuncTabel* tabel);
+
+FuncTabel* NewFuncTabel();
+int CloseFuncTabel (FuncTabel* tabel);
+
+
+
+
+
 FuncLabel* IsFuncLabel (int name_id, FuncTabel* func_tabel);
 
-int AddFuncLabel (int name_id, int return_type, int body_status, FuncTabel* func_tabel);
 int AddFuncLabel (FuncLabel* label, FuncTabel* tabel);
+int AddFuncLabel (int name_id, int return_type, int body_status, FuncTabel* func_tabel);
+
 
 int CompareFuncLabels (FuncLabel* label1, FuncLabel* label2);
 
 
+VarTabel* NewVarTabel();
+int CloseVarTabel (VarTabel* tabel);
 
-int VarTabelCtor (VarTabel* tabel);
+
+
+
 VarLabel* IsVarLabel (int name_id, VarTabel* tabel);
 
 int AddVarLabel (VarLabel* label, VarTabel* tabel);
@@ -129,12 +165,12 @@ struct Program
 
     const char* path_to_src_file;
 
-    VarTabel global_vars;
-    FuncTabel func_tabel;
+
+
     };
 
 int ProgramCtor(Program* program, const char* path_to_src_file);
-void ProgramDtor(Program* program);
+int ProgramDtor(Program* program);
 # 2 "./src/main.cpp" 2
 
 # 1 "./headers/LexicalAnalysis.h" 1
@@ -246,8 +282,6 @@ namespace __gnu_cxx
 
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef long unsigned int size_t;
 # 33 "/usr/include/stdlib.h" 2 3 4
 
 extern "C" {
@@ -4113,21 +4147,6 @@ namespace __gnu_cxx
 #pragma GCC visibility push(default)
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef long int ptrdiff_t;
-# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef struct {
-  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
-  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
-# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-} max_align_t;
-
-
-
-
-
-
-  typedef decltype(nullptr) nullptr_t;
 # 39 "/usr/include/c++/11/bits/cxxabi_init_exception.h" 2 3
 # 50 "/usr/include/c++/11/bits/cxxabi_init_exception.h" 3
 namespace std
@@ -44396,25 +44415,32 @@ int main(int argc, const char* argv[])
     if (run_time_status != SUCCESS)
         {
         printf("\033[91m" "Can't tokenize file " "\033[0m" "%s\n", program.path_to_src_file);
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 42, __func__, 42), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 42, __func__, 42);
+
+        goto FAIL_EXIT;
         }
 
     run_time_status |= GetG(&program);
     if (run_time_status != SUCCESS)
-        {
-        ProgramDtor(&program);
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 49, __func__, 49), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 49, __func__, 49);
-        }
+        goto FAIL_EXIT;
 
     MakeImg("kek", &program);
 
+    {
     const char* std_name = argv[2];
 
     run_time_status |= PutProgramToStdAWP (&program, std_name);
+    }
 
 
     ProgramDtor(&program);
     Logger::getInstance().FREE_LOG (src_code, "./src/main.cpp", __func__, 60);;
 
     return 0;
+
+    FAIL_EXIT:
+
+    ProgramDtor(&program);
+    Logger::getInstance().FREE_LOG (src_code, "./src/main.cpp", __func__, 67);;
+
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 69, __func__, 69), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 69, __func__, 69);
     }

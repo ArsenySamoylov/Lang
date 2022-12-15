@@ -2,17 +2,26 @@
 	.text
 .Ltext0:
 	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator/FrontEnd" "../ATC/HtmlLog/HtmlLog.cpp"
-	.local	_ZL7HtmlLog
-	.comm	_ZL7HtmlLog,8,8
+	.bss
+	.align 32
+	.type	_ZL7HtmlLog, @object
+	.size	_ZL7HtmlLog, 8
+_ZL7HtmlLog:
+	.zero	64
 	.section	.rodata
+	.align 32
 .LC0:
 	.string	"\t<img src = \"%s\"\n"
+	.zero	46
+	.align 32
 .LC1:
 	.string	"<hr>\n<hr>\n"
+	.zero	53
 	.text
 	.globl	_Z8AddImagePKc
 	.type	_Z8AddImagePKc, @function
 _Z8AddImagePKc:
+.LASANPC13:
 .LFB13:
 	.file 1 "../ATC/HtmlLog/HtmlLog.cpp"
 	.loc 1 9 5
@@ -54,9 +63,15 @@ _Z8AddImagePKc:
 	.cfi_endproc
 .LFE13:
 	.size	_Z8AddImagePKc, .-_Z8AddImagePKc
+	.globl	__asan_stack_malloc_1
+	.section	.rodata
+.LC2:
+	.string	"1 32 24 6 ptr:21"
+	.text
 	.globl	_Z4hlogPKcz
 	.type	_Z4hlogPKcz, @function
 _Z4hlogPKcz:
+.LASANPC14:
 .LFB14:
 	.loc 1 20 5
 	.cfi_startproc
@@ -66,60 +81,114 @@ _Z4hlogPKcz:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	subq	$224, %rsp
-	movq	%rdi, -216(%rbp)
-	movq	%rsi, -168(%rbp)
-	movq	%rdx, -160(%rbp)
-	movq	%rcx, -152(%rbp)
-	movq	%r8, -144(%rbp)
-	movq	%r9, -136(%rbp)
+	pushq	%r13
+	pushq	%r12
+	pushq	%rbx
+	subq	$296, %rsp
+	.cfi_offset 13, -24
+	.cfi_offset 12, -32
+	.cfi_offset 3, -40
+	movq	%rdi, -312(%rbp)
+	movq	%rsi, -200(%rbp)
+	movq	%rdx, -192(%rbp)
+	movq	%rcx, -184(%rbp)
+	movq	%r8, -176(%rbp)
+	movq	%r9, -168(%rbp)
 	testb	%al, %al
-	je	.L7
-	movaps	%xmm0, -128(%rbp)
-	movaps	%xmm1, -112(%rbp)
-	movaps	%xmm2, -96(%rbp)
-	movaps	%xmm3, -80(%rbp)
-	movaps	%xmm4, -64(%rbp)
-	movaps	%xmm5, -48(%rbp)
-	movaps	%xmm6, -32(%rbp)
-	movaps	%xmm7, -16(%rbp)
-.L7:
+	je	.L8
+	movaps	%xmm0, -160(%rbp)
+	movaps	%xmm1, -144(%rbp)
+	movaps	%xmm2, -128(%rbp)
+	movaps	%xmm3, -112(%rbp)
+	movaps	%xmm4, -96(%rbp)
+	movaps	%xmm5, -80(%rbp)
+	movaps	%xmm6, -64(%rbp)
+	movaps	%xmm7, -48(%rbp)
+.L8:
+	leaq	-304(%rbp), %rbx
+	movq	%rbx, %r13
+	cmpl	$0, __asan_option_detect_stack_use_after_return(%rip)
+	je	.L4
+	movl	$96, %edi
+	call	__asan_stack_malloc_1@PLT
+	testq	%rax, %rax
+	je	.L4
+	movq	%rax, %rbx
+.L4:
+	leaq	96(%rbx), %rax
+	movq	$1102416563, (%rbx)
+	leaq	.LC2(%rip), %rdx
+	movq	%rdx, 8(%rbx)
+	leaq	.LASANPC14(%rip), %rdx
+	movq	%rdx, 16(%rbx)
+	movq	%rbx, %r12
+	shrq	$3, %r12
+	movl	$-235802127, 2147450880(%r12)
+	movl	$-218103808, 2147450884(%r12)
+	movl	$-202116109, 2147450888(%r12)
 	.loc 1 22 22
-	movl	$8, -200(%rbp)
-	movl	$48, -196(%rbp)
-	leaq	16(%rbp), %rax
-	movq	%rax, -192(%rbp)
-	leaq	-176(%rbp), %rax
-	movq	%rax, -184(%rbp)
+	movl	$8, -64(%rax)
+	movl	$48, -60(%rax)
+	leaq	16(%rbp), %rsi
+	movq	%rsi, -56(%rax)
+	leaq	-208(%rbp), %rcx
+	movq	%rcx, -48(%rax)
 	.loc 1 24 14
-	movq	_ZL7HtmlLog(%rip), %rax
-	leaq	-200(%rbp), %rdx
-	movq	-216(%rbp), %rcx
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
+	movq	_ZL7HtmlLog(%rip), %rcx
+	leaq	-64(%rax), %rdx
+	movq	-312(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rcx, %rdi
 	call	vfprintf@PLT
 	.loc 1 26 5
 	nop
+	.loc 1 20 5
+	cmpq	%rbx, %r13
+	je	.L5
+	movq	$1172321806, (%rbx)
+	movabsq	$-723401728380766731, %rax
+	movq	%rax, 2147450880(%r12)
+	movl	$-168430091, 2147450888(%r12)
+	movq	120(%rbx), %rax
+	movb	$0, (%rax)
+	jmp	.L6
+.L5:
+	movq	$0, 2147450880(%r12)
+	movl	$0, 2147450888(%r12)
+.L6:
 	.loc 1 27 5
-	leave
+	addq	$296, %rsp
+	popq	%rbx
+	popq	%r12
+	popq	%r13
+	popq	%rbp
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE14:
 	.size	_Z4hlogPKcz, .-_Z4hlogPKcz
 	.section	.rodata
-.LC2:
-	.string	"wb"
+	.align 32
 .LC3:
-	.string	"2HtmlMaster.html"
+	.string	"wb"
+	.zero	61
+	.align 32
 .LC4:
-	.string	"<pre>\n"
+	.string	"2HtmlMaster.html"
+	.zero	47
+	.align 32
 .LC5:
+	.string	"<pre>\n"
+	.zero	57
+	.align 32
+.LC6:
 	.string	"<h1>My dear log</h1>\n"
+	.zero	42
 	.text
 	.globl	_Z11OpenHtmlLogv
 	.type	_Z11OpenHtmlLogv, @function
 _Z11OpenHtmlLogv:
+.LASANPC15:
 .LFB15:
 	.loc 1 30 5
 	.cfi_startproc
@@ -130,9 +199,9 @@ _Z11OpenHtmlLogv:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	.loc 1 31 21
-	leaq	.LC2(%rip), %rax
-	movq	%rax, %rsi
 	leaq	.LC3(%rip), %rax
+	movq	%rax, %rsi
+	leaq	.LC4(%rip), %rax
 	movq	%rax, %rdi
 	call	fopen@PLT
 	.loc 1 31 13
@@ -149,7 +218,7 @@ _Z11OpenHtmlLogv:
 	movq	%rax, %rcx
 	movl	$6, %edx
 	movl	$1, %esi
-	leaq	.LC4(%rip), %rax
+	leaq	.LC5(%rip), %rax
 	movq	%rax, %rdi
 	call	fwrite@PLT
 	.loc 1 35 13
@@ -157,7 +226,7 @@ _Z11OpenHtmlLogv:
 	movq	%rax, %rcx
 	movl	$21, %edx
 	movl	$1, %esi
-	leaq	.LC5(%rip), %rax
+	leaq	.LC6(%rip), %rax
 	movq	%rax, %rdi
 	call	fwrite@PLT
 	.loc 1 37 12
@@ -174,16 +243,23 @@ _Z11OpenHtmlLogv:
 .LFE15:
 	.size	_Z11OpenHtmlLogv, .-_Z11OpenHtmlLogv
 	.section	.rodata
-.LC6:
-	.string	"Closing html log"
+	.align 32
 .LC7:
-	.string	"<h1> END OF LOG</h1>\n"
+	.string	"Closing html log"
+	.zero	47
+	.align 32
 .LC8:
+	.string	"<h1> END OF LOG</h1>\n"
+	.zero	42
+	.align 32
+.LC9:
 	.string	"</pre>"
+	.zero	57
 	.text
 	.globl	_Z12CloseHtmlLogv
 	.type	_Z12CloseHtmlLogv, @function
 _Z12CloseHtmlLogv:
+.LASANPC16:
 .LFB16:
 	.loc 1 43 5
 	.cfi_startproc
@@ -194,21 +270,21 @@ _Z12CloseHtmlLogv:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	.loc 1 44 12
-	leaq	.LC6(%rip), %rax
+	leaq	.LC7(%rip), %rax
 	movq	%rax, %rdi
 	call	puts@PLT
 	.loc 1 46 9
 	movq	_ZL7HtmlLog(%rip), %rax
 	.loc 1 46 5
 	testq	%rax, %rax
-	je	.L13
+	je	.L15
 	.loc 1 48 9
-	leaq	.LC7(%rip), %rax
+	leaq	.LC8(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z4hlogPKcz
 	.loc 1 49 9
-	leaq	.LC8(%rip), %rax
+	leaq	.LC9(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z4hlogPKcz
@@ -220,11 +296,11 @@ _Z12CloseHtmlLogv:
 	movq	_ZL7HtmlLog(%rip), %rax
 	movq	%rax, %rdi
 	call	fclose@PLT
-	jmp	.L10
-.L13:
+	jmp	.L12
+.L15:
 	.loc 1 46 19
 	nop
-.L10:
+.L12:
 	.loc 1 53 5
 	popq	%rbp
 	.cfi_def_cfa 7, 8
@@ -232,6 +308,174 @@ _Z12CloseHtmlLogv:
 	.cfi_endproc
 .LFE16:
 	.size	_Z12CloseHtmlLogv, .-_Z12CloseHtmlLogv
+	.section	.rodata
+.LC10:
+	.string	"../ATC/HtmlLog/HtmlLog.cpp"
+	.section	.data.rel.local,"aw"
+	.align 16
+	.type	.LASANLOC1, @object
+	.size	.LASANLOC1, 16
+.LASANLOC1:
+	.quad	.LC10
+	.long	6
+	.long	14
+	.section	.rodata
+.LC11:
+	.string	"HtmlLog"
+.LC12:
+	.string	"*.LC7"
+.LC13:
+	.string	"*.LC5"
+.LC14:
+	.string	"*.LC6"
+.LC15:
+	.string	"*.LC1"
+.LC16:
+	.string	"*.LC0"
+.LC17:
+	.string	"*.LC9"
+.LC18:
+	.string	"*.LC3"
+.LC19:
+	.string	"*.LC4"
+.LC20:
+	.string	"*.LC8"
+	.section	.data.rel.local
+	.align 32
+	.type	.LASAN0, @object
+	.size	.LASAN0, 640
+.LASAN0:
+	.quad	_ZL7HtmlLog
+	.quad	8
+	.quad	64
+	.quad	.LC11
+	.quad	.LC10
+	.quad	0
+	.quad	.LASANLOC1
+	.quad	0
+	.quad	.LC7
+	.quad	17
+	.quad	64
+	.quad	.LC12
+	.quad	.LC10
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC5
+	.quad	7
+	.quad	64
+	.quad	.LC13
+	.quad	.LC10
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC6
+	.quad	22
+	.quad	64
+	.quad	.LC14
+	.quad	.LC10
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC1
+	.quad	11
+	.quad	64
+	.quad	.LC15
+	.quad	.LC10
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC0
+	.quad	18
+	.quad	64
+	.quad	.LC16
+	.quad	.LC10
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC9
+	.quad	7
+	.quad	64
+	.quad	.LC17
+	.quad	.LC10
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC3
+	.quad	3
+	.quad	64
+	.quad	.LC18
+	.quad	.LC10
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC4
+	.quad	17
+	.quad	64
+	.quad	.LC19
+	.quad	.LC10
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC8
+	.quad	22
+	.quad	64
+	.quad	.LC20
+	.quad	.LC10
+	.quad	0
+	.quad	0
+	.quad	0
+	.text
+	.type	_sub_D_00099_0, @function
+_sub_D_00099_0:
+.LFB17:
+	.cfi_startproc
+	endbr64
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movl	$10, %esi
+	leaq	.LASAN0(%rip), %rax
+	movq	%rax, %rdi
+	call	__asan_unregister_globals@PLT
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE17:
+	.size	_sub_D_00099_0, .-_sub_D_00099_0
+	.section	.fini_array.00099,"aw"
+	.align 8
+	.quad	_sub_D_00099_0
+	.text
+	.type	_sub_I_00099_1, @function
+_sub_I_00099_1:
+.LFB18:
+	.cfi_startproc
+	endbr64
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	call	__asan_init@PLT
+	call	__asan_version_mismatch_check_v8@PLT
+	movl	$10, %esi
+	leaq	.LASAN0(%rip), %rax
+	movq	%rax, %rdi
+	call	__asan_register_globals@PLT
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE18:
+	.size	_sub_I_00099_1, .-_sub_I_00099_1
+	.section	.init_array.00099,"aw"
+	.align 8
+	.quad	_sub_I_00099_1
+	.text
 .Letext0:
 	.file 2 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h"
 	.file 3 "/usr/include/stdlib.h"
@@ -247,7 +491,7 @@ _Z12CloseHtmlLogv:
 	.file 13 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0xb46
+	.long	0xb45
 	.value	0x5
 	.byte	0x1
 	.byte	0x8
@@ -1619,7 +1863,7 @@ _Z12CloseHtmlLogv:
 	.quad	.LFE14-.LFB14
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0xb18
+	.long	0xb17
 	.uleb128 0x13
 	.long	.LASF112
 	.byte	0x13
@@ -1627,7 +1871,7 @@ _Z12CloseHtmlLogv:
 	.long	0x113
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -232
+	.sleb128 -328
 	.uleb128 0x29
 	.uleb128 0x2a
 	.string	"ptr"
@@ -1635,9 +1879,9 @@ _Z12CloseHtmlLogv:
 	.byte	0x15
 	.byte	0xd
 	.long	0x9da
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -216
+	.uleb128 0x2
+	.byte	0x70
+	.sleb128 -64
 	.byte	0
 	.uleb128 0x2b
 	.long	.LASF109
@@ -2354,8 +2598,8 @@ _Z12CloseHtmlLogv:
 	.section	.debug_str,"MS",@progbits,1
 .LASF24:
 	.string	"__off_t"
-.LASF69:
-	.string	"_IO_read_ptr"
+.LASF114:
+	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fsanitize=address,leak -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF81:
 	.string	"_chain"
 .LASF8:
@@ -2434,8 +2678,8 @@ _Z12CloseHtmlLogv:
 	.string	"mbtowc"
 .LASF46:
 	.string	"qsort"
-.LASF114:
-	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
+.LASF108:
+	.string	"hlog"
 .LASF98:
 	.string	"_IO_marker"
 .LASF3:
@@ -2480,8 +2724,8 @@ _Z12CloseHtmlLogv:
 	.string	"_IO_save_base"
 .LASF63:
 	.string	"__gnuc_va_list"
-.LASF74:
-	.string	"_IO_write_end"
+.LASF69:
+	.string	"_IO_read_ptr"
 .LASF34:
 	.string	"at_quick_exit"
 .LASF40:
@@ -2514,8 +2758,6 @@ _Z12CloseHtmlLogv:
 	.string	"OpenHtmlLog"
 .LASF17:
 	.string	"lldiv_t"
-.LASF108:
-	.string	"hlog"
 .LASF111:
 	.string	"_Z8AddImagePKc"
 .LASF23:
@@ -2570,6 +2812,8 @@ _Z12CloseHtmlLogv:
 	.string	"vfprintf"
 .LASF94:
 	.string	"__pad5"
+.LASF74:
+	.string	"_IO_write_end"
 .LASF96:
 	.string	"_unused2"
 .LASF50:

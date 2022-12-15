@@ -55,13 +55,36 @@ int DeleteBranch (Token* def_node);
 
 
 
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long int ptrdiff_t;
+# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long unsigned int size_t;
+# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef struct {
+  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
+  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
+# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+} max_align_t;
+
+
+
+
+
+
+  typedef decltype(nullptr) nullptr_t;
+# 6 "../Common/Structures/Tabels/Tabels.h" 2
+
+
+# 7 "../Common/Structures/Tabels/Tabels.h"
 const int NOT_DECLARED = - 111;
 
-enum VarType
+enum VarStorageType
     {
     REGISTER,
     RAM,
-    LOCAL,
     };
 
 enum FuncType
@@ -76,13 +99,13 @@ struct VarLabel
     int position;
     };
 
+
 struct VarTabel
     {
     VarLabel** label_arr;
-    int arr_size;
+    size_t arr_size;
 
-    int memory_adress;
-    int number_of_labels;
+    size_t number_of_labels;
     };
 
 struct FuncLabel
@@ -90,30 +113,43 @@ struct FuncLabel
     int name;
     int ret_type;
     int body_status;
-    int number_of_arguments;
 
-    VarTabel local_args;
+
+
+    size_t number_of_local_variables;
     };
 
 struct FuncTabel
     {
     FuncLabel** label_arr;
-    int arr_size;
+    size_t arr_size;
 
-    int number_of_labels;
+    size_t number_of_labels;
     };
 
-int FuncTabelCtor (FuncTabel* tabel);
+
+FuncTabel* NewFuncTabel();
+int CloseFuncTabel (FuncTabel* tabel);
+
+
+
+
+
 FuncLabel* IsFuncLabel (int name_id, FuncTabel* func_tabel);
 
-int AddFuncLabel (int name_id, int return_type, int body_status, FuncTabel* func_tabel);
 int AddFuncLabel (FuncLabel* label, FuncTabel* tabel);
+int AddFuncLabel (int name_id, int return_type, int body_status, FuncTabel* func_tabel);
+
 
 int CompareFuncLabels (FuncLabel* label1, FuncLabel* label2);
 
 
+VarTabel* NewVarTabel();
+int CloseVarTabel (VarTabel* tabel);
 
-int VarTabelCtor (VarTabel* tabel);
+
+
+
 VarLabel* IsVarLabel (int name_id, VarTabel* tabel);
 
 int AddVarLabel (VarLabel* label, VarTabel* tabel);
@@ -132,12 +168,12 @@ struct Program
 
     const char* path_to_src_file;
 
-    VarTabel global_vars;
-    FuncTabel func_tabel;
+
+
     };
 
 int ProgramCtor(Program* program, const char* path_to_src_file);
-void ProgramDtor(Program* program);
+int ProgramDtor(Program* program);
 # 4 "./headers/LexicalAnalysis.h" 2
 
 const int START_NUMBER_OF_TOKENS = 20;
@@ -186,8 +222,6 @@ extern "C" {
 
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef long unsigned int size_t;
 # 34 "/usr/include/stdio.h" 2 3 4
 
 
@@ -24370,7 +24404,7 @@ enum INSTUCTIONS_NUM
     IF = 0,
     ELSE = 1,
     WHILE = 2,
-    RETURN = 4,
+    RETURN = 3,
     };
 
 const int NUMBER_OF_NATIVE_FUNCTIONS = 4;
@@ -25737,21 +25771,6 @@ namespace __gnu_cxx
 #pragma GCC visibility push(default)
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef long int ptrdiff_t;
-# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef struct {
-  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
-  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
-# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-} max_align_t;
-
-
-
-
-
-
-  typedef decltype(nullptr) nullptr_t;
 # 39 "/usr/include/c++/11/bits/cxxabi_init_exception.h" 2 3
 # 50 "/usr/include/c++/11/bits/cxxabi_init_exception.h" 3
 namespace std
@@ -54914,6 +54933,8 @@ static int SetToken (Buffer* buf, Token* token)
              token->type = INSTRUCTION;
             token->value.t_instruction = instruction;
 
+
+
             return INSTRUCTION;
             }
 
@@ -54977,24 +54998,24 @@ static int SetToken (Buffer* buf, Token* token)
 
 static int BufferGetWord (Buffer* buf, char* word_buffer)
     {
-    do { if (!(buf)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "buf"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "buf"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 300, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 300, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 300 "./src/LexicalAnalysis.cpp" 3 4
+    do { if (!(buf)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "buf"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "buf"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 302, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 302, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 302 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 300 "./src/LexicalAnalysis.cpp"
+# 302 "./src/LexicalAnalysis.cpp"
    , strerror(
-# 300 "./src/LexicalAnalysis.cpp" 3 4
+# 302 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 300 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 300); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 300, __func__, 300), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 300, __func__, 300); } } while (0);;
-    do { if (!(word_buffer)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "word_buffer"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "word_buffer"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 301, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 301, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 301 "./src/LexicalAnalysis.cpp" 3 4
+# 302 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 302); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 302, __func__, 302), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 302, __func__, 302); } } while (0);;
+    do { if (!(word_buffer)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "word_buffer"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "word_buffer"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 303, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 303, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 303 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 301 "./src/LexicalAnalysis.cpp"
+# 303 "./src/LexicalAnalysis.cpp"
    , strerror(
-# 301 "./src/LexicalAnalysis.cpp" 3 4
+# 303 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 301 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 301); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 301, __func__, 301), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 301, __func__, 301); } } while (0);;
+# 303 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 303); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/LexicalAnalysis.cpp", 303, __func__, 303), "Failed (%s:%d, %s:%d)" , "./src/LexicalAnalysis.cpp", 303, __func__, 303); } } while (0);;
 
 
 
@@ -55002,21 +55023,21 @@ static int BufferGetWord (Buffer* buf, char* word_buffer)
     sscanf(buf->str, "%[a-zA-Z]%n", word_buffer, &n);
     buf->str += n;
     buf->indent +=n;
-# 317 "./src/LexicalAnalysis.cpp"
+# 319 "./src/LexicalAnalysis.cpp"
     return n;
     }
 
 static int IsInstruction (const char* str)
     {
-    do { if (!(str)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "str"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "str"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 322, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 322, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 322 "./src/LexicalAnalysis.cpp" 3 4
+    do { if (!(str)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "str"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "str"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 324, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 324, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 324 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 322 "./src/LexicalAnalysis.cpp"
+# 324 "./src/LexicalAnalysis.cpp"
    , strerror(
-# 322 "./src/LexicalAnalysis.cpp" 3 4
+# 324 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 322 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 322); system("echo LOX\n"); return NOT_A_INSTRUCTION; } } while (0);
+# 324 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 324); system("echo LOX\n"); return NOT_A_INSTRUCTION; } } while (0);
 
     for (int i = 0; i < NUMBER_OF_INSTUCTIONS; i++)
         if (!stricmp(str, INSTRUCTIONS[i]))
@@ -55027,15 +55048,15 @@ static int IsInstruction (const char* str)
 
 static int IsInitializator (const char* str)
     {
-    do { if (!(str)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "str"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "str"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 333, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 333, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 333 "./src/LexicalAnalysis.cpp" 3 4
+    do { if (!(str)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "str"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "str"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 335, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 335, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 335 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 333 "./src/LexicalAnalysis.cpp"
+# 335 "./src/LexicalAnalysis.cpp"
    , strerror(
-# 333 "./src/LexicalAnalysis.cpp" 3 4
+# 335 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 333 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 333); system("echo LOX\n"); return NOT_A_INITIALIZATOR; } } while (0);
+# 335 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 335); system("echo LOX\n"); return NOT_A_INITIALIZATOR; } } while (0);
 
     for (int i = 0; i < NUMBER_OF_INITIALIZATORS; i++)
         if (!stricmp(str, INITIALIZATORS[i]))
@@ -55046,15 +55067,15 @@ static int IsInitializator (const char* str)
 
 static int IsFunctionRetType (const char* str)
     {
-    do { if (!(str)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "str"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "str"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 344, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 344, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 344 "./src/LexicalAnalysis.cpp" 3 4
+    do { if (!(str)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "str"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "str"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 346, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 346, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 346 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 344 "./src/LexicalAnalysis.cpp"
+# 346 "./src/LexicalAnalysis.cpp"
    , strerror(
-# 344 "./src/LexicalAnalysis.cpp" 3 4
+# 346 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 344 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 344); system("echo LOX\n"); return NOT_A_RET_TYPE; } } while (0);
+# 346 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 346); system("echo LOX\n"); return NOT_A_RET_TYPE; } } while (0);
 
     for (int i = 0; i < NUMBER_OF_FUNCTION_RET_TYPES; i++)
         if (!stricmp(str, FUNCTION_RET_TYPES[i]))
@@ -55065,15 +55086,15 @@ static int IsFunctionRetType (const char* str)
 
 static int IsNativeFunction (const char* str)
     {
-    do { if (!(str)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "str"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "str"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 355, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 355, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 355 "./src/LexicalAnalysis.cpp" 3 4
+    do { if (!(str)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "str"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "str"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 357, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 357, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 357 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 355 "./src/LexicalAnalysis.cpp"
+# 357 "./src/LexicalAnalysis.cpp"
    , strerror(
-# 355 "./src/LexicalAnalysis.cpp" 3 4
+# 357 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 355 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 355); system("echo LOX\n"); return NOT_A_NATIVE_FUNCTION; } } while (0);
+# 357 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 357); system("echo LOX\n"); return NOT_A_NATIVE_FUNCTION; } } while (0);
 
     for (int i = 0; i < NUMBER_OF_NATIVE_FUNCTIONS; i++)
         if (!stricmp(str, NATIVE_FUNCTIONS[i]))
@@ -55085,24 +55106,24 @@ static int IsNativeFunction (const char* str)
 
 static int IsName (const char* str, const char** string_arr, int size_of_string_arr)
     {
-    do { if (!(str)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "str"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "str"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 367, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 367, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 367 "./src/LexicalAnalysis.cpp" 3 4
+    do { if (!(str)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "str"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "str"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 369, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 369, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 369 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 367 "./src/LexicalAnalysis.cpp"
+# 369 "./src/LexicalAnalysis.cpp"
    , strerror(
-# 367 "./src/LexicalAnalysis.cpp" 3 4
+# 369 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 367 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 367); system("echo LOX\n"); return NOT_A_NAME; } } while (0);;
-    do { if (!(string_arr)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "string_arr"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "string_arr"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 368, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 368, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 368 "./src/LexicalAnalysis.cpp" 3 4
+# 369 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 369); system("echo LOX\n"); return NOT_A_NAME; } } while (0);;
+    do { if (!(string_arr)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "string_arr"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "string_arr"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 370, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/LexicalAnalysis.cpp", 370, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 370 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 368 "./src/LexicalAnalysis.cpp"
+# 370 "./src/LexicalAnalysis.cpp"
    , strerror(
-# 368 "./src/LexicalAnalysis.cpp" 3 4
+# 370 "./src/LexicalAnalysis.cpp" 3 4
    14
-# 368 "./src/LexicalAnalysis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 368); system("echo LOX\n"); return NOT_A_NAME; } } while (0);;
+# 370 "./src/LexicalAnalysis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 370); system("echo LOX\n"); return NOT_A_NAME; } } while (0);;
 
     for (int i = 0; i < size_of_string_arr; i++)
         if (!strcmp(str, *(string_arr + i)))

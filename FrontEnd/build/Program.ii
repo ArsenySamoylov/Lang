@@ -52,13 +52,36 @@ int DeleteBranch (Token* def_node);
 
 
 
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long int ptrdiff_t;
+# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long unsigned int size_t;
+# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef struct {
+  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
+  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
+# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+} max_align_t;
+
+
+
+
+
+
+  typedef decltype(nullptr) nullptr_t;
+# 6 "../Common/Structures/Tabels/Tabels.h" 2
+
+
+# 7 "../Common/Structures/Tabels/Tabels.h"
 const int NOT_DECLARED = - 111;
 
-enum VarType
+enum VarStorageType
     {
     REGISTER,
     RAM,
-    LOCAL,
     };
 
 enum FuncType
@@ -73,13 +96,13 @@ struct VarLabel
     int position;
     };
 
+
 struct VarTabel
     {
     VarLabel** label_arr;
-    int arr_size;
+    size_t arr_size;
 
-    int memory_adress;
-    int number_of_labels;
+    size_t number_of_labels;
     };
 
 struct FuncLabel
@@ -87,30 +110,43 @@ struct FuncLabel
     int name;
     int ret_type;
     int body_status;
-    int number_of_arguments;
 
-    VarTabel local_args;
+
+
+    size_t number_of_local_variables;
     };
 
 struct FuncTabel
     {
     FuncLabel** label_arr;
-    int arr_size;
+    size_t arr_size;
 
-    int number_of_labels;
+    size_t number_of_labels;
     };
 
-int FuncTabelCtor (FuncTabel* tabel);
+
+FuncTabel* NewFuncTabel();
+int CloseFuncTabel (FuncTabel* tabel);
+
+
+
+
+
 FuncLabel* IsFuncLabel (int name_id, FuncTabel* func_tabel);
 
-int AddFuncLabel (int name_id, int return_type, int body_status, FuncTabel* func_tabel);
 int AddFuncLabel (FuncLabel* label, FuncTabel* tabel);
+int AddFuncLabel (int name_id, int return_type, int body_status, FuncTabel* func_tabel);
+
 
 int CompareFuncLabels (FuncLabel* label1, FuncLabel* label2);
 
 
+VarTabel* NewVarTabel();
+int CloseVarTabel (VarTabel* tabel);
 
-int VarTabelCtor (VarTabel* tabel);
+
+
+
 VarLabel* IsVarLabel (int name_id, VarTabel* tabel);
 
 int AddVarLabel (VarLabel* label, VarTabel* tabel);
@@ -129,12 +165,12 @@ struct Program
 
     const char* path_to_src_file;
 
-    VarTabel global_vars;
-    FuncTabel func_tabel;
+
+
     };
 
 int ProgramCtor(Program* program, const char* path_to_src_file);
-void ProgramDtor(Program* program);
+int ProgramDtor(Program* program);
 # 2 "../Common/Structures/Program/Program.cpp" 2
 
 # 1 "../ATC/Logger/LogMacroses.h" 1
@@ -366,8 +402,6 @@ typedef long double _Float64x;
 
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef long unsigned int size_t;
 # 36 "/usr/include/wchar.h" 2 3 4
 
 
@@ -1632,21 +1666,6 @@ namespace __gnu_cxx
 #pragma GCC visibility push(default)
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef long int ptrdiff_t;
-# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef struct {
-  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
-  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
-# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-} max_align_t;
-
-
-
-
-
-
-  typedef decltype(nullptr) nullptr_t;
 # 39 "/usr/include/c++/11/bits/cxxabi_init_exception.h" 2 3
 # 50 "/usr/include/c++/11/bits/cxxabi_init_exception.h" 3
 namespace std
@@ -44192,65 +44211,101 @@ int SYSTEM(const char* format, ...);
 # 13 "../ATC/Logger/LogMacroses.h" 2
 # 4 "../Common/Structures/Program/Program.cpp" 2
 
+static int CleanStringArr(const char** string_arr, int number_of_strings);
+
 int ProgramCtor(Program* program, const char* path_to_src_file)
     {
-    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 7, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 7, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 7 "../Common/Structures/Program/Program.cpp" 3 4
+    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 9, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 9, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 9 "../Common/Structures/Program/Program.cpp" 3 4
    14
-# 7 "../Common/Structures/Program/Program.cpp"
+# 9 "../Common/Structures/Program/Program.cpp"
    , strerror(
-# 7 "../Common/Structures/Program/Program.cpp" 3 4
+# 9 "../Common/Structures/Program/Program.cpp" 3 4
    14
-# 7 "../Common/Structures/Program/Program.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 7); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
-    do { if (!(path_to_src_file)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "path_to_src_file"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "path_to_src_file"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 8, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 8, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 8 "../Common/Structures/Program/Program.cpp" 3 4
+# 9 "../Common/Structures/Program/Program.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 9); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(path_to_src_file)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "path_to_src_file"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "path_to_src_file"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 10, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 10, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 10 "../Common/Structures/Program/Program.cpp" 3 4
    14
-# 8 "../Common/Structures/Program/Program.cpp"
+# 10 "../Common/Structures/Program/Program.cpp"
    , strerror(
-# 8 "../Common/Structures/Program/Program.cpp" 3 4
+# 10 "../Common/Structures/Program/Program.cpp" 3 4
    14
-# 8 "../Common/Structures/Program/Program.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 8); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+# 10 "../Common/Structures/Program/Program.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 10); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
 
     program->token_arr = 
-# 10 "../Common/Structures/Program/Program.cpp" 3 4
+# 12 "../Common/Structures/Program/Program.cpp" 3 4
                                __null
-# 10 "../Common/Structures/Program/Program.cpp"
+# 12 "../Common/Structures/Program/Program.cpp"
                                    ;
     program->number_of_tokens = 0;
 
     program->string_arr = 
-# 13 "../Common/Structures/Program/Program.cpp" 3 4
+# 15 "../Common/Structures/Program/Program.cpp" 3 4
                                 __null
-# 13 "../Common/Structures/Program/Program.cpp"
+# 15 "../Common/Structures/Program/Program.cpp"
                                     ;
     program->number_of_strings = 0;
 
     program->path_to_src_file = path_to_src_file;
+# 28 "../Common/Structures/Program/Program.cpp"
+    return SUCCESS;
+    }
 
+int ProgramDtor(Program* program)
+    {
+    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 33, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 33, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 33 "../Common/Structures/Program/Program.cpp" 3 4
+   14
+# 33 "../Common/Structures/Program/Program.cpp"
+   , strerror(
+# 33 "../Common/Structures/Program/Program.cpp" 3 4
+   14
+# 33 "../Common/Structures/Program/Program.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 33); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
 
-    program->global_vars = {};
-    VarTabelCtor(&program->global_vars);
+    if (program->string_arr)
+        {
+        int status = CleanStringArr(program->string_arr, program->number_of_strings);
+        if (status != SUCCESS)
+            return FAILURE;
 
-    program->func_tabel = {};
-    FuncTabelCtor(&program->func_tabel);
+        free(program->string_arr);
+        }
+
+    if (program->token_arr)
+        {
+        free(program->token_arr);
+        }
 
     return SUCCESS;
     }
 
-void ProgramDtor(Program* program)
-    {
-    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 30, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 30, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 30 "../Common/Structures/Program/Program.cpp" 3 4
-   14
-# 30 "../Common/Structures/Program/Program.cpp"
-   , strerror(
-# 30 "../Common/Structures/Program/Program.cpp" 3 4
-   14
-# 30 "../Common/Structures/Program/Program.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 30); system("echo LOX\n"); return; } } while (0);;
-    printf("\033[96m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "../Common/Structures/Program/Program.cpp", 31, "сделаю потом\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "../Common/Structures/Program/Program.cpp", 31, "сделаю потом\n"); Logger::getInstance().log("сделаю потом\n" );;
+#pragma GCC diagnostic ignored "-Wcast-qual"
 
-    return;
+static int CleanStringArr(const char** string_arr, int number_of_strings)
+    {
+    do { if (!(string_arr)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "string_arr"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "string_arr"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 56, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 56, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 56 "../Common/Structures/Program/Program.cpp" 3 4
+   14
+# 56 "../Common/Structures/Program/Program.cpp"
+   , strerror(
+# 56 "../Common/Structures/Program/Program.cpp" 3 4
+   14
+# 56 "../Common/Structures/Program/Program.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 56); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Program/Program.cpp", 56, __func__, 56), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Program/Program.cpp", 56, __func__, 56); } } while (0);;
+
+    for (int i = 0; i < number_of_strings; i++)
+        {
+        if (!(string_arr[i]))
+            {
+            { printf("\t%s: ", __func__); printf("Ebat, null pointer in string arr, position %d\n", i); };
+            return FAILURE;
+            }
+
+        free( (void*) string_arr[i]);
+        }
+
+    return SUCCESS;
     }

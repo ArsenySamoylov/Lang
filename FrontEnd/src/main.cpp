@@ -39,25 +39,32 @@ int main(int argc, const char* argv[])
     if (run_time_status != SUCCESS)
         {
         printf(redcolor "Can't tokenize file " resetconsole "%s\n", program.path_to_src_file);
-        return LFAILURE;
+        
+        goto FAIL_EXIT;
         }
 
     run_time_status |= GetG(&program);
     if (run_time_status != SUCCESS)
-        {
-        ProgramDtor(&program);
-        return LFAILURE;
-        }
+        goto FAIL_EXIT;
 
     MakeImg("kek", &program); 
-
+    
+    {
     const char* std_name = argv[2];
 
     run_time_status |= PutProgramToStdAWP (&program, std_name);
-    
+    }
+
     // STAFF ROOM
     ProgramDtor(&program);
     KILL(src_code); 
     
     return 0;
+
+    FAIL_EXIT:
+    
+    ProgramDtor(&program);
+    KILL(src_code); 
+    
+    return LFAILURE;
     }

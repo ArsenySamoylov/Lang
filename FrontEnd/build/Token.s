@@ -2,39 +2,58 @@
 	.text
 .Ltext0:
 	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator/FrontEnd" "../Common/Structures/Token/Token.cpp"
-	.local	_ZStL8__ioinit
-	.comm	_ZStL8__ioinit,1,1
+	.bss
+	.align 32
+	.type	_ZStL8__ioinit, @object
+	.size	_ZStL8__ioinit, 1
+_ZStL8__ioinit:
+	.zero	64
 	.section	.rodata
-	.align 16
+	.align 32
 	.type	_ZL12STD_LOG_NAME, @object
 	.size	_ZL12STD_LOG_NAME, 18
 _ZL12STD_LOG_NAME:
 	.string	"./logs/stdlog.ars"
-	.align 4
+	.zero	46
+	.align 32
 	.type	_ZL6CRINGE, @object
 	.size	_ZL6CRINGE, 4
 _ZL6CRINGE:
 	.long	3565
+	.zero	60
+	.globl	__asan_stack_malloc_1
+	.align 8
 .LC0:
-	.string	"NewToken"
-	.align 8
+	.string	"2 32 8 7 value:5 64 24 8 func_8:8"
+	.align 32
 .LC1:
-	.string	"../Common/Structures/Token/Token.cpp"
-	.align 8
+	.string	"NewToken"
+	.zero	55
+	.align 32
 .LC2:
-	.string	"%s:%d::CHECK: new_defnode is false\n"
-	.align 8
+	.string	"../Common/Structures/Token/Token.cpp"
+	.zero	59
+	.align 32
 .LC3:
-	.string	"Couldn't allocate memory for new node\n"
+	.string	"%s:%d::CHECK: new_defnode is false\n"
+	.zero	60
+	.align 32
 .LC4:
-	.string	"Returnig null ptr (%s:%d)"
-	.align 8
+	.string	"Couldn't allocate memory for new node\n"
+	.zero	57
+	.align 32
 .LC5:
+	.string	"Returnig null ptr (%s:%d)"
+	.zero	38
+	.align 32
+.LC6:
 	.string	"\033[94mReturnig null ptr %s:%d (%s:%d)\n\033[0m"
+	.zero	54
 	.text
 	.globl	_Z8NewTokeni10TokenValueP5TokenS1_
 	.type	_Z8NewTokeni10TokenValueP5TokenS1_, @function
 _Z8NewTokeni10TokenValueP5TokenS1_:
+.LASANPC2270:
 .LFB2270:
 	.file 1 "../Common/Structures/Token/Token.cpp"
 	.loc 1 7 5
@@ -47,16 +66,50 @@ _Z8NewTokeni10TokenValueP5TokenS1_:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
+	pushq	%r15
+	pushq	%r14
+	pushq	%r13
+	pushq	%r12
 	pushq	%rbx
-	subq	$88, %rsp
-	.cfi_offset 3, -24
-	movl	%edi, -68(%rbp)
-	movq	%rsi, -80(%rbp)
-	movq	%rdx, -88(%rbp)
-	movq	%rcx, -96(%rbp)
+	subq	$184, %rsp
+	.cfi_offset 15, -24
+	.cfi_offset 14, -32
+	.cfi_offset 13, -40
+	.cfi_offset 12, -48
+	.cfi_offset 3, -56
+	movl	%edi, -196(%rbp)
+	movq	%rsi, -208(%rbp)
+	movq	%rdx, -216(%rbp)
+	movq	%rcx, -224(%rbp)
+	leaq	-176(%rbp), %rbx
+	movq	%rbx, %r15
+	cmpl	$0, __asan_option_detect_stack_use_after_return(%rip)
+	je	.L1
+	movl	$128, %edi
+	call	__asan_stack_malloc_1@PLT
+	testq	%rax, %rax
+	je	.L1
+	movq	%rax, %rbx
+.L1:
+	leaq	128(%rbx), %rax
+	movq	%rax, %r13
+	movq	$1102416563, (%rbx)
+	leaq	.LC0(%rip), %rax
+	movq	%rax, 8(%rbx)
+	leaq	.LASANPC2270(%rip), %rax
+	movq	%rax, 16(%rbx)
+	movq	%rbx, %r12
+	shrq	$3, %r12
+	movl	$-235802127, 2147450880(%r12)
+	movl	$-218959360, 2147450884(%r12)
+	movl	$-218103808, 2147450888(%r12)
+	movl	$-202116109, 2147450892(%r12)
+	.loc 1 5 39
+	movq	-208(%rbp), %rax
+	movq	%rax, -96(%r13)
 	.loc 1 8 47
-	leaq	-48(%rbp), %rax
-	leaq	.LC0(%rip), %rdx
+	leaq	-64(%r13), %rax
+	leaq	.LC1(%rip), %rdx
 	movl	$1, %esi
 	movq	%rax, %rdi
 .LEHB0:
@@ -68,25 +121,25 @@ _Z8NewTokeni10TokenValueP5TokenS1_:
 	movq	%rax, %rdi
 	.loc 1 10 65
 	movl	$10, %r9d
-	leaq	.LC0(%rip), %r8
-	leaq	.LC1(%rip), %rax
+	leaq	.LC1(%rip), %r8
+	leaq	.LC2(%rip), %rax
 	movq	%rax, %rcx
 	movl	$48, %edx
 	movl	$1, %esi
 	call	_ZN6Logger7CAL_LOGEmmPKcS1_i@PLT
 	.loc 1 10 65 is_stmt 0 discriminator 1
-	movq	%rax, -56(%rbp)
+	movq	%rax, -184(%rbp)
 	.loc 1 11 10 is_stmt 1 discriminator 1
-	cmpq	$0, -56(%rbp)
-	jne	.L2
+	cmpq	$0, -184(%rbp)
+	jne	.L5
 	.loc 1 11 49 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
 	.loc 1 11 55 discriminator 1
 	movl	$11, %ecx
-	leaq	.LC0(%rip), %rax
+	leaq	.LC1(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC2(%rip), %rax
+	leaq	.LC3(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
@@ -94,7 +147,7 @@ _Z8NewTokeni10TokenValueP5TokenS1_:
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdx
 	.loc 1 11 143 discriminator 3
-	leaq	.LC3(%rip), %rax
+	leaq	.LC4(%rip), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	movl	$0, %eax
@@ -104,67 +157,140 @@ _Z8NewTokeni10TokenValueP5TokenS1_:
 	movq	%rax, %rdi
 	.loc 1 11 232 discriminator 5
 	movl	$11, %ecx
-	leaq	.LC0(%rip), %rax
+	leaq	.LC1(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC4(%rip), %rax
+	leaq	.LC5(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger13LogMsgNullRetEPKcz@PLT
 	.loc 1 11 290 discriminator 7
 	movl	$11, %r8d
-	leaq	.LC0(%rip), %rax
+	leaq	.LC1(%rip), %rax
 	movq	%rax, %rcx
 	movl	$11, %edx
-	leaq	.LC1(%rip), %rax
+	leaq	.LC2(%rip), %rax
 	movq	%rax, %rsi
-	leaq	.LC5(%rip), %rax
+	leaq	.LC6(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	_Z13LogMsgNullRetPKcz@PLT
 .LEHE1:
 	.loc 1 11 405 discriminator 8
-	movl	$0, %ebx
-	jmp	.L3
-.L2:
+	movl	$0, %r14d
+	jmp	.L6
+.L5:
 	.loc 1 13 30
-	movq	-56(%rbp), %rax
-	movq	-88(%rbp), %rdx
+	movq	-184(%rbp), %rax
+	movq	%rax, %rdx
+	shrq	$3, %rdx
+	addq	$2147450880, %rdx
+	movzbl	(%rdx), %edx
+	testb	%dl, %dl
+	je	.L7
+	movq	%rax, %rdi
+	call	__asan_report_store8@PLT
+.L7:
+	movq	-184(%rbp), %rax
+	movq	-216(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 1 14 30
-	movq	-56(%rbp), %rax
-	movq	-96(%rbp), %rdx
+	movq	-184(%rbp), %rax
+	addq	$8, %rax
+	movq	%rax, %rdx
+	shrq	$3, %rdx
+	addq	$2147450880, %rdx
+	movzbl	(%rdx), %edx
+	testb	%dl, %dl
+	je	.L8
+	movq	%rax, %rdi
+	call	__asan_report_store8@PLT
+.L8:
+	movq	-184(%rbp), %rax
+	movq	-224(%rbp), %rdx
 	movq	%rdx, 8(%rax)
 	.loc 1 16 23
-	movq	-56(%rbp), %rax
-	movl	-68(%rbp), %edx
+	movq	-184(%rbp), %rax
+	addq	$16, %rax
+	movq	%rax, %rdx
+	movq	%rdx, %rax
+	shrq	$3, %rax
+	addq	$2147450880, %rax
+	movzbl	(%rax), %eax
+	testb	%al, %al
+	setne	%cl
+	cmpb	$3, %al
+	setle	%al
+	andl	%ecx, %eax
+	testb	%al, %al
+	je	.L9
+	movq	%rdx, %rdi
+	call	__asan_report_store4@PLT
+.L9:
+	movq	-184(%rbp), %rax
+	movl	-196(%rbp), %edx
 	movl	%edx, 16(%rax)
 	.loc 1 17 24
-	movq	-56(%rbp), %rax
-	movq	-80(%rbp), %rdx
+	movq	-184(%rbp), %rax
+	addq	$24, %rax
+	movq	%rax, %rdx
+	shrq	$3, %rdx
+	addq	$2147450880, %rdx
+	movzbl	(%rdx), %edx
+	testb	%dl, %dl
+	je	.L10
+	movq	%rax, %rdi
+	call	__asan_report_store8@PLT
+.L10:
+	movq	-184(%rbp), %rax
+	movq	-96(%r13), %rdx
 	movq	%rdx, 24(%rax)
 	.loc 1 19 12
-	movq	-56(%rbp), %rbx
-.L3:
-	.loc 1 20 5
-	leaq	-48(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZN14FunctionLoggerD1Ev@PLT
-	movq	%rbx, %rax
-	jmp	.L7
+	movq	-184(%rbp), %r14
 .L6:
-	endbr64
-	movq	%rax, %rbx
-	leaq	-48(%rbp), %rax
+	.loc 1 20 5
+	leaq	-64(%r13), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
-	movq	%rbx, %rax
+	movq	%r14, %rdx
+	.loc 1 7 5
+	cmpq	%rbx, %r15
+	je	.L2
+	jmp	.L14
+.L13:
+	endbr64
+	.loc 1 20 5
+	movq	%rax, %rbx
+	leaq	-64(%r13), %rax
 	movq	%rax, %rdi
+	call	_ZN14FunctionLoggerD1Ev@PLT
+	call	__asan_handle_no_return@PLT
+	movq	%rbx, %rdi
 .LEHB2:
 	call	_Unwind_Resume@PLT
 .LEHE2:
-.L7:
-	movq	-8(%rbp), %rbx
-	leave
+.L14:
+	.loc 1 7 5
+	movq	$1172321806, (%rbx)
+	movabsq	$-723401728380766731, %rsi
+	movabsq	$-723401728380766731, %rdi
+	movq	%rsi, 2147450880(%r12)
+	movq	%rdi, 2147450888(%r12)
+	movq	120(%rbx), %rax
+	movb	$0, (%rax)
+	jmp	.L3
+.L2:
+	movq	$0, 2147450880(%r12)
+	movq	$0, 2147450888(%r12)
+.L3:
+	.loc 1 20 5
+	movq	%rdx, %rax
+	addq	$184, %rsp
+	popq	%rbx
+	popq	%r12
+	popq	%r13
+	popq	%r14
+	popq	%r15
+	popq	%rbp
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
@@ -183,7 +309,7 @@ _Z8NewTokeni10TokenValueP5TokenS1_:
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB2270
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L6-.LFB2270
+	.uleb128 .L13-.LFB2270
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB2270
 	.uleb128 .LEHE2-.LEHB2
@@ -193,23 +319,33 @@ _Z8NewTokeni10TokenValueP5TokenS1_:
 	.text
 	.size	_Z8NewTokeni10TokenValueP5TokenS1_, .-_Z8NewTokeni10TokenValueP5TokenS1_
 	.section	.rodata
-.LC6:
-	.string	"DeleteBranch"
-	.align 8
 .LC7:
-	.string	"%s:%d::CHECK: DeleteBranch (def_node->left_child) == SUCCESS is false\n"
-	.align 8
+	.string	"1 32 24 10 func_24:24"
+	.align 32
 .LC8:
-	.string	"\033[91mFailed %s:%d (%s:%d)\n\033[0m"
+	.string	"DeleteBranch"
+	.zero	51
+	.align 32
 .LC9:
-	.string	"Failed (%s:%d, %s:%d)"
-	.align 8
+	.string	"%s:%d::CHECK: DeleteBranch (def_node->left_child) == SUCCESS is false\n"
+	.zero	57
+	.align 32
 .LC10:
+	.string	"\033[91mFailed %s:%d (%s:%d)\n\033[0m"
+	.zero	33
+	.align 32
+.LC11:
+	.string	"Failed (%s:%d, %s:%d)"
+	.zero	42
+	.align 32
+.LC12:
 	.string	"%s:%d::CHECK: DeleteBranch (def_node->right_child) == SUCCESS is false\n"
+	.zero	56
 	.text
 	.globl	_Z12DeleteBranchP5Token
 	.type	_Z12DeleteBranchP5Token, @function
 _Z12DeleteBranchP5Token:
+.LASANPC2271:
 .LFB2271:
 	.loc 1 23 5
 	.cfi_startproc
@@ -221,33 +357,73 @@ _Z12DeleteBranchP5Token:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
+	pushq	%r15
+	pushq	%r14
+	pushq	%r13
+	pushq	%r12
 	pushq	%rbx
-	subq	$56, %rsp
-	.cfi_offset 3, -24
-	movq	%rdi, -56(%rbp)
+	subq	$120, %rsp
+	.cfi_offset 15, -24
+	.cfi_offset 14, -32
+	.cfi_offset 13, -40
+	.cfi_offset 12, -48
+	.cfi_offset 3, -56
+	movq	%rdi, -152(%rbp)
+	leaq	-144(%rbp), %rbx
+	movq	%rbx, %r15
+	cmpl	$0, __asan_option_detect_stack_use_after_return(%rip)
+	je	.L15
+	movl	$96, %edi
+	call	__asan_stack_malloc_1@PLT
+	testq	%rax, %rax
+	je	.L15
+	movq	%rax, %rbx
+.L15:
+	leaq	96(%rbx), %rax
+	movq	%rax, %r14
+	movq	$1102416563, (%rbx)
+	leaq	.LC7(%rip), %rax
+	movq	%rax, 8(%rbx)
+	leaq	.LASANPC2271(%rip), %rax
+	movq	%rax, 16(%rbx)
+	movq	%rbx, %r12
+	shrq	$3, %r12
+	movl	$-235802127, 2147450880(%r12)
+	movl	$-218103808, 2147450884(%r12)
+	movl	$-202116109, 2147450888(%r12)
 	.loc 1 24 48
-	leaq	-48(%rbp), %rax
-	leaq	.LC6(%rip), %rdx
+	leaq	-64(%r14), %rax
+	leaq	.LC8(%rip), %rdx
 	movl	$1, %esi
 	movq	%rax, %rdi
 .LEHB3:
 	call	_ZN14FunctionLoggerC1EiPKc@PLT
 .LEHE3:
 	.loc 1 26 5
-	cmpq	$0, -56(%rbp)
-	jne	.L9
+	cmpq	$0, -152(%rbp)
+	jne	.L19
 	.loc 1 26 27 discriminator 1
-	movl	$0, %ebx
-	jmp	.L10
-.L9:
+	movl	$0, %r13d
+	jmp	.L20
+.L19:
 	.loc 1 28 19
-	movq	-56(%rbp), %rax
+	movq	-152(%rbp), %rax
+	movq	%rax, %rdx
+	shrq	$3, %rdx
+	addq	$2147450880, %rdx
+	movzbl	(%rdx), %edx
+	testb	%dl, %dl
+	je	.L21
+	movq	%rax, %rdi
+	call	__asan_report_load8@PLT
+.L21:
+	movq	-152(%rbp), %rax
 	movq	(%rax), %rax
 	.loc 1 28 5
 	testq	%rax, %rax
-	je	.L11
+	je	.L22
 	.loc 1 29 32
-	movq	-56(%rbp), %rax
+	movq	-152(%rbp), %rax
 	movq	(%rax), %rax
 	movq	%rax, %rdi
 .LEHB4:
@@ -257,15 +433,15 @@ _Z12DeleteBranchP5Token:
 	setne	%al
 	.loc 1 29 14
 	testb	%al, %al
-	je	.L11
+	je	.L22
 	.loc 1 29 88 discriminator 2
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
 	.loc 1 29 94 discriminator 2
 	movl	$29, %ecx
-	leaq	.LC6(%rip), %rax
+	leaq	.LC8(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC7(%rip), %rax
+	leaq	.LC9(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
@@ -274,14 +450,14 @@ _Z12DeleteBranchP5Token:
 	.loc 1 29 240 discriminator 4
 	call	_ZN6Logger11getInstanceEv@PLT
 	.loc 1 29 240 is_stmt 0 discriminator 5
-	movq	%rax, %rbx
+	movq	%rax, %r13
 	.loc 1 29 253 is_stmt 1 discriminator 5
 	movl	$29, %r9d
-	leaq	.LC6(%rip), %r8
+	leaq	.LC8(%rip), %r8
 	movl	$29, %ecx
-	leaq	.LC1(%rip), %rax
+	leaq	.LC2(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC8(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movl	$-1, %edi
 	movl	$0, %eax
@@ -290,30 +466,41 @@ _Z12DeleteBranchP5Token:
 	movl	%eax, %esi
 	subq	$8, %rsp
 	pushq	$29
-	leaq	.LC6(%rip), %r9
+	leaq	.LC8(%rip), %r9
 	movl	$29, %r8d
-	leaq	.LC1(%rip), %rax
+	leaq	.LC2(%rip), %rax
 	movq	%rax, %rcx
-	leaq	.LC9(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdx
-	movq	%rbx, %rdi
+	movq	%r13, %rdi
 	movl	$0, %eax
 	.cfi_escape 0x2e,0x10
 	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
 	.loc 1 29 253 discriminator 7
 	addq	$16, %rsp
-	movl	%eax, %ebx
+	movl	%eax, %r13d
 	.loc 1 29 458 is_stmt 1 discriminator 7
-	jmp	.L10
-.L11:
+	jmp	.L20
+.L22:
 	.loc 1 31 19
-	movq	-56(%rbp), %rax
+	movq	-152(%rbp), %rax
+	addq	$8, %rax
+	movq	%rax, %rdx
+	shrq	$3, %rdx
+	addq	$2147450880, %rdx
+	movzbl	(%rdx), %edx
+	testb	%dl, %dl
+	je	.L23
+	movq	%rax, %rdi
+	call	__asan_report_load8@PLT
+.L23:
+	movq	-152(%rbp), %rax
 	movq	8(%rax), %rax
 	.loc 1 31 5
 	testq	%rax, %rax
-	je	.L12
+	je	.L24
 	.loc 1 32 32
-	movq	-56(%rbp), %rax
+	movq	-152(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rdi
 	.cfi_escape 0x2e,0
@@ -323,15 +510,15 @@ _Z12DeleteBranchP5Token:
 	setne	%al
 	.loc 1 32 14
 	testb	%al, %al
-	je	.L12
+	je	.L24
 	.loc 1 32 89 discriminator 2
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
 	.loc 1 32 95 discriminator 2
 	movl	$32, %ecx
-	leaq	.LC6(%rip), %rax
+	leaq	.LC8(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC10(%rip), %rax
+	leaq	.LC12(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
@@ -340,14 +527,14 @@ _Z12DeleteBranchP5Token:
 	.loc 1 32 242 discriminator 4
 	call	_ZN6Logger11getInstanceEv@PLT
 	.loc 1 32 242 is_stmt 0 discriminator 5
-	movq	%rax, %rbx
+	movq	%rax, %r13
 	.loc 1 32 255 is_stmt 1 discriminator 5
 	movl	$32, %r9d
-	leaq	.LC6(%rip), %r8
+	leaq	.LC8(%rip), %r8
 	movl	$32, %ecx
-	leaq	.LC1(%rip), %rax
+	leaq	.LC2(%rip), %rax
 	movq	%rax, %rdx
-	leaq	.LC8(%rip), %rax
+	leaq	.LC10(%rip), %rax
 	movq	%rax, %rsi
 	movl	$-1, %edi
 	movl	$0, %eax
@@ -356,58 +543,81 @@ _Z12DeleteBranchP5Token:
 	movl	%eax, %esi
 	subq	$8, %rsp
 	pushq	$32
-	leaq	.LC6(%rip), %r9
+	leaq	.LC8(%rip), %r9
 	movl	$32, %r8d
-	leaq	.LC1(%rip), %rax
+	leaq	.LC2(%rip), %rax
 	movq	%rax, %rcx
-	leaq	.LC9(%rip), %rax
+	leaq	.LC11(%rip), %rax
 	movq	%rax, %rdx
-	movq	%rbx, %rdi
+	movq	%r13, %rdi
 	movl	$0, %eax
 	.cfi_escape 0x2e,0x10
 	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
 	.loc 1 32 255 discriminator 7
 	addq	$16, %rsp
-	movl	%eax, %ebx
+	movl	%eax, %r13d
 	.loc 1 32 460 is_stmt 1 discriminator 7
-	jmp	.L10
-.L12:
+	jmp	.L20
+.L24:
 	.cfi_escape 0x2e,0
 	.loc 1 34 24
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
 	.loc 1 34 36
-	movq	-56(%rbp), %rax
+	movq	-152(%rbp), %rax
 	movl	$34, %r8d
-	leaq	.LC6(%rip), %rdx
+	leaq	.LC8(%rip), %rdx
 	movq	%rdx, %rcx
-	leaq	.LC1(%rip), %rdx
+	leaq	.LC2(%rip), %rdx
 	movq	%rax, %rsi
 	call	_ZN6Logger8FREE_LOGEPvPKcS2_i@PLT
 .LEHE4:
 	.loc 1 36 12
-	movl	$0, %ebx
-.L10:
+	movl	$0, %r13d
+.L20:
 	.loc 1 37 5
-	leaq	-48(%rbp), %rax
+	leaq	-64(%r14), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
-	movl	%ebx, %eax
-	jmp	.L16
-.L15:
+	movl	%r13d, %edx
+	.loc 1 23 5
+	cmpq	%rbx, %r15
+	je	.L16
+	jmp	.L28
+.L27:
 	endbr64
+	.loc 1 37 5
 	movq	%rax, %rbx
-	leaq	-48(%rbp), %rax
+	leaq	-64(%r14), %rax
 	movq	%rax, %rdi
 	call	_ZN14FunctionLoggerD1Ev@PLT
-	movq	%rbx, %rax
-	movq	%rax, %rdi
+	call	__asan_handle_no_return@PLT
+	movq	%rbx, %rdi
 .LEHB5:
 	call	_Unwind_Resume@PLT
 .LEHE5:
+.L28:
+	.loc 1 23 5
+	movq	$1172321806, (%rbx)
+	movabsq	$-723401728380766731, %rax
+	movq	%rax, 2147450880(%r12)
+	movl	$-168430091, 2147450888(%r12)
+	movq	120(%rbx), %rax
+	movb	$0, (%rax)
+	jmp	.L17
 .L16:
-	movq	-8(%rbp), %rbx
-	leave
+	movq	$0, 2147450880(%r12)
+	movl	$0, 2147450888(%r12)
+.L17:
+	.loc 1 37 5
+	movl	%edx, %eax
+	leaq	-40(%rbp), %rsp
+	popq	%rbx
+	popq	%r12
+	popq	%r13
+	popq	%r14
+	popq	%r15
+	popq	%rbp
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
@@ -425,7 +635,7 @@ _Z12DeleteBranchP5Token:
 	.uleb128 0
 	.uleb128 .LEHB4-.LFB2271
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L15-.LFB2271
+	.uleb128 .L27-.LFB2271
 	.uleb128 0
 	.uleb128 .LEHB5-.LFB2271
 	.uleb128 .LEHE5-.LEHB5
@@ -436,6 +646,7 @@ _Z12DeleteBranchP5Token:
 	.size	_Z12DeleteBranchP5Token, .-_Z12DeleteBranchP5Token
 	.type	_Z41__static_initialization_and_destruction_0ii, @function
 _Z41__static_initialization_and_destruction_0ii:
+.LASANPC2938:
 .LFB2938:
 	.loc 1 37 5
 	.cfi_startproc
@@ -450,10 +661,13 @@ _Z41__static_initialization_and_destruction_0ii:
 	movl	%esi, -8(%rbp)
 	.loc 1 37 5
 	cmpl	$1, -4(%rbp)
-	jne	.L19
+	jne	.L32
 	.loc 1 37 5 is_stmt 0 discriminator 1
+	leaq	.LC2(%rip), %rax
+	movq	%rax, %rdi
+	call	__asan_before_dynamic_init@PLT
 	cmpl	$65535, -8(%rbp)
-	jne	.L19
+	jne	.L31
 	.file 2 "/usr/include/c++/11/iostream"
 	.loc 2 74 25 is_stmt 1
 	leaq	_ZStL8__ioinit(%rip), %rax
@@ -466,8 +680,11 @@ _Z41__static_initialization_and_destruction_0ii:
 	movq	_ZNSt8ios_base4InitD1Ev@GOTPCREL(%rip), %rax
 	movq	%rax, %rdi
 	call	__cxa_atexit@PLT
-.L19:
-	.loc 1 37 5
+.L31:
+	.loc 2 74 25 is_stmt 0 discriminator 1
+	call	__asan_after_dynamic_init@PLT
+.L32:
+	.loc 1 37 5 is_stmt 1
 	nop
 	leave
 	.cfi_def_cfa 7, 8
@@ -477,6 +694,7 @@ _Z41__static_initialization_and_destruction_0ii:
 	.size	_Z41__static_initialization_and_destruction_0ii, .-_Z41__static_initialization_and_destruction_0ii
 	.type	_GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_, @function
 _GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_:
+.LASANPC2939:
 .LFB2939:
 	.loc 1 37 5
 	.cfi_startproc
@@ -499,6 +717,236 @@ _GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_:
 	.section	.init_array,"aw"
 	.align 8
 	.quad	_GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_
+	.section	.rodata
+	.align 8
+.LC13:
+	.string	"../ATC/RandomStuff/CommonEnums.h"
+	.section	.data.rel.local,"aw"
+	.align 16
+	.type	.LASANLOC1, @object
+	.size	.LASANLOC1, 16
+.LASANLOC1:
+	.quad	.LC13
+	.long	3
+	.long	11
+	.section	.rodata
+.LC14:
+	.string	"../ATC/Logger/LogConfig.h"
+	.section	.data.rel.local
+	.align 16
+	.type	.LASANLOC2, @object
+	.size	.LASANLOC2, 16
+.LASANLOC2:
+	.quad	.LC14
+	.long	3
+	.long	12
+	.section	.rodata
+.LC15:
+	.string	"/usr/include/c++/11/iostream"
+	.section	.data.rel.local
+	.align 16
+	.type	.LASANLOC3, @object
+	.size	.LASANLOC3, 16
+.LASANLOC3:
+	.quad	.LC15
+	.long	74
+	.long	25
+	.section	.rodata
+.LC16:
+	.string	"CRINGE"
+.LC17:
+	.string	"STD_LOG_NAME"
+.LC18:
+	.string	"__ioinit"
+.LC19:
+	.string	"*.LC10"
+.LC20:
+	.string	"*.LC12"
+.LC21:
+	.string	"*.LC8"
+.LC22:
+	.string	"*.LC11"
+.LC23:
+	.string	"*.LC9"
+.LC24:
+	.string	"*.LC5"
+.LC25:
+	.string	"*.LC1"
+.LC26:
+	.string	"*.LC6"
+.LC27:
+	.string	"*.LC2"
+.LC28:
+	.string	"*.LC4"
+.LC29:
+	.string	"*.LC3"
+	.section	.data.rel.local
+	.align 32
+	.type	.LASAN0, @object
+	.size	.LASAN0, 896
+.LASAN0:
+	.quad	_ZL6CRINGE
+	.quad	4
+	.quad	64
+	.quad	.LC16
+	.quad	.LC2
+	.quad	0
+	.quad	.LASANLOC1
+	.quad	0
+	.quad	_ZL12STD_LOG_NAME
+	.quad	18
+	.quad	64
+	.quad	.LC17
+	.quad	.LC2
+	.quad	0
+	.quad	.LASANLOC2
+	.quad	0
+	.quad	_ZStL8__ioinit
+	.quad	1
+	.quad	64
+	.quad	.LC18
+	.quad	.LC2
+	.quad	1
+	.quad	.LASANLOC3
+	.quad	0
+	.quad	.LC10
+	.quad	31
+	.quad	64
+	.quad	.LC19
+	.quad	.LC2
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC12
+	.quad	72
+	.quad	128
+	.quad	.LC20
+	.quad	.LC2
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC8
+	.quad	13
+	.quad	64
+	.quad	.LC21
+	.quad	.LC2
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC11
+	.quad	22
+	.quad	64
+	.quad	.LC22
+	.quad	.LC2
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC9
+	.quad	71
+	.quad	128
+	.quad	.LC23
+	.quad	.LC2
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC5
+	.quad	26
+	.quad	64
+	.quad	.LC24
+	.quad	.LC2
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC1
+	.quad	9
+	.quad	64
+	.quad	.LC25
+	.quad	.LC2
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC6
+	.quad	42
+	.quad	96
+	.quad	.LC26
+	.quad	.LC2
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC2
+	.quad	37
+	.quad	96
+	.quad	.LC27
+	.quad	.LC2
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC4
+	.quad	39
+	.quad	96
+	.quad	.LC28
+	.quad	.LC2
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC3
+	.quad	36
+	.quad	96
+	.quad	.LC29
+	.quad	.LC2
+	.quad	0
+	.quad	0
+	.quad	0
+	.text
+	.type	_sub_D_00099_0, @function
+_sub_D_00099_0:
+.LFB2940:
+	.cfi_startproc
+	endbr64
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movl	$14, %esi
+	leaq	.LASAN0(%rip), %rax
+	movq	%rax, %rdi
+	call	__asan_unregister_globals@PLT
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2940:
+	.size	_sub_D_00099_0, .-_sub_D_00099_0
+	.section	.fini_array.00099,"aw"
+	.align 8
+	.quad	_sub_D_00099_0
+	.text
+	.type	_sub_I_00099_1, @function
+_sub_I_00099_1:
+.LFB2941:
+	.cfi_startproc
+	endbr64
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	call	__asan_init@PLT
+	call	__asan_version_mismatch_check_v8@PLT
+	movl	$14, %esi
+	leaq	.LASAN0(%rip), %rax
+	movq	%rax, %rdi
+	call	__asan_register_globals@PLT
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2941:
+	.size	_sub_I_00099_1, .-_sub_I_00099_1
+	.section	.init_array.00099,"aw"
+	.align 8
+	.quad	_sub_I_00099_1
 	.text
 .Letext0:
 	.file 3 "../Common/Structures/Token/Token.h"
@@ -5106,7 +5554,7 @@ _GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_:
 	.long	0x129
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -72
+	.sleb128 -168
 	.uleb128 0x19
 	.long	.LASF409
 	.byte	0x1
@@ -5114,14 +5562,14 @@ _GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_:
 	.byte	0x14
 	.long	0x2178
 	.uleb128 0x2
-	.byte	0x91
+	.byte	0x7e
 	.sleb128 -64
 	.uleb128 0x2e
 	.long	.LASF411
 	.long	0x2507
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC6
+	.quad	.LC8
 	.byte	0
 	.uleb128 0x14
 	.long	0xaf
@@ -5150,14 +5598,14 @@ _GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_:
 	.long	0x9c
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -84
+	.sleb128 -212
 	.uleb128 0x13
 	.long	.LASF15
 	.byte	0x5
 	.byte	0x27
 	.long	0x2e
 	.uleb128 0x3
-	.byte	0x91
+	.byte	0x7d
 	.sleb128 -96
 	.uleb128 0x13
 	.long	.LASF12
@@ -5166,7 +5614,7 @@ _GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_:
 	.long	0x129
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -104
+	.sleb128 -232
 	.uleb128 0x13
 	.long	.LASF13
 	.byte	0x6
@@ -5174,7 +5622,7 @@ _GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_:
 	.long	0x129
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -112
+	.sleb128 -240
 	.uleb128 0x19
 	.long	.LASF414
 	.byte	0x1
@@ -5182,14 +5630,14 @@ _GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_:
 	.byte	0x14
 	.long	0x2178
 	.uleb128 0x2
-	.byte	0x91
+	.byte	0x7d
 	.sleb128 -64
 	.uleb128 0x2e
 	.long	.LASF411
 	.long	0x25b0
 	.uleb128 0x9
 	.byte	0x3
-	.quad	.LC0
+	.quad	.LC1
 	.uleb128 0x19
 	.long	.LASF415
 	.byte	0x1
@@ -5198,7 +5646,7 @@ _GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_:
 	.long	0x129
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -72
+	.sleb128 -200
 	.byte	0
 	.uleb128 0x14
 	.long	0xaf
@@ -6733,8 +7181,8 @@ _GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_:
 	.string	"int_p_cs_precedes"
 .LASF81:
 	.string	"_ZNSt15__exception_ptr13exception_ptrC4EPv"
-.LASF374:
-	.string	"_ZN14FunctionLoggerC4EiPKc"
+.LASF317:
+	.string	"strtoull"
 .LASF178:
 	.string	"wcsxfrm"
 .LASF78:
@@ -6847,8 +7295,8 @@ _GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_:
 	.string	"current_indent"
 .LASF33:
 	.string	"__count"
-.LASF416:
-	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
+.LASF374:
+	.string	"_ZN14FunctionLoggerC4EiPKc"
 .LASF149:
 	.string	"wcscat"
 .LASF256:
@@ -7249,6 +7697,8 @@ _GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_:
 	.string	"short int"
 .LASF104:
 	.string	"__detail"
+.LASF416:
+	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fsanitize=address,leak -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF170:
 	.string	"wcsrtombs"
 .LASF260:
@@ -7467,8 +7917,6 @@ _GLOBAL__sub_I__Z8NewTokeni10TokenValueP5TokenS1_:
 	.string	"wcstoll"
 .LASF62:
 	.string	"_codecvt"
-.LASF317:
-	.string	"strtoull"
 .LASF161:
 	.string	"tm_wday"
 .LASF117:

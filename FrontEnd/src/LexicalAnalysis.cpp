@@ -233,6 +233,8 @@ static int SetToken (Buffer* buf, Token* token)
             {
              TYPE(token) = INSTRUCTION;
             INSTR(token) = instruction;
+            // printf("Instruction num: %d, '%s'\n", instruction, INSTRUCTIONS[instruction]);
+            // $$
 
             return INSTRUCTION;
             }
@@ -306,7 +308,7 @@ static int BufferGetWord (Buffer* buf, char* word_buffer)
     sscanf(buf->str, "%[a-zA-Z]%n", word_buffer, &n);
     buf->str += n;
     buf->indent +=n;
-    
+
     // buf->str = SkipSpaces(buf->str + n); 
 
     // $s(buf->str)

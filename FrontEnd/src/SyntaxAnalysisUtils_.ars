@@ -1,15 +1,72 @@
 // UTILS
+static int ProgramCtxCtor (ProgramCtx* program_ctx, const Program *const program);
+static int ProgramCtxDtor (ProgramCtx* program_ctx);
 
 static Token* VarInitialization (ProgramCtx* program_ctx);
 static int   FuncInitialization (ProgramCtx* program_ctx);
 
 
 static FuncLabel* MakeFuncLabel (ProgramCtx* program_ctx, Token** func_head);
-static VarLabel*  MakeVarLabel  (ProgramCtx* program_ctx);
+// static VarLabel*  MakeVarLabel  (ProgramCtx* program_ctx);
 
 static int DefineName (ProgramCtx* program_ctx);
 
 ///////////////////////////////////////////////////////////////////////////
+static int ProgramCtxCtor (ProgramCtx* program_ctx, const Program *const program)
+    {
+    assertlog(program_ctx, EFAULT, return BAD_ARGUMENT);
+    assertlog(program,     EFAULT, return BAD_ARGUMENT);
+
+    SuperStack* var_tabels_stk = (SuperStack*) CALLOC (1, sizeof(var_tabels_stk[0]));
+    if (!var_tabels_stk)
+        return FAILURE;
+
+    StackCtor(var_tabels_stk, START_NUMBER_OF_VAR_TABELS_STK);
+
+    FuncTabel* global_func = NewFuncTabel();
+    if (!global_func)
+        {
+        StackDtor(var_tabels_stk);
+        free(var_tabels_stk);
+
+        return FAILURE;
+        }
+
+    VarTabel* global_var_tabel = NewVarTabel();
+    if (!global_var_tabel)
+        {
+        StackDtor(var_tabels_stk);
+        free(var_tabels_stk);
+        
+        CloseFuncTabel(global_func);
+
+        return FAILURE;
+        }
+
+    StackPush(var_tabels_stk, global_var_tabel);
+
+    program_ctx->position = 0;
+    program_ctx->current_func_label = 0;
+    program_ctx->global_func = global_func;
+    program_ctx->global_vars = global_var_tabel;
+    program_ctx->var_tabels_stk = var_tabels_stk;
+
+    return SUCCESS;
+    }
+    
+static int ProgramCtxDtor(ProgramCtx* program_ctx)
+    {
+    assertlog(program_ctx, EFAULT, return BAD_ARGUMENT);
+
+    StackDtor(program_ctx->var_tabels_stk);
+    free(program_ctx->var_tabels_stk);
+
+    CloseVarTabel (program_ctx->global_vars);
+    CloseFuncTabel(program_ctx->global_func);
+
+    return SUCCESS;
+    }
+
 static int DefineName(ProgramCtx* program_ctx)
     {
     assertlog(program_ctx, EFAULT, return NOT_DECLARED);
@@ -92,6 +149,7 @@ static FuncLabel* MakeFuncLabel(ProgramCtx* program_ctx, Token** func_head)
     return label;
     } 
 
+/*
 static VarLabel* MakeVarLabel(ProgramCtx* program_ctx)
     {
     $log(1)
@@ -110,6 +168,7 @@ static VarLabel* MakeVarLabel(ProgramCtx* program_ctx)
 
     return label;
     }
+*/
 
 /*
 static Token* FuncLabelToTokens (FuncLabel* label)
