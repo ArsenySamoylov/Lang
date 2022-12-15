@@ -2560,19 +2560,25 @@ struct Buffer
     {
     const char* buffer;
     char* str;
+
+    int number_of_lines;
+    int indent;
     };
 
 int BufferCtor (Buffer* buf, const char* string);
 int BufferCtor (Buffer* buf, int size);
 
-void BufferUngetCh (Buffer* buf);
+
+
+
+void BufferSkipSpaces (Buffer* buf);
+
 int BufferGetCh (Buffer* buf);
 int BufferLook (Buffer* buf);
 int BufferGetDouble (Buffer* buf, double* val);
 
-int BufferPutDouble (Buffer* buf, double val);
-int BufferPutChar (Buffer* buf, char ch);
-int BufferPutString (Buffer* buf, const char* str);
+
+void BufferSkipCommentLine (Buffer* buf, char terminator);
 # 4 "../ATC/RandomStuff/SomeStuff.cpp" 2
 
 void ShowCharInBinary(char mask)

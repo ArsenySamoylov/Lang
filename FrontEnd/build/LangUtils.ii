@@ -20,12 +20,11 @@ union TokenValue
     char t_operator;
     double t_constant;
     int t_initializator;
+    int t_native_function;
     int t_function_ret_type;
 
     char* t_name_ptr;
     int t_name_id;
-
-
     };
 
 struct Token
@@ -37,7 +36,13 @@ struct Token
 
     TokenValue value;
 
+
     const char* ptr_to_src_code;
+
+    int line;
+    int indent;
+
+
     };
 
 Token* NewToken (int type = 0, TokenValue value = {0},
@@ -125,11 +130,13 @@ struct Program
     const char** string_arr;
     int number_of_strings;
 
+    const char* path_to_src_file;
+
     VarTabel global_vars;
     FuncTabel func_tabel;
     };
 
-int ProgramCtor(Program* program);
+int ProgramCtor(Program* program, const char* path_to_src_file);
 void ProgramDtor(Program* program);
 # 4 "../Common/Utils/LangUtils.h" 2
 
@@ -1062,6 +1069,7 @@ VARIABLE = 7,
 CONSTANT = 8,
 FUNCTION = 9,
 CALL = 10,
+NATIVE_FUNCTION = 11,
 
 ASSIGMENT = '=',
 BLOCK_OPENING_BRACKET = '{',
@@ -1075,15 +1083,24 @@ END_OF_STATEMENT = ';',
     UNKNOWN_TYPE = -999,
     };
 
-const int NUMBER_OF_INSTUCTIONS = 5;
-const char *const INSTRUCTIONS[] = { "if", "else", "while", "fout", "return"};
+const int NUMBER_OF_INSTUCTIONS = 4;
+const char *const INSTRUCTIONS[] = { "if", "else", "while", "return" };
 enum INSTUCTIONS_NUM
     {
     IF = 0,
     ELSE = 1,
     WHILE = 2,
-    FOUT = 3,
     RETURN = 4,
+    };
+
+const int NUMBER_OF_NATIVE_FUNCTIONS = 4;
+const char *const NATIVE_FUNCTIONS[] = { "fout", "fin", "sin", "cos" };
+enum NATIVE_FUNCTIONS_NUM
+    {
+    FOUT,
+    FIN,
+    SIN,
+    COS,
     };
 
 const int NUMBER_OF_INITIALIZATORS = 2;
@@ -44313,6 +44330,7 @@ case VARIABLE: printf ("VARIABLE" " | {'" "%s" "'}\n", STRING_ARR[token->value.t
 case CONSTANT: printf ("CONSTANT" " | {'" "%lg" "'}\n", token->value.t_constant); break;
 case FUNCTION: printf ("FUNCTION" " | {'" "%c" "'}\n", token->value.t_operator == '{' ? '[' : token->value.t_operator == '}' ? ']' : token->value.t_operator); break;
 case CALL: printf ("CALL" " | {'" "%s" "'}\n", " "); break;
+case NATIVE_FUNCTION: printf ("NATIVE_FUNCTION" " | {'" "%s" "'}\n", NATIVE_FUNCTIONS[token->value.t_native_function]); break;
 
 case ASSIGMENT: printf ("ASSIGMENT" " | {'" "%c" "'}\n", token->value.t_operator); break;
 case BLOCK_OPENING_BRACKET: printf ("BLOCK_OPENING_BRACKET" " | {'" "%c" "'}\n", token->value.t_operator); break;
@@ -44327,6 +44345,13 @@ case END_OF_STATEMENT: printf ("END_OF_STATEMENT" " | {'" "%c" "'}\n", token->va
 
     default: printf("UNCKNOWN TYPE\n"); break;
     }
+
+
+
+    printf("Line: %d, Indent: %d\n", token->line, token->indent);
+    printf("Source ptr to code in buffer: %p\n", token->ptr_to_src_code);
+
+
 
     return;
     }
@@ -44364,6 +44389,7 @@ case VARIABLE: Logger::getInstance().log_no_indent("VARIABLE" " | {'" "%s" "'}\n
 case CONSTANT: Logger::getInstance().log_no_indent("CONSTANT" " | {'" "%lg" "'}\n" , token->value.t_constant); break;
 case FUNCTION: Logger::getInstance().log_no_indent("FUNCTION" " | {'" "%c" "'}\n" , token->value.t_operator == '{' ? '[' : token->value.t_operator == '}' ? ']' : token->value.t_operator); break;
 case CALL: Logger::getInstance().log_no_indent("CALL" " | {'" "%s" "'}\n" , " "); break;
+case NATIVE_FUNCTION: Logger::getInstance().log_no_indent("NATIVE_FUNCTION" " | {'" "%s" "'}\n" , NATIVE_FUNCTIONS[token->value.t_native_function]); break;
 
 case ASSIGMENT: Logger::getInstance().log_no_indent("ASSIGMENT" " | {'" "%c" "'}\n" , token->value.t_operator); break;
 case BLOCK_OPENING_BRACKET: Logger::getInstance().log_no_indent("BLOCK_OPENING_BRACKET" " | {'" "%c" "'}\n" , token->value.t_operator); break;
@@ -44371,7 +44397,7 @@ case BLOCK_CLOSING_BRACKET: Logger::getInstance().log_no_indent("BLOCK_CLOSING_B
 case EXPRESSION_OPENING_BRACKET: Logger::getInstance().log_no_indent("EXPRESSION_OPENING_BRACKET" " | {'" "%c" "'}\n" , token->value.t_operator); break;
 case EXPRESSION_CLOSING_BRACKET: Logger::getInstance().log_no_indent("EXPRESSION_CLOSING_BRACKET" " | {'" "%c" "'}\n" , token->value.t_operator); break;
 case END_OF_STATEMENT: Logger::getInstance().log_no_indent("END_OF_STATEMENT" " | {'" "%c" "'}\n" , token->value.t_operator); break;
-# 55 "../Common/Utils/LangUtils.cpp" 2
+# 62 "../Common/Utils/LangUtils.cpp" 2
 
 
 
@@ -44379,6 +44405,14 @@ case END_OF_STATEMENT: Logger::getInstance().log_no_indent("END_OF_STATEMENT" " 
         default: Logger::getInstance().log_no_indent("UNCKNOWN TYPE\n" );
                  break;
         }
+
+
+
+    Logger::getInstance().log("\t\t\t  Line: %d\n" , token->line);
+    Logger::getInstance().log("\t\t\tIndent: %d\n" , token->indent);
+
+
+
 
     Logger::getInstance().log("\n" );
 

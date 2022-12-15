@@ -296,6 +296,9 @@ int BufferCtor (Buffer* buf, const char* string)
     buf->buffer = string; 
     buf->str = (char*) string;
 
+    buf->number_of_lines = 1;
+    buf->indent          = 1; 
+
     return LSUCCESS;
     }
 
@@ -309,9 +312,13 @@ int BufferCtor (Buffer* buf, int size)
 
     buf->str = (char*) buf->buffer;
 
+    buf->number_of_lines = 1;
+    buf->indent          = 1; 
+
     return LSUCCESS;
     }
 
+/* NOT SAFE
 void BufferUngetCh (Buffer* buf)
     {
     assert(buf);
@@ -321,18 +328,70 @@ void BufferUngetCh (Buffer* buf)
 
     return;
     }
+*/
+
+void BufferSkipSpaces (Buffer* buf)
+    {
+    assert(buf);
+
+    int n = 0;
+
+    while (*buf->str == ' '  || *buf->str == '\t' || 
+           *buf->str == '\v' || *buf->str == '\n')  
+        {
+        sscanf(buf->str, "%*[ \t\v]%n", &n);
+        
+        if (*buf->str == '\n')
+            {
+            buf->number_of_lines++;
+            buf->indent = 1;
+
+            buf->str += n + 1;
+            
+            continue;
+            }
+
+        buf->str    += n;
+        buf->indent += n;
+        
+        n = 0;
+        }
+
+    // $li(n)
+    // $lc(*buf->str)
+    // $ls(buf->str)
+    
+    
+
+    return;
+    }
+
+void BufferSkipCommentLine (Buffer* buf, char terminator)
+    {
+    assert(buf);
+
+    if (BufferLook(buf) == terminator)
+        { 
+        int n = 0;
+        sscanf(buf->str, "%*[^\n]%n", &n);
+
+        buf->str += n + 1; 
+        // buf->str = SkipSpaces(buf->str);
+
+        buf->number_of_lines++;
+        buf->indent = 1;
+        }
+    
+    return;
+    }
 
 int BufferGetCh (Buffer* buf)
     {
     assert(buf);
 
-    int n = 0;
-    sscanf(buf->str, "%*[ \t\n\v]%n", &n);
+    BufferSkipSpaces(buf);
 
-    // $li(n)
-    // $lc(*buf->str)
-    // $ls(buf->str)
-    buf->str += n;
+    buf->indent++;
 
     return *(buf->str++);
     }
@@ -341,34 +400,30 @@ int BufferLook (Buffer* buf)
     {
     assert(buf);
     
-    int n = 0;
-    sscanf(buf->str, "%*[ \t\n\v]%n", &n);
+    BufferSkipSpaces(buf);
 
-    // $li(n)
-    // $lc(*buf->str)
-    // logf("Buffer look: %.5s\n", (buf->str + n));
-    // $ls(buf->str)
-
-    return *(buf->str + n);
+    return *(buf->str);
     }
 
 int  BufferGetDouble (Buffer* buf, double* val)
     {
     assert(buf);
 
-    int n = 0;
+    // Use it before Getting double to now it position
+    // BufferSkipSpaces(buf);
 
-    // logf("before: %s\n", buf->str);
+    int n = 0;
 
     if (sscanf(buf->str, "%lg%n", val, &n) == 0)
         return n;
 
-    buf->str += n;
-    // logf("after: %s\n", buf->str);
+    buf->str    += n;
+    buf->indent += n;
 
     return n;
     }
 
+/*
 int  BufferPutDouble (Buffer* buf, double val)
     {
     assert(buf);
@@ -381,7 +436,9 @@ int  BufferPutDouble (Buffer* buf, double val)
 
     return n;
     }
+*/
 
+/*
 int  BufferPutChar   (Buffer* buf, char   ch)
     {
     assert(buf);
@@ -408,3 +465,4 @@ int  BufferPutString (Buffer* buf, const char*  str)
 
     return LSUCCESS;
     }
+*/

@@ -44,9 +44,11 @@ static Token* GetFunction    (ProgramCtx* program_ctx);
 static Token* GetBlock       (ProgramCtx* program_ctx);
 static Token* GetStatement   (ProgramCtx* program_ctx);
 
-static Token* GetCall        (ProgramCtx* ptogram_ctx);
-static Token* GetInstruction (ProgramCtx* program_ctx);
-static Token* GetAssigment   (ProgramCtx* program_ctx);
+static Token* GetCall           (ProgramCtx* ptogram_ctx);
+static Token* GetInstruction    (ProgramCtx* program_ctx);
+static Token* GetNativeFunction (ProgramCtx* program_ctx);
+static Token* GetReturn         (ProgrmaCtx* program_ctx);
+static Token* GetAssigment      (ProgramCtx* program_ctx);
 
 static Token* GetE     (ProgramCtx* program_ctx);
 static Token* GetT     (ProgramCtx* program_ctx);
@@ -75,6 +77,8 @@ static Token* GetN     (ProgramCtx* program_ctx);
             logf("");                                                       \
             LOG__.log_dup_console(format __VA_OPT__(,) __VA_ARGS__);        \
             printf("In: " purplecolor);                                     \
+            printf("%s:%d:%d\n" cyancolor, PROGRAM(program_ctx)-> path_to_src_file, \
+                                           token->line, token->indent);     \
             printl(token->ptr_to_src_code, '\n');                           \
             printf(resetconsole "\n");                                      \
             printf("%s:%d\n", __FILE__, __LINE__);                          \
@@ -106,6 +110,8 @@ int GetG (Program* program)
 
     ProgramCtx  program_ctx_ = {program, 0};
     ProgramCtx* program_ctx  = &program_ctx_;
+
+    // ProgramCtxCtor(program_ctx);
 
     SuperStack var_tabels_ {};
     SuperStack* var_tabels = &var_tabels_;
@@ -452,6 +458,9 @@ static Token* GetStatement (ProgramCtx* program_ctx)
         return GetStatement(program_ctx);
         }
 
+    if (TYPE(token) == NATIVE_FUNCTION)
+        return GetNativeFunction(program_ctx);
+
     if (IS_INSTRUCTION(token))
         return GetInstruction(program_ctx);
 
@@ -548,22 +557,20 @@ static Token* GetCall (ProgramCtx* program_ctx)
     return statement;
     }
 
-static Token* GetInstruction (ProgramCtx* program_ctx)
+// ONly fout supported
+static Token* GetNativeFunction (ProgramCtx* program_ctx)
     {
     $log(2)
     assertlog (program_ctx, EFAULT, return LNULL);
 
-    if (!IS_INSTRUCTION(token))
+    if (TYPE(token) != NATIVE_FUNCTION)
         {
-        report_syntax_error("Ebat, not a instruction token\n");
+        report_syntax_error("Not a native function, token\n");
         return LNULL;
         }
-    
-    if (INSTR(token) == RETURN)
-        return NULL;
 
     // fout
-    if (INSTR(token) == FOUT)
+    if (NATIVE_FUNC(token) == FOUT)
         {
         Token* fout = token;
         POSITION(program_ctx)++;
@@ -591,6 +598,25 @@ static Token* GetInstruction (ProgramCtx* program_ctx)
 
         return statement;
         }
+
+    TODO("Another native functions\n");
+
+    return LNULL;
+    }
+
+static Token* GetInstruction (ProgramCtx* program_ctx)
+    {
+    $log(2)
+    assertlog (program_ctx, EFAULT, return LNULL);
+
+    if (!IS_INSTRUCTION(token))
+        {
+        report_syntax_error("Ebat, not a instruction token\n");
+        return LNULL;
+        }
+    
+    if (INSTR(token) == RETURN)
+        return GetReturn(program_ctx);
 
     // Condition
     Token* instruction = token;
@@ -697,4 +723,3 @@ static Token* GetAssigment (ProgramCtx* program_ctx)
 
     return statement;
     }
-

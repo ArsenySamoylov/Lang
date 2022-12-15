@@ -29,12 +29,11 @@ union TokenValue
     char t_operator;
     double t_constant;
     int t_initializator;
+    int t_native_function;
     int t_function_ret_type;
 
     char* t_name_ptr;
     int t_name_id;
-
-
     };
 
 struct Token
@@ -46,7 +45,13 @@ struct Token
 
     TokenValue value;
 
+
     const char* ptr_to_src_code;
+
+    int line;
+    int indent;
+
+
     };
 
 Token* NewToken (int type = 0, TokenValue value = {0},

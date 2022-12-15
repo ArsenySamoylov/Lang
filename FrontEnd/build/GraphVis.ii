@@ -2521,12 +2521,11 @@ union TokenValue
     char t_operator;
     double t_constant;
     int t_initializator;
+    int t_native_function;
     int t_function_ret_type;
 
     char* t_name_ptr;
     int t_name_id;
-
-
     };
 
 struct Token
@@ -2538,7 +2537,13 @@ struct Token
 
     TokenValue value;
 
+
     const char* ptr_to_src_code;
+
+    int line;
+    int indent;
+
+
     };
 
 Token* NewToken (int type = 0, TokenValue value = {0},
@@ -2626,11 +2631,13 @@ struct Program
     const char** string_arr;
     int number_of_strings;
 
+    const char* path_to_src_file;
+
     VarTabel global_vars;
     FuncTabel func_tabel;
     };
 
-int ProgramCtor(Program* program);
+int ProgramCtor(Program* program, const char* path_to_src_file);
 void ProgramDtor(Program* program);
 # 7 "../Common/Utils/DefGraphVis.h" 2
 
@@ -3102,6 +3109,7 @@ VARIABLE = 7,
 CONSTANT = 8,
 FUNCTION = 9,
 CALL = 10,
+NATIVE_FUNCTION = 11,
 
 ASSIGMENT = '=',
 BLOCK_OPENING_BRACKET = '{',
@@ -3115,15 +3123,24 @@ END_OF_STATEMENT = ';',
     UNKNOWN_TYPE = -999,
     };
 
-const int NUMBER_OF_INSTUCTIONS = 5;
-const char *const INSTRUCTIONS[] = { "if", "else", "while", "fout", "return"};
+const int NUMBER_OF_INSTUCTIONS = 4;
+const char *const INSTRUCTIONS[] = { "if", "else", "while", "return" };
 enum INSTUCTIONS_NUM
     {
     IF = 0,
     ELSE = 1,
     WHILE = 2,
-    FOUT = 3,
     RETURN = 4,
+    };
+
+const int NUMBER_OF_NATIVE_FUNCTIONS = 4;
+const char *const NATIVE_FUNCTIONS[] = { "fout", "fin", "sin", "cos" };
+enum NATIVE_FUNCTIONS_NUM
+    {
+    FOUT,
+    FIN,
+    SIN,
+    COS,
     };
 
 const int NUMBER_OF_INITIALIZATORS = 2;
@@ -44409,19 +44426,25 @@ struct Buffer
     {
     const char* buffer;
     char* str;
+
+    int number_of_lines;
+    int indent;
     };
 
 int BufferCtor (Buffer* buf, const char* string);
 int BufferCtor (Buffer* buf, int size);
 
-void BufferUngetCh (Buffer* buf);
+
+
+
+void BufferSkipSpaces (Buffer* buf);
+
 int BufferGetCh (Buffer* buf);
 int BufferLook (Buffer* buf);
 int BufferGetDouble (Buffer* buf, double* val);
 
-int BufferPutDouble (Buffer* buf, double val);
-int BufferPutChar (Buffer* buf, char ch);
-int BufferPutString (Buffer* buf, const char* str);
+
+void BufferSkipCommentLine (Buffer* buf, char terminator);
 # 5 "../ATC/Debug/EasyDebug.h" 2
 # 10 "../Common/Utils/GraphVis.cpp" 2
 
@@ -44661,6 +44684,7 @@ case VARIABLE: sprintf(def_data, "VARIABLE" " | {" "%s" "}", STRING_ARR[node->va
 case CONSTANT: sprintf(def_data, "CONSTANT" " | {" "%lg" "}", node->value.t_constant); break;
 case FUNCTION: sprintf(def_data, "FUNCTION" " | {" "%c" "}", node->value.t_operator == '{' ? '[' : node->value.t_operator == '}' ? ']' : node->value.t_operator); break;
 case CALL: sprintf(def_data, "CALL" " | {" "%s" "}", " "); break;
+case NATIVE_FUNCTION: sprintf(def_data, "NATIVE_FUNCTION" " | {" "%s" "}", NATIVE_FUNCTIONS[node->value.t_native_function]); break;
 
 case ASSIGMENT: sprintf(def_data, "ASSIGMENT" " | {" "%c" "}", node->value.t_operator); break;
 case BLOCK_OPENING_BRACKET: sprintf(def_data, "BLOCK_OPENING_BRACKET" " | {" "%c" "}", node->value.t_operator); break;

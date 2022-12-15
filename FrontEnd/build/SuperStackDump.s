@@ -3,106 +3,75 @@
 .Ltext0:
 	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator/FrontEnd" "../ATC/SuperStack/SuperStackDump.cpp"
 	.section	.rodata
-	.align 32
+	.align 4
 	.type	_ZL12NOT_DECLARED, @object
 	.size	_ZL12NOT_DECLARED, 4
 _ZL12NOT_DECLARED:
 	.long	-111
-	.zero	60
-	.align 32
+	.align 4
 	.type	_ZL13_CANARY_SIZE_, @object
 	.size	_ZL13_CANARY_SIZE_, 4
 _ZL13_CANARY_SIZE_:
 	.long	8
-	.zero	60
-	.align 32
+	.align 4
 	.type	_ZL16_OPENING_CANARY_, @object
 	.size	_ZL16_OPENING_CANARY_, 4
 _ZL16_OPENING_CANARY_:
 	.long	11259375
-	.zero	60
-	.align 32
+	.align 4
 	.type	_ZL16_CLOSING_CANARY_, @object
 	.size	_ZL16_CLOSING_CANARY_, 4
 _ZL16_CLOSING_CANARY_:
 	.long	16702650
-	.zero	60
-	.align 32
+	.align 8
 	.type	_ZL19_HEAP_MIN_CAPACITY_, @object
 	.size	_ZL19_HEAP_MIN_CAPACITY_, 8
 _ZL19_HEAP_MIN_CAPACITY_:
 	.quad	10
-	.zero	56
-	.align 32
+	.align 8
 	.type	_ZL16_ELEMENT_T_SIZE_, @object
 	.size	_ZL16_ELEMENT_T_SIZE_, 8
 _ZL16_ELEMENT_T_SIZE_:
 	.quad	8
-	.zero	56
-	.align 32
+	.align 4
 	.type	_ZL9IntPoison, @object
 	.size	_ZL9IntPoison, 4
 _ZL9IntPoison:
 	.long	12246509
-	.zero	60
-	.align 32
 	.type	_ZL10CharPoison, @object
 	.size	_ZL10CharPoison, 1
 _ZL10CharPoison:
 	.zero	1
-	.zero	63
-	.align 32
+	.align 8
 	.type	_ZL12DoublePoison, @object
 	.size	_ZL12DoublePoison, 8
 _ZL12DoublePoison:
 	.long	0
 	.long	2146959360
-	.zero	56
 	.globl	MedComissionErorrMessage
-	.align 32
 .LC0:
 	.string	"Stak pointer has NULL value\n"
-	.zero	35
-	.align 32
+	.align 8
 .LC1:
 	.string	"Stak heap pointer has NULL value\n"
-	.zero	62
-	.align 32
 .LC2:
 	.string	"Wrong Stack status\n"
-	.zero	44
-	.align 32
 .LC3:
 	.string	"Wrong Stack capacity\n"
-	.zero	42
-	.align 32
 .LC4:
 	.string	"Wrong Stack top\n"
-	.zero	47
-	.align 32
 .LC5:
 	.string	"Opening StackCanary has died\n"
-	.zero	34
-	.align 32
 .LC6:
 	.string	"Closing StackCanary has died\n"
-	.zero	34
-	.align 32
 .LC7:
 	.string	"Opening HeapCanary has died\n"
-	.zero	35
-	.align 32
 .LC8:
 	.string	"Closing HeapCanary has died\n"
-	.zero	35
-	.align 32
 .LC9:
 	.string	"Hasz est g\303\263wno\n"
-	.zero	47
-	.align 32
 .LC10:
 	.string	"Sterty hasz est g\303\263wno\n"
-	.zero	40
 	.section	.data.rel.local,"aw"
 	.align 32
 	.type	MedComissionErorrMessage, @object
@@ -119,17 +88,13 @@ MedComissionErorrMessage:
 	.quad	.LC8
 	.quad	.LC9
 	.quad	.LC10
-	.zero	40
 	.section	.rodata
-	.align 32
 .LC11:
 	.string	"Ss dump"
-	.zero	56
 	.text
 	.globl	_Z6SSdumpP10SuperStackjPKc
 	.type	_Z6SSdumpP10SuperStackjPKc, @function
 _Z6SSdumpP10SuperStackjPKc:
-.LASANPC1112:
 .LFB1112:
 	.file 1 "../ATC/SuperStack/SuperStackDump.cpp"
 	.loc 1 27 5
@@ -157,383 +122,6 @@ _Z6SSdumpP10SuperStackjPKc:
 	.cfi_endproc
 .LFE1112:
 	.size	_Z6SSdumpP10SuperStackjPKc, .-_Z6SSdumpP10SuperStackjPKc
-	.globl	__odr_asan.MedComissionErorrMessage
-	.bss
-	.type	__odr_asan.MedComissionErorrMessage, @object
-	.size	__odr_asan.MedComissionErorrMessage, 1
-__odr_asan.MedComissionErorrMessage:
-	.zero	1
-	.section	.rodata
-	.align 8
-.LC12:
-	.string	"../ATC/SuperStack/SuperStackDump.cpp"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC1, @object
-	.size	.LASANLOC1, 16
-.LASANLOC1:
-	.quad	.LC12
-	.long	9
-	.long	13
-	.section	.rodata
-	.align 8
-.LC13:
-	.string	"../ATC/SuperStack/DebugFunctions.h"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC2, @object
-	.size	.LASANLOC2, 16
-.LASANLOC2:
-	.quad	.LC13
-	.long	24
-	.long	14
-	.align 16
-	.type	.LASANLOC3, @object
-	.size	.LASANLOC3, 16
-.LASANLOC3:
-	.quad	.LC13
-	.long	23
-	.long	12
-	.align 16
-	.type	.LASANLOC4, @object
-	.size	.LASANLOC4, 16
-.LASANLOC4:
-	.quad	.LC13
-	.long	22
-	.long	11
-	.section	.rodata
-	.align 8
-.LC14:
-	.string	"../ATC/SuperStack/SuperStack.h"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC5, @object
-	.size	.LASANLOC5, 16
-.LASANLOC5:
-	.quad	.LC14
-	.long	22
-	.long	14
-	.align 16
-	.type	.LASANLOC6, @object
-	.size	.LASANLOC6, 16
-.LASANLOC6:
-	.quad	.LC14
-	.long	21
-	.long	14
-	.section	.rodata
-.LC15:
-	.string	"../ATC/my_safety/my_safety.h"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC7, @object
-	.size	.LASANLOC7, 16
-.LASANLOC7:
-	.quad	.LC15
-	.long	12
-	.long	11
-	.align 16
-	.type	.LASANLOC8, @object
-	.size	.LASANLOC8, 16
-.LASANLOC8:
-	.quad	.LC15
-	.long	11
-	.long	11
-	.align 16
-	.type	.LASANLOC9, @object
-	.size	.LASANLOC9, 16
-.LASANLOC9:
-	.quad	.LC15
-	.long	9
-	.long	11
-	.section	.rodata
-	.align 8
-.LC16:
-	.string	"../Common/Structures/Tabels/Tabels.h"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC10, @object
-	.size	.LASANLOC10, 16
-.LASANLOC10:
-	.quad	.LC16
-	.long	5
-	.long	11
-	.section	.rodata
-.LC17:
-	.string	"MedComissionErorrMessage"
-.LC18:
-	.string	"DoublePoison"
-.LC19:
-	.string	"CharPoison"
-.LC20:
-	.string	"IntPoison"
-.LC21:
-	.string	"_ELEMENT_T_SIZE_"
-.LC22:
-	.string	"_HEAP_MIN_CAPACITY_"
-.LC23:
-	.string	"_CLOSING_CANARY_"
-.LC24:
-	.string	"_OPENING_CANARY_"
-.LC25:
-	.string	"_CANARY_SIZE_"
-.LC26:
-	.string	"NOT_DECLARED"
-.LC27:
-	.string	"*.LC4"
-.LC28:
-	.string	"*.LC0"
-.LC29:
-	.string	"*.LC7"
-.LC30:
-	.string	"*.LC11"
-.LC31:
-	.string	"*.LC8"
-.LC32:
-	.string	"*.LC6"
-.LC33:
-	.string	"*.LC5"
-.LC34:
-	.string	"*.LC1"
-.LC35:
-	.string	"*.LC9"
-.LC36:
-	.string	"*.LC3"
-.LC37:
-	.string	"*.LC2"
-.LC38:
-	.string	"*.LC10"
-	.section	.data.rel.local
-	.align 32
-	.type	.LASAN0, @object
-	.size	.LASAN0, 1408
-.LASAN0:
-	.quad	MedComissionErorrMessage
-	.quad	88
-	.quad	128
-	.quad	.LC17
-	.quad	.LC12
-	.quad	0
-	.quad	.LASANLOC1
-	.quad	__odr_asan.MedComissionErorrMessage
-	.quad	_ZL12DoublePoison
-	.quad	8
-	.quad	64
-	.quad	.LC18
-	.quad	.LC12
-	.quad	0
-	.quad	.LASANLOC2
-	.quad	0
-	.quad	_ZL10CharPoison
-	.quad	1
-	.quad	64
-	.quad	.LC19
-	.quad	.LC12
-	.quad	0
-	.quad	.LASANLOC3
-	.quad	0
-	.quad	_ZL9IntPoison
-	.quad	4
-	.quad	64
-	.quad	.LC20
-	.quad	.LC12
-	.quad	0
-	.quad	.LASANLOC4
-	.quad	0
-	.quad	_ZL16_ELEMENT_T_SIZE_
-	.quad	8
-	.quad	64
-	.quad	.LC21
-	.quad	.LC12
-	.quad	0
-	.quad	.LASANLOC5
-	.quad	0
-	.quad	_ZL19_HEAP_MIN_CAPACITY_
-	.quad	8
-	.quad	64
-	.quad	.LC22
-	.quad	.LC12
-	.quad	0
-	.quad	.LASANLOC6
-	.quad	0
-	.quad	_ZL16_CLOSING_CANARY_
-	.quad	4
-	.quad	64
-	.quad	.LC23
-	.quad	.LC12
-	.quad	0
-	.quad	.LASANLOC7
-	.quad	0
-	.quad	_ZL16_OPENING_CANARY_
-	.quad	4
-	.quad	64
-	.quad	.LC24
-	.quad	.LC12
-	.quad	0
-	.quad	.LASANLOC8
-	.quad	0
-	.quad	_ZL13_CANARY_SIZE_
-	.quad	4
-	.quad	64
-	.quad	.LC25
-	.quad	.LC12
-	.quad	0
-	.quad	.LASANLOC9
-	.quad	0
-	.quad	_ZL12NOT_DECLARED
-	.quad	4
-	.quad	64
-	.quad	.LC26
-	.quad	.LC12
-	.quad	0
-	.quad	.LASANLOC10
-	.quad	0
-	.quad	.LC4
-	.quad	17
-	.quad	64
-	.quad	.LC27
-	.quad	.LC12
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC0
-	.quad	29
-	.quad	64
-	.quad	.LC28
-	.quad	.LC12
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC7
-	.quad	29
-	.quad	64
-	.quad	.LC29
-	.quad	.LC12
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC11
-	.quad	8
-	.quad	64
-	.quad	.LC30
-	.quad	.LC12
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC8
-	.quad	29
-	.quad	64
-	.quad	.LC31
-	.quad	.LC12
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC6
-	.quad	30
-	.quad	64
-	.quad	.LC32
-	.quad	.LC12
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC5
-	.quad	30
-	.quad	64
-	.quad	.LC33
-	.quad	.LC12
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC1
-	.quad	34
-	.quad	96
-	.quad	.LC34
-	.quad	.LC12
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC9
-	.quad	17
-	.quad	64
-	.quad	.LC35
-	.quad	.LC12
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC3
-	.quad	22
-	.quad	64
-	.quad	.LC36
-	.quad	.LC12
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC2
-	.quad	20
-	.quad	64
-	.quad	.LC37
-	.quad	.LC12
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC10
-	.quad	24
-	.quad	64
-	.quad	.LC38
-	.quad	.LC12
-	.quad	0
-	.quad	0
-	.quad	0
-	.text
-	.type	_sub_D_00099_0, @function
-_sub_D_00099_0:
-.LFB1230:
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movl	$22, %esi
-	leaq	.LASAN0(%rip), %rax
-	movq	%rax, %rdi
-	call	__asan_unregister_globals@PLT
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE1230:
-	.size	_sub_D_00099_0, .-_sub_D_00099_0
-	.section	.fini_array.00099,"aw"
-	.align 8
-	.quad	_sub_D_00099_0
-	.text
-	.type	_sub_I_00099_1, @function
-_sub_I_00099_1:
-.LFB1231:
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	call	__asan_init@PLT
-	call	__asan_version_mismatch_check_v8@PLT
-	movl	$22, %esi
-	leaq	.LASAN0(%rip), %rax
-	movq	%rax, %rdi
-	call	__asan_register_globals@PLT
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE1231:
-	.size	_sub_I_00099_1, .-_sub_I_00099_1
-	.section	.init_array.00099,"aw"
-	.align 8
-	.quad	_sub_I_00099_1
-	.text
 .Letext0:
 	.file 2 "/usr/include/c++/11/cmath"
 	.file 3 "/usr/include/c++/11/type_traits"
@@ -3769,6 +3357,8 @@ _sub_I_00099_1:
 	.string	"_ZSt4rintf"
 .LASF220:
 	.string	"_ZSt7scalblnel"
+.LASF294:
+	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF199:
 	.string	"_ZSt9nearbyinte"
 .LASF202:
@@ -3811,8 +3401,8 @@ _sub_I_00099_1:
 	.string	"_ZSt5hypotee"
 .LASF248:
 	.string	"float"
-.LASF221:
-	.string	"_ZSt7scalblnfl"
+.LASF65:
+	.string	"sqrt"
 .LASF39:
 	.string	"_ZSt4coshe"
 .LASF3:
@@ -4013,8 +3603,6 @@ _sub_I_00099_1:
 	.string	"_ZSt4log2e"
 .LASF188:
 	.string	"_ZSt4log2f"
-.LASF65:
-	.string	"sqrt"
 .LASF151:
 	.string	"expm1"
 .LASF140:
@@ -4055,8 +3643,6 @@ _sub_I_00099_1:
 	.string	"short int"
 .LASF10:
 	.string	"__detail"
-.LASF294:
-	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fsanitize=address,leak -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF244:
 	.string	"long int"
 .LASF115:
@@ -4105,8 +3691,8 @@ _sub_I_00099_1:
 	.string	"_ZSt4fmaxff"
 .LASF206:
 	.string	"_ZSt10nexttowardfe"
-.LASF193:
-	.string	"_ZSt5lrinte"
+.LASF221:
+	.string	"_ZSt7scalblnfl"
 .LASF194:
 	.string	"_ZSt5lrintf"
 .LASF86:
@@ -4183,6 +3769,8 @@ _sub_I_00099_1:
 	.string	"_ZSt4fabsf"
 .LASF118:
 	.string	"_ZSt11islessequaldd"
+.LASF193:
+	.string	"_ZSt5lrinte"
 .LASF79:
 	.string	"_ZSt4fmodff"
 .LASF228:

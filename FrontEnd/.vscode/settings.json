@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "main(old)": "c",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "*.ars": "cpp"
     }
 }

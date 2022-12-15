@@ -3,73 +3,61 @@
 .Ltext0:
 	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator/FrontEnd" "../ATC/SuperStack/SuperStack.cpp"
 	.section	.rodata
-	.align 32
+	.align 4
 	.type	_ZL12NOT_DECLARED, @object
 	.size	_ZL12NOT_DECLARED, 4
 _ZL12NOT_DECLARED:
 	.long	-111
-	.zero	60
-	.align 32
+	.align 4
 	.type	_ZL13_CANARY_SIZE_, @object
 	.size	_ZL13_CANARY_SIZE_, 4
 _ZL13_CANARY_SIZE_:
 	.long	8
-	.zero	60
-	.align 32
+	.align 4
 	.type	_ZL16_OPENING_CANARY_, @object
 	.size	_ZL16_OPENING_CANARY_, 4
 _ZL16_OPENING_CANARY_:
 	.long	11259375
-	.zero	60
-	.align 32
+	.align 4
 	.type	_ZL16_CLOSING_CANARY_, @object
 	.size	_ZL16_CLOSING_CANARY_, 4
 _ZL16_CLOSING_CANARY_:
 	.long	16702650
-	.zero	60
-	.align 32
+	.align 8
 	.type	_ZL19_HEAP_MIN_CAPACITY_, @object
 	.size	_ZL19_HEAP_MIN_CAPACITY_, 8
 _ZL19_HEAP_MIN_CAPACITY_:
 	.quad	10
-	.zero	56
-	.align 32
+	.align 8
 	.type	_ZL16_ELEMENT_T_SIZE_, @object
 	.size	_ZL16_ELEMENT_T_SIZE_, 8
 _ZL16_ELEMENT_T_SIZE_:
 	.quad	8
-	.zero	56
-	.align 32
+	.align 4
 	.type	_ZL6CRINGE, @object
 	.size	_ZL6CRINGE, 4
 _ZL6CRINGE:
 	.long	3565
-	.zero	60
 	.globl	_HEAP_GROWTH_RATE_
 	.data
-	.align 32
+	.align 4
 	.type	_HEAP_GROWTH_RATE_, @object
 	.size	_HEAP_GROWTH_RATE_, 4
 _HEAP_GROWTH_RATE_:
 	.long	2
-	.zero	60
 	.globl	_HEAP_REDUCTION_RATE_
-	.align 32
+	.align 4
 	.type	_HEAP_REDUCTION_RATE_, @object
 	.size	_HEAP_REDUCTION_RATE_, 4
 _HEAP_REDUCTION_RATE_:
 	.long	2
-	.zero	60
 	.section	.rodata
-	.align 32
 .LC0:
 	.string	"Legacy code is shit"
-	.zero	44
 	.text
 	.globl	_Z14SuperStackCtorP10SuperStackm
 	.type	_Z14SuperStackCtorP10SuperStackm, @function
 _Z14SuperStackCtorP10SuperStackm:
-.LASANPC13:
 .LFB13:
 	.file 1 "../ATC/SuperStack/SuperStack.cpp"
 	.loc 1 43 5
@@ -92,83 +80,27 @@ _Z14SuperStackCtorP10SuperStackm:
 .L2:
 	.loc 1 45 14
 	movq	-24(%rbp), %rax
-	addq	$32, %rax
-	movq	%rax, %rdx
-	movq	%rdx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%cl
-	cmpb	$3, %al
-	setle	%al
-	andl	%ecx, %eax
-	testb	%al, %al
-	je	.L4
-	movq	%rdx, %rdi
-	call	__asan_report_load4@PLT
-.L4:
-	movq	-24(%rbp), %rax
 	movl	32(%rax), %eax
 	.loc 1 45 5
 	testl	%eax, %eax
-	je	.L5
+	je	.L4
 	.loc 1 45 46 discriminator 1
 	movl	$-4, %eax
 	jmp	.L3
-.L5:
+.L4:
 	.loc 1 47 19
-	movq	-24(%rbp), %rax
-	addq	$16, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L6
-	movq	%rax, %rdi
-	call	__asan_report_store8@PLT
-.L6:
 	movq	-24(%rbp), %rax
 	movq	-32(%rbp), %rdx
 	movq	%rdx, 16(%rax)
 	.loc 1 48 14
 	movq	-24(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L7
-	movq	%rax, %rdi
-	call	__asan_report_store8@PLT
-.L7:
-	movq	-24(%rbp), %rax
 	movq	$-1, 24(%rax)
 	.loc 1 49 17
-	movq	-24(%rbp), %rax
-	addq	$32, %rax
-	movq	%rax, %rdx
-	movq	%rdx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%cl
-	cmpb	$3, %al
-	setle	%al
-	andl	%ecx, %eax
-	testb	%al, %al
-	je	.L8
-	movq	%rdx, %rdi
-	call	__asan_report_store4@PLT
-.L8:
 	movq	-24(%rbp), %rax
 	movl	$2, 32(%rax)
 	.loc 1 51 5
 	cmpq	$0, -32(%rbp)
-	je	.L9
+	je	.L5
 	.loc 1 52 48
 	movq	-32(%rbp), %rax
 	movl	$8, %esi
@@ -176,77 +108,23 @@ _Z14SuperStackCtorP10SuperStackm:
 	call	_Z13canary_callocmm@PLT
 	.loc 1 52 19
 	movq	-24(%rbp), %rdx
-	addq	$8, %rdx
-	movq	%rdx, %rcx
-	shrq	$3, %rcx
-	addq	$2147450880, %rcx
-	movzbl	(%rcx), %ecx
-	testb	%cl, %cl
-	je	.L10
-	movq	%rdx, %rdi
-	call	__asan_report_store8@PLT
-.L10:
-	movq	-24(%rbp), %rdx
 	movq	%rax, 8(%rdx)
-.L9:
+.L5:
 	.loc 1 54 25
-	movq	-24(%rbp), %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L11
-	movq	%rax, %rdi
-	call	__asan_report_store8@PLT
-.L11:
 	movq	-24(%rbp), %rax
 	movq	$11259375, (%rax)
 	.loc 1 55 25
 	movq	-24(%rbp), %rax
-	addq	$48, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L12
-	movq	%rax, %rdi
-	call	__asan_report_store8@PLT
-.L12:
-	movq	-24(%rbp), %rax
 	movq	$16702650, 48(%rax)
 	.loc 1 62 55
 	movq	-24(%rbp), %rax
-	addq	$8, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L13
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L13:
-	movq	-24(%rbp), %rax
-	movq	8(%rax), %rcx
+	movq	8(%rax), %rdx
 	.loc 1 62 67
-	movq	-24(%rbp), %rax
-	addq	$16, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L14
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L14:
 	movq	-24(%rbp), %rax
 	movq	16(%rax), %rax
 	.loc 1 62 60
 	salq	$3, %rax
-	leaq	(%rcx,%rax), %rdx
+	addq	%rax, %rdx
 	.loc 1 62 44
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
@@ -254,29 +132,9 @@ _Z14SuperStackCtorP10SuperStackm:
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_Z12generateHashPKvS0_@PLT
-	movl	%eax, %ecx
 	.loc 1 62 24
-	movq	-24(%rbp), %rax
-	addq	$36, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	setne	%dil
-	movq	%rax, %rsi
-	andl	$7, %esi
-	addl	$3, %esi
-	cmpb	%dl, %sil
-	setge	%dl
-	andl	%edi, %edx
-	testb	%dl, %dl
-	je	.L15
-	movq	%rax, %rdi
-	call	__asan_report_store4@PLT
-.L15:
-	movq	-24(%rbp), %rax
-	movl	%ecx, 36(%rax)
+	movq	-24(%rbp), %rdx
+	movl	%eax, 36(%rdx)
 	.loc 1 62 125
 	movq	-24(%rbp), %rax
 	leaq	36(%rax), %rdx
@@ -286,27 +144,9 @@ _Z14SuperStackCtorP10SuperStackm:
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_Z12generateHashPKvS0_@PLT
-	movl	%eax, %edx
 	.loc 1 62 88
-	movq	-24(%rbp), %rax
-	addq	$40, %rax
-	movq	%rax, %rcx
-	movq	%rcx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%sil
-	cmpb	$3, %al
-	setle	%al
-	andl	%esi, %eax
-	testb	%al, %al
-	je	.L16
-	movq	%rcx, %rdi
-	call	__asan_report_store4@PLT
-.L16:
-	movq	-24(%rbp), %rax
-	movl	%edx, 40(%rax)
+	movq	-24(%rbp), %rdx
+	movl	%eax, 40(%rdx)
 .LBB2:
 	.loc 1 63 57
 	movq	-24(%rbp), %rax
@@ -315,16 +155,15 @@ _Z14SuperStackCtorP10SuperStackm:
 	movl	%eax, -4(%rbp)
 	.loc 1 63 64
 	cmpl	$0, -4(%rbp)
-	je	.L17
+	je	.L6
 	.loc 1 63 98 discriminator 1
 	leaq	.LC0(%rip), %rax
 	movq	%rax, %rdi
 	call	puts@PLT
 	.loc 1 63 129 discriminator 1
-	call	__asan_handle_no_return@PLT
 	movl	$-999, %edi
 	call	exit@PLT
-.L17:
+.L6:
 .LBE2:
 	.loc 1 65 12
 	movl	$1, %eax
@@ -339,7 +178,6 @@ _Z14SuperStackCtorP10SuperStackm:
 	.globl	_Z14SuperStackDtorP10SuperStack
 	.type	_Z14SuperStackDtorP10SuperStack, @function
 _Z14SuperStackDtorP10SuperStack:
-.LASANPC14:
 .LFB14:
 	.loc 1 70 5
 	.cfi_startproc
@@ -359,29 +197,17 @@ _Z14SuperStackDtorP10SuperStack:
 	movl	%eax, -4(%rbp)
 	.loc 1 71 52
 	cmpl	$0, -4(%rbp)
-	je	.L19
+	je	.L8
 	.loc 1 71 74 discriminator 1
 	leaq	.LC0(%rip), %rax
 	movq	%rax, %rdi
 	call	puts@PLT
 	.loc 1 71 105 discriminator 1
-	call	__asan_handle_no_return@PLT
 	movl	$-999, %edi
 	call	exit@PLT
-.L19:
+.L8:
 .LBE3:
 	.loc 1 73 31
-	movq	-24(%rbp), %rax
-	addq	$8, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L20
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L20:
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	.loc 1 73 17
@@ -389,64 +215,14 @@ _Z14SuperStackDtorP10SuperStack:
 	call	_Z11canary_freePv@PLT
 	.loc 1 75 17
 	movq	-24(%rbp), %rax
-	addq	$32, %rax
-	movq	%rax, %rdx
-	movq	%rdx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%cl
-	cmpb	$3, %al
-	setle	%al
-	andl	%ecx, %eax
-	testb	%al, %al
-	je	.L21
-	movq	%rdx, %rdi
-	call	__asan_report_store4@PLT
-.L21:
-	movq	-24(%rbp), %rax
 	movl	$3, 32(%rax)
 	.loc 1 77 15
-	movq	-24(%rbp), %rax
-	addq	$8, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L22
-	movq	%rax, %rdi
-	call	__asan_report_store8@PLT
-.L22:
 	movq	-24(%rbp), %rax
 	movq	$0, 8(%rax)
 	.loc 1 78 19
 	movq	-24(%rbp), %rax
-	addq	$16, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L23
-	movq	%rax, %rdi
-	call	__asan_report_store8@PLT
-.L23:
-	movq	-24(%rbp), %rax
 	movq	$0, 16(%rax)
 	.loc 1 79 14
-	movq	-24(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L24
-	movq	%rax, %rdi
-	call	__asan_report_store8@PLT
-.L24:
 	movq	-24(%rbp), %rax
 	movq	$-1, 24(%rax)
 	.loc 1 80 5
@@ -460,7 +236,6 @@ _Z14SuperStackDtorP10SuperStack:
 	.globl	_Z6SSpushP10SuperStackP8VarTabel
 	.type	_Z6SSpushP10SuperStackP8VarTabel, @function
 _Z6SSpushP10SuperStackP8VarTabel:
-.LASANPC15:
 .LFB15:
 	.loc 1 85 5
 	.cfi_startproc
@@ -481,52 +256,27 @@ _Z6SSpushP10SuperStackP8VarTabel:
 	movl	%eax, -12(%rbp)
 	.loc 1 88 52
 	cmpl	$0, -12(%rbp)
-	je	.L26
+	je	.L10
 	.loc 1 88 74 discriminator 1
 	leaq	.LC0(%rip), %rax
 	movq	%rax, %rdi
 	call	puts@PLT
 	.loc 1 88 105 discriminator 1
-	call	__asan_handle_no_return@PLT
 	movl	$-999, %edi
 	call	exit@PLT
-.L26:
+.L10:
 .LBE4:
 .LBB5:
 	.loc 1 105 17
 	movq	-24(%rbp), %rax
-	addq	$16, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L27
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L27:
-	movq	-24(%rbp), %rax
 	movq	16(%rax), %rax
 	.loc 1 105 5
 	testq	%rax, %rax
-	je	.L28
-	.loc 1 105 47 discriminator 1
-	movq	-24(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L29
-	.loc 1 105 47 is_stmt 0
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L29:
+	je	.L11
 	.loc 1 105 47 discriminator 1
 	movq	-24(%rbp), %rax
 	movq	24(%rax), %rax
-	.loc 1 105 51 is_stmt 1 discriminator 1
+	.loc 1 105 51 discriminator 1
 	addq	$1, %rax
 	.loc 1 105 32 discriminator 1
 	movq	%rax, %rdx
@@ -535,8 +285,8 @@ _Z6SSpushP10SuperStackP8VarTabel:
 	movq	16(%rax), %rax
 	.loc 1 105 27 discriminator 1
 	cmpq	%rax, %rdx
-	jb	.L30
-.L28:
+	jb	.L12
+.L11:
 .LBB6:
 	.loc 1 107 34
 	movq	-24(%rbp), %rax
@@ -546,22 +296,11 @@ _Z6SSpushP10SuperStackP8VarTabel:
 	movl	%eax, -8(%rbp)
 	.loc 1 109 9
 	cmpl	$1, -8(%rbp)
-	jne	.L38
-.L30:
+	jne	.L14
+.L12:
 .LBE6:
 .LBE5:
 	.loc 1 113 11
-	movq	-24(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L32
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L32:
 	movq	-24(%rbp), %rax
 	movq	24(%rax), %rax
 	.loc 1 113 15
@@ -570,57 +309,25 @@ _Z6SSpushP10SuperStackP8VarTabel:
 	movq	%rdx, 24(%rax)
 	.loc 1 114 11
 	movq	-24(%rbp), %rax
-	addq	$8, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L33
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L33:
-	movq	-24(%rbp), %rax
 	movq	8(%rax), %rdx
 	.loc 1 114 22
 	movq	-24(%rbp), %rax
 	movq	24(%rax), %rax
 	.loc 1 114 25
 	salq	$3, %rax
-	addq	%rdx, %rax
+	addq	%rax, %rdx
 	.loc 1 114 27
-	movq	%rax, %rdx
-	movq	%rdx, %rcx
-	shrq	$3, %rcx
-	addq	$2147450880, %rcx
-	movzbl	(%rcx), %ecx
-	testb	%cl, %cl
-	je	.L34
-	movq	%rdx, %rdi
-	call	__asan_report_store8@PLT
-.L34:
-	movq	-32(%rbp), %rdx
-	movq	%rdx, (%rax)
+	movq	-32(%rbp), %rax
+	movq	%rax, (%rdx)
 	.loc 1 119 55
 	movq	-24(%rbp), %rax
-	movq	8(%rax), %rcx
+	movq	8(%rax), %rdx
 	.loc 1 119 67
-	movq	-24(%rbp), %rax
-	addq	$16, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L35
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L35:
 	movq	-24(%rbp), %rax
 	movq	16(%rax), %rax
 	.loc 1 119 60
 	salq	$3, %rax
-	leaq	(%rcx,%rax), %rdx
+	addq	%rax, %rdx
 	.loc 1 119 44
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
@@ -628,29 +335,9 @@ _Z6SSpushP10SuperStackP8VarTabel:
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_Z12generateHashPKvS0_@PLT
-	movl	%eax, %ecx
 	.loc 1 119 24
-	movq	-24(%rbp), %rax
-	addq	$36, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	setne	%dil
-	movq	%rax, %rsi
-	andl	$7, %esi
-	addl	$3, %esi
-	cmpb	%dl, %sil
-	setge	%dl
-	andl	%edi, %edx
-	testb	%dl, %dl
-	je	.L36
-	movq	%rax, %rdi
-	call	__asan_report_store4@PLT
-.L36:
-	movq	-24(%rbp), %rax
-	movl	%ecx, 36(%rax)
+	movq	-24(%rbp), %rdx
+	movl	%eax, 36(%rdx)
 	.loc 1 119 125
 	movq	-24(%rbp), %rax
 	leaq	36(%rax), %rdx
@@ -660,27 +347,9 @@ _Z6SSpushP10SuperStackP8VarTabel:
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_Z12generateHashPKvS0_@PLT
-	movl	%eax, %edx
 	.loc 1 119 88
-	movq	-24(%rbp), %rax
-	addq	$40, %rax
-	movq	%rax, %rcx
-	movq	%rcx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%sil
-	cmpb	$3, %al
-	setle	%al
-	andl	%esi, %eax
-	testb	%al, %al
-	je	.L37
-	movq	%rcx, %rdi
-	call	__asan_report_store4@PLT
-.L37:
-	movq	-24(%rbp), %rax
-	movl	%edx, 40(%rax)
+	movq	-24(%rbp), %rdx
+	movl	%eax, 40(%rdx)
 .LBB8:
 	.loc 1 120 45
 	movq	-24(%rbp), %rax
@@ -689,22 +358,21 @@ _Z6SSpushP10SuperStackP8VarTabel:
 	movl	%eax, -4(%rbp)
 	.loc 1 120 52
 	cmpl	$0, -4(%rbp)
-	je	.L25
+	je	.L9
 	.loc 1 120 74 discriminator 1
 	leaq	.LC0(%rip), %rax
 	movq	%rax, %rdi
 	call	puts@PLT
 	.loc 1 120 105 discriminator 1
-	call	__asan_handle_no_return@PLT
 	movl	$-999, %edi
 	call	exit@PLT
-.L38:
+.L14:
 .LBE8:
 .LBB9:
 .LBB7:
 	.loc 1 110 13
 	nop
-.L25:
+.L9:
 .LBE7:
 .LBE9:
 	.loc 1 121 5
@@ -717,7 +385,6 @@ _Z6SSpushP10SuperStackP8VarTabel:
 	.globl	_Z5SSpopP10SuperStack
 	.type	_Z5SSpopP10SuperStack, @function
 _Z5SSpopP10SuperStack:
-.LASANPC16:
 .LFB16:
 	.loc 1 125 5
 	.cfi_startproc
@@ -737,132 +404,65 @@ _Z5SSpopP10SuperStack:
 	movl	%eax, -16(%rbp)
 	.loc 1 126 52
 	cmpl	$0, -16(%rbp)
-	je	.L40
+	je	.L16
 	.loc 1 126 74 discriminator 1
 	leaq	.LC0(%rip), %rax
 	movq	%rax, %rdi
 	call	puts@PLT
 	.loc 1 126 105 discriminator 1
-	call	__asan_handle_no_return@PLT
 	movl	$-999, %edi
 	call	exit@PLT
-.L40:
+.L16:
 .LBE10:
 	.loc 1 128 14
-	movq	-24(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L41
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L41:
 	movq	-24(%rbp), %rax
 	movq	24(%rax), %rax
 	.loc 1 128 5
 	cmpq	$-1, %rax
-	jne	.L42
+	jne	.L17
 	.loc 1 128 32 discriminator 1
 	movl	$0, %eax
-	jmp	.L43
-.L42:
+	jmp	.L18
+.L17:
 	.loc 1 129 14
-	movq	-24(%rbp), %rax
-	addq	$16, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L44
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L44:
 	movq	-24(%rbp), %rax
 	movq	16(%rax), %rax
 	.loc 1 129 5
 	testq	%rax, %rax
-	jne	.L45
+	jne	.L19
 	.loc 1 129 36 discriminator 1
 	movl	$0, %eax
-	jmp	.L43
-.L45:
+	jmp	.L18
+.L19:
 	.loc 1 132 14
-	movq	-24(%rbp), %rax
-	addq	$16, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L46
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L46:
 	movq	-24(%rbp), %rax
 	movq	16(%rax), %rax
 	.loc 1 132 48
 	movl	_HEAP_REDUCTION_RATE_(%rip), %edx
 	addl	%edx, %edx
-	movslq	%edx, %rsi
+	movslq	%edx, %rcx
 	.loc 1 132 23
 	movl	$0, %edx
-	divq	%rsi
-	movq	%rax, %rcx
-	.loc 1 132 70
-	movq	-24(%rbp), %rax
-	addq	$24, %rax
+	divq	%rcx
 	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L47
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L47:
+	.loc 1 132 70
 	movq	-24(%rbp), %rax
 	movq	24(%rax), %rax
 	.loc 1 132 74
 	addq	$1, %rax
 	.loc 1 132 5
-	cmpq	%rax, %rcx
-	jbe	.L48
+	cmpq	%rax, %rdx
+	jbe	.L20
 	.loc 1 134 17
 	movq	-24(%rbp), %rax
 	movl	$-1, %esi
 	movq	%rax, %rdi
 	call	_Z8SSresizeP10SuperStacki
-.L48:
+.L20:
 	.loc 1 141 27
-	movq	-24(%rbp), %rax
-	addq	$8, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L49
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L49:
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rsi
 	.loc 1 141 38
-	movq	-24(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L50
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L50:
 	movq	-24(%rbp), %rax
 	movq	24(%rax), %rax
 	.loc 1 141 42
@@ -872,38 +472,17 @@ _Z5SSpopP10SuperStack:
 	.loc 1 141 44
 	salq	$3, %rax
 	addq	%rsi, %rax
-	movq	%rax, %rdx
-	movq	%rdx, %rcx
-	shrq	$3, %rcx
-	addq	$2147450880, %rcx
-	movzbl	(%rcx), %ecx
-	testb	%cl, %cl
-	je	.L51
-	movq	%rdx, %rdi
-	call	__asan_report_load8@PLT
-.L51:
 	movq	(%rax), %rax
 	movq	%rax, -8(%rbp)
 	.loc 1 143 55
 	movq	-24(%rbp), %rax
-	movq	8(%rax), %rcx
+	movq	8(%rax), %rdx
 	.loc 1 143 67
-	movq	-24(%rbp), %rax
-	addq	$16, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L52
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L52:
 	movq	-24(%rbp), %rax
 	movq	16(%rax), %rax
 	.loc 1 143 60
 	salq	$3, %rax
-	leaq	(%rcx,%rax), %rdx
+	addq	%rax, %rdx
 	.loc 1 143 44
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
@@ -911,29 +490,9 @@ _Z5SSpopP10SuperStack:
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_Z12generateHashPKvS0_@PLT
-	movl	%eax, %ecx
 	.loc 1 143 24
-	movq	-24(%rbp), %rax
-	addq	$36, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	setne	%dil
-	movq	%rax, %rsi
-	andl	$7, %esi
-	addl	$3, %esi
-	cmpb	%dl, %sil
-	setge	%dl
-	andl	%edi, %edx
-	testb	%dl, %dl
-	je	.L53
-	movq	%rax, %rdi
-	call	__asan_report_store4@PLT
-.L53:
-	movq	-24(%rbp), %rax
-	movl	%ecx, 36(%rax)
+	movq	-24(%rbp), %rdx
+	movl	%eax, 36(%rdx)
 	.loc 1 143 125
 	movq	-24(%rbp), %rax
 	leaq	36(%rax), %rdx
@@ -943,27 +502,9 @@ _Z5SSpopP10SuperStack:
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_Z12generateHashPKvS0_@PLT
-	movl	%eax, %edx
 	.loc 1 143 88
-	movq	-24(%rbp), %rax
-	addq	$40, %rax
-	movq	%rax, %rcx
-	movq	%rcx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%sil
-	cmpb	$3, %al
-	setle	%al
-	andl	%esi, %eax
-	testb	%al, %al
-	je	.L54
-	movq	%rcx, %rdi
-	call	__asan_report_store4@PLT
-.L54:
-	movq	-24(%rbp), %rax
-	movl	%edx, 40(%rax)
+	movq	-24(%rbp), %rdx
+	movl	%eax, 40(%rdx)
 .LBB11:
 	.loc 1 144 45
 	movq	-24(%rbp), %rax
@@ -972,20 +513,19 @@ _Z5SSpopP10SuperStack:
 	movl	%eax, -12(%rbp)
 	.loc 1 144 52
 	cmpl	$0, -12(%rbp)
-	je	.L55
+	je	.L21
 	.loc 1 144 74 discriminator 1
 	leaq	.LC0(%rip), %rax
 	movq	%rax, %rdi
 	call	puts@PLT
 	.loc 1 144 105 discriminator 1
-	call	__asan_handle_no_return@PLT
 	movl	$-999, %edi
 	call	exit@PLT
-.L55:
+.L21:
 .LBE11:
 	.loc 1 146 12
 	movq	-8(%rbp), %rax
-.L43:
+.L18:
 	.loc 1 147 5
 	leave
 	.cfi_def_cfa 7, 8
@@ -996,7 +536,6 @@ _Z5SSpopP10SuperStack:
 	.globl	_Z5SStopP10SuperStack
 	.type	_Z5SStopP10SuperStack, @function
 _Z5SStopP10SuperStack:
-.LASANPC17:
 .LFB17:
 	.loc 1 151 5
 	.cfi_startproc
@@ -1006,74 +545,30 @@ _Z5SStopP10SuperStack:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	subq	$16, %rsp
 	movq	%rdi, -8(%rbp)
 	.loc 1 154 14
-	movq	-8(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L57
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L57:
 	movq	-8(%rbp), %rax
 	movq	24(%rax), %rax
 	.loc 1 154 5
 	cmpq	$-1, %rax
-	jne	.L58
+	jne	.L23
 	.loc 1 155 16
 	movl	$0, %eax
-	jmp	.L59
-.L58:
+	jmp	.L24
+.L23:
 	.loc 1 160 18
 	movq	-8(%rbp), %rax
-	addq	$8, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L60
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L60:
-	movq	-8(%rbp), %rax
-	movq	8(%rax), %rcx
+	movq	8(%rax), %rdx
 	.loc 1 160 30
-	movq	-8(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L61
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L61:
 	movq	-8(%rbp), %rax
 	movq	24(%rax), %rax
 	.loc 1 160 34
 	salq	$3, %rax
-	addq	%rcx, %rax
-	movq	%rax, %rdx
-	movq	%rdx, %rcx
-	shrq	$3, %rcx
-	addq	$2147450880, %rcx
-	movzbl	(%rcx), %ecx
-	testb	%cl, %cl
-	je	.L62
-	movq	%rdx, %rdi
-	call	__asan_report_load8@PLT
-.L62:
+	addq	%rdx, %rax
 	movq	(%rax), %rax
-.L59:
+.L24:
 	.loc 1 161 5
-	leave
+	popq	%rbp
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
@@ -1082,7 +577,6 @@ _Z5SStopP10SuperStack:
 	.globl	_Z8SSresizeP10SuperStacki
 	.type	_Z8SSresizeP10SuperStacki, @function
 _Z8SSresizeP10SuperStacki:
-.LASANPC18:
 .LFB18:
 	.loc 1 168 5
 	.cfi_startproc
@@ -1097,74 +591,30 @@ _Z8SSresizeP10SuperStacki:
 	movl	%esi, -44(%rbp)
 	.loc 1 169 5
 	cmpq	$0, -40(%rbp)
-	jne	.L64
+	jne	.L26
 	.loc 1 169 25 discriminator 1
 	movl	$-1, %eax
-	jmp	.L65
-.L64:
+	jmp	.L27
+.L26:
 	.loc 1 170 15
-	movq	-40(%rbp), %rax
-	addq	$8, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L66
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L66:
 	movq	-40(%rbp), %rax
 	movq	8(%rax), %rax
 	.loc 1 170 5
 	testq	%rax, %rax
-	jne	.L67
+	jne	.L28
 	.loc 1 170 31 discriminator 1
 	movl	$-1, %eax
-	jmp	.L65
-.L67:
+	jmp	.L27
+.L28:
 	.loc 1 172 16
-	movq	-40(%rbp), %rax
-	addq	$8, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L68
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L68:
 	movq	-40(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 1 173 12
 	movq	-40(%rbp), %rax
-	addq	$16, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L69
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L69:
-	movq	-40(%rbp), %rax
 	movq	16(%rax), %rax
 	movq	%rax, -16(%rbp)
 	.loc 1 174 13
-	movq	-40(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L70
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L70:
 	movq	-40(%rbp), %rax
 	movq	24(%rax), %rax
 	movq	%rax, -8(%rbp)
@@ -1172,14 +622,14 @@ _Z8SSresizeP10SuperStacki:
 	movq	$0, -32(%rbp)
 	.loc 1 178 5
 	cmpl	$1, -44(%rbp)
-	jne	.L71
+	jne	.L29
 	.loc 1 180 9
 	cmpq	$0, -16(%rbp)
-	jne	.L72
+	jne	.L30
 	.loc 1 181 26
 	movq	$10, -32(%rbp)
-	jmp	.L71
-.L72:
+	jmp	.L29
+.L30:
 	.loc 1 183 39
 	movl	_HEAP_GROWTH_RATE_(%rip), %eax
 	cltq
@@ -1187,17 +637,17 @@ _Z8SSresizeP10SuperStacki:
 	movq	-16(%rbp), %rdx
 	imulq	%rdx, %rax
 	movq	%rax, -32(%rbp)
-.L71:
+.L29:
 	.loc 1 186 5
 	cmpl	$-1, -44(%rbp)
-	jne	.L73
+	jne	.L31
 	.loc 1 188 9
 	cmpq	$0, -16(%rbp)
-	jne	.L74
+	jne	.L32
 	.loc 1 189 23
 	movl	$-1, %eax
-	jmp	.L65
-.L74:
+	jmp	.L27
+.L32:
 	.loc 1 191 39
 	movl	_HEAP_REDUCTION_RATE_(%rip), %eax
 	movslq	%eax, %rcx
@@ -1206,17 +656,17 @@ _Z8SSresizeP10SuperStacki:
 	movl	$0, %edx
 	divq	%rcx
 	movq	%rax, -32(%rbp)
-.L73:
+.L31:
 	.loc 1 193 23
 	movq	-8(%rbp), %rax
 	addq	$1, %rax
 	.loc 1 193 5
 	cmpq	%rax, -32(%rbp)
-	ja	.L75
+	ja	.L33
 	.loc 1 194 19
 	movl	$-1, %eax
-	jmp	.L65
-.L75:
+	jmp	.L27
+.L33:
 	.loc 1 196 45
 	movq	-32(%rbp), %rcx
 	movq	-24(%rbp), %rax
@@ -1227,44 +677,22 @@ _Z8SSresizeP10SuperStacki:
 	movq	%rax, -24(%rbp)
 	.loc 1 198 5
 	cmpq	$0, -24(%rbp)
-	jne	.L76
+	jne	.L34
 	.loc 1 199 19
 	movl	$-1, %eax
-	jmp	.L65
-.L76:
+	jmp	.L27
+.L34:
 	.loc 1 201 15
-	movq	-40(%rbp), %rax
-	addq	$8, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L77
-	movq	%rax, %rdi
-	call	__asan_report_store8@PLT
-.L77:
 	movq	-40(%rbp), %rax
 	movq	-24(%rbp), %rdx
 	movq	%rdx, 8(%rax)
 	.loc 1 202 19
 	movq	-40(%rbp), %rax
-	addq	$16, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L78
-	movq	%rax, %rdi
-	call	__asan_report_store8@PLT
-.L78:
-	movq	-40(%rbp), %rax
 	movq	-32(%rbp), %rdx
 	movq	%rdx, 16(%rax)
 	.loc 1 204 14
 	movl	$1, %eax
-.L65:
+.L27:
 	.loc 1 205 5
 	leave
 	.cfi_def_cfa 7, 8
@@ -1272,263 +700,6 @@ _Z8SSresizeP10SuperStacki:
 	.cfi_endproc
 .LFE18:
 	.size	_Z8SSresizeP10SuperStacki, .-_Z8SSresizeP10SuperStacki
-	.globl	__odr_asan._HEAP_REDUCTION_RATE_
-	.bss
-	.type	__odr_asan._HEAP_REDUCTION_RATE_, @object
-	.size	__odr_asan._HEAP_REDUCTION_RATE_, 1
-__odr_asan._HEAP_REDUCTION_RATE_:
-	.zero	1
-	.section	.rodata
-	.align 8
-.LC1:
-	.string	"../ATC/SuperStack/SuperStack.cpp"
-	.section	.data.rel.local,"aw"
-	.align 16
-	.type	.LASANLOC1, @object
-	.size	.LASANLOC1, 16
-.LASANLOC1:
-	.quad	.LC1
-	.long	8
-	.long	5
-	.globl	__odr_asan._HEAP_GROWTH_RATE_
-	.bss
-	.type	__odr_asan._HEAP_GROWTH_RATE_, @object
-	.size	__odr_asan._HEAP_GROWTH_RATE_, 1
-__odr_asan._HEAP_GROWTH_RATE_:
-	.zero	1
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC2, @object
-	.size	.LASANLOC2, 16
-.LASANLOC2:
-	.quad	.LC1
-	.long	7
-	.long	5
-	.section	.rodata
-	.align 8
-.LC2:
-	.string	"../ATC/RandomStuff/CommonEnums.h"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC3, @object
-	.size	.LASANLOC3, 16
-.LASANLOC3:
-	.quad	.LC2
-	.long	3
-	.long	11
-	.section	.rodata
-	.align 8
-.LC3:
-	.string	"../ATC/SuperStack/SuperStack.h"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC4, @object
-	.size	.LASANLOC4, 16
-.LASANLOC4:
-	.quad	.LC3
-	.long	22
-	.long	14
-	.align 16
-	.type	.LASANLOC5, @object
-	.size	.LASANLOC5, 16
-.LASANLOC5:
-	.quad	.LC3
-	.long	21
-	.long	14
-	.section	.rodata
-.LC4:
-	.string	"../ATC/my_safety/my_safety.h"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC6, @object
-	.size	.LASANLOC6, 16
-.LASANLOC6:
-	.quad	.LC4
-	.long	12
-	.long	11
-	.align 16
-	.type	.LASANLOC7, @object
-	.size	.LASANLOC7, 16
-.LASANLOC7:
-	.quad	.LC4
-	.long	11
-	.long	11
-	.align 16
-	.type	.LASANLOC8, @object
-	.size	.LASANLOC8, 16
-.LASANLOC8:
-	.quad	.LC4
-	.long	9
-	.long	11
-	.section	.rodata
-	.align 8
-.LC5:
-	.string	"../Common/Structures/Tabels/Tabels.h"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC9, @object
-	.size	.LASANLOC9, 16
-.LASANLOC9:
-	.quad	.LC5
-	.long	5
-	.long	11
-	.section	.rodata
-.LC6:
-	.string	"_HEAP_REDUCTION_RATE_"
-.LC7:
-	.string	"_HEAP_GROWTH_RATE_"
-.LC8:
-	.string	"CRINGE"
-.LC9:
-	.string	"_ELEMENT_T_SIZE_"
-.LC10:
-	.string	"_HEAP_MIN_CAPACITY_"
-.LC11:
-	.string	"_CLOSING_CANARY_"
-.LC12:
-	.string	"_OPENING_CANARY_"
-.LC13:
-	.string	"_CANARY_SIZE_"
-.LC14:
-	.string	"NOT_DECLARED"
-.LC15:
-	.string	"*.LC0"
-	.section	.data.rel.local
-	.align 32
-	.type	.LASAN0, @object
-	.size	.LASAN0, 640
-.LASAN0:
-	.quad	_HEAP_REDUCTION_RATE_
-	.quad	4
-	.quad	64
-	.quad	.LC6
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC1
-	.quad	__odr_asan._HEAP_REDUCTION_RATE_
-	.quad	_HEAP_GROWTH_RATE_
-	.quad	4
-	.quad	64
-	.quad	.LC7
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC2
-	.quad	__odr_asan._HEAP_GROWTH_RATE_
-	.quad	_ZL6CRINGE
-	.quad	4
-	.quad	64
-	.quad	.LC8
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC3
-	.quad	0
-	.quad	_ZL16_ELEMENT_T_SIZE_
-	.quad	8
-	.quad	64
-	.quad	.LC9
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC4
-	.quad	0
-	.quad	_ZL19_HEAP_MIN_CAPACITY_
-	.quad	8
-	.quad	64
-	.quad	.LC10
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC5
-	.quad	0
-	.quad	_ZL16_CLOSING_CANARY_
-	.quad	4
-	.quad	64
-	.quad	.LC11
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC6
-	.quad	0
-	.quad	_ZL16_OPENING_CANARY_
-	.quad	4
-	.quad	64
-	.quad	.LC12
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC7
-	.quad	0
-	.quad	_ZL13_CANARY_SIZE_
-	.quad	4
-	.quad	64
-	.quad	.LC13
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC8
-	.quad	0
-	.quad	_ZL12NOT_DECLARED
-	.quad	4
-	.quad	64
-	.quad	.LC14
-	.quad	.LC1
-	.quad	0
-	.quad	.LASANLOC9
-	.quad	0
-	.quad	.LC0
-	.quad	20
-	.quad	64
-	.quad	.LC15
-	.quad	.LC1
-	.quad	0
-	.quad	0
-	.quad	0
-	.text
-	.type	_sub_D_00099_0, @function
-_sub_D_00099_0:
-.LFB19:
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movl	$10, %esi
-	leaq	.LASAN0(%rip), %rax
-	movq	%rax, %rdi
-	call	__asan_unregister_globals@PLT
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE19:
-	.size	_sub_D_00099_0, .-_sub_D_00099_0
-	.section	.fini_array.00099,"aw"
-	.align 8
-	.quad	_sub_D_00099_0
-	.text
-	.type	_sub_I_00099_1, @function
-_sub_I_00099_1:
-.LFB20:
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	call	__asan_init@PLT
-	call	__asan_version_mismatch_check_v8@PLT
-	movl	$10, %esi
-	leaq	.LASAN0(%rip), %rax
-	movq	%rax, %rdi
-	call	__asan_register_globals@PLT
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE20:
-	.size	_sub_I_00099_1, .-_sub_I_00099_1
-	.section	.init_array.00099,"aw"
-	.align 8
-	.quad	_sub_I_00099_1
-	.text
 .Letext0:
 	.file 2 "../Common/Structures/Tabels/Tabels.h"
 	.file 3 "../ATC/SuperStack/SuperStackConfig.h"
@@ -1545,7 +716,7 @@ _sub_I_00099_1:
 	.file 14 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0xd20
+	.long	0xd21
 	.value	0x5
 	.byte	0x1
 	.byte	0x8
@@ -1901,14 +1072,14 @@ _sub_I_00099_1:
 	.long	.LASF55
 	.byte	0x3
 	.byte	0
-	.uleb128 0x17
+	.uleb128 0x16
 	.long	.LASF56
 	.byte	0x7
 	.long	0x2e
 	.uleb128 0x9
 	.byte	0x3
 	.quad	_HEAP_GROWTH_RATE_
-	.uleb128 0x17
+	.uleb128 0x16
 	.long	.LASF57
 	.byte	0x8
 	.long	0x2e
@@ -2249,7 +1420,7 @@ _sub_I_00099_1:
 	.uleb128 0x1
 	.long	0xf7
 	.byte	0
-	.uleb128 0x18
+	.uleb128 0x17
 	.string	"div"
 	.byte	0xb1
 	.long	.LASF99
@@ -2404,7 +1575,7 @@ _sub_I_00099_1:
 	.uleb128 0x1
 	.long	0xfe
 	.byte	0
-	.uleb128 0x19
+	.uleb128 0x18
 	.long	.LASF90
 	.value	0x346
 	.long	0x719
@@ -2417,7 +1588,7 @@ _sub_I_00099_1:
 	.uleb128 0x1
 	.long	0x3d5
 	.byte	0
-	.uleb128 0x1a
+	.uleb128 0x19
 	.long	.LASF89
 	.value	0x276
 	.long	0x72a
@@ -2430,7 +1601,7 @@ _sub_I_00099_1:
 	.value	0x1c6
 	.byte	0xc
 	.long	0x2e
-	.uleb128 0x19
+	.uleb128 0x18
 	.long	.LASF91
 	.value	0x1c8
 	.long	0x748
@@ -2552,7 +1723,7 @@ _sub_I_00099_1:
 	.byte	0xe8
 	.byte	0xb
 	.long	0x8e2
-	.uleb128 0x18
+	.uleb128 0x17
 	.string	"div"
 	.byte	0xd5
 	.long	.LASF100
@@ -2811,7 +1982,7 @@ _sub_I_00099_1:
 	.uleb128 0x1
 	.long	0x145
 	.byte	0
-	.uleb128 0x1a
+	.uleb128 0x19
 	.long	.LASF109
 	.value	0x270
 	.long	0xa3f
@@ -2857,7 +2028,7 @@ _sub_I_00099_1:
 	.uleb128 0x1
 	.long	0xfe
 	.byte	0
-	.uleb128 0x15
+	.uleb128 0x1a
 	.long	.LASF58
 	.byte	0xa7
 	.byte	0x5
@@ -2876,7 +2047,7 @@ _sub_I_00099_1:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
-	.uleb128 0x16
+	.uleb128 0x15
 	.long	.LASF117
 	.byte	0xa7
 	.byte	0x24
@@ -2921,8 +2092,9 @@ _sub_I_00099_1:
 	.byte	0x91
 	.sleb128 -48
 	.byte	0
-	.uleb128 0x15
+	.uleb128 0x2c
 	.long	.LASF120
+	.byte	0x1
 	.byte	0x95
 	.byte	0xb
 	.long	.LASF122
@@ -2931,7 +2103,7 @@ _sub_I_00099_1:
 	.quad	.LFE17-.LFB17
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0xb4e
+	.long	0xb4f
 	.uleb128 0xb
 	.string	"stk"
 	.byte	0x95
@@ -2941,7 +2113,7 @@ _sub_I_00099_1:
 	.byte	0x91
 	.sleb128 -24
 	.byte	0
-	.uleb128 0x15
+	.uleb128 0x1a
 	.long	.LASF123
 	.byte	0x7b
 	.byte	0xc
@@ -2951,7 +2123,7 @@ _sub_I_00099_1:
 	.quad	.LFE16-.LFB16
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0xbd7
+	.long	0xbd8
 	.uleb128 0xb
 	.string	"stk"
 	.byte	0x7b
@@ -2972,7 +2144,7 @@ _sub_I_00099_1:
 	.uleb128 0x1b
 	.quad	.LBB10
 	.quad	.LBE10-.LBB10
-	.long	0xbb5
+	.long	0xbb6
 	.uleb128 0x3
 	.long	.LASF126
 	.byte	0x1
@@ -3005,7 +2177,7 @@ _sub_I_00099_1:
 	.quad	.LFE15-.LFB15
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0xc73
+	.long	0xc74
 	.uleb128 0xb
 	.string	"stk"
 	.byte	0x53
@@ -3014,7 +2186,7 @@ _sub_I_00099_1:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
-	.uleb128 0x16
+	.uleb128 0x15
 	.long	.LASF127
 	.byte	0x53
 	.byte	0x29
@@ -3025,7 +2197,7 @@ _sub_I_00099_1:
 	.uleb128 0x1b
 	.quad	.LBB4
 	.quad	.LBE4-.LBB4
-	.long	0xc38
+	.long	0xc39
 	.uleb128 0x3
 	.long	.LASF126
 	.byte	0x1
@@ -3036,9 +2208,9 @@ _sub_I_00099_1:
 	.byte	0x91
 	.sleb128 -28
 	.byte	0
-	.uleb128 0x2c
+	.uleb128 0x2d
 	.long	.LLRL0
-	.long	0xc51
+	.long	0xc52
 	.uleb128 0x3
 	.long	.LASF128
 	.byte	0x1
@@ -3071,7 +2243,7 @@ _sub_I_00099_1:
 	.quad	.LFE14-.LFB14
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0xcc3
+	.long	0xcc4
 	.uleb128 0xb
 	.string	"stk"
 	.byte	0x44
@@ -3094,7 +2266,7 @@ _sub_I_00099_1:
 	.sleb128 -20
 	.byte	0
 	.byte	0
-	.uleb128 0x2d
+	.uleb128 0x2e
 	.long	.LASF133
 	.byte	0x1
 	.byte	0x29
@@ -3113,7 +2285,7 @@ _sub_I_00099_1:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
-	.uleb128 0x16
+	.uleb128 0x15
 	.long	.LASF46
 	.byte	0x29
 	.byte	0x2d
@@ -3450,6 +2622,112 @@ _sub_I_00099_1:
 	.byte	0
 	.byte	0
 	.uleb128 0x15
+	.uleb128 0x5
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0x21
+	.sleb128 1
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x39
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x18
+	.byte	0
+	.byte	0
+	.uleb128 0x16
+	.uleb128 0x34
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0x21
+	.sleb128 1
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x39
+	.uleb128 0x21
+	.sleb128 5
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x3f
+	.uleb128 0x19
+	.uleb128 0x2
+	.uleb128 0x18
+	.byte	0
+	.byte	0
+	.uleb128 0x17
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3f
+	.uleb128 0x19
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x3a
+	.uleb128 0x21
+	.sleb128 11
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x39
+	.uleb128 0x21
+	.sleb128 3
+	.uleb128 0x6e
+	.uleb128 0xe
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x3c
+	.uleb128 0x19
+	.byte	0
+	.byte	0
+	.uleb128 0x18
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3f
+	.uleb128 0x19
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0x21
+	.sleb128 10
+	.uleb128 0x3b
+	.uleb128 0x5
+	.uleb128 0x39
+	.uleb128 0x21
+	.sleb128 13
+	.uleb128 0x3c
+	.uleb128 0x19
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x19
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3f
+	.uleb128 0x19
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0x21
+	.sleb128 10
+	.uleb128 0x3b
+	.uleb128 0x5
+	.uleb128 0x39
+	.uleb128 0x21
+	.sleb128 13
+	.uleb128 0x87
+	.uleb128 0x19
+	.uleb128 0x3c
+	.uleb128 0x19
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x1a
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -3474,112 +2752,6 @@ _sub_I_00099_1:
 	.uleb128 0x40
 	.uleb128 0x18
 	.uleb128 0x7c
-	.uleb128 0x19
-	.uleb128 0x1
-	.uleb128 0x13
-	.byte	0
-	.byte	0
-	.uleb128 0x16
-	.uleb128 0x5
-	.byte	0
-	.uleb128 0x3
-	.uleb128 0xe
-	.uleb128 0x3a
-	.uleb128 0x21
-	.sleb128 1
-	.uleb128 0x3b
-	.uleb128 0xb
-	.uleb128 0x39
-	.uleb128 0xb
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x2
-	.uleb128 0x18
-	.byte	0
-	.byte	0
-	.uleb128 0x17
-	.uleb128 0x34
-	.byte	0
-	.uleb128 0x3
-	.uleb128 0xe
-	.uleb128 0x3a
-	.uleb128 0x21
-	.sleb128 1
-	.uleb128 0x3b
-	.uleb128 0xb
-	.uleb128 0x39
-	.uleb128 0x21
-	.sleb128 5
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x3f
-	.uleb128 0x19
-	.uleb128 0x2
-	.uleb128 0x18
-	.byte	0
-	.byte	0
-	.uleb128 0x18
-	.uleb128 0x2e
-	.byte	0x1
-	.uleb128 0x3f
-	.uleb128 0x19
-	.uleb128 0x3
-	.uleb128 0x8
-	.uleb128 0x3a
-	.uleb128 0x21
-	.sleb128 11
-	.uleb128 0x3b
-	.uleb128 0xb
-	.uleb128 0x39
-	.uleb128 0x21
-	.sleb128 3
-	.uleb128 0x6e
-	.uleb128 0xe
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x3c
-	.uleb128 0x19
-	.byte	0
-	.byte	0
-	.uleb128 0x19
-	.uleb128 0x2e
-	.byte	0x1
-	.uleb128 0x3f
-	.uleb128 0x19
-	.uleb128 0x3
-	.uleb128 0xe
-	.uleb128 0x3a
-	.uleb128 0x21
-	.sleb128 10
-	.uleb128 0x3b
-	.uleb128 0x5
-	.uleb128 0x39
-	.uleb128 0x21
-	.sleb128 13
-	.uleb128 0x3c
-	.uleb128 0x19
-	.uleb128 0x1
-	.uleb128 0x13
-	.byte	0
-	.byte	0
-	.uleb128 0x1a
-	.uleb128 0x2e
-	.byte	0x1
-	.uleb128 0x3f
-	.uleb128 0x19
-	.uleb128 0x3
-	.uleb128 0xe
-	.uleb128 0x3a
-	.uleb128 0x21
-	.sleb128 10
-	.uleb128 0x3b
-	.uleb128 0x5
-	.uleb128 0x39
-	.uleb128 0x21
-	.sleb128 13
-	.uleb128 0x87
-	.uleb128 0x19
-	.uleb128 0x3c
 	.uleb128 0x19
 	.uleb128 0x1
 	.uleb128 0x13
@@ -3835,6 +3007,35 @@ _sub_I_00099_1:
 	.byte	0
 	.byte	0
 	.uleb128 0x2c
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3f
+	.uleb128 0x19
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x39
+	.uleb128 0xb
+	.uleb128 0x6e
+	.uleb128 0xe
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x7
+	.uleb128 0x40
+	.uleb128 0x18
+	.uleb128 0x7a
+	.uleb128 0x19
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x2d
 	.uleb128 0xb
 	.byte	0x1
 	.uleb128 0x55
@@ -3843,7 +3044,7 @@ _sub_I_00099_1:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x2d
+	.uleb128 0x2e
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -3953,6 +3154,8 @@ _sub_I_00099_1:
 	.string	"VarTabel"
 .LASF111:
 	.string	"_Z14canary_reallocPvmm"
+.LASF135:
+	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF134:
 	.string	"_Z14SuperStackCtorP10SuperStackm"
 .LASF26:
@@ -4081,8 +3284,6 @@ _sub_I_00099_1:
 	.string	"ACTIVE"
 .LASF22:
 	.string	"short int"
-.LASF135:
-	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fsanitize=address,leak -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF13:
 	.string	"long int"
 .LASF49:

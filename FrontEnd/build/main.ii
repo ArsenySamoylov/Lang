@@ -17,12 +17,11 @@ union TokenValue
     char t_operator;
     double t_constant;
     int t_initializator;
+    int t_native_function;
     int t_function_ret_type;
 
     char* t_name_ptr;
     int t_name_id;
-
-
     };
 
 struct Token
@@ -34,7 +33,13 @@ struct Token
 
     TokenValue value;
 
+
     const char* ptr_to_src_code;
+
+    int line;
+    int indent;
+
+
     };
 
 Token* NewToken (int type = 0, TokenValue value = {0},
@@ -122,11 +127,13 @@ struct Program
     const char** string_arr;
     int number_of_strings;
 
+    const char* path_to_src_file;
+
     VarTabel global_vars;
     FuncTabel func_tabel;
     };
 
-int ProgramCtor(Program* program);
+int ProgramCtor(Program* program, const char* path_to_src_file);
 void ProgramDtor(Program* program);
 # 2 "./src/main.cpp" 2
 
@@ -2726,19 +2733,25 @@ struct Buffer
     {
     const char* buffer;
     char* str;
+
+    int number_of_lines;
+    int indent;
     };
 
 int BufferCtor (Buffer* buf, const char* string);
 int BufferCtor (Buffer* buf, int size);
 
-void BufferUngetCh (Buffer* buf);
+
+
+
+void BufferSkipSpaces (Buffer* buf);
+
 int BufferGetCh (Buffer* buf);
 int BufferLook (Buffer* buf);
 int BufferGetDouble (Buffer* buf, double* val);
 
-int BufferPutDouble (Buffer* buf, double val);
-int BufferPutChar (Buffer* buf, char ch);
-int BufferPutString (Buffer* buf, const char* str);
+
+void BufferSkipCommentLine (Buffer* buf, char terminator);
 # 10 "./src/main.cpp" 2
 # 1 "../ATC/Logger/LogMacroses.h" 1
        
@@ -44365,24 +44378,24 @@ int main(int argc, const char* argv[])
   return -1;
   }
 
-    const char* path = argv[1];
+    const char* path_to_src_file = argv[1];
 
-    char* src_code = GetSrcFile (path);
+    char* src_code = GetSrcFile (path_to_src_file);
     if (!src_code)
         {
-        printf("\033[91m" "Can't open file %s\n" "\033[0m", path);
+        printf("\033[91m" "Can't open file %s\n" "\033[0m", path_to_src_file);
 
         return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 31, __func__, 31), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 31, __func__, 31);
         }
 
     Program program{};
-    ProgramCtor(&program);
+    ProgramCtor(&program, path_to_src_file);
 
     int run_time_status = Tokenizer(&program, src_code);
 
     if (run_time_status != SUCCESS)
         {
-        printf("\033[91m" "Can't tokenize file " "\033[0m" "%s\n", path);
+        printf("\033[91m" "Can't tokenize file " "\033[0m" "%s\n", program.path_to_src_file);
         return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 42, __func__, 42), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 42, __func__, 42);
         }
 

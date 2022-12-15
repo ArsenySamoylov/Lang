@@ -21,24 +21,24 @@ int main(int argc, const char* argv[])
 		return -1;
 		}
 
-    const char* path = argv[1];
+    const char* path_to_src_file = argv[1];
 
-    char* src_code = GetSrcFile (path);
+    char* src_code = GetSrcFile (path_to_src_file);
     if (!src_code)
         {
-        printf(redcolor "Can't open file %s\n" resetconsole, path);
+        printf(redcolor "Can't open file %s\n" resetconsole, path_to_src_file);
 
         return LFAILURE;
         }
     
     Program program{};
-    ProgramCtor(&program);
+    ProgramCtor(&program, path_to_src_file);
 
     int run_time_status = Tokenizer(&program, src_code);
 
     if (run_time_status != SUCCESS)
         {
-        printf(redcolor "Can't tokenize file " resetconsole "%s\n", path);
+        printf(redcolor "Can't tokenize file " resetconsole "%s\n", program.path_to_src_file);
         return LFAILURE;
         }
 

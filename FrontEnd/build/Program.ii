@@ -17,12 +17,11 @@ union TokenValue
     char t_operator;
     double t_constant;
     int t_initializator;
+    int t_native_function;
     int t_function_ret_type;
 
     char* t_name_ptr;
     int t_name_id;
-
-
     };
 
 struct Token
@@ -34,7 +33,13 @@ struct Token
 
     TokenValue value;
 
+
     const char* ptr_to_src_code;
+
+    int line;
+    int indent;
+
+
     };
 
 Token* NewToken (int type = 0, TokenValue value = {0},
@@ -122,11 +127,13 @@ struct Program
     const char** string_arr;
     int number_of_strings;
 
+    const char* path_to_src_file;
+
     VarTabel global_vars;
     FuncTabel func_tabel;
     };
 
-int ProgramCtor(Program* program);
+int ProgramCtor(Program* program, const char* path_to_src_file);
 void ProgramDtor(Program* program);
 # 2 "../Common/Structures/Program/Program.cpp" 2
 
@@ -44185,7 +44192,7 @@ int SYSTEM(const char* format, ...);
 # 13 "../ATC/Logger/LogMacroses.h" 2
 # 4 "../Common/Structures/Program/Program.cpp" 2
 
-int ProgramCtor(Program* program)
+int ProgramCtor(Program* program, const char* path_to_src_file)
     {
     do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 7, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 7, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
 # 7 "../Common/Structures/Program/Program.cpp" 3 4
@@ -44195,45 +44202,55 @@ int ProgramCtor(Program* program)
 # 7 "../Common/Structures/Program/Program.cpp" 3 4
    14
 # 7 "../Common/Structures/Program/Program.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 7); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Program/Program.cpp", 7, __func__, 7), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Program/Program.cpp", 7, __func__, 7); } } while (0);
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 7); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(path_to_src_file)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "path_to_src_file"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "path_to_src_file"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 8, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 8, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 8 "../Common/Structures/Program/Program.cpp" 3 4
+   14
+# 8 "../Common/Structures/Program/Program.cpp"
+   , strerror(
+# 8 "../Common/Structures/Program/Program.cpp" 3 4
+   14
+# 8 "../Common/Structures/Program/Program.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 8); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
 
     program->token_arr = 
-# 9 "../Common/Structures/Program/Program.cpp" 3 4
+# 10 "../Common/Structures/Program/Program.cpp" 3 4
                                __null
-# 9 "../Common/Structures/Program/Program.cpp"
+# 10 "../Common/Structures/Program/Program.cpp"
                                    ;
     program->number_of_tokens = 0;
 
-
-
-
     program->string_arr = 
-# 15 "../Common/Structures/Program/Program.cpp" 3 4
+# 13 "../Common/Structures/Program/Program.cpp" 3 4
                                 __null
-# 15 "../Common/Structures/Program/Program.cpp"
+# 13 "../Common/Structures/Program/Program.cpp"
                                     ;
     program->number_of_strings = 0;
 
+    program->path_to_src_file = path_to_src_file;
 
 
+    program->global_vars = {};
+    VarTabelCtor(&program->global_vars);
 
-
+    program->func_tabel = {};
+    FuncTabelCtor(&program->func_tabel);
 
     return SUCCESS;
     }
 
 void ProgramDtor(Program* program)
     {
-    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 28, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 28, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 28 "../Common/Structures/Program/Program.cpp" 3 4
+    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 30, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 30, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 30 "../Common/Structures/Program/Program.cpp" 3 4
    14
-# 28 "../Common/Structures/Program/Program.cpp"
+# 30 "../Common/Structures/Program/Program.cpp"
    , strerror(
-# 28 "../Common/Structures/Program/Program.cpp" 3 4
+# 30 "../Common/Structures/Program/Program.cpp" 3 4
    14
-# 28 "../Common/Structures/Program/Program.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 28); system("echo LOX\n"); return; } } while (0);;
-    printf("\033[96m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "../Common/Structures/Program/Program.cpp", 29, "сделаю потом\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "../Common/Structures/Program/Program.cpp", 29, "сделаю потом\n"); Logger::getInstance().log("сделаю потом\n" );;
+# 30 "../Common/Structures/Program/Program.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 30); system("echo LOX\n"); return; } } while (0);;
+    printf("\033[96m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "../Common/Structures/Program/Program.cpp", 31, "сделаю потом\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "../Common/Structures/Program/Program.cpp", 31, "сделаю потом\n"); Logger::getInstance().log("сделаю потом\n" );;
 
     return;
     }

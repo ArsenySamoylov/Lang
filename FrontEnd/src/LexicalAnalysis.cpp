@@ -13,18 +13,23 @@
 #include "EasyDebug.h"
 #include "SomeStuff.h"
 
-static int GetTokenValue (TokenValue* val, Buffer* buf, const char** stc_code_ptr);
+
+static int SetToken (Buffer* buf, Token* token);
+
 static int BufferGetWord (Buffer*     buf, char*   word_buffer);
 
 static int IsInstruction     (const char* str);
 static int IsInitializator   (const char* str);
 static int IsFunctionRetType (const char* str);
+static int IsNativeFunction  (const char* str);
+
 static int IsName            (const char* str, const char** string_arr, int suze_of_string_arr);
 
 const int NOT_A_NAME          = -555;
 const int NOT_A_INSTRUCTION   = -666;
 const int NOT_A_INITIALIZATOR = -111;
-const int  NOT_A_RET_TYPE     = -333;
+const int NOT_A_RET_TYPE      = -333;
+const int NOT_A_NATIVE_FUNCTION = -222;
 
 #pragma GCC diagnostic ignored "-Wconversion"
 #pragma GCC diagnostic ignored "-Wsign-conversion"
@@ -78,16 +83,11 @@ int Tokenizer (Program* program, const char* buffer)
 
     while (BufferLook(buf) != '\0')
         {
-        // skip comments
         if (BufferLook(buf) == COMMENT)
             {
-            int n = 0;
-            sscanf(buf->str, "%*[^\n]%n", &n);
+            BufferSkipCommentLine(buf, COMMENT);
 
-            buf->str += n; 
-            buf->str = SkipSpaces(buf->str);
-
-            continue;            
+            continue;
             }
 
         // check for resize
@@ -116,13 +116,10 @@ int Tokenizer (Program* program, const char* buffer)
             
             string_arr = xyu;
             }
-        //
         
-        TYPE(token) = GetTokenValue (&VALUE(token), buf, &(token->ptr_to_src_code));
-        if (TYPE(token) == UNKNOWN_TYPE)
+        // main
+        if (SetToken (buf, token) == FAILURE)
             {
-            report_lexical_error("Unknown type\n");
-
             KILL(arr);
             KILL(string_arr);
             
@@ -161,7 +158,7 @@ int Tokenizer (Program* program, const char* buffer)
     for (int i = 0; i < number_of_tokens; i++)
         {
         $li(i)
-        $LOG_TOKEN(program->token_arr + i, string_arr)
+        $LOG_TOKEN(program->token_arr + i, program->string_arr)
         }
     //
     return SUCCESS; 
@@ -170,22 +167,25 @@ int Tokenizer (Program* program, const char* buffer)
 #undef token
 #undef current_str
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-static int GetTokenValue (TokenValue* val, Buffer* buf, const char** src_code_ptr)
+static int SetToken (Buffer* buf, Token* token)
     {
-    $log(1)
-    assertlog(val, EFAULT, return UNKNOWN_TYPE);
-    assertlog(buf, EFAULT, return UNKNOWN_TYPE);
+    $log(0)
+    assertlog(buf,   EFAULT, return BAD_ARGUMENT);
+    assertlog(token, EFAULT, return BAD_ARGUMENT);
 
-    buf->str  = SkipSpaces(buf->str);
+    // buf->str  = SkipSpaces(buf->str);
     char temp = BufferLook(buf);
-    $lc(temp)
+    // $lc(temp)
     
-    *src_code_ptr = buf->str;
+    token->ptr_to_src_code = buf->str;
+    token->line            = buf->number_of_lines;
+    token->indent          = buf->indent;
 
     if (temp == ASSIGMENT)
             {
-            val->t_operator = BufferGetCh(buf); // just in case, to keep char
-
+            TYPE(token) = ASSIGMENT;
+              OP(token) = BufferGetCh(buf);
+            
             return ASSIGMENT;        
             }
     
@@ -193,10 +193,11 @@ static int GetTokenValue (TokenValue* val, Buffer* buf, const char** src_code_pt
     if (isdigit(temp) || temp == '-' || temp == '+')
         {
         double const_val = NAN;
-        
+
         if (BufferGetDouble(buf, &const_val))
             {
-            val->t_constant = const_val;
+             TYPE(token)  = CONSTANT;
+            CONST(token) = const_val;
 
             return CONSTANT;
             }
@@ -205,9 +206,10 @@ static int GetTokenValue (TokenValue* val, Buffer* buf, const char** src_code_pt
     //operator
     if (strchr(OPERATORS, temp))
         {
-        val->t_operator = BufferGetCh(buf);
+        TYPE(token) = OPERATOR;
+          OP(token) = BufferGetCh(buf);
 
-        if (val->t_operator == OUT)
+        if (OP(token) == OUT)
             if (BufferGetCh(buf) != '<')
                 {
                 report_lexical_error("Missing '<' for out operator\n");
@@ -218,18 +220,19 @@ static int GetTokenValue (TokenValue* val, Buffer* buf, const char** src_code_pt
         return OPERATOR;        
         }
     
-    // NAME, INSTRUCTION, INITIALIZATOR or RET_TYPE
+    // NAME, INSTRUCTION, INITIALIZATOR, RET_TYPE, NATIVE_FUNCTION
     if (isalpha(temp))
         {
         static char word[MAX_WORD_LENGTH] = "";
+
         BufferGetWord (buf, word);
         // printf("Word: %s\n", word);
-
 
         int instruction = IsInstruction(word);
         if (instruction != NOT_A_INSTRUCTION)
             {
-            val->t_instruction = instruction;
+             TYPE(token) = INSTRUCTION;
+            INSTR(token) = instruction;
 
             return INSTRUCTION;
             }
@@ -237,7 +240,8 @@ static int GetTokenValue (TokenValue* val, Buffer* buf, const char** src_code_pt
         int initializator = IsInitializator(word);
         if (initializator != NOT_A_INITIALIZATOR)
             {
-            val->t_initializator = initializator;
+                     TYPE(token) = INITIALIZATOR;
+            INITIALIZATOR(token) = initializator;
 
             return INITIALIZATOR;
             }
@@ -245,14 +249,25 @@ static int GetTokenValue (TokenValue* val, Buffer* buf, const char** src_code_pt
         int ret_type = IsFunctionRetType(word);
         if (ret_type != NOT_A_RET_TYPE)
             {
-            val->t_function_ret_type = ret_type;
+                TYPE(token) = FUNCTION_RET_TYPE;
+            RET_TYPE(token) = ret_type;
 
             return FUNCTION_RET_TYPE;
             }
 
+        int native_function = IsNativeFunction(word);
+        if (native_function != NOT_A_NATIVE_FUNCTION)
+            {
+                   TYPE(token) = NATIVE_FUNCTION;
+            NATIVE_FUNC(token) = native_function;
 
-        val->t_name_ptr = word;
-        // printf("Word: %s\n Name ptr: %s\n", word, val->t_name_ptr);
+            return NATIVE_FUNCTION;
+            }
+
+
+            TYPE(token) = NAME;
+        NAME_PTR(token) = word;
+        // printf("Word: %s\n Name ptr: %s\n", word, token->value.t_name_ptr);
 
         return NAME;
         }
@@ -262,15 +277,17 @@ static int GetTokenValue (TokenValue* val, Buffer* buf, const char** src_code_pt
     if (temp == BLOCK_OPENING_BRACKET      || temp == BLOCK_CLOSING_BRACKET   || 
         temp == EXPRESSION_OPENING_BRACKET || temp == EXPRESSION_CLOSING_BRACKET)             
         {
-        val->t_operator = BufferGetCh(buf);
+        TYPE(token) = BufferGetCh(buf);  // cause type number coresponds with char code
+          OP(token) = TYPE(token);     
 
-        return val->t_operator;     
+        return TYPE(token);     
         }
         
     // END_OF_STATEMENT
     if (temp == END_OF_STATEMENT)
         {
-        val->t_operator = BufferGetCh(buf);
+        TYPE(token) = BufferGetCh(buf);  // cause type number coresponds with char code
+          OP(token) = TYPE(token);     
 
         return END_OF_STATEMENT;
         }
@@ -283,11 +300,14 @@ static int BufferGetWord (Buffer* buf, char* word_buffer)
     assertlog(buf,         EFAULT, return LFAILURE);
     assertlog(word_buffer, EFAULT, return LFAILURE);
 
-    buf->str = SkipSpaces(buf->str); 
+    // buf->str = SkipSpaces(buf->str); 
 
     int n = 0;
     sscanf(buf->str, "%[a-zA-Z]%n", word_buffer, &n);
-    buf->str = SkipSpaces(buf->str + n); 
+    buf->str += n;
+    buf->indent +=n;
+    
+    // buf->str = SkipSpaces(buf->str + n); 
 
     // $s(buf->str)
     // $s(word_buffer)
@@ -329,6 +349,18 @@ static int IsFunctionRetType (const char* str)
     
     return NOT_A_RET_TYPE;
     }
+
+static int IsNativeFunction (const char* str)
+    {
+    assertlog(str, EFAULT, return NOT_A_NATIVE_FUNCTION)
+
+    for (int i = 0; i < NUMBER_OF_NATIVE_FUNCTIONS; i++)
+        if (!stricmp(str, NATIVE_FUNCTIONS[i]))
+            return i;
+    
+    return NOT_A_NATIVE_FUNCTION;
+    }
+
 
 static int IsName (const char* str, const char** string_arr, int size_of_string_arr)
     {

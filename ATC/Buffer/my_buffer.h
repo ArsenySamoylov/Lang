@@ -38,17 +38,31 @@ struct Buffer
     { 
     const char* buffer;
     char* str;
+
+    int number_of_lines;
+    int indent;
     };
 
 int BufferCtor  (Buffer* buf, const char* string);
 int BufferCtor  (Buffer* buf, int size);
 
-void BufferUngetCh (Buffer* buf);
+// Not safe to use, cause if buffer skiped spaces, Ungetch won't know about it
+// void BufferUngetCh (Buffer* buf);
+
+void BufferSkipSpaces (Buffer* buf);
+
 int  BufferGetCh   (Buffer* buf);
 int  BufferLook    (Buffer* buf);
 int  BufferGetDouble  (Buffer* buf, double* val);
 
+// FOR LANG
+void BufferSkipCommentLine (Buffer* buf, char terminator);
+
+// NOT FOR LANG to use
+/*
 int  BufferPutDouble (Buffer* buf, double val);
 int  BufferPutChar   (Buffer* buf, char   ch);
 int  BufferPutString (Buffer* buf, const char*  str);
+*/
+
 #endif

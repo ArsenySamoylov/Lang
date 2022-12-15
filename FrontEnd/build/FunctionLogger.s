@@ -2,37 +2,25 @@
 	.text
 .Ltext0:
 	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator/FrontEnd" "../ATC/Logger/FunctionLogger.cpp"
-	.bss
-	.align 32
-	.type	_ZStL8__ioinit, @object
-	.size	_ZStL8__ioinit, 1
-_ZStL8__ioinit:
-	.zero	64
+	.local	_ZStL8__ioinit
+	.comm	_ZStL8__ioinit,1,1
 	.section	.rodata
-	.align 32
+	.align 16
 	.type	_ZL12STD_LOG_NAME, @object
 	.size	_ZL12STD_LOG_NAME, 18
 _ZL12STD_LOG_NAME:
 	.string	"./logs/stdlog.ars"
-	.zero	46
-	.align 32
 .LC0:
 	.string	"No name"
-	.zero	56
-	.align 32
 .LC1:
 	.string	"%s::\n"
-	.zero	58
-	.align 32
 .LC2:
 	.string	"{\n"
-	.zero	61
 	.text
 	.align 2
 	.globl	_ZN14FunctionLoggerC2EiPKc
 	.type	_ZN14FunctionLoggerC2EiPKc, @function
 _ZN14FunctionLoggerC2EiPKc:
-.LASANPC2271:
 .LFB2271:
 	.file 1 "../ATC/Logger/FunctionLogger.cpp"
 	.loc 1 3 1
@@ -50,108 +38,34 @@ _ZN14FunctionLoggerC2EiPKc:
 .LBB2:
 	.loc 1 3 65
 	movq	-24(%rbp), %rax
-	movq	%rax, %rdx
-	movq	%rdx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%cl
-	cmpb	$3, %al
-	setle	%al
-	andl	%ecx, %eax
-	testb	%al, %al
-	je	.L2
-	movq	%rdx, %rdi
-	call	__asan_report_store4@PLT
-.L2:
-	movq	-24(%rbp), %rax
 	movl	$0, (%rax)
 	.loc 1 4 66
-	movq	-24(%rbp), %rax
-	addq	$4, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	setne	%sil
-	movq	%rax, %rcx
-	andl	$7, %ecx
-	addl	$3, %ecx
-	cmpb	%dl, %cl
-	setge	%dl
-	andl	%esi, %edx
-	testb	%dl, %dl
-	je	.L3
-	movq	%rax, %rdi
-	call	__asan_report_store4@PLT
-.L3:
 	movq	-24(%rbp), %rax
 	movl	$0, 4(%rax)
 	.loc 1 5 66
 	movq	-24(%rbp), %rax
-	addq	$8, %rax
-	movq	%rax, %rdx
-	movq	%rdx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%cl
-	cmpb	$3, %al
-	setle	%al
-	andl	%ecx, %eax
-	testb	%al, %al
-	je	.L4
-	movq	%rdx, %rdi
-	call	__asan_report_store4@PLT
-.L4:
-	movq	-24(%rbp), %rax
 	movl	$0, 8(%rax)
 	.loc 1 6 66
-	movq	-24(%rbp), %rax
-	addq	$16, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L5
-	movq	%rax, %rdi
-	call	__asan_report_store8@PLT
-.L5:
 	movq	-24(%rbp), %rax
 	leaq	.LC0(%rip), %rdx
 	movq	%rdx, 16(%rax)
 .LBB3:
 	.loc 1 8 5
 	cmpl	$0, -28(%rbp)
-	jle	.L6
+	jle	.L2
 	.loc 1 9 21
 	movq	-24(%rbp), %rax
 	movl	-28(%rbp), %edx
 	movl	%edx, 4(%rax)
-.L6:
+.L2:
 	.loc 1 11 5
 	cmpq	$0, -40(%rbp)
-	je	.L7
+	je	.L3
 	.loc 1 12 23
-	movq	-24(%rbp), %rax
-	addq	$16, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L8
-	movq	%rax, %rdi
-	call	__asan_report_store8@PLT
-.L8:
 	movq	-24(%rbp), %rax
 	movq	-40(%rbp), %rdx
 	movq	%rdx, 16(%rax)
-.L7:
+.L3:
 	.loc 1 14 38
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, -8(%rbp)
@@ -159,26 +73,9 @@ _ZN14FunctionLoggerC2EiPKc:
 	movq	-8(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN6Logger8getlevelEv@PLT
-	movl	%eax, %edx
 	.loc 1 16 15
-	movq	-24(%rbp), %rax
-	movq	%rax, %rcx
-	movq	%rcx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%sil
-	cmpb	$3, %al
-	setle	%al
-	andl	%esi, %eax
-	testb	%al, %al
-	je	.L9
-	movq	%rcx, %rdi
-	call	__asan_report_store4@PLT
-.L9:
-	movq	-24(%rbp), %rax
-	movl	%edx, (%rax)
+	movq	-24(%rbp), %rdx
+	movl	%eax, (%rdx)
 	.loc 1 18 18
 	movl	-28(%rbp), %edx
 	movq	-8(%rbp), %rax
@@ -186,17 +83,6 @@ _ZN14FunctionLoggerC2EiPKc:
 	movq	%rax, %rdi
 	call	_ZN6Logger8setlevelEi@PLT
 	.loc 1 19 12
-	movq	-24(%rbp), %rax
-	addq	$16, %rax
-	movq	%rax, %rdx
-	shrq	$3, %rdx
-	addq	$2147450880, %rdx
-	movzbl	(%rdx), %edx
-	testb	%dl, %dl
-	je	.L10
-	movq	%rax, %rdi
-	call	__asan_report_load8@PLT
-.L10:
 	movq	-24(%rbp), %rax
 	movq	16(%rax), %rdx
 	movq	-8(%rbp), %rax
@@ -226,27 +112,9 @@ _ZN14FunctionLoggerC2EiPKc:
 	movq	-8(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN6Logger9getindentEv@PLT
-	movl	%eax, %edx
 	.loc 1 24 20
-	movq	-24(%rbp), %rax
-	addq	$8, %rax
-	movq	%rax, %rcx
-	movq	%rcx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%sil
-	cmpb	$3, %al
-	setle	%al
-	andl	%esi, %eax
-	testb	%al, %al
-	je	.L11
-	movq	%rcx, %rdi
-	call	__asan_report_store4@PLT
-.L11:
-	movq	-24(%rbp), %rax
-	movl	%edx, 8(%rax)
+	movq	-24(%rbp), %rdx
+	movl	%eax, 8(%rdx)
 	.loc 1 26 5
 	nop
 .LBE3:
@@ -261,16 +129,13 @@ _ZN14FunctionLoggerC2EiPKc:
 	.globl	_ZN14FunctionLoggerC1EiPKc
 	.set	_ZN14FunctionLoggerC1EiPKc,_ZN14FunctionLoggerC2EiPKc
 	.section	.rodata
-	.align 32
 .LC3:
 	.string	"}\n\n"
-	.zero	60
 	.text
 	.align 2
 	.globl	_ZN14FunctionLoggerD2Ev
 	.type	_ZN14FunctionLoggerD2Ev, @function
 _ZN14FunctionLoggerD2Ev:
-.LASANPC2274:
 .LFB2274:
 	.loc 1 29 1
 	.cfi_startproc
@@ -298,45 +163,12 @@ _ZN14FunctionLoggerD2Ev:
 	call	_ZN6Logger3logEPKcz@PLT
 	.loc 1 36 17
 	movq	-24(%rbp), %rax
-	movq	%rax, %rdx
-	movq	%rdx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%cl
-	cmpb	$3, %al
-	setle	%al
-	andl	%ecx, %eax
-	testb	%al, %al
-	je	.L14
-	movq	%rdx, %rdi
-	call	__asan_report_load4@PLT
-.L14:
-	movq	-24(%rbp), %rax
 	movl	(%rax), %edx
 	movq	-8(%rbp), %rax
 	movl	%edx, %esi
 	movq	%rax, %rdi
 	call	_ZN6Logger8setlevelEi@PLT
 	.loc 1 37 19
-	movq	-24(%rbp), %rax
-	addq	$8, %rax
-	movq	%rax, %rdx
-	movq	%rdx, %rax
-	shrq	$3, %rax
-	addq	$2147450880, %rax
-	movzbl	(%rax), %eax
-	testb	%al, %al
-	setne	%cl
-	cmpb	$3, %al
-	setle	%al
-	andl	%ecx, %eax
-	testb	%al, %al
-	je	.L15
-	movq	%rdx, %rdi
-	call	__asan_report_load4@PLT
-.L15:
 	movq	-24(%rbp), %rax
 	movl	8(%rax), %eax
 	.loc 1 37 18
@@ -367,14 +199,8 @@ _ZN14FunctionLoggerD2Ev:
 	.size	_ZN14FunctionLoggerD2Ev, .-_ZN14FunctionLoggerD2Ev
 	.globl	_ZN14FunctionLoggerD1Ev
 	.set	_ZN14FunctionLoggerD1Ev,_ZN14FunctionLoggerD2Ev
-	.section	.rodata
-	.align 8
-.LC4:
-	.string	"../ATC/Logger/FunctionLogger.cpp"
-	.text
 	.type	_Z41__static_initialization_and_destruction_0ii, @function
 _Z41__static_initialization_and_destruction_0ii:
-.LASANPC2942:
 .LFB2942:
 	.loc 1 40 5
 	.cfi_startproc
@@ -389,13 +215,10 @@ _Z41__static_initialization_and_destruction_0ii:
 	movl	%esi, -8(%rbp)
 	.loc 1 40 5
 	cmpl	$1, -4(%rbp)
-	jne	.L19
+	jne	.L8
 	.loc 1 40 5 is_stmt 0 discriminator 1
-	leaq	.LC4(%rip), %rax
-	movq	%rax, %rdi
-	call	__asan_before_dynamic_init@PLT
 	cmpl	$65535, -8(%rbp)
-	jne	.L18
+	jne	.L8
 	.file 2 "/usr/include/c++/11/iostream"
 	.loc 2 74 25 is_stmt 1
 	leaq	_ZStL8__ioinit(%rip), %rax
@@ -408,11 +231,8 @@ _Z41__static_initialization_and_destruction_0ii:
 	movq	_ZNSt8ios_base4InitD1Ev@GOTPCREL(%rip), %rax
 	movq	%rax, %rdi
 	call	__cxa_atexit@PLT
-.L18:
-	.loc 2 74 25 is_stmt 0 discriminator 1
-	call	__asan_after_dynamic_init@PLT
-.L19:
-	.loc 1 40 5 is_stmt 1
+.L8:
+	.loc 1 40 5
 	nop
 	leave
 	.cfi_def_cfa 7, 8
@@ -422,7 +242,6 @@ _Z41__static_initialization_and_destruction_0ii:
 	.size	_Z41__static_initialization_and_destruction_0ii, .-_Z41__static_initialization_and_destruction_0ii
 	.type	_GLOBAL__sub_I__ZN14FunctionLoggerC2EiPKc, @function
 _GLOBAL__sub_I__ZN14FunctionLoggerC2EiPKc:
-.LASANPC2943:
 .LFB2943:
 	.loc 1 40 5
 	.cfi_startproc
@@ -445,144 +264,6 @@ _GLOBAL__sub_I__ZN14FunctionLoggerC2EiPKc:
 	.section	.init_array,"aw"
 	.align 8
 	.quad	_GLOBAL__sub_I__ZN14FunctionLoggerC2EiPKc
-	.section	.rodata
-.LC5:
-	.string	"../ATC/Logger/LogConfig.h"
-	.section	.data.rel.local,"aw"
-	.align 16
-	.type	.LASANLOC1, @object
-	.size	.LASANLOC1, 16
-.LASANLOC1:
-	.quad	.LC5
-	.long	3
-	.long	12
-	.section	.rodata
-.LC6:
-	.string	"/usr/include/c++/11/iostream"
-	.section	.data.rel.local
-	.align 16
-	.type	.LASANLOC2, @object
-	.size	.LASANLOC2, 16
-.LASANLOC2:
-	.quad	.LC6
-	.long	74
-	.long	25
-	.section	.rodata
-.LC7:
-	.string	"STD_LOG_NAME"
-.LC8:
-	.string	"__ioinit"
-.LC9:
-	.string	"*.LC1"
-.LC10:
-	.string	"*.LC0"
-.LC11:
-	.string	"*.LC2"
-.LC12:
-	.string	"*.LC3"
-	.section	.data.rel.local
-	.align 32
-	.type	.LASAN0, @object
-	.size	.LASAN0, 384
-.LASAN0:
-	.quad	_ZL12STD_LOG_NAME
-	.quad	18
-	.quad	64
-	.quad	.LC7
-	.quad	.LC4
-	.quad	0
-	.quad	.LASANLOC1
-	.quad	0
-	.quad	_ZStL8__ioinit
-	.quad	1
-	.quad	64
-	.quad	.LC8
-	.quad	.LC4
-	.quad	1
-	.quad	.LASANLOC2
-	.quad	0
-	.quad	.LC1
-	.quad	6
-	.quad	64
-	.quad	.LC9
-	.quad	.LC4
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC0
-	.quad	8
-	.quad	64
-	.quad	.LC10
-	.quad	.LC4
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC2
-	.quad	3
-	.quad	64
-	.quad	.LC11
-	.quad	.LC4
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC3
-	.quad	4
-	.quad	64
-	.quad	.LC12
-	.quad	.LC4
-	.quad	0
-	.quad	0
-	.quad	0
-	.text
-	.type	_sub_D_00099_0, @function
-_sub_D_00099_0:
-.LFB2944:
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movl	$6, %esi
-	leaq	.LASAN0(%rip), %rax
-	movq	%rax, %rdi
-	call	__asan_unregister_globals@PLT
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2944:
-	.size	_sub_D_00099_0, .-_sub_D_00099_0
-	.section	.fini_array.00099,"aw"
-	.align 8
-	.quad	_sub_D_00099_0
-	.text
-	.type	_sub_I_00099_1, @function
-_sub_I_00099_1:
-.LFB2945:
-	.cfi_startproc
-	endbr64
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	call	__asan_init@PLT
-	call	__asan_version_mismatch_check_v8@PLT
-	movl	$6, %esi
-	leaq	.LASAN0(%rip), %rax
-	movq	%rax, %rdi
-	call	__asan_register_globals@PLT
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2945:
-	.size	_sub_I_00099_1, .-_sub_I_00099_1
-	.section	.init_array.00099,"aw"
-	.align 8
-	.quad	_sub_I_00099_1
 	.text
 .Letext0:
 	.file 3 "<built-in>"
@@ -6541,8 +6222,8 @@ _sub_I_00099_1:
 	.string	"int_p_cs_precedes"
 .LASF64:
 	.string	"_ZNSt15__exception_ptr13exception_ptrC4EPv"
-.LASF301:
-	.string	"strtoull"
+.LASF353:
+	.string	"_ZN14FunctionLoggerC4EiPKc"
 .LASF162:
 	.string	"wcsxfrm"
 .LASF61:
@@ -6651,8 +6332,8 @@ _sub_I_00099_1:
 	.string	"current_indent"
 .LASF17:
 	.string	"__count"
-.LASF353:
-	.string	"_ZN14FunctionLoggerC4EiPKc"
+.LASF374:
+	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF132:
 	.string	"wcscat"
 .LASF240:
@@ -7019,8 +6700,6 @@ _sub_I_00099_1:
 	.string	"_ZN6Logger8setlevelEi"
 .LASF87:
 	.string	"__detail"
-.LASF374:
-	.string	"GNU C++20 11.3.0 -mtune=generic -march=x86-64 -g -std=c++20 -fstrict-overflow -fstack-protector -fcheck-new -fsized-deallocation -fno-omit-frame-pointer -fPIE -fsanitize=address,leak -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection"
 .LASF154:
 	.string	"wcsrtombs"
 .LASF244:
@@ -7213,6 +6892,8 @@ _sub_I_00099_1:
 	.string	"wcstoll"
 .LASF45:
 	.string	"_codecvt"
+.LASF301:
+	.string	"strtoull"
 .LASF145:
 	.string	"tm_wday"
 .LASF100:
