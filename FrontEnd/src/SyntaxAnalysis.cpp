@@ -73,21 +73,26 @@ static Token* GetN     (ProgramCtx* program_ctx);
 #define token         ((POSITION(program_ctx) < SIZE(program_ctx)) ? (PROGRAM(program_ctx)->token_arr + POSITION(program_ctx)) : nullptr )
 #define current_token *(root + number_of_functions)
 
-#define report_syntax_error(format, ...)                                    \
-        do                                                                  \
-            {                                                               \
-            printf(redcolor "Syntax ERORR\n" bluecolor);                    \
-            logf("Syntax ERROR\n");                                         \
-            logf("");                                                       \
-            LOG__.log_dup_console(format __VA_OPT__(,) __VA_ARGS__);        \
-            printf("In: " purplecolor);                                     \
-            printf("%s:%d:%d\n" cyancolor, PROGRAM(program_ctx)-> path_to_src_file, \
-                                           token->line, token->indent);     \
-            printl(token->ptr_to_src_code, '\n');                           \
-            printf(resetconsole "\n");                                      \
-            printf("%s:%d, %s\n", __FILE__, __LINE__, __func__);            \
-            PrintToken(token, STRING_ARR(program_ctx));                     \
-            }                                                               \
+#define report_syntax_error(format, ...)                                        \
+        do                                                                      \
+            {                                                                   \
+            printf(redcolor "Syntax ERORR\n" bluecolor);                        \
+            logf("Syntax ERROR\n");                                             \
+            logf("");                                                           \
+            LOG__.log_dup_console(format __VA_OPT__(,) __VA_ARGS__);            \
+            if (!token)                                                         \
+                printf("Nill token\n");                                         \
+            else                                                                \
+                {                                                               \
+                printf("In: " purplecolor);                                     \
+                printf("%s:%d:%d\n" cyancolor, PROGRAM(program_ctx)-> path_to_src_file, \
+                                               token->line, token->indent);     \
+                printl(token->ptr_to_src_code, '\n');                           \
+                printf(resetconsole "\n");                                      \
+                printf("%s:%d, %s\n", __FILE__, __LINE__, __func__);            \
+                PrintToken(token, STRING_ARR(program_ctx));                     \
+                }                                                               \
+            }                                                                   \
         while(0);
 
 #define MISSING_EOS()   report_syntax_error("Missing '%c'\n", END_OF_STATEMENT)
@@ -143,6 +148,10 @@ int GetG (Program* program)
         report_syntax_error("Invalid number of tokens: %d (size %d)\n", POSITION(program_ctx), SIZE(program_ctx));
         goto FAIL_EXIT;
         }
+
+    // check for function declaration and main
+    if (CheckForMainAndDeclaration(FUNC_TABEL(program_ctx), program->string_arr, program->number_of_strings) != SUCCESS)
+        goto FAIL_EXIT;
 
     // STAFF ROOM
     ProgramCtxDtor(program_ctx);
@@ -318,18 +327,26 @@ static Token* GetFunction (ProgramCtx* program_ctx)
     FuncLabel* label = *(FUNC_TABEL(program_ctx)->label_arr + func_label_position);
     program_ctx->current_func_label = func_label_position;
 
+    if (!label)
+        {
+        report_syntax_error("something went wrong, null label (position %d)\n", func_label_position);
+        return NULL;
+        }
+
     $lzu(FUNC_TABEL(program_ctx)->number_of_labels)
     $lzu(program_ctx->current_func_label)
 
+    {
     Token* body = GetBlock(program_ctx);
 
     if (!body)
-        return NULL;
+        goto FAIL_EXIT;
 
     if (label->number_of_return < 1)
         {
+        // printf("label %p, string_arr: %p, label->name %d     \n", label, STRING_ARR(program_ctx), label->name);
         report_syntax_error("No return in function %s\n", STRING_ARR(program_ctx)[label->name]);
-        return NULL;
+        goto FAIL_EXIT;
         }
 
     // THIS is костыль, I need extra token for statement
@@ -338,7 +355,7 @@ static Token* GetFunction (ProgramCtx* program_ctx)
     if (TYPE(token) != BLOCK_CLOSING_BRACKET)
         {
         report_syntax_error("This is костыль, prev token HAVE to be '}'\n");
-        return NULL;
+        goto FAIL_EXIT;
         }
 
     Token* statement = token;
@@ -353,6 +370,11 @@ static Token* GetFunction (ProgramCtx* program_ctx)
     label->body_status = DECLARED;
 
     return statement;
+    }
+
+    FAIL_EXIT:
+
+    return NULL;
     }
 
 // MUST use FIRST bracket as statement (cause GetFunction, GetStatement uses second one)

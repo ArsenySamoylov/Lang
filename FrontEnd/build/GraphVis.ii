@@ -3213,6 +3213,8 @@ enum OPERATOR_NUM
 
 const char COMMENT = '#';
 
+const char *const MAIN_NAME = "main";
+
 const int MAX_FUNCTION_NAME_LENGTH = 16;
 const int MAX_WORD_LENGTH = 16;
 # 7 "../Common/Utils/GraphVis.cpp" 2

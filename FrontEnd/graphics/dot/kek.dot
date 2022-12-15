@@ -2,287 +2,339 @@
 digraph 
 {
 rankdir = TB # RANKDIR
-		node_0x621000003a70 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {]}"]
-		node_0x621000002ab0 [style = filled, fillcolor = "#FF6666", shape = Mrecord label =  "FUNCTION | {)}"]
-		node_0x621000002a50 [style = filled, fillcolor = "#E0FFFF", shape = Mrecord label =  "NAME | {main}"]
-		node_0x621000002a20 [style = filled, fillcolor = "#FFFFE0", shape = Mrecord label =  "FUNCTION_RET_TYPE | {double}"]
+		node_0x622000001360 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {]}"]
+		node_0x6220000002b0 [style = filled, fillcolor = "#FF6666", shape = Mrecord label =  "FUNCTION | {)}"]
+		node_0x622000000250 [style = filled, fillcolor = "#E0FFFF", shape = Mrecord label =  "NAME | {main}"]
+		node_0x622000000220 [style = filled, fillcolor = "#FFFFE0", shape = Mrecord label =  "FUNCTION_RET_TYPE | {double}"]
 		nil_0 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002a20 -> nil_0 
+		node_0x622000000220 -> nil_0 
 		nil_1 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002a20 -> nil_1 
-		node_0x621000002a50 -> node_0x621000002a20 [label = "right"]
+		node_0x622000000220 -> nil_1 
+		node_0x622000000250 -> node_0x622000000220 [label = "right"]
 		nil_2 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002a50 -> nil_2 
-		node_0x621000002ab0 -> node_0x621000002a50 [label = "left"]
-		node_0x621000002bd0 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
-		node_0x621000002b10 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
-		node_0x621000002b40 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {x}"]
+		node_0x622000000250 -> nil_2 
+		node_0x6220000002b0 -> node_0x622000000250 [label = "left"]
+		node_0x6220000003d0 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x622000000310 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
+		node_0x622000000340 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {main}"]
 		nil_3 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002b40 -> nil_3 
+		node_0x622000000340 -> nil_3 
 		nil_4 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002b40 -> nil_4 
-		node_0x621000002b10 -> node_0x621000002b40 [label = "left"]
-		node_0x621000002ba0 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {2}"]
+		node_0x622000000340 -> nil_4 
+		node_0x622000000310 -> node_0x622000000340 [label = "left"]
+		node_0x6220000003a0 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {2}"]
 		nil_5 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002ba0 -> nil_5 
+		node_0x6220000003a0 -> nil_5 
 		nil_6 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002ba0 -> nil_6 
-		node_0x621000002b10 -> node_0x621000002ba0 [label = "right"]
-		node_0x621000002bd0 -> node_0x621000002b10 [label = "left"]
-		node_0x621000002cc0 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
-		node_0x621000002c00 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
-		node_0x621000002c30 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {y}"]
+		node_0x6220000003a0 -> nil_6 
+		node_0x622000000310 -> node_0x6220000003a0 [label = "right"]
+		node_0x6220000003d0 -> node_0x622000000310 [label = "left"]
+		node_0x6220000004c0 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x622000000400 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
+		node_0x622000000430 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {y}"]
 		nil_7 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002c30 -> nil_7 
+		node_0x622000000430 -> nil_7 
 		nil_8 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002c30 -> nil_8 
-		node_0x621000002c00 -> node_0x621000002c30 [label = "left"]
-		node_0x621000002c90 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {4}"]
+		node_0x622000000430 -> nil_8 
+		node_0x622000000400 -> node_0x622000000430 [label = "left"]
+		node_0x622000000490 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {4}"]
 		nil_9 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002c90 -> nil_9 
+		node_0x622000000490 -> nil_9 
 		nil_10 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002c90 -> nil_10 
-		node_0x621000002c00 -> node_0x621000002c90 [label = "right"]
-		node_0x621000002cc0 -> node_0x621000002c00 [label = "left"]
-		node_0x621000002db0 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
-		node_0x621000002cf0 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
-		node_0x621000002d20 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {z}"]
+		node_0x622000000490 -> nil_10 
+		node_0x622000000400 -> node_0x622000000490 [label = "right"]
+		node_0x6220000004c0 -> node_0x622000000400 [label = "left"]
+		node_0x6220000005b0 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x6220000004f0 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
+		node_0x622000000520 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {z}"]
 		nil_11 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002d20 -> nil_11 
+		node_0x622000000520 -> nil_11 
 		nil_12 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002d20 -> nil_12 
-		node_0x621000002cf0 -> node_0x621000002d20 [label = "left"]
-		node_0x621000002d80 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {5}"]
+		node_0x622000000520 -> nil_12 
+		node_0x6220000004f0 -> node_0x622000000520 [label = "left"]
+		node_0x622000000580 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {5}"]
 		nil_13 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002d80 -> nil_13 
+		node_0x622000000580 -> nil_13 
 		nil_14 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002d80 -> nil_14 
-		node_0x621000002cf0 -> node_0x621000002d80 [label = "right"]
-		node_0x621000002db0 -> node_0x621000002cf0 [label = "left"]
-		node_0x621000003260 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {]}"]
-		node_0x621000002ed0 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
-		node_0x621000002e10 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
-		node_0x621000002e40 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {x}"]
+		node_0x622000000580 -> nil_14 
+		node_0x6220000004f0 -> node_0x622000000580 [label = "right"]
+		node_0x6220000005b0 -> node_0x6220000004f0 [label = "left"]
+		node_0x6220000006a0 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x6220000005e0 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
+		node_0x622000000610 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {x}"]
 		nil_15 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002e40 -> nil_15 
+		node_0x622000000610 -> nil_15 
 		nil_16 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002e40 -> nil_16 
-		node_0x621000002e10 -> node_0x621000002e40 [label = "left"]
-		node_0x621000002ea0 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {5}"]
+		node_0x622000000610 -> nil_16 
+		node_0x6220000005e0 -> node_0x622000000610 [label = "left"]
+		node_0x622000000670 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {0}"]
 		nil_17 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002ea0 -> nil_17 
+		node_0x622000000670 -> nil_17 
 		nil_18 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002ea0 -> nil_18 
-		node_0x621000002e10 -> node_0x621000002ea0 [label = "right"]
-		node_0x621000002ed0 -> node_0x621000002e10 [label = "left"]
-		node_0x621000003050 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
-		node_0x621000002f30 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "ASSIGMENT | {=}"]
-		node_0x621000002f00 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {x}"]
+		node_0x622000000670 -> nil_18 
+		node_0x6220000005e0 -> node_0x622000000670 [label = "right"]
+		node_0x6220000006a0 -> node_0x6220000005e0 [label = "left"]
+		node_0x622000000b50 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {]}"]
+		node_0x6220000007c0 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x622000000700 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
+		node_0x622000000730 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {x}"]
 		nil_19 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002f00 -> nil_19 
+		node_0x622000000730 -> nil_19 
 		nil_20 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002f00 -> nil_20 
-		node_0x621000002f30 -> node_0x621000002f00 [label = "left"]
-		node_0x621000002ff0 [style = filled, fillcolor = "#FFE0FF", shape = Mrecord label =  "OPERATOR | {/}"]
-		node_0x621000002f90 [style = filled, fillcolor = "#FFE0FF", shape = Mrecord label =  "OPERATOR | {*}"]
-		node_0x621000002f60 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {5}"]
+		node_0x622000000730 -> nil_20 
+		node_0x622000000700 -> node_0x622000000730 [label = "left"]
+		node_0x622000000790 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {5}"]
 		nil_21 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002f60 -> nil_21 
+		node_0x622000000790 -> nil_21 
 		nil_22 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002f60 -> nil_22 
-		node_0x621000002f90 -> node_0x621000002f60 [label = "left"]
-		node_0x621000002fc0 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {7}"]
+		node_0x622000000790 -> nil_22 
+		node_0x622000000700 -> node_0x622000000790 [label = "right"]
+		node_0x6220000007c0 -> node_0x622000000700 [label = "left"]
+		node_0x622000000940 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x622000000820 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "ASSIGMENT | {=}"]
+		node_0x6220000007f0 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {x}"]
 		nil_23 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002fc0 -> nil_23 
+		node_0x6220000007f0 -> nil_23 
 		nil_24 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000002fc0 -> nil_24 
-		node_0x621000002f90 -> node_0x621000002fc0 [label = "right"]
-		node_0x621000002ff0 -> node_0x621000002f90 [label = "left"]
-		node_0x621000003020 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {3}"]
+		node_0x6220000007f0 -> nil_24 
+		node_0x622000000820 -> node_0x6220000007f0 [label = "left"]
+		node_0x6220000008e0 [style = filled, fillcolor = "#FFE0FF", shape = Mrecord label =  "OPERATOR | {/}"]
+		node_0x622000000880 [style = filled, fillcolor = "#FFE0FF", shape = Mrecord label =  "OPERATOR | {*}"]
+		node_0x622000000850 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {5}"]
 		nil_25 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003020 -> nil_25 
+		node_0x622000000850 -> nil_25 
 		nil_26 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003020 -> nil_26 
-		node_0x621000002ff0 -> node_0x621000003020 [label = "right"]
-		node_0x621000002f30 -> node_0x621000002ff0 [label = "right"]
-		node_0x621000003050 -> node_0x621000002f30 [label = "left"]
-		node_0x621000003140 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
-		node_0x621000003080 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
-		node_0x6210000030b0 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {y}"]
+		node_0x622000000850 -> nil_26 
+		node_0x622000000880 -> node_0x622000000850 [label = "left"]
+		node_0x6220000008b0 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {7}"]
 		nil_27 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000030b0 -> nil_27 
+		node_0x6220000008b0 -> nil_27 
 		nil_28 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000030b0 -> nil_28 
-		node_0x621000003080 -> node_0x6210000030b0 [label = "left"]
-		node_0x621000003110 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {5}"]
+		node_0x6220000008b0 -> nil_28 
+		node_0x622000000880 -> node_0x6220000008b0 [label = "right"]
+		node_0x6220000008e0 -> node_0x622000000880 [label = "left"]
+		node_0x622000000910 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {3}"]
 		nil_29 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003110 -> nil_29 
+		node_0x622000000910 -> nil_29 
 		nil_30 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003110 -> nil_30 
-		node_0x621000003080 -> node_0x621000003110 [label = "right"]
-		node_0x621000003140 -> node_0x621000003080 [label = "left"]
-		node_0x621000003230 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
-		node_0x621000003170 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
-		node_0x6210000031a0 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {z}"]
+		node_0x622000000910 -> nil_30 
+		node_0x6220000008e0 -> node_0x622000000910 [label = "right"]
+		node_0x622000000820 -> node_0x6220000008e0 [label = "right"]
+		node_0x622000000940 -> node_0x622000000820 [label = "left"]
+		node_0x622000000a30 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x622000000970 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
+		node_0x6220000009a0 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {y}"]
 		nil_31 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000031a0 -> nil_31 
+		node_0x6220000009a0 -> nil_31 
 		nil_32 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000031a0 -> nil_32 
-		node_0x621000003170 -> node_0x6210000031a0 [label = "left"]
-		node_0x621000003200 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {3}"]
+		node_0x6220000009a0 -> nil_32 
+		node_0x622000000970 -> node_0x6220000009a0 [label = "left"]
+		node_0x622000000a00 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {5}"]
 		nil_33 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003200 -> nil_33 
+		node_0x622000000a00 -> nil_33 
 		nil_34 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003200 -> nil_34 
-		node_0x621000003170 -> node_0x621000003200 [label = "right"]
-		node_0x621000003230 -> node_0x621000003170 [label = "left"]
+		node_0x622000000a00 -> nil_34 
+		node_0x622000000970 -> node_0x622000000a00 [label = "right"]
+		node_0x622000000a30 -> node_0x622000000970 [label = "left"]
+		node_0x622000000b20 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x622000000a60 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
+		node_0x622000000a90 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {z}"]
 		nil_35 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003230 -> nil_35 
-		node_0x621000003140 -> node_0x621000003230 [label = "right"]
-		node_0x621000003050 -> node_0x621000003140 [label = "right"]
-		node_0x621000002ed0 -> node_0x621000003050 [label = "right"]
-		node_0x621000003260 -> node_0x621000002ed0 [label = "left"]
-		node_0x6210000032c0 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {(}"]
-		node_0x621000003290 [style = filled, fillcolor = "#FFE0E0", shape = Mrecord label =  "INSTRUCTION | {if}"]
-		node_0x6210000032f0 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {y}"]
+		node_0x622000000a90 -> nil_35 
 		nil_36 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000032f0 -> nil_36 
+		node_0x622000000a90 -> nil_36 
+		node_0x622000000a60 -> node_0x622000000a90 [label = "left"]
+		node_0x622000000af0 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {3}"]
 		nil_37 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000032f0 -> nil_37 
-		node_0x621000003290 -> node_0x6210000032f0 [label = "left"]
-		node_0x621000003650 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {]}"]
-		node_0x621000003440 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
-		node_0x621000003380 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
-		node_0x6210000033b0 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {x}"]
+		node_0x622000000af0 -> nil_37 
 		nil_38 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000033b0 -> nil_38 
+		node_0x622000000af0 -> nil_38 
+		node_0x622000000a60 -> node_0x622000000af0 [label = "right"]
+		node_0x622000000b20 -> node_0x622000000a60 [label = "left"]
 		nil_39 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000033b0 -> nil_39 
-		node_0x621000003380 -> node_0x6210000033b0 [label = "left"]
-		node_0x621000003410 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {10}"]
+		node_0x622000000b20 -> nil_39 
+		node_0x622000000a30 -> node_0x622000000b20 [label = "right"]
+		node_0x622000000940 -> node_0x622000000a30 [label = "right"]
+		node_0x6220000007c0 -> node_0x622000000940 [label = "right"]
+		node_0x622000000b50 -> node_0x6220000007c0 [label = "left"]
+		node_0x622000000bb0 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {(}"]
+		node_0x622000000b80 [style = filled, fillcolor = "#FFE0E0", shape = Mrecord label =  "INSTRUCTION | {if}"]
+		node_0x622000000be0 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {y}"]
 		nil_40 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003410 -> nil_40 
+		node_0x622000000be0 -> nil_40 
 		nil_41 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003410 -> nil_41 
-		node_0x621000003380 -> node_0x621000003410 [label = "right"]
-		node_0x621000003440 -> node_0x621000003380 [label = "left"]
-		node_0x621000003530 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
-		node_0x621000003470 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
-		node_0x6210000034a0 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {y}"]
+		node_0x622000000be0 -> nil_41 
+		node_0x622000000b80 -> node_0x622000000be0 [label = "left"]
+		node_0x622000000f40 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {]}"]
+		node_0x622000000d30 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x622000000c70 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
+		node_0x622000000ca0 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {x}"]
 		nil_42 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000034a0 -> nil_42 
+		node_0x622000000ca0 -> nil_42 
 		nil_43 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000034a0 -> nil_43 
-		node_0x621000003470 -> node_0x6210000034a0 [label = "left"]
-		node_0x621000003500 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {2}"]
+		node_0x622000000ca0 -> nil_43 
+		node_0x622000000c70 -> node_0x622000000ca0 [label = "left"]
+		node_0x622000000d00 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {10}"]
 		nil_44 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003500 -> nil_44 
+		node_0x622000000d00 -> nil_44 
 		nil_45 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003500 -> nil_45 
-		node_0x621000003470 -> node_0x621000003500 [label = "right"]
-		node_0x621000003530 -> node_0x621000003470 [label = "left"]
-		node_0x621000003620 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
-		node_0x621000003560 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
-		node_0x621000003590 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {z}"]
+		node_0x622000000d00 -> nil_45 
+		node_0x622000000c70 -> node_0x622000000d00 [label = "right"]
+		node_0x622000000d30 -> node_0x622000000c70 [label = "left"]
+		node_0x622000000e20 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x622000000d60 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
+		node_0x622000000d90 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {y}"]
 		nil_46 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003590 -> nil_46 
+		node_0x622000000d90 -> nil_46 
 		nil_47 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003590 -> nil_47 
-		node_0x621000003560 -> node_0x621000003590 [label = "left"]
-		node_0x6210000035f0 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {0}"]
+		node_0x622000000d90 -> nil_47 
+		node_0x622000000d60 -> node_0x622000000d90 [label = "left"]
+		node_0x622000000df0 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {2}"]
 		nil_48 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000035f0 -> nil_48 
+		node_0x622000000df0 -> nil_48 
 		nil_49 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000035f0 -> nil_49 
-		node_0x621000003560 -> node_0x6210000035f0 [label = "right"]
-		node_0x621000003620 -> node_0x621000003560 [label = "left"]
+		node_0x622000000df0 -> nil_49 
+		node_0x622000000d60 -> node_0x622000000df0 [label = "right"]
+		node_0x622000000e20 -> node_0x622000000d60 [label = "left"]
+		node_0x622000000f10 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x622000000e50 [style = filled, fillcolor = "#E0E0FF", shape = Mrecord label =  "INITIALIZATOR | {var}"]
+		node_0x622000000e80 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {z}"]
 		nil_50 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003620 -> nil_50 
-		node_0x621000003530 -> node_0x621000003620 [label = "right"]
-		node_0x621000003440 -> node_0x621000003530 [label = "right"]
-		node_0x621000003650 -> node_0x621000003440 [label = "left"]
+		node_0x622000000e80 -> nil_50 
 		nil_51 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003650 -> nil_51 
-		node_0x621000003290 -> node_0x621000003650 [label = "right"]
-		node_0x6210000032c0 -> node_0x621000003290 [label = "left"]
-		node_0x621000003710 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
-		node_0x621000003680 [style = filled, fillcolor = "#FFFF99", shape = Mrecord label =  "NATIVE_FUNCTION | {fout}"]
-		node_0x6210000036e0 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {x}"]
+		node_0x622000000e80 -> nil_51 
+		node_0x622000000e50 -> node_0x622000000e80 [label = "left"]
+		node_0x622000000ee0 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {0}"]
 		nil_52 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000036e0 -> nil_52 
+		node_0x622000000ee0 -> nil_52 
 		nil_53 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000036e0 -> nil_53 
-		node_0x621000003680 -> node_0x6210000036e0 [label = "left"]
+		node_0x622000000ee0 -> nil_53 
+		node_0x622000000e50 -> node_0x622000000ee0 [label = "right"]
+		node_0x622000000f10 -> node_0x622000000e50 [label = "left"]
 		nil_54 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003680 -> nil_54 
-		node_0x621000003710 -> node_0x621000003680 [label = "left"]
-		node_0x621000003770 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {(}"]
-		node_0x6210000037d0 [style = filled, fillcolor = "#FF9999", shape = Mrecord label =  "CALL | {;}"]
-		node_0x621000003740 [style = filled, fillcolor = "#E0FFFF", shape = Mrecord label =  "NAME | {helloworld}"]
+		node_0x622000000f10 -> nil_54 
+		node_0x622000000e20 -> node_0x622000000f10 [label = "right"]
+		node_0x622000000d30 -> node_0x622000000e20 [label = "right"]
+		node_0x622000000f40 -> node_0x622000000d30 [label = "left"]
 		nil_55 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003740 -> nil_55 
+		node_0x622000000f40 -> nil_55 
+		node_0x622000000b80 -> node_0x622000000f40 [label = "right"]
+		node_0x622000000bb0 -> node_0x622000000b80 [label = "left"]
+		node_0x622000001000 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x622000000f70 [style = filled, fillcolor = "#FFFF99", shape = Mrecord label =  "NATIVE_FUNCTION | {fout}"]
+		node_0x622000000fd0 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {x}"]
 		nil_56 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003740 -> nil_56 
-		node_0x6210000037d0 -> node_0x621000003740 [label = "left"]
+		node_0x622000000fd0 -> nil_56 
 		nil_57 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000037d0 -> nil_57 
-		node_0x621000003770 -> node_0x6210000037d0 [label = "left"]
-		node_0x6210000039b0 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
-		node_0x621000003830 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "ASSIGMENT | {=}"]
-		node_0x621000003800 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {x}"]
+		node_0x622000000fd0 -> nil_57 
+		node_0x622000000f70 -> node_0x622000000fd0 [label = "left"]
 		nil_58 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003800 -> nil_58 
+		node_0x622000000f70 -> nil_58 
+		node_0x622000001000 -> node_0x622000000f70 [label = "left"]
+		node_0x622000001060 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {(}"]
+		node_0x6220000010c0 [style = filled, fillcolor = "#FF9999", shape = Mrecord label =  "CALL | {;}"]
+		node_0x622000001030 [style = filled, fillcolor = "#E0FFFF", shape = Mrecord label =  "NAME | {helloworld}"]
 		nil_59 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003800 -> nil_59 
-		node_0x621000003830 -> node_0x621000003800 [label = "left"]
-		node_0x621000003890 [style = filled, fillcolor = "#FFE0FF", shape = Mrecord label =  "OPERATOR | {*}"]
-		node_0x621000003860 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {1}"]
+		node_0x622000001030 -> nil_59 
 		nil_60 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003860 -> nil_60 
+		node_0x622000001030 -> nil_60 
+		node_0x6220000010c0 -> node_0x622000001030 [label = "left"]
 		nil_61 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003860 -> nil_61 
-		node_0x621000003890 -> node_0x621000003860 [label = "left"]
-		node_0x621000003920 [style = filled, fillcolor = "#FFE0FF", shape = Mrecord label =  "OPERATOR | {+}"]
-		node_0x6210000038f0 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {4}"]
+		node_0x6220000010c0 -> nil_61 
+		node_0x622000001060 -> node_0x6220000010c0 [label = "left"]
+		node_0x6220000012a0 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x622000001120 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "ASSIGMENT | {=}"]
+		node_0x6220000010f0 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {x}"]
 		nil_62 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000038f0 -> nil_62 
+		node_0x6220000010f0 -> nil_62 
 		nil_63 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000038f0 -> nil_63 
-		node_0x621000003920 -> node_0x6210000038f0 [label = "left"]
-		node_0x621000003950 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {5}"]
+		node_0x6220000010f0 -> nil_63 
+		node_0x622000001120 -> node_0x6220000010f0 [label = "left"]
+		node_0x622000001180 [style = filled, fillcolor = "#FFE0FF", shape = Mrecord label =  "OPERATOR | {*}"]
+		node_0x622000001150 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {1}"]
 		nil_64 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003950 -> nil_64 
+		node_0x622000001150 -> nil_64 
 		nil_65 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003950 -> nil_65 
-		node_0x621000003920 -> node_0x621000003950 [label = "right"]
-		node_0x621000003890 -> node_0x621000003920 [label = "right"]
-		node_0x621000003830 -> node_0x621000003890 [label = "right"]
-		node_0x6210000039b0 -> node_0x621000003830 [label = "left"]
-		node_0x621000003a40 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
-		node_0x6210000039e0 [style = filled, fillcolor = "#FFE0E0", shape = Mrecord label =  "INSTRUCTION | {return}"]
-		node_0x621000003a10 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {y}"]
+		node_0x622000001150 -> nil_65 
+		node_0x622000001180 -> node_0x622000001150 [label = "left"]
+		node_0x622000001210 [style = filled, fillcolor = "#FFE0FF", shape = Mrecord label =  "OPERATOR | {+}"]
+		node_0x6220000011e0 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {4}"]
 		nil_66 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003a10 -> nil_66 
+		node_0x6220000011e0 -> nil_66 
 		nil_67 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003a10 -> nil_67 
-		node_0x6210000039e0 -> node_0x621000003a10 [label = "left"]
+		node_0x6220000011e0 -> nil_67 
+		node_0x622000001210 -> node_0x6220000011e0 [label = "left"]
+		node_0x622000001240 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {5}"]
 		nil_68 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x6210000039e0 -> nil_68 
-		node_0x621000003a40 -> node_0x6210000039e0 [label = "left"]
+		node_0x622000001240 -> nil_68 
 		nil_69 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003a40 -> nil_69 
-		node_0x6210000039b0 -> node_0x621000003a40 [label = "right"]
-		node_0x621000003770 -> node_0x6210000039b0 [label = "right"]
-		node_0x621000003710 -> node_0x621000003770 [label = "right"]
-		node_0x6210000032c0 -> node_0x621000003710 [label = "right"]
-		node_0x621000003260 -> node_0x6210000032c0 [label = "right"]
-		node_0x621000002db0 -> node_0x621000003260 [label = "right"]
-		node_0x621000002cc0 -> node_0x621000002db0 [label = "right"]
-		node_0x621000002bd0 -> node_0x621000002cc0 [label = "right"]
-		node_0x621000002ab0 -> node_0x621000002bd0 [label = "right"]
-		node_0x621000003a70 -> node_0x621000002ab0 [label = "left"]
+		node_0x622000001240 -> nil_69 
+		node_0x622000001210 -> node_0x622000001240 [label = "right"]
+		node_0x622000001180 -> node_0x622000001210 [label = "right"]
+		node_0x622000001120 -> node_0x622000001180 [label = "right"]
+		node_0x6220000012a0 -> node_0x622000001120 [label = "left"]
+		node_0x622000001330 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x6220000012d0 [style = filled, fillcolor = "#FFE0E0", shape = Mrecord label =  "INSTRUCTION | {return}"]
+		node_0x622000001300 [style = filled, fillcolor = "#E0E0E0", shape = Mrecord label =  "VARIABLE | {y}"]
 		nil_70 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
-		node_0x621000003a70 -> nil_70 
+		node_0x622000001300 -> nil_70 
+		nil_71 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
+		node_0x622000001300 -> nil_71 
+		node_0x6220000012d0 -> node_0x622000001300 [label = "left"]
+		nil_72 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
+		node_0x6220000012d0 -> nil_72 
+		node_0x622000001330 -> node_0x6220000012d0 [label = "left"]
+		nil_73 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
+		node_0x622000001330 -> nil_73 
+		node_0x6220000012a0 -> node_0x622000001330 [label = "right"]
+		node_0x622000001060 -> node_0x6220000012a0 [label = "right"]
+		node_0x622000001000 -> node_0x622000001060 [label = "right"]
+		node_0x622000000bb0 -> node_0x622000001000 [label = "right"]
+		node_0x622000000b50 -> node_0x622000000bb0 [label = "right"]
+		node_0x6220000006a0 -> node_0x622000000b50 [label = "right"]
+		node_0x6220000005b0 -> node_0x6220000006a0 [label = "right"]
+		node_0x6220000004c0 -> node_0x6220000005b0 [label = "right"]
+		node_0x6220000003d0 -> node_0x6220000004c0 [label = "right"]
+		node_0x6220000002b0 -> node_0x6220000003d0 [label = "right"]
+		node_0x622000001360 -> node_0x6220000002b0 [label = "left"]
+		node_0x6220000015a0 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {]}"]
+		node_0x622000001420 [style = filled, fillcolor = "#FF6666", shape = Mrecord label =  "FUNCTION | {)}"]
+		node_0x6220000013c0 [style = filled, fillcolor = "#E0FFFF", shape = Mrecord label =  "NAME | {helloworld}"]
+		node_0x622000001390 [style = filled, fillcolor = "#FFFFE0", shape = Mrecord label =  "FUNCTION_RET_TYPE | {void}"]
+		nil_74 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
+		node_0x622000001390 -> nil_74 
+		nil_75 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
+		node_0x622000001390 -> nil_75 
+		node_0x6220000013c0 -> node_0x622000001390 [label = "right"]
+		nil_76 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
+		node_0x6220000013c0 -> nil_76 
+		node_0x622000001420 -> node_0x6220000013c0 [label = "left"]
+		node_0x622000001510 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x622000001480 [style = filled, fillcolor = "#FFFF99", shape = Mrecord label =  "NATIVE_FUNCTION | {fout}"]
+		node_0x6220000014e0 [style = filled, fillcolor = "#FFFFFF", shape = Mrecord label =  "CONSTANT | {4}"]
+		nil_77 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
+		node_0x6220000014e0 -> nil_77 
+		nil_78 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
+		node_0x6220000014e0 -> nil_78 
+		node_0x622000001480 -> node_0x6220000014e0 [label = "left"]
+		nil_79 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
+		node_0x622000001480 -> nil_79 
+		node_0x622000001510 -> node_0x622000001480 [label = "left"]
+		node_0x622000001570 [style = filled, fillcolor = "#E0FFE0", shape = Mrecord label =  "STATEMENT | {;}"]
+		node_0x622000001540 [style = filled, fillcolor = "#FFE0E0", shape = Mrecord label =  "INSTRUCTION | {return}"]
+		nil_80 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
+		node_0x622000001540 -> nil_80 
+		nil_81 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
+		node_0x622000001540 -> nil_81 
+		node_0x622000001570 -> node_0x622000001540 [label = "left"]
+		nil_82 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
+		node_0x622000001570 -> nil_82 
+		node_0x622000001510 -> node_0x622000001570 [label = "right"]
+		node_0x622000001420 -> node_0x622000001510 [label = "right"]
+		node_0x6220000015a0 -> node_0x622000001420 [label = "left"]
+		nil_83 [style = filled, fillcolor = "white", shape = Mrecord, label = "nil"]
+		node_0x6220000015a0 -> nil_83 
+		node_0x622000001360 -> node_0x6220000015a0 [label = "right"]
 ########################################################### SetEndDot
 
 }

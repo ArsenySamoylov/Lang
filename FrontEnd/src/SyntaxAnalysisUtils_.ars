@@ -5,6 +5,58 @@ static int ProgramCtxDtor (ProgramCtx* program_ctx);
 static Token* VarInitialization (ProgramCtx* program_ctx);
 static int   FuncInitialization (ProgramCtx* program_ctx);
 
+#pragma GCC diagnostic ignored "-Wformat="
+
+static int CheckForMainAndDeclaration (const FuncTabel *const table, const char** string_arr, int number_of_strings)
+    {
+    assertlog(table, EFAULT, return BAD_ARGUMENT);
+
+    int main_flag = FAILURE;
+
+    // find "main" position in string arr
+    int main_position = -1;
+
+    for (int i =0; i < number_of_strings; i++)
+        {
+        if (!stricmp(MAIN_NAME, string_arr[i]))
+            {
+            main_position = i;
+            break;
+            }
+        }
+    
+    if (main_position < 0)
+        {
+        func_message("No '%s' in string_arr (%p, number %d)\n", MAIN_NAME, string_arr, number_of_strings);
+        return FAILURE;
+        }
+
+    for (size_t i = 0; i < table->number_of_labels; i++)
+        {
+        FuncLabel* func = *(table->label_arr + i); 
+
+        if (!func)
+            {
+            func_message("Null func label (position %zu)\n", i);
+            return FAILURE;
+            }
+
+        if (func->body_status != DECLARED)
+            {
+            func_message("'%s' function wasn't declared\n", string_arr[func->name]);
+            return FAILURE;
+            }
+
+        if (func->name == main_position)
+            main_flag = SUCCESS;
+        }
+    
+    if (main_flag == FAILURE)
+        func_message("ERROR, no main in program!\n");
+
+    return main_flag;
+    }
+
 
 static int MakeFuncLabel (ProgramCtx* program_ctx, Token** func_head = NULL);
 // static VarLabel*  MakeVarLabel  (ProgramCtx* program_ctx);
@@ -182,6 +234,8 @@ static int MakeFuncLabel(ProgramCtx* program_ctx, Token** func_head)
             goto FAIL_EXIT;
             }
         
+        KILL(label);
+
         return prev_decl_pos;
         }
 
