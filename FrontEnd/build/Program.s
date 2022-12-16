@@ -330,10 +330,10 @@ _Z11ProgramCtorP7ProgramPKc:
 	movq	-24(%rbp), %rax
 	movq	-32(%rbp), %rdx
 	movq	%rdx, 40(%rax)
-	.loc 1 28 12
+	.loc 1 20 12
 	movl	$0, %eax
 .L3:
-	.loc 1 29 5
+	.loc 1 21 5
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
@@ -356,7 +356,7 @@ _Z11ProgramCtorP7ProgramPKc:
 _Z11ProgramDtorP7Program:
 .LASANPC2271:
 .LFB2271:
-	.loc 1 32 5
+	.loc 1 24 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -368,13 +368,13 @@ _Z11ProgramDtorP7Program:
 	subq	$40, %rsp
 	.cfi_offset 3, -24
 	movq	%rdi, -40(%rbp)
-	.loc 1 33 10
+	.loc 1 25 10
 	cmpq	$0, -40(%rbp)
 	jne	.L11
-	.loc 1 33 47 discriminator 1
+	.loc 1 25 47 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 33 53 discriminator 1
+	.loc 1 25 53 discriminator 1
 	leaq	.LC0(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC1(%rip), %rax
@@ -382,39 +382,39 @@ _Z11ProgramDtorP7Program:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 33 113 discriminator 1
+	.loc 1 25 113 discriminator 1
 	leaq	.LC0(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC2(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 33 261 discriminator 1
+	.loc 1 25 261 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 33 267 discriminator 1
+	.loc 1 25 267 discriminator 1
 	leaq	.LC11(%rip), %r8
-	movl	$33, %ecx
+	movl	$25, %ecx
 	leaq	.LC4(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC5(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 33 371 discriminator 1
+	.loc 1 25 371 discriminator 1
 	leaq	.LC11(%rip), %rax
 	movq	%rax, %rcx
-	movl	$33, %edx
+	movl	$25, %edx
 	leaq	.LC4(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC5(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 33 488 discriminator 1
+	.loc 1 25 488 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 33 494 discriminator 1
+	.loc 1 25 494 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -424,27 +424,27 @@ _Z11ProgramDtorP7Program:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 33 27 discriminator 1
+	.loc 1 25 27 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 33 33 discriminator 1
-	movl	$33, %ecx
+	.loc 1 25 33 discriminator 1
+	movl	$25, %ecx
 	leaq	.LC12(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC8(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 33 91 discriminator 1
+	.loc 1 25 91 discriminator 1
 	leaq	.LC9(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 33 114 discriminator 1
+	.loc 1 25 114 discriminator 1
 	movl	$-2, %eax
 	jmp	.L12
 .L11:
 .LBB2:
-	.loc 1 35 18
+	.loc 1 27 18
 	movq	-40(%rbp), %rax
 	addq	$24, %rax
 	movq	%rax, %rdx
@@ -458,11 +458,11 @@ _Z11ProgramDtorP7Program:
 .L13:
 	movq	-40(%rbp), %rax
 	movq	24(%rax), %rax
-	.loc 1 35 5
+	.loc 1 27 5
 	testq	%rax, %rax
 	je	.L14
 .LBB3:
-	.loc 1 37 36
+	.loc 1 29 36
 	movq	-40(%rbp), %rax
 	addq	$32, %rax
 	movq	%rax, %rdx
@@ -488,14 +488,14 @@ _Z11ProgramDtorP7Program:
 	movq	%rax, %rdi
 	call	_ZL14CleanStringArrPPKci
 	movl	%eax, -20(%rbp)
-	.loc 1 38 9
+	.loc 1 30 9
 	cmpl	$0, -20(%rbp)
 	je	.L16
-	.loc 1 39 20
+	.loc 1 31 20
 	movl	$-1, %eax
 	jmp	.L12
 .L16:
-	.loc 1 41 23
+	.loc 1 33 23
 	movq	-40(%rbp), %rax
 	addq	$24, %rax
 	movq	%rax, %rdx
@@ -509,13 +509,13 @@ _Z11ProgramDtorP7Program:
 .L17:
 	movq	-40(%rbp), %rax
 	movq	24(%rax), %rax
-	.loc 1 41 13
+	.loc 1 33 13
 	movq	%rax, %rdi
 	call	free@PLT
 .L14:
 .LBE3:
 .LBE2:
-	.loc 1 44 18
+	.loc 1 36 18
 	movq	-40(%rbp), %rax
 	movq	%rax, %rdx
 	shrq	$3, %rdx
@@ -528,20 +528,20 @@ _Z11ProgramDtorP7Program:
 .L18:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 44 5
+	.loc 1 36 5
 	testq	%rax, %rax
 	je	.L19
-	.loc 1 46 23
+	.loc 1 38 23
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 46 13
+	.loc 1 38 13
 	movq	%rax, %rdi
 	call	free@PLT
 .L19:
-	.loc 1 49 12
+	.loc 1 41 12
 	movl	$0, %eax
 .L12:
-	.loc 1 50 5
+	.loc 1 42 5
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
@@ -583,7 +583,7 @@ _Z11ProgramDtorP7Program:
 _ZL14CleanStringArrPPKci:
 .LASANPC2272:
 .LFB2272:
-	.loc 1 55 5
+	.loc 1 47 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -596,13 +596,13 @@ _ZL14CleanStringArrPPKci:
 	.cfi_offset 3, -24
 	movq	%rdi, -40(%rbp)
 	movl	%esi, -44(%rbp)
-	.loc 1 56 10
+	.loc 1 48 10
 	cmpq	$0, -40(%rbp)
 	jne	.L21
-	.loc 1 56 50 discriminator 1
+	.loc 1 48 50 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rcx
-	.loc 1 56 56 discriminator 1
+	.loc 1 48 56 discriminator 1
 	leaq	.LC13(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC1(%rip), %rax
@@ -610,39 +610,39 @@ _ZL14CleanStringArrPPKci:
 	movq	%rcx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 56 119 discriminator 1
+	.loc 1 48 119 discriminator 1
 	leaq	.LC13(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC2(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 56 270 discriminator 1
+	.loc 1 48 270 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 56 276 discriminator 1
+	.loc 1 48 276 discriminator 1
 	leaq	.LC14(%rip), %r8
-	movl	$56, %ecx
+	movl	$48, %ecx
 	leaq	.LC4(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC5(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 56 380 discriminator 1
+	.loc 1 48 380 discriminator 1
 	leaq	.LC14(%rip), %rax
 	movq	%rax, %rcx
-	movl	$56, %edx
+	movl	$48, %edx
 	leaq	.LC4(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC5(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 56 497 discriminator 1
+	.loc 1 48 497 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 56 503 discriminator 1
+	.loc 1 48 503 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -652,30 +652,30 @@ _ZL14CleanStringArrPPKci:
 	movq	%rbx, %rdi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 56 27 discriminator 1
+	.loc 1 48 27 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rdi
-	.loc 1 56 33 discriminator 1
-	movl	$56, %ecx
+	.loc 1 48 33 discriminator 1
+	movl	$48, %ecx
 	leaq	.LC15(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC8(%rip), %rax
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 56 91 discriminator 1
+	.loc 1 48 91 discriminator 1
 	leaq	.LC9(%rip), %rax
 	movq	%rax, %rdi
 	call	system@PLT
-	.loc 1 56 133 discriminator 1
+	.loc 1 48 133 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
-	.loc 1 56 155 discriminator 1
+	.loc 1 48 155 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 56 168 discriminator 1
-	movl	$56, %r9d
+	.loc 1 48 168 discriminator 1
+	movl	$48, %r9d
 	leaq	.LC15(%rip), %r8
-	movl	$56, %ecx
+	movl	$48, %ecx
 	leaq	.LC4(%rip), %rax
 	movq	%rax, %rdx
 	leaq	.LC16(%rip), %rax
@@ -685,9 +685,9 @@ _ZL14CleanStringArrPPKci:
 	call	_Z6MsgRetiPKcz@PLT
 	movl	%eax, %esi
 	subq	$8, %rsp
-	pushq	$56
+	pushq	$48
 	leaq	.LC15(%rip), %r9
-	movl	$56, %r8d
+	movl	$48, %r8d
 	leaq	.LC4(%rip), %rax
 	movq	%rax, %rcx
 	leaq	.LC17(%rip), %rax
@@ -696,19 +696,19 @@ _ZL14CleanStringArrPPKci:
 	movl	$0, %eax
 	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
 	addq	$16, %rsp
-	.loc 1 56 381 discriminator 1
+	.loc 1 48 381 discriminator 1
 	jmp	.L22
 .L21:
 .LBB4:
-	.loc 1 58 14
+	.loc 1 50 14
 	movl	$0, -20(%rbp)
-	.loc 1 58 5
+	.loc 1 50 5
 	jmp	.L23
 .L27:
-	.loc 1 60 26
+	.loc 1 52 26
 	movl	-20(%rbp), %eax
 	cltq
-	.loc 1 60 27
+	.loc 1 52 27
 	leaq	0(,%rax,8), %rdx
 	movq	-40(%rbp), %rax
 	addq	%rdx, %rax
@@ -723,35 +723,35 @@ _ZL14CleanStringArrPPKci:
 	call	__asan_report_load8@PLT
 .L24:
 	movq	(%rax), %rax
-	.loc 1 60 9
+	.loc 1 52 9
 	testq	%rax, %rax
 	jne	.L25
-	.loc 1 62 21
+	.loc 1 54 21
 	leaq	.LC15(%rip), %rax
 	movq	%rax, %rsi
 	leaq	.LC18(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 62 49
+	.loc 1 54 49
 	movl	-20(%rbp), %eax
 	movl	%eax, %esi
 	leaq	.LC19(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 63 20
+	.loc 1 55 20
 	movl	$-1, %eax
 	jmp	.L22
 .L25:
-	.loc 1 66 34 discriminator 2
+	.loc 1 58 34 discriminator 2
 	movl	-20(%rbp), %eax
 	cltq
-	.loc 1 66 35 discriminator 2
+	.loc 1 58 35 discriminator 2
 	leaq	0(,%rax,8), %rdx
 	movq	-40(%rbp), %rax
 	addq	%rdx, %rax
-	.loc 1 66 13 discriminator 2
+	.loc 1 58 13 discriminator 2
 	movq	%rax, %rdx
 	movq	%rdx, %rcx
 	shrq	$3, %rcx
@@ -759,26 +759,26 @@ _ZL14CleanStringArrPPKci:
 	movzbl	(%rcx), %ecx
 	testb	%cl, %cl
 	je	.L26
-	.loc 1 66 13 is_stmt 0
+	.loc 1 58 13 is_stmt 0
 	movq	%rdx, %rdi
 	call	__asan_report_load8@PLT
 .L26:
-	.loc 1 66 13 discriminator 2
+	.loc 1 58 13 discriminator 2
 	movq	(%rax), %rax
 	movq	%rax, %rdi
 	call	free@PLT
-	.loc 1 58 5 is_stmt 1 discriminator 2
+	.loc 1 50 5 is_stmt 1 discriminator 2
 	addl	$1, -20(%rbp)
 .L23:
-	.loc 1 58 23 discriminator 1
+	.loc 1 50 23 discriminator 1
 	movl	-20(%rbp), %eax
 	cmpl	-44(%rbp), %eax
 	jl	.L27
 .LBE4:
-	.loc 1 69 12
+	.loc 1 61 12
 	movl	$0, %eax
 .L22:
-	.loc 1 70 5
+	.loc 1 62 5
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
@@ -790,7 +790,7 @@ _ZL14CleanStringArrPPKci:
 _Z41__static_initialization_and_destruction_0ii:
 .LASANPC2939:
 .LFB2939:
-	.loc 1 70 5
+	.loc 1 62 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -801,10 +801,10 @@ _Z41__static_initialization_and_destruction_0ii:
 	subq	$16, %rsp
 	movl	%edi, -4(%rbp)
 	movl	%esi, -8(%rbp)
-	.loc 1 70 5
+	.loc 1 62 5
 	cmpl	$1, -4(%rbp)
 	jne	.L31
-	.loc 1 70 5 is_stmt 0 discriminator 1
+	.loc 1 62 5 is_stmt 0 discriminator 1
 	leaq	.LC4(%rip), %rax
 	movq	%rax, %rdi
 	call	__asan_before_dynamic_init@PLT
@@ -826,7 +826,7 @@ _Z41__static_initialization_and_destruction_0ii:
 	.loc 2 74 25 is_stmt 0 discriminator 1
 	call	__asan_after_dynamic_init@PLT
 .L31:
-	.loc 1 70 5 is_stmt 1
+	.loc 1 62 5 is_stmt 1
 	nop
 	leave
 	.cfi_def_cfa 7, 8
@@ -838,7 +838,7 @@ _Z41__static_initialization_and_destruction_0ii:
 _GLOBAL__sub_I__Z11ProgramCtorP7ProgramPKc:
 .LASANPC2940:
 .LFB2940:
-	.loc 1 70 5
+	.loc 1 62 5
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
@@ -846,7 +846,7 @@ _GLOBAL__sub_I__Z11ProgramCtorP7ProgramPKc:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	.loc 1 70 5
+	.loc 1 62 5
 	movl	$65535, %esi
 	movl	$1, %edi
 	call	_Z41__static_initialization_and_destruction_0ii
@@ -5656,7 +5656,7 @@ _sub_I_00099_1:
 	.long	0x235d
 	.uleb128 0x14
 	.long	.LASF387
-	.byte	0x46
+	.byte	0x3e
 	.byte	0x5
 	.long	0x9c
 	.uleb128 0x2
@@ -5664,7 +5664,7 @@ _sub_I_00099_1:
 	.sleb128 -20
 	.uleb128 0x14
 	.long	.LASF388
-	.byte	0x46
+	.byte	0x3e
 	.byte	0x5
 	.long	0x9c
 	.uleb128 0x2
@@ -5674,7 +5674,7 @@ _sub_I_00099_1:
 	.uleb128 0x55
 	.long	.LASF413
 	.byte	0x1
-	.byte	0x36
+	.byte	0x2e
 	.byte	0xc
 	.long	0x9c
 	.quad	.LFB2272
@@ -5684,7 +5684,7 @@ _sub_I_00099_1:
 	.long	0x23e1
 	.uleb128 0x14
 	.long	.LASF31
-	.byte	0x36
+	.byte	0x2e
 	.byte	0x28
 	.long	0x1ef
 	.uleb128 0x2
@@ -5692,7 +5692,7 @@ _sub_I_00099_1:
 	.sleb128 -56
 	.uleb128 0x14
 	.long	.LASF32
-	.byte	0x36
+	.byte	0x2e
 	.byte	0x38
 	.long	0x9c
 	.uleb128 0x2
@@ -5716,7 +5716,7 @@ _sub_I_00099_1:
 	.uleb128 0x56
 	.string	"i"
 	.byte	0x1
-	.byte	0x3a
+	.byte	0x32
 	.byte	0xe
 	.long	0x9c
 	.uleb128 0x2
@@ -5744,7 +5744,7 @@ _sub_I_00099_1:
 	.long	0x23f6
 	.uleb128 0x2c
 	.long	.LASF393
-	.byte	0x1f
+	.byte	0x17
 	.long	.LASF395
 	.long	0x9c
 	.quad	.LFB2271
@@ -5754,7 +5754,7 @@ _sub_I_00099_1:
 	.long	0x2485
 	.uleb128 0x14
 	.long	.LASF396
-	.byte	0x1f
+	.byte	0x17
 	.byte	0x1a
 	.long	0x2485
 	.uleb128 0x2
@@ -5778,7 +5778,7 @@ _sub_I_00099_1:
 	.uleb128 0x18
 	.long	.LASF397
 	.byte	0x1
-	.byte	0x25
+	.byte	0x1d
 	.byte	0xd
 	.long	0x9c
 	.uleb128 0x2

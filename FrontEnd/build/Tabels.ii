@@ -44296,7 +44296,7 @@ int IsFuncLabel (int name_id, FuncTabel* func_tabel)
 
     for(size_t i = 0; i < number_of_labels; i++)
         {
-        if (name_id == (*(label_arr + i))->name )
+        if (name_id == (*(label_arr + i))->name)
             return (int) i;
         }
 

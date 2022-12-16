@@ -174,9 +174,6 @@ struct Program
     int number_of_strings;
 
     const char* path_to_src_file;
-
-
-
     };
 
 int ProgramCtor(Program* program, const char* path_to_src_file);
@@ -1145,7 +1142,7 @@ enum NATIVE_FUNCTIONS_NUM
     };
 
 const int NUMBER_OF_INITIALIZATORS = 2;
-const char *const INITIALIZATORS[] = {"func", "var"};
+const char *const INITIALIZATORS[] = {"extern", "var"};
 enum INITIALIZATORS_NUM
     {
     FUNCTION_INITIALIZATOR = 0,

@@ -89,8 +89,8 @@ _ZL24NUMBER_OF_INITIALIZATORS:
 	.zero	60
 	.align 32
 .LC8:
-	.string	"func"
-	.zero	59
+	.string	"extern"
+	.zero	57
 	.align 32
 .LC9:
 	.string	"var"
@@ -2638,23 +2638,23 @@ _GLOBAL__sub_I__Z10PrintTokenPK5TokenPPKc:
 .LC93:
 	.string	"*.LC21"
 .LC94:
-	.string	"*.LC8"
-.LC95:
 	.string	"*.LC0"
-.LC96:
+.LC95:
 	.string	"*.LC24"
-.LC97:
+.LC96:
 	.string	"*.LC40"
-.LC98:
+.LC97:
 	.string	"*.LC7"
-.LC99:
+.LC98:
 	.string	"*.LC37"
-.LC100:
+.LC99:
 	.string	"*.LC14"
-.LC101:
+.LC100:
 	.string	"*.LC22"
-.LC102:
+.LC101:
 	.string	"*.LC16"
+.LC102:
+	.string	"*.LC8"
 .LC103:
 	.string	"*.LC1"
 .LC104:
@@ -3030,18 +3030,10 @@ _GLOBAL__sub_I__Z10PrintTokenPK5TokenPPKc:
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC8
-	.quad	5
-	.quad	64
-	.quad	.LC94
-	.quad	.LC44
-	.quad	0
-	.quad	0
-	.quad	0
 	.quad	.LC0
 	.quad	3
 	.quad	64
-	.quad	.LC95
+	.quad	.LC94
 	.quad	.LC44
 	.quad	0
 	.quad	0
@@ -3049,7 +3041,7 @@ _GLOBAL__sub_I__Z10PrintTokenPK5TokenPPKc:
 	.quad	.LC24
 	.quad	15
 	.quad	64
-	.quad	.LC96
+	.quad	.LC95
 	.quad	.LC44
 	.quad	0
 	.quad	0
@@ -3057,7 +3049,7 @@ _GLOBAL__sub_I__Z10PrintTokenPK5TokenPPKc:
 	.quad	.LC40
 	.quad	15
 	.quad	64
-	.quad	.LC97
+	.quad	.LC96
 	.quad	.LC44
 	.quad	0
 	.quad	0
@@ -3065,7 +3057,7 @@ _GLOBAL__sub_I__Z10PrintTokenPK5TokenPPKc:
 	.quad	.LC7
 	.quad	4
 	.quad	64
-	.quad	.LC98
+	.quad	.LC97
 	.quad	.LC44
 	.quad	0
 	.quad	0
@@ -3073,7 +3065,7 @@ _GLOBAL__sub_I__Z10PrintTokenPK5TokenPPKc:
 	.quad	.LC37
 	.quad	20
 	.quad	64
-	.quad	.LC99
+	.quad	.LC98
 	.quad	.LC44
 	.quad	0
 	.quad	0
@@ -3081,7 +3073,7 @@ _GLOBAL__sub_I__Z10PrintTokenPK5TokenPPKc:
 	.quad	.LC14
 	.quad	12
 	.quad	64
-	.quad	.LC100
+	.quad	.LC99
 	.quad	.LC44
 	.quad	0
 	.quad	0
@@ -3089,13 +3081,21 @@ _GLOBAL__sub_I__Z10PrintTokenPK5TokenPPKc:
 	.quad	.LC22
 	.quad	20
 	.quad	64
-	.quad	.LC101
+	.quad	.LC100
 	.quad	.LC44
 	.quad	0
 	.quad	0
 	.quad	0
 	.quad	.LC16
 	.quad	22
+	.quad	64
+	.quad	.LC101
+	.quad	.LC44
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC8
+	.quad	7
 	.quad	64
 	.quad	.LC102
 	.quad	.LC44

@@ -44670,12 +44670,16 @@ char* GetSrcFile (const char *file_direction)
                                    ;
 
     FILE *txt = fopen(file_direction, "rb");
-    if (!txt)
+     if (!txt)
+        {
+        printf("\033[91m" "Can't open file %s\n" "\033[0m", file_direction);
+
         return 
-# 16 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 19 "../ATC/Buffer/my_buffer.cpp" 3 4
               __null
-# 16 "../ATC/Buffer/my_buffer.cpp"
+# 19 "../ATC/Buffer/my_buffer.cpp"
                   ;
+        }
 
     struct stat txt_data;
     stat(file_direction, &txt_data);
@@ -44684,27 +44688,27 @@ char* GetSrcFile (const char *file_direction)
         {
         fclose(txt);
         return 
-# 24 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 28 "../ATC/Buffer/my_buffer.cpp" 3 4
               __null
-# 24 "../ATC/Buffer/my_buffer.cpp"
+# 28 "../ATC/Buffer/my_buffer.cpp"
                   ;
         }
 
-    char* txt_buffer = (char*) Logger::getInstance().CAL_LOG (txt_data.st_size + 1, sizeof (char), "../ATC/Buffer/my_buffer.cpp", __func__, 27);;
+    char* txt_buffer = (char*) Logger::getInstance().CAL_LOG (txt_data.st_size + 1, sizeof (char), "../ATC/Buffer/my_buffer.cpp", __func__, 31);;
     if (!txt_buffer)
         return 
-# 29 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 33 "../ATC/Buffer/my_buffer.cpp" 3 4
               __null
-# 29 "../ATC/Buffer/my_buffer.cpp"
+# 33 "../ATC/Buffer/my_buffer.cpp"
                   ;
 
     size_t number_of_ch = fread (txt_buffer, sizeof(char), txt_data.st_size, txt);
 
     char* temp = (char*)realloc(txt_buffer, number_of_ch + 1);
     if (temp != 
-# 34 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 38 "../ATC/Buffer/my_buffer.cpp" 3 4
                  __null
-# 34 "../ATC/Buffer/my_buffer.cpp"
+# 38 "../ATC/Buffer/my_buffer.cpp"
                      )
         txt_buffer = temp;
 
@@ -44720,25 +44724,25 @@ char* GetSrcFile (const char *file_direction)
 const char** DivideBufferIntoLines (char* buffer, size_t number_of_lines)
     {
     if (!buffer) return 
-# 48 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 52 "../ATC/Buffer/my_buffer.cpp" 3 4
                                 __null
-# 48 "../ATC/Buffer/my_buffer.cpp"
+# 52 "../ATC/Buffer/my_buffer.cpp"
                                     ;
     if (!number_of_lines) return 
-# 49 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 53 "../ATC/Buffer/my_buffer.cpp" 3 4
                                 __null
-# 49 "../ATC/Buffer/my_buffer.cpp"
+# 53 "../ATC/Buffer/my_buffer.cpp"
                                     ;
 
-    const char** lines_array = (const char**) Logger::getInstance().CAL_LOG (number_of_lines + 1, sizeof(lines_array[0]), "../ATC/Buffer/my_buffer.cpp", __func__, 51);;
+    const char** lines_array = (const char**) Logger::getInstance().CAL_LOG (number_of_lines + 1, sizeof(lines_array[0]), "../ATC/Buffer/my_buffer.cpp", __func__, 55);;
     if (lines_array == 
-# 52 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 56 "../ATC/Buffer/my_buffer.cpp" 3 4
                       __null
-# 52 "../ATC/Buffer/my_buffer.cpp"
+# 56 "../ATC/Buffer/my_buffer.cpp"
                           ) return 
-# 52 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 56 "../ATC/Buffer/my_buffer.cpp" 3 4
                                    __null
-# 52 "../ATC/Buffer/my_buffer.cpp"
+# 56 "../ATC/Buffer/my_buffer.cpp"
                                        ;
 
     size_t current_line = 0;
@@ -44774,9 +44778,9 @@ const char** DivideBufferIntoLines (char* buffer, size_t number_of_lines)
         }
 
     lines_array[number_of_lines] = 
-# 86 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 90 "../ATC/Buffer/my_buffer.cpp" 3 4
                                   __null
-# 86 "../ATC/Buffer/my_buffer.cpp"
+# 90 "../ATC/Buffer/my_buffer.cpp"
                                       ;
 
     return lines_array;
@@ -44785,25 +44789,25 @@ const char** DivideBufferIntoLines (char* buffer, size_t number_of_lines)
 const char** SplitBufferIntoLines (const char* buffer, size_t number_of_lines)
     {
     if (!buffer) return 
-# 93 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 97 "../ATC/Buffer/my_buffer.cpp" 3 4
                                 __null
-# 93 "../ATC/Buffer/my_buffer.cpp"
+# 97 "../ATC/Buffer/my_buffer.cpp"
                                     ;
     if (!number_of_lines) return 
-# 94 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 98 "../ATC/Buffer/my_buffer.cpp" 3 4
                                 __null
-# 94 "../ATC/Buffer/my_buffer.cpp"
+# 98 "../ATC/Buffer/my_buffer.cpp"
                                     ;
 
-    const char** lines_array = (const char**) Logger::getInstance().CAL_LOG (number_of_lines + 1, sizeof(lines_array[0]), "../ATC/Buffer/my_buffer.cpp", __func__, 96);;
+    const char** lines_array = (const char**) Logger::getInstance().CAL_LOG (number_of_lines + 1, sizeof(lines_array[0]), "../ATC/Buffer/my_buffer.cpp", __func__, 100);;
     if (lines_array == 
-# 97 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 101 "../ATC/Buffer/my_buffer.cpp" 3 4
                       __null
-# 97 "../ATC/Buffer/my_buffer.cpp"
+# 101 "../ATC/Buffer/my_buffer.cpp"
                           ) return 
-# 97 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 101 "../ATC/Buffer/my_buffer.cpp" 3 4
                                    __null
-# 97 "../ATC/Buffer/my_buffer.cpp"
+# 101 "../ATC/Buffer/my_buffer.cpp"
                                        ;
 
     size_t current_line = 0;
@@ -44835,9 +44839,9 @@ const char** SplitBufferIntoLines (const char* buffer, size_t number_of_lines)
         }
 
     lines_array[number_of_lines] = 
-# 127 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 131 "../ATC/Buffer/my_buffer.cpp" 3 4
                                   __null
-# 127 "../ATC/Buffer/my_buffer.cpp"
+# 131 "../ATC/Buffer/my_buffer.cpp"
                                       ;
 
     return lines_array;
@@ -44900,9 +44904,9 @@ char* SkipSpaces(const char* s)
     {
     if (!s)
         return 
-# 188 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 192 "../ATC/Buffer/my_buffer.cpp" 3 4
               __null
-# 188 "../ATC/Buffer/my_buffer.cpp"
+# 192 "../ATC/Buffer/my_buffer.cpp"
                   ;
 
     int n = 0;
@@ -44966,7 +44970,7 @@ int strnicmp (const char *s1, const char *s2, int number_of_ch)
 int strnicmprus (const char *s1, const char *s2, int number_of_ch)
     {
     int i = 0;
-# 259 "../ATC/Buffer/my_buffer.cpp"
+# 263 "../ATC/Buffer/my_buffer.cpp"
     for( ; s1[i] && s2[i] && number_of_ch; i++, number_of_ch--)
         if (s1[i] != s2[i] && abs(s1[i] - s2[i]) != 32)
             return s1[i] - s2[i];
@@ -45001,8 +45005,8 @@ void setindent (int indent)
 
 int BufferCtor (Buffer* buf, const char* string)
     {
-    FunctionLogger func_293 {DEBUG_ALL, __func__};
-    do { if (!buf) { Logger::getInstance().log("%s:%d::CHECK: " "buf" " is false\n" , __func__, 294); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../ATC/Buffer/my_buffer.cpp", 294, __func__, 294), "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 294, __func__, 294) ; } }while (0);;
+    FunctionLogger func_297 {DEBUG_ALL, __func__};
+    do { if (!buf) { Logger::getInstance().log("%s:%d::CHECK: " "buf" " is false\n" , __func__, 298); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../ATC/Buffer/my_buffer.cpp", 298, __func__, 298), "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 298, __func__, 298) ; } }while (0);;
 
     buf->buffer = string;
     buf->str = (char*) string;
@@ -45010,47 +45014,47 @@ int BufferCtor (Buffer* buf, const char* string)
     buf->number_of_lines = 1;
     buf->indent = 1;
 
-    return Logger::getInstance().Logger::getInstance().LogMsgRet (SUCCESS, "%s:%d returned SUCCESS " , __func__, 302);
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (SUCCESS, "%s:%d returned SUCCESS " , __func__, 306);
     }
 
 int BufferCtor (Buffer* buf, int size)
     {
-    FunctionLogger func_307 {DEBUG_ALL, __func__};
-    do { if (!(buf)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "buf"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "buf"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../ATC/Buffer/my_buffer.cpp", 308, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../ATC/Buffer/my_buffer.cpp", 308, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 308 "../ATC/Buffer/my_buffer.cpp" 3 4
+    FunctionLogger func_311 {DEBUG_ALL, __func__};
+    do { if (!(buf)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "buf"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "buf"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../ATC/Buffer/my_buffer.cpp", 312, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../ATC/Buffer/my_buffer.cpp", 312, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 312 "../ATC/Buffer/my_buffer.cpp" 3 4
    14
-# 308 "../ATC/Buffer/my_buffer.cpp"
+# 312 "../ATC/Buffer/my_buffer.cpp"
    , strerror(
-# 308 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 312 "../ATC/Buffer/my_buffer.cpp" 3 4
    14
-# 308 "../ATC/Buffer/my_buffer.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 308); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../ATC/Buffer/my_buffer.cpp", 308, __func__, 308), "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 308, __func__, 308); } } while (0);;
+# 312 "../ATC/Buffer/my_buffer.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 312); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../ATC/Buffer/my_buffer.cpp", 312, __func__, 312), "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 312, __func__, 312); } } while (0);;
 
-    buf->buffer = (const char*) Logger::getInstance().CAL_LOG (size, sizeof(buf->buffer[0]), "../ATC/Buffer/my_buffer.cpp", __func__, 310);;
-    if (!buf->buffer) return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../ATC/Buffer/my_buffer.cpp", 311, __func__, 311), "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 311, __func__, 311);
+    buf->buffer = (const char*) Logger::getInstance().CAL_LOG (size, sizeof(buf->buffer[0]), "../ATC/Buffer/my_buffer.cpp", __func__, 314);;
+    if (!buf->buffer) return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../ATC/Buffer/my_buffer.cpp", 315, __func__, 315), "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 315, __func__, 315);
 
     buf->str = (char*) buf->buffer;
 
     buf->number_of_lines = 1;
     buf->indent = 1;
 
-    return Logger::getInstance().Logger::getInstance().LogMsgRet (SUCCESS, "%s:%d returned SUCCESS " , __func__, 318);
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (SUCCESS, "%s:%d returned SUCCESS " , __func__, 322);
     }
-# 333 "../ATC/Buffer/my_buffer.cpp"
+# 337 "../ATC/Buffer/my_buffer.cpp"
 void BufferSkipSpaces (Buffer* buf)
     {
     
-# 335 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 339 "../ATC/Buffer/my_buffer.cpp" 3 4
    (static_cast <bool> (
-# 335 "../ATC/Buffer/my_buffer.cpp"
+# 339 "../ATC/Buffer/my_buffer.cpp"
    buf
-# 335 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 339 "../ATC/Buffer/my_buffer.cpp" 3 4
    ) ? void (0) : __assert_fail (
-# 335 "../ATC/Buffer/my_buffer.cpp"
+# 339 "../ATC/Buffer/my_buffer.cpp"
    "buf"
-# 335 "../ATC/Buffer/my_buffer.cpp" 3 4
-   , "../ATC/Buffer/my_buffer.cpp", 335, __extension__ __PRETTY_FUNCTION__))
-# 335 "../ATC/Buffer/my_buffer.cpp"
+# 339 "../ATC/Buffer/my_buffer.cpp" 3 4
+   , "../ATC/Buffer/my_buffer.cpp", 339, __extension__ __PRETTY_FUNCTION__))
+# 339 "../ATC/Buffer/my_buffer.cpp"
               ;
 
     int n = 0;
@@ -45088,17 +45092,17 @@ void BufferSkipSpaces (Buffer* buf)
 void BufferSkipCommentLine (Buffer* buf, char terminator)
     {
     
-# 371 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 375 "../ATC/Buffer/my_buffer.cpp" 3 4
    (static_cast <bool> (
-# 371 "../ATC/Buffer/my_buffer.cpp"
+# 375 "../ATC/Buffer/my_buffer.cpp"
    buf
-# 371 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 375 "../ATC/Buffer/my_buffer.cpp" 3 4
    ) ? void (0) : __assert_fail (
-# 371 "../ATC/Buffer/my_buffer.cpp"
+# 375 "../ATC/Buffer/my_buffer.cpp"
    "buf"
-# 371 "../ATC/Buffer/my_buffer.cpp" 3 4
-   , "../ATC/Buffer/my_buffer.cpp", 371, __extension__ __PRETTY_FUNCTION__))
-# 371 "../ATC/Buffer/my_buffer.cpp"
+# 375 "../ATC/Buffer/my_buffer.cpp" 3 4
+   , "../ATC/Buffer/my_buffer.cpp", 375, __extension__ __PRETTY_FUNCTION__))
+# 375 "../ATC/Buffer/my_buffer.cpp"
               ;
 
     if (BufferLook(buf) == terminator)
@@ -45119,17 +45123,17 @@ void BufferSkipCommentLine (Buffer* buf, char terminator)
 int BufferGetCh (Buffer* buf)
     {
     
-# 390 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 394 "../ATC/Buffer/my_buffer.cpp" 3 4
    (static_cast <bool> (
-# 390 "../ATC/Buffer/my_buffer.cpp"
+# 394 "../ATC/Buffer/my_buffer.cpp"
    buf
-# 390 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 394 "../ATC/Buffer/my_buffer.cpp" 3 4
    ) ? void (0) : __assert_fail (
-# 390 "../ATC/Buffer/my_buffer.cpp"
+# 394 "../ATC/Buffer/my_buffer.cpp"
    "buf"
-# 390 "../ATC/Buffer/my_buffer.cpp" 3 4
-   , "../ATC/Buffer/my_buffer.cpp", 390, __extension__ __PRETTY_FUNCTION__))
-# 390 "../ATC/Buffer/my_buffer.cpp"
+# 394 "../ATC/Buffer/my_buffer.cpp" 3 4
+   , "../ATC/Buffer/my_buffer.cpp", 394, __extension__ __PRETTY_FUNCTION__))
+# 394 "../ATC/Buffer/my_buffer.cpp"
               ;
 
     BufferSkipSpaces(buf);
@@ -45142,17 +45146,17 @@ int BufferGetCh (Buffer* buf)
 int BufferLook (Buffer* buf)
     {
     
-# 401 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 405 "../ATC/Buffer/my_buffer.cpp" 3 4
    (static_cast <bool> (
-# 401 "../ATC/Buffer/my_buffer.cpp"
+# 405 "../ATC/Buffer/my_buffer.cpp"
    buf
-# 401 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 405 "../ATC/Buffer/my_buffer.cpp" 3 4
    ) ? void (0) : __assert_fail (
-# 401 "../ATC/Buffer/my_buffer.cpp"
+# 405 "../ATC/Buffer/my_buffer.cpp"
    "buf"
-# 401 "../ATC/Buffer/my_buffer.cpp" 3 4
-   , "../ATC/Buffer/my_buffer.cpp", 401, __extension__ __PRETTY_FUNCTION__))
-# 401 "../ATC/Buffer/my_buffer.cpp"
+# 405 "../ATC/Buffer/my_buffer.cpp" 3 4
+   , "../ATC/Buffer/my_buffer.cpp", 405, __extension__ __PRETTY_FUNCTION__))
+# 405 "../ATC/Buffer/my_buffer.cpp"
               ;
 
     BufferSkipSpaces(buf);
@@ -45163,17 +45167,17 @@ int BufferLook (Buffer* buf)
 int BufferGetDouble (Buffer* buf, double* val)
     {
     
-# 410 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 414 "../ATC/Buffer/my_buffer.cpp" 3 4
    (static_cast <bool> (
-# 410 "../ATC/Buffer/my_buffer.cpp"
+# 414 "../ATC/Buffer/my_buffer.cpp"
    buf
-# 410 "../ATC/Buffer/my_buffer.cpp" 3 4
+# 414 "../ATC/Buffer/my_buffer.cpp" 3 4
    ) ? void (0) : __assert_fail (
-# 410 "../ATC/Buffer/my_buffer.cpp"
+# 414 "../ATC/Buffer/my_buffer.cpp"
    "buf"
-# 410 "../ATC/Buffer/my_buffer.cpp" 3 4
-   , "../ATC/Buffer/my_buffer.cpp", 410, __extension__ __PRETTY_FUNCTION__))
-# 410 "../ATC/Buffer/my_buffer.cpp"
+# 414 "../ATC/Buffer/my_buffer.cpp" 3 4
+   , "../ATC/Buffer/my_buffer.cpp", 414, __extension__ __PRETTY_FUNCTION__))
+# 414 "../ATC/Buffer/my_buffer.cpp"
               ;
 
 

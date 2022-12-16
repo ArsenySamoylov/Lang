@@ -1,16 +1,17 @@
-Fri Dec 16 00:36:17 2022
+Fri Dec 16 21:58:14 2022
 
 main::
   {
-  LOG CALLOC:     {0x614000000040} = calloc (415, 1 = 415) from GetSrcFile:27, at ../ATC/Buffer/my_buffer.cpp:27
+  LOG CALLOC:     {0x615000000800} = calloc (453, 1 = 453) from GetSrcFile:31, at ../ATC/Buffer/my_buffer.cpp:31
   Tokenizer::
     {
-    LOG CALLOC:     {0x619000000580} = calloc (20, 48 = 960) from Tokenizer:61, at ./src/LexicalAnalysis.cpp:61
-    LOG CALLOC:     {0x60c000000040} = calloc (16, 8 = 128) from Tokenizer:67, at ./src/LexicalAnalysis.cpp:67
+    LOG CALLOC:     {0x619000000580} = calloc (20, 48 = 960) from LexicalCtxCtor:124, at ./src/LexicalAnalysis.cpp:124
+    LOG CALLOC:     {0x60c000000040} = calloc (16, 8 = 128) from LexicalCtxCtor:130, at ./src/LexicalAnalysis.cpp:130
+    LOG CALLOC:     {0x603000000100} = calloc (1, 24 = 24) from LexicalCtxCtor:137, at ./src/LexicalAnalysis.cpp:137
     BufferCtor::
       {
 
-      BufferCtor:302 returned SUCCESS (return 0;)
+      BufferCtor:306 returned SUCCESS (return 0;)
       }
 
     SetToken::
@@ -93,7 +94,7 @@ main::
       {
       }
 
-    LOG REALLOC:     {0x619000000580} -> {0x61c000000080} = realloc (new size 1920, old size 960) from Tokenizer:97, at ./src/LexicalAnalysis.cpp:97
+    LOG REALLOC:     {0x619000000580} -> {0x61c000000080} = realloc (new size 1920, old size 960) from GetToken:52, at ./src/LexicalAnalysis.cpp:52
     SetToken::
       {
       }
@@ -174,7 +175,7 @@ main::
       {
       }
 
-    LOG REALLOC:     {0x61c000000080} -> {0x620000000080} = realloc (new size 3840, old size 1920) from Tokenizer:97, at ./src/LexicalAnalysis.cpp:97
+    LOG REALLOC:     {0x61c000000080} -> {0x620000000080} = realloc (new size 3840, old size 1920) from GetToken:52, at ./src/LexicalAnalysis.cpp:52
     SetToken::
       {
       }
@@ -335,7 +336,7 @@ main::
       {
       }
 
-    LOG REALLOC:     {0x620000000080} -> {0x624000002100} = realloc (new size 7680, old size 3840) from Tokenizer:97, at ./src/LexicalAnalysis.cpp:97
+    LOG REALLOC:     {0x620000000080} -> {0x624000002100} = realloc (new size 7680, old size 3840) from GetToken:52, at ./src/LexicalAnalysis.cpp:52
     SetToken::
       {
       }
@@ -460,15 +461,32 @@ main::
       {
       }
 
-    LOG REALLOC:     {0x624000002100} -> {0x622000000100} = realloc (new size 5328, old size 7680) from Tokenizer:150, at ./src/LexicalAnalysis.cpp:150
-    LOG REALLOC:     {0x60c000000040} -> {0x604000000010} = realloc (new size 40, old size 128) from Tokenizer:153, at ./src/LexicalAnalysis.cpp:153
-    	number_of_tokens: 111
+    SetToken::
+      {
+      }
+
+    SetToken::
+      {
+      }
+
+    SetToken::
+      {
+      }
+
+    SetToken::
+      {
+      }
+
+    LOG REALLOC:     {0x624000002100} -> {0x622000000100} = realloc (new size 5520, old size 7680) from Tokenizer:232, at ./src/LexicalAnalysis.cpp:232
+    LOG REALLOC:     {0x60c000000040} -> {0x604000000010} = realloc (new size 40, old size 128) from Tokenizer:235, at ./src/LexicalAnalysis.cpp:235
+    LOG FREE(kill): {0x603000000100} - will be freed from Tokenizer:239, at ./src/LexicalAnalysis.cpp:239
+    	program->number_of_tokens: 115
     	i: 0
     Token program->token_arr + i
     (0x622000000100)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INITIALIZATOR | {'func'}
+    		        type: INITIALIZATOR | {'extern'}
     			  Line: 1
     			Indent: 1
     
@@ -479,7 +497,7 @@ main::
     		 right_child: (nil)
     		        type: FUNCTION_RET_TYPE | {'void'}
     			  Line: 1
-    			Indent: 6
+    			Indent: 8
     
     	i: 2
     Token program->token_arr + i
@@ -488,7 +506,7 @@ main::
     		 right_child: (nil)
     		        type: NAME | {'helloworld'}
     			  Line: 1
-    			Indent: 11
+    			Indent: 13
     
     	i: 3
     Token program->token_arr + i
@@ -497,7 +515,7 @@ main::
     		 right_child: (nil)
     		        type: EXPRESSION_OPENING_BRACKET | {'('}
     			  Line: 1
-    			Indent: 21
+    			Indent: 23
     
     	i: 4
     Token program->token_arr + i
@@ -506,7 +524,7 @@ main::
     		 right_child: (nil)
     		        type: EXPRESSION_CLOSING_BRACKET | {')'}
     			  Line: 1
-    			Indent: 22
+    			Indent: 24
     
     	i: 5
     Token program->token_arr + i
@@ -515,7 +533,7 @@ main::
     		 right_child: (nil)
     		        type: END_OF_STATEMENT | {';'}
     			  Line: 1
-    			Indent: 23
+    			Indent: 25
     
     	i: 6
     Token program->token_arr + i
@@ -594,7 +612,7 @@ main::
     (0x6220000003a0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {'2'}
+    		        type: CONSTANT | {'3'}
     			  Line: 5
     			Indent: 16
     
@@ -613,7 +631,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: INITIALIZATOR | {'var'}
-    			  Line: 6
+    			  Line: 9
     			Indent: 5
     
     	i: 17
@@ -622,7 +640,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: NAME | {'y'}
-    			  Line: 6
+    			  Line: 9
     			Indent: 9
     
     	i: 18
@@ -631,7 +649,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: ASSIGMENT | {'='}
-    			  Line: 6
+    			  Line: 9
     			Indent: 11
     
     	i: 19
@@ -640,7 +658,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: CONSTANT | {'4'}
-    			  Line: 6
+    			  Line: 9
     			Indent: 13
     
     	i: 20
@@ -649,7 +667,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: END_OF_STATEMENT | {';'}
-    			  Line: 6
+    			  Line: 9
     			Indent: 14
     
     	i: 21
@@ -658,7 +676,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: INITIALIZATOR | {'var'}
-    			  Line: 7
+    			  Line: 10
     			Indent: 5
     
     	i: 22
@@ -667,7 +685,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: NAME | {'z'}
-    			  Line: 7
+    			  Line: 10
     			Indent: 9
     
     	i: 23
@@ -676,7 +694,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: ASSIGMENT | {'='}
-    			  Line: 7
+    			  Line: 10
     			Indent: 11
     
     	i: 24
@@ -685,7 +703,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: CONSTANT | {'5'}
-    			  Line: 7
+    			  Line: 10
     			Indent: 13
     
     	i: 25
@@ -694,7 +712,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: END_OF_STATEMENT | {';'}
-    			  Line: 7
+    			  Line: 10
     			Indent: 14
     
     	i: 26
@@ -703,7 +721,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: INITIALIZATOR | {'var'}
-    			  Line: 8
+    			  Line: 11
     			Indent: 5
     
     	i: 27
@@ -712,7 +730,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: NAME | {'x'}
-    			  Line: 8
+    			  Line: 11
     			Indent: 9
     
     	i: 28
@@ -721,7 +739,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: ASSIGMENT | {'='}
-    			  Line: 8
+    			  Line: 11
     			Indent: 11
     
     	i: 29
@@ -730,7 +748,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: CONSTANT | {'0'}
-    			  Line: 8
+    			  Line: 11
     			Indent: 12
     
     	i: 30
@@ -739,7 +757,7 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: END_OF_STATEMENT | {';'}
-    			  Line: 8
+    			  Line: 11
     			Indent: 13
     
     	i: 31
@@ -747,8 +765,8 @@ main::
     (0x6220000006d0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: BLOCK_OPENING_BRACKET | {'{'}
-    			  Line: 10
+    		        type: INSTRUCTION | {'if'}
+    			  Line: 13
     			Indent: 5
     
     	i: 32
@@ -756,17 +774,17 @@ main::
     (0x622000000700)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INITIALIZATOR | {'var'}
-    			  Line: 11
-    			Indent: 5
+    		        type: EXPRESSION_OPENING_BRACKET | {'('}
+    			  Line: 13
+    			Indent: 8
     
     	i: 33
     Token program->token_arr + i
     (0x622000000730)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {'x'}
-    			  Line: 11
+    		        type: CONSTANT | {'10'}
+    			  Line: 13
     			Indent: 9
     
     	i: 34
@@ -774,8 +792,8 @@ main::
     (0x622000000760)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {'='}
-    			  Line: 11
+    		        type: EXPRESSION_CLOSING_BRACKET | {')'}
+    			  Line: 13
     			Indent: 11
     
     	i: 35
@@ -783,18 +801,18 @@ main::
     (0x622000000790)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {'5'}
-    			  Line: 11
-    			Indent: 13
+    		        type: BLOCK_OPENING_BRACKET | {'{'}
+    			  Line: 14
+    			Indent: 5
     
     	i: 36
     Token program->token_arr + i
     (0x6220000007c0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT | {';'}
-    			  Line: 11
-    			Indent: 14
+    		        type: INITIALIZATOR | {'var'}
+    			  Line: 15
+    			Indent: 6
     
     	i: 37
     Token program->token_arr + i
@@ -802,8 +820,8 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: NAME | {'x'}
-    			  Line: 13
-    			Indent: 5
+    			  Line: 15
+    			Indent: 10
     
     	i: 38
     Token program->token_arr + i
@@ -811,8 +829,8 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: ASSIGMENT | {'='}
-    			  Line: 13
-    			Indent: 7
+    			  Line: 15
+    			Indent: 12
     
     	i: 39
     Token program->token_arr + i
@@ -820,385 +838,385 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: CONSTANT | {'5'}
-    			  Line: 13
-    			Indent: 9
+    			  Line: 15
+    			Indent: 14
     
     	i: 40
     Token program->token_arr + i
     (0x622000000880)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {'*'}
-    			  Line: 13
-    			Indent: 11
+    		        type: END_OF_STATEMENT | {';'}
+    			  Line: 15
+    			Indent: 15
     
     	i: 41
     Token program->token_arr + i
     (0x6220000008b0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {'7'}
-    			  Line: 13
-    			Indent: 13
+    		        type: NAME | {'x'}
+    			  Line: 17
+    			Indent: 5
     
     	i: 42
     Token program->token_arr + i
     (0x6220000008e0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {'/'}
-    			  Line: 13
-    			Indent: 15
+    		        type: ASSIGMENT | {'='}
+    			  Line: 17
+    			Indent: 7
     
     	i: 43
     Token program->token_arr + i
     (0x622000000910)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {'3'}
-    			  Line: 13
-    			Indent: 16
+    		        type: CONSTANT | {'5'}
+    			  Line: 17
+    			Indent: 9
     
     	i: 44
     Token program->token_arr + i
     (0x622000000940)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT | {';'}
-    			  Line: 13
-    			Indent: 17
+    		        type: OPERATOR | {'*'}
+    			  Line: 17
+    			Indent: 11
     
     	i: 45
     Token program->token_arr + i
     (0x622000000970)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INITIALIZATOR | {'var'}
-    			  Line: 14
-    			Indent: 5
+    		        type: CONSTANT | {'7'}
+    			  Line: 17
+    			Indent: 13
     
     	i: 46
     Token program->token_arr + i
     (0x6220000009a0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {'y'}
-    			  Line: 14
-    			Indent: 9
+    		        type: OPERATOR | {'/'}
+    			  Line: 17
+    			Indent: 15
     
     	i: 47
     Token program->token_arr + i
     (0x6220000009d0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {'='}
-    			  Line: 14
-    			Indent: 11
+    		        type: CONSTANT | {'3'}
+    			  Line: 17
+    			Indent: 16
     
     	i: 48
     Token program->token_arr + i
     (0x622000000a00)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {'5'}
-    			  Line: 14
-    			Indent: 13
+    		        type: END_OF_STATEMENT | {';'}
+    			  Line: 17
+    			Indent: 17
     
     	i: 49
     Token program->token_arr + i
     (0x622000000a30)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT | {';'}
-    			  Line: 14
-    			Indent: 14
+    		        type: INITIALIZATOR | {'var'}
+    			  Line: 18
+    			Indent: 5
     
     	i: 50
     Token program->token_arr + i
     (0x622000000a60)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INITIALIZATOR | {'var'}
-    			  Line: 15
-    			Indent: 5
+    		        type: NAME | {'y'}
+    			  Line: 18
+    			Indent: 9
     
     	i: 51
     Token program->token_arr + i
     (0x622000000a90)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {'z'}
-    			  Line: 15
-    			Indent: 9
+    		        type: ASSIGMENT | {'='}
+    			  Line: 18
+    			Indent: 11
     
     	i: 52
     Token program->token_arr + i
     (0x622000000ac0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {'='}
-    			  Line: 15
-    			Indent: 11
+    		        type: CONSTANT | {'5'}
+    			  Line: 18
+    			Indent: 13
     
     	i: 53
     Token program->token_arr + i
     (0x622000000af0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {'3'}
-    			  Line: 15
-    			Indent: 13
+    		        type: END_OF_STATEMENT | {';'}
+    			  Line: 18
+    			Indent: 14
     
     	i: 54
     Token program->token_arr + i
     (0x622000000b20)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT | {';'}
-    			  Line: 15
-    			Indent: 14
+    		        type: INITIALIZATOR | {'var'}
+    			  Line: 19
+    			Indent: 5
     
     	i: 55
     Token program->token_arr + i
     (0x622000000b50)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: BLOCK_CLOSING_BRACKET | {'}'}
-    			  Line: 16
-    			Indent: 5
+    		        type: NAME | {'z'}
+    			  Line: 19
+    			Indent: 9
     
     	i: 56
     Token program->token_arr + i
     (0x622000000b80)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INSTRUCTION | {'if'}
-    			  Line: 18
-    			Indent: 5
+    		        type: ASSIGMENT | {'='}
+    			  Line: 19
+    			Indent: 11
     
     	i: 57
     Token program->token_arr + i
     (0x622000000bb0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION_OPENING_BRACKET | {'('}
-    			  Line: 18
-    			Indent: 8
+    		        type: CONSTANT | {'3'}
+    			  Line: 19
+    			Indent: 13
     
     	i: 58
     Token program->token_arr + i
     (0x622000000be0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {'y'}
-    			  Line: 18
-    			Indent: 9
+    		        type: END_OF_STATEMENT | {';'}
+    			  Line: 19
+    			Indent: 14
     
     	i: 59
     Token program->token_arr + i
     (0x622000000c10)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION_CLOSING_BRACKET | {')'}
-    			  Line: 18
-    			Indent: 10
+    		        type: BLOCK_CLOSING_BRACKET | {'}'}
+    			  Line: 20
+    			Indent: 5
     
     	i: 60
     Token program->token_arr + i
     (0x622000000c40)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: BLOCK_OPENING_BRACKET | {'{'}
-    			  Line: 19
-    			Indent: 9
+    		        type: INSTRUCTION | {'if'}
+    			  Line: 22
+    			Indent: 5
     
     	i: 61
     Token program->token_arr + i
     (0x622000000c70)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INITIALIZATOR | {'var'}
-    			  Line: 20
-    			Indent: 9
+    		        type: EXPRESSION_OPENING_BRACKET | {'('}
+    			  Line: 22
+    			Indent: 8
     
     	i: 62
     Token program->token_arr + i
     (0x622000000ca0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {'x'}
-    			  Line: 20
-    			Indent: 13
+    		        type: NAME | {'y'}
+    			  Line: 22
+    			Indent: 9
     
     	i: 63
     Token program->token_arr + i
     (0x622000000cd0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {'='}
-    			  Line: 20
-    			Indent: 15
+    		        type: EXPRESSION_CLOSING_BRACKET | {')'}
+    			  Line: 22
+    			Indent: 10
     
     	i: 64
     Token program->token_arr + i
     (0x622000000d00)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {'10'}
-    			  Line: 20
-    			Indent: 17
+    		        type: BLOCK_OPENING_BRACKET | {'{'}
+    			  Line: 23
+    			Indent: 9
     
     	i: 65
     Token program->token_arr + i
     (0x622000000d30)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT | {';'}
-    			  Line: 20
-    			Indent: 19
+    		        type: INITIALIZATOR | {'var'}
+    			  Line: 24
+    			Indent: 9
     
     	i: 66
     Token program->token_arr + i
     (0x622000000d60)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INITIALIZATOR | {'var'}
-    			  Line: 21
-    			Indent: 9
+    		        type: NAME | {'x'}
+    			  Line: 24
+    			Indent: 13
     
     	i: 67
     Token program->token_arr + i
     (0x622000000d90)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {'y'}
-    			  Line: 21
-    			Indent: 13
+    		        type: ASSIGMENT | {'='}
+    			  Line: 24
+    			Indent: 15
     
     	i: 68
     Token program->token_arr + i
     (0x622000000dc0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {'='}
-    			  Line: 21
-    			Indent: 15
+    		        type: CONSTANT | {'10'}
+    			  Line: 24
+    			Indent: 17
     
     	i: 69
     Token program->token_arr + i
     (0x622000000df0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {'2'}
-    			  Line: 21
-    			Indent: 17
+    		        type: END_OF_STATEMENT | {';'}
+    			  Line: 24
+    			Indent: 19
     
     	i: 70
     Token program->token_arr + i
     (0x622000000e20)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT | {';'}
-    			  Line: 21
-    			Indent: 18
+    		        type: INITIALIZATOR | {'var'}
+    			  Line: 25
+    			Indent: 9
     
     	i: 71
     Token program->token_arr + i
     (0x622000000e50)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INITIALIZATOR | {'var'}
-    			  Line: 22
-    			Indent: 9
+    		        type: NAME | {'y'}
+    			  Line: 25
+    			Indent: 13
     
     	i: 72
     Token program->token_arr + i
     (0x622000000e80)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {'z'}
-    			  Line: 22
-    			Indent: 13
+    		        type: ASSIGMENT | {'='}
+    			  Line: 25
+    			Indent: 15
     
     	i: 73
     Token program->token_arr + i
     (0x622000000eb0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {'='}
-    			  Line: 22
-    			Indent: 15
+    		        type: CONSTANT | {'2'}
+    			  Line: 25
+    			Indent: 17
     
     	i: 74
     Token program->token_arr + i
     (0x622000000ee0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {'0'}
-    			  Line: 22
-    			Indent: 17
+    		        type: END_OF_STATEMENT | {';'}
+    			  Line: 25
+    			Indent: 18
     
     	i: 75
     Token program->token_arr + i
     (0x622000000f10)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT | {';'}
-    			  Line: 22
-    			Indent: 18
+    		        type: INITIALIZATOR | {'var'}
+    			  Line: 26
+    			Indent: 9
     
     	i: 76
     Token program->token_arr + i
     (0x622000000f40)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: BLOCK_CLOSING_BRACKET | {'}'}
-    			  Line: 23
-    			Indent: 9
+    		        type: NAME | {'z'}
+    			  Line: 26
+    			Indent: 13
     
     	i: 77
     Token program->token_arr + i
     (0x622000000f70)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NATIVE_FUNCTION | {'fout'}
-    			  Line: 25
-    			Indent: 5
+    		        type: ASSIGMENT | {'='}
+    			  Line: 26
+    			Indent: 15
     
     	i: 78
     Token program->token_arr + i
     (0x622000000fa0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {'<'}
-    			  Line: 25
-    			Indent: 10
+    		        type: CONSTANT | {'0'}
+    			  Line: 26
+    			Indent: 17
     
     	i: 79
     Token program->token_arr + i
     (0x622000000fd0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {'x'}
-    			  Line: 25
-    			Indent: 13
+    		        type: END_OF_STATEMENT | {';'}
+    			  Line: 26
+    			Indent: 18
     
     	i: 80
     Token program->token_arr + i
     (0x622000001000)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT | {';'}
-    			  Line: 25
-    			Indent: 14
+    		        type: BLOCK_CLOSING_BRACKET | {'}'}
+    			  Line: 27
+    			Indent: 9
     
     	i: 81
     Token program->token_arr + i
     (0x622000001030)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {'helloworld'}
-    			  Line: 27
+    		        type: NATIVE_FUNCTION | {'fout'}
+    			  Line: 29
     			Indent: 5
     
     	i: 82
@@ -1206,18 +1224,18 @@ main::
     (0x622000001060)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION_OPENING_BRACKET | {'('}
-    			  Line: 27
-    			Indent: 15
+    		        type: OPERATOR | {'<'}
+    			  Line: 29
+    			Indent: 10
     
     	i: 83
     Token program->token_arr + i
     (0x622000001090)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION_CLOSING_BRACKET | {')'}
-    			  Line: 27
-    			Indent: 16
+    		        type: NAME | {'x'}
+    			  Line: 29
+    			Indent: 13
     
     	i: 84
     Token program->token_arr + i
@@ -1225,16 +1243,16 @@ main::
     		  left_child: (nil)
     		 right_child: (nil)
     		        type: END_OF_STATEMENT | {';'}
-    			  Line: 27
-    			Indent: 17
+    			  Line: 29
+    			Indent: 14
     
     	i: 85
     Token program->token_arr + i
     (0x6220000010f0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {'x'}
-    			  Line: 29
+    		        type: NAME | {'helloworld'}
+    			  Line: 31
     			Indent: 5
     
     	i: 86
@@ -1242,206 +1260,206 @@ main::
     (0x622000001120)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: ASSIGMENT | {'='}
-    			  Line: 29
-    			Indent: 7
+    		        type: EXPRESSION_OPENING_BRACKET | {'('}
+    			  Line: 31
+    			Indent: 15
     
     	i: 87
     Token program->token_arr + i
     (0x622000001150)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {'1'}
-    			  Line: 29
-    			Indent: 9
+    		        type: EXPRESSION_CLOSING_BRACKET | {')'}
+    			  Line: 31
+    			Indent: 16
     
     	i: 88
     Token program->token_arr + i
     (0x622000001180)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {'*'}
-    			  Line: 29
-    			Indent: 11
+    		        type: END_OF_STATEMENT | {';'}
+    			  Line: 31
+    			Indent: 17
     
     	i: 89
     Token program->token_arr + i
     (0x6220000011b0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION_OPENING_BRACKET | {'('}
-    			  Line: 29
-    			Indent: 13
+    		        type: NAME | {'x'}
+    			  Line: 33
+    			Indent: 5
     
     	i: 90
     Token program->token_arr + i
     (0x6220000011e0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {'4'}
-    			  Line: 29
-    			Indent: 14
+    		        type: ASSIGMENT | {'='}
+    			  Line: 33
+    			Indent: 7
     
     	i: 91
     Token program->token_arr + i
     (0x622000001210)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {'+'}
-    			  Line: 29
-    			Indent: 16
+    		        type: CONSTANT | {'1'}
+    			  Line: 33
+    			Indent: 9
     
     	i: 92
     Token program->token_arr + i
     (0x622000001240)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {'5'}
-    			  Line: 29
-    			Indent: 18
+    		        type: OPERATOR | {'*'}
+    			  Line: 33
+    			Indent: 11
     
     	i: 93
     Token program->token_arr + i
     (0x622000001270)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION_CLOSING_BRACKET | {')'}
-    			  Line: 29
-    			Indent: 19
+    		        type: EXPRESSION_OPENING_BRACKET | {'('}
+    			  Line: 33
+    			Indent: 13
     
     	i: 94
     Token program->token_arr + i
     (0x6220000012a0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT | {';'}
-    			  Line: 29
-    			Indent: 20
+    		        type: CONSTANT | {'4'}
+    			  Line: 33
+    			Indent: 14
     
     	i: 95
     Token program->token_arr + i
     (0x6220000012d0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INSTRUCTION | {'return'}
-    			  Line: 31
-    			Indent: 5
+    		        type: OPERATOR | {'+'}
+    			  Line: 33
+    			Indent: 16
     
     	i: 96
     Token program->token_arr + i
     (0x622000001300)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {'y'}
-    			  Line: 31
-    			Indent: 12
+    		        type: CONSTANT | {'5'}
+    			  Line: 33
+    			Indent: 18
     
     	i: 97
     Token program->token_arr + i
     (0x622000001330)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT | {';'}
-    			  Line: 31
-    			Indent: 13
+    		        type: EXPRESSION_CLOSING_BRACKET | {')'}
+    			  Line: 33
+    			Indent: 19
     
     	i: 98
     Token program->token_arr + i
     (0x622000001360)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: BLOCK_CLOSING_BRACKET | {'}'}
-    			  Line: 32
-    			Indent: 5
+    		        type: END_OF_STATEMENT | {';'}
+    			  Line: 33
+    			Indent: 20
     
     	i: 99
     Token program->token_arr + i
     (0x622000001390)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: FUNCTION_RET_TYPE | {'void'}
-    			  Line: 34
-    			Indent: 1
+    		        type: INSTRUCTION | {'return'}
+    			  Line: 35
+    			Indent: 5
     
     	i: 100
     Token program->token_arr + i
     (0x6220000013c0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NAME | {'helloworld'}
-    			  Line: 34
-    			Indent: 6
+    		        type: CONSTANT | {'0'}
+    			  Line: 35
+    			Indent: 12
     
     	i: 101
     Token program->token_arr + i
     (0x6220000013f0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION_OPENING_BRACKET | {'('}
-    			  Line: 34
-    			Indent: 16
+    		        type: END_OF_STATEMENT | {';'}
+    			  Line: 35
+    			Indent: 13
     
     	i: 102
     Token program->token_arr + i
     (0x622000001420)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: EXPRESSION_CLOSING_BRACKET | {')'}
-    			  Line: 34
-    			Indent: 17
+    		        type: BLOCK_CLOSING_BRACKET | {'}'}
+    			  Line: 36
+    			Indent: 5
     
     	i: 103
     Token program->token_arr + i
     (0x622000001450)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: BLOCK_OPENING_BRACKET | {'{'}
-    			  Line: 35
-    			Indent: 5
+    		        type: FUNCTION_RET_TYPE | {'void'}
+    			  Line: 38
+    			Indent: 1
     
     	i: 104
     Token program->token_arr + i
     (0x622000001480)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: NATIVE_FUNCTION | {'fout'}
-    			  Line: 36
-    			Indent: 5
+    		        type: NAME | {'helloworld'}
+    			  Line: 38
+    			Indent: 6
     
     	i: 105
     Token program->token_arr + i
     (0x6220000014b0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: OPERATOR | {'<'}
-    			  Line: 36
-    			Indent: 10
+    		        type: EXPRESSION_OPENING_BRACKET | {'('}
+    			  Line: 38
+    			Indent: 16
     
     	i: 106
     Token program->token_arr + i
     (0x6220000014e0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: CONSTANT | {'4'}
-    			  Line: 36
-    			Indent: 13
+    		        type: EXPRESSION_CLOSING_BRACKET | {')'}
+    			  Line: 38
+    			Indent: 17
     
     	i: 107
     Token program->token_arr + i
     (0x622000001510)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT | {';'}
-    			  Line: 36
-    			Indent: 14
+    		        type: BLOCK_OPENING_BRACKET | {'{'}
+    			  Line: 39
+    			Indent: 5
     
     	i: 108
     Token program->token_arr + i
     (0x622000001540)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: INSTRUCTION | {'return'}
-    			  Line: 37
+    		        type: NATIVE_FUNCTION | {'fout'}
+    			  Line: 40
     			Indent: 5
     
     	i: 109
@@ -1449,33 +1467,69 @@ main::
     (0x622000001570)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
-    		        type: END_OF_STATEMENT | {';'}
-    			  Line: 37
-    			Indent: 11
+    		        type: OPERATOR | {'<'}
+    			  Line: 40
+    			Indent: 10
     
     	i: 110
     Token program->token_arr + i
     (0x6220000015a0)::::::::::::::::
     		  left_child: (nil)
     		 right_child: (nil)
+    		        type: CONSTANT | {'4'}
+    			  Line: 40
+    			Indent: 13
+    
+    	i: 111
+    Token program->token_arr + i
+    (0x6220000015d0)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: END_OF_STATEMENT | {';'}
+    			  Line: 40
+    			Indent: 14
+    
+    	i: 112
+    Token program->token_arr + i
+    (0x622000001600)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: INSTRUCTION | {'return'}
+    			  Line: 41
+    			Indent: 5
+    
+    	i: 113
+    Token program->token_arr + i
+    (0x622000001630)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
+    		        type: END_OF_STATEMENT | {';'}
+    			  Line: 41
+    			Indent: 11
+    
+    	i: 114
+    Token program->token_arr + i
+    (0x622000001660)::::::::::::::::
+    		  left_child: (nil)
+    		 right_child: (nil)
     		        type: BLOCK_CLOSING_BRACKET | {'}'}
-    			  Line: 38
+    			  Line: 42
     			Indent: 5
     
     }
 
   GetG::
     {
-    LOG CALLOC:     {0x606000000020} = calloc (1, 56 = 56) from ProgramCtxCtor:73, at ./src/../src/SyntaxAnalysisUtils_.ars:73
-    LOG CALLOC:     {0x603000000100} = calloc (1, 24 = 24) from NewFuncTabel:18, at ../Common/Structures/Tabels/Tabels.cpp:18
+    LOG CALLOC:     {0x606000000020} = calloc (1, 56 = 56) from ProgramCtxCtor:72, at ./src/../src/SyntaxAnalysisUtils_.ars:72
+    LOG CALLOC:     {0x603000000130} = calloc (1, 24 = 24) from NewFuncTabel:18, at ../Common/Structures/Tabels/Tabels.cpp:18
     LOG CALLOC:     {0x607000000100} = calloc (10, 8 = 80) from NewFuncTabel:22, at ../Common/Structures/Tabels/Tabels.cpp:22
-    LOG CALLOC:     {0x603000000130} = calloc (1, 24 = 24) from NewVarTabel:197, at ../Common/Structures/Tabels/Tabels.cpp:197
+    LOG CALLOC:     {0x603000000160} = calloc (1, 24 = 24) from NewVarTabel:197, at ../Common/Structures/Tabels/Tabels.cpp:197
     LOG CALLOC:     {0x607000000170} = calloc (10, 8 = 80) from NewVarTabel:201, at ../Common/Structures/Tabels/Tabels.cpp:201
     FuncInitialization::
       {
       NewFuncLabel::
         {
-        LOG CALLOC:     {0x603000000160} = calloc (1, 24 = 24) from NewFuncLabel:141, at ../Common/Structures/Tabels/Tabels.cpp:141
+        LOG CALLOC:     {0x603000000190} = calloc (1, 24 = 24) from NewFuncLabel:141, at ../Common/Structures/Tabels/Tabels.cpp:141
         }
 
       	position: 0
@@ -1485,7 +1539,7 @@ main::
       {
       NewFuncLabel::
         {
-        LOG CALLOC:     {0x603000000190} = calloc (1, 24 = 24) from NewFuncLabel:141, at ../Common/Structures/Tabels/Tabels.cpp:141
+        LOG CALLOC:     {0x6030000001c0} = calloc (1, 24 = 24) from NewFuncLabel:141, at ../Common/Structures/Tabels/Tabels.cpp:141
         }
 
       	position: 1
@@ -1493,7 +1547,7 @@ main::
       	program_ctx->current_func_label: 1
       GetBlock::
         {
-        LOG CALLOC:     {0x6030000001c0} = calloc (1, 24 = 24) from NewVarTabel:197, at ../Common/Structures/Tabels/Tabels.cpp:197
+        LOG CALLOC:     {0x6030000001f0} = calloc (1, 24 = 24) from NewVarTabel:197, at ../Common/Structures/Tabels/Tabels.cpp:197
         LOG CALLOC:     {0x6070000001e0} = calloc (10, 8 = 80) from NewVarTabel:201, at ../Common/Structures/Tabels/Tabels.cpp:201
         GetStatement::
           {
@@ -1512,7 +1566,7 @@ main::
                     (0x6220000003a0)::::::::::::::::
                     		  left_child: (nil)
                     		 right_child: (nil)
-                    		        type: CONSTANT | {'2'}
+                    		        type: CONSTANT | {'3'}
                     			  Line: 5
                     			Indent: 16
                     
@@ -1526,7 +1580,7 @@ main::
               (0x6220000003a0)::::::::::::::::
               		  left_child: (nil)
               		 right_child: (nil)
-              		        type: CONSTANT | {'2'}
+              		        type: CONSTANT | {'3'}
               			  Line: 5
               			Indent: 16
               
@@ -1554,7 +1608,7 @@ main::
                     		  left_child: (nil)
                     		 right_child: (nil)
                     		        type: CONSTANT | {'4'}
-                    			  Line: 6
+                    			  Line: 9
                     			Indent: 13
                     
                     }
@@ -1568,7 +1622,7 @@ main::
               		  left_child: (nil)
               		 right_child: (nil)
               		        type: CONSTANT | {'4'}
-              			  Line: 6
+              			  Line: 9
               			Indent: 13
               
               }
@@ -1595,7 +1649,7 @@ main::
                     		  left_child: (nil)
                     		 right_child: (nil)
                     		        type: CONSTANT | {'5'}
-                    			  Line: 7
+                    			  Line: 10
                     			Indent: 13
                     
                     }
@@ -1609,7 +1663,7 @@ main::
               		  left_child: (nil)
               		 right_child: (nil)
               		        type: CONSTANT | {'5'}
-              			  Line: 7
+              			  Line: 10
               			Indent: 13
               
               }
@@ -1636,7 +1690,7 @@ main::
                     		  left_child: (nil)
                     		 right_child: (nil)
                     		        type: CONSTANT | {'0'}
-                    			  Line: 8
+                    			  Line: 11
                     			Indent: 12
                     
                     }
@@ -1650,257 +1704,11 @@ main::
               		  left_child: (nil)
               		 right_child: (nil)
               		        type: CONSTANT | {'0'}
-              			  Line: 8
+              			  Line: 11
               			Indent: 12
               
               }
 
-            }
-
-          }
-
-        GetStatement::
-          {
-          GetBlock::
-            {
-            LOG CALLOC:     {0x6030000001f0} = calloc (1, 24 = 24) from NewVarTabel:197, at ../Common/Structures/Tabels/Tabels.cpp:197
-            LOG CALLOC:     {0x607000000250} = calloc (10, 8 = 80) from NewVarTabel:201, at ../Common/Structures/Tabels/Tabels.cpp:201
-            GetStatement::
-              {
-              LOG CALLOC:     {0x602000000150} = calloc (1, 8 = 8) from AddVarLabel:295, at ../Common/Structures/Tabels/Tabels.cpp:295
-              GetE::
-                {
-                GetT::
-                  {
-                  GetPower::
-                    {
-                    GetP::
-                      {
-                      GetN::
-                        {
-                        Token result
-                        (0x622000000790)::::::::::::::::
-                        		  left_child: (nil)
-                        		 right_child: (nil)
-                        		        type: CONSTANT | {'5'}
-                        			  Line: 11
-                        			Indent: 13
-                        
-                        }
-
-                      }
-
-                    }
-
-                  Token node
-                  (0x622000000790)::::::::::::::::
-                  		  left_child: (nil)
-                  		 right_child: (nil)
-                  		        type: CONSTANT | {'5'}
-                  			  Line: 11
-                  			Indent: 13
-                  
-                  }
-
-                }
-
-              }
-
-            GetStatement::
-              {
-              GetStatement::
-                {
-                GetAssigment::
-                  {
-                  GetE::
-                    {
-                    GetT::
-                      {
-                      GetPower::
-                        {
-                        GetP::
-                          {
-                          GetN::
-                            {
-                            Token result
-                            (0x622000000850)::::::::::::::::
-                            		  left_child: (nil)
-                            		 right_child: (nil)
-                            		        type: CONSTANT | {'5'}
-                            			  Line: 13
-                            			Indent: 9
-                            
-                            }
-
-                          }
-
-                        }
-
-                      Token node
-                      (0x622000000850)::::::::::::::::
-                      		  left_child: (nil)
-                      		 right_child: (nil)
-                      		        type: CONSTANT | {'5'}
-                      			  Line: 13
-                      			Indent: 9
-                      
-                      Token token
-                      (0x622000000880)::::::::::::::::
-                      		  left_child: (nil)
-                      		 right_child: (nil)
-                      		        type: OPERATOR | {'*'}
-                      			  Line: 13
-                      			Indent: 11
-                      
-                      GetPower::
-                        {
-                        GetP::
-                          {
-                          GetN::
-                            {
-                            Token result
-                            (0x6220000008b0)::::::::::::::::
-                            		  left_child: (nil)
-                            		 right_child: (nil)
-                            		        type: CONSTANT | {'7'}
-                            			  Line: 13
-                            			Indent: 13
-                            
-                            }
-
-                          }
-
-                        }
-
-                      Token token
-                      (0x6220000008e0)::::::::::::::::
-                      		  left_child: (nil)
-                      		 right_child: (nil)
-                      		        type: OPERATOR | {'/'}
-                      			  Line: 13
-                      			Indent: 15
-                      
-                      GetPower::
-                        {
-                        GetP::
-                          {
-                          GetN::
-                            {
-                            Token result
-                            (0x622000000910)::::::::::::::::
-                            		  left_child: (nil)
-                            		 right_child: (nil)
-                            		        type: CONSTANT | {'3'}
-                            			  Line: 13
-                            			Indent: 16
-                            
-                            }
-
-                          }
-
-                        }
-
-                      }
-
-                    }
-
-                  }
-
-                }
-
-              }
-
-            GetStatement::
-              {
-              LOG CALLOC:     {0x602000000170} = calloc (1, 8 = 8) from AddVarLabel:295, at ../Common/Structures/Tabels/Tabels.cpp:295
-              GetE::
-                {
-                GetT::
-                  {
-                  GetPower::
-                    {
-                    GetP::
-                      {
-                      GetN::
-                        {
-                        Token result
-                        (0x622000000a00)::::::::::::::::
-                        		  left_child: (nil)
-                        		 right_child: (nil)
-                        		        type: CONSTANT | {'5'}
-                        			  Line: 14
-                        			Indent: 13
-                        
-                        }
-
-                      }
-
-                    }
-
-                  Token node
-                  (0x622000000a00)::::::::::::::::
-                  		  left_child: (nil)
-                  		 right_child: (nil)
-                  		        type: CONSTANT | {'5'}
-                  			  Line: 14
-                  			Indent: 13
-                  
-                  }
-
-                }
-
-              }
-
-            GetStatement::
-              {
-              LOG CALLOC:     {0x602000000190} = calloc (1, 8 = 8) from AddVarLabel:295, at ../Common/Structures/Tabels/Tabels.cpp:295
-              GetE::
-                {
-                GetT::
-                  {
-                  GetPower::
-                    {
-                    GetP::
-                      {
-                      GetN::
-                        {
-                        Token result
-                        (0x622000000af0)::::::::::::::::
-                        		  left_child: (nil)
-                        		 right_child: (nil)
-                        		        type: CONSTANT | {'3'}
-                        			  Line: 15
-                        			Indent: 13
-                        
-                        }
-
-                      }
-
-                    }
-
-                  Token node
-                  (0x622000000af0)::::::::::::::::
-                  		  left_child: (nil)
-                  		 right_child: (nil)
-                  		        type: CONSTANT | {'3'}
-                  			  Line: 15
-                  			Indent: 13
-                  
-                  }
-
-                }
-
-              }
-
-            GetStatement::
-              {
-              }
-
-            LOG FREE(kill): {0x602000000150} - will be freed from CloseVarTabel:241, at ../Common/Structures/Tabels/Tabels.cpp:241
-            LOG FREE(kill): {0x602000000170} - will be freed from CloseVarTabel:241, at ../Common/Structures/Tabels/Tabels.cpp:241
-            LOG FREE(kill): {0x602000000190} - will be freed from CloseVarTabel:241, at ../Common/Structures/Tabels/Tabels.cpp:241
-            LOG FREE(kill): {0x607000000250} - will be freed from CloseVarTabel:244, at ../Common/Structures/Tabels/Tabels.cpp:244
-            LOG FREE(kill): {0x6030000001f0} - will be freed from CloseVarTabel:245, at ../Common/Structures/Tabels/Tabels.cpp:245
             }
 
           }
@@ -1920,11 +1728,11 @@ main::
                     GetN::
                       {
                       Token result
-                      (0x622000000be0)::::::::::::::::
+                      (0x622000000730)::::::::::::::::
                       		  left_child: (nil)
                       		 right_child: (nil)
-                      		        type: VARIABLE | {'y'}
-                      			  Line: 18
+                      		        type: CONSTANT | {'10'}
+                      			  Line: 13
                       			Indent: 9
                       
                       }
@@ -1934,11 +1742,11 @@ main::
                   }
 
                 Token node
-                (0x622000000be0)::::::::::::::::
+                (0x622000000730)::::::::::::::::
                 		  left_child: (nil)
                 		 right_child: (nil)
-                		        type: VARIABLE | {'y'}
-                			  Line: 18
+                		        type: CONSTANT | {'10'}
+                			  Line: 13
                 			Indent: 9
                 
                 }
@@ -1950,6 +1758,296 @@ main::
               GetBlock::
                 {
                 LOG CALLOC:     {0x603000000220} = calloc (1, 24 = 24) from NewVarTabel:197, at ../Common/Structures/Tabels/Tabels.cpp:197
+                LOG CALLOC:     {0x607000000250} = calloc (10, 8 = 80) from NewVarTabel:201, at ../Common/Structures/Tabels/Tabels.cpp:201
+                GetStatement::
+                  {
+                  LOG CALLOC:     {0x602000000150} = calloc (1, 8 = 8) from AddVarLabel:295, at ../Common/Structures/Tabels/Tabels.cpp:295
+                  GetE::
+                    {
+                    GetT::
+                      {
+                      GetPower::
+                        {
+                        GetP::
+                          {
+                          GetN::
+                            {
+                            Token result
+                            (0x622000000850)::::::::::::::::
+                            		  left_child: (nil)
+                            		 right_child: (nil)
+                            		        type: CONSTANT | {'5'}
+                            			  Line: 15
+                            			Indent: 14
+                            
+                            }
+
+                          }
+
+                        }
+
+                      Token node
+                      (0x622000000850)::::::::::::::::
+                      		  left_child: (nil)
+                      		 right_child: (nil)
+                      		        type: CONSTANT | {'5'}
+                      			  Line: 15
+                      			Indent: 14
+                      
+                      }
+
+                    }
+
+                  }
+
+                GetStatement::
+                  {
+                  GetStatement::
+                    {
+                    GetAssigment::
+                      {
+                      GetE::
+                        {
+                        GetT::
+                          {
+                          GetPower::
+                            {
+                            GetP::
+                              {
+                              GetN::
+                                {
+                                Token result
+                                (0x622000000910)::::::::::::::::
+                                		  left_child: (nil)
+                                		 right_child: (nil)
+                                		        type: CONSTANT | {'5'}
+                                			  Line: 17
+                                			Indent: 9
+                                
+                                }
+
+                              }
+
+                            }
+
+                          Token node
+                          (0x622000000910)::::::::::::::::
+                          		  left_child: (nil)
+                          		 right_child: (nil)
+                          		        type: CONSTANT | {'5'}
+                          			  Line: 17
+                          			Indent: 9
+                          
+                          Token token
+                          (0x622000000940)::::::::::::::::
+                          		  left_child: (nil)
+                          		 right_child: (nil)
+                          		        type: OPERATOR | {'*'}
+                          			  Line: 17
+                          			Indent: 11
+                          
+                          GetPower::
+                            {
+                            GetP::
+                              {
+                              GetN::
+                                {
+                                Token result
+                                (0x622000000970)::::::::::::::::
+                                		  left_child: (nil)
+                                		 right_child: (nil)
+                                		        type: CONSTANT | {'7'}
+                                			  Line: 17
+                                			Indent: 13
+                                
+                                }
+
+                              }
+
+                            }
+
+                          Token token
+                          (0x6220000009a0)::::::::::::::::
+                          		  left_child: (nil)
+                          		 right_child: (nil)
+                          		        type: OPERATOR | {'/'}
+                          			  Line: 17
+                          			Indent: 15
+                          
+                          GetPower::
+                            {
+                            GetP::
+                              {
+                              GetN::
+                                {
+                                Token result
+                                (0x6220000009d0)::::::::::::::::
+                                		  left_child: (nil)
+                                		 right_child: (nil)
+                                		        type: CONSTANT | {'3'}
+                                			  Line: 17
+                                			Indent: 16
+                                
+                                }
+
+                              }
+
+                            }
+
+                          }
+
+                        }
+
+                      }
+
+                    }
+
+                  }
+
+                GetStatement::
+                  {
+                  LOG CALLOC:     {0x602000000170} = calloc (1, 8 = 8) from AddVarLabel:295, at ../Common/Structures/Tabels/Tabels.cpp:295
+                  GetE::
+                    {
+                    GetT::
+                      {
+                      GetPower::
+                        {
+                        GetP::
+                          {
+                          GetN::
+                            {
+                            Token result
+                            (0x622000000ac0)::::::::::::::::
+                            		  left_child: (nil)
+                            		 right_child: (nil)
+                            		        type: CONSTANT | {'5'}
+                            			  Line: 18
+                            			Indent: 13
+                            
+                            }
+
+                          }
+
+                        }
+
+                      Token node
+                      (0x622000000ac0)::::::::::::::::
+                      		  left_child: (nil)
+                      		 right_child: (nil)
+                      		        type: CONSTANT | {'5'}
+                      			  Line: 18
+                      			Indent: 13
+                      
+                      }
+
+                    }
+
+                  }
+
+                GetStatement::
+                  {
+                  LOG CALLOC:     {0x602000000190} = calloc (1, 8 = 8) from AddVarLabel:295, at ../Common/Structures/Tabels/Tabels.cpp:295
+                  GetE::
+                    {
+                    GetT::
+                      {
+                      GetPower::
+                        {
+                        GetP::
+                          {
+                          GetN::
+                            {
+                            Token result
+                            (0x622000000bb0)::::::::::::::::
+                            		  left_child: (nil)
+                            		 right_child: (nil)
+                            		        type: CONSTANT | {'3'}
+                            			  Line: 19
+                            			Indent: 13
+                            
+                            }
+
+                          }
+
+                        }
+
+                      Token node
+                      (0x622000000bb0)::::::::::::::::
+                      		  left_child: (nil)
+                      		 right_child: (nil)
+                      		        type: CONSTANT | {'3'}
+                      			  Line: 19
+                      			Indent: 13
+                      
+                      }
+
+                    }
+
+                  }
+
+                GetStatement::
+                  {
+                  }
+
+                LOG FREE(kill): {0x602000000150} - will be freed from CloseVarTabel:241, at ../Common/Structures/Tabels/Tabels.cpp:241
+                LOG FREE(kill): {0x602000000170} - will be freed from CloseVarTabel:241, at ../Common/Structures/Tabels/Tabels.cpp:241
+                LOG FREE(kill): {0x602000000190} - will be freed from CloseVarTabel:241, at ../Common/Structures/Tabels/Tabels.cpp:241
+                LOG FREE(kill): {0x607000000250} - will be freed from CloseVarTabel:244, at ../Common/Structures/Tabels/Tabels.cpp:244
+                LOG FREE(kill): {0x603000000220} - will be freed from CloseVarTabel:245, at ../Common/Structures/Tabels/Tabels.cpp:245
+                }
+
+              }
+
+            }
+
+          }
+
+        GetStatement::
+          {
+          GetInstruction::
+            {
+            GetE::
+              {
+              GetT::
+                {
+                GetPower::
+                  {
+                  GetP::
+                    {
+                    GetN::
+                      {
+                      Token result
+                      (0x622000000ca0)::::::::::::::::
+                      		  left_child: (nil)
+                      		 right_child: (nil)
+                      		        type: VARIABLE | {'y'}
+                      			  Line: 22
+                      			Indent: 9
+                      
+                      }
+
+                    }
+
+                  }
+
+                Token node
+                (0x622000000ca0)::::::::::::::::
+                		  left_child: (nil)
+                		 right_child: (nil)
+                		        type: VARIABLE | {'y'}
+                			  Line: 22
+                			Indent: 9
+                
+                }
+
+              }
+
+            GetStatement::
+              {
+              GetBlock::
+                {
+                LOG CALLOC:     {0x603000000250} = calloc (1, 24 = 24) from NewVarTabel:197, at ../Common/Structures/Tabels/Tabels.cpp:197
                 LOG CALLOC:     {0x6070000002c0} = calloc (10, 8 = 80) from NewVarTabel:201, at ../Common/Structures/Tabels/Tabels.cpp:201
                 GetStatement::
                   {
@@ -1965,11 +2063,11 @@ main::
                           GetN::
                             {
                             Token result
-                            (0x622000000d00)::::::::::::::::
+                            (0x622000000dc0)::::::::::::::::
                             		  left_child: (nil)
                             		 right_child: (nil)
                             		        type: CONSTANT | {'10'}
-                            			  Line: 20
+                            			  Line: 24
                             			Indent: 17
                             
                             }
@@ -1979,11 +2077,11 @@ main::
                         }
 
                       Token node
-                      (0x622000000d00)::::::::::::::::
+                      (0x622000000dc0)::::::::::::::::
                       		  left_child: (nil)
                       		 right_child: (nil)
                       		        type: CONSTANT | {'10'}
-                      			  Line: 20
+                      			  Line: 24
                       			Indent: 17
                       
                       }
@@ -2006,11 +2104,11 @@ main::
                           GetN::
                             {
                             Token result
-                            (0x622000000df0)::::::::::::::::
+                            (0x622000000eb0)::::::::::::::::
                             		  left_child: (nil)
                             		 right_child: (nil)
                             		        type: CONSTANT | {'2'}
-                            			  Line: 21
+                            			  Line: 25
                             			Indent: 17
                             
                             }
@@ -2020,11 +2118,11 @@ main::
                         }
 
                       Token node
-                      (0x622000000df0)::::::::::::::::
+                      (0x622000000eb0)::::::::::::::::
                       		  left_child: (nil)
                       		 right_child: (nil)
                       		        type: CONSTANT | {'2'}
-                      			  Line: 21
+                      			  Line: 25
                       			Indent: 17
                       
                       }
@@ -2047,11 +2145,11 @@ main::
                           GetN::
                             {
                             Token result
-                            (0x622000000ee0)::::::::::::::::
+                            (0x622000000fa0)::::::::::::::::
                             		  left_child: (nil)
                             		 right_child: (nil)
                             		        type: CONSTANT | {'0'}
-                            			  Line: 22
+                            			  Line: 26
                             			Indent: 17
                             
                             }
@@ -2061,11 +2159,11 @@ main::
                         }
 
                       Token node
-                      (0x622000000ee0)::::::::::::::::
+                      (0x622000000fa0)::::::::::::::::
                       		  left_child: (nil)
                       		 right_child: (nil)
                       		        type: CONSTANT | {'0'}
-                      			  Line: 22
+                      			  Line: 26
                       			Indent: 17
                       
                       }
@@ -2082,7 +2180,7 @@ main::
                 LOG FREE(kill): {0x6020000001d0} - will be freed from CloseVarTabel:241, at ../Common/Structures/Tabels/Tabels.cpp:241
                 LOG FREE(kill): {0x6020000001f0} - will be freed from CloseVarTabel:241, at ../Common/Structures/Tabels/Tabels.cpp:241
                 LOG FREE(kill): {0x6070000002c0} - will be freed from CloseVarTabel:244, at ../Common/Structures/Tabels/Tabels.cpp:244
-                LOG FREE(kill): {0x603000000220} - will be freed from CloseVarTabel:245, at ../Common/Structures/Tabels/Tabels.cpp:245
+                LOG FREE(kill): {0x603000000250} - will be freed from CloseVarTabel:245, at ../Common/Structures/Tabels/Tabels.cpp:245
                 }
 
               }
@@ -2106,11 +2204,11 @@ main::
                     GetN::
                       {
                       Token result
-                      (0x622000000fd0)::::::::::::::::
+                      (0x622000001090)::::::::::::::::
                       		  left_child: (nil)
                       		 right_child: (nil)
                       		        type: VARIABLE | {'x'}
-                      			  Line: 25
+                      			  Line: 29
                       			Indent: 13
                       
                       }
@@ -2120,11 +2218,11 @@ main::
                   }
 
                 Token node
-                (0x622000000fd0)::::::::::::::::
+                (0x622000001090)::::::::::::::::
                 		  left_child: (nil)
                 		 right_child: (nil)
                 		        type: VARIABLE | {'x'}
-                			  Line: 25
+                			  Line: 29
                 			Indent: 13
                 
                 }
@@ -2160,11 +2258,11 @@ main::
                       GetN::
                         {
                         Token result
-                        (0x622000001150)::::::::::::::::
+                        (0x622000001210)::::::::::::::::
                         		  left_child: (nil)
                         		 right_child: (nil)
                         		        type: CONSTANT | {'1'}
-                        			  Line: 29
+                        			  Line: 33
                         			Indent: 9
                         
                         }
@@ -2174,19 +2272,19 @@ main::
                     }
 
                   Token node
-                  (0x622000001150)::::::::::::::::
+                  (0x622000001210)::::::::::::::::
                   		  left_child: (nil)
                   		 right_child: (nil)
                   		        type: CONSTANT | {'1'}
-                  			  Line: 29
+                  			  Line: 33
                   			Indent: 9
                   
                   Token token
-                  (0x622000001180)::::::::::::::::
+                  (0x622000001240)::::::::::::::::
                   		  left_child: (nil)
                   		 right_child: (nil)
                   		        type: OPERATOR | {'*'}
-                  			  Line: 29
+                  			  Line: 33
                   			Indent: 11
                   
                   GetPower::
@@ -2204,11 +2302,11 @@ main::
                               GetN::
                                 {
                                 Token result
-                                (0x6220000011e0)::::::::::::::::
+                                (0x6220000012a0)::::::::::::::::
                                 		  left_child: (nil)
                                 		 right_child: (nil)
                                 		        type: CONSTANT | {'4'}
-                                			  Line: 29
+                                			  Line: 33
                                 			Indent: 14
                                 
                                 }
@@ -2218,21 +2316,21 @@ main::
                             }
 
                           Token node
-                          (0x6220000011e0)::::::::::::::::
+                          (0x6220000012a0)::::::::::::::::
                           		  left_child: (nil)
                           		 right_child: (nil)
                           		        type: CONSTANT | {'4'}
-                          			  Line: 29
+                          			  Line: 33
                           			Indent: 14
                           
                           }
 
                         Token token
-                        (0x622000001210)::::::::::::::::
+                        (0x6220000012d0)::::::::::::::::
                         		  left_child: (nil)
                         		 right_child: (nil)
                         		        type: OPERATOR | {'+'}
-                        			  Line: 29
+                        			  Line: 33
                         			Indent: 16
                         
                         GetT::
@@ -2244,11 +2342,11 @@ main::
                               GetN::
                                 {
                                 Token result
-                                (0x622000001240)::::::::::::::::
+                                (0x622000001300)::::::::::::::::
                                 		  left_child: (nil)
                                 		 right_child: (nil)
                                 		        type: CONSTANT | {'5'}
-                                			  Line: 29
+                                			  Line: 33
                                 			Indent: 18
                                 
                                 }
@@ -2258,11 +2356,11 @@ main::
                             }
 
                           Token node
-                          (0x622000001240)::::::::::::::::
+                          (0x622000001300)::::::::::::::::
                           		  left_child: (nil)
                           		 right_child: (nil)
                           		        type: CONSTANT | {'5'}
-                          			  Line: 29
+                          			  Line: 33
                           			Indent: 18
                           
                           }
@@ -2300,11 +2398,11 @@ main::
                     GetN::
                       {
                       Token result
-                      (0x622000001300)::::::::::::::::
+                      (0x6220000013c0)::::::::::::::::
                       		  left_child: (nil)
                       		 right_child: (nil)
-                      		        type: VARIABLE | {'y'}
-                      			  Line: 31
+                      		        type: CONSTANT | {'0'}
+                      			  Line: 35
                       			Indent: 12
                       
                       }
@@ -2314,11 +2412,11 @@ main::
                   }
 
                 Token node
-                (0x622000001300)::::::::::::::::
+                (0x6220000013c0)::::::::::::::::
                 		  left_child: (nil)
                 		 right_child: (nil)
-                		        type: VARIABLE | {'y'}
-                			  Line: 31
+                		        type: CONSTANT | {'0'}
+                			  Line: 35
                 			Indent: 12
                 
                 }
@@ -2338,7 +2436,7 @@ main::
         LOG FREE(kill): {0x602000000110} - will be freed from CloseVarTabel:241, at ../Common/Structures/Tabels/Tabels.cpp:241
         LOG FREE(kill): {0x602000000130} - will be freed from CloseVarTabel:241, at ../Common/Structures/Tabels/Tabels.cpp:241
         LOG FREE(kill): {0x6070000001e0} - will be freed from CloseVarTabel:244, at ../Common/Structures/Tabels/Tabels.cpp:244
-        LOG FREE(kill): {0x6030000001c0} - will be freed from CloseVarTabel:245, at ../Common/Structures/Tabels/Tabels.cpp:245
+        LOG FREE(kill): {0x6030000001f0} - will be freed from CloseVarTabel:245, at ../Common/Structures/Tabels/Tabels.cpp:245
         }
 
       }
@@ -2347,15 +2445,15 @@ main::
       {
       NewFuncLabel::
         {
-        LOG CALLOC:     {0x603000000250} = calloc (1, 24 = 24) from NewFuncLabel:141, at ../Common/Structures/Tabels/Tabels.cpp:141
+        LOG CALLOC:     {0x603000000280} = calloc (1, 24 = 24) from NewFuncLabel:141, at ../Common/Structures/Tabels/Tabels.cpp:141
         }
 
-      LOG FREE(kill): {0x603000000250} - will be freed from MakeFuncLabel:237, at ./src/../src/SyntaxAnalysisUtils_.ars:237
+      LOG FREE(kill): {0x603000000280} - will be freed from MakeFuncLabel:243, at ./src/../src/SyntaxAnalysisUtils_.ars:243
       	FUNC_TABEL(program_ctx)->number_of_labels: 2
       	program_ctx->current_func_label: 0
       GetBlock::
         {
-        LOG CALLOC:     {0x603000000280} = calloc (1, 24 = 24) from NewVarTabel:197, at ../Common/Structures/Tabels/Tabels.cpp:197
+        LOG CALLOC:     {0x6030000002b0} = calloc (1, 24 = 24) from NewVarTabel:197, at ../Common/Structures/Tabels/Tabels.cpp:197
         LOG CALLOC:     {0x607000000330} = calloc (10, 8 = 80) from NewVarTabel:201, at ../Common/Structures/Tabels/Tabels.cpp:201
         GetStatement::
           {
@@ -2372,11 +2470,11 @@ main::
                     GetN::
                       {
                       Token result
-                      (0x6220000014e0)::::::::::::::::
+                      (0x6220000015a0)::::::::::::::::
                       		  left_child: (nil)
                       		 right_child: (nil)
                       		        type: CONSTANT | {'4'}
-                      			  Line: 36
+                      			  Line: 40
                       			Indent: 13
                       
                       }
@@ -2386,11 +2484,11 @@ main::
                   }
 
                 Token node
-                (0x6220000014e0)::::::::::::::::
+                (0x6220000015a0)::::::::::::::::
                 		  left_child: (nil)
                 		 right_child: (nil)
                 		        type: CONSTANT | {'4'}
-                			  Line: 36
+                			  Line: 40
                 			Indent: 13
                 
                 }
@@ -2416,17 +2514,17 @@ main::
           }
 
         LOG FREE(kill): {0x607000000330} - will be freed from CloseVarTabel:244, at ../Common/Structures/Tabels/Tabels.cpp:244
-        LOG FREE(kill): {0x603000000280} - will be freed from CloseVarTabel:245, at ../Common/Structures/Tabels/Tabels.cpp:245
+        LOG FREE(kill): {0x6030000002b0} - will be freed from CloseVarTabel:245, at ../Common/Structures/Tabels/Tabels.cpp:245
         }
 
       }
 
     LOG FREE(kill): {0x607000000170} - will be freed from CloseVarTabel:244, at ../Common/Structures/Tabels/Tabels.cpp:244
-    LOG FREE(kill): {0x603000000130} - will be freed from CloseVarTabel:245, at ../Common/Structures/Tabels/Tabels.cpp:245
-    LOG FREE(kill): {0x603000000160} - will be freed from CloseFuncTabel:65, at ../Common/Structures/Tabels/Tabels.cpp:65
+    LOG FREE(kill): {0x603000000160} - will be freed from CloseVarTabel:245, at ../Common/Structures/Tabels/Tabels.cpp:245
     LOG FREE(kill): {0x603000000190} - will be freed from CloseFuncTabel:65, at ../Common/Structures/Tabels/Tabels.cpp:65
+    LOG FREE(kill): {0x6030000001c0} - will be freed from CloseFuncTabel:65, at ../Common/Structures/Tabels/Tabels.cpp:65
     LOG FREE(kill): {0x607000000100} - will be freed from CloseFuncTabel:68, at ../Common/Structures/Tabels/Tabels.cpp:68
-    LOG FREE(kill): {0x603000000100} - will be freed from CloseFuncTabel:69, at ../Common/Structures/Tabels/Tabels.cpp:69
+    LOG FREE(kill): {0x603000000130} - will be freed from CloseFuncTabel:69, at ../Common/Structures/Tabels/Tabels.cpp:69
     }
 
   MakeImg::
@@ -2434,11 +2532,11 @@ main::
     PrintNode::
       {
       Token node
-      (0x622000001360)::::::::::::::::
+      (0x622000001420)::::::::::::::::
       		  left_child: 0x6220000002b0
-      		 right_child: 0x6220000015a0
+      		 right_child: 0x622000001660
       		        type: STATEMENT | {']'}
-      			  Line: 32
+      			  Line: 36
       			Indent: 5
       
       }
@@ -2521,7 +2619,7 @@ main::
       (0x6220000003a0)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {'2'}
+      		        type: CONSTANT | {'3'}
       			  Line: 5
       			Indent: 16
       
@@ -2534,7 +2632,7 @@ main::
       		  left_child: 0x622000000400
       		 right_child: 0x6220000005b0
       		        type: STATEMENT | {';'}
-      			  Line: 6
+      			  Line: 9
       			Indent: 14
       
       }
@@ -2546,7 +2644,7 @@ main::
       		  left_child: 0x622000000430
       		 right_child: 0x622000000490
       		        type: INITIALIZATOR | {'var'}
-      			  Line: 6
+      			  Line: 9
       			Indent: 5
       
       }
@@ -2558,7 +2656,7 @@ main::
       		  left_child: (nil)
       		 right_child: (nil)
       		        type: VARIABLE | {'y'}
-      			  Line: 6
+      			  Line: 9
       			Indent: 9
       
       }
@@ -2570,7 +2668,7 @@ main::
       		  left_child: (nil)
       		 right_child: (nil)
       		        type: CONSTANT | {'4'}
-      			  Line: 6
+      			  Line: 9
       			Indent: 13
       
       }
@@ -2582,7 +2680,7 @@ main::
       		  left_child: 0x6220000004f0
       		 right_child: 0x6220000006a0
       		        type: STATEMENT | {';'}
-      			  Line: 7
+      			  Line: 10
       			Indent: 14
       
       }
@@ -2594,7 +2692,7 @@ main::
       		  left_child: 0x622000000520
       		 right_child: 0x622000000580
       		        type: INITIALIZATOR | {'var'}
-      			  Line: 7
+      			  Line: 10
       			Indent: 5
       
       }
@@ -2606,7 +2704,7 @@ main::
       		  left_child: (nil)
       		 right_child: (nil)
       		        type: VARIABLE | {'z'}
-      			  Line: 7
+      			  Line: 10
       			Indent: 9
       
       }
@@ -2618,7 +2716,7 @@ main::
       		  left_child: (nil)
       		 right_child: (nil)
       		        type: CONSTANT | {'5'}
-      			  Line: 7
+      			  Line: 10
       			Indent: 13
       
       }
@@ -2628,9 +2726,9 @@ main::
       Token node
       (0x6220000006a0)::::::::::::::::
       		  left_child: 0x6220000005e0
-      		 right_child: 0x622000000b50
+      		 right_child: 0x622000000700
       		        type: STATEMENT | {';'}
-      			  Line: 8
+      			  Line: 11
       			Indent: 13
       
       }
@@ -2642,7 +2740,7 @@ main::
       		  left_child: 0x622000000610
       		 right_child: 0x622000000670
       		        type: INITIALIZATOR | {'var'}
-      			  Line: 8
+      			  Line: 11
       			Indent: 5
       
       }
@@ -2654,7 +2752,7 @@ main::
       		  left_child: (nil)
       		 right_child: (nil)
       		        type: VARIABLE | {'x'}
-      			  Line: 8
+      			  Line: 11
       			Indent: 9
       
       }
@@ -2666,7 +2764,7 @@ main::
       		  left_child: (nil)
       		 right_child: (nil)
       		        type: CONSTANT | {'0'}
-      			  Line: 8
+      			  Line: 11
       			Indent: 12
       
       }
@@ -2674,35 +2772,23 @@ main::
     PrintNode::
       {
       Token node
-      (0x622000000b50)::::::::::::::::
-      		  left_child: 0x6220000007c0
-      		 right_child: 0x622000000bb0
-      		        type: STATEMENT | {']'}
-      			  Line: 16
-      			Indent: 5
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x6220000007c0)::::::::::::::::
-      		  left_child: 0x622000000700
-      		 right_child: 0x622000000940
-      		        type: STATEMENT | {';'}
-      			  Line: 11
-      			Indent: 14
-      
-      }
-
-    PrintNode::
-      {
-      Token node
       (0x622000000700)::::::::::::::::
+      		  left_child: 0x6220000006d0
+      		 right_child: 0x622000000c70
+      		        type: STATEMENT | {'('}
+      			  Line: 13
+      			Indent: 8
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x6220000006d0)::::::::::::::::
       		  left_child: 0x622000000730
-      		 right_child: 0x622000000790
-      		        type: INITIALIZATOR | {'var'}
-      			  Line: 11
+      		 right_child: 0x622000000c10
+      		        type: INSTRUCTION | {'if'}
+      			  Line: 13
       			Indent: 5
       
       }
@@ -2713,8 +2799,8 @@ main::
       (0x622000000730)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: VARIABLE | {'x'}
-      			  Line: 11
+      		        type: CONSTANT | {'10'}
+      			  Line: 13
       			Indent: 9
       
       }
@@ -2722,36 +2808,36 @@ main::
     PrintNode::
       {
       Token node
-      (0x622000000790)::::::::::::::::
-      		  left_child: (nil)
+      (0x622000000c10)::::::::::::::::
+      		  left_child: 0x622000000880
       		 right_child: (nil)
-      		        type: CONSTANT | {'5'}
-      			  Line: 11
-      			Indent: 13
+      		        type: STATEMENT | {']'}
+      			  Line: 20
+      			Indent: 5
       
       }
 
     PrintNode::
       {
       Token node
-      (0x622000000940)::::::::::::::::
-      		  left_child: 0x622000000820
-      		 right_child: 0x622000000a30
+      (0x622000000880)::::::::::::::::
+      		  left_child: 0x6220000007c0
+      		 right_child: 0x622000000a00
       		        type: STATEMENT | {';'}
-      			  Line: 13
-      			Indent: 17
+      			  Line: 15
+      			Indent: 15
       
       }
 
     PrintNode::
       {
       Token node
-      (0x622000000820)::::::::::::::::
+      (0x6220000007c0)::::::::::::::::
       		  left_child: 0x6220000007f0
-      		 right_child: 0x6220000008e0
-      		        type: ASSIGMENT | {'='}
-      			  Line: 13
-      			Indent: 7
+      		 right_child: 0x622000000850
+      		        type: INITIALIZATOR | {'var'}
+      			  Line: 15
+      			Indent: 6
       
       }
 
@@ -2762,32 +2848,8 @@ main::
       		  left_child: (nil)
       		 right_child: (nil)
       		        type: VARIABLE | {'x'}
-      			  Line: 13
-      			Indent: 5
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x6220000008e0)::::::::::::::::
-      		  left_child: 0x622000000880
-      		 right_child: 0x622000000910
-      		        type: OPERATOR | {'/'}
-      			  Line: 13
-      			Indent: 15
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000880)::::::::::::::::
-      		  left_child: 0x622000000850
-      		 right_child: 0x6220000008b0
-      		        type: OPERATOR | {'*'}
-      			  Line: 13
-      			Indent: 11
+      			  Line: 15
+      			Indent: 10
       
       }
 
@@ -2798,8 +2860,32 @@ main::
       		  left_child: (nil)
       		 right_child: (nil)
       		        type: CONSTANT | {'5'}
-      			  Line: 13
-      			Indent: 9
+      			  Line: 15
+      			Indent: 14
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000a00)::::::::::::::::
+      		  left_child: 0x6220000008e0
+      		 right_child: 0x622000000af0
+      		        type: STATEMENT | {';'}
+      			  Line: 17
+      			Indent: 17
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x6220000008e0)::::::::::::::::
+      		  left_child: 0x6220000008b0
+      		 right_child: 0x6220000009a0
+      		        type: ASSIGMENT | {'='}
+      			  Line: 17
+      			Indent: 7
       
       }
 
@@ -2809,9 +2895,33 @@ main::
       (0x6220000008b0)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {'7'}
-      			  Line: 13
-      			Indent: 13
+      		        type: VARIABLE | {'x'}
+      			  Line: 17
+      			Indent: 5
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x6220000009a0)::::::::::::::::
+      		  left_child: 0x622000000940
+      		 right_child: 0x6220000009d0
+      		        type: OPERATOR | {'/'}
+      			  Line: 17
+      			Indent: 15
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000940)::::::::::::::::
+      		  left_child: 0x622000000910
+      		 right_child: 0x622000000970
+      		        type: OPERATOR | {'*'}
+      			  Line: 17
+      			Indent: 11
       
       }
 
@@ -2821,21 +2931,9 @@ main::
       (0x622000000910)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {'3'}
-      			  Line: 13
-      			Indent: 16
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000a30)::::::::::::::::
-      		  left_child: 0x622000000970
-      		 right_child: 0x622000000b20
-      		        type: STATEMENT | {';'}
-      			  Line: 14
-      			Indent: 14
+      		        type: CONSTANT | {'5'}
+      			  Line: 17
+      			Indent: 9
       
       }
 
@@ -2843,34 +2941,10 @@ main::
       {
       Token node
       (0x622000000970)::::::::::::::::
-      		  left_child: 0x6220000009a0
-      		 right_child: 0x622000000a00
-      		        type: INITIALIZATOR | {'var'}
-      			  Line: 14
-      			Indent: 5
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x6220000009a0)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: VARIABLE | {'y'}
-      			  Line: 14
-      			Indent: 9
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000a00)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {'5'}
-      			  Line: 14
+      		        type: CONSTANT | {'7'}
+      			  Line: 17
       			Indent: 13
       
       }
@@ -2878,36 +2952,12 @@ main::
     PrintNode::
       {
       Token node
-      (0x622000000b20)::::::::::::::::
-      		  left_child: 0x622000000a60
-      		 right_child: (nil)
-      		        type: STATEMENT | {';'}
-      			  Line: 15
-      			Indent: 14
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000a60)::::::::::::::::
-      		  left_child: 0x622000000a90
-      		 right_child: 0x622000000af0
-      		        type: INITIALIZATOR | {'var'}
-      			  Line: 15
-      			Indent: 5
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000a90)::::::::::::::::
+      (0x6220000009d0)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: VARIABLE | {'z'}
-      			  Line: 15
-      			Indent: 9
+      		        type: CONSTANT | {'3'}
+      			  Line: 17
+      			Indent: 16
       
       }
 
@@ -2915,33 +2965,21 @@ main::
       {
       Token node
       (0x622000000af0)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {'3'}
-      			  Line: 15
-      			Indent: 13
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000bb0)::::::::::::::::
-      		  left_child: 0x622000000b80
-      		 right_child: 0x622000001000
-      		        type: STATEMENT | {'('}
+      		  left_child: 0x622000000a30
+      		 right_child: 0x622000000be0
+      		        type: STATEMENT | {';'}
       			  Line: 18
-      			Indent: 8
+      			Indent: 14
       
       }
 
     PrintNode::
       {
       Token node
-      (0x622000000b80)::::::::::::::::
-      		  left_child: 0x622000000be0
-      		 right_child: 0x622000000f40
-      		        type: INSTRUCTION | {'if'}
+      (0x622000000a30)::::::::::::::::
+      		  left_child: 0x622000000a60
+      		 right_child: 0x622000000ac0
+      		        type: INITIALIZATOR | {'var'}
       			  Line: 18
       			Indent: 5
       
@@ -2950,7 +2988,7 @@ main::
     PrintNode::
       {
       Token node
-      (0x622000000be0)::::::::::::::::
+      (0x622000000a60)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
       		        type: VARIABLE | {'y'}
@@ -2962,11 +3000,47 @@ main::
     PrintNode::
       {
       Token node
-      (0x622000000f40)::::::::::::::::
-      		  left_child: 0x622000000d30
+      (0x622000000ac0)::::::::::::::::
+      		  left_child: (nil)
       		 right_child: (nil)
-      		        type: STATEMENT | {']'}
-      			  Line: 23
+      		        type: CONSTANT | {'5'}
+      			  Line: 18
+      			Indent: 13
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000be0)::::::::::::::::
+      		  left_child: 0x622000000b20
+      		 right_child: (nil)
+      		        type: STATEMENT | {';'}
+      			  Line: 19
+      			Indent: 14
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000b20)::::::::::::::::
+      		  left_child: 0x622000000b50
+      		 right_child: 0x622000000bb0
+      		        type: INITIALIZATOR | {'var'}
+      			  Line: 19
+      			Indent: 5
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000b50)::::::::::::::::
+      		  left_child: (nil)
+      		 right_child: (nil)
+      		        type: VARIABLE | {'z'}
+      			  Line: 19
       			Indent: 9
       
       }
@@ -2974,12 +3048,12 @@ main::
     PrintNode::
       {
       Token node
-      (0x622000000d30)::::::::::::::::
-      		  left_child: 0x622000000c70
-      		 right_child: 0x622000000e20
-      		        type: STATEMENT | {';'}
-      			  Line: 20
-      			Indent: 19
+      (0x622000000bb0)::::::::::::::::
+      		  left_child: (nil)
+      		 right_child: (nil)
+      		        type: CONSTANT | {'3'}
+      			  Line: 19
+      			Indent: 13
       
       }
 
@@ -2987,11 +3061,23 @@ main::
       {
       Token node
       (0x622000000c70)::::::::::::::::
+      		  left_child: 0x622000000c40
+      		 right_child: 0x6220000010c0
+      		        type: STATEMENT | {'('}
+      			  Line: 22
+      			Indent: 8
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000c40)::::::::::::::::
       		  left_child: 0x622000000ca0
-      		 right_child: 0x622000000d00
-      		        type: INITIALIZATOR | {'var'}
-      			  Line: 20
-      			Indent: 9
+      		 right_child: 0x622000001000
+      		        type: INSTRUCTION | {'if'}
+      			  Line: 22
+      			Indent: 5
       
       }
 
@@ -3001,117 +3087,9 @@ main::
       (0x622000000ca0)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: VARIABLE | {'x'}
-      			  Line: 20
-      			Indent: 13
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000d00)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {'10'}
-      			  Line: 20
-      			Indent: 17
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000e20)::::::::::::::::
-      		  left_child: 0x622000000d60
-      		 right_child: 0x622000000f10
-      		        type: STATEMENT | {';'}
-      			  Line: 21
-      			Indent: 18
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000d60)::::::::::::::::
-      		  left_child: 0x622000000d90
-      		 right_child: 0x622000000df0
-      		        type: INITIALIZATOR | {'var'}
-      			  Line: 21
-      			Indent: 9
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000d90)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
       		        type: VARIABLE | {'y'}
-      			  Line: 21
-      			Indent: 13
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000df0)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {'2'}
-      			  Line: 21
-      			Indent: 17
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000f10)::::::::::::::::
-      		  left_child: 0x622000000e50
-      		 right_child: (nil)
-      		        type: STATEMENT | {';'}
-      			  Line: 22
-      			Indent: 18
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000e50)::::::::::::::::
-      		  left_child: 0x622000000e80
-      		 right_child: 0x622000000ee0
-      		        type: INITIALIZATOR | {'var'}
       			  Line: 22
       			Indent: 9
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000e80)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: VARIABLE | {'z'}
-      			  Line: 22
-      			Indent: 13
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000ee0)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {'0'}
-      			  Line: 22
-      			Indent: 17
       
       }
 
@@ -3119,33 +3097,93 @@ main::
       {
       Token node
       (0x622000001000)::::::::::::::::
-      		  left_child: 0x622000000f70
-      		 right_child: 0x622000001060
-      		        type: STATEMENT | {';'}
-      			  Line: 25
-      			Indent: 14
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000000f70)::::::::::::::::
-      		  left_child: 0x622000000fd0
+      		  left_child: 0x622000000df0
       		 right_child: (nil)
-      		        type: NATIVE_FUNCTION | {'fout'}
-      			  Line: 25
-      			Indent: 5
+      		        type: STATEMENT | {']'}
+      			  Line: 27
+      			Indent: 9
       
       }
 
     PrintNode::
       {
       Token node
-      (0x622000000fd0)::::::::::::::::
+      (0x622000000df0)::::::::::::::::
+      		  left_child: 0x622000000d30
+      		 right_child: 0x622000000ee0
+      		        type: STATEMENT | {';'}
+      			  Line: 24
+      			Indent: 19
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000d30)::::::::::::::::
+      		  left_child: 0x622000000d60
+      		 right_child: 0x622000000dc0
+      		        type: INITIALIZATOR | {'var'}
+      			  Line: 24
+      			Indent: 9
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000d60)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
       		        type: VARIABLE | {'x'}
+      			  Line: 24
+      			Indent: 13
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000dc0)::::::::::::::::
+      		  left_child: (nil)
+      		 right_child: (nil)
+      		        type: CONSTANT | {'10'}
+      			  Line: 24
+      			Indent: 17
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000ee0)::::::::::::::::
+      		  left_child: 0x622000000e20
+      		 right_child: 0x622000000fd0
+      		        type: STATEMENT | {';'}
+      			  Line: 25
+      			Indent: 18
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000e20)::::::::::::::::
+      		  left_child: 0x622000000e50
+      		 right_child: 0x622000000eb0
+      		        type: INITIALIZATOR | {'var'}
+      			  Line: 25
+      			Indent: 9
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000e50)::::::::::::::::
+      		  left_child: (nil)
+      		 right_child: (nil)
+      		        type: VARIABLE | {'y'}
       			  Line: 25
       			Indent: 13
       
@@ -3154,12 +3192,60 @@ main::
     PrintNode::
       {
       Token node
-      (0x622000001060)::::::::::::::::
-      		  left_child: 0x6220000010c0
-      		 right_child: 0x6220000012a0
-      		        type: STATEMENT | {'('}
-      			  Line: 27
-      			Indent: 15
+      (0x622000000eb0)::::::::::::::::
+      		  left_child: (nil)
+      		 right_child: (nil)
+      		        type: CONSTANT | {'2'}
+      			  Line: 25
+      			Indent: 17
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000fd0)::::::::::::::::
+      		  left_child: 0x622000000f10
+      		 right_child: (nil)
+      		        type: STATEMENT | {';'}
+      			  Line: 26
+      			Indent: 18
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000f10)::::::::::::::::
+      		  left_child: 0x622000000f40
+      		 right_child: 0x622000000fa0
+      		        type: INITIALIZATOR | {'var'}
+      			  Line: 26
+      			Indent: 9
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000f40)::::::::::::::::
+      		  left_child: (nil)
+      		 right_child: (nil)
+      		        type: VARIABLE | {'z'}
+      			  Line: 26
+      			Indent: 13
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000000fa0)::::::::::::::::
+      		  left_child: (nil)
+      		 right_child: (nil)
+      		        type: CONSTANT | {'0'}
+      			  Line: 26
+      			Indent: 17
       
       }
 
@@ -3168,10 +3254,10 @@ main::
       Token node
       (0x6220000010c0)::::::::::::::::
       		  left_child: 0x622000001030
-      		 right_child: (nil)
-      		        type: CALL | {';'}
-      			  Line: 27
-      			Indent: 17
+      		 right_child: 0x622000001120
+      		        type: STATEMENT | {';'}
+      			  Line: 29
+      			Indent: 14
       
       }
 
@@ -3179,10 +3265,10 @@ main::
       {
       Token node
       (0x622000001030)::::::::::::::::
-      		  left_child: (nil)
+      		  left_child: 0x622000001090
       		 right_child: (nil)
-      		        type: NAME | {'helloworld'}
-      			  Line: 27
+      		        type: NATIVE_FUNCTION | {'fout'}
+      			  Line: 29
       			Indent: 5
       
       }
@@ -3190,12 +3276,12 @@ main::
     PrintNode::
       {
       Token node
-      (0x6220000012a0)::::::::::::::::
-      		  left_child: 0x622000001120
-      		 right_child: 0x622000001330
-      		        type: STATEMENT | {';'}
+      (0x622000001090)::::::::::::::::
+      		  left_child: (nil)
+      		 right_child: (nil)
+      		        type: VARIABLE | {'x'}
       			  Line: 29
-      			Indent: 20
+      			Indent: 13
       
       }
 
@@ -3203,11 +3289,23 @@ main::
       {
       Token node
       (0x622000001120)::::::::::::::::
+      		  left_child: 0x622000001180
+      		 right_child: 0x622000001360
+      		        type: STATEMENT | {'('}
+      			  Line: 31
+      			Indent: 15
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000001180)::::::::::::::::
       		  left_child: 0x6220000010f0
-      		 right_child: 0x622000001180
-      		        type: ASSIGMENT | {'='}
-      			  Line: 29
-      			Indent: 7
+      		 right_child: (nil)
+      		        type: CALL | {';'}
+      			  Line: 31
+      			Indent: 17
       
       }
 
@@ -3217,8 +3315,8 @@ main::
       (0x6220000010f0)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: VARIABLE | {'x'}
-      			  Line: 29
+      		        type: NAME | {'helloworld'}
+      			  Line: 31
       			Indent: 5
       
       }
@@ -3226,36 +3324,12 @@ main::
     PrintNode::
       {
       Token node
-      (0x622000001180)::::::::::::::::
-      		  left_child: 0x622000001150
-      		 right_child: 0x622000001210
-      		        type: OPERATOR | {'*'}
-      			  Line: 29
-      			Indent: 11
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000001150)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {'1'}
-      			  Line: 29
-      			Indent: 9
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000001210)::::::::::::::::
+      (0x622000001360)::::::::::::::::
       		  left_child: 0x6220000011e0
-      		 right_child: 0x622000001240
-      		        type: OPERATOR | {'+'}
-      			  Line: 29
-      			Indent: 16
+      		 right_child: 0x6220000013f0
+      		        type: STATEMENT | {';'}
+      			  Line: 33
+      			Indent: 20
       
       }
 
@@ -3263,11 +3337,23 @@ main::
       {
       Token node
       (0x6220000011e0)::::::::::::::::
+      		  left_child: 0x6220000011b0
+      		 right_child: 0x622000001240
+      		        type: ASSIGMENT | {'='}
+      			  Line: 33
+      			Indent: 7
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x6220000011b0)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: CONSTANT | {'4'}
-      			  Line: 29
-      			Indent: 14
+      		        type: VARIABLE | {'x'}
+      			  Line: 33
+      			Indent: 5
       
       }
 
@@ -3275,23 +3361,23 @@ main::
       {
       Token node
       (0x622000001240)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {'5'}
-      			  Line: 29
-      			Indent: 18
+      		  left_child: 0x622000001210
+      		 right_child: 0x6220000012d0
+      		        type: OPERATOR | {'*'}
+      			  Line: 33
+      			Indent: 11
       
       }
 
     PrintNode::
       {
       Token node
-      (0x622000001330)::::::::::::::::
-      		  left_child: 0x6220000012d0
+      (0x622000001210)::::::::::::::::
+      		  left_child: (nil)
       		 right_child: (nil)
-      		        type: STATEMENT | {';'}
-      			  Line: 31
-      			Indent: 13
+      		        type: CONSTANT | {'1'}
+      			  Line: 33
+      			Indent: 9
       
       }
 
@@ -3299,11 +3385,23 @@ main::
       {
       Token node
       (0x6220000012d0)::::::::::::::::
-      		  left_child: 0x622000001300
+      		  left_child: 0x6220000012a0
+      		 right_child: 0x622000001300
+      		        type: OPERATOR | {'+'}
+      			  Line: 33
+      			Indent: 16
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x6220000012a0)::::::::::::::::
+      		  left_child: (nil)
       		 right_child: (nil)
-      		        type: INSTRUCTION | {'return'}
-      			  Line: 31
-      			Indent: 5
+      		        type: CONSTANT | {'4'}
+      			  Line: 33
+      			Indent: 14
       
       }
 
@@ -3313,33 +3411,33 @@ main::
       (0x622000001300)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
-      		        type: VARIABLE | {'y'}
-      			  Line: 31
-      			Indent: 12
+      		        type: CONSTANT | {'5'}
+      			  Line: 33
+      			Indent: 18
       
       }
 
     PrintNode::
       {
       Token node
-      (0x6220000015a0)::::::::::::::::
-      		  left_child: 0x622000001420
+      (0x6220000013f0)::::::::::::::::
+      		  left_child: 0x622000001390
       		 right_child: (nil)
-      		        type: STATEMENT | {']'}
-      			  Line: 38
-      			Indent: 5
+      		        type: STATEMENT | {';'}
+      			  Line: 35
+      			Indent: 13
       
       }
 
     PrintNode::
       {
       Token node
-      (0x622000001420)::::::::::::::::
+      (0x622000001390)::::::::::::::::
       		  left_child: 0x6220000013c0
-      		 right_child: 0x622000001510
-      		        type: FUNCTION | {')'}
-      			  Line: 34
-      			Indent: 17
+      		 right_child: (nil)
+      		        type: INSTRUCTION | {'return'}
+      			  Line: 35
+      			Indent: 5
       
       }
 
@@ -3348,45 +3446,21 @@ main::
       Token node
       (0x6220000013c0)::::::::::::::::
       		  left_child: (nil)
-      		 right_child: 0x622000001390
-      		        type: NAME | {'helloworld'}
-      			  Line: 34
-      			Indent: 6
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000001390)::::::::::::::::
-      		  left_child: (nil)
       		 right_child: (nil)
-      		        type: FUNCTION_RET_TYPE | {'void'}
-      			  Line: 34
-      			Indent: 1
+      		        type: CONSTANT | {'0'}
+      			  Line: 35
+      			Indent: 12
       
       }
 
     PrintNode::
       {
       Token node
-      (0x622000001510)::::::::::::::::
-      		  left_child: 0x622000001480
-      		 right_child: 0x622000001570
-      		        type: STATEMENT | {';'}
-      			  Line: 36
-      			Indent: 14
-      
-      }
-
-    PrintNode::
-      {
-      Token node
-      (0x622000001480)::::::::::::::::
+      (0x622000001660)::::::::::::::::
       		  left_child: 0x6220000014e0
       		 right_child: (nil)
-      		        type: NATIVE_FUNCTION | {'fout'}
-      			  Line: 36
+      		        type: STATEMENT | {']'}
+      			  Line: 42
       			Indent: 5
       
       }
@@ -3395,23 +3469,47 @@ main::
       {
       Token node
       (0x6220000014e0)::::::::::::::::
-      		  left_child: (nil)
-      		 right_child: (nil)
-      		        type: CONSTANT | {'4'}
-      			  Line: 36
-      			Indent: 13
+      		  left_child: 0x622000001480
+      		 right_child: 0x6220000015d0
+      		        type: FUNCTION | {')'}
+      			  Line: 38
+      			Indent: 17
       
       }
 
     PrintNode::
       {
       Token node
-      (0x622000001570)::::::::::::::::
-      		  left_child: 0x622000001540
+      (0x622000001480)::::::::::::::::
+      		  left_child: (nil)
+      		 right_child: 0x622000001450
+      		        type: NAME | {'helloworld'}
+      			  Line: 38
+      			Indent: 6
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000001450)::::::::::::::::
+      		  left_child: (nil)
       		 right_child: (nil)
+      		        type: FUNCTION_RET_TYPE | {'void'}
+      			  Line: 38
+      			Indent: 1
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x6220000015d0)::::::::::::::::
+      		  left_child: 0x622000001540
+      		 right_child: 0x622000001630
       		        type: STATEMENT | {';'}
-      			  Line: 37
-      			Indent: 11
+      			  Line: 40
+      			Indent: 14
       
       }
 
@@ -3419,10 +3517,46 @@ main::
       {
       Token node
       (0x622000001540)::::::::::::::::
+      		  left_child: 0x6220000015a0
+      		 right_child: (nil)
+      		        type: NATIVE_FUNCTION | {'fout'}
+      			  Line: 40
+      			Indent: 5
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x6220000015a0)::::::::::::::::
+      		  left_child: (nil)
+      		 right_child: (nil)
+      		        type: CONSTANT | {'4'}
+      			  Line: 40
+      			Indent: 13
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000001630)::::::::::::::::
+      		  left_child: 0x622000001600
+      		 right_child: (nil)
+      		        type: STATEMENT | {';'}
+      			  Line: 41
+      			Indent: 11
+      
+      }
+
+    PrintNode::
+      {
+      Token node
+      (0x622000001600)::::::::::::::::
       		  left_child: (nil)
       		 right_child: (nil)
       		        type: INSTRUCTION | {'return'}
-      			  Line: 37
+      			  Line: 41
       			Indent: 5
       
       }
@@ -3430,76 +3564,12 @@ main::
     }
 
   Token token
-  (0x622000001360)::::::::::::::::
-  		  left_child: 0x6220000002b0
-  		 right_child: 0x6220000015a0
-  		        type: STATEMENT | {']'}
-  			  Line: 32
-  			Indent: 5
-  
-  Token token
-  (0x6220000015a0)::::::::::::::::
-  		  left_child: 0x622000001420
-  		 right_child: (nil)
-  		        type: STATEMENT | {']'}
-  			  Line: 38
-  			Indent: 5
-  
-  Token token
   (0x622000001420)::::::::::::::::
-  		  left_child: 0x6220000013c0
-  		 right_child: 0x622000001510
-  		        type: FUNCTION | {')'}
-  			  Line: 34
-  			Indent: 17
-  
-  Token token
-  (0x622000001390)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: FUNCTION_RET_TYPE | {'void'}
-  			  Line: 34
-  			Indent: 1
-  
-  Token token
-  (0x622000001510)::::::::::::::::
-  		  left_child: 0x622000001480
-  		 right_child: 0x622000001570
-  		        type: STATEMENT | {';'}
-  			  Line: 36
-  			Indent: 14
-  
-  Token token
-  (0x622000001570)::::::::::::::::
-  		  left_child: 0x622000001540
-  		 right_child: (nil)
-  		        type: STATEMENT | {';'}
-  			  Line: 37
-  			Indent: 11
-  
-  Token token
-  (0x622000001540)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: INSTRUCTION | {'return'}
-  			  Line: 37
-  			Indent: 5
-  
-  Token token
-  (0x622000001480)::::::::::::::::
-  		  left_child: 0x6220000014e0
-  		 right_child: (nil)
-  		        type: NATIVE_FUNCTION | {'fout'}
+  		  left_child: 0x6220000002b0
+  		 right_child: 0x622000001660
+  		        type: STATEMENT | {']'}
   			  Line: 36
   			Indent: 5
-  
-  Token token
-  (0x6220000014e0)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'4'}
-  			  Line: 36
-  			Indent: 13
   
   Token token
   (0x6220000002b0)::::::::::::::::
@@ -3526,526 +3596,6 @@ main::
   			Indent: 17
   
   Token token
-  (0x6220000004c0)::::::::::::::::
-  		  left_child: 0x622000000400
-  		 right_child: 0x6220000005b0
-  		        type: STATEMENT | {';'}
-  			  Line: 6
-  			Indent: 14
-  
-  Token token
-  (0x6220000005b0)::::::::::::::::
-  		  left_child: 0x6220000004f0
-  		 right_child: 0x6220000006a0
-  		        type: STATEMENT | {';'}
-  			  Line: 7
-  			Indent: 14
-  
-  Token token
-  (0x6220000006a0)::::::::::::::::
-  		  left_child: 0x6220000005e0
-  		 right_child: 0x622000000b50
-  		        type: STATEMENT | {';'}
-  			  Line: 8
-  			Indent: 13
-  
-  Token token
-  (0x622000000b50)::::::::::::::::
-  		  left_child: 0x6220000007c0
-  		 right_child: 0x622000000bb0
-  		        type: STATEMENT | {']'}
-  			  Line: 16
-  			Indent: 5
-  
-  Token token
-  (0x622000000bb0)::::::::::::::::
-  		  left_child: 0x622000000b80
-  		 right_child: 0x622000001000
-  		        type: STATEMENT | {'('}
-  			  Line: 18
-  			Indent: 8
-  
-  Token token
-  (0x622000001000)::::::::::::::::
-  		  left_child: 0x622000000f70
-  		 right_child: 0x622000001060
-  		        type: STATEMENT | {';'}
-  			  Line: 25
-  			Indent: 14
-  
-  Token token
-  (0x622000001060)::::::::::::::::
-  		  left_child: 0x6220000010c0
-  		 right_child: 0x6220000012a0
-  		        type: STATEMENT | {'('}
-  			  Line: 27
-  			Indent: 15
-  
-  Token token
-  (0x6220000012a0)::::::::::::::::
-  		  left_child: 0x622000001120
-  		 right_child: 0x622000001330
-  		        type: STATEMENT | {';'}
-  			  Line: 29
-  			Indent: 20
-  
-  Token token
-  (0x622000001330)::::::::::::::::
-  		  left_child: 0x6220000012d0
-  		 right_child: (nil)
-  		        type: STATEMENT | {';'}
-  			  Line: 31
-  			Indent: 13
-  
-  Token token
-  (0x6220000012d0)::::::::::::::::
-  		  left_child: 0x622000001300
-  		 right_child: (nil)
-  		        type: INSTRUCTION | {'return'}
-  			  Line: 31
-  			Indent: 5
-  
-  Token token
-  (0x622000001300)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: VARIABLE | {'y'}
-  			  Line: 31
-  			Indent: 12
-  
-  Token token
-  (0x622000001120)::::::::::::::::
-  		  left_child: 0x6220000010f0
-  		 right_child: 0x622000001180
-  		        type: ASSIGMENT | {'='}
-  			  Line: 29
-  			Indent: 7
-  
-  Token token
-  (0x6220000010f0)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: VARIABLE | {'x'}
-  			  Line: 29
-  			Indent: 5
-  
-  Token token
-  (0x622000001180)::::::::::::::::
-  		  left_child: 0x622000001150
-  		 right_child: 0x622000001210
-  		        type: OPERATOR | {'*'}
-  			  Line: 29
-  			Indent: 11
-  
-  Token token
-  (0x622000001150)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'1'}
-  			  Line: 29
-  			Indent: 9
-  
-  Token token
-  (0x622000001210)::::::::::::::::
-  		  left_child: 0x6220000011e0
-  		 right_child: 0x622000001240
-  		        type: OPERATOR | {'+'}
-  			  Line: 29
-  			Indent: 16
-  
-  Token token
-  (0x6220000011e0)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'4'}
-  			  Line: 29
-  			Indent: 14
-  
-  Token token
-  (0x622000001240)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'5'}
-  			  Line: 29
-  			Indent: 18
-  
-  Token token
-  (0x6220000010c0)::::::::::::::::
-  		  left_child: 0x622000001030
-  		 right_child: (nil)
-  		        type: CALL | {';'}
-  			  Line: 27
-  			Indent: 17
-  
-  Token token
-  (0x622000000f70)::::::::::::::::
-  		  left_child: 0x622000000fd0
-  		 right_child: (nil)
-  		        type: NATIVE_FUNCTION | {'fout'}
-  			  Line: 25
-  			Indent: 5
-  
-  Token token
-  (0x622000000fd0)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: VARIABLE | {'x'}
-  			  Line: 25
-  			Indent: 13
-  
-  Token token
-  (0x622000000b80)::::::::::::::::
-  		  left_child: 0x622000000be0
-  		 right_child: 0x622000000f40
-  		        type: INSTRUCTION | {'if'}
-  			  Line: 18
-  			Indent: 5
-  
-  Token token
-  (0x622000000be0)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: VARIABLE | {'y'}
-  			  Line: 18
-  			Indent: 9
-  
-  Token token
-  (0x622000000f40)::::::::::::::::
-  		  left_child: 0x622000000d30
-  		 right_child: (nil)
-  		        type: STATEMENT | {']'}
-  			  Line: 23
-  			Indent: 9
-  
-  Token token
-  (0x622000000d30)::::::::::::::::
-  		  left_child: 0x622000000c70
-  		 right_child: 0x622000000e20
-  		        type: STATEMENT | {';'}
-  			  Line: 20
-  			Indent: 19
-  
-  Token token
-  (0x622000000e20)::::::::::::::::
-  		  left_child: 0x622000000d60
-  		 right_child: 0x622000000f10
-  		        type: STATEMENT | {';'}
-  			  Line: 21
-  			Indent: 18
-  
-  Token token
-  (0x622000000f10)::::::::::::::::
-  		  left_child: 0x622000000e50
-  		 right_child: (nil)
-  		        type: STATEMENT | {';'}
-  			  Line: 22
-  			Indent: 18
-  
-  Token token
-  (0x622000000e50)::::::::::::::::
-  		  left_child: 0x622000000e80
-  		 right_child: 0x622000000ee0
-  		        type: INITIALIZATOR | {'var'}
-  			  Line: 22
-  			Indent: 9
-  
-  Token token
-  (0x622000000e80)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: VARIABLE | {'z'}
-  			  Line: 22
-  			Indent: 13
-  
-  Token token
-  (0x622000000ee0)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'0'}
-  			  Line: 22
-  			Indent: 17
-  
-  Token token
-  (0x622000000d60)::::::::::::::::
-  		  left_child: 0x622000000d90
-  		 right_child: 0x622000000df0
-  		        type: INITIALIZATOR | {'var'}
-  			  Line: 21
-  			Indent: 9
-  
-  Token token
-  (0x622000000d90)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: VARIABLE | {'y'}
-  			  Line: 21
-  			Indent: 13
-  
-  Token token
-  (0x622000000df0)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'2'}
-  			  Line: 21
-  			Indent: 17
-  
-  Token token
-  (0x622000000c70)::::::::::::::::
-  		  left_child: 0x622000000ca0
-  		 right_child: 0x622000000d00
-  		        type: INITIALIZATOR | {'var'}
-  			  Line: 20
-  			Indent: 9
-  
-  Token token
-  (0x622000000ca0)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: VARIABLE | {'x'}
-  			  Line: 20
-  			Indent: 13
-  
-  Token token
-  (0x622000000d00)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'10'}
-  			  Line: 20
-  			Indent: 17
-  
-  Token token
-  (0x6220000007c0)::::::::::::::::
-  		  left_child: 0x622000000700
-  		 right_child: 0x622000000940
-  		        type: STATEMENT | {';'}
-  			  Line: 11
-  			Indent: 14
-  
-  Token token
-  (0x622000000940)::::::::::::::::
-  		  left_child: 0x622000000820
-  		 right_child: 0x622000000a30
-  		        type: STATEMENT | {';'}
-  			  Line: 13
-  			Indent: 17
-  
-  Token token
-  (0x622000000a30)::::::::::::::::
-  		  left_child: 0x622000000970
-  		 right_child: 0x622000000b20
-  		        type: STATEMENT | {';'}
-  			  Line: 14
-  			Indent: 14
-  
-  Token token
-  (0x622000000b20)::::::::::::::::
-  		  left_child: 0x622000000a60
-  		 right_child: (nil)
-  		        type: STATEMENT | {';'}
-  			  Line: 15
-  			Indent: 14
-  
-  Token token
-  (0x622000000a60)::::::::::::::::
-  		  left_child: 0x622000000a90
-  		 right_child: 0x622000000af0
-  		        type: INITIALIZATOR | {'var'}
-  			  Line: 15
-  			Indent: 5
-  
-  Token token
-  (0x622000000a90)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: VARIABLE | {'z'}
-  			  Line: 15
-  			Indent: 9
-  
-  Token token
-  (0x622000000af0)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'3'}
-  			  Line: 15
-  			Indent: 13
-  
-  Token token
-  (0x622000000970)::::::::::::::::
-  		  left_child: 0x6220000009a0
-  		 right_child: 0x622000000a00
-  		        type: INITIALIZATOR | {'var'}
-  			  Line: 14
-  			Indent: 5
-  
-  Token token
-  (0x6220000009a0)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: VARIABLE | {'y'}
-  			  Line: 14
-  			Indent: 9
-  
-  Token token
-  (0x622000000a00)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'5'}
-  			  Line: 14
-  			Indent: 13
-  
-  Token token
-  (0x622000000820)::::::::::::::::
-  		  left_child: 0x6220000007f0
-  		 right_child: 0x6220000008e0
-  		        type: ASSIGMENT | {'='}
-  			  Line: 13
-  			Indent: 7
-  
-  Token token
-  (0x6220000007f0)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: VARIABLE | {'x'}
-  			  Line: 13
-  			Indent: 5
-  
-  Token token
-  (0x6220000008e0)::::::::::::::::
-  		  left_child: 0x622000000880
-  		 right_child: 0x622000000910
-  		        type: OPERATOR | {'/'}
-  			  Line: 13
-  			Indent: 15
-  
-  Token token
-  (0x622000000880)::::::::::::::::
-  		  left_child: 0x622000000850
-  		 right_child: 0x6220000008b0
-  		        type: OPERATOR | {'*'}
-  			  Line: 13
-  			Indent: 11
-  
-  Token token
-  (0x622000000850)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'5'}
-  			  Line: 13
-  			Indent: 9
-  
-  Token token
-  (0x6220000008b0)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'7'}
-  			  Line: 13
-  			Indent: 13
-  
-  Token token
-  (0x622000000910)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'3'}
-  			  Line: 13
-  			Indent: 16
-  
-  Token token
-  (0x622000000700)::::::::::::::::
-  		  left_child: 0x622000000730
-  		 right_child: 0x622000000790
-  		        type: INITIALIZATOR | {'var'}
-  			  Line: 11
-  			Indent: 5
-  
-  Token token
-  (0x622000000730)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: VARIABLE | {'x'}
-  			  Line: 11
-  			Indent: 9
-  
-  Token token
-  (0x622000000790)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'5'}
-  			  Line: 11
-  			Indent: 13
-  
-  Token token
-  (0x6220000005e0)::::::::::::::::
-  		  left_child: 0x622000000610
-  		 right_child: 0x622000000670
-  		        type: INITIALIZATOR | {'var'}
-  			  Line: 8
-  			Indent: 5
-  
-  Token token
-  (0x622000000610)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: VARIABLE | {'x'}
-  			  Line: 8
-  			Indent: 9
-  
-  Token token
-  (0x622000000670)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'0'}
-  			  Line: 8
-  			Indent: 12
-  
-  Token token
-  (0x6220000004f0)::::::::::::::::
-  		  left_child: 0x622000000520
-  		 right_child: 0x622000000580
-  		        type: INITIALIZATOR | {'var'}
-  			  Line: 7
-  			Indent: 5
-  
-  Token token
-  (0x622000000520)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: VARIABLE | {'z'}
-  			  Line: 7
-  			Indent: 9
-  
-  Token token
-  (0x622000000580)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'5'}
-  			  Line: 7
-  			Indent: 13
-  
-  Token token
-  (0x622000000400)::::::::::::::::
-  		  left_child: 0x622000000430
-  		 right_child: 0x622000000490
-  		        type: INITIALIZATOR | {'var'}
-  			  Line: 6
-  			Indent: 5
-  
-  Token token
-  (0x622000000430)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: VARIABLE | {'y'}
-  			  Line: 6
-  			Indent: 9
-  
-  Token token
-  (0x622000000490)::::::::::::::::
-  		  left_child: (nil)
-  		 right_child: (nil)
-  		        type: CONSTANT | {'4'}
-  			  Line: 6
-  			Indent: 13
-  
-  Token token
   (0x622000000310)::::::::::::::::
   		  left_child: 0x622000000340
   		 right_child: 0x6220000003a0
@@ -4065,13 +3615,621 @@ main::
   (0x6220000003a0)::::::::::::::::
   		  left_child: (nil)
   		 right_child: (nil)
-  		        type: CONSTANT | {'2'}
+  		        type: CONSTANT | {'3'}
   			  Line: 5
   			Indent: 16
   
-  LOG FREE(kill): {0x614000000240} - will be freed from main:60, at ./src/main.cpp:60
+  Token token
+  (0x6220000004c0)::::::::::::::::
+  		  left_child: 0x622000000400
+  		 right_child: 0x6220000005b0
+  		        type: STATEMENT | {';'}
+  			  Line: 9
+  			Indent: 14
+  
+  Token token
+  (0x622000000400)::::::::::::::::
+  		  left_child: 0x622000000430
+  		 right_child: 0x622000000490
+  		        type: INITIALIZATOR | {'var'}
+  			  Line: 9
+  			Indent: 5
+  
+  Token token
+  (0x622000000430)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: VARIABLE | {'y'}
+  			  Line: 9
+  			Indent: 9
+  
+  Token token
+  (0x622000000490)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'4'}
+  			  Line: 9
+  			Indent: 13
+  
+  Token token
+  (0x6220000005b0)::::::::::::::::
+  		  left_child: 0x6220000004f0
+  		 right_child: 0x6220000006a0
+  		        type: STATEMENT | {';'}
+  			  Line: 10
+  			Indent: 14
+  
+  Token token
+  (0x6220000004f0)::::::::::::::::
+  		  left_child: 0x622000000520
+  		 right_child: 0x622000000580
+  		        type: INITIALIZATOR | {'var'}
+  			  Line: 10
+  			Indent: 5
+  
+  Token token
+  (0x622000000520)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: VARIABLE | {'z'}
+  			  Line: 10
+  			Indent: 9
+  
+  Token token
+  (0x622000000580)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'5'}
+  			  Line: 10
+  			Indent: 13
+  
+  Token token
+  (0x6220000006a0)::::::::::::::::
+  		  left_child: 0x6220000005e0
+  		 right_child: 0x622000000700
+  		        type: STATEMENT | {';'}
+  			  Line: 11
+  			Indent: 13
+  
+  Token token
+  (0x6220000005e0)::::::::::::::::
+  		  left_child: 0x622000000610
+  		 right_child: 0x622000000670
+  		        type: INITIALIZATOR | {'var'}
+  			  Line: 11
+  			Indent: 5
+  
+  Token token
+  (0x622000000610)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: VARIABLE | {'x'}
+  			  Line: 11
+  			Indent: 9
+  
+  Token token
+  (0x622000000670)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'0'}
+  			  Line: 11
+  			Indent: 12
+  
+  Token token
+  (0x622000000700)::::::::::::::::
+  		  left_child: 0x6220000006d0
+  		 right_child: 0x622000000c70
+  		        type: STATEMENT | {'('}
+  			  Line: 13
+  			Indent: 8
+  
+  Token token
+  (0x6220000006d0)::::::::::::::::
+  		  left_child: 0x622000000730
+  		 right_child: 0x622000000c10
+  		        type: INSTRUCTION | {'if'}
+  			  Line: 13
+  			Indent: 5
+  
+  Token token
+  (0x622000000730)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'10'}
+  			  Line: 13
+  			Indent: 9
+  
+  Token token
+  (0x622000000c10)::::::::::::::::
+  		  left_child: 0x622000000880
+  		 right_child: (nil)
+  		        type: STATEMENT | {']'}
+  			  Line: 20
+  			Indent: 5
+  
+  Token token
+  (0x622000000880)::::::::::::::::
+  		  left_child: 0x6220000007c0
+  		 right_child: 0x622000000a00
+  		        type: STATEMENT | {';'}
+  			  Line: 15
+  			Indent: 15
+  
+  Token token
+  (0x6220000007c0)::::::::::::::::
+  		  left_child: 0x6220000007f0
+  		 right_child: 0x622000000850
+  		        type: INITIALIZATOR | {'var'}
+  			  Line: 15
+  			Indent: 6
+  
+  Token token
+  (0x6220000007f0)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: VARIABLE | {'x'}
+  			  Line: 15
+  			Indent: 10
+  
+  Token token
+  (0x622000000850)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'5'}
+  			  Line: 15
+  			Indent: 14
+  
+  Token token
+  (0x622000000a00)::::::::::::::::
+  		  left_child: 0x6220000008e0
+  		 right_child: 0x622000000af0
+  		        type: STATEMENT | {';'}
+  			  Line: 17
+  			Indent: 17
+  
+  Token token
+  (0x6220000008e0)::::::::::::::::
+  		  left_child: 0x6220000008b0
+  		 right_child: 0x6220000009a0
+  		        type: ASSIGMENT | {'='}
+  			  Line: 17
+  			Indent: 7
+  
+  Token token
+  (0x6220000008b0)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: VARIABLE | {'x'}
+  			  Line: 17
+  			Indent: 5
+  
+  Token token
+  (0x6220000009a0)::::::::::::::::
+  		  left_child: 0x622000000940
+  		 right_child: 0x6220000009d0
+  		        type: OPERATOR | {'/'}
+  			  Line: 17
+  			Indent: 15
+  
+  Token token
+  (0x622000000940)::::::::::::::::
+  		  left_child: 0x622000000910
+  		 right_child: 0x622000000970
+  		        type: OPERATOR | {'*'}
+  			  Line: 17
+  			Indent: 11
+  
+  Token token
+  (0x622000000910)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'5'}
+  			  Line: 17
+  			Indent: 9
+  
+  Token token
+  (0x622000000970)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'7'}
+  			  Line: 17
+  			Indent: 13
+  
+  Token token
+  (0x6220000009d0)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'3'}
+  			  Line: 17
+  			Indent: 16
+  
+  Token token
+  (0x622000000af0)::::::::::::::::
+  		  left_child: 0x622000000a30
+  		 right_child: 0x622000000be0
+  		        type: STATEMENT | {';'}
+  			  Line: 18
+  			Indent: 14
+  
+  Token token
+  (0x622000000a30)::::::::::::::::
+  		  left_child: 0x622000000a60
+  		 right_child: 0x622000000ac0
+  		        type: INITIALIZATOR | {'var'}
+  			  Line: 18
+  			Indent: 5
+  
+  Token token
+  (0x622000000a60)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: VARIABLE | {'y'}
+  			  Line: 18
+  			Indent: 9
+  
+  Token token
+  (0x622000000ac0)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'5'}
+  			  Line: 18
+  			Indent: 13
+  
+  Token token
+  (0x622000000be0)::::::::::::::::
+  		  left_child: 0x622000000b20
+  		 right_child: (nil)
+  		        type: STATEMENT | {';'}
+  			  Line: 19
+  			Indent: 14
+  
+  Token token
+  (0x622000000b20)::::::::::::::::
+  		  left_child: 0x622000000b50
+  		 right_child: 0x622000000bb0
+  		        type: INITIALIZATOR | {'var'}
+  			  Line: 19
+  			Indent: 5
+  
+  Token token
+  (0x622000000b50)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: VARIABLE | {'z'}
+  			  Line: 19
+  			Indent: 9
+  
+  Token token
+  (0x622000000bb0)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'3'}
+  			  Line: 19
+  			Indent: 13
+  
+  Token token
+  (0x622000000c70)::::::::::::::::
+  		  left_child: 0x622000000c40
+  		 right_child: 0x6220000010c0
+  		        type: STATEMENT | {'('}
+  			  Line: 22
+  			Indent: 8
+  
+  Token token
+  (0x622000000c40)::::::::::::::::
+  		  left_child: 0x622000000ca0
+  		 right_child: 0x622000001000
+  		        type: INSTRUCTION | {'if'}
+  			  Line: 22
+  			Indent: 5
+  
+  Token token
+  (0x622000000ca0)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: VARIABLE | {'y'}
+  			  Line: 22
+  			Indent: 9
+  
+  Token token
+  (0x622000001000)::::::::::::::::
+  		  left_child: 0x622000000df0
+  		 right_child: (nil)
+  		        type: STATEMENT | {']'}
+  			  Line: 27
+  			Indent: 9
+  
+  Token token
+  (0x622000000df0)::::::::::::::::
+  		  left_child: 0x622000000d30
+  		 right_child: 0x622000000ee0
+  		        type: STATEMENT | {';'}
+  			  Line: 24
+  			Indent: 19
+  
+  Token token
+  (0x622000000d30)::::::::::::::::
+  		  left_child: 0x622000000d60
+  		 right_child: 0x622000000dc0
+  		        type: INITIALIZATOR | {'var'}
+  			  Line: 24
+  			Indent: 9
+  
+  Token token
+  (0x622000000d60)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: VARIABLE | {'x'}
+  			  Line: 24
+  			Indent: 13
+  
+  Token token
+  (0x622000000dc0)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'10'}
+  			  Line: 24
+  			Indent: 17
+  
+  Token token
+  (0x622000000ee0)::::::::::::::::
+  		  left_child: 0x622000000e20
+  		 right_child: 0x622000000fd0
+  		        type: STATEMENT | {';'}
+  			  Line: 25
+  			Indent: 18
+  
+  Token token
+  (0x622000000e20)::::::::::::::::
+  		  left_child: 0x622000000e50
+  		 right_child: 0x622000000eb0
+  		        type: INITIALIZATOR | {'var'}
+  			  Line: 25
+  			Indent: 9
+  
+  Token token
+  (0x622000000e50)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: VARIABLE | {'y'}
+  			  Line: 25
+  			Indent: 13
+  
+  Token token
+  (0x622000000eb0)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'2'}
+  			  Line: 25
+  			Indent: 17
+  
+  Token token
+  (0x622000000fd0)::::::::::::::::
+  		  left_child: 0x622000000f10
+  		 right_child: (nil)
+  		        type: STATEMENT | {';'}
+  			  Line: 26
+  			Indent: 18
+  
+  Token token
+  (0x622000000f10)::::::::::::::::
+  		  left_child: 0x622000000f40
+  		 right_child: 0x622000000fa0
+  		        type: INITIALIZATOR | {'var'}
+  			  Line: 26
+  			Indent: 9
+  
+  Token token
+  (0x622000000f40)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: VARIABLE | {'z'}
+  			  Line: 26
+  			Indent: 13
+  
+  Token token
+  (0x622000000fa0)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'0'}
+  			  Line: 26
+  			Indent: 17
+  
+  Token token
+  (0x6220000010c0)::::::::::::::::
+  		  left_child: 0x622000001030
+  		 right_child: 0x622000001120
+  		        type: STATEMENT | {';'}
+  			  Line: 29
+  			Indent: 14
+  
+  Token token
+  (0x622000001030)::::::::::::::::
+  		  left_child: 0x622000001090
+  		 right_child: (nil)
+  		        type: NATIVE_FUNCTION | {'fout'}
+  			  Line: 29
+  			Indent: 5
+  
+  Token token
+  (0x622000001090)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: VARIABLE | {'x'}
+  			  Line: 29
+  			Indent: 13
+  
+  Token token
+  (0x622000001120)::::::::::::::::
+  		  left_child: 0x622000001180
+  		 right_child: 0x622000001360
+  		        type: STATEMENT | {'('}
+  			  Line: 31
+  			Indent: 15
+  
+  Token token
+  (0x622000001180)::::::::::::::::
+  		  left_child: 0x6220000010f0
+  		 right_child: (nil)
+  		        type: CALL | {';'}
+  			  Line: 31
+  			Indent: 17
+  
+  Token token
+  (0x622000001360)::::::::::::::::
+  		  left_child: 0x6220000011e0
+  		 right_child: 0x6220000013f0
+  		        type: STATEMENT | {';'}
+  			  Line: 33
+  			Indent: 20
+  
+  Token token
+  (0x6220000011e0)::::::::::::::::
+  		  left_child: 0x6220000011b0
+  		 right_child: 0x622000001240
+  		        type: ASSIGMENT | {'='}
+  			  Line: 33
+  			Indent: 7
+  
+  Token token
+  (0x6220000011b0)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: VARIABLE | {'x'}
+  			  Line: 33
+  			Indent: 5
+  
+  Token token
+  (0x622000001240)::::::::::::::::
+  		  left_child: 0x622000001210
+  		 right_child: 0x6220000012d0
+  		        type: OPERATOR | {'*'}
+  			  Line: 33
+  			Indent: 11
+  
+  Token token
+  (0x622000001210)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'1'}
+  			  Line: 33
+  			Indent: 9
+  
+  Token token
+  (0x6220000012d0)::::::::::::::::
+  		  left_child: 0x6220000012a0
+  		 right_child: 0x622000001300
+  		        type: OPERATOR | {'+'}
+  			  Line: 33
+  			Indent: 16
+  
+  Token token
+  (0x6220000012a0)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'4'}
+  			  Line: 33
+  			Indent: 14
+  
+  Token token
+  (0x622000001300)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'5'}
+  			  Line: 33
+  			Indent: 18
+  
+  Token token
+  (0x6220000013f0)::::::::::::::::
+  		  left_child: 0x622000001390
+  		 right_child: (nil)
+  		        type: STATEMENT | {';'}
+  			  Line: 35
+  			Indent: 13
+  
+  Token token
+  (0x622000001390)::::::::::::::::
+  		  left_child: 0x6220000013c0
+  		 right_child: (nil)
+  		        type: INSTRUCTION | {'return'}
+  			  Line: 35
+  			Indent: 5
+  
+  Token token
+  (0x6220000013c0)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'0'}
+  			  Line: 35
+  			Indent: 12
+  
+  Token token
+  (0x622000001660)::::::::::::::::
+  		  left_child: 0x6220000014e0
+  		 right_child: (nil)
+  		        type: STATEMENT | {']'}
+  			  Line: 42
+  			Indent: 5
+  
+  Token token
+  (0x6220000014e0)::::::::::::::::
+  		  left_child: 0x622000001480
+  		 right_child: 0x6220000015d0
+  		        type: FUNCTION | {')'}
+  			  Line: 38
+  			Indent: 17
+  
+  Token token
+  (0x622000001450)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: FUNCTION_RET_TYPE | {'void'}
+  			  Line: 38
+  			Indent: 1
+  
+  Token token
+  (0x6220000015d0)::::::::::::::::
+  		  left_child: 0x622000001540
+  		 right_child: 0x622000001630
+  		        type: STATEMENT | {';'}
+  			  Line: 40
+  			Indent: 14
+  
+  Token token
+  (0x622000001540)::::::::::::::::
+  		  left_child: 0x6220000015a0
+  		 right_child: (nil)
+  		        type: NATIVE_FUNCTION | {'fout'}
+  			  Line: 40
+  			Indent: 5
+  
+  Token token
+  (0x6220000015a0)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: CONSTANT | {'4'}
+  			  Line: 40
+  			Indent: 13
+  
+  Token token
+  (0x622000001630)::::::::::::::::
+  		  left_child: 0x622000001600
+  		 right_child: (nil)
+  		        type: STATEMENT | {';'}
+  			  Line: 41
+  			Indent: 11
+  
+  Token token
+  (0x622000001600)::::::::::::::::
+  		  left_child: (nil)
+  		 right_child: (nil)
+  		        type: INSTRUCTION | {'return'}
+  			  Line: 41
+  			Indent: 5
+  
+  LOG FREE(kill): {0x615000000a80} - will be freed from main:56, at ./src/main.cpp:56
   }
 
 *********************************************************************
-		Log Successfuly ended, on Fri Dec 16 00:36:18 2022
+		Log Successfuly ended, on Fri Dec 16 21:58:14 2022
 *********************************************************************

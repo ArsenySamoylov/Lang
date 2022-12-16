@@ -57,7 +57,6 @@ static int CheckForMainAndDeclaration (const FuncTabel *const table, const char*
     return main_flag;
     }
 
-
 static int MakeFuncLabel (ProgramCtx* program_ctx, Token** func_head = NULL);
 // static VarLabel*  MakeVarLabel  (ProgramCtx* program_ctx);
 
@@ -120,7 +119,7 @@ static int ProgramCtxDtor(ProgramCtx* program_ctx)
     return SUCCESS;
     }
 
-// PROBELM WITH FUNCTIONS AND VARIABLES HAVING SAME NAME
+// PROBELM WITH FUNCTIONS AND VARIABLES HAVING SAME NAME (it works only for var intiriliaztion)
 static int DefineName(ProgramCtx* program_ctx)
     {
     assertlog(program_ctx, EFAULT, return NOT_DECLARED);
@@ -210,6 +209,13 @@ static int MakeFuncLabel(ProgramCtx* program_ctx, Token** func_head)
     // check for previous declaration
     int prev_decl_pos = IsFuncLabel(NAME_ID(name), FUNC_TABEL(program_ctx));
     
+    if (prev_decl_pos == NOT_A_LABEL && func_head)
+        {
+        printf(purplecolor "Warning, no prototype for function '%s'\n", STRING_ARR(program_ctx)[label->name]);
+        printf("To do, add warning system\n");
+
+        }
+        
     if (prev_decl_pos != NOT_A_LABEL)
         {
         if (!func_head)  // this for prototype
@@ -292,5 +298,3 @@ static Token* FuncLabelToTokens (FuncLabel* label)
     return name;
     }
 */
-
-

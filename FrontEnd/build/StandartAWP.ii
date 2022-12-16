@@ -1146,7 +1146,7 @@ enum NATIVE_FUNCTIONS_NUM
     };
 
 const int NUMBER_OF_INITIALIZATORS = 2;
-const char *const INITIALIZATORS[] = {"func", "var"};
+const char *const INITIALIZATORS[] = {"extern", "var"};
 enum INITIALIZATORS_NUM
     {
     FUNCTION_INITIALIZATOR = 0,
@@ -44425,8 +44425,8 @@ static int PutToken (const Token *const token)
         case STATEMENT:
             stdprint ("{ ST ");
 
-                PutToken(token->right_child);
                 PutToken( token->left_child);
+                PutToken(token->right_child);
 
             stdprint ("} ");
 
@@ -44458,7 +44458,12 @@ static int PutToken (const Token *const token)
 
         case FUNCTION_RET_TYPE:
             {
-            stdprint ("{ %s } ", STD_FUNCTION_RET_TYPE[token->value.t_function_ret_type]);
+            stdprint ("{ %s ", STD_FUNCTION_RET_TYPE[token->value.t_function_ret_type]);
+
+                PutToken( token->left_child);
+                PutToken(token->right_child);
+
+            stdprint("} ");
 
             return SUCCESS;
             }
@@ -44479,7 +44484,7 @@ static int PutToken (const Token *const token)
 
                 stdprint("} ");
 
-            stdprint("{ NILL } ");
+            stdprint("{ NIL } ");
             stdprint("} ");
 
             return SUCCESS;
@@ -44546,22 +44551,22 @@ static int PutToken (const Token *const token)
             return FAILURE;
         }
 
-    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "../Common/StandartAWP/StandartAWP.cpp", 198, __func__, 198); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "../Common/StandartAWP/StandartAWP.cpp", 198, __func__, 198);
+    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "../Common/StandartAWP/StandartAWP.cpp", 203, __func__, 203); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "../Common/StandartAWP/StandartAWP.cpp", 203, __func__, 203);
 
     return FAILURE;
     }
 
 static int PutInstruction (const Token *const token)
     {
-    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 205, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 205, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 205 "../Common/StandartAWP/StandartAWP.cpp" 3 4
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 210, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 210, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 210 "../Common/StandartAWP/StandartAWP.cpp" 3 4
    14
-# 205 "../Common/StandartAWP/StandartAWP.cpp"
+# 210 "../Common/StandartAWP/StandartAWP.cpp"
    , strerror(
-# 205 "../Common/StandartAWP/StandartAWP.cpp" 3 4
+# 210 "../Common/StandartAWP/StandartAWP.cpp" 3 4
    14
-# 205 "../Common/StandartAWP/StandartAWP.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 205); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/StandartAWP/StandartAWP.cpp", 205, __func__, 205), "Failed (%s:%d, %s:%d)" , "../Common/StandartAWP/StandartAWP.cpp", 205, __func__, 205); } } while (0);;
+# 210 "../Common/StandartAWP/StandartAWP.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 210); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/StandartAWP/StandartAWP.cpp", 210, __func__, 210), "Failed (%s:%d, %s:%d)" , "../Common/StandartAWP/StandartAWP.cpp", 210, __func__, 210); } } while (0);;
 
     if (token->type != INSTRUCTION)
         {
@@ -44620,22 +44625,22 @@ static int PutInstruction (const Token *const token)
             return FAILURE;
         }
 
-    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "../Common/StandartAWP/StandartAWP.cpp", 264, __func__, 264); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "../Common/StandartAWP/StandartAWP.cpp", 264, __func__, 264);
+    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "../Common/StandartAWP/StandartAWP.cpp", 269, __func__, 269); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "../Common/StandartAWP/StandartAWP.cpp", 269, __func__, 269);
 
     return FAILURE;
     }
 
 static int PutNativeFunction (const Token *const token)
     {
-    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 271, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 271, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 271 "../Common/StandartAWP/StandartAWP.cpp" 3 4
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 276, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 276, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 276 "../Common/StandartAWP/StandartAWP.cpp" 3 4
    14
-# 271 "../Common/StandartAWP/StandartAWP.cpp"
+# 276 "../Common/StandartAWP/StandartAWP.cpp"
    , strerror(
-# 271 "../Common/StandartAWP/StandartAWP.cpp" 3 4
+# 276 "../Common/StandartAWP/StandartAWP.cpp" 3 4
    14
-# 271 "../Common/StandartAWP/StandartAWP.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 271); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/StandartAWP/StandartAWP.cpp", 271, __func__, 271), "Failed (%s:%d, %s:%d)" , "../Common/StandartAWP/StandartAWP.cpp", 271, __func__, 271); } } while (0);;
+# 276 "../Common/StandartAWP/StandartAWP.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 276); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/StandartAWP/StandartAWP.cpp", 276, __func__, 276), "Failed (%s:%d, %s:%d)" , "../Common/StandartAWP/StandartAWP.cpp", 276, __func__, 276); } } while (0);;
 
     if (token->type != NATIVE_FUNCTION)
         {
@@ -44667,12 +44672,12 @@ static int PutNativeFunction (const Token *const token)
 
                 stdprint("{ PARAM ");
 
-                PutToken(token->left_child);
+                PutToken( token->left_child);
+                PutToken(token->right_child);
 
                 stdprint("} ");
 
-
-                stdprint("{ NIL } ");
+            stdprint("{ NIL } ");
 
             stdprint("} ");
 
@@ -44686,22 +44691,22 @@ static int PutNativeFunction (const Token *const token)
             return FAILURE;
         }
 
-    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "../Common/StandartAWP/StandartAWP.cpp", 322, __func__, 322); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "../Common/StandartAWP/StandartAWP.cpp", 322, __func__, 322);
+    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "../Common/StandartAWP/StandartAWP.cpp", 327, __func__, 327); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "../Common/StandartAWP/StandartAWP.cpp", 327, __func__, 327);
 
     return FAILURE;
     }
 
 static int PutOperator (const Token *const token)
     {
-    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 329, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 329, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 329 "../Common/StandartAWP/StandartAWP.cpp" 3 4
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 334, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 334, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 334 "../Common/StandartAWP/StandartAWP.cpp" 3 4
    14
-# 329 "../Common/StandartAWP/StandartAWP.cpp"
+# 334 "../Common/StandartAWP/StandartAWP.cpp"
    , strerror(
-# 329 "../Common/StandartAWP/StandartAWP.cpp" 3 4
+# 334 "../Common/StandartAWP/StandartAWP.cpp" 3 4
    14
-# 329 "../Common/StandartAWP/StandartAWP.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 329); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+# 334 "../Common/StandartAWP/StandartAWP.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 334); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
 
     if (token->type != OPERATOR)
         {
@@ -44734,7 +44739,7 @@ static int PutOperator (const Token *const token)
         return FAILURE;
         }
 
-    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "../Common/StandartAWP/StandartAWP.cpp", 362, __func__, 362); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "../Common/StandartAWP/StandartAWP.cpp", 362, __func__, 362);
+    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "../Common/StandartAWP/StandartAWP.cpp", 367, __func__, 367); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "../Common/StandartAWP/StandartAWP.cpp", 367, __func__, 367);
 
     return FAILURE;
     }
@@ -44752,48 +44757,48 @@ static const char* MathOperatorToStd(const int operation)
         default: return "NOT SUPPORTED MATH OPERATOR";
         }
 
-    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "../Common/StandartAWP/StandartAWP.cpp", 380, __func__, 380); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "../Common/StandartAWP/StandartAWP.cpp", 380, __func__, 380);
+    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "../Common/StandartAWP/StandartAWP.cpp", 385, __func__, 385); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "../Common/StandartAWP/StandartAWP.cpp", 385, __func__, 385);
 
-    return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 382), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "../Common/StandartAWP/StandartAWP.cpp", 382, __func__, 382);
+    return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 387), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "../Common/StandartAWP/StandartAWP.cpp", 387, __func__, 387);
     }
 
 static void stdprint (const char* format, ... )
     {
-    do { if (!(format)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "format"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "format"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 387, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 387, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 387 "../Common/StandartAWP/StandartAWP.cpp" 3 4
+    do { if (!(format)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "format"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "format"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 392, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/StandartAWP.cpp", 392, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 392 "../Common/StandartAWP/StandartAWP.cpp" 3 4
    14
-# 387 "../Common/StandartAWP/StandartAWP.cpp"
+# 392 "../Common/StandartAWP/StandartAWP.cpp"
    , strerror(
-# 387 "../Common/StandartAWP/StandartAWP.cpp" 3 4
+# 392 "../Common/StandartAWP/StandartAWP.cpp" 3 4
    14
-# 387 "../Common/StandartAWP/StandartAWP.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 387); system("echo LOX\n"); return; } } while (0);;
+# 392 "../Common/StandartAWP/StandartAWP.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 392); system("echo LOX\n"); return; } } while (0);;
 
     va_list ptr{};
     
-# 390 "../Common/StandartAWP/StandartAWP.cpp" 3 4
+# 395 "../Common/StandartAWP/StandartAWP.cpp" 3 4
    __builtin_va_start(
-# 390 "../Common/StandartAWP/StandartAWP.cpp"
+# 395 "../Common/StandartAWP/StandartAWP.cpp"
    ptr
-# 390 "../Common/StandartAWP/StandartAWP.cpp" 3 4
+# 395 "../Common/StandartAWP/StandartAWP.cpp" 3 4
    ,
-# 390 "../Common/StandartAWP/StandartAWP.cpp"
+# 395 "../Common/StandartAWP/StandartAWP.cpp"
    format
-# 390 "../Common/StandartAWP/StandartAWP.cpp" 3 4
+# 395 "../Common/StandartAWP/StandartAWP.cpp" 3 4
    )
-# 390 "../Common/StandartAWP/StandartAWP.cpp"
+# 395 "../Common/StandartAWP/StandartAWP.cpp"
                         ;
 
     vfprintf(STD_FILE, format, ptr);
 
     
-# 394 "../Common/StandartAWP/StandartAWP.cpp" 3 4
+# 399 "../Common/StandartAWP/StandartAWP.cpp" 3 4
    __builtin_va_end(
-# 394 "../Common/StandartAWP/StandartAWP.cpp"
+# 399 "../Common/StandartAWP/StandartAWP.cpp"
    ptr
-# 394 "../Common/StandartAWP/StandartAWP.cpp" 3 4
+# 399 "../Common/StandartAWP/StandartAWP.cpp" 3 4
    )
-# 394 "../Common/StandartAWP/StandartAWP.cpp"
+# 399 "../Common/StandartAWP/StandartAWP.cpp"
               ;
 
     return;

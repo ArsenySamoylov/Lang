@@ -171,9 +171,6 @@ struct Program
     int number_of_strings;
 
     const char* path_to_src_file;
-
-
-
     };
 
 int ProgramCtor(Program* program, const char* path_to_src_file);
@@ -44256,21 +44253,21 @@ int ProgramCtor(Program* program, const char* path_to_src_file)
     program->number_of_strings = 0;
 
     program->path_to_src_file = path_to_src_file;
-# 28 "../Common/Structures/Program/Program.cpp"
+
     return SUCCESS;
     }
 
 int ProgramDtor(Program* program)
     {
-    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 33, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 33, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 33 "../Common/Structures/Program/Program.cpp" 3 4
+    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 25, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 25, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 25 "../Common/Structures/Program/Program.cpp" 3 4
    14
-# 33 "../Common/Structures/Program/Program.cpp"
+# 25 "../Common/Structures/Program/Program.cpp"
    , strerror(
-# 33 "../Common/Structures/Program/Program.cpp" 3 4
+# 25 "../Common/Structures/Program/Program.cpp" 3 4
    14
-# 33 "../Common/Structures/Program/Program.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 33); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+# 25 "../Common/Structures/Program/Program.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 25); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
 
     if (program->string_arr)
         {
@@ -44293,15 +44290,15 @@ int ProgramDtor(Program* program)
 
 static int CleanStringArr(const char** string_arr, int number_of_strings)
     {
-    do { if (!(string_arr)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "string_arr"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "string_arr"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 56, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 56, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 56 "../Common/Structures/Program/Program.cpp" 3 4
+    do { if (!(string_arr)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "string_arr"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "string_arr"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 48, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 48, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 48 "../Common/Structures/Program/Program.cpp" 3 4
    14
-# 56 "../Common/Structures/Program/Program.cpp"
+# 48 "../Common/Structures/Program/Program.cpp"
    , strerror(
-# 56 "../Common/Structures/Program/Program.cpp" 3 4
+# 48 "../Common/Structures/Program/Program.cpp" 3 4
    14
-# 56 "../Common/Structures/Program/Program.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 56); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Program/Program.cpp", 56, __func__, 56), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Program/Program.cpp", 56, __func__, 56); } } while (0);;
+# 48 "../Common/Structures/Program/Program.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 48); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Program/Program.cpp", 48, __func__, 48), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Program/Program.cpp", 48, __func__, 48); } } while (0);;
 
     for (int i = 0; i < number_of_strings; i++)
         {

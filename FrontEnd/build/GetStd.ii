@@ -1,0 +1,185 @@
+# 0 "../Common/StandartAWP/GetStd.cpp"
+# 1 "/home/arsenyfucker/Cprojects/Lang/Translator/FrontEnd//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "../Common/StandartAWP/GetStd.cpp"
+# 1 "../Common/StandartAWP/StandartAWP.h" 1
+       
+
+# 1 "../Common/Structures/Program/Program.h" 1
+       
+
+# 1 "../Common/Structures/Token/Token.h" 1
+       
+
+#pragma GCC diagnostic ignored "-Wlarger-than="
+
+union TokenValue
+    {
+    int t_instruction;
+    char t_operator;
+    double t_constant;
+    int t_initializator;
+    int t_native_function;
+    int t_function_ret_type;
+
+    char* t_name_ptr;
+    int t_name_id;
+    };
+
+struct Token
+    {
+    Token* left_child;
+    Token* right_child;
+
+    int type;
+
+    TokenValue value;
+
+
+    const char* ptr_to_src_code;
+
+    int line;
+    int indent;
+
+
+    };
+
+Token* NewToken (int type = 0, TokenValue value = {0},
+                Token* left_child = nullptr, Token* right_child = nullptr);
+
+int DeleteBranch (Token* def_node);
+# 4 "../Common/Structures/Program/Program.h" 2
+# 1 "../Common/Structures/Tabels/Tabels.h" 1
+       
+
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long int ptrdiff_t;
+# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long unsigned int size_t;
+# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef struct {
+  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
+  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
+# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+} max_align_t;
+
+
+
+
+
+
+  typedef decltype(nullptr) nullptr_t;
+# 6 "../Common/Structures/Tabels/Tabels.h" 2
+
+
+# 7 "../Common/Structures/Tabels/Tabels.h"
+const int NOT_DECLARED = - 111;
+const int NOT_A_LABEL = -9;
+
+enum VarStorageType
+    {
+    REGISTER,
+    RAM,
+    };
+
+enum FuncType
+    {
+    DECLARED,
+    DEFINED,
+    };
+
+struct VarLabel
+    {
+    int name_id;
+    int position;
+    };
+
+
+struct VarTabel
+    {
+    VarLabel** label_arr;
+    size_t arr_size;
+
+    size_t number_of_labels;
+    };
+
+struct FuncLabel
+    {
+    int name;
+    int ret_type;
+    int body_status;
+
+    int number_of_return;
+
+
+
+    size_t number_of_local_variables;
+    };
+
+struct FuncTabel
+    {
+    FuncLabel** label_arr;
+    size_t arr_size;
+
+    size_t number_of_labels;
+    };
+
+
+FuncTabel* NewFuncTabel();
+int CloseFuncTabel (FuncTabel* tabel);
+
+
+
+
+
+int IsFuncLabel (int name_id, FuncTabel* func_tabel);
+
+int AddFuncLabel (FuncLabel* label, FuncTabel* tabel);
+int AddFuncLabel (int name_id, int return_type, int body_status, FuncTabel* func_tabel);
+
+FuncLabel* NewFuncLabel (int name_id, int return_type);
+
+
+int CompareFuncLabels (FuncLabel* label1, FuncLabel* label2);
+
+
+VarTabel* NewVarTabel();
+int CloseVarTabel (VarTabel* tabel);
+
+
+
+
+VarLabel* IsVarLabel (int name_id, VarTabel* tabel);
+
+int AddVarLabel (VarLabel* label, VarTabel* tabel);
+int AddVarLabel (int name_id, VarTabel* tabel);
+# 5 "../Common/Structures/Program/Program.h" 2
+
+struct Program
+    {
+    Token* token_arr;
+    int number_of_tokens;
+
+    Token* root;
+
+    const char** string_arr;
+    int number_of_strings;
+
+    const char* path_to_src_file;
+    };
+
+int ProgramCtor(Program* program, const char* path_to_src_file);
+int ProgramDtor(Program* program);
+# 4 "../Common/StandartAWP/StandartAWP.h" 2
+
+int PutProgramToStdAWP (const Program *const program, const char* file_name);
+int GetProgramFromStdAwp ( Program* program, const char* file_name);
+# 2 "../Common/StandartAWP/GetStd.cpp" 2

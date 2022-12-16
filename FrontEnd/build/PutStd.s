@@ -1,7 +1,7 @@
-	.file	"StandartAWP.cpp"
+	.file	"PutStd.cpp"
 	.text
 .Ltext0:
-	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator/FrontEnd" "../Common/StandartAWP/StandartAWP.cpp"
+	.file 0 "/home/arsenyfucker/Cprojects/Lang/Translator/FrontEnd" "../Common/StandartAWP/PutStd.cpp"
 	.section	.rodata
 	.align 32
 	.type	_ZL12NOT_DECLARED, @object
@@ -258,8 +258,8 @@ NATIVE_FUNCTIONS_STD:
 	.zero	44
 	.align 32
 .LC23:
-	.string	"../Common/StandartAWP/StandartAWP.cpp"
-	.zero	58
+	.string	"../Common/StandartAWP/PutStd.cpp"
+	.zero	63
 	.align 32
 .LC24:
 	.string	"\t%s:%d, function: %s\n"
@@ -310,7 +310,7 @@ NATIVE_FUNCTIONS_STD:
 _Z18PutProgramToStdAWPPK7ProgramPKc:
 .LASANPC2270:
 .LFB2270:
-	.file 1 "../Common/StandartAWP/StandartAWP.cpp"
+	.file 1 "../Common/StandartAWP/PutStd.cpp"
 	.loc 1 31 5
 	.cfi_startproc
 	endbr64
@@ -357,7 +357,7 @@ _Z18PutProgramToStdAWPPK7ProgramPKc:
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 32 368 discriminator 1
+	.loc 1 32 363 discriminator 1
 	leaq	.LC22(%rip), %rax
 	movq	%rax, %rcx
 	movl	$32, %edx
@@ -367,10 +367,10 @@ _Z18PutProgramToStdAWPPK7ProgramPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 32 482 discriminator 1
+	.loc 1 32 472 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 32 488 discriminator 1
+	.loc 1 32 478 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -424,7 +424,7 @@ _Z18PutProgramToStdAWPPK7ProgramPKc:
 	movl	$0, %eax
 	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
 	addq	$16, %rsp
-	.loc 1 32 375 discriminator 1
+	.loc 1 32 365 discriminator 1
 	jmp	.L3
 .L2:
 	.loc 1 33 10
@@ -460,7 +460,7 @@ _Z18PutProgramToStdAWPPK7ProgramPKc:
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 33 374 discriminator 1
+	.loc 1 33 369 discriminator 1
 	leaq	.LC22(%rip), %rax
 	movq	%rax, %rcx
 	movl	$33, %edx
@@ -470,10 +470,10 @@ _Z18PutProgramToStdAWPPK7ProgramPKc:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 33 488 discriminator 1
+	.loc 1 33 478 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 33 494 discriminator 1
+	.loc 1 33 484 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -527,7 +527,7 @@ _Z18PutProgramToStdAWPPK7ProgramPKc:
 	movl	$0, %eax
 	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
 	addq	$16, %rsp
-	.loc 1 33 375 discriminator 1
+	.loc 1 33 365 discriminator 1
 	jmp	.L3
 .L4:
 	.loc 1 35 22
@@ -1531,7 +1531,7 @@ _ZL14PutInstructionPK5Token:
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 210 363 discriminator 1
+	.loc 1 210 358 discriminator 1
 	leaq	.LC50(%rip), %rax
 	movq	%rax, %rcx
 	movl	$210, %edx
@@ -1541,10 +1541,10 @@ _ZL14PutInstructionPK5Token:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 210 478 discriminator 1
+	.loc 1 210 468 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 210 484 discriminator 1
+	.loc 1 210 474 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -1598,7 +1598,7 @@ _ZL14PutInstructionPK5Token:
 	movl	$0, %eax
 	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
 	addq	$16, %rsp
-	.loc 1 210 380 discriminator 1
+	.loc 1 210 370 discriminator 1
 	jmp	.L54
 .L53:
 	.loc 1 212 16
@@ -1897,7 +1897,7 @@ _ZL17PutNativeFunctionPK5Token:
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 276 363 discriminator 1
+	.loc 1 276 358 discriminator 1
 	leaq	.LC56(%rip), %rax
 	movq	%rax, %rcx
 	movl	$276, %edx
@@ -1907,10 +1907,10 @@ _ZL17PutNativeFunctionPK5Token:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 276 478 discriminator 1
+	.loc 1 276 468 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 276 484 discriminator 1
+	.loc 1 276 474 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -1964,7 +1964,7 @@ _ZL17PutNativeFunctionPK5Token:
 	movl	$0, %eax
 	call	_ZN6Logger9LogMsgRetEiPKcz@PLT
 	addq	$16, %rsp
-	.loc 1 276 380 discriminator 1
+	.loc 1 276 370 discriminator 1
 	jmp	.L69
 .L68:
 	.loc 1 278 16
@@ -2298,7 +2298,7 @@ _ZL11PutOperatorPK5Token:
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 334 363 discriminator 1
+	.loc 1 334 358 discriminator 1
 	leaq	.LC60(%rip), %rax
 	movq	%rax, %rcx
 	movl	$334, %edx
@@ -2308,10 +2308,10 @@ _ZL11PutOperatorPK5Token:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 334 478 discriminator 1
+	.loc 1 334 468 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %rbx
-	.loc 1 334 484 discriminator 1
+	.loc 1 334 474 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -2690,7 +2690,7 @@ _ZL8stdprintPKcz:
 	movq	%rax, %rsi
 	movl	$0, %eax
 	call	_ZN6Logger3logEPKcz@PLT
-	.loc 1 392 366 discriminator 1
+	.loc 1 392 361 discriminator 1
 	leaq	.LC71(%rip), %rax
 	movq	%rax, %rcx
 	movl	$392, %edx
@@ -2700,10 +2700,10 @@ _ZL8stdprintPKcz:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	.loc 1 392 481 discriminator 1
+	.loc 1 392 471 discriminator 1
 	call	_ZN6Logger11getInstanceEv@PLT
 	movq	%rax, %r13
-	.loc 1 392 487 discriminator 1
+	.loc 1 392 477 discriminator 1
 	movl	$14, %edi
 	call	strerror@PLT
 	movq	%rax, %rcx
@@ -3166,45 +3166,45 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 .LC123:
 	.string	"*.LC68"
 .LC124:
-	.string	"*.LC21"
+	.string	"*.LC23"
 .LC125:
-	.string	"*.LC42"
+	.string	"*.LC21"
 .LC126:
-	.string	"*.LC28"
+	.string	"*.LC42"
 .LC127:
-	.string	"*.LC72"
+	.string	"*.LC28"
 .LC128:
-	.string	"*.LC27"
+	.string	"*.LC72"
 .LC129:
-	.string	"*.LC14"
+	.string	"*.LC27"
 .LC130:
-	.string	"*.LC43"
+	.string	"*.LC14"
 .LC131:
-	.string	"*.LC4"
+	.string	"*.LC43"
 .LC132:
-	.string	"*.LC47"
+	.string	"*.LC4"
 .LC133:
-	.string	"*.LC63"
+	.string	"*.LC47"
 .LC134:
-	.string	"*.LC38"
+	.string	"*.LC63"
 .LC135:
-	.string	"*.LC0"
+	.string	"*.LC38"
 .LC136:
-	.string	"*.LC29"
+	.string	"*.LC0"
 .LC137:
-	.string	"*.LC9"
+	.string	"*.LC29"
 .LC138:
-	.string	"*.LC36"
+	.string	"*.LC9"
 .LC139:
-	.string	"*.LC52"
+	.string	"*.LC36"
 .LC140:
-	.string	"*.LC33"
+	.string	"*.LC52"
 .LC141:
-	.string	"*.LC56"
+	.string	"*.LC33"
 .LC142:
-	.string	"*.LC65"
+	.string	"*.LC56"
 .LC143:
-	.string	"*.LC1"
+	.string	"*.LC65"
 .LC144:
 	.string	"*.LC70"
 .LC145:
@@ -3224,7 +3224,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 .LC152:
 	.string	"*.LC3"
 .LC153:
-	.string	"*.LC23"
+	.string	"*.LC1"
 .LC154:
 	.string	"*.LC64"
 .LC155:
@@ -3634,10 +3634,18 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	0
 	.quad	0
 	.quad	0
+	.quad	.LC23
+	.quad	33
+	.quad	96
+	.quad	.LC124
+	.quad	.LC23
+	.quad	0
+	.quad	0
+	.quad	0
 	.quad	.LC21
 	.quad	64
 	.quad	96
-	.quad	.LC124
+	.quad	.LC125
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3645,7 +3653,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC42
 	.quad	8
 	.quad	64
-	.quad	.LC125
+	.quad	.LC126
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3653,7 +3661,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC28
 	.quad	10
 	.quad	64
-	.quad	.LC126
+	.quad	.LC127
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3661,7 +3669,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC72
 	.quad	9
 	.quad	64
-	.quad	.LC127
+	.quad	.LC128
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3669,7 +3677,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC27
 	.quad	33
 	.quad	96
-	.quad	.LC128
+	.quad	.LC129
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3677,7 +3685,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC14
 	.quad	5
 	.quad	64
-	.quad	.LC129
+	.quad	.LC130
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3685,7 +3693,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC43
 	.quad	6
 	.quad	64
-	.quad	.LC130
+	.quad	.LC131
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3693,7 +3701,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC4
 	.quad	5
 	.quad	64
-	.quad	.LC131
+	.quad	.LC132
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3701,7 +3709,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC47
 	.quad	9
 	.quad	64
-	.quad	.LC132
+	.quad	.LC133
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3709,7 +3717,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC63
 	.quad	4
 	.quad	64
-	.quad	.LC133
+	.quad	.LC134
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3717,7 +3725,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC38
 	.quad	10
 	.quad	64
-	.quad	.LC134
+	.quad	.LC135
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3725,7 +3733,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC0
 	.quad	3
 	.quad	64
-	.quad	.LC135
+	.quad	.LC136
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3733,7 +3741,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC29
 	.quad	31
 	.quad	64
-	.quad	.LC136
+	.quad	.LC137
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3741,7 +3749,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC9
 	.quad	4
 	.quad	64
-	.quad	.LC137
+	.quad	.LC138
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3749,7 +3757,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC36
 	.quad	9
 	.quad	64
-	.quad	.LC138
+	.quad	.LC139
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3757,7 +3765,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC52
 	.quad	30
 	.quad	64
-	.quad	.LC139
+	.quad	.LC140
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3765,7 +3773,7 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC33
 	.quad	6
 	.quad	64
-	.quad	.LC140
+	.quad	.LC141
 	.quad	.LC23
 	.quad	0
 	.quad	0
@@ -3773,21 +3781,13 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	.LC56
 	.quad	36
 	.quad	96
-	.quad	.LC141
+	.quad	.LC142
 	.quad	.LC23
 	.quad	0
 	.quad	0
 	.quad	0
 	.quad	.LC65
 	.quad	4
-	.quad	64
-	.quad	.LC142
-	.quad	.LC23
-	.quad	0
-	.quad	0
-	.quad	0
-	.quad	.LC1
-	.quad	5
 	.quad	64
 	.quad	.LC143
 	.quad	.LC23
@@ -3866,9 +3866,9 @@ __odr_asan.STD_FUNCTION_RET_TYPE:
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC23
-	.quad	38
-	.quad	96
+	.quad	.LC1
+	.quad	5
+	.quad	64
 	.quad	.LC153
 	.quad	.LC23
 	.quad	0
@@ -11813,7 +11813,7 @@ _sub_I_00099_1:
 	.string	"__isoc99_vfwscanf"
 	.section	.debug_line_str,"MS",@progbits,1
 .LASF0:
-	.string	"../Common/StandartAWP/StandartAWP.cpp"
+	.string	"../Common/StandartAWP/PutStd.cpp"
 .LASF1:
 	.string	"/home/arsenyfucker/Cprojects/Lang/Translator/FrontEnd"
 	.hidden	__dso_handle

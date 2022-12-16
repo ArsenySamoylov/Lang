@@ -25,12 +25,8 @@ int main(int argc, const char* argv[])
 
     char* src_code = GetSrcFile (path_to_src_file);
     if (!src_code)
-        {
-        printf(redcolor "Can't open file %s\n" resetconsole, path_to_src_file);
-
-        return LFAILURE;
-        }
-    
+        return FAILURE;
+        
     Program program{};
     ProgramCtor(&program, path_to_src_file);
 

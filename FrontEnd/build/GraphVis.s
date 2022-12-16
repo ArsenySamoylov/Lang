@@ -131,8 +131,8 @@ _ZL24NUMBER_OF_INITIALIZATORS:
 	.zero	60
 	.align 32
 .LC8:
-	.string	"func"
-	.zero	59
+	.string	"extern"
+	.zero	57
 	.align 32
 .LC9:
 	.string	"var"
@@ -3018,27 +3018,27 @@ __odr_asan.NUMBER_OF_GRAPVIS_COLORS:
 .LC114:
 	.string	"*.LC46"
 .LC115:
-	.string	"*.LC8"
-.LC116:
 	.string	"*.LC31"
-.LC117:
+.LC116:
 	.string	"*.LC20"
-.LC118:
+.LC117:
 	.string	"*.LC61"
-.LC119:
+.LC118:
 	.string	"*.LC42"
-.LC120:
+.LC119:
 	.string	"*.LC5"
-.LC121:
+.LC120:
 	.string	"*.LC2"
-.LC122:
+.LC121:
 	.string	"*.LC65"
-.LC123:
+.LC122:
 	.string	"*.LC12"
-.LC124:
+.LC123:
 	.string	"*.LC26"
-.LC125:
+.LC124:
 	.string	"*.LC62"
+.LC125:
+	.string	"*.LC60"
 .LC126:
 	.string	"*.LC32"
 .LC127:
@@ -3076,7 +3076,7 @@ __odr_asan.NUMBER_OF_GRAPVIS_COLORS:
 .LC143:
 	.string	"*.LC6"
 .LC144:
-	.string	"*.LC60"
+	.string	"*.LC8"
 .LC145:
 	.string	"*.LC25"
 .LC146:
@@ -3464,18 +3464,10 @@ __odr_asan.NUMBER_OF_GRAPVIS_COLORS:
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC8
-	.quad	5
-	.quad	64
-	.quad	.LC115
-	.quad	.LC34
-	.quad	0
-	.quad	0
-	.quad	0
 	.quad	.LC31
 	.quad	37
 	.quad	96
-	.quad	.LC116
+	.quad	.LC115
 	.quad	.LC34
 	.quad	0
 	.quad	0
@@ -3483,7 +3475,7 @@ __odr_asan.NUMBER_OF_GRAPVIS_COLORS:
 	.quad	.LC20
 	.quad	19
 	.quad	64
-	.quad	.LC117
+	.quad	.LC116
 	.quad	.LC34
 	.quad	0
 	.quad	0
@@ -3491,7 +3483,7 @@ __odr_asan.NUMBER_OF_GRAPVIS_COLORS:
 	.quad	.LC61
 	.quad	34
 	.quad	96
-	.quad	.LC118
+	.quad	.LC117
 	.quad	.LC34
 	.quad	0
 	.quad	0
@@ -3499,7 +3491,7 @@ __odr_asan.NUMBER_OF_GRAPVIS_COLORS:
 	.quad	.LC42
 	.quad	80
 	.quad	128
-	.quad	.LC119
+	.quad	.LC118
 	.quad	.LC34
 	.quad	0
 	.quad	0
@@ -3507,7 +3499,7 @@ __odr_asan.NUMBER_OF_GRAPVIS_COLORS:
 	.quad	.LC5
 	.quad	4
 	.quad	64
-	.quad	.LC120
+	.quad	.LC119
 	.quad	.LC34
 	.quad	0
 	.quad	0
@@ -3515,7 +3507,7 @@ __odr_asan.NUMBER_OF_GRAPVIS_COLORS:
 	.quad	.LC2
 	.quad	6
 	.quad	64
-	.quad	.LC121
+	.quad	.LC120
 	.quad	.LC34
 	.quad	0
 	.quad	0
@@ -3523,7 +3515,7 @@ __odr_asan.NUMBER_OF_GRAPVIS_COLORS:
 	.quad	.LC65
 	.quad	80
 	.quad	128
-	.quad	.LC122
+	.quad	.LC121
 	.quad	.LC34
 	.quad	0
 	.quad	0
@@ -3531,7 +3523,7 @@ __odr_asan.NUMBER_OF_GRAPVIS_COLORS:
 	.quad	.LC12
 	.quad	5
 	.quad	64
-	.quad	.LC123
+	.quad	.LC122
 	.quad	.LC34
 	.quad	0
 	.quad	0
@@ -3539,7 +3531,7 @@ __odr_asan.NUMBER_OF_GRAPVIS_COLORS:
 	.quad	.LC26
 	.quad	3
 	.quad	64
-	.quad	.LC124
+	.quad	.LC123
 	.quad	.LC34
 	.quad	0
 	.quad	0
@@ -3547,6 +3539,14 @@ __odr_asan.NUMBER_OF_GRAPVIS_COLORS:
 	.quad	.LC62
 	.quad	34
 	.quad	96
+	.quad	.LC124
+	.quad	.LC34
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.LC60
+	.quad	29
+	.quad	64
 	.quad	.LC125
 	.quad	.LC34
 	.quad	0
@@ -3696,8 +3696,8 @@ __odr_asan.NUMBER_OF_GRAPVIS_COLORS:
 	.quad	0
 	.quad	0
 	.quad	0
-	.quad	.LC60
-	.quad	29
+	.quad	.LC8
+	.quad	7
 	.quad	64
 	.quad	.LC144
 	.quad	.LC34

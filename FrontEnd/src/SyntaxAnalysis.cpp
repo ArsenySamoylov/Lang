@@ -106,7 +106,6 @@ static Token* GetN     (ProgramCtx* program_ctx);
 #include "../src/SyntaxAnalysisUtils_.ars"
 #include "../src/SyntaxAnalysisExpressions_.ars"
 
-// Add checking funclabels for DECLARED and look for MAIN
 int GetG (Program* program)
     {
     $log(DEBUG)
@@ -329,7 +328,7 @@ static Token* GetFunction (ProgramCtx* program_ctx)
 
     if (!label)
         {
-        report_syntax_error("something went wrong, null label (position %d)\n", func_label_position);
+        report_syntax_error("something went wrong, null label (position %d)\n" resetconsole, func_label_position);
         return NULL;
         }
 
@@ -575,7 +574,7 @@ static Token* GetCall (ProgramCtx* program_ctx)
     return statement;
     }
 
-// ONly fout supported
+// only fout supported for now
 static Token* GetNativeFunction (ProgramCtx* program_ctx)
     {
     $log(2)

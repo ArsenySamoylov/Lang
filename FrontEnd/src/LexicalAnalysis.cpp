@@ -23,7 +23,69 @@ static int IsInitializator   (const char* str);
 static int IsFunctionRetType (const char* str);
 static int IsNativeFunction  (const char* str);
 
-static int IsName            (const char* str, const char** string_arr, int suze_of_string_arr);
+// static int IsName            (const char* str, const char** string_arr, int suze_of_string_arr);
+
+struct LexicalCtx
+    {
+    Buffer* buf;
+
+    Token* token_arr;
+    size_t token_arr_size;
+    size_t number_of_tokens;
+
+    const char** string_arr;
+    size_t string_arr_size;
+    size_t number_of_strings;
+    };
+
+static int IsName (const char* str, LexicalCtx* ctx);
+
+static Token* GetToken(LexicalCtx* ctx);
+static Token* GetToken(LexicalCtx* ctx)
+    {
+    assertlog(ctx, EFAULT, return NULL);
+
+    // check for resize
+    if (ctx->number_of_tokens == ctx->token_arr_size)
+        {
+        ctx->token_arr_size *= 2;
+        Token* fuck = (Token*) RECALLOC(ctx->token_arr, ctx->token_arr_size * sizeof(fuck[0]));  
+        if (!fuck) 
+            return NULL;
+
+        ctx->token_arr = fuck;
+        }
+
+    return ctx->token_arr + ctx->number_of_tokens++;
+    }
+
+static int AddString(LexicalCtx* ctx, Token* token);
+static int AddString(LexicalCtx* ctx, Token* token)
+    {
+    assertlog(ctx, EFAULT, return BAD_ARGUMENT);
+    assertlog(ctx, EFAULT, return BAD_ARGUMENT);
+
+    if (ctx->number_of_strings == ctx->string_arr_size)
+        {
+        ctx->string_arr_size *=2;
+        const char** xyu = (const char**) RECALLOC(ctx->string_arr, ctx->string_arr_size * sizeof(xyu[0]));
+        if (!xyu) 
+            return FAILURE;
+
+        ctx->string_arr = xyu;
+        }
+
+    // *(string_arr + number_of_strings)
+    *(ctx->string_arr + ctx->number_of_strings) = strdup(NAME_PTR(token));
+
+    // printf("Lexical test: %s\n test 2: %s\n test 3: %p\n", current_str, NAME_PTR(token), (void*) NAME_PTR(token));
+    
+    NAME_ID(token) = (int) ctx->number_of_strings++;
+
+    return SUCCESS;
+    }
+
+
 
 const int NOT_A_NAME          = -555;
 const int NOT_A_INSTRUCTION   = -666;
@@ -34,8 +96,8 @@ const int NOT_A_NATIVE_FUNCTION = -222;
 #pragma GCC diagnostic ignored "-Wconversion"
 #pragma GCC diagnostic ignored "-Wsign-conversion"
 
-#define token  (arr + number_of_tokens)
-#define current_str *(string_arr + number_of_strings)
+//#define token  (arr + number_of_tokens)
+// #define current_str *(string_arr + number_of_strings)
 
 #define report_lexical_error(format, ...)                           \
     do                                                              \
@@ -52,116 +114,147 @@ const int NOT_A_NATIVE_FUNCTION = -222;
         }                                                           \
     while(0);
 
+
+
+static int LexicalCtxCtor(LexicalCtx* ctx, const char* buffer)
+    {
+    assertlog(ctx,    EFAULT, return BAD_ARGUMENT);
+    assertlog(buffer, EFAULT, return BAD_ARGUMENT);
+
+    Token* arr = (Token*) CALLOC (START_NUMBER_OF_TOKENS, sizeof(arr[0]));
+    if (!arr) 
+        return FAILURE;
+
+    ctx->token_arr_size = START_NUMBER_OF_TOKENS;
+
+    const char** string_arr = (const char**) CALLOC (START_NUMBER_OF_STRINGS, sizeof(string_arr[0])); 
+    if (!string_arr)
+        goto FAILURE_EXIT;
+
+    {
+    ctx->string_arr_size = START_NUMBER_OF_STRINGS;
+
+    ctx->buf = (Buffer*) CALLOC(1, sizeof(ctx->buf[0]));
+    if (!ctx->buf)
+        goto FAILURE_EXIT;
+
+    CHECK (BufferCtor(ctx->buf, buffer) == SUCCESS, goto FAILURE_EXIT);
+
+    ctx->number_of_tokens  = 0;
+    ctx->number_of_strings = 0;
+
+    ctx->token_arr         = arr;
+    ctx->token_arr_size     = START_NUMBER_OF_TOKENS;
+    ctx->number_of_tokens  = 0;
+    
+    ctx->string_arr        = string_arr;
+    ctx->string_arr_size   = START_NUMBER_OF_STRINGS;
+    ctx->number_of_strings = 0;
+    }
+
+    return SUCCESS;
+    
+    FAILURE_EXIT:
+
+     if (arr)
+        KILL(arr);
+
+    if (string_arr)
+        KILL(string_arr);
+
+    if (ctx->buf)
+        KILL(ctx->buf);
+
+    return FAILURE;
+    }
+
+static int LexicalCtxFailDtor(LexicalCtx* ctx)
+    {
+    assertlog(ctx, EFAULT, return BAD_ARGUMENT);
+
+    if (ctx->token_arr)
+        KILL(ctx->token_arr);
+
+    if (ctx->string_arr)
+        KILL(ctx->token_arr);
+
+    if (ctx->buf)
+        KILL(ctx->buf);
+
+    return SUCCESS;
+    }
+
+#define BUF(CTX) (CTX->buf)
 int Tokenizer (Program* program, const char* buffer)
     {
     $log(1)
     assertlog (program, EFAULT, return LFAILURE);
     assertlog (buffer,   EFAULT, return LFAILURE);
 
-    Token* arr = (Token*) CALLOC (START_NUMBER_OF_TOKENS, sizeof(arr[0]));
-    if (!arr) 
+    LexicalCtx  ctx_{};
+    LexicalCtx* ctx = &ctx_;
+
+    if (LexicalCtxCtor(ctx, buffer) != SUCCESS)
         return FAILURE;
 
-    int size = START_NUMBER_OF_TOKENS;
-
-    const char** string_arr = (const char**) CALLOC (START_NUMBER_OF_STRINGS, sizeof(string_arr[0])); 
-    if (!string_arr)
+    while (BufferLook(BUF(ctx)) != '\0')
         {
-        KILL(arr);
-        return FAILURE;
-        }
-
-    int size_strings = START_NUMBER_OF_STRINGS;
-
-    Buffer buf_orig{};
-    CHECK (BufferCtor(&buf_orig, buffer) == SUCCESS, return LFAILURE);
-
-    Buffer* buf = &buf_orig;
-
-    int number_of_tokens  = 0;
-    int number_of_strings = 0;
-
-    while (BufferLook(buf) != '\0')
-        {
-        if (BufferLook(buf) == COMMENT)
+        if (BufferLook(BUF(ctx)) == COMMENT)
             {
-            BufferSkipCommentLine(buf, COMMENT);
+            BufferSkipCommentLine(BUF(ctx), COMMENT);
 
             continue;
             }
 
-        // check for resize
-        if (number_of_tokens == size)
-            {
-            size *= 2;
-            Token* fuck = (Token*) RECALLOC(arr, size * sizeof(arr[0]));  
-            if (!fuck) 
-                {
-                KILL(string_arr);
-                return LFAILURE;
-                }
-
-            arr = fuck;
-            }
-
-        if (number_of_strings == size_strings)
-            {
-            size_strings *=2;
-            const char** xyu = (const char**) RECALLOC(string_arr, size_strings * sizeof(string_arr[0]));
-            if (!xyu) 
-                {
-                KILL(arr);
-                return LFAILURE;
-                }
-            
-            string_arr = xyu;
-            }
-        
         // main
-        if (SetToken (buf, token) == FAILURE)
-            {
-            KILL(arr);
-            KILL(string_arr);
-            
-            return LFAILURE;
-            }
+        Token* token = GetToken(ctx);
+        if (!token)
+            goto FAILURE_EXIT;
+
+        if (SetToken (BUF(ctx), token) == FAILURE)
+            goto FAILURE_EXIT;
 
         if (TYPE(token) == NAME)
             {
-            int temp = IsName(NAME_PTR(token), string_arr, number_of_strings);
+            int temp = IsName(NAME_PTR(token), ctx); //string_arr, number_of_strings);
             
             // add new name
             if (temp == NOT_A_NAME)
                 {
-                current_str = strdup(NAME_PTR(token));
-
-                // printf("Lexical test: %s\n test 2: %s\n test 3: %p\n", current_str, NAME_PTR(token), (void*) NAME_PTR(token));
-
-                NAME_ID(token) = number_of_strings;
-                number_of_strings++;
+                if (AddString(ctx, token) == FAILURE)
+                    goto FAILURE_EXIT;
                 }
             else
                 NAME_ID(token) = temp;
             }
-
-        number_of_tokens++;
         }
-        
-    program->token_arr = (Token*) RECALLOC (arr, number_of_tokens * sizeof(arr[0]));
-    program->number_of_tokens = number_of_tokens;
+       
+    program->token_arr = (Token*) RECALLOC (ctx->token_arr, ctx->number_of_tokens * sizeof(program->token_arr[0]));
+    program->number_of_tokens = ctx->number_of_tokens;
     
-    program->string_arr = (const char**) RECALLOC (string_arr, number_of_strings * sizeof(string_arr[0]));
-    program->number_of_strings = number_of_strings;
+    program->string_arr = (const char**) RECALLOC (ctx->string_arr, ctx->number_of_strings * sizeof(program->string_arr[0]));
+    program->number_of_strings = ctx->number_of_strings;
+
+
+    KILL(BUF(ctx));
+    ctx = nullptr;
 
     // for log
-    $li(number_of_tokens)
-    for (int i = 0; i < number_of_tokens; i++)
+    $li(program->number_of_tokens)
+    for (int i = 0; i < program->number_of_tokens; i++)
         {
         $li(i)
         $LOG_TOKEN(program->token_arr + i, program->string_arr)
         }
     //
+
     return SUCCESS; 
+    
+    FAILURE_EXIT:
+
+    LexicalCtxFailDtor(ctx);
+
+    return FAILURE;
     }
 
 #undef token
@@ -169,7 +262,7 @@ int Tokenizer (Program* program, const char* buffer)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 static int SetToken (Buffer* buf, Token* token)
     {
-    $log(0)
+    // $log(0)
     assertlog(buf,   EFAULT, return BAD_ARGUMENT);
     assertlog(token, EFAULT, return BAD_ARGUMENT);
 
@@ -363,7 +456,18 @@ static int IsNativeFunction (const char* str)
     return NOT_A_NATIVE_FUNCTION;
     }
 
+static int IsName (const char* str, LexicalCtx* ctx)
+    {
+    assertlog(str, EFAULT, return NOT_A_NAME);
+    assertlog(ctx, EFAULT, return NOT_A_NAME);
 
+    for (size_t i = 0; i < ctx->number_of_strings; i++)
+        if (!strcmp(str, *(ctx->string_arr + i)))
+            return (int) i;
+
+    return NOT_A_NAME;
+    }
+/*
 static int IsName (const char* str, const char** string_arr, int size_of_string_arr)
     {
     assertlog(str, EFAULT, return NOT_A_NAME);
@@ -375,3 +479,4 @@ static int IsName (const char* str, const char** string_arr, int size_of_string_
 
     return NOT_A_NAME;
     }
+*/

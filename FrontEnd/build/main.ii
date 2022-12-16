@@ -171,9 +171,6 @@ struct Program
     int number_of_strings;
 
     const char* path_to_src_file;
-
-
-
     };
 
 int ProgramCtor(Program* program, const char* path_to_src_file);
@@ -44408,11 +44405,7 @@ int main(int argc, const char* argv[])
 
     char* src_code = GetSrcFile (path_to_src_file);
     if (!src_code)
-        {
-        printf("\033[91m" "Can't open file %s\n" "\033[0m", path_to_src_file);
-
-        return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 31, __func__, 31), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 31, __func__, 31);
-        }
+        return FAILURE;
 
     Program program{};
     ProgramCtor(&program, path_to_src_file);
@@ -44440,14 +44433,14 @@ int main(int argc, const char* argv[])
 
 
     ProgramDtor(&program);
-    Logger::getInstance().FREE_LOG (src_code, "./src/main.cpp", __func__, 60);;
+    Logger::getInstance().FREE_LOG (src_code, "./src/main.cpp", __func__, 56);;
 
     return 0;
 
     FAIL_EXIT:
 
     ProgramDtor(&program);
-    Logger::getInstance().FREE_LOG (src_code, "./src/main.cpp", __func__, 67);;
+    Logger::getInstance().FREE_LOG (src_code, "./src/main.cpp", __func__, 63);;
 
-    return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 69, __func__, 69), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 69, __func__, 69);
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "./src/main.cpp", 65, __func__, 65), "Failed (%s:%d, %s:%d)" , "./src/main.cpp", 65, __func__, 65);
     }

@@ -12,8 +12,12 @@ char* GetSrcFile (const char *file_direction)
     if (!file_direction) return NULL;
     
     FILE *txt = fopen(file_direction, "rb");
-    if (!txt)
+     if (!txt)
+        {
+        printf(redcolor "Can't open file %s\n" resetconsole, file_direction);
+
         return NULL;
+        }
     
     struct stat txt_data;
     stat(file_direction, &txt_data);
