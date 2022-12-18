@@ -83,6 +83,9 @@ element_t SStop     (SuperStack* stk                               // ded's old 
                     ON_SUPERDEBUG( , SrcLocationInfo location)   ); 
 
 
+ssize_t    StackGetTop (SuperStack* stk);
+element_t StackLook   (SuperStack* stk, ssize_t index);
+
 #define StackCtor(stk_ptr, capacity) SuperStackCtor (stk_ptr, capacity                \
                                             ON_SUPERDEBUG(, init_inf(stk_ptr)) )                                                                                             
 

@@ -2,10 +2,11 @@
 #define STACK_CONGIG
 
 #include "Tabels.h"
+#include "NameTable.h"
 
 #define NDEBUG
 //! @note if you want to change type of elements, than change this typefef
-typedef VarTabel* element_t; 
+typedef NameTable* element_t; 
 
 //! @note define NDEBUG if you want to release project
 #ifndef NDEBUG

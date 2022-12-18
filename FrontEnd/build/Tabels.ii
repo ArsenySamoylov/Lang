@@ -24,6 +24,8 @@ union TokenValue
 
     char* t_name_ptr;
     int t_name_id;
+    int t_number_of_variables;
+    int t_varible_number;
     };
 
 struct Token
@@ -44190,6 +44192,7 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 
 
 
+
 int SYSTEM(const char* format, ...);
 # 13 "../ATC/Logger/LogMacroses.h" 2
 # 4 "../Common/Structures/Tabels/Tabels.cpp" 2
@@ -44211,7 +44214,7 @@ FuncTabel* NewFuncTabel()
     if (!tabel)
         return nullptr;
 
-    (tabel->label_arr) = (FuncLabel**) Logger::getInstance().CAL_LOG (START_LABEL_ARR_SIZE, sizeof(FuncLabel**), "../Common/Structures/Tabels/Tabels.cpp", __func__, 22);;
+    (tabel->label_arr) = (FuncLabel**) Logger::getInstance().CAL_LOG (START_LABEL_ARR_SIZE, sizeof(FuncLabel*), "../Common/Structures/Tabels/Tabels.cpp", __func__, 22);;
     if (!(tabel->label_arr))
         {
         Logger::getInstance().FREE_LOG (tabel, "../Common/Structures/Tabels/Tabels.cpp", __func__, 25);;
@@ -44290,7 +44293,7 @@ int IsFuncLabel (int name_id, FuncTabel* func_tabel)
     FuncLabel** label_arr = func_tabel->label_arr;
     if (!label_arr)
         {
-        { printf("\t%s: ", __func__); printf("Empty label array in func tabel %p\n", (void*) func_tabel); };
+        { printf("\t%s: ", __func__); printf("Empty label array in func tabel %p\n", (void*) func_tabel); printf(" (%s:%d)\n", "../Common/Structures/Tabels/Tabels.cpp", 85); };
         return NOT_A_LABEL;
         }
 
@@ -44458,7 +44461,7 @@ VarTabel* NewVarTabel ()
     if (!tabel)
         return nullptr;
 
-    (tabel->label_arr) = (VarLabel**) Logger::getInstance().CAL_LOG (START_LABEL_ARR_SIZE, sizeof(VarLabel**), "../Common/Structures/Tabels/Tabels.cpp", __func__, 201);;
+    (tabel->label_arr) = (VarLabel**) Logger::getInstance().CAL_LOG (START_LABEL_ARR_SIZE, sizeof(VarLabel*), "../Common/Structures/Tabels/Tabels.cpp", __func__, 201);;
     if (!(tabel->label_arr))
         {
         Logger::getInstance().FREE_LOG (tabel, "../Common/Structures/Tabels/Tabels.cpp", __func__, 204);;
@@ -44538,7 +44541,7 @@ VarLabel* IsVarLabel (int name_id, VarTabel* tabel)
     VarLabel** label_arr = tabel->label_arr;
     if (!label_arr)
         {
-        { printf("\t%s: ", __func__); printf("Empty label array in var tabel %p\n", (void*) tabel); };
+        { printf("\t%s: ", __func__); printf("Empty label array in var tabel %p\n", (void*) tabel); printf(" (%s:%d)\n", "../Common/Structures/Tabels/Tabels.cpp", 261); };
         return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 262), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Tabels/Tabels.cpp", 262, __func__, 262);
         }
 

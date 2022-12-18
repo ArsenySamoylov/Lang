@@ -1,20 +1,26 @@
 // Epressions
-static Token* GetE (ProgramCtx* program_ctx)
+static Token* GetE     (SyntacticCtx* ctx);
+static Token* GetT     (SyntacticCtx* ctx);
+static Token* GetPower (SyntacticCtx* ctx);
+static Token* GetP     (SyntacticCtx* ctx);
+static Token* GetN     (SyntacticCtx* ctx);
+
+static Token* GetE (SyntacticCtx* ctx)
     {
     $log(DEBUG_ALL)
-    assertlog (program_ctx, EFAULT, return LNULL);
+    assertlog (ctx, EFAULT, return LNULL);
 
-    Token* node = GetT(program_ctx);
+    Token* node = GetT(ctx);
 
     Token* prev_op = node;
     while (IS_OP(token) && (OP(token) ==  ADD || OP(token) == SUB))
         { 
-        $LOG_TOKEN(token, STRING_ARR(program_ctx))
+        $LOG_TOKEN(token, STRING_ARR(ctx))
         Token* current_op = token;
-        POSITION(program_ctx)++;
+        POSITION(ctx)++;
 
          LEFT(current_op) = prev_op;
-        RIGHT(current_op) = GetT(program_ctx);
+        RIGHT(current_op) = GetT(ctx);
 
         prev_op = current_op;
         }
@@ -22,23 +28,23 @@ static Token* GetE (ProgramCtx* program_ctx)
     return prev_op;
     } 
 
-static Token* GetT (ProgramCtx* program_ctx)
+static Token* GetT (SyntacticCtx* ctx)
     {
     $log(DEBUG_ALL)
-    assertlog (program_ctx, EFAULT, return LNULL);
+    assertlog (ctx, EFAULT, return LNULL);
 
-    Token* node = GetPower(program_ctx);
-    $LOG_TOKEN(node, STRING_ARR(program_ctx))
+    Token* node = GetPower(ctx);
+    $LOG_TOKEN(node, STRING_ARR(ctx))
 
     Token* prev_op = node;
     while (IS_OP(token) && (OP(token) ==  MUL || OP(token) == DIV))
         {
-        $LOG_TOKEN(token, STRING_ARR(program_ctx))
+        $LOG_TOKEN(token, STRING_ARR(ctx))
         Token* current_op = token;
-        POSITION(program_ctx)++;
+        POSITION(ctx)++;
         
          LEFT(current_op) = prev_op;
-        RIGHT(current_op) = GetPower(program_ctx);
+        RIGHT(current_op) = GetPower(ctx);
 
         prev_op = current_op;
         }
@@ -46,22 +52,22 @@ static Token* GetT (ProgramCtx* program_ctx)
     return prev_op;
     }
 
-Token* GetPower (ProgramCtx* program_ctx)
+Token* GetPower (SyntacticCtx* ctx)
     {
     $log(DEBUG_ALL)
-    assertlog (program_ctx, EFAULT, return LNULL);
+    assertlog (ctx, EFAULT, return LNULL);
 
-    Token* node = GetP(program_ctx);
+    Token* node = GetP(ctx);
 
     Token* prev_op = node;
     while (IS_OP(token) && OP(token) ==  POW)
         {
-        $LOG_TOKEN(token, STRING_ARR(program_ctx))
+        $LOG_TOKEN(token, STRING_ARR(ctx))
         Token* current_op = token;
-        POSITION(program_ctx)++;
+        POSITION(ctx)++;
 
          LEFT(current_op) = prev_op;
-        RIGHT(current_op) = GetP(program_ctx);
+        RIGHT(current_op) = GetP(ctx);
 
         prev_op = current_op;
         }
@@ -69,39 +75,39 @@ Token* GetPower (ProgramCtx* program_ctx)
     return prev_op;
     }
 
-static Token* GetP (ProgramCtx* program_ctx)
+static Token* GetP (SyntacticCtx* ctx)
     {
     $log(DEBUG_ALL)
-    assertlog (program_ctx, EFAULT, return LNULL);
+    assertlog (ctx, EFAULT, return LNULL);
 
     if (TYPE(token) == EXPRESSION_OPENING_BRACKET)
         {
-        POSITION(program_ctx)++;
+        POSITION(ctx)++;
 
-        Token* expression = GetE(program_ctx); 
+        Token* expression = GetE(ctx); 
 
         if (OP(token) != EXPRESSION_CLOSING_BRACKET)
             {
-            report_syntax_error("Missing closing bracket (token position %d)\n", POSITION(program_ctx));
+            report_syntax_error("Missing closing bracket (token position %d)\n", POSITION(ctx));
             return LNULL;
             }
 
-        POSITION(program_ctx)++;
+        POSITION(ctx)++;
         
         return expression; 
         }
 
-    return GetN(program_ctx);
+    return GetN(ctx);
     }
 
-static Token* GetN (ProgramCtx* program_ctx)
+static Token* GetN (SyntacticCtx* ctx)
     {
     $log(DEBUG_ALL)
-    assertlog(program_ctx, EFAULT, return LNULL);
+    assertlog(ctx, EFAULT, return LNULL);
 
     if (TYPE(token) == NAME)
         {
-        if (DefineName(program_ctx) == NOT_DECLARED)
+        if (DefineName(ctx) == NOT_DECLARED)
             return NULL;
         }
 
@@ -112,8 +118,8 @@ static Token* GetN (ProgramCtx* program_ctx)
         } 
     
     Token* result = token;
-    POSITION(program_ctx)++;
+    POSITION(ctx)++;
 
-    $LOG_TOKEN(result, STRING_ARR(program_ctx))
+    $LOG_TOKEN(result, STRING_ARR(ctx))
     return result;
     }

@@ -24,6 +24,8 @@ union TokenValue
 
     char* t_name_ptr;
     int t_name_id;
+    int t_number_of_variables;
+    int t_varible_number;
     };
 
 struct Token
@@ -175,12 +177,12 @@ struct Program
 
 int ProgramCtor(Program* program, const char* path_to_src_file);
 int ProgramDtor(Program* program);
+
+int CleanStringArr(const char** string_arr, int number_of_strings);
 # 2 "./src/main.cpp" 2
 
 # 1 "./headers/LexicalAnalysis.h" 1
        
-
-
 
 
 
@@ -44377,6 +44379,7 @@ int MsgRet (int return_value, const char* format, ...);
 void MsgNoRet (const char* format, ...);
 
 decltype(nullptr) LogMsgNullRet(const char* format, ...);
+
 
 
 

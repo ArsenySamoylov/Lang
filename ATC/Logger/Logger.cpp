@@ -207,6 +207,13 @@ void* Logger::RECAL_LOG (void* ptr, size_t size,  const char* file, const char* 
         return NULL;
         }
 
+    if (!size)
+        {
+        Logger::getInstance().log_dup_console("Ebat, you are trying to REACALLOG of 0 size\n");
+
+        return NULL;
+        }
+
     size_t old_size = malloc_usable_size (ptr);
     if (!old_size)
         {

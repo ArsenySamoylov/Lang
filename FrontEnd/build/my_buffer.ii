@@ -44654,6 +44654,7 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 
 
 
+
 int SYSTEM(const char* format, ...);
 # 13 "../ATC/Logger/LogMacroses.h" 2
 # 6 "../ATC/Buffer/my_buffer.cpp" 2

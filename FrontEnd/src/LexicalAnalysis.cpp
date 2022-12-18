@@ -89,16 +89,18 @@ int Tokenizer (Program* program, const char* buffer)
                 NAME_ID(token) = temp;
             }
         }
-       
-    program->token_arr = (Token*) RECALLOC (ctx->token_arr, ctx->number_of_tokens * sizeof(program->token_arr[0]));
+    
+    if (LexicalCtxRealloc(ctx) != SUCCESS)
+        goto FAILURE_EXIT;
+
+    program->token_arr = ctx->token_arr;
     program->number_of_tokens = ctx->number_of_tokens;
     
-    program->string_arr = (const char**) RECALLOC (ctx->string_arr, ctx->number_of_strings * sizeof(program->string_arr[0]));
+    program->string_arr = ctx->string_arr;
     program->number_of_strings = ctx->number_of_strings;
 
 
     KILL(BUF(ctx));
-    ctx = nullptr;
 
     // for log
     $li(program->number_of_tokens)

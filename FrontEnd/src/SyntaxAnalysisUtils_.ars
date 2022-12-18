@@ -1,128 +1,20 @@
 // UTILS
-static int ProgramCtxCtor (ProgramCtx* program_ctx, const Program *const program);
-static int ProgramCtxDtor (ProgramCtx* program_ctx);
-
-static Token* VarInitialization (ProgramCtx* program_ctx);
-static int   FuncInitialization (ProgramCtx* program_ctx);
+static Token* VarInitialization (SyntacticCtx* ctx);
+static int   FuncInitialization (SyntacticCtx* ctx);
 
 #pragma GCC diagnostic ignored "-Wformat="
 
-static int CheckForMainAndDeclaration (const FuncTabel *const table, const char** string_arr, int number_of_strings)
-    {
-    assertlog(table, EFAULT, return BAD_ARGUMENT);
-
-    int main_flag = FAILURE;
-
-    // find "main" position in string arr
-    int main_position = -1;
-
-    for (int i =0; i < number_of_strings; i++)
-        {
-        if (!stricmp(MAIN_NAME, string_arr[i]))
-            {
-            main_position = i;
-            break;
-            }
-        }
-    
-    if (main_position < 0)
-        {
-        func_message("No '%s' in string_arr (%p, number %d)\n", MAIN_NAME, string_arr, number_of_strings);
-        return FAILURE;
-        }
-
-    for (size_t i = 0; i < table->number_of_labels; i++)
-        {
-        FuncLabel* func = *(table->label_arr + i); 
-
-        if (!func)
-            {
-            func_message("Null func label (position %zu)\n", i);
-            return FAILURE;
-            }
-
-        if (func->body_status != DECLARED)
-            {
-            func_message("'%s' function wasn't declared\n", string_arr[func->name]);
-            return FAILURE;
-            }
-
-        if (func->name == main_position)
-            main_flag = SUCCESS;
-        }
-    
-    if (main_flag == FAILURE)
-        func_message("ERROR, no main in program!\n");
-
-    return main_flag;
-    }
-
-static int MakeFuncLabel (ProgramCtx* program_ctx, Token** func_head = NULL);
-// static VarLabel*  MakeVarLabel  (ProgramCtx* program_ctx);
+static int MakeFuncLabel (SyntacticCtx* ctx, Token** func_head = NULL);
+// static VarLabel*  MakeVarLabel  (SyntacticCtx* ctx);
 
 // PROBELM WITH FUNCTIONS AND VARIABLES HAVING SAME NAME
-static int DefineName (ProgramCtx* program_ctx);
+static int DefineName (SyntacticCtx* ctx);
 
 ///////////////////////////////////////////////////////////////////////////
-static int ProgramCtxCtor (ProgramCtx* program_ctx, const Program *const program)
-    {
-    assertlog(program_ctx, EFAULT, return BAD_ARGUMENT);
-    assertlog(program,     EFAULT, return BAD_ARGUMENT);
-
-    SuperStack* var_tabels_stk = (SuperStack*) CALLOC (1, sizeof(var_tabels_stk[0]));
-    if (!var_tabels_stk)
-        return FAILURE;
-
-    StackCtor(var_tabels_stk, START_NUMBER_OF_VAR_TABELS_STK);
-
-    FuncTabel* global_func = NewFuncTabel();
-    if (!global_func)
-        {
-        StackDtor(var_tabels_stk);
-        free(var_tabels_stk);
-
-        return FAILURE;
-        }
-
-    VarTabel* global_var_tabel = NewVarTabel();
-    if (!global_var_tabel)
-        {
-        StackDtor(var_tabels_stk);
-        free(var_tabels_stk);
-        
-        CloseFuncTabel(global_func);
-
-        return FAILURE;
-        }
-
-    StackPush(var_tabels_stk, global_var_tabel);
-
-    program_ctx->position = 0;
-    program_ctx->current_func_label = 0;
-    program_ctx->global_func = global_func;
-    program_ctx->global_vars = global_var_tabel;
-    program_ctx->var_tabels_stk = var_tabels_stk;
-
-    return SUCCESS;
-    }
-    
-static int ProgramCtxDtor(ProgramCtx* program_ctx)
-    {
-    assertlog(program_ctx, EFAULT, return BAD_ARGUMENT);
-
-    StackDtor(program_ctx->var_tabels_stk);
-    free(program_ctx->var_tabels_stk);
-
-    CloseVarTabel (program_ctx->global_vars);
-    CloseFuncTabel(program_ctx->global_func);
-
-    return SUCCESS;
-    }
-
 // PROBELM WITH FUNCTIONS AND VARIABLES HAVING SAME NAME (it works only for var intiriliaztion)
-static int DefineName(ProgramCtx* program_ctx)
+static int DefineName(SyntacticCtx* ctx)
     {
-    assertlog(program_ctx, EFAULT, return NOT_DECLARED);
+    assertlog(ctx, EFAULT, return NOT_DECLARED);
 
     if (TYPE(token) != NAME)
         {
@@ -131,26 +23,26 @@ static int DefineName(ProgramCtx* program_ctx)
         }
 
     // what if function and variable has same name ? 
-    if (IsFuncLabel (NAME_ID(token), FUNC_TABEL(program_ctx)) != NOT_A_LABEL)
+    if (IsFuncLabel (NAME_ID(token), FUNC_TABEL(ctx)) != NOT_A_LABEL)
         {
         TYPE(token) = FUNCTION;
         return FUNCTION;
         }
 
-    if (GetVarLabel (NAME_ID(token), VAR_TABELS_STK(program_ctx)))
+    if (GetVarLabel (NAME_ID(token), VAR_TABELS_STK(ctx)))
         {
         TYPE(token) = VARIABLE;
         return VARIABLE;
         }
 
-    report_syntax_error("'%s' wasn't decalred\n", STRING_ARR(program_ctx)[NAME_ID(token)]);
+    report_syntax_error("'%s' wasn't decalred\n", STRING_ARR(ctx)[NAME_ID(token)]);
     
     return NOT_DECLARED;
     } 
 
-static int MakeFuncLabel(ProgramCtx* program_ctx, Token** func_head)
+static int MakeFuncLabel(SyntacticCtx* ctx, Token** func_head)
     {
-    assertlog(program_ctx, EFAULT, return BAD_ARGUMENT);
+    assertlog(ctx, EFAULT, return BAD_ARGUMENT);
 
     if (TYPE(token) != FUNCTION_RET_TYPE)
         {
@@ -159,7 +51,7 @@ static int MakeFuncLabel(ProgramCtx* program_ctx, Token** func_head)
         }
     
     Token* ret_type = token;
-    POSITION(program_ctx)++;
+    POSITION(ctx)++;
 
     if (TYPE(token) != NAME)
         {
@@ -168,7 +60,7 @@ static int MakeFuncLabel(ProgramCtx* program_ctx, Token** func_head)
         }
 
     Token* name = token;
-    POSITION(program_ctx)++;
+    POSITION(ctx)++;
             
     // argument
     if(TYPE(token) != EXPRESSION_OPENING_BRACKET)
@@ -176,7 +68,7 @@ static int MakeFuncLabel(ProgramCtx* program_ctx, Token** func_head)
         report_syntax_error("Missing '(' in function head\n");
         return FAILURE;
         }
-    POSITION(program_ctx)++;
+    POSITION(ctx)++;
     // TO_DO
 
     if(TYPE(token) != EXPRESSION_CLOSING_BRACKET)
@@ -186,7 +78,7 @@ static int MakeFuncLabel(ProgramCtx* program_ctx, Token** func_head)
        }
     
     Token* function = token; // for head
-    POSITION(program_ctx)++;
+    POSITION(ctx)++;
 
     // ADD PARAMETRS
     //
@@ -207,11 +99,11 @@ static int MakeFuncLabel(ProgramCtx* program_ctx, Token** func_head)
         }
 
     // check for previous declaration
-    int prev_decl_pos = IsFuncLabel(NAME_ID(name), FUNC_TABEL(program_ctx));
+    int prev_decl_pos = IsFuncLabel(NAME_ID(name), FUNC_TABEL(ctx));
     
     if (prev_decl_pos == NOT_A_LABEL && func_head)
         {
-        printf(purplecolor "Warning, no prototype for function '%s'\n", STRING_ARR(program_ctx)[label->name]);
+        printf(purplecolor "Warning, no prototype for function '%s'\n", STRING_ARR(ctx)[label->name]);
         printf("To do, add warning system\n");
 
         }
@@ -220,12 +112,12 @@ static int MakeFuncLabel(ProgramCtx* program_ctx, Token** func_head)
         {
         if (!func_head)  // this for prototype
             {
-            report_syntax_error("Ebat, '%s' shadows previous declaration\n", STRING_ARR(program_ctx)[label->name]);
+            report_syntax_error("Ebat, '%s' shadows previous declaration\n", STRING_ARR(ctx)[label->name]);
             goto FAIL_EXIT;
             }
 
         {   
-        FuncLabel* prev_declaration =  *(FUNC_TABEL(program_ctx)->label_arr + prev_decl_pos);
+        FuncLabel* prev_declaration =  *(FUNC_TABEL(ctx)->label_arr + prev_decl_pos);
 
         if (!prev_declaration)
             {
@@ -253,48 +145,7 @@ static int MakeFuncLabel(ProgramCtx* program_ctx, Token** func_head)
         }
     
     // how to get position ??, last + 1?
-    int position = AddFuncLabel(label, FUNC_TABEL(program_ctx));
+    int position = AddFuncLabel(label, FUNC_TABEL(ctx));
     $li(position)
     return position;
     } 
-
-/*
-static VarLabel* MakeVarLabel(ProgramCtx* program_ctx)
-    {
-    $log(1)
-    assertlog(program_ctx, EFAULT, return LNULL);
-
-    VarLabel* label = (VarLabel*) CALLOC (1, sizeof(label[0]));
-    if (!label) return LNULL;
-
-    if (TYPE(token) != NAME)
-        {
-        report_syntax_error("Ebat, not a name for variable initialization\n", STRING_ARR(program_ctx)[NAME_ID(token)]);
-        return LNULL;
-        }
-
-    label->name_id =  NAME_ID(token);
-
-    return label;
-    }
-*/
-
-/*
-static Token* FuncLabelToTokens (FuncLabel* label)
-    {
-    assertlog(label, EFAULT, return LNULL);
-
-    Token* name = NewToken (NAME, {.t_name_id = label->name});
-    
-    RIGHT(name) = NewToken (FUNCTION_RET_TYPE, {.t_function_ret_type = label->ret_type});
-
-    / NOT NOW
-    Token* temp = NewToken(
-    for(int i = 0; i < label->number_of_arguments; i++)
-        {
-
-    /
-
-    return name;
-    }
-*/

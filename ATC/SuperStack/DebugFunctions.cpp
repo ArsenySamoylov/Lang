@@ -102,6 +102,12 @@ void FillPoison(VarTabel** element)
     if (!element) return;
     *element = nullptr;
     }
+    
+void FillPoison (NameTable** element)
+    {
+    if (!element) return;
+    *element = nullptr;
+    }
 
 int IsPoison (const int*    element)
     {
@@ -134,6 +140,12 @@ int IsPoison(const VarTabel** element)
     return -1;
     }
 
+int IsPoison   (const NameTable** element)
+    {
+    if (!element) return 0;
+    
+    return -1;
+    }    
 
 void fprint_element_type(FILE* file, int* element)
     {

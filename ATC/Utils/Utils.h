@@ -11,6 +11,7 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 #define func_message(...)  {                              \
                             printf("\t%s: ", __func__);   \
                             printf(__VA_ARGS__);          \
+                            printf(" (%s:%d)\n", __FILE__, __LINE__); \
                             } 
 
 int SYSTEM(const char* format, ...);

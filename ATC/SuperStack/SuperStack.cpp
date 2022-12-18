@@ -205,3 +205,24 @@ int SSresize (SuperStack* stk, int mode)
     }
 #undef ERROR_OCCURED
 #undef TOTAL_SUCCESS
+
+
+ssize_t   StackGetTop (SuperStack* stk)
+    {
+    if (!stk) return -1;
+    return stk->top;
+    }
+
+element_t StackLook (SuperStack* stk, ssize_t index)
+    {
+    if (!stk)
+        return NULL;
+
+    if (stk->top < 0)
+        return NULL;
+
+    if (index > stk->top)
+        return NULL;
+
+    return *(stk->heap + index);
+    } 

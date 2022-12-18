@@ -32,10 +32,18 @@
 
 #define $log(level) FunctionLogger RAND_NAME(func) {level, __func__};
 
-#define LSUCCESS LOG__.LogMsgRet (SUCCESS, "%s:%d returned SUCCESS ", __func__, __LINE__)
-#define LFAILURE LOG__.LogMsgRet (MsgRet(FAILURE, redcolor "Failed %s:%d (%s:%d)\n" resetconsole, __FILE__, __LINE__,  __func__, __LINE__), "Failed (%s:%d, %s:%d)", __FILE__, __LINE__, __func__, __LINE__)
+/*
+#define SUCCESS   LOG__.LogMsgRet (SUCCESS, "%s:%d returned SUCCESS ", __func__, __LINE__)
+#define FAILURE   LOG__.LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)", __FILE__, __LINE__, __func__, __LINE__)  
+#define NULL_PTR  LOG__.LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, __LINE__) 
+*/
 
-#define LNULL    LOG__.LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, __LINE__), LogMsgNullRet(bluecolor "Returnig null ptr %s:%d (%s:%d)\n" resetconsole, __FILE__, __LINE__, __func__, __LINE__)
+#define LSUCCESS LOG__.LogMsgRet (SUCCESS, "%s:%d returned SUCCESS ", __func__, __LINE__)
+#define LFAILURE LOG__.LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)",   __FILE__, __LINE__, __func__, __LINE__)
+#define LNULL    LOG__.LogMsgNullRet("Returnig null ptr (%s:%d, %s)", __FILE__, __LINE__, __func__)
+
+#define LOUD_FAILURE LOG__.LogMsgRet (MsgRet(FAILURE, redcolor "Failed %s:%d (%s:%d)\n" resetconsole, __FILE__, __LINE__,  __func__, __LINE__), "Failed (%s:%d, %s:%d)", __FILE__, __LINE__, __func__, __LINE__)
+#define LOUD_NULL    LOG__.LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, __LINE__), LogMsgNullRet(bluecolor "Returnig null ptr %s:%d (%s:%d)\n" resetconsole, __FILE__, __LINE__, __func__, __LINE__)
 
 #define LogMsgRet(ret_val, format, ...) LOG__.LogMsgRet (ret_val, format __VA_OPT__(,) __VA_ARGS__)
 
@@ -73,7 +81,7 @@
 #define $lzu(size_t_var) do { logf ("\t%s: %zu\n", #size_t_var, size_t_var); } while(0);  
 #define $lc(char_var)    do { logf ("\t%s: '%c'\n", #char_var, char_var);    } while(0);  
 #define $ld(double_var)  do { logf ("\t%s: %lg\n", #double_var, double_var); } while(0);  
-#define $ls(string)      do { logf ("\t%s: \"%s\"\n", #string, string);      } while(0);
+#define $ls(string)      do { logf ("\t%s: <%s>\n", #string, string);      } while(0);
 #define $lp(pointer)     do { logf ("\t%s: %p\n", #pointer, (void*)pointer); } while(0);
 
 

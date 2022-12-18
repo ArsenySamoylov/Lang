@@ -2528,6 +2528,8 @@ union TokenValue
 
     char* t_name_ptr;
     int t_name_id;
+    int t_number_of_variables;
+    int t_varible_number;
     };
 
 struct Token
@@ -2677,6 +2679,8 @@ struct Program
 
 int ProgramCtor(Program* program, const char* path_to_src_file);
 int ProgramDtor(Program* program);
+
+int CleanStringArr(const char** string_arr, int number_of_strings);
 # 7 "../Common/Utils/DefGraphVis.h" 2
 
 # 1 "../ATC/GraphVis/GVConfig.h" 1
@@ -3148,6 +3152,7 @@ CONSTANT = 8,
 FUNCTION = 9,
 CALL = 10,
 NATIVE_FUNCTION = 11,
+PARAMETR = 12,
 
 ASSIGMENT = '=',
 BLOCK_OPENING_BRACKET = '{',
@@ -3161,41 +3166,18 @@ END_OF_STATEMENT = ';',
     UNKNOWN_TYPE = -999,
     };
 
-const int NUMBER_OF_INSTUCTIONS = 4;
+enum INSTUCTIONS_NUM { IF, ELSE, WHILE, RETURN, NUMBER_OF_INSTUCTIONS };
 const char *const INSTRUCTIONS[] = { "if", "else", "while", "return" };
-enum INSTUCTIONS_NUM
-    {
-    IF = 0,
-    ELSE = 1,
-    WHILE = 2,
-    RETURN = 3,
-    };
 
-const int NUMBER_OF_NATIVE_FUNCTIONS = 4;
+enum NATIVE_FUNCTIONS_NUM { FOUT, FIN, SIN, COS, NUMBER_OF_NATIVE_FUNCTIONS };
 const char *const NATIVE_FUNCTIONS[] = { "fout", "fin", "sin", "cos" };
-enum NATIVE_FUNCTIONS_NUM
-    {
-    FOUT,
-    FIN,
-    SIN,
-    COS,
-    };
 
-const int NUMBER_OF_INITIALIZATORS = 2;
+enum INITIALIZATORS_NUM { FUNCTION_INITIALIZATOR, VARIABLE_INITIALIZATOR, NUMBER_OF_INITIALIZATORS };
 const char *const INITIALIZATORS[] = {"extern", "var"};
-enum INITIALIZATORS_NUM
-    {
-    FUNCTION_INITIALIZATOR = 0,
-    VARIABLE_INITIALIZATOR = 1,
-    };
 
-const int NUMBER_OF_FUNCTION_RET_TYPES = 2;
+
+enum FUNCTION_RET_TYPES_NUM { DOUBLE, VOID, NUMBER_OF_FUNCTION_RET_TYPES };
 const char *const FUNCTION_RET_TYPES[] = {"double", "void"};
-enum FUNCTION_RET_TYPES_NUM
-    {
-    DOUBLE,
-    VOID,
-    };
 
 const char OPERATORS[] = "+-/*^<<";
 enum OPERATOR_NUM
@@ -44392,6 +44374,7 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 
 
 
+
 int SYSTEM(const char* format, ...);
 # 13 "../ATC/Logger/LogMacroses.h" 2
 # 3 "../Common/Structures/DSL.h" 2
@@ -44474,20 +44457,22 @@ void BufferSkipCommentLine (Buffer* buf, char terminator);
 # 10 "../Common/Utils/GraphVis.cpp" 2
 
 
+
+
 int NUMBER_OF_GRAPVIS_COLORS = 12;
 
 
 const int GRAPH_VIS_COLORS[] = {0XFFFFFF, 0XE0FFE0, 0XFFE0E0, 0XE0E0FF, 0XFFFFE0, 0XFFE0FF, 0XE0FFFF, 0XE0E0E0, 0XFFFFFF, 0XFF6666, 0xFF9999, 0XFFFF99};
 
 static FILE* Dot = 
-# 17 "../Common/Utils/GraphVis.cpp" 3 4
+# 19 "../Common/Utils/GraphVis.cpp" 3 4
                   __null
-# 17 "../Common/Utils/GraphVis.cpp"
+# 19 "../Common/Utils/GraphVis.cpp"
                       ;
 static const char** STRING_ARR = 
-# 18 "../Common/Utils/GraphVis.cpp" 3 4
+# 20 "../Common/Utils/GraphVis.cpp" 3 4
                                 __null
-# 18 "../Common/Utils/GraphVis.cpp"
+# 20 "../Common/Utils/GraphVis.cpp"
                                     ;
 
 static void DotPrint (const char* format, ...);
@@ -44505,10 +44490,10 @@ static void PrintNode (const Token *const node);
 
 const char* MakeImg (const char* img_name, const Program *const program)
     {
-    FunctionLogger func_35 {2, __func__};
+    FunctionLogger func_37 {2, __func__};
 
-    do { if (!(img_name)) printf ("\033[91mASSERT\033[0m %s: Dyrachok, (%s) - is wrong condition (in line %d)\n", __func__, "img_name", 37); } while(0);;
-    do { if (!(program)) printf ("\033[91mASSERT\033[0m %s: Dyrachok, (%s) - is wrong condition (in line %d)\n", __func__, "program", 38); } while(0);;
+    do { if (!(img_name)) printf ("\033[91mASSERT\033[0m %s: Dyrachok, (%s) - is wrong condition (in line %d)\n", __func__, "img_name", 39); } while(0);;
+    do { if (!(program)) printf ("\033[91mASSERT\033[0m %s: Dyrachok, (%s) - is wrong condition (in line %d)\n", __func__, "program", 40); } while(0);;
 
     char dot_file [MAX_GRAPH_NAME_LENGTH + 16] = {};
     snprintf (dot_file, MAX_GRAPH_NAME_LENGTH, "%s%s.dot",
@@ -44518,9 +44503,9 @@ const char* MakeImg (const char* img_name, const Program *const program)
 
     OpenDotFile (dot_file);
     if (!Dot) return 
-# 47 "../Common/Utils/GraphVis.cpp" 3 4
+# 49 "../Common/Utils/GraphVis.cpp" 3 4
                     __null
-# 47 "../Common/Utils/GraphVis.cpp"
+# 49 "../Common/Utils/GraphVis.cpp"
                         ;
 
     SetDot ();
@@ -44579,29 +44564,29 @@ static void DotPrint (const char* format, ...)
     {
     va_list ptr;
     
-# 104 "../Common/Utils/GraphVis.cpp" 3 4
+# 106 "../Common/Utils/GraphVis.cpp" 3 4
    __builtin_va_start(
-# 104 "../Common/Utils/GraphVis.cpp"
+# 106 "../Common/Utils/GraphVis.cpp"
    ptr
-# 104 "../Common/Utils/GraphVis.cpp" 3 4
+# 106 "../Common/Utils/GraphVis.cpp" 3 4
    ,
-# 104 "../Common/Utils/GraphVis.cpp"
+# 106 "../Common/Utils/GraphVis.cpp"
    format
-# 104 "../Common/Utils/GraphVis.cpp" 3 4
+# 106 "../Common/Utils/GraphVis.cpp" 3 4
    )
-# 104 "../Common/Utils/GraphVis.cpp"
+# 106 "../Common/Utils/GraphVis.cpp"
                         ;
 
     vfprintf (Dot, format, ptr);
 
     
-# 108 "../Common/Utils/GraphVis.cpp" 3 4
+# 110 "../Common/Utils/GraphVis.cpp" 3 4
    __builtin_va_end(
-# 108 "../Common/Utils/GraphVis.cpp"
+# 110 "../Common/Utils/GraphVis.cpp"
    ptr
-# 108 "../Common/Utils/GraphVis.cpp" 3 4
+# 110 "../Common/Utils/GraphVis.cpp" 3 4
    )
-# 108 "../Common/Utils/GraphVis.cpp"
+# 110 "../Common/Utils/GraphVis.cpp"
               ;
 
     return;
@@ -44610,9 +44595,9 @@ static void DotPrint (const char* format, ...)
 FILE* OpenDotFile (const char* path)
     {
     if (!path) return 
-# 115 "../Common/Utils/GraphVis.cpp" 3 4
+# 117 "../Common/Utils/GraphVis.cpp" 3 4
                       __null
-# 115 "../Common/Utils/GraphVis.cpp"
+# 117 "../Common/Utils/GraphVis.cpp"
                           ;
 
     Dot = fopen (path, "wb");
@@ -44628,24 +44613,24 @@ void CloseDotFile ()
     fclose (Dot);
 
     Dot = 
-# 129 "../Common/Utils/GraphVis.cpp" 3 4
+# 131 "../Common/Utils/GraphVis.cpp" 3 4
          __null
-# 129 "../Common/Utils/GraphVis.cpp"
+# 131 "../Common/Utils/GraphVis.cpp"
              ;
     return;
     }
 
 static void DotTreeBranch (const Token *const node)
     {
-    do { if (!(node)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "node"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "node"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Utils/GraphVis.cpp", 135, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Utils/GraphVis.cpp", 135, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 135 "../Common/Utils/GraphVis.cpp" 3 4
+    do { if (!(node)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "node"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "node"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Utils/GraphVis.cpp", 137, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Utils/GraphVis.cpp", 137, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 137 "../Common/Utils/GraphVis.cpp" 3 4
    14
-# 135 "../Common/Utils/GraphVis.cpp"
+# 137 "../Common/Utils/GraphVis.cpp"
    , strerror(
-# 135 "../Common/Utils/GraphVis.cpp" 3 4
+# 137 "../Common/Utils/GraphVis.cpp" 3 4
    14
-# 135 "../Common/Utils/GraphVis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 135); system("echo LOX\n"); abort(); } } while (0);;
+# 137 "../Common/Utils/GraphVis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 137); system("echo LOX\n"); abort(); } } while (0);;
 
     PrintNode (node);
 
@@ -44670,40 +44655,23 @@ static void DotTreeBranch (const Token *const node)
         DotPrint ("\t\tnode_%p -> node_%p [label = \"right\"]\n", node, node->right_child);
 
         }
-
-
-    static int nil_counter = 0;
-
-    if (!node->left_child)
-        {
-        DotPrint ("\t\tnil_%d [style = filled, fillcolor = \"white\", shape = Mrecord, label = \"nil\"]\n", nil_counter);
-        DotPrint ("\t\tnode_%p -> nil_%d \n", node, nil_counter++);
-        }
-
-    if (!node->right_child)
-        {
-        DotPrint ("\t\tnil_%d [style = filled, fillcolor = \"white\", shape = Mrecord, label = \"nil\"]\n", nil_counter);
-        DotPrint ("\t\tnode_%p -> nil_%d \n", node, nil_counter++);
-        }
-
-
-
+# 180 "../Common/Utils/GraphVis.cpp"
     return;
     }
 
 #pragma GCC diagnostic ignored "-Wcast-qual"
 static void PrintNode (const Token *const node)
     {
-    FunctionLogger func_184 {1, __func__};
-    do { if (!(node)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "node"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "node"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Utils/GraphVis.cpp", 185, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Utils/GraphVis.cpp", 185, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 185 "../Common/Utils/GraphVis.cpp" 3 4
+    FunctionLogger func_186 {1, __func__};
+    do { if (!(node)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "node"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "node"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Utils/GraphVis.cpp", 187, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Utils/GraphVis.cpp", 187, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 187 "../Common/Utils/GraphVis.cpp" 3 4
    14
-# 185 "../Common/Utils/GraphVis.cpp"
+# 187 "../Common/Utils/GraphVis.cpp"
    , strerror(
-# 185 "../Common/Utils/GraphVis.cpp" 3 4
+# 187 "../Common/Utils/GraphVis.cpp" 3 4
    14
-# 185 "../Common/Utils/GraphVis.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 185); system("echo LOX\n"); abort(); } } while (0);;
+# 187 "../Common/Utils/GraphVis.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 187); system("echo LOX\n"); abort(); } } while (0);;
     LogToken(node, "node", STRING_ARR);
 
     char def_data[333] = "";
@@ -44732,6 +44700,7 @@ case CONSTANT: sprintf(def_data, "CONSTANT" " | {" "%lg" "}", node->value.t_cons
 case FUNCTION: sprintf(def_data, "FUNCTION" " | {" "%c" "}", node->value.t_operator == '{' ? '[' : node->value.t_operator == '}' ? ']' : node->value.t_operator); break;
 case CALL: sprintf(def_data, "CALL" " | {" "%c" "}", node->value.t_operator); break;
 case NATIVE_FUNCTION: sprintf(def_data, "NATIVE_FUNCTION" " | {" "%s" "}", NATIVE_FUNCTIONS[node->value.t_native_function]); break;
+case PARAMETR: sprintf(def_data, "PARAMETR" " | {" "%c" "}", node->value.t_operator == '{' ? '[' : node->value.t_operator == '}' ? ']' : node->value.t_operator); break;
 
 case ASSIGMENT: sprintf(def_data, "ASSIGMENT" " | {" "%c" "}", node->value.t_operator); break;
 case BLOCK_OPENING_BRACKET: sprintf(def_data, "BLOCK_OPENING_BRACKET" " | {" "%c" "}", node->value.t_operator); break;
@@ -44739,7 +44708,7 @@ case BLOCK_CLOSING_BRACKET: sprintf(def_data, "BLOCK_CLOSING_BRACKET" " | {" "%c
 case EXPRESSION_OPENING_BRACKET: sprintf(def_data, "EXPRESSION_OPENING_BRACKET" " | {" "%c" "}", node->value.t_operator); break;
 case EXPRESSION_CLOSING_BRACKET: sprintf(def_data, "EXPRESSION_CLOSING_BRACKET" " | {" "%c" "}", node->value.t_operator); break;
 case END_OF_STATEMENT: sprintf(def_data, "END_OF_STATEMENT" " | {" "%c" "}", node->value.t_operator); break;
-# 199 "../Common/Utils/GraphVis.cpp" 2
+# 201 "../Common/Utils/GraphVis.cpp" 2
 
 
 

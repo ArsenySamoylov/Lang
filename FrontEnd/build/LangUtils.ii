@@ -27,6 +27,8 @@ union TokenValue
 
     char* t_name_ptr;
     int t_name_id;
+    int t_number_of_variables;
+    int t_varible_number;
     };
 
 struct Token
@@ -178,6 +180,8 @@ struct Program
 
 int ProgramCtor(Program* program, const char* path_to_src_file);
 int ProgramDtor(Program* program);
+
+int CleanStringArr(const char** string_arr, int number_of_strings);
 # 4 "../Common/Utils/LangUtils.h" 2
 
 void PrintToken (const Token *const token, const char** string_arr);
@@ -1108,6 +1112,7 @@ CONSTANT = 8,
 FUNCTION = 9,
 CALL = 10,
 NATIVE_FUNCTION = 11,
+PARAMETR = 12,
 
 ASSIGMENT = '=',
 BLOCK_OPENING_BRACKET = '{',
@@ -1121,41 +1126,18 @@ END_OF_STATEMENT = ';',
     UNKNOWN_TYPE = -999,
     };
 
-const int NUMBER_OF_INSTUCTIONS = 4;
+enum INSTUCTIONS_NUM { IF, ELSE, WHILE, RETURN, NUMBER_OF_INSTUCTIONS };
 const char *const INSTRUCTIONS[] = { "if", "else", "while", "return" };
-enum INSTUCTIONS_NUM
-    {
-    IF = 0,
-    ELSE = 1,
-    WHILE = 2,
-    RETURN = 3,
-    };
 
-const int NUMBER_OF_NATIVE_FUNCTIONS = 4;
+enum NATIVE_FUNCTIONS_NUM { FOUT, FIN, SIN, COS, NUMBER_OF_NATIVE_FUNCTIONS };
 const char *const NATIVE_FUNCTIONS[] = { "fout", "fin", "sin", "cos" };
-enum NATIVE_FUNCTIONS_NUM
-    {
-    FOUT,
-    FIN,
-    SIN,
-    COS,
-    };
 
-const int NUMBER_OF_INITIALIZATORS = 2;
+enum INITIALIZATORS_NUM { FUNCTION_INITIALIZATOR, VARIABLE_INITIALIZATOR, NUMBER_OF_INITIALIZATORS };
 const char *const INITIALIZATORS[] = {"extern", "var"};
-enum INITIALIZATORS_NUM
-    {
-    FUNCTION_INITIALIZATOR = 0,
-    VARIABLE_INITIALIZATOR = 1,
-    };
 
-const int NUMBER_OF_FUNCTION_RET_TYPES = 2;
+
+enum FUNCTION_RET_TYPES_NUM { DOUBLE, VOID, NUMBER_OF_FUNCTION_RET_TYPES };
 const char *const FUNCTION_RET_TYPES[] = {"double", "void"};
-enum FUNCTION_RET_TYPES_NUM
-    {
-    DOUBLE,
-    VOID,
-    };
 
 const char OPERATORS[] = "+-/*^<<";
 enum OPERATOR_NUM
@@ -44318,6 +44300,7 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 
 
 
+
 int SYSTEM(const char* format, ...);
 # 13 "../ATC/Logger/LogMacroses.h" 2
 # 3 "../Common/Structures/DSL.h" 2
@@ -44356,6 +44339,7 @@ case CONSTANT: printf ("CONSTANT" " | {'" "%lg" "'}\n", token->value.t_constant)
 case FUNCTION: printf ("FUNCTION" " | {'" "%c" "'}\n", token->value.t_operator == '{' ? '[' : token->value.t_operator == '}' ? ']' : token->value.t_operator); break;
 case CALL: printf ("CALL" " | {'" "%c" "'}\n", token->value.t_operator); break;
 case NATIVE_FUNCTION: printf ("NATIVE_FUNCTION" " | {'" "%s" "'}\n", NATIVE_FUNCTIONS[token->value.t_native_function]); break;
+case PARAMETR: printf ("PARAMETR" " | {'" "%c" "'}\n", token->value.t_operator == '{' ? '[' : token->value.t_operator == '}' ? ']' : token->value.t_operator); break;
 
 case ASSIGMENT: printf ("ASSIGMENT" " | {'" "%c" "'}\n", token->value.t_operator); break;
 case BLOCK_OPENING_BRACKET: printf ("BLOCK_OPENING_BRACKET" " | {'" "%c" "'}\n", token->value.t_operator); break;
@@ -44415,6 +44399,7 @@ case CONSTANT: Logger::getInstance().log_no_indent("CONSTANT" " | {'" "%lg" "'}\
 case FUNCTION: Logger::getInstance().log_no_indent("FUNCTION" " | {'" "%c" "'}\n" , token->value.t_operator == '{' ? '[' : token->value.t_operator == '}' ? ']' : token->value.t_operator); break;
 case CALL: Logger::getInstance().log_no_indent("CALL" " | {'" "%c" "'}\n" , token->value.t_operator); break;
 case NATIVE_FUNCTION: Logger::getInstance().log_no_indent("NATIVE_FUNCTION" " | {'" "%s" "'}\n" , NATIVE_FUNCTIONS[token->value.t_native_function]); break;
+case PARAMETR: Logger::getInstance().log_no_indent("PARAMETR" " | {'" "%c" "'}\n" , token->value.t_operator == '{' ? '[' : token->value.t_operator == '}' ? ']' : token->value.t_operator); break;
 
 case ASSIGMENT: Logger::getInstance().log_no_indent("ASSIGMENT" " | {'" "%c" "'}\n" , token->value.t_operator); break;
 case BLOCK_OPENING_BRACKET: Logger::getInstance().log_no_indent("BLOCK_OPENING_BRACKET" " | {'" "%c" "'}\n" , token->value.t_operator); break;

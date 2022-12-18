@@ -14,7 +14,7 @@ CFLAGS  := -g   -D _DEBUG  -std=c++20 		-Wall  -Wc++14-compat  				-Wextra  				
 				-Wsuggest-override     		-Wswitch-default 					-Wswitch-enum           -Wsync-nand    				-flto-odr-type-merging 			   \
 				-Wunreachable-code     		-Wunused         					-Wuseless-cast 		    -Wvariadic-macros 			-fstrict-overflow 				   \
 				-Wno-literal-suffix    		-Wno-missing-field-initializers		-Wno-narrowing 			-Wno-old-style-cast 		-fstack-protector				   \
-				-Wno-varargs           		-fcheck-new     					-fsized-deallocation    -fno-omit-frame-pointer 	-Wpedantic 						   \
+				-Wno-varargs           		-fcheck-new     					-fsized-deallocation    -fno-omit-frame-pointer 									   \
 				-Wlarger-than=8192     		-Wstack-usage=8192 					-pie -fPIE 				
 							   		 					
 
@@ -22,10 +22,10 @@ SANITIZERS := -fsanitize=address,leak #,alignment,bool,bounds,enum,float-cast-ov
 LFLAGS 	   := -lpthread  -lasan 
 			  # -lsfml-window -lsfml-system -lsfml-graphics -lncurses -lsfml-audio 
 
-SRCDIR :=  ./src/    ../ATC/  ../Common 
+SRCDIR :=  ./src/ ./SyntacticCtx   ../ATC/  ../Common 
 SRCDIR := $(shell find $(SRCDIR) -type d)
 
-INCDIR :=  ./headers ../ATC/  ../Common
+INCDIR :=  ./headers  ./SyntacticCtx ../ATC/  ../Common
 INCDIR := $(shell find $(INCDIR) -type d)
 
 OBJDIR := build

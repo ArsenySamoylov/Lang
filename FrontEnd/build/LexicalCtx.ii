@@ -48,6 +48,8 @@ union TokenValue
 
     char* t_name_ptr;
     int t_name_id;
+    int t_number_of_variables;
+    int t_varible_number;
     };
 
 struct Token
@@ -2642,6 +2644,8 @@ struct LexicalCtx
     const char** string_arr;
     size_t string_arr_size;
     size_t number_of_strings;
+
+    int allow_recalloc;
     };
 
 const int NOT_A_NAME = -555;
@@ -2653,16 +2657,19 @@ const int NOT_A_NATIVE_FUNCTION = -222;
 const int START_NUMBER_OF_TOKENS = 20;
 const int START_NUMBER_OF_STRINGS = 16;
 
-int LexicalCtxCtor(LexicalCtx* ctx, const char* buffer);
+int LexicalCtxCtor(LexicalCtx* ctx, const char* buffer,
+                   int allow_recalloc = true, size_t start_number_of_tokens = START_NUMBER_OF_TOKENS);
 int LexicalCtxFailDtor(LexicalCtx* ctx);
 
+int LexicalCtxRealloc(LexicalCtx* ctx);
+
 Token* GetToken(LexicalCtx* ctx);
+int UnGetToken (LexicalCtx* ctx);
 
 int AddString(LexicalCtx* ctx, Token* token);
 
 int IsName (const char* str, LexicalCtx* ctx);
 # 2 "../Common/LexicalCtx/LexicalCtx.cpp" 2
-
 
 # 1 "../ATC/Logger/LogMacroses.h" 1
        
@@ -44257,16 +44264,130 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 
 
 
+
 int SYSTEM(const char* format, ...);
 # 13 "../ATC/Logger/LogMacroses.h" 2
-# 5 "../Common/LexicalCtx/LexicalCtx.cpp" 2
+# 4 "../Common/LexicalCtx/LexicalCtx.cpp" 2
+# 1 "../Common/Structures/Program/Program.h" 1
+       
 
+
+# 1 "../Common/Structures/Tabels/Tabels.h" 1
+       
+
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 6 "../Common/Structures/Tabels/Tabels.h" 2
+
+const int NOT_DECLARED = - 111;
+const int NOT_A_LABEL = -9;
+
+enum VarStorageType
+    {
+    REGISTER,
+    RAM,
+    };
+
+enum FuncType
+    {
+    DECLARED,
+    DEFINED,
+    };
+
+struct VarLabel
+    {
+    int name_id;
+    int position;
+    };
+
+
+struct VarTabel
+    {
+    VarLabel** label_arr;
+    size_t arr_size;
+
+    size_t number_of_labels;
+    };
+
+struct FuncLabel
+    {
+    int name;
+    int ret_type;
+    int body_status;
+
+    int number_of_return;
+
+
+
+    size_t number_of_local_variables;
+    };
+
+struct FuncTabel
+    {
+    FuncLabel** label_arr;
+    size_t arr_size;
+
+    size_t number_of_labels;
+    };
+
+
+FuncTabel* NewFuncTabel();
+int CloseFuncTabel (FuncTabel* tabel);
+
+
+
+
+
+int IsFuncLabel (int name_id, FuncTabel* func_tabel);
+
+int AddFuncLabel (FuncLabel* label, FuncTabel* tabel);
+int AddFuncLabel (int name_id, int return_type, int body_status, FuncTabel* func_tabel);
+
+FuncLabel* NewFuncLabel (int name_id, int return_type);
+
+
+int CompareFuncLabels (FuncLabel* label1, FuncLabel* label2);
+
+
+VarTabel* NewVarTabel();
+int CloseVarTabel (VarTabel* tabel);
+
+
+
+
+VarLabel* IsVarLabel (int name_id, VarTabel* tabel);
+
+int AddVarLabel (VarLabel* label, VarTabel* tabel);
+int AddVarLabel (int name_id, VarTabel* tabel);
+# 5 "../Common/Structures/Program/Program.h" 2
+
+struct Program
+    {
+    Token* token_arr;
+    int number_of_tokens;
+
+    Token* root;
+
+    const char** string_arr;
+    int number_of_strings;
+
+    const char* path_to_src_file;
+    };
+
+int ProgramCtor(Program* program, const char* path_to_src_file);
+int ProgramDtor(Program* program);
+
+int CleanStringArr(const char** string_arr, int number_of_strings);
+# 5 "../Common/LexicalCtx/LexicalCtx.cpp" 2
 # 1 "../Common/Structures/DSL.h" 1
        
-# 7 "../Common/LexicalCtx/LexicalCtx.cpp" 2
+# 6 "../Common/LexicalCtx/LexicalCtx.cpp" 2
 
+# 1 "../ATC/Debug/EasyDebug.h" 1
+# 8 "../Common/LexicalCtx/LexicalCtx.cpp" 2
 
-int LexicalCtxCtor(LexicalCtx* ctx, const char* buffer)
+int LexicalCtxCtor(LexicalCtx* ctx, const char* buffer, int allow_recalloc, size_t start_number_of_tokens)
     {
     do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 11, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 11, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
 # 11 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
@@ -44287,35 +44408,36 @@ int LexicalCtxCtor(LexicalCtx* ctx, const char* buffer)
 # 12 "../Common/LexicalCtx/LexicalCtx.cpp"
    )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 12); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
 
-    Token* arr = (Token*) Logger::getInstance().CAL_LOG (START_NUMBER_OF_TOKENS, sizeof(arr[0]), "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 14);;
+    ctx->token_arr_size = start_number_of_tokens;
+
+
+    Token* arr = (Token*) Logger::getInstance().CAL_LOG (ctx->token_arr_size, sizeof(arr[0]), "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 17);;
     if (!arr)
         return FAILURE;
 
-    ctx->token_arr_size = START_NUMBER_OF_TOKENS;
+    ctx->string_arr_size = start_number_of_tokens;
 
-    const char** string_arr = (const char**) Logger::getInstance().CAL_LOG (START_NUMBER_OF_STRINGS, sizeof(string_arr[0]), "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 20);;
+    const char** string_arr = (const char**) Logger::getInstance().CAL_LOG (ctx->string_arr_size, sizeof(string_arr[0]), "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 23);;
     if (!string_arr)
         goto FAILURE_EXIT;
 
     {
-    ctx->string_arr_size = START_NUMBER_OF_STRINGS;
-
-    ctx->buf = (Buffer*) Logger::getInstance().CAL_LOG (1, sizeof(ctx->buf[0]), "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 27);;
+    ctx->buf = (Buffer*) Logger::getInstance().CAL_LOG (1, sizeof(ctx->buf[0]), "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 28);;
     if (!ctx->buf)
         goto FAILURE_EXIT;
 
-    do { if (!BufferCtor(ctx->buf, buffer) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "BufferCtor(ctx->buf, buffer) == SUCCESS" " is false\n" , __func__, 31); goto FAILURE_EXIT ; } }while (0);;
+    do { if (!BufferCtor(ctx->buf, buffer) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "BufferCtor(ctx->buf, buffer) == SUCCESS" " is false\n" , __func__, 32); goto FAILURE_EXIT ; } }while (0);;
 
     ctx->number_of_tokens = 0;
     ctx->number_of_strings = 0;
 
     ctx->token_arr = arr;
-    ctx->token_arr_size = START_NUMBER_OF_TOKENS;
     ctx->number_of_tokens = 0;
 
     ctx->string_arr = string_arr;
-    ctx->string_arr_size = START_NUMBER_OF_STRINGS;
     ctx->number_of_strings = 0;
+
+    ctx->allow_recalloc = allow_recalloc;
     }
 
     return SUCCESS;
@@ -44323,67 +44445,123 @@ int LexicalCtxCtor(LexicalCtx* ctx, const char* buffer)
     FAILURE_EXIT:
 
      if (arr)
-        Logger::getInstance().FREE_LOG (arr, "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 50);;
+        Logger::getInstance().FREE_LOG (arr, "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 51);;
 
     if (string_arr)
-        Logger::getInstance().FREE_LOG (string_arr, "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 53);;
+        Logger::getInstance().FREE_LOG (string_arr, "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 54);;
 
     if (ctx->buf)
-        Logger::getInstance().FREE_LOG (ctx->buf, "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 56);;
+        Logger::getInstance().FREE_LOG (ctx->buf, "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 57);;
 
     return FAILURE;
     }
 
 int LexicalCtxFailDtor(LexicalCtx* ctx)
     {
-    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 63, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 63, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 63 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 64, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 64, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 64 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
    14
-# 63 "../Common/LexicalCtx/LexicalCtx.cpp"
+# 64 "../Common/LexicalCtx/LexicalCtx.cpp"
    , strerror(
-# 63 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+# 64 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
    14
-# 63 "../Common/LexicalCtx/LexicalCtx.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 63); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+# 64 "../Common/LexicalCtx/LexicalCtx.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 64); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
 
     if (ctx->token_arr)
-        Logger::getInstance().FREE_LOG (ctx->token_arr, "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 66);;
+        Logger::getInstance().FREE_LOG (ctx->token_arr, "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 67);;
 
     if (ctx->string_arr)
-        Logger::getInstance().FREE_LOG (ctx->token_arr, "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 69);;
+        {
+        CleanStringArr(ctx->string_arr, (int) ctx->number_of_strings);
+        Logger::getInstance().FREE_LOG (ctx->string_arr, "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 72);;
+        }
 
     if (ctx->buf)
-        Logger::getInstance().FREE_LOG (ctx->buf, "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 72);;
+        Logger::getInstance().FREE_LOG (ctx->buf, "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 76);;
+
+    return SUCCESS;
+    }
+
+int LexicalCtxRealloc(LexicalCtx* ctx)
+    {
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 83, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 83, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 83 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+   14
+# 83 "../Common/LexicalCtx/LexicalCtx.cpp"
+   , strerror(
+# 83 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+   14
+# 83 "../Common/LexicalCtx/LexicalCtx.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 83); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    if (ctx->allow_recalloc != true)
+        {
+        { printf("\t%s: ", __func__); printf("Recalloc not allowed for LexicalCtx %p\n", ctx); printf(" (%s:%d)\n", "../Common/LexicalCtx/LexicalCtx.cpp", 87); };
+        return FAILURE;
+        }
+
+    Token* token_arr = (Token*) Logger::getInstance().RECAL_LOG (ctx->token_arr, ctx->number_of_tokens * sizeof(token_arr[0]), "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 91);;
+    if (!token_arr)
+        return FAILURE;
+
+    ctx->token_arr = token_arr;
+
+    do { Logger::getInstance().log("\t%s: %zu\n" , "ctx->number_of_strings", ctx->number_of_strings); } while(0);
+
+    if (!ctx->number_of_strings)
+        {
+        printf("Warnig: 0 number of strings!!!\n");
+
+        return SUCCESS;
+        }
+
+    const char** string_arr = (const char**) Logger::getInstance().RECAL_LOG (ctx->string_arr, ctx->number_of_strings * sizeof(string_arr[0]), "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 106);;
+    if (!string_arr)
+        return FAILURE;
+
+    ctx->string_arr = string_arr;
 
     return SUCCESS;
     }
 
 Token* GetToken(LexicalCtx* ctx)
     {
-    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 79, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 79, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 79 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 117, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 117, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 117 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
    14
-# 79 "../Common/LexicalCtx/LexicalCtx.cpp"
+# 117 "../Common/LexicalCtx/LexicalCtx.cpp"
    , strerror(
-# 79 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+# 117 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
    14
-# 79 "../Common/LexicalCtx/LexicalCtx.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 79); system("echo LOX\n"); return 
-# 79 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+# 117 "../Common/LexicalCtx/LexicalCtx.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 117); system("echo LOX\n"); return 
+# 117 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
    __null
-# 79 "../Common/LexicalCtx/LexicalCtx.cpp"
+# 117 "../Common/LexicalCtx/LexicalCtx.cpp"
    ; } } while (0);;
 
 
     if (ctx->number_of_tokens == ctx->token_arr_size)
         {
+
+        if (ctx->allow_recalloc != true)
+            {
+            { printf("\t%s: ", __func__); printf("No free tokens, realloc isn't allowed (number of tokens = %zu)\n", ctx->number_of_tokens); printf(" (%s:%d)\n", "../Common/LexicalCtx/LexicalCtx.cpp", 125); };
+            return 
+# 126 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+                  __null
+# 126 "../Common/LexicalCtx/LexicalCtx.cpp"
+                      ;
+            }
+
         ctx->token_arr_size *= 2;
-        Token* fuck = (Token*) Logger::getInstance().RECAL_LOG (ctx->token_arr, ctx->token_arr_size * sizeof(fuck[0]), "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 85);;
+        Token* fuck = (Token*) Logger::getInstance().RECAL_LOG (ctx->token_arr, ctx->token_arr_size * sizeof(fuck[0]), "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 130);;
         if (!fuck)
             return 
-# 87 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+# 132 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
                   __null
-# 87 "../Common/LexicalCtx/LexicalCtx.cpp"
+# 132 "../Common/LexicalCtx/LexicalCtx.cpp"
                       ;
 
         ctx->token_arr = fuck;
@@ -44392,26 +44570,46 @@ Token* GetToken(LexicalCtx* ctx)
     return ctx->token_arr + ctx->number_of_tokens++;
     }
 
+int UnGetToken (LexicalCtx* ctx)
+    {
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 142, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 142, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 142 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+   14
+# 142 "../Common/LexicalCtx/LexicalCtx.cpp"
+   , strerror(
+# 142 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+   14
+# 142 "../Common/LexicalCtx/LexicalCtx.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 142); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    if (ctx->number_of_tokens > 1)
+        ctx->number_of_tokens--;
+    else
+        return FAILURE;
+
+    return SUCCESS;
+    }
+
 int IsName (const char* str, LexicalCtx* ctx)
     {
-    do { if (!(str)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "str"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "str"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 97, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 97, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 97 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+    do { if (!(str)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "str"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "str"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 154, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 154, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 154 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
    14
-# 97 "../Common/LexicalCtx/LexicalCtx.cpp"
+# 154 "../Common/LexicalCtx/LexicalCtx.cpp"
    , strerror(
-# 97 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+# 154 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
    14
-# 97 "../Common/LexicalCtx/LexicalCtx.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 97); system("echo LOX\n"); return NOT_A_NAME; } } while (0);;
-    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 98, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 98, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 98 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+# 154 "../Common/LexicalCtx/LexicalCtx.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 154); system("echo LOX\n"); return NOT_A_NAME; } } while (0);;
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 155, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 155, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 155 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
    14
-# 98 "../Common/LexicalCtx/LexicalCtx.cpp"
+# 155 "../Common/LexicalCtx/LexicalCtx.cpp"
    , strerror(
-# 98 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+# 155 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
    14
-# 98 "../Common/LexicalCtx/LexicalCtx.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 98); system("echo LOX\n"); return NOT_A_NAME; } } while (0);;
+# 155 "../Common/LexicalCtx/LexicalCtx.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 155); system("echo LOX\n"); return NOT_A_NAME; } } while (0);;
 
     for (size_t i = 0; i < ctx->number_of_strings; i++)
         if (!strcmp(str, *(ctx->string_arr + i)))
@@ -44422,29 +44620,29 @@ int IsName (const char* str, LexicalCtx* ctx)
 
 int AddString(LexicalCtx* ctx, Token* token)
     {
-    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 109, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 109, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 109 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 166, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 166, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 166 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
    14
-# 109 "../Common/LexicalCtx/LexicalCtx.cpp"
+# 166 "../Common/LexicalCtx/LexicalCtx.cpp"
    , strerror(
-# 109 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+# 166 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
    14
-# 109 "../Common/LexicalCtx/LexicalCtx.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 109); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
-    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 110, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 110, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 110 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+# 166 "../Common/LexicalCtx/LexicalCtx.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 166); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 167, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/LexicalCtx/LexicalCtx.cpp", 167, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 167 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
    14
-# 110 "../Common/LexicalCtx/LexicalCtx.cpp"
+# 167 "../Common/LexicalCtx/LexicalCtx.cpp"
    , strerror(
-# 110 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
+# 167 "../Common/LexicalCtx/LexicalCtx.cpp" 3 4
    14
-# 110 "../Common/LexicalCtx/LexicalCtx.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 110); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+# 167 "../Common/LexicalCtx/LexicalCtx.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 167); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
 
     if (ctx->number_of_strings == ctx->string_arr_size)
         {
         ctx->string_arr_size *=2;
-        const char** xyu = (const char**) Logger::getInstance().RECAL_LOG (ctx->string_arr, ctx->string_arr_size * sizeof(xyu[0]), "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 115);;
+        const char** xyu = (const char**) Logger::getInstance().RECAL_LOG (ctx->string_arr, ctx->string_arr_size * sizeof(xyu[0]), "../Common/LexicalCtx/LexicalCtx.cpp", __func__, 172);;
         if (!xyu)
             return FAILURE;
 
@@ -44455,6 +44653,8 @@ int AddString(LexicalCtx* ctx, Token* token)
     *(ctx->string_arr + ctx->number_of_strings) = strdup(token->value.t_name_ptr);
 
 
+
+    do { Logger::getInstance().log("\t%s: %zu\n" , "ctx->number_of_strings", ctx->number_of_strings); } while(0);
 
     token->value.t_name_id = (int) ctx->number_of_strings++;
 

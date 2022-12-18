@@ -21,6 +21,8 @@ union TokenValue
 
     char* t_name_ptr;
     int t_name_id;
+    int t_number_of_variables;
+    int t_varible_number;
     };
 
 struct Token
@@ -44092,6 +44094,7 @@ int MsgRet (int return_value, const char* format, ...);
 void MsgNoRet (const char* format, ...);
 
 decltype(nullptr) LogMsgNullRet(const char* format, ...);
+
 
 
 

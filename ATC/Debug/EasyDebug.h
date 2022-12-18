@@ -21,7 +21,7 @@
     {                                                                                           \
         /*set_color*/                                                                           \
                                                                                                 \
-        printf("I AM WORKING IN FUNCTION: %s, in line: %d\n", __func__, __LINE__);/*add colors*/\
+        printf("I AM WORKING IN FUNCTION: %s, in line: %d, (%s:%d)\n", __func__, __LINE__, __FILE__, __LINE__);/*add colors*/\
                                                                                                 \
         /*reset_color*/                                                                         \
     } while (0);

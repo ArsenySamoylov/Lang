@@ -37,6 +37,7 @@ int IsPoison   (const int*    element);
 int IsPoison   (const char*   element);
 int IsPoison   (const double* element);
 int IsPoison   (const VarTabel** element);
+int IsPoison   (const NameTable** element);
 
 void FillPoisonHeap  (element_t* heap, size_t size);
 
@@ -44,5 +45,6 @@ void FillPoison (int*    element);
 void FillPoison (char*   element);
 void FillPoison (double* element);
 void FillPoison (VarTabel** element);
+void FillPoison (NameTable** element);
 
 #endif
