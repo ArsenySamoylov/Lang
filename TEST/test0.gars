@@ -1,31 +1,26 @@
-func void helloworld(); 
 
-var x = 30 * 56;
-var y = 0;
 
-void helloworld()
+double fucktorial(double number)
     {
-    fout << 101;
-    return ;
-    }
 
-double main()
-    {
-    #var y = 1;
-    
-    if (y)
+    if (number)
         {
-        x = 45;
-        x = 10;
+        var temp = number;
+
+        return temp * fucktorial(number - 1);
         }
-    else
-        x = 20;
 
-    fout << x; 
+    return 1;
+    } 
 
-    helloworld();
 
-    x = 1 * (4 + 5);
+double main(double argc, double argv)
+    {
+    argc = 0;
 
-    return y;
+    var ded = 5;    
+    
+    fout << fucktorial(ded);cd 
+
+    return 0;
     }

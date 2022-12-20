@@ -1,45 +1,119 @@
-;Tue Dec 13 18:59:34 2022
+;Tue Dec 20 06:23:33 2022
 
-push 5600
-push 3000
-FMUL
-pop  rax
+call : InitGlobalVars
 
-push 0
-pop  rax
+;Setting Stack Frame
+push 1
+pop rbx
 
-: main
-; condition for if_0 with else 
-push rax
+call : main
 
-push 0
-je : else_label_0
-; if body
-push 4500
-pop  rax
-
-push 1000
-pop  rax
-
-jmp : else_end_label_0
-; else body
-: else_label_0
-push 2000
-pop  rax
-
-: else_end_label_0
-push rax
-FOUT
-call :helloworld
-push 500
-push 400
-ADD
-push 100
-FMUL
-pop  rax
-
-: helloworld
-push 10100
-FOUT
 hlt
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		: fucktorial
+
+; instruction
+; condition for if_0
+push  [ 0 ] ; global var 'x' (name handler) 
+
+push 0
+je : if_end_label_0
+; end of condition
+
+; if body
+; 'temp' - local var init
+; assigment
+push  [ 0 ] ; global var 'x' (name handler) 
+pop  [ 0 + rbx ] ; local var 'temp'
+
+; assigment
+push 100
+push  [ 0 ] ; global var 'x' (name handler) 
+SUB
+pop  [ 0 ] ; global var 'x' (name handler) 
+
+
+; return ;
+
+; Setting Stack Frame
+push 1 + rbx
+pop rbx
+
+call :fucktorial
+
+; Setting Stack Frame Back
+push 1
+push rbx
+sub
+
+pop rbx
+push rcx
+push  [ 0 + rbx ] ; local var 'temp'
+FMUL
+
+pop rcx ;ret reg
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+: if_end_label_0
+
+
+; return ;
+push 100
+
+pop rcx ;ret reg
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		: main
+
+; 'ded' - local var init
+; assigment
+push 500
+pop  [ 0 + rbx ] ; local var 'ded'
+
+; assigment
+push  [ 0 + rbx ] ; local var 'ded'
+pop  [ 0 ] ; global var 'x' (name handler) 
+
+; assigment
+
+; Setting Stack Frame
+push 1 + rbx
+pop rbx
+
+call :fucktorial
+
+; Setting Stack Frame Back
+push 1
+push rbx
+sub
+
+pop rbx
+push rcx
+pop  [ 0 + rbx ] ; local var 'ded'
+
+push [ 0 + rbx ] ; local var 'ded'
+FOUT
+
+; return ;
+push 0
+
+pop rcx ;ret reg
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		: InitGlobalVars
+
+; 'x' - global var init
+; assigment
+push 0
+pop  [ 0 ] ; global var 'x' (name handler) 
+
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;end {document}
