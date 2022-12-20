@@ -1,26 +1,28 @@
+extern double fucktorial (var number);
 
-
-double fucktorial(double number)
+double main(var argc, var argv)
     {
+    var ded = 5 > 1;
+    #fout << ded;
 
-    if (number)
-        {
-        var temp = number;
-
-        return temp * fucktorial(number - 1);
-        }
-
-    return 1;
-    } 
-
-
-double main(double argc, double argv)
-    {
-    argc = 0;
-
-    var ded = 5;    
+    var tes = sin (3.1441);
+    #fout << tes;
     
-    fout << fucktorial(ded);cd 
+    fin >> ded;
+    fout << ded;
+    fout <<  fucktorial(ded);
 
     return 0;
     }
+
+double fucktorial (var number)
+    {
+    if ((number > 0) * (number < 0)) # number == 0
+        return 1;
+
+    var temp = number;
+
+        fout << (number > 0) + (number < 0);
+        
+    return temp * fucktorial(number - 1);
+    } 

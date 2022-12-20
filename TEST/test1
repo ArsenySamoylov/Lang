@@ -1,0 +1,367 @@
+;Tue Dec 20 21:58:38 2022
+
+call : InitGlobalVars
+
+;Setting Stack Frame
+push 0
+pop rbx
+
+call : main
+
+hlt
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		: main
+
+; 'a' - local var init
+; assigment
+push 0
+pop  [ 0 + rbx ] ; local var 'a'
+
+; 'b' - local var init
+; assigment
+push 0
+pop  [ 1 + rbx ] ; local var 'b'
+
+; 'c' - local var init
+; assigment
+push 0
+pop  [ 2 + rbx ] ; local var 'c'
+
+FIN
+; BBBBBBBBBBBBBBBBBBBBBB
+pop  [ 0 + rbx ] ; local var 'a'
+FIN
+; BBBBBBBBBBBBBBBBBBBBBB
+pop  [ 1 + rbx ] ; local var 'b'
+FIN
+; BBBBBBBBBBBBBBBBBBBBBB
+pop  [ 2 + rbx ] ; local var 'c'
+; 'status' - local var init
+; assigment
+;Setting parametrs for call
+push  [ 0 + rbx ] ; local var 'a'
+pop  [ 4 + rbx ]; 0 - param pos, 4 - stack frame offset
+push  [ 1 + rbx ] ; local var 'b'
+pop  [ 5 + rbx ]; 1 - param pos, 4 - stack frame offset
+push  [ 2 + rbx ] ; local var 'c'
+pop  [ 6 + rbx ]; 2 - param pos, 4 - stack frame offset
+
+; Setting Stack Frame
+push 4 + rbx
+pop rbx
+
+call :SquareEquationSolver
+
+; Setting Stack Frame Back
+push 4
+push rbx
+sub
+
+pop rbx
+
+;AAAAAAAAAAAAAAAAA
+push rcx
+pop  [ 3 + rbx ] ; local var 'status'
+
+
+; return ;
+push  [ 3 + rbx ] ; local var 'status'
+
+pop rcx ;ret reg
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		: SquareEquationSolver
+
+; instruction
+; condition for if_0 with else 
+push 0
+push  [ 0 + rbx ] ; local var 'a'
+jb : true_0
+push 0
+jmp :true_end_0
+: true_0
+push 100
+: true_end_0
+push 0
+push  [ 0 + rbx ] ; local var 'a'
+ja : true_1
+push 0
+jmp :true_end_1
+: true_1
+push 100
+: true_end_1
+ADD
+
+push 0
+je : else_label_0
+; if body
+; 'dummy' - local var init
+jmp : else_end_label_0
+; else body
+: else_label_0
+
+; return ;
+;Setting parametrs for call
+push  [ 1 + rbx ] ; local var 'b'
+pop  [ 6 + rbx ]; 0 - param pos, 6 - stack frame offset
+push  [ 2 + rbx ] ; local var 'c'
+pop  [ 7 + rbx ]; 1 - param pos, 6 - stack frame offset
+
+; Setting Stack Frame
+push 6 + rbx
+pop rbx
+
+call :LinearEquationSolver
+
+; Setting Stack Frame Back
+push 6
+push rbx
+sub
+
+pop rbx
+
+
+pop rcx ;ret reg
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+: else_end_label_0
+
+; 'dis' - local var init
+; assigment
+push  [ 2 + rbx ] ; local var 'c'
+push  [ 0 + rbx ] ; local var 'a'
+push 400
+FMUL
+FMUL
+push  [ 1 + rbx ] ; local var 'b'
+push 200
+pow
+SUB
+pop  [ 4 + rbx ] ; local var 'dis'
+
+; instruction
+; condition for if_1
+push 0
+push  [ 4 + rbx ] ; local var 'dis'
+jb : true_2
+push 0
+jmp :true_end_2
+: true_2
+push 100
+: true_end_2
+
+push 0
+je : if_end_label_1
+; end of condition
+
+; if body
+push -100
+FOUT
+
+; return ;
+push -100
+
+pop rcx ;ret reg
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+: if_end_label_1
+
+; instruction
+; condition for if_2 with else 
+push 0
+push  [ 4 + rbx ] ; local var 'dis'
+jb : true_3
+push 0
+jmp :true_end_3
+: true_3
+push 100
+: true_end_3
+push 0
+push  [ 4 + rbx ] ; local var 'dis'
+ja : true_4
+push 0
+jmp :true_end_4
+: true_4
+push 100
+: true_end_4
+ADD
+
+push 0
+je : else_label_2
+; if body
+; 'sqrtdis' - local var init
+; assigment
+push  [ 4 + rbx ] ; local var 'dis'
+push 50
+pow
+pop  [ 5 + rbx ] ; local var 'sqrtdis'
+
+push  [ 0 + rbx ] ; local var 'a'
+push 200
+FMUL
+push  [ 5 + rbx ] ; local var 'sqrtdis'
+push  [ 1 + rbx ] ; local var 'b'
+push -100
+FMUL
+ADD
+FDIV
+FOUT
+push  [ 0 + rbx ] ; local var 'a'
+push 200
+FMUL
+push  [ 5 + rbx ] ; local var 'sqrtdis'
+push  [ 1 + rbx ] ; local var 'b'
+push -100
+FMUL
+SUB
+FDIV
+FOUT
+
+; return ;
+push 200
+
+pop rcx ;ret reg
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+jmp : else_end_label_2
+; else body
+: else_label_2
+push  [ 0 + rbx ] ; local var 'a'
+push 200
+FMUL
+push  [ 1 + rbx ] ; local var 'b'
+push -100
+FMUL
+FDIV
+FOUT
+
+; return ;
+push 100
+
+pop rcx ;ret reg
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+: else_end_label_2
+
+
+; return ;
+push -100
+
+pop rcx ;ret reg
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		: LinearEquationSolver
+
+; instruction
+; condition for if_3 with else 
+push 0
+push  [ 0 + rbx ] ; local var 'a'
+jb : true_5
+push 0
+jmp :true_end_5
+: true_5
+push 100
+: true_end_5
+push 0
+push  [ 0 + rbx ] ; local var 'a'
+ja : true_6
+push 0
+jmp :true_end_6
+: true_6
+push 100
+: true_end_6
+ADD
+
+push 0
+je : else_label_3
+; if body
+push  [ 0 + rbx ] ; local var 'a'
+push  [ 1 + rbx ] ; local var 'c'
+push -100
+FMUL
+FDIV
+FOUT
+
+; return ;
+push 100
+
+pop rcx ;ret reg
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+jmp : else_end_label_3
+; else body
+: else_label_3
+; instruction
+; condition for if_4 with else 
+push 0
+push  [ 1 + rbx ] ; local var 'c'
+jb : true_7
+push 0
+jmp :true_end_7
+: true_7
+push 100
+: true_end_7
+push 0
+push  [ 1 + rbx ] ; local var 'c'
+ja : true_8
+push 0
+jmp :true_end_8
+: true_8
+push 100
+: true_end_8
+ADD
+
+push 0
+je : else_label_4
+; if body
+push 0
+FOUT
+
+; return ;
+push 100
+
+pop rcx ;ret reg
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+jmp : else_end_label_4
+; else body
+: else_label_4
+push 800
+FOUT
+
+; return ;
+push 300
+
+pop rcx ;ret reg
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+: else_end_label_4
+
+: else_end_label_3
+
+
+; return ;
+push -100
+
+pop rcx ;ret reg
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		: InitGlobalVars
+
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;end {document}
