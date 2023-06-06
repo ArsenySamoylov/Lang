@@ -6,8 +6,12 @@
 #include "my_buffer.h"
 
 
-// !!! move ALocating token arr to program
-// or use MOVE FUNCTION for Ctx and Program
+/**
+ * @brief Context for Lexical Analysis 
+ * 
+ * @todo !!! move ALocating token arr to program
+ *       or use MOVE FUNCTION for Ctx and Program
+ */
 struct LexicalCtx
     {
     Buffer* buf;

@@ -60,7 +60,6 @@ int main(int argc, const char* argv[])
   FAILURE_EXIT:
 
   ProgramDtor(&program);
-
   
   return FAILURE;
   }

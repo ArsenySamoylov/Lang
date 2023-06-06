@@ -1,0 +1,22 @@
+extern double fucktorial (var number);
+    
+double main(var argc, var argv)
+    {
+    var test = fucktorial(6);
+
+    return 0;
+    }
+
+double fucktorial (var number)
+    {
+    if (number > 1)
+        {
+        var temp = number;
+    
+            fout << (number > 0) + (number < 0);
+            
+        return temp * fucktorial(number - 1);
+        }
+
+    return 1;
+    } 

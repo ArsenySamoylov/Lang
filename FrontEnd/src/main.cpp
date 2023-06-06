@@ -22,9 +22,6 @@ int main(int argc, const char* argv[])
 		}
 
     const char* path_to_src_file = argv[1];
-    
-    // #include <stdlib.h>
-    // printf("Tests: %s\n", tmpnam(NULL));
 
     char* src_code = GetSrcFile (path_to_src_file);
     if (!src_code)
@@ -38,7 +35,6 @@ int main(int argc, const char* argv[])
     if (run_time_status != SUCCESS)
         {
         printf(redcolor "Can't tokenize file " resetconsole "%s\n", program.path_to_src_file);
-        
         goto FAIL_EXIT;
         }
 
@@ -54,7 +50,7 @@ int main(int argc, const char* argv[])
     run_time_status |= PutProgramToStdAWP (&program, std_name);
     }
 
-    // STAFF ROOM
+    // ClearResources
     ProgramDtor(&program);
     KILL(src_code); 
     

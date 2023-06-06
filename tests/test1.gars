@@ -1,0 +1,82 @@
+extern double SquareEquationSolver (var a, var b, var c);
+extern double LinearEquationSolver (var a, var c);
+
+double LinearEquationSolver (var a, var c)
+	{
+	if (a > 0 + a < 0)
+		{
+		fout << (-1 * c) / a;
+		
+		return 1;
+		}
+	else
+	if (c > 0 + c < 0)
+		{
+		fout << 0;
+		
+		return 1;
+		}
+	else
+		{
+		fout << 8;
+		return 3;
+		}
+			
+		
+	return -1;
+	}
+	
+double SquareEquationSolver (var a, var b, var c)
+	{
+	if (a > 0 + a < 0)
+		var dummy;
+	else
+		return LinearEquationSolver(b, c);
+	
+	var dis = pow(b, 2) - 4 * a *c;
+	
+	if (dis < 0)
+		{
+		fout << -666;
+		
+		return -1;
+		}
+		
+	if (dis > 0 + dis < 0)
+		{
+		var sqrtdis = pow(dis, 0.5);
+
+		#fout << dis;
+		#fout << sqrtdis;
+		#fout << -1111;
+		fout << (-1 * b + sqrtdis) / (2*a);
+		fout << (-1 * b - sqrtdis) / (2*a);
+		
+		return 2;
+		}
+	else
+		{
+		fout << (-1 * b) / (2*a); 
+		
+		return 1;
+		}
+		
+	return -1;
+	}
+	
+
+double main()
+	{
+	var a = 0;
+	var b = 0;
+	var c = 0;
+	
+	fin >> a;
+	fin >> b;
+	fin >> c;
+
+	var status = SquareEquationSolver (a, b, c);
+	
+	return status;
+	}
+
