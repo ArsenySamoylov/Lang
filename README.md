@@ -130,9 +130,6 @@ double SquareEquationSolver (var a, var b, var c)
 		{
 		var sqrtdis = pow(dis, 0.5);
 
-		#fout << dis;
-		#fout << sqrtdis;
-		#fout << -1111;
 		fout << (-1 * b + sqrtdis) / (2*a);
 		fout << (-1 * b - sqrtdis) / (2*a);
 		
