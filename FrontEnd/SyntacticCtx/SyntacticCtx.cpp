@@ -107,7 +107,7 @@ int CheckForMainAndDeclaration (const FuncTabel *const table, const char** strin
     
     if (main_position < 0)
         {
-        func_message("No '%s' in string_arr (%p, number %d)\n", MAIN_NAME, string_arr, number_of_strings);
+        func_message(redcolor "ERROR: No '%s' in string_arr (%p, number %d)\n" resetconsole, MAIN_NAME, string_arr, number_of_strings);
         return FAILURE;
         }
 
@@ -117,13 +117,13 @@ int CheckForMainAndDeclaration (const FuncTabel *const table, const char** strin
 
         if (!func)
             {
-            func_message("Null func label (position %zu)\n", i);
+            func_message(redcolor "Null func label (position %zu)\n" resetconsole, i);
             return FAILURE;
             }
 
         if (func->body_status != DECLARED)
             {
-            func_message("'%s' function wasn't declared\n", string_arr[func->name]);
+            func_message(redcolor "ERORR '%s' function wasn't declared\n" resetconsole, string_arr[func->name]);
             return FAILURE;
             }
 
@@ -132,7 +132,7 @@ int CheckForMainAndDeclaration (const FuncTabel *const table, const char** strin
         }
     
     if (main_flag == FAILURE)
-        func_message("ERROR, no main in program!\n");
+        func_message(redcolor "ERROR, no main in program!\n" resetconsole);
 
     return main_flag;
     }

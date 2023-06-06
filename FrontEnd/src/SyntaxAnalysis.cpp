@@ -25,14 +25,19 @@ const Token* BLOCK_CLOSING_BRACKET_FLAG = (Token*) 0x1;
 static Token* GetProcess     (SyntacticCtx* ctx);
 
 static Token* GetFunction    (SyntacticCtx* ctx);
-static Token* GetBlock       (SyntacticCtx* ctx);
+static Token* GetBlock       (SyntacticCtx* ctx, VarTabel* name_table = NULL);
 static Token* GetStatement   (SyntacticCtx* ctx);
 
 static Token* GetCall           (SyntacticCtx* ctx);
+static Token* SetCallParametres (SyntacticCtx* ctx, int* counter);
+
 static Token* GetInstruction    (SyntacticCtx* ctx);
+
 static Token* GetNativeFunction (SyntacticCtx* ctx);
 static Token* GetReturn         (SyntacticCtx* ctx);
 static Token* GetAssigment      (SyntacticCtx* ctx);
+
+static Token* ParametrInitialization (SyntacticCtx* ctx);
 
 #define report_syntax_error(format, ...)                                        \
         do                                                                      \
@@ -51,7 +56,7 @@ static Token* GetAssigment      (SyntacticCtx* ctx);
                 printl(token->ptr_to_src_code, '\n');                           \
                 printf(resetconsole "\n");                                      \
                 printf("%s:%d, %s\n", __FILE__, __LINE__, __func__);            \
-                PrintToken(token, STRING_ARR(ctx));                     \
+                PrintToken(token, STRING_ARR(ctx));                             \
                 }                                                               \
             }                                                                   \
         while(0);
@@ -96,7 +101,7 @@ int GetG (Program* program)
 
     while (POSITION(ctx) < SIZE(ctx))
         {
-        RIGHT(current_process) = GetProcess(ctx);
+        RIGHT(current_process) = GetProcess(ctx); // TODO GetGlobalScopeNode, GetTopLevelNode
            
         if (!RIGHT(current_process))
             goto FAIL_EXIT;
@@ -122,7 +127,6 @@ int GetG (Program* program)
     FAIL_EXIT:
 
     ProgramCtxDtor(ctx);
-
     return FAILURE;
     }
 
@@ -139,11 +143,31 @@ static Token* GetProcess (SyntacticCtx* ctx)
             if (FuncInitialization(ctx) != SUCCESS)
                 return NULL;
 
-            return GetProcess(ctx);
+            return GetProcess(ctx);  // ??? 
             }
 
         if (INITIALIZATOR(token) == VARIABLE_INITIALIZATOR)
-            return VarInitialization(ctx);
+            {
+            Token* global_var = VarInitialization(ctx);
+
+            if (!global_var)
+                return LNULL;
+
+            if (TYPE(token) != END_OF_STATEMENT)
+                {
+                report_syntax_error("Missing ';'\n");
+                return NULL;
+                }
+
+            Token* statement = token;
+
+            POSITION(ctx)++;
+
+            TYPE(statement) = STATEMENT;
+            LEFT(statement) = global_var;
+
+            return statement;
+            }
 
         report_syntax_error("Unknow Initializator type\n");
         return NULL;    
@@ -163,6 +187,7 @@ static Token* GetProcess (SyntacticCtx* ctx)
     return NULL;
     }
 
+// CRINGE WITH GETTING AND SETTING FUNCTION PARAMETRS
 static int FuncInitialization (SyntacticCtx* ctx)
     {
     $log(DEBUG)
@@ -176,18 +201,49 @@ static int FuncInitialization (SyntacticCtx* ctx)
 
     POSITION(ctx)++;
     
-    if (MakeFuncLabel(ctx) < 0)
-        return FAILURE;
+    int func_label_position = MakeFuncLabel(ctx);    
+
+    if (func_label_position < 0)
+        return LFAILURE;
+
+    FuncLabel* label = *(FUNC_TABEL(ctx)->label_arr + func_label_position);
+
+    VarTabel* var_tabel = NewVarTabel ();
+    if (!var_tabel)
+        return LFAILURE;
+
+    StackPush(VAR_TABELS_STK(ctx), var_tabel);
+
+    int number_of_parametres = 0;
+    if (!GetFunctionParametrs(ctx, &number_of_parametres))
+        goto FAILURE_EXIT;
+
+    label->number_of_parametrs = number_of_parametres;
+
+    if (StackPop(VAR_TABELS_STK(ctx)) != var_tabel)
+        {
+        report_syntax_error("Stack tables doesn't match\n");
+        goto FAILURE_EXIT;
+        }   
 
     if (TYPE(token) != END_OF_STATEMENT)
         {
         MISSING_EOS();
-        return FAILURE;
+        goto FAILURE_EXIT;
         }
 
     POSITION(ctx)++;
 
+    CloseVarTabel(var_tabel);
+
     return SUCCESS;
+
+    FAILURE_EXIT:
+
+    if (var_tabel)
+        CloseVarTabel(var_tabel);
+
+    return LFAILURE;
     }
 
 static Token* VarInitialization (SyntacticCtx* ctx)
@@ -227,48 +283,63 @@ static Token* VarInitialization (SyntacticCtx* ctx)
      LEFT(initializator) = var_name;
     RIGHT(initializator) = nullptr;
     
-    if (TYPE(token) == END_OF_STATEMENT)
-        {
-        printf (purplecolor "Warning: unitializad variable " cyancolor "'%s'\n" resetconsole, STRING_ARR(ctx)[NAME_ID(var_name)]);
-
-        Token* statement = token;
-
-        POSITION(ctx)++;
-
-        TYPE(statement) = STATEMENT;
-        LEFT(statement) = initializator;
-
-        return statement;
-        }
-        
     if (TYPE(token) != ASSIGMENT)
         {
-        report_syntax_error("Must be assigment\n");
-        return NULL;
-        }
-
-    POSITION(ctx)++;
-
-    RIGHT(initializator) = GetE (ctx);
-
-    if (TYPE(token) != END_OF_STATEMENT)
-        {
-        report_syntax_error("Missing ';'\n");
-        return NULL;
+        func_message(purplecolor "Warning: unitializad variable " cyancolor "'%s'\n" resetconsole, STRING_ARR(ctx)[NAME_ID(var_name)]);
+        return initializator;
         }
     
-    Token* statement = token;
     POSITION(ctx)++;
+    
+    RIGHT(initializator) = GetE(ctx);
 
     if (!RIGHT(initializator))
         return NULL;
 
-    TYPE(statement) = STATEMENT;
-    LEFT(statement) = initializator;
-
-    return statement;
+    return initializator;
     }
 
+static Token* ParametrInitialization (SyntacticCtx* ctx)
+    {
+    assertlog(ctx, EFAULT, return NULL);
+    
+    if (TYPE(token) != INITIALIZATOR || INITIALIZATOR(token) != VARIABLE_INITIALIZATOR)
+        {
+        report_syntax_error("Wrong token type for variable initialization\n");
+        return NULL;
+        }
+
+    Token* initializator = token;
+    POSITION(ctx)++;
+
+    if (TYPE(token) != NAME)
+        {
+        report_syntax_error("not a name\n");
+        return NULL;
+        }
+
+    Token* var_name = token;
+
+    if (GetVarLabel(NAME_ID(var_name), VAR_TABELS_STK(ctx)))
+        {
+        report_syntax_error("Ebat, %s shadows previous declaration\n", STRING_ARR(ctx)[NAME_ID(var_name)]);
+        return NULL;
+        }
+
+    POSITION(ctx)++;
+
+    if (AddVarLabel(NAME_ID(var_name), TOP_VAR_TABEL(ctx)) != SUCCESS)
+        return NULL;    
+   
+    TYPE(var_name) = VARIABLE;
+
+     LEFT(initializator) = var_name;
+    RIGHT(initializator) = nullptr;
+    
+    return initializator;
+    }
+
+// CRINGE WITH GETTING AND SETTING FUNCTION PARAMETRS
 static Token* GetFunction (SyntacticCtx* ctx)
     {
     $log(DEBUG)
@@ -280,10 +351,10 @@ static Token* GetFunction (SyntacticCtx* ctx)
     int func_label_position = MakeFuncLabel(ctx, &func_head);    
 
     if (func_label_position < 0)
-        return NULL;
+        return LNULL;
 
     if (!func_head)
-        return NULL;
+        return LNULL;
 
     FuncLabel* label = *(FUNC_TABEL(ctx)->label_arr + func_label_position);
     ctx->current_func_label = func_label_position;
@@ -296,6 +367,34 @@ static Token* GetFunction (SyntacticCtx* ctx)
 
     $lzu(FUNC_TABEL(ctx)->number_of_labels)
     $lzu(ctx->current_func_label)
+
+    VarTabel* var_tabel = NewVarTabel ();
+    if (!var_tabel)
+        return LNULL;
+
+    StackPush(VAR_TABELS_STK(ctx), var_tabel);
+    
+    // ((*(ctx->current_func_label + ctx->global_func->label_arr))->number_of_parametrs)
+    int number_of_parametrs = 0;
+    LEFT(LEFT(func_head)) = GetFunctionParametrs(ctx, &number_of_parametrs);
+    
+    // cringe, I don't know it is prototype label or not (get function parametrs should be in make func label)
+    // so here I trying to guess and check that if function had protype
+    if (label->number_of_parametrs != 0 && number_of_parametrs != 0 
+        && label->number_of_parametrs != number_of_parametrs)
+        {
+        report_syntax_error("In protype %d parametrs, in declaration %d\n", label->number_of_parametrs, number_of_parametrs);
+        goto FAIL_EXIT;
+        }
+
+    if (!label->number_of_parametrs)
+        label->number_of_parametrs = number_of_parametrs;
+
+    if (!LEFT(LEFT(func_head)))
+        goto FAIL_EXIT;
+
+    if (LEFT(LEFT(func_head)) == NO_FUNC_ARGUMENTS)
+        LEFT(LEFT(func_head)) = NULL;
 
     {
     Token* body = GetBlock(ctx);
@@ -330,16 +429,27 @@ static Token* GetFunction (SyntacticCtx* ctx)
 
     label->body_status = DECLARED;
 
+     // POP
+    if (StackPop(VAR_TABELS_STK(ctx)) != var_tabel)
+        {
+        report_syntax_error("Stack tables doesn't match\n");
+        goto FAIL_EXIT;
+        }   
+
+    CloseVarTabel(var_tabel);
+
     return statement;
     }
 
     FAIL_EXIT:
 
+    CloseVarTabel(var_tabel);
+
     return NULL;
     }
 
 // MUST use FIRST bracket as statement (cause GetFunction, GetStatement uses second one)
-static Token* GetBlock (SyntacticCtx* ctx)
+static Token* GetBlock (SyntacticCtx* ctx, VarTabel* tabel)
     {
     $log(DEBUG)
     assertlog(ctx, EFAULT, return NULL);
@@ -351,12 +461,18 @@ static Token* GetBlock (SyntacticCtx* ctx)
         }
         
     POSITION(ctx)++;
-    
-    VarTabel* var_tabel = NewVarTabel();
-    if (!var_tabel)
-        goto FAIL_EXIT;
 
-    StackPush(VAR_TABELS_STK(ctx), var_tabel);
+    VarTabel* var_tabel = NULL;
+
+    if (!tabel)
+        {
+        var_tabel =  NewVarTabel();
+
+        if (!var_tabel)
+            goto FAIL_EXIT;
+
+        StackPush(VAR_TABELS_STK(ctx), var_tabel);
+        }
 
     {
     Token* block = GetStatement(ctx);
@@ -409,7 +525,8 @@ static Token* GetBlock (SyntacticCtx* ctx)
 
     FAIL_EXIT:
 
-    CloseVarTabel(var_tabel);
+    if (!tabel)
+        CloseVarTabel(var_tabel);
 
     return NULL;
     }
@@ -425,34 +542,13 @@ static Token* GetStatement (SyntacticCtx* ctx)
     if (TYPE(token) == NAME)
         {
         if (DefineName(ctx) == NOT_DECLARED)
-            return NULL;
-
-        return GetStatement(ctx);
-        }
-
-    if (TYPE(token) == NATIVE_FUNCTION)
-        return GetNativeFunction(ctx);
-
-    if (IS_INSTRUCTION(token))
-        return GetInstruction(ctx);
-
-    if (IS_VAR(token))
-        return GetAssigment(ctx);
-
-    if (TYPE(token) == NAME)
-        {
-        if (DefineName(ctx) == NOT_DECLARED)
             return LNULL;
 
         return GetStatement(ctx);
         }
-    
-    if (TYPE(token) == INITIALIZATOR)
-        return VarInitialization(ctx);
-    
-    if(IS_FUNC(token))
-        return GetCall(ctx);
-        
+
+    if (IS_INSTRUCTION(token) && INSTR(token) != RETURN)
+        return GetInstruction(ctx);
 
     if (TYPE(token) == BLOCK_OPENING_BRACKET)
         {
@@ -479,12 +575,52 @@ static Token* GetStatement (SyntacticCtx* ctx)
         return statement;
         }
 
-    report_syntax_error("Not supported token\n");
+    // REQURES CHECKING FOR ';' End Of Statement
 
-    return NULL;
+    Token* temp = NULL;
+
+    switch (TYPE(token))
+        {
+        case INITIALIZATOR:     temp = VarInitialization(ctx);
+                                break;
+
+        case FUNCTION:          temp = GetCall(ctx);
+                                break;
+
+        case VARIABLE:          temp = GetAssigment(ctx);
+                                break;
+
+        case NATIVE_FUNCTION:   temp = GetNativeFunction(ctx);
+                                break;
+
+        case INSTRUCTION:       temp = GetReturn(ctx);
+                                break;
+        default:
+            report_syntax_error("Not supported token\n");
+            return NULL;
+        }
+    
+    if (!temp)
+        return LNULL;
+
+    if (TYPE(token) != END_OF_STATEMENT)
+        {
+        report_syntax_error("Missing ';'\n");
+        return NULL;
+        }
+
+    Token* statement = token;
+
+    POSITION(ctx)++;
+
+    TYPE(statement) = STATEMENT;
+    LEFT(statement) = temp;
+
+    return statement;
     }
 
-//note: changes token type from function to name
+// note: changes token type from function to name
+// note2: use SetCallParametrs
 static Token* GetCall (SyntacticCtx* ctx)
     {
     assertlog(ctx, EFAULT, return NULL);
@@ -500,43 +636,89 @@ static Token* GetCall (SyntacticCtx* ctx)
 
     POSITION(ctx)++;
 
+    int func_pos = IsFuncLabel(NAME_ID(func_name), FUNC_TABEL(ctx));
+    if (func_pos < 0)
+        {
+        report_syntax_error ("Couldn't find label for '%s' in GetCAll\n", STRING_ARR(ctx)[NAME_ID(func_name)]);     
+        return LNULL;
+        }
+
+    FuncLabel* func_label = *(FUNC_TABEL(ctx)->label_arr + func_pos);
+
     if (TYPE(token) != EXPRESSION_OPENING_BRACKET)
         {
         report_syntax_error("Missing '('\n");
         return NULL;
         }
 
-    Token* statement = token;
-    TYPE(statement) = STATEMENT;
-
+    Token* root = token;
     POSITION(ctx)++;
+
+    TYPE(root) = PARAMETR;
+
+    int parametres_counter = 0;
+
+    Token* current_param = root;
+
+    while (TYPE(token) != EXPRESSION_CLOSING_BRACKET)
+        {
+        LEFT(current_param) = GetE(ctx);
+        if (!LEFT(current_param))
+            return LNULL;
+
+        parametres_counter++;
+
+        if (TYPE(token) == EXPRESSION_CLOSING_BRACKET)
+            goto WHILE_END;
+
+        if (TYPE(token) != SEPARATOR)
+            {
+            report_syntax_error("Missing ',' separator\n");
+            return LNULL;
+            }
+
+        RIGHT(current_param) = token;
+
+             current_param  = token;
+        TYPE(current_param) = PARAMETR;
+        POSITION(ctx)++;
+        }
+    
+    WHILE_END:
+
+    // printf("call %s\n", STRING_ARR(ctx)[func_label->name]);
+    // $i(parametres_counter)
+    // $i(func_label->number_of_parametrs);
+
+    if (parametres_counter > func_label->number_of_parametrs)
+        {
+        report_syntax_error("To many parametres in function call '%s'\n", STRING_ARR(ctx)[func_label->name]);
+        return LNULL;
+        }
+
+    if (parametres_counter < func_label->number_of_parametrs)
+        {
+        report_syntax_error("To few parametres in function call '%s'\n", STRING_ARR(ctx)[func_label->name]);
+        return LNULL;
+        }
 
     if (TYPE(token) != EXPRESSION_CLOSING_BRACKET)
         {
         report_syntax_error("Missing ')'\n");
         return NULL;
         }
-
-    POSITION(ctx)++;
-
-    if (TYPE(token) != END_OF_STATEMENT)
-        {
-        report_syntax_error("Missing ';'\n");
-        return NULL;
-        }
-    
+ 
     Token* call = token;
     POSITION(ctx)++;
 
     TYPE(call) = CALL;
     LEFT(call) = func_name;
 
-    LEFT(statement) = call;
+    LEFT(func_name) = LEFT(root) ? root : NULL;
 
-    return statement;
+    return call;
     }
 
-// only fout supported for now
 static Token* GetNativeFunction (SyntacticCtx* ctx)
     {
     $log(2)
@@ -548,37 +730,89 @@ static Token* GetNativeFunction (SyntacticCtx* ctx)
         return NULL;
         }
 
-    // fout
-    if (NATIVE_FUNC(token) == FOUT)
+    switch (NATIVE_FUNC(token))
         {
-        Token* fout = token;
-        POSITION(ctx)++;
-
-        if (TYPE(token) == OPERATOR && OP(token) == OUT)
+        case FOUT:
             {
+            Token* fout = token;
             POSITION(ctx)++;
 
-            Token* output = GetE(ctx); // add strings later
+            if (TYPE(token) == OPERATOR && OP(token) == OUT)
+                {
+                POSITION(ctx)++;
+
+                Token* output = GetE(ctx); // add strings later
+                
+                LEFT(fout) = output; // add multiple out
+
+                // if (token) == '<<' ...
+                return fout;
+                }
             
-            LEFT(fout) = output;
+            report_syntax_error("No argument for FOUT\n");
+            return LNULL;
+            }
+
+        case FIN:
+            {
+            Token* fin = token;
+            POSITION(ctx)++;
+
+            if (TYPE(token) == OPERATOR && OP(token) == IN)
+                {
+                POSITION(ctx)++;
+
+                if (DefineName(ctx) ==  NOT_DECLARED)
+                    return LNULL;
+
+                if (TYPE(token) != VARIABLE)
+                    {
+                    report_syntax_error("Not a varible for FIN\n");
+                    return LNULL;
+                    }
+
+                Token* input = token; 
+                
+                POSITION(ctx)++;
+                
+                LEFT(fin) = input; 
+                
+                return fin;
+                }
+
+            report_syntax_error("No argument for FIN\n");
+    
+            return LNULL;
             }
         
-        if (TYPE(token) != END_OF_STATEMENT && OP(token) != END_OF_STATEMENT)
-            { 
-            report_syntax_error( "Missing %c - end of statement after fout\n", END_OF_STATEMENT);
-            return NULL;
-            }
-        
-        Token* statement = token;
-        POSITION(ctx)++;
+        case SIN:
+        case COS:
+        case POW:
+            {
+            Token* native_func = token;
+            POSITION(ctx)++;
 
-        TYPE(statement) = STATEMENT;
-        LEFT(statement) = fout;
+            int number_of_parametrs = 0;
 
-        return statement;
+            LEFT(native_func) = SetCallParametres (ctx, &number_of_parametrs);
+            
+            if (!LEFT(native_func))
+                return LNULL;
+           
+            if (number_of_parametrs != NATIVE_FUNCTIONS[NATIVE_FUNC(native_func)].number_of_parametres)
+                {
+                report_syntax_error("Wrong number of parametrs for native functions\n");
+                return LNULL;
+                }
+            
+            return native_func;
+            } 
+        default:
+            report_syntax_error("Not supported function\n");
+            return LNULL;
         }
 
-    TODO("Another native functions\n");
+    YOU_SHALL_NOT_PASS
 
     return LNULL;
     }
@@ -592,7 +826,7 @@ static Token* GetReturn (SyntacticCtx* ctx)
         report_syntax_error("Not a return token\n");
         return NULL;
         }
-
+    
     Token* ret = token;
     POSITION(ctx)++;
     
@@ -615,24 +849,9 @@ static Token* GetReturn (SyntacticCtx* ctx)
             return NULL;
         }
     
-    if (function->ret_type == VOID)
-        {
-        if (TYPE(token) != END_OF_STATEMENT)
-            {
-            report_syntax_error("Wrong return value in void function '%s'\n", STRING_ARR(ctx)[function->name]);
-            return NULL;
-            }
-        }
-
-    Token* statement = token;
-    POSITION(ctx)++;
-
-    TYPE(statement) = STATEMENT;
-    LEFT(statement) = ret;
-
-    function->number_of_return++;
-
-    return statement;
+    function->number_of_return++; // TODO what if return in if ??? 
+    
+    return ret;
     }
 
 static Token* GetInstruction (SyntacticCtx* ctx)
@@ -645,9 +864,11 @@ static Token* GetInstruction (SyntacticCtx* ctx)
         report_syntax_error("Ebat, not a instruction token\n");
         return NULL;
         }
-    
+
+    /* change RETURN to anothee group
     if (INSTR(token) == RETURN)
         return GetReturn(ctx);
+    */ 
 
     // Condition
     Token* instruction = token;
@@ -681,7 +902,11 @@ static Token* GetInstruction (SyntacticCtx* ctx)
     POSITION(ctx)++;
 
     // Body
-    RIGHT (instruction) = LEFT(GetStatement(ctx));
+    Token* body = GetStatement(ctx);
+    if (!body)
+        return LNULL;
+
+    RIGHT (instruction) = LEFT(body); // cause there extra statement
     if (!RIGHT(instruction))
         {
         // report_syntax_error("No condition for instruction (position %d)\n", POSITION(ctx));
@@ -695,13 +920,20 @@ static Token* GetInstruction (SyntacticCtx* ctx)
         POSITION(ctx)++;
         
          LEFT(else_instr) = RIGHT(instruction);
-        RIGHT(else_instr) = LEFT(GetStatement(ctx));
-        if (!RIGHT(else_instr))
+         
+        Token* temp = GetStatement(ctx);
+
+        if (!temp)
             {
             report_syntax_error("No commands for 'else' (position %d)\n", POSITION(ctx));
             return NULL;
             }
 
+        // because of extra statement if there are bloc
+        if (LEFT(temp))
+            temp = LEFT(temp);
+
+        RIGHT(else_instr) = temp;
         RIGHT(instruction) = else_instr;
         }
 
@@ -709,13 +941,14 @@ static Token* GetInstruction (SyntacticCtx* ctx)
     }
 
 static Token* GetAssigment (SyntacticCtx* ctx)
+
     {
     $log(2)
     assertlog (ctx, EFAULT, return LNULL);
 
     if (!IS_VAR(token))
         {
-        report_syntax_error("Error %d token must be variable\n", POSITION(ctx));
+        report_syntax_error("Error token must be variable\n");
         return NULL;
         }
     
@@ -740,17 +973,58 @@ static Token* GetAssigment (SyntacticCtx* ctx)
         return NULL;
         }
     
-    if (TYPE(token) != END_OF_STATEMENT && OP(token) != END_OF_STATEMENT)
+    return assigment;
+    }
+
+static Token* SetCallParametres (SyntacticCtx* ctx, int* counter)
+    {
+    assertlog(ctx, EFAULT, return LNULL);
+
+    Token* root = token;
+    POSITION(ctx)++;
+
+    TYPE(root) = PARAMETR;
+
+    int parametres_counter = 0;
+    *counter = -1;
+
+    Token* current_param = root;
+
+    while (TYPE(token) != EXPRESSION_CLOSING_BRACKET)
         {
-        report_syntax_error("Missing %c - end of statement\n", END_OF_STATEMENT);
+        LEFT(current_param) = GetE(ctx);
+        if (!LEFT(current_param))
+            return LNULL;
+
+        parametres_counter++;
+
+        if (TYPE(token) == EXPRESSION_CLOSING_BRACKET)
+            goto WHILE_END;
+
+        if (TYPE(token) != SEPARATOR)
+            {
+            report_syntax_error("Missing ',' separator\n");
+            return LNULL;
+            }
+
+        RIGHT(current_param) = token;
+
+             current_param  = token;
+        TYPE(current_param) = PARAMETR;
+        POSITION(ctx)++;
+        }
+    
+    WHILE_END:
+
+
+    if (TYPE(token) != EXPRESSION_CLOSING_BRACKET)
+        {
+        report_syntax_error("Missing ')'\n");
         return NULL;
         }
 
-    Token* statement = token;
     POSITION(ctx)++;
 
-    TYPE(statement) = STATEMENT;
-    LEFT(statement) = assigment;
-
-    return statement;
+    *counter = parametres_counter;
+    return root;
     }

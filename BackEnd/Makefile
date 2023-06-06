@@ -1,6 +1,6 @@
 CC   := g++
 NAME := ArsBackEnd
-ARGS := ../test.awp ../test_asm_code
+ARGS := ../test0.awp ../../TEST/test0
 
 LOGFILE := compileLog
 

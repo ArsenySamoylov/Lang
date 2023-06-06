@@ -16,6 +16,88 @@
 
 #pragma GCC diagnostic ignored "-Wlarger-than="
 
+# 1 "../Common/Structures/Tabels/NameTable.h" 1
+       
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long int ptrdiff_t;
+# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long unsigned int size_t;
+# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef struct {
+  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
+  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
+# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+} max_align_t;
+
+
+
+
+
+
+  typedef decltype(nullptr) nullptr_t;
+# 4 "../Common/Structures/Tabels/NameTable.h" 2
+
+
+# 5 "../Common/Structures/Tabels/NameTable.h"
+enum LOCALITY_NUM
+    {
+    GLOBAL,
+    LOCAL,
+    };
+
+struct Token;
+
+struct Label
+    {
+    int type;
+    int name_id;
+
+    int number_of_vars;
+    int ret_type;
+
+    int var_number;
+    int local_type;
+
+    const Token* global_initialization;
+    };
+
+struct NameTable
+    {
+    Label** label_arr;
+    size_t arr_size;
+
+    size_t number_of_labels;
+    };
+
+struct NameTableArr
+    {
+    NameTable** arr;
+
+    int size_of_tables_arr;
+    int number_of_tables;
+    };
+
+NameTable* NewNameTable();
+int CloseNameTable (NameTable* table);
+
+int AddLabel (Label* label, NameTable* table);
+Label* CopyLabel (Label* label, NameTable* table);
+
+Label* IsLabel (int name_id, int type, NameTable* table);
+int CompareLabels (Label* label1, Label* label2);
+
+
+NameTableArr* NewNameTableArr (int start_size);
+int DeleteNameTableArr (NameTableArr* table_arr);
+
+
+NameTable* AddTable (NameTableArr* table_arr);
+# 6 "../Common/Structures/Token/Token.h" 2
+
 union TokenValue
     {
     int t_instruction;
@@ -40,6 +122,8 @@ struct Token
 
     TokenValue value;
 
+    Label* t_label_ptr;
+
 
     const char* ptr_to_src_code;
 
@@ -60,29 +144,11 @@ int DeleteBranch (Token* def_node);
 
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-
-# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef long int ptrdiff_t;
-# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef long unsigned int size_t;
-# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef struct {
-  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
-  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
-# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-} max_align_t;
-
-
-
-
-
-
-  typedef decltype(nullptr) nullptr_t;
 # 6 "../Common/Structures/Tabels/Tabels.h" 2
 
 
-# 7 "../Common/Structures/Tabels/Tabels.h"
+
+
 const int NOT_DECLARED = - 111;
 const int NOT_A_LABEL = -9;
 
@@ -121,9 +187,8 @@ struct FuncLabel
 
     int number_of_return;
 
-
-
     size_t number_of_local_variables;
+    int number_of_parametrs;
     };
 
 struct FuncTabel
@@ -165,6 +230,7 @@ int AddVarLabel (VarLabel* label, VarTabel* tabel);
 int AddVarLabel (int name_id, VarTabel* tabel);
 # 5 "../Common/Structures/Program/Program.h" 2
 
+
 struct Program
     {
     Token* token_arr;
@@ -176,6 +242,12 @@ struct Program
     int number_of_strings;
 
     const char* path_to_src_file;
+
+
+    NameTableArr* name_table_arr;
+    int number_of_global_vars;
+
+
     };
 
 int ProgramCtor(Program* program, const char* path_to_src_file);
@@ -194,49 +266,7 @@ int CleanStringArr(const char** string_arr, int number_of_strings);
 
 
 # 1 "./headers/SuperStackConfig.h" 1
-
-
-
-
-# 1 "../Common/Structures/Tabels/NameTable.h" 1
-       
-
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 4 "../Common/Structures/Tabels/NameTable.h" 2
-
-struct Label
-    {
-    int type;
-    int name_id;
-
-    int number_of_vars;
-    int ret_type;
-
-    int var_number;
-    };
-
-struct NameTable
-    {
-    Label** label_arr;
-    size_t arr_size;
-
-    size_t number_of_labels;
-    };
-
-
-
-NameTable* NewNameTable();
-int CloseNameTable (NameTable* table);
-
-int AddLabel (Label* label, NameTable* table);
-int CopyLabel (Label* label, NameTable* table);
-
-Label* IsLabel (int name_id, int type, NameTable* table);
-int CompareLabels (Label* label1, Label* label2);
-# 6 "./headers/SuperStackConfig.h" 2
-
-
-
+# 9 "./headers/SuperStackConfig.h"
 typedef VarTabel* element_t;
 # 9 "../ATC/SuperStack/SuperStack.h" 2
 # 1 "../ATC/my_safety/my_safety.h" 1
@@ -1254,6 +1284,7 @@ NATIVE_FUNCTION = 11,
 PARAMETR = 12,
 
 ASSIGMENT = '=',
+SEPARATOR = ',',
 BLOCK_OPENING_BRACKET = '{',
 BLOCK_CLOSING_BRACKET = '}',
 EXPRESSION_OPENING_BRACKET = '(',
@@ -1265,11 +1296,45 @@ END_OF_STATEMENT = ';',
     UNKNOWN_TYPE = -999,
     };
 
+
 enum INSTUCTIONS_NUM { IF, ELSE, WHILE, RETURN, NUMBER_OF_INSTUCTIONS };
 const char *const INSTRUCTIONS[] = { "if", "else", "while", "return" };
 
-enum NATIVE_FUNCTIONS_NUM { FOUT, FIN, SIN, COS, NUMBER_OF_NATIVE_FUNCTIONS };
-const char *const NATIVE_FUNCTIONS[] = { "fout", "fin", "sin", "cos" };
+
+
+
+
+
+
+struct NativeFunctionStruct
+    {
+    const char* str;
+    int function;
+    int number_of_parametres;
+    };
+
+enum NATIVE_FUNCTIONS_NUM
+    {
+    FOUT,
+    FIN,
+    SIN,
+    COS,
+    POW,
+    NUMBER_OF_NATIVE_FUNCTIONS,
+    };
+
+const NativeFunctionStruct NATIVE_FUNCTIONS[] = {
+            {"fout", FOUT, 1},
+            {"fin", FIN, 1},
+            {"sin", SIN, 1},
+            {"cos", COS, 1},
+            {"pow", POW, 2},
+};
+
+const int NUMBER_OF_NATIVE_FUNCTIONS_STRUCT = sizeof(NATIVE_FUNCTIONS) / sizeof(NATIVE_FUNCTIONS[0]);
+
+static_assert(NUMBER_OF_NATIVE_FUNCTIONS_STRUCT == NUMBER_OF_NATIVE_FUNCTIONS);
+
 
 enum INITIALIZATORS_NUM { FUNCTION_INITIALIZATOR, VARIABLE_INITIALIZATOR, NUMBER_OF_INITIALIZATORS };
 const char *const INITIALIZATORS[] = {"extern", "var"};
@@ -1278,23 +1343,27 @@ const char *const INITIALIZATORS[] = {"extern", "var"};
 enum FUNCTION_RET_TYPES_NUM { DOUBLE, VOID, NUMBER_OF_FUNCTION_RET_TYPES };
 const char *const FUNCTION_RET_TYPES[] = {"double", "void"};
 
-const char OPERATORS[] = "+-/*^<<";
+const char OPERATORS[] = "+-/*<<>>";
 enum OPERATOR_NUM
     {
     ADD = '+',
     SUB = '-',
     DIV = '/',
     MUL = '*',
-    POW = '^',
+
     OUT = '<',
+    IN = '>',
+
+    BIGGER = '>',
+    LESS = '<',
     };
 
 const char COMMENT = '#';
 
 const char *const MAIN_NAME = "main";
 
-const int MAX_FUNCTION_NAME_LENGTH = 16;
-const int MAX_WORD_LENGTH = 16;
+const int MAX_FUNCTION_NAME_LENGTH = 256;
+const int MAX_WORD_LENGTH = 256;
 # 4 "./SyntacticCtx/SyntacticCtx.cpp" 2
 # 1 "../ATC/Logger/LogMacroses.h" 1
        
@@ -44729,7 +44798,7 @@ VarLabel* GetVarLabel (int name_id, SuperStack* var_tabels)
 # 67 "./SyntacticCtx/SyntacticCtx.cpp" 3 4
    14
 # 67 "./SyntacticCtx/SyntacticCtx.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 67); system("echo LOX\n"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d)", __func__, 67), LogMsgNullRet("\033[94m" "Returnig null ptr %s:%d (%s:%d)\n" "\033[0m", "./SyntacticCtx/SyntacticCtx.cpp", 67, __func__, 67); } } while (0);;
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 67); system("echo LOX\n"); return Logger::getInstance().LogMsgNullRet("Returnig null ptr (%s:%d, %s)", "./SyntacticCtx/SyntacticCtx.cpp", 67, __func__); } } while (0);;
 
 
 
@@ -44784,7 +44853,7 @@ int CheckForMainAndDeclaration (const FuncTabel *const table, const char** strin
 
     if (main_position < 0)
         {
-        { printf("\t%s: ", __func__); printf("No '%s' in string_arr (%p, number %d)\n", MAIN_NAME, string_arr, number_of_strings); printf(" (%s:%d)\n", "./SyntacticCtx/SyntacticCtx.cpp", 110); };
+        { printf("\t%s: ", __func__); printf("\033[91m" "ERROR: No '%s' in string_arr (%p, number %d)\n" "\033[0m", MAIN_NAME, string_arr, number_of_strings); printf(" (%s:%d)\n", "./SyntacticCtx/SyntacticCtx.cpp", 110); };
         return FAILURE;
         }
 
@@ -44794,13 +44863,13 @@ int CheckForMainAndDeclaration (const FuncTabel *const table, const char** strin
 
         if (!func)
             {
-            { printf("\t%s: ", __func__); printf("Null func label (position %zu)\n", i); printf(" (%s:%d)\n", "./SyntacticCtx/SyntacticCtx.cpp", 120); };
+            { printf("\t%s: ", __func__); printf("\033[91m" "Null func label (position %zu)\n" "\033[0m", i); printf(" (%s:%d)\n", "./SyntacticCtx/SyntacticCtx.cpp", 120); };
             return FAILURE;
             }
 
         if (func->body_status != DECLARED)
             {
-            { printf("\t%s: ", __func__); printf("'%s' function wasn't declared\n", string_arr[func->name]); printf(" (%s:%d)\n", "./SyntacticCtx/SyntacticCtx.cpp", 126); };
+            { printf("\t%s: ", __func__); printf("\033[91m" "ERORR '%s' function wasn't declared\n" "\033[0m", string_arr[func->name]); printf(" (%s:%d)\n", "./SyntacticCtx/SyntacticCtx.cpp", 126); };
             return FAILURE;
             }
 
@@ -44809,7 +44878,7 @@ int CheckForMainAndDeclaration (const FuncTabel *const table, const char** strin
         }
 
     if (main_flag == FAILURE)
-        { printf("\t%s: ", __func__); printf("ERROR, no main in program!\n"); printf(" (%s:%d)\n", "./SyntacticCtx/SyntacticCtx.cpp", 135); };
+        { printf("\t%s: ", __func__); printf("\033[91m" "ERROR, no main in program!\n" "\033[0m"); printf(" (%s:%d)\n", "./SyntacticCtx/SyntacticCtx.cpp", 135); };
 
     return main_flag;
     }

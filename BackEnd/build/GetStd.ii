@@ -16,6 +16,88 @@
 
 #pragma GCC diagnostic ignored "-Wlarger-than="
 
+# 1 "../Common/Structures/Tabels/NameTable.h" 1
+       
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long int ptrdiff_t;
+# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long unsigned int size_t;
+# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef struct {
+  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
+  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
+# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+} max_align_t;
+
+
+
+
+
+
+  typedef decltype(nullptr) nullptr_t;
+# 4 "../Common/Structures/Tabels/NameTable.h" 2
+
+
+# 5 "../Common/Structures/Tabels/NameTable.h"
+enum LOCALITY_NUM
+    {
+    GLOBAL,
+    LOCAL,
+    };
+
+struct Token;
+
+struct Label
+    {
+    int type;
+    int name_id;
+
+    int number_of_vars;
+    int ret_type;
+
+    int var_number;
+    int local_type;
+
+    const Token* global_initialization;
+    };
+
+struct NameTable
+    {
+    Label** label_arr;
+    size_t arr_size;
+
+    size_t number_of_labels;
+    };
+
+struct NameTableArr
+    {
+    NameTable** arr;
+
+    int size_of_tables_arr;
+    int number_of_tables;
+    };
+
+NameTable* NewNameTable();
+int CloseNameTable (NameTable* table);
+
+int AddLabel (Label* label, NameTable* table);
+Label* CopyLabel (Label* label, NameTable* table);
+
+Label* IsLabel (int name_id, int type, NameTable* table);
+int CompareLabels (Label* label1, Label* label2);
+
+
+NameTableArr* NewNameTableArr (int start_size);
+int DeleteNameTableArr (NameTableArr* table_arr);
+
+
+NameTable* AddTable (NameTableArr* table_arr);
+# 6 "../Common/Structures/Token/Token.h" 2
+
 union TokenValue
     {
     int t_instruction;
@@ -40,6 +122,8 @@ struct Token
 
     TokenValue value;
 
+    Label* t_label_ptr;
+
 
     const char* ptr_to_src_code;
 
@@ -60,29 +144,8 @@ int DeleteBranch (Token* def_node);
 
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-
-# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef long int ptrdiff_t;
-# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef long unsigned int size_t;
-# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef struct {
-  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
-  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
-# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-} max_align_t;
-
-
-
-
-
-
-  typedef decltype(nullptr) nullptr_t;
 # 6 "../Common/Structures/Tabels/Tabels.h" 2
 
-
-# 7 "../Common/Structures/Tabels/Tabels.h"
 const int NOT_DECLARED = - 111;
 const int NOT_A_LABEL = -9;
 
@@ -121,9 +184,8 @@ struct FuncLabel
 
     int number_of_return;
 
-
-
     size_t number_of_local_variables;
+    int number_of_parametrs;
     };
 
 struct FuncTabel
@@ -165,6 +227,7 @@ int AddVarLabel (VarLabel* label, VarTabel* tabel);
 int AddVarLabel (int name_id, VarTabel* tabel);
 # 5 "../Common/Structures/Program/Program.h" 2
 
+
 struct Program
     {
     Token* token_arr;
@@ -176,6 +239,12 @@ struct Program
     int number_of_strings;
 
     const char* path_to_src_file;
+
+
+    NameTableArr* name_table_arr;
+    int number_of_global_vars;
+
+
     };
 
 int ProgramCtor(Program* program, const char* path_to_src_file);
@@ -24558,6 +24627,7 @@ NATIVE_FUNCTION = 11,
 PARAMETR = 12,
 
 ASSIGMENT = '=',
+SEPARATOR = ',',
 BLOCK_OPENING_BRACKET = '{',
 BLOCK_CLOSING_BRACKET = '}',
 EXPRESSION_OPENING_BRACKET = '(',
@@ -24569,11 +24639,45 @@ END_OF_STATEMENT = ';',
     UNKNOWN_TYPE = -999,
     };
 
+
 enum INSTUCTIONS_NUM { IF, ELSE, WHILE, RETURN, NUMBER_OF_INSTUCTIONS };
 const char *const INSTRUCTIONS[] = { "if", "else", "while", "return" };
 
-enum NATIVE_FUNCTIONS_NUM { FOUT, FIN, SIN, COS, NUMBER_OF_NATIVE_FUNCTIONS };
-const char *const NATIVE_FUNCTIONS[] = { "fout", "fin", "sin", "cos" };
+
+
+
+
+
+
+struct NativeFunctionStruct
+    {
+    const char* str;
+    int function;
+    int number_of_parametres;
+    };
+
+enum NATIVE_FUNCTIONS_NUM
+    {
+    FOUT,
+    FIN,
+    SIN,
+    COS,
+    POW,
+    NUMBER_OF_NATIVE_FUNCTIONS,
+    };
+
+const NativeFunctionStruct NATIVE_FUNCTIONS[] = {
+            {"fout", FOUT, 1},
+            {"fin", FIN, 1},
+            {"sin", SIN, 1},
+            {"cos", COS, 1},
+            {"pow", POW, 2},
+};
+
+const int NUMBER_OF_NATIVE_FUNCTIONS_STRUCT = sizeof(NATIVE_FUNCTIONS) / sizeof(NATIVE_FUNCTIONS[0]);
+
+static_assert(NUMBER_OF_NATIVE_FUNCTIONS_STRUCT == NUMBER_OF_NATIVE_FUNCTIONS);
+
 
 enum INITIALIZATORS_NUM { FUNCTION_INITIALIZATOR, VARIABLE_INITIALIZATOR, NUMBER_OF_INITIALIZATORS };
 const char *const INITIALIZATORS[] = {"extern", "var"};
@@ -24582,23 +24686,27 @@ const char *const INITIALIZATORS[] = {"extern", "var"};
 enum FUNCTION_RET_TYPES_NUM { DOUBLE, VOID, NUMBER_OF_FUNCTION_RET_TYPES };
 const char *const FUNCTION_RET_TYPES[] = {"double", "void"};
 
-const char OPERATORS[] = "+-/*^<<";
+const char OPERATORS[] = "+-/*<<>>";
 enum OPERATOR_NUM
     {
     ADD = '+',
     SUB = '-',
     DIV = '/',
     MUL = '*',
-    POW = '^',
+
     OUT = '<',
+    IN = '>',
+
+    BIGGER = '>',
+    LESS = '<',
     };
 
 const char COMMENT = '#';
 
 const char *const MAIN_NAME = "main";
 
-const int MAX_FUNCTION_NAME_LENGTH = 16;
-const int MAX_WORD_LENGTH = 16;
+const int MAX_FUNCTION_NAME_LENGTH = 256;
+const int MAX_WORD_LENGTH = 256;
 # 9 "../Common/StandartAWP/GetStd.cpp" 2
 
 # 1 "../Common/LexicalCtx/LexicalCtx.h" 1
@@ -54698,20 +54806,7 @@ int SYSTEM(const char* format, ...);
 
 # 1 "../ATC/Debug/EasyDebug.h" 1
 # 15 "../Common/StandartAWP/GetStd.cpp" 2
-
-const char STATEMENT_STD[] = "ST";
-const char FUNCTION_STD[] = "FUNC";
-const char NIL_STD[ ] = "NIL";
-const char CALL_STD[] = "CALL";
-const char RETURN_STD[] = "RET";
-const char ASSIGMENT_STD[] = "EQ";
-
-const char INITIALIZATOR_STD[] = "VAR";
-
-const char* IN_OUT_STD[] = { "IN", "OUT" };
-const char* CONSTRUCTIONS_STD[] = { "IF", "WHILE", "ELSE" };
-const char* MATH_OPERATORS_STD[] = { "ADD", "SUB", "MUL", "DIV", "POW" , "SIN", "COS"};
-
+# 31 "../Common/StandartAWP/GetStd.cpp"
 enum STD_NUM
     {
     NIL,
@@ -54747,6 +54842,9 @@ const StdAwp STD_LEXEMS[] =
 
     {"IN", {.t_native_function = FIN}, NATIVE_FUNCTION},
     {"OUT", {.t_native_function = FOUT}, NATIVE_FUNCTION},
+    {"SIN", {.t_native_function = SIN}, NATIVE_FUNCTION},
+    {"COS", {.t_native_function = COS}, NATIVE_FUNCTION},
+    {"POW", {.t_native_function = POW}, NATIVE_FUNCTION},
 
 
     {"EQ", {.t_operator = '='}, ASSIGMENT},
@@ -54757,13 +54855,15 @@ const StdAwp STD_LEXEMS[] =
     {"DIV", {.t_operator = '/'}, OPERATOR},
 
 
+    {"IS_GT", {.t_operator = '>'}, OPERATOR},
+    {"IS_BT", {.t_operator = '<'}, OPERATOR},
 };
 
 const int NUMBER_OF_STD_LEXEMS = sizeof(STD_LEXEMS) / sizeof(STD_LEXEMS[0]);
 
 static Token* GetTokenFromStd (LexicalCtx* ctx);
 static int SetToken (Token* token, const char* word_buffer);
-# 88 "../Common/StandartAWP/GetStd.cpp"
+# 95 "../Common/StandartAWP/GetStd.cpp"
 #pragma GCC diagnostic ignored "-Wcast-qual"
 
 
@@ -54780,25 +54880,25 @@ Token *const ERROR_TRASHOLD = (Token*) 0x99;
 
 int GetProgramFromStdAwp (Program* program, const char* path_to_file)
     {
-    FunctionLogger func_104 {1, __func__};
-    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 105, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 105, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 105 "../Common/StandartAWP/GetStd.cpp" 3 4
+    FunctionLogger func_111 {1, __func__};
+    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 112, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 112, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 112 "../Common/StandartAWP/GetStd.cpp" 3 4
    14
-# 105 "../Common/StandartAWP/GetStd.cpp"
+# 112 "../Common/StandartAWP/GetStd.cpp"
    , strerror(
-# 105 "../Common/StandartAWP/GetStd.cpp" 3 4
+# 112 "../Common/StandartAWP/GetStd.cpp" 3 4
    14
-# 105 "../Common/StandartAWP/GetStd.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 105); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
-    do { if (!(path_to_file)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "path_to_file"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "path_to_file"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 106, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 106, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 106 "../Common/StandartAWP/GetStd.cpp" 3 4
+# 112 "../Common/StandartAWP/GetStd.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 112); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(path_to_file)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "path_to_file"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "path_to_file"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 113, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 113, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 113 "../Common/StandartAWP/GetStd.cpp" 3 4
    14
-# 106 "../Common/StandartAWP/GetStd.cpp"
+# 113 "../Common/StandartAWP/GetStd.cpp"
    , strerror(
-# 106 "../Common/StandartAWP/GetStd.cpp" 3 4
+# 113 "../Common/StandartAWP/GetStd.cpp" 3 4
    14
-# 106 "../Common/StandartAWP/GetStd.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 106); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+# 113 "../Common/StandartAWP/GetStd.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 113); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
 
     const char* std_buffer = GetSrcFile(path_to_file);
      if (!std_buffer)
@@ -54829,37 +54929,36 @@ int GetProgramFromStdAwp (Program* program, const char* path_to_file)
 
     program->path_to_src_file = path_to_file;
 
-    Logger::getInstance().FREE_LOG (((ctx)->buf), "../Common/StandartAWP/GetStd.cpp", __func__, 137);;
-    Logger::getInstance().FREE_LOG ((void*) std_buffer, "../Common/StandartAWP/GetStd.cpp", __func__, 138);;
+    Logger::getInstance().FREE_LOG (((ctx)->buf), "../Common/StandartAWP/GetStd.cpp", __func__, 144);;
+    Logger::getInstance().FREE_LOG ((void*) std_buffer, "../Common/StandartAWP/GetStd.cpp", __func__, 145);;
 
     return SUCCESS;
 
     FAILURE_EXIT:
 
     LexicalCtxFailDtor(ctx);
-    Logger::getInstance().FREE_LOG ((void*) std_buffer, "../Common/StandartAWP/GetStd.cpp", __func__, 145);;
-
+    Logger::getInstance().FREE_LOG ((void*) std_buffer, "../Common/StandartAWP/GetStd.cpp", __func__, 152);;
 
     return FAILURE;
     }
-# 166 "../Common/StandartAWP/GetStd.cpp"
+# 170 "../Common/StandartAWP/GetStd.cpp"
 Token *const END_OF_TOKEN = (Token*) 0x999;
 
 static Token* GetTokenFromStd (LexicalCtx* ctx)
     {
-    FunctionLogger func_170 {1, __func__};
-    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 171, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 171, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 171 "../Common/StandartAWP/GetStd.cpp" 3 4
+    FunctionLogger func_174 {1, __func__};
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 175, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 175, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 175 "../Common/StandartAWP/GetStd.cpp" 3 4
    14
-# 171 "../Common/StandartAWP/GetStd.cpp"
+# 175 "../Common/StandartAWP/GetStd.cpp"
    , strerror(
-# 171 "../Common/StandartAWP/GetStd.cpp" 3 4
+# 175 "../Common/StandartAWP/GetStd.cpp" 3 4
    14
-# 171 "../Common/StandartAWP/GetStd.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 171); system("echo LOX\n"); return 
-# 171 "../Common/StandartAWP/GetStd.cpp" 3 4
+# 175 "../Common/StandartAWP/GetStd.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 175); system("echo LOX\n"); return 
+# 175 "../Common/StandartAWP/GetStd.cpp" 3 4
    __null
-# 171 "../Common/StandartAWP/GetStd.cpp"
+# 175 "../Common/StandartAWP/GetStd.cpp"
    ; } } while (0);;
 
     int bracket = BufferGetCh(((ctx)->buf));
@@ -54869,7 +54968,7 @@ static Token* GetTokenFromStd (LexicalCtx* ctx)
 
     if (bracket != '{')
         {
-        { printf("\t%s: ", __func__); printf("Missing '{' in <%.*s>\n", (int) strcspn(((ctx)->buf)->str, " \n\t"), ((ctx)->buf)->str); printf(" (%s:%d)\n", "../Common/StandartAWP/GetStd.cpp", 180); };
+        { printf("\t%s: ", __func__); printf("Missing '{' in <%.*s>\n", (int) strcspn(((ctx)->buf)->str, " \n\t"), ((ctx)->buf)->str); printf(" (%s:%d)\n", "../Common/StandartAWP/GetStd.cpp", 184); };
         return ERROR_1;
         }
 
@@ -54883,7 +54982,7 @@ static Token* GetTokenFromStd (LexicalCtx* ctx)
         return ERROR_2;
 
 
-    if (sscanf (((ctx)->buf)->str, " %[a-zA-Z]%n", word_buffer, &n) > 0)
+    if (sscanf (((ctx)->buf)->str, " %[a-zA-Z_]%n", word_buffer, &n) > 0)
         {
         if (SetToken(token, word_buffer) < 0)
             {
@@ -54898,23 +54997,23 @@ static Token* GetTokenFromStd (LexicalCtx* ctx)
 
             if (BufferGetCh(((ctx)->buf)) != '}')
                 {
-                { printf("\t%s: ", __func__); printf("Missing '}' in <%.*s>\n", (int) strcspn(((ctx)->buf)->str, " \n\t"), ((ctx)->buf)->str); printf(" (%s:%d)\n", "../Common/StandartAWP/GetStd.cpp", 209); };
+                { printf("\t%s: ", __func__); printf("Missing '}' in <%.*s>\n", (int) strcspn(((ctx)->buf)->str, " \n\t"), ((ctx)->buf)->str); printf(" (%s:%d)\n", "../Common/StandartAWP/GetStd.cpp", 213); };
                 return ERROR_4;
                 }
 
             return 
-# 213 "../Common/StandartAWP/GetStd.cpp" 3 4
+# 217 "../Common/StandartAWP/GetStd.cpp" 3 4
                   __null
-# 213 "../Common/StandartAWP/GetStd.cpp"
+# 217 "../Common/StandartAWP/GetStd.cpp"
                       ;
             }
         }
     else
     {
     double value = 
-# 218 "../Common/StandartAWP/GetStd.cpp" 3 4
+# 222 "../Common/StandartAWP/GetStd.cpp" 3 4
                   (__builtin_nanf (""))
-# 218 "../Common/StandartAWP/GetStd.cpp"
+# 222 "../Common/StandartAWP/GetStd.cpp"
                      ;
     if (sscanf (((ctx)->buf)->str, " %lg%n", &value, &n) > 0)
         {
@@ -54962,9 +55061,9 @@ static Token* GetTokenFromStd (LexicalCtx* ctx)
     if (token->left_child == END_OF_TOKEN)
         {
         token->left_child = 
-# 264 "../Common/StandartAWP/GetStd.cpp" 3 4
+# 268 "../Common/StandartAWP/GetStd.cpp" 3 4
                      __null
-# 264 "../Common/StandartAWP/GetStd.cpp"
+# 268 "../Common/StandartAWP/GetStd.cpp"
                          ;
         return token;
         }
@@ -54982,7 +55081,7 @@ static Token* GetTokenFromStd (LexicalCtx* ctx)
 
     if (BufferGetCh(((ctx)->buf)) != '}')
                 {
-                { printf("\t%s: ", __func__); printf("Missing '}' in <%.*s>\n", (int) strcspn(((ctx)->buf)->str, " \n\t"), ((ctx)->buf)->str); printf(" (%s:%d)\n", "../Common/StandartAWP/GetStd.cpp", 281); };
+                { printf("\t%s: ", __func__); printf("Missing '}' in <%.*s>\n", (int) strcspn(((ctx)->buf)->str, " \n\t"), ((ctx)->buf)->str); printf(" (%s:%d)\n", "../Common/StandartAWP/GetStd.cpp", 285); };
                 return ERROR_6;
                 }
 
@@ -54993,25 +55092,25 @@ static Token* GetTokenFromStd (LexicalCtx* ctx)
 
 static int SetToken (Token* token, const char* word_buffer)
     {
-    FunctionLogger func_292 {1, __func__};
-    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 293, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 293, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 293 "../Common/StandartAWP/GetStd.cpp" 3 4
+    FunctionLogger func_296 {1, __func__};
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 297, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 297, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 297 "../Common/StandartAWP/GetStd.cpp" 3 4
    14
-# 293 "../Common/StandartAWP/GetStd.cpp"
+# 297 "../Common/StandartAWP/GetStd.cpp"
    , strerror(
-# 293 "../Common/StandartAWP/GetStd.cpp" 3 4
+# 297 "../Common/StandartAWP/GetStd.cpp" 3 4
    14
-# 293 "../Common/StandartAWP/GetStd.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 293); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
-    do { if (!(word_buffer)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "word_buffer"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "word_buffer"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 294, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 294, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 294 "../Common/StandartAWP/GetStd.cpp" 3 4
+# 297 "../Common/StandartAWP/GetStd.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 297); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(word_buffer)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "word_buffer"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "word_buffer"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 298, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/StandartAWP/GetStd.cpp", 298, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 298 "../Common/StandartAWP/GetStd.cpp" 3 4
    14
-# 294 "../Common/StandartAWP/GetStd.cpp"
+# 298 "../Common/StandartAWP/GetStd.cpp"
    , strerror(
-# 294 "../Common/StandartAWP/GetStd.cpp" 3 4
+# 298 "../Common/StandartAWP/GetStd.cpp" 3 4
    14
-# 294 "../Common/StandartAWP/GetStd.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 294); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+# 298 "../Common/StandartAWP/GetStd.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 298); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
 
     for (int i = 0; i < NUMBER_OF_STD_LEXEMS; i++)
         {

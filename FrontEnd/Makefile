@@ -1,7 +1,7 @@
 CC   := g++
-NAME := ArsFrontEnd
-ARGS := ../../TEST/test0.gars ../test.awp
-
+NAME := FrontEnd.out
+ARGS := ../../TEST/CodeGen.gars  ~/Desktop/PROJECTS/x86BackEnd/tests/test0.awp
+# 
 LOGFILE := compileLog
 
 CFLAGS  := -g   -D _DEBUG  -std=c++20 		-Wall  -Wc++14-compat  				-Wextra  				-Wcast-qual    				-Wcast-align   					   \
@@ -19,7 +19,7 @@ CFLAGS  := -g   -D _DEBUG  -std=c++20 		-Wall  -Wc++14-compat  				-Wextra  				
 							   		 					
 
 SANITIZERS := -fsanitize=address,leak #,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,unreachable,vla-bound,vptr
-LFLAGS 	   := -lpthread  -lasan 
+LFLAGS 	   := -lpthread  -lasan -pg
 			  # -lsfml-window -lsfml-system -lsfml-graphics -lncurses -lsfml-audio 
 
 SRCDIR :=  ./src/ ./SyntacticCtx   ../ATC/  ../Common 
@@ -59,8 +59,11 @@ check: clean $(NAME)
          --show-leak-kinds=all                \
          ./$(NAME) $(ARGS))
 
-run: clean $(NAME)
+compile: clean $(NAME)
 	@$(if $(NAME), ./$(NAME) $(ARGS))
+
+run:
+	$(if $(NAME), ./$(NAME) $(ARGS))
 
 #############################################################################
 dependences: makeDependencesDir $(DEPENDENCES)

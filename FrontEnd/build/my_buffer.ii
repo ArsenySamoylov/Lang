@@ -45007,7 +45007,7 @@ void setindent (int indent)
 int BufferCtor (Buffer* buf, const char* string)
     {
     FunctionLogger func_297 {DEBUG_ALL, __func__};
-    do { if (!buf) { Logger::getInstance().log("%s:%d::CHECK: " "buf" " is false\n" , __func__, 298); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../ATC/Buffer/my_buffer.cpp", 298, __func__, 298), "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 298, __func__, 298) ; } }while (0);;
+    do { if (!buf) { Logger::getInstance().log("%s:%d::CHECK: " "buf" " is false\n" , __func__, 298); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 298, __func__, 298) ; } }while (0);;
 
     buf->buffer = string;
     buf->str = (char*) string;
@@ -45029,10 +45029,10 @@ int BufferCtor (Buffer* buf, int size)
 # 312 "../ATC/Buffer/my_buffer.cpp" 3 4
    14
 # 312 "../ATC/Buffer/my_buffer.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 312); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../ATC/Buffer/my_buffer.cpp", 312, __func__, 312), "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 312, __func__, 312); } } while (0);;
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 312); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 312, __func__, 312); } } while (0);;
 
     buf->buffer = (const char*) Logger::getInstance().CAL_LOG (size, sizeof(buf->buffer[0]), "../ATC/Buffer/my_buffer.cpp", __func__, 314);;
-    if (!buf->buffer) return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../ATC/Buffer/my_buffer.cpp", 315, __func__, 315), "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 315, __func__, 315);
+    if (!buf->buffer) return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "../ATC/Buffer/my_buffer.cpp", 315, __func__, 315);
 
     buf->str = (char*) buf->buffer;
 

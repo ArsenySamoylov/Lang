@@ -12,7 +12,7 @@ struct SyntacticCtx
     const Program* program;
 
     int position;
-    int current_func_label;
+    int current_func_label; // Function to accssee element from position
     
     FuncTabel*  global_func;
     VarTabel*   global_vars;

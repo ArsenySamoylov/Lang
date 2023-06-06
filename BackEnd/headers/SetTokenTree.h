@@ -1,7 +1,11 @@
 #pragma once
 
+// #define BACK_END
 #include "Program.h"
-#include "BackEndConfig.h"
-#include "NameTable.h"
+// #undef BACK_END
 
-NameTable* SetTokenTree (const Program* program);
+#include "BackEndConfig.h"
+
+const int START_NUMBER_OF_NAME_TABLES = 5;
+
+int SetTokenTree (Program* program);

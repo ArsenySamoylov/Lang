@@ -44,8 +44,11 @@ static int IsNativeFunction  (const char* str);
     while(0);
 
 
+// !!! move ALocating token arr to program
+// or use MOVE FUNCTION for Ctx and Program
 
 #define BUF(CTX) (CTX->buf)
+
 int Tokenizer (Program* program, const char* buffer)
     {
     $log(1)
@@ -72,7 +75,10 @@ int Tokenizer (Program* program, const char* buffer)
         if (!token)
             goto FAILURE_EXIT;
 
-        if (SetToken (BUF(ctx), token) == FAILURE)
+        if (TYPE(token) == UNKNOWN_TYPE)
+            goto FAILURE_EXIT;
+
+        if (SetToken (BUF(ctx), token) == UNKNOWN_TYPE)
             goto FAILURE_EXIT;
 
         if (TYPE(token) == NAME)
@@ -93,10 +99,11 @@ int Tokenizer (Program* program, const char* buffer)
     if (LexicalCtxRealloc(ctx) != SUCCESS)
         goto FAILURE_EXIT;
 
-    program->token_arr = ctx->token_arr;
+    // mb change to "MOVE constructor"
+    program->token_arr        = ctx->token_arr;
     program->number_of_tokens = ctx->number_of_tokens;
     
-    program->string_arr = ctx->string_arr;
+    program->string_arr        = ctx->string_arr;
     program->number_of_strings = ctx->number_of_strings;
 
 
@@ -165,13 +172,13 @@ static int SetToken (Buffer* buf, Token* token)
         TYPE(token) = OPERATOR;
           OP(token) = BufferGetCh(buf);
 
-        if (OP(token) == OUT)
-            if (BufferGetCh(buf) != '<')
-                {
-                report_lexical_error("Missing '<' for out operator\n");
+        if (OP(token) == LESS)
+            if (BufferLook(buf) == '<') // add more smart checking   fin >> a , fin > a
+                    BufferGetCh(buf);   // TODO 
 
-                return FAILURE;
-                }
+        if (OP(token) == BIGGER)
+            if (BufferLook(buf) == '>')
+                BufferGetCh(buf);
 
         return OPERATOR;        
         }
@@ -180,6 +187,7 @@ static int SetToken (Buffer* buf, Token* token)
     if (isalpha(temp))
         {
         static char word[MAX_WORD_LENGTH] = "";
+        // USE SNPSRINTF TO WARN ABOUT MAX LENGTH !!!!!!!!
 
         BufferGetWord (buf, word);
         // printf("Word: %s\n", word);
@@ -244,23 +252,41 @@ static int SetToken (Buffer* buf, Token* token)
     // END_OF_STATEMENT
     if (temp == END_OF_STATEMENT)
         {
-        TYPE(token) = BufferGetCh(buf);  // cause type number coresponds with char code
-          OP(token) = TYPE(token);     
+        $lp(token)
+        TYPE(token) = END_OF_STATEMENT;
+          OP(token) = BufferGetCh(buf);     
 
         return END_OF_STATEMENT;
         }
 
+    // SEPARATOR
+    if (temp == SEPARATOR)
+        {
+        TYPE(token) = SEPARATOR;
+          OP(token) = BufferGetCh(buf);
+
+        return SEPARATOR;
+        }
+
+    report_lexical_error("Uncknown token type\n");
+    TYPE(token) = UNKNOWN_TYPE;
+
     return UNKNOWN_TYPE;
     }
 
+// TODO CHECK WORD LENGTH
 static int BufferGetWord (Buffer* buf, char* word_buffer)
     {
     assertlog(buf,         EFAULT, return LFAILURE);
     assertlog(word_buffer, EFAULT, return LFAILURE);
 
-    // buf->str = SkipSpaces(buf->str); 
+    // buf->str = SkipSpaces(buf->str);     
 
+    // int word_length = strcnspb
     int n = 0;
+    // printf("%s\n", buf->str);
+    // $p(word_buffer)
+    // $p(buf->str)
     sscanf(buf->str, "%[a-zA-Z]%n", word_buffer, &n);
     buf->str += n;
     buf->indent +=n;
@@ -275,6 +301,8 @@ static int BufferGetWord (Buffer* buf, char* word_buffer)
     return n;
     }
 
+// TODO remowe ! beffore strcmpr
+// TODO macros for strcmp, (for examle: IS_STR_EQ)
 static int IsInstruction (const char* str)
     {
     assertlog(str, EFAULT, return NOT_A_INSTRUCTION)
@@ -313,7 +341,7 @@ static int IsNativeFunction (const char* str)
     assertlog(str, EFAULT, return NOT_A_NATIVE_FUNCTION)
 
     for (int i = 0; i < NUMBER_OF_NATIVE_FUNCTIONS; i++)
-        if (!stricmp(str, NATIVE_FUNCTIONS[i]))
+        if (!stricmp(str, NATIVE_FUNCTIONS[i].str))
             return i;
     
     return NOT_A_NATIVE_FUNCTION;

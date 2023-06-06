@@ -1,9 +1,11 @@
 // Epressions
 static Token* GetE     (SyntacticCtx* ctx);
 static Token* GetT     (SyntacticCtx* ctx);
-static Token* GetPower (SyntacticCtx* ctx);
+// static Token* GetPower (SyntacticCtx* ctx);
+static Token* GetLogical (SyntacticCtx* ctx);
 static Token* GetP     (SyntacticCtx* ctx);
 static Token* GetN     (SyntacticCtx* ctx);
+
 
 static Token* GetE (SyntacticCtx* ctx)
     {
@@ -33,7 +35,8 @@ static Token* GetT (SyntacticCtx* ctx)
     $log(DEBUG_ALL)
     assertlog (ctx, EFAULT, return LNULL);
 
-    Token* node = GetPower(ctx);
+    // Token* node = GetPower(ctx);
+    Token* node = GetLogical(ctx);
     $LOG_TOKEN(node, STRING_ARR(ctx))
 
     Token* prev_op = node;
@@ -44,14 +47,16 @@ static Token* GetT (SyntacticCtx* ctx)
         POSITION(ctx)++;
         
          LEFT(current_op) = prev_op;
-        RIGHT(current_op) = GetPower(ctx);
-
+        // RIGHT(current_op) = GetPower(ctx);
+        RIGHT(current_op) = GetLogical(ctx);
+        
         prev_op = current_op;
         }
     
     return prev_op;
     }
 
+/*
 Token* GetPower (SyntacticCtx* ctx)
     {
     $log(DEBUG_ALL)
@@ -69,6 +74,32 @@ Token* GetPower (SyntacticCtx* ctx)
          LEFT(current_op) = prev_op;
         RIGHT(current_op) = GetP(ctx);
 
+        prev_op = current_op;
+        }
+    
+    return prev_op;
+    }
+*/
+
+static Token* GetLogical (SyntacticCtx* ctx)
+    {
+    $log(2)
+    assertlog (ctx, EFAULT, return LNULL)
+
+    Token* node = GetP(ctx);
+    $LOG_TOKEN(node, STRING_ARR(ctx))
+
+    Token* prev_op = node;
+    while (TYPE(token) == OPERATOR && (OP(token) == LESS || OP(token) == BIGGER))
+        {
+        $LOG_TOKEN(token, STRING_ARR(ctx))
+
+        Token* current_op = token;
+        POSITION(ctx)++;
+        
+         LEFT(current_op) = prev_op;
+        RIGHT(current_op) = GetP(ctx);
+        
         prev_op = current_op;
         }
     
@@ -111,11 +142,43 @@ static Token* GetN (SyntacticCtx* ctx)
             return NULL;
         }
 
-    if (!IS_CONST(token) && !IS_VAR(token))
+    if (TYPE(token) == FUNCTION)
         {
-        report_syntax_error("Cringe, this is not variable or constant node =(\n");
-        return LNULL;
-        } 
+        Token* func_name = token;
+
+        int label_pos = IsFuncLabel (NAME_ID(func_name), FUNC_TABEL(ctx));
+
+        if (label_pos == NOT_A_LABEL)
+            {
+            report_syntax_error("Not a function name\n");
+            return LNULL;
+            }
+        
+        if ((*(FUNC_TABEL(ctx)->label_arr + label_pos))->ret_type == VOID)
+            {
+            report_syntax_error("Void function '%s' can't be in expression\n", STRING_ARR(ctx)[NAME_ID(func_name)]);
+            return LNULL;
+            }
+
+        return GetCall(ctx);
+        }
+
+    if (TYPE(token) == NATIVE_FUNCTION)
+        {
+        if (NATIVE_FUNC(token) == FOUT)
+            {
+            report_syntax_error("'%s' can't be in expression\n\n", NATIVE_FUNCTIONS[NATIVE_FUNC(token)]);
+            return LNULL;
+            }
+
+        return GetNativeFunction(ctx);
+        }
+    else 
+        if (!IS_CONST(token) && !IS_VAR(token))
+            {
+            report_syntax_error("Cringe, this is not variable or constant node =(\n");
+            return LNULL;
+            } 
     
     Token* result = token;
     POSITION(ctx)++;

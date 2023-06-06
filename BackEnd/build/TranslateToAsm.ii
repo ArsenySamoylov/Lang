@@ -16,6 +16,88 @@
 
 #pragma GCC diagnostic ignored "-Wlarger-than="
 
+# 1 "../Common/Structures/Tabels/NameTable.h" 1
+       
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long int ptrdiff_t;
+# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long unsigned int size_t;
+# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef struct {
+  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
+  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
+# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+} max_align_t;
+
+
+
+
+
+
+  typedef decltype(nullptr) nullptr_t;
+# 4 "../Common/Structures/Tabels/NameTable.h" 2
+
+
+# 5 "../Common/Structures/Tabels/NameTable.h"
+enum LOCALITY_NUM
+    {
+    GLOBAL,
+    LOCAL,
+    };
+
+struct Token;
+
+struct Label
+    {
+    int type;
+    int name_id;
+
+    int number_of_vars;
+    int ret_type;
+
+    int var_number;
+    int local_type;
+
+    const Token* global_initialization;
+    };
+
+struct NameTable
+    {
+    Label** label_arr;
+    size_t arr_size;
+
+    size_t number_of_labels;
+    };
+
+struct NameTableArr
+    {
+    NameTable** arr;
+
+    int size_of_tables_arr;
+    int number_of_tables;
+    };
+
+NameTable* NewNameTable();
+int CloseNameTable (NameTable* table);
+
+int AddLabel (Label* label, NameTable* table);
+Label* CopyLabel (Label* label, NameTable* table);
+
+Label* IsLabel (int name_id, int type, NameTable* table);
+int CompareLabels (Label* label1, Label* label2);
+
+
+NameTableArr* NewNameTableArr (int start_size);
+int DeleteNameTableArr (NameTableArr* table_arr);
+
+
+NameTable* AddTable (NameTableArr* table_arr);
+# 6 "../Common/Structures/Token/Token.h" 2
+
 union TokenValue
     {
     int t_instruction;
@@ -40,6 +122,8 @@ struct Token
 
     TokenValue value;
 
+    Label* t_label_ptr;
+
 
     const char* ptr_to_src_code;
 
@@ -60,29 +144,8 @@ int DeleteBranch (Token* def_node);
 
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-
-# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef long int ptrdiff_t;
-# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef long unsigned int size_t;
-# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef struct {
-  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
-  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
-# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-} max_align_t;
-
-
-
-
-
-
-  typedef decltype(nullptr) nullptr_t;
 # 6 "../Common/Structures/Tabels/Tabels.h" 2
 
-
-# 7 "../Common/Structures/Tabels/Tabels.h"
 const int NOT_DECLARED = - 111;
 const int NOT_A_LABEL = -9;
 
@@ -121,9 +184,8 @@ struct FuncLabel
 
     int number_of_return;
 
-
-
     size_t number_of_local_variables;
+    int number_of_parametrs;
     };
 
 struct FuncTabel
@@ -165,6 +227,7 @@ int AddVarLabel (VarLabel* label, VarTabel* tabel);
 int AddVarLabel (int name_id, VarTabel* tabel);
 # 5 "../Common/Structures/Program/Program.h" 2
 
+
 struct Program
     {
     Token* token_arr;
@@ -176,6 +239,12 @@ struct Program
     int number_of_strings;
 
     const char* path_to_src_file;
+
+
+    NameTableArr* name_table_arr;
+    int number_of_global_vars;
+
+
     };
 
 int ProgramCtor(Program* program, const char* path_to_src_file);
@@ -1084,12 +1153,12 @@ extern int __overflow (FILE *, int);
 # 902 "/usr/include/stdio.h" 3 4
 }
 # 4 "./src/TranslateToAsm.cpp" 2
-# 1 "/usr/include/c++/11/math.h" 1 3
-# 36 "/usr/include/c++/11/math.h" 3
-# 1 "/usr/include/c++/11/cmath" 1 3
-# 39 "/usr/include/c++/11/cmath" 3
+# 1 "/usr/include/c++/11/stdlib.h" 1 3
+# 36 "/usr/include/c++/11/stdlib.h" 3
+# 1 "/usr/include/c++/11/cstdlib" 1 3
+# 39 "/usr/include/c++/11/cstdlib" 3
        
-# 40 "/usr/include/c++/11/cmath" 3
+# 40 "/usr/include/c++/11/cstdlib" 3
 
 # 1 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h" 1 3
 # 278 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h" 3
@@ -1121,7 +1190,1579 @@ namespace __gnu_cxx
 # 777 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h" 3
 # 1 "/usr/include/c++/11/pstl/pstl_config.h" 1 3
 # 778 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h" 2 3
-# 42 "/usr/include/c++/11/cmath" 2 3
+# 42 "/usr/include/c++/11/cstdlib" 2 3
+# 75 "/usr/include/c++/11/cstdlib" 3
+# 1 "/usr/include/stdlib.h" 1 3 4
+# 26 "/usr/include/stdlib.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
+# 27 "/usr/include/stdlib.h" 2 3 4
+
+
+
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 33 "/usr/include/stdlib.h" 2 3 4
+
+extern "C" {
+
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/waitflags.h" 1 3 4
+# 41 "/usr/include/stdlib.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/waitstatus.h" 1 3 4
+# 42 "/usr/include/stdlib.h" 2 3 4
+# 59 "/usr/include/stdlib.h" 3 4
+typedef struct
+  {
+    int quot;
+    int rem;
+  } div_t;
+
+
+
+typedef struct
+  {
+    long int quot;
+    long int rem;
+  } ldiv_t;
+
+
+
+
+
+__extension__ typedef struct
+  {
+    long long int quot;
+    long long int rem;
+  } lldiv_t;
+# 98 "/usr/include/stdlib.h" 3 4
+extern size_t __ctype_get_mb_cur_max (void) noexcept (true) ;
+
+
+
+extern double atof (const char *__nptr)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
+
+extern int atoi (const char *__nptr)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
+
+extern long int atol (const char *__nptr)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
+
+
+
+__extension__ extern long long int atoll (const char *__nptr)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
+
+
+
+extern double strtod (const char *__restrict __nptr,
+        char **__restrict __endptr)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+extern float strtof (const char *__restrict __nptr,
+       char **__restrict __endptr) noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+extern long double strtold (const char *__restrict __nptr,
+       char **__restrict __endptr)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+# 141 "/usr/include/stdlib.h" 3 4
+extern _Float32 strtof32 (const char *__restrict __nptr,
+     char **__restrict __endptr)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+extern _Float64 strtof64 (const char *__restrict __nptr,
+     char **__restrict __endptr)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+extern _Float128 strtof128 (const char *__restrict __nptr,
+       char **__restrict __endptr)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+extern _Float32x strtof32x (const char *__restrict __nptr,
+       char **__restrict __endptr)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+extern _Float64x strtof64x (const char *__restrict __nptr,
+       char **__restrict __endptr)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+# 177 "/usr/include/stdlib.h" 3 4
+extern long int strtol (const char *__restrict __nptr,
+   char **__restrict __endptr, int __base)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+extern unsigned long int strtoul (const char *__restrict __nptr,
+      char **__restrict __endptr, int __base)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+__extension__
+extern long long int strtoq (const char *__restrict __nptr,
+        char **__restrict __endptr, int __base)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+__extension__
+extern unsigned long long int strtouq (const char *__restrict __nptr,
+           char **__restrict __endptr, int __base)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+
+__extension__
+extern long long int strtoll (const char *__restrict __nptr,
+         char **__restrict __endptr, int __base)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+__extension__
+extern unsigned long long int strtoull (const char *__restrict __nptr,
+     char **__restrict __endptr, int __base)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+
+extern int strfromd (char *__dest, size_t __size, const char *__format,
+       double __f)
+     noexcept (true) __attribute__ ((__nonnull__ (3)));
+
+extern int strfromf (char *__dest, size_t __size, const char *__format,
+       float __f)
+     noexcept (true) __attribute__ ((__nonnull__ (3)));
+
+extern int strfroml (char *__dest, size_t __size, const char *__format,
+       long double __f)
+     noexcept (true) __attribute__ ((__nonnull__ (3)));
+# 233 "/usr/include/stdlib.h" 3 4
+extern int strfromf32 (char *__dest, size_t __size, const char * __format,
+         _Float32 __f)
+     noexcept (true) __attribute__ ((__nonnull__ (3)));
+
+
+
+extern int strfromf64 (char *__dest, size_t __size, const char * __format,
+         _Float64 __f)
+     noexcept (true) __attribute__ ((__nonnull__ (3)));
+
+
+
+extern int strfromf128 (char *__dest, size_t __size, const char * __format,
+   _Float128 __f)
+     noexcept (true) __attribute__ ((__nonnull__ (3)));
+
+
+
+extern int strfromf32x (char *__dest, size_t __size, const char * __format,
+   _Float32x __f)
+     noexcept (true) __attribute__ ((__nonnull__ (3)));
+
+
+
+extern int strfromf64x (char *__dest, size_t __size, const char * __format,
+   _Float64x __f)
+     noexcept (true) __attribute__ ((__nonnull__ (3)));
+# 273 "/usr/include/stdlib.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 1 3 4
+# 22 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h" 1 3 4
+# 27 "/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h" 3 4
+struct __locale_struct
+{
+
+  struct __locale_data *__locales[13];
+
+
+  const unsigned short int *__ctype_b;
+  const int *__ctype_tolower;
+  const int *__ctype_toupper;
+
+
+  const char *__names[13];
+};
+
+typedef struct __locale_struct *__locale_t;
+# 23 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 2 3 4
+
+typedef __locale_t locale_t;
+# 274 "/usr/include/stdlib.h" 2 3 4
+
+extern long int strtol_l (const char *__restrict __nptr,
+     char **__restrict __endptr, int __base,
+     locale_t __loc) noexcept (true) __attribute__ ((__nonnull__ (1, 4)));
+
+extern unsigned long int strtoul_l (const char *__restrict __nptr,
+        char **__restrict __endptr,
+        int __base, locale_t __loc)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 4)));
+
+__extension__
+extern long long int strtoll_l (const char *__restrict __nptr,
+    char **__restrict __endptr, int __base,
+    locale_t __loc)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 4)));
+
+__extension__
+extern unsigned long long int strtoull_l (const char *__restrict __nptr,
+       char **__restrict __endptr,
+       int __base, locale_t __loc)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 4)));
+
+extern double strtod_l (const char *__restrict __nptr,
+   char **__restrict __endptr, locale_t __loc)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
+
+extern float strtof_l (const char *__restrict __nptr,
+         char **__restrict __endptr, locale_t __loc)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
+
+extern long double strtold_l (const char *__restrict __nptr,
+         char **__restrict __endptr,
+         locale_t __loc)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
+# 317 "/usr/include/stdlib.h" 3 4
+extern _Float32 strtof32_l (const char *__restrict __nptr,
+       char **__restrict __endptr,
+       locale_t __loc)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
+
+
+
+extern _Float64 strtof64_l (const char *__restrict __nptr,
+       char **__restrict __endptr,
+       locale_t __loc)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
+
+
+
+extern _Float128 strtof128_l (const char *__restrict __nptr,
+         char **__restrict __endptr,
+         locale_t __loc)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
+
+
+
+extern _Float32x strtof32x_l (const char *__restrict __nptr,
+         char **__restrict __endptr,
+         locale_t __loc)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
+
+
+
+extern _Float64x strtof64x_l (const char *__restrict __nptr,
+         char **__restrict __endptr,
+         locale_t __loc)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
+# 386 "/usr/include/stdlib.h" 3 4
+extern char *l64a (long int __n) noexcept (true) ;
+
+
+extern long int a64l (const char *__s)
+     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/sys/types.h" 1 3 4
+# 27 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
+extern "C" {
+
+
+
+
+
+typedef __u_char u_char;
+typedef __u_short u_short;
+typedef __u_int u_int;
+typedef __u_long u_long;
+typedef __quad_t quad_t;
+typedef __u_quad_t u_quad_t;
+typedef __fsid_t fsid_t;
+
+
+typedef __loff_t loff_t;
+
+
+
+
+typedef __ino_t ino_t;
+
+
+
+
+
+
+typedef __ino64_t ino64_t;
+
+
+
+
+typedef __dev_t dev_t;
+
+
+
+
+typedef __gid_t gid_t;
+
+
+
+
+typedef __mode_t mode_t;
+
+
+
+
+typedef __nlink_t nlink_t;
+
+
+
+
+typedef __uid_t uid_t;
+# 97 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
+typedef __pid_t pid_t;
+
+
+
+
+
+typedef __id_t id_t;
+# 114 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
+typedef __daddr_t daddr_t;
+typedef __caddr_t caddr_t;
+
+
+
+
+
+typedef __key_t key_t;
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/clock_t.h" 1 3 4
+
+
+
+
+
+
+typedef __clock_t clock_t;
+# 127 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h" 1 3 4
+
+
+
+
+
+
+typedef __clockid_t clockid_t;
+# 129 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/time_t.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/bits/types/time_t.h" 3 4
+typedef __time_t time_t;
+# 130 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/timer_t.h" 1 3 4
+
+
+
+
+
+
+typedef __timer_t timer_t;
+# 131 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+
+typedef __useconds_t useconds_t;
+
+
+
+typedef __suseconds_t suseconds_t;
+
+
+
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 145 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+
+typedef unsigned long int ulong;
+typedef unsigned short int ushort;
+typedef unsigned int uint;
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/stdint-intn.h" 1 3 4
+# 24 "/usr/include/x86_64-linux-gnu/bits/stdint-intn.h" 3 4
+typedef __int8_t int8_t;
+typedef __int16_t int16_t;
+typedef __int32_t int32_t;
+typedef __int64_t int64_t;
+# 156 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+typedef __uint8_t u_int8_t;
+typedef __uint16_t u_int16_t;
+typedef __uint32_t u_int32_t;
+typedef __uint64_t u_int64_t;
+
+
+typedef int register_t __attribute__ ((__mode__ (__word__)));
+# 176 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
+# 1 "/usr/include/endian.h" 1 3 4
+# 24 "/usr/include/endian.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/endian.h" 1 3 4
+# 35 "/usr/include/x86_64-linux-gnu/bits/endian.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/endianness.h" 1 3 4
+# 36 "/usr/include/x86_64-linux-gnu/bits/endian.h" 2 3 4
+# 25 "/usr/include/endian.h" 2 3 4
+# 35 "/usr/include/endian.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 1 3 4
+# 33 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 3 4
+static __inline __uint16_t
+__bswap_16 (__uint16_t __bsx)
+{
+
+  return __builtin_bswap16 (__bsx);
+
+
+
+}
+
+
+
+
+
+
+static __inline __uint32_t
+__bswap_32 (__uint32_t __bsx)
+{
+
+  return __builtin_bswap32 (__bsx);
+
+
+
+}
+# 69 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 3 4
+__extension__ static __inline __uint64_t
+__bswap_64 (__uint64_t __bsx)
+{
+
+  return __builtin_bswap64 (__bsx);
+
+
+
+}
+# 36 "/usr/include/endian.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/uintn-identity.h" 1 3 4
+# 32 "/usr/include/x86_64-linux-gnu/bits/uintn-identity.h" 3 4
+static __inline __uint16_t
+__uint16_identity (__uint16_t __x)
+{
+  return __x;
+}
+
+static __inline __uint32_t
+__uint32_identity (__uint32_t __x)
+{
+  return __x;
+}
+
+static __inline __uint64_t
+__uint64_identity (__uint64_t __x)
+{
+  return __x;
+}
+# 37 "/usr/include/endian.h" 2 3 4
+# 177 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/sys/select.h" 1 3 4
+# 30 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/select.h" 1 3 4
+# 31 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h" 1 3 4
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h" 1 3 4
+
+
+
+
+typedef struct
+{
+  unsigned long int __val[(1024 / (8 * sizeof (unsigned long int)))];
+} __sigset_t;
+# 5 "/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h" 2 3 4
+
+
+typedef __sigset_t sigset_t;
+# 34 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h" 1 3 4
+
+
+
+
+
+
+
+struct timeval
+{
+
+
+
+
+  __time_t tv_sec;
+  __suseconds_t tv_usec;
+
+};
+# 38 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 1 3 4
+# 11 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 3 4
+struct timespec
+{
+
+
+
+  __time_t tv_sec;
+
+
+
+
+  __syscall_slong_t tv_nsec;
+# 31 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 3 4
+};
+# 40 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+# 49 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+typedef long int __fd_mask;
+# 59 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+typedef struct
+  {
+
+
+
+    __fd_mask fds_bits[1024 / (8 * (int) sizeof (__fd_mask))];
+
+
+
+
+
+  } fd_set;
+
+
+
+
+
+
+typedef __fd_mask fd_mask;
+# 91 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+extern "C" {
+# 102 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+extern int select (int __nfds, fd_set *__restrict __readfds,
+     fd_set *__restrict __writefds,
+     fd_set *__restrict __exceptfds,
+     struct timeval *__restrict __timeout);
+# 127 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+extern int pselect (int __nfds, fd_set *__restrict __readfds,
+      fd_set *__restrict __writefds,
+      fd_set *__restrict __exceptfds,
+      const struct timespec *__restrict __timeout,
+      const __sigset_t *__restrict __sigmask);
+# 153 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+}
+# 180 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+
+
+
+typedef __blksize_t blksize_t;
+
+
+
+
+
+
+typedef __blkcnt_t blkcnt_t;
+
+
+
+typedef __fsblkcnt_t fsblkcnt_t;
+
+
+
+typedef __fsfilcnt_t fsfilcnt_t;
+# 219 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
+typedef __blkcnt64_t blkcnt64_t;
+typedef __fsblkcnt64_t fsblkcnt64_t;
+typedef __fsfilcnt64_t fsfilcnt64_t;
+
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 1 3 4
+# 23 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 1 3 4
+# 44 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h" 1 3 4
+# 21 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 22 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h" 2 3 4
+# 45 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 2 3 4
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h" 1 3 4
+# 25 "/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h" 3 4
+typedef union
+{
+  __extension__ unsigned long long int __value64;
+  struct
+  {
+    unsigned int __low;
+    unsigned int __high;
+  } __value32;
+} __atomic_wide_counter;
+# 47 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 2 3 4
+
+
+
+
+typedef struct __pthread_internal_list
+{
+  struct __pthread_internal_list *__prev;
+  struct __pthread_internal_list *__next;
+} __pthread_list_t;
+
+typedef struct __pthread_internal_slist
+{
+  struct __pthread_internal_slist *__next;
+} __pthread_slist_t;
+# 76 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/struct_mutex.h" 1 3 4
+# 22 "/usr/include/x86_64-linux-gnu/bits/struct_mutex.h" 3 4
+struct __pthread_mutex_s
+{
+  int __lock;
+  unsigned int __count;
+  int __owner;
+
+  unsigned int __nusers;
+
+
+
+  int __kind;
+
+  short __spins;
+  short __elision;
+  __pthread_list_t __list;
+# 53 "/usr/include/x86_64-linux-gnu/bits/struct_mutex.h" 3 4
+};
+# 77 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 2 3 4
+# 89 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h" 1 3 4
+# 23 "/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h" 3 4
+struct __pthread_rwlock_arch_t
+{
+  unsigned int __readers;
+  unsigned int __writers;
+  unsigned int __wrphase_futex;
+  unsigned int __writers_futex;
+  unsigned int __pad3;
+  unsigned int __pad4;
+
+  int __cur_writer;
+  int __shared;
+  signed char __rwelision;
+
+
+
+
+  unsigned char __pad1[7];
+
+
+  unsigned long int __pad2;
+
+
+  unsigned int __flags;
+# 55 "/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h" 3 4
+};
+# 90 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 2 3 4
+
+
+
+
+struct __pthread_cond_s
+{
+  __atomic_wide_counter __wseq;
+  __atomic_wide_counter __g1_start;
+  unsigned int __g_refs[2] ;
+  unsigned int __g_size[2];
+  unsigned int __g1_orig_size;
+  unsigned int __wrefs;
+  unsigned int __g_signals[2];
+};
+
+typedef unsigned int __tss_t;
+typedef unsigned long int __thrd_t;
+
+typedef struct
+{
+  int __data ;
+} __once_flag;
+# 24 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 2 3 4
+
+
+
+typedef unsigned long int pthread_t;
+
+
+
+
+typedef union
+{
+  char __size[4];
+  int __align;
+} pthread_mutexattr_t;
+
+
+
+
+typedef union
+{
+  char __size[4];
+  int __align;
+} pthread_condattr_t;
+
+
+
+typedef unsigned int pthread_key_t;
+
+
+
+typedef int pthread_once_t;
+
+
+union pthread_attr_t
+{
+  char __size[56];
+  long int __align;
+};
+
+typedef union pthread_attr_t pthread_attr_t;
+
+
+
+
+typedef union
+{
+  struct __pthread_mutex_s __data;
+  char __size[40];
+  long int __align;
+} pthread_mutex_t;
+
+
+typedef union
+{
+  struct __pthread_cond_s __data;
+  char __size[48];
+  __extension__ long long int __align;
+} pthread_cond_t;
+
+
+
+
+
+typedef union
+{
+  struct __pthread_rwlock_arch_t __data;
+  char __size[56];
+  long int __align;
+} pthread_rwlock_t;
+
+typedef union
+{
+  char __size[8];
+  long int __align;
+} pthread_rwlockattr_t;
+
+
+
+
+
+typedef volatile int pthread_spinlock_t;
+
+
+
+
+typedef union
+{
+  char __size[32];
+  long int __align;
+} pthread_barrier_t;
+
+typedef union
+{
+  char __size[4];
+  int __align;
+} pthread_barrierattr_t;
+# 228 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+}
+# 396 "/usr/include/stdlib.h" 2 3 4
+
+
+
+
+
+
+extern long int random (void) noexcept (true);
+
+
+extern void srandom (unsigned int __seed) noexcept (true);
+
+
+
+
+
+extern char *initstate (unsigned int __seed, char *__statebuf,
+   size_t __statelen) noexcept (true) __attribute__ ((__nonnull__ (2)));
+
+
+
+extern char *setstate (char *__statebuf) noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+
+
+
+
+struct random_data
+  {
+    int32_t *fptr;
+    int32_t *rptr;
+    int32_t *state;
+    int rand_type;
+    int rand_deg;
+    int rand_sep;
+    int32_t *end_ptr;
+  };
+
+extern int random_r (struct random_data *__restrict __buf,
+       int32_t *__restrict __result) noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+extern int srandom_r (unsigned int __seed, struct random_data *__buf)
+     noexcept (true) __attribute__ ((__nonnull__ (2)));
+
+extern int initstate_r (unsigned int __seed, char *__restrict __statebuf,
+   size_t __statelen,
+   struct random_data *__restrict __buf)
+     noexcept (true) __attribute__ ((__nonnull__ (2, 4)));
+
+extern int setstate_r (char *__restrict __statebuf,
+         struct random_data *__restrict __buf)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+
+
+
+
+extern int rand (void) noexcept (true);
+
+extern void srand (unsigned int __seed) noexcept (true);
+
+
+
+extern int rand_r (unsigned int *__seed) noexcept (true);
+
+
+
+
+
+
+
+extern double drand48 (void) noexcept (true);
+extern double erand48 (unsigned short int __xsubi[3]) noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+extern long int lrand48 (void) noexcept (true);
+extern long int nrand48 (unsigned short int __xsubi[3])
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+extern long int mrand48 (void) noexcept (true);
+extern long int jrand48 (unsigned short int __xsubi[3])
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+extern void srand48 (long int __seedval) noexcept (true);
+extern unsigned short int *seed48 (unsigned short int __seed16v[3])
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+extern void lcong48 (unsigned short int __param[7]) noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+
+
+struct drand48_data
+  {
+    unsigned short int __x[3];
+    unsigned short int __old_x[3];
+    unsigned short int __c;
+    unsigned short int __init;
+    __extension__ unsigned long long int __a;
+
+  };
+
+
+extern int drand48_r (struct drand48_data *__restrict __buffer,
+        double *__restrict __result) noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+extern int erand48_r (unsigned short int __xsubi[3],
+        struct drand48_data *__restrict __buffer,
+        double *__restrict __result) noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+
+extern int lrand48_r (struct drand48_data *__restrict __buffer,
+        long int *__restrict __result)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+extern int nrand48_r (unsigned short int __xsubi[3],
+        struct drand48_data *__restrict __buffer,
+        long int *__restrict __result)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+
+extern int mrand48_r (struct drand48_data *__restrict __buffer,
+        long int *__restrict __result)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+extern int jrand48_r (unsigned short int __xsubi[3],
+        struct drand48_data *__restrict __buffer,
+        long int *__restrict __result)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+
+extern int srand48_r (long int __seedval, struct drand48_data *__buffer)
+     noexcept (true) __attribute__ ((__nonnull__ (2)));
+
+extern int seed48_r (unsigned short int __seed16v[3],
+       struct drand48_data *__buffer) noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+extern int lcong48_r (unsigned short int __param[7],
+        struct drand48_data *__buffer)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
+
+
+
+
+extern void *malloc (size_t __size) noexcept (true) __attribute__ ((__malloc__))
+     __attribute__ ((__alloc_size__ (1))) ;
+
+extern void *calloc (size_t __nmemb, size_t __size)
+     noexcept (true) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (1, 2))) ;
+
+
+
+
+
+
+extern void *realloc (void *__ptr, size_t __size)
+     noexcept (true) __attribute__ ((__warn_unused_result__)) __attribute__ ((__alloc_size__ (2)));
+
+
+extern void free (void *__ptr) noexcept (true);
+
+
+
+
+
+
+
+extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
+     noexcept (true) __attribute__ ((__warn_unused_result__))
+     __attribute__ ((__alloc_size__ (2, 3)))
+    __attribute__ ((__malloc__ (__builtin_free, 1)));
+
+
+extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
+     noexcept (true) __attribute__ ((__malloc__ (reallocarray, 1)));
+
+
+
+# 1 "/usr/include/alloca.h" 1 3 4
+# 24 "/usr/include/alloca.h" 3 4
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 25 "/usr/include/alloca.h" 2 3 4
+
+extern "C" {
+
+
+
+
+
+extern void *alloca (size_t __size) noexcept (true);
+
+
+
+
+
+}
+# 575 "/usr/include/stdlib.h" 2 3 4
+
+
+
+
+
+extern void *valloc (size_t __size) noexcept (true) __attribute__ ((__malloc__))
+     __attribute__ ((__alloc_size__ (1))) ;
+
+
+
+
+extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
+     noexcept (true) __attribute__ ((__nonnull__ (1))) ;
+
+
+
+
+extern void *aligned_alloc (size_t __alignment, size_t __size)
+     noexcept (true) __attribute__ ((__malloc__)) __attribute__ ((__alloc_align__ (1)))
+     __attribute__ ((__alloc_size__ (2))) ;
+
+
+
+extern void abort (void) noexcept (true) __attribute__ ((__noreturn__));
+
+
+
+extern int atexit (void (*__func) (void)) noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+
+extern "C++" int at_quick_exit (void (*__func) (void))
+     noexcept (true) __asm ("at_quick_exit") __attribute__ ((__nonnull__ (1)));
+# 617 "/usr/include/stdlib.h" 3 4
+extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+
+
+extern void exit (int __status) noexcept (true) __attribute__ ((__noreturn__));
+
+
+
+
+
+extern void quick_exit (int __status) noexcept (true) __attribute__ ((__noreturn__));
+
+
+
+
+
+extern void _Exit (int __status) noexcept (true) __attribute__ ((__noreturn__));
+
+
+
+
+extern char *getenv (const char *__name) noexcept (true) __attribute__ ((__nonnull__ (1))) ;
+
+
+
+
+extern char *secure_getenv (const char *__name)
+     noexcept (true) __attribute__ ((__nonnull__ (1))) ;
+
+
+
+
+
+
+extern int putenv (char *__string) noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+
+
+extern int setenv (const char *__name, const char *__value, int __replace)
+     noexcept (true) __attribute__ ((__nonnull__ (2)));
+
+
+extern int unsetenv (const char *__name) noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+
+
+
+
+extern int clearenv (void) noexcept (true);
+# 682 "/usr/include/stdlib.h" 3 4
+extern char *mktemp (char *__template) noexcept (true) __attribute__ ((__nonnull__ (1)));
+# 695 "/usr/include/stdlib.h" 3 4
+extern int mkstemp (char *__template) __attribute__ ((__nonnull__ (1))) ;
+# 705 "/usr/include/stdlib.h" 3 4
+extern int mkstemp64 (char *__template) __attribute__ ((__nonnull__ (1))) ;
+# 717 "/usr/include/stdlib.h" 3 4
+extern int mkstemps (char *__template, int __suffixlen) __attribute__ ((__nonnull__ (1))) ;
+# 727 "/usr/include/stdlib.h" 3 4
+extern int mkstemps64 (char *__template, int __suffixlen)
+     __attribute__ ((__nonnull__ (1))) ;
+# 738 "/usr/include/stdlib.h" 3 4
+extern char *mkdtemp (char *__template) noexcept (true) __attribute__ ((__nonnull__ (1))) ;
+# 749 "/usr/include/stdlib.h" 3 4
+extern int mkostemp (char *__template, int __flags) __attribute__ ((__nonnull__ (1))) ;
+# 759 "/usr/include/stdlib.h" 3 4
+extern int mkostemp64 (char *__template, int __flags) __attribute__ ((__nonnull__ (1))) ;
+# 769 "/usr/include/stdlib.h" 3 4
+extern int mkostemps (char *__template, int __suffixlen, int __flags)
+     __attribute__ ((__nonnull__ (1))) ;
+# 781 "/usr/include/stdlib.h" 3 4
+extern int mkostemps64 (char *__template, int __suffixlen, int __flags)
+     __attribute__ ((__nonnull__ (1))) ;
+# 791 "/usr/include/stdlib.h" 3 4
+extern int system (const char *__command) ;
+
+
+
+
+
+extern char *canonicalize_file_name (const char *__name)
+     noexcept (true) __attribute__ ((__nonnull__ (1))) __attribute__ ((__malloc__))
+     __attribute__ ((__malloc__ (__builtin_free, 1))) ;
+# 808 "/usr/include/stdlib.h" 3 4
+extern char *realpath (const char *__restrict __name,
+         char *__restrict __resolved) noexcept (true) ;
+
+
+
+
+
+
+typedef int (*__compar_fn_t) (const void *, const void *);
+
+
+typedef __compar_fn_t comparison_fn_t;
+
+
+
+typedef int (*__compar_d_fn_t) (const void *, const void *, void *);
+
+
+
+
+extern void *bsearch (const void *__key, const void *__base,
+        size_t __nmemb, size_t __size, __compar_fn_t __compar)
+     __attribute__ ((__nonnull__ (1, 2, 5))) ;
+
+
+
+
+
+
+
+extern void qsort (void *__base, size_t __nmemb, size_t __size,
+     __compar_fn_t __compar) __attribute__ ((__nonnull__ (1, 4)));
+
+extern void qsort_r (void *__base, size_t __nmemb, size_t __size,
+       __compar_d_fn_t __compar, void *__arg)
+  __attribute__ ((__nonnull__ (1, 4)));
+
+
+
+
+extern int abs (int __x) noexcept (true) __attribute__ ((__const__)) ;
+extern long int labs (long int __x) noexcept (true) __attribute__ ((__const__)) ;
+
+
+__extension__ extern long long int llabs (long long int __x)
+     noexcept (true) __attribute__ ((__const__)) ;
+
+
+
+
+
+
+extern div_t div (int __numer, int __denom)
+     noexcept (true) __attribute__ ((__const__)) ;
+extern ldiv_t ldiv (long int __numer, long int __denom)
+     noexcept (true) __attribute__ ((__const__)) ;
+
+
+__extension__ extern lldiv_t lldiv (long long int __numer,
+        long long int __denom)
+     noexcept (true) __attribute__ ((__const__)) ;
+# 880 "/usr/include/stdlib.h" 3 4
+extern char *ecvt (double __value, int __ndigit, int *__restrict __decpt,
+     int *__restrict __sign) noexcept (true) __attribute__ ((__nonnull__ (3, 4))) ;
+
+
+
+
+extern char *fcvt (double __value, int __ndigit, int *__restrict __decpt,
+     int *__restrict __sign) noexcept (true) __attribute__ ((__nonnull__ (3, 4))) ;
+
+
+
+
+extern char *gcvt (double __value, int __ndigit, char *__buf)
+     noexcept (true) __attribute__ ((__nonnull__ (3))) ;
+
+
+
+
+extern char *qecvt (long double __value, int __ndigit,
+      int *__restrict __decpt, int *__restrict __sign)
+     noexcept (true) __attribute__ ((__nonnull__ (3, 4))) ;
+extern char *qfcvt (long double __value, int __ndigit,
+      int *__restrict __decpt, int *__restrict __sign)
+     noexcept (true) __attribute__ ((__nonnull__ (3, 4))) ;
+extern char *qgcvt (long double __value, int __ndigit, char *__buf)
+     noexcept (true) __attribute__ ((__nonnull__ (3))) ;
+
+
+
+
+extern int ecvt_r (double __value, int __ndigit, int *__restrict __decpt,
+     int *__restrict __sign, char *__restrict __buf,
+     size_t __len) noexcept (true) __attribute__ ((__nonnull__ (3, 4, 5)));
+extern int fcvt_r (double __value, int __ndigit, int *__restrict __decpt,
+     int *__restrict __sign, char *__restrict __buf,
+     size_t __len) noexcept (true) __attribute__ ((__nonnull__ (3, 4, 5)));
+
+extern int qecvt_r (long double __value, int __ndigit,
+      int *__restrict __decpt, int *__restrict __sign,
+      char *__restrict __buf, size_t __len)
+     noexcept (true) __attribute__ ((__nonnull__ (3, 4, 5)));
+extern int qfcvt_r (long double __value, int __ndigit,
+      int *__restrict __decpt, int *__restrict __sign,
+      char *__restrict __buf, size_t __len)
+     noexcept (true) __attribute__ ((__nonnull__ (3, 4, 5)));
+
+
+
+
+
+extern int mblen (const char *__s, size_t __n) noexcept (true);
+
+
+extern int mbtowc (wchar_t *__restrict __pwc,
+     const char *__restrict __s, size_t __n) noexcept (true);
+
+
+extern int wctomb (char *__s, wchar_t __wchar) noexcept (true);
+
+
+
+extern size_t mbstowcs (wchar_t *__restrict __pwcs,
+   const char *__restrict __s, size_t __n) noexcept (true)
+    __attribute__ ((__access__ (__read_only__, 2)));
+
+extern size_t wcstombs (char *__restrict __s,
+   const wchar_t *__restrict __pwcs, size_t __n)
+     noexcept (true)
+  __attribute__ ((__access__ (__write_only__, 1, 3)))
+  __attribute__ ((__access__ (__read_only__, 2)));
+
+
+
+
+
+
+extern int rpmatch (const char *__response) noexcept (true) __attribute__ ((__nonnull__ (1))) ;
+# 967 "/usr/include/stdlib.h" 3 4
+extern int getsubopt (char **__restrict __optionp,
+        char *const *__restrict __tokens,
+        char **__restrict __valuep)
+     noexcept (true) __attribute__ ((__nonnull__ (1, 2, 3))) ;
+
+
+
+
+
+
+
+extern int posix_openpt (int __oflag) ;
+
+
+
+
+
+
+
+extern int grantpt (int __fd) noexcept (true);
+
+
+
+extern int unlockpt (int __fd) noexcept (true);
+
+
+
+
+extern char *ptsname (int __fd) noexcept (true) ;
+
+
+
+
+
+
+extern int ptsname_r (int __fd, char *__buf, size_t __buflen)
+     noexcept (true) __attribute__ ((__nonnull__ (2))) __attribute__ ((__access__ (__write_only__, 2, 3)));
+
+
+extern int getpt (void);
+
+
+
+
+
+
+extern int getloadavg (double __loadavg[], int __nelem)
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+# 1023 "/usr/include/stdlib.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/stdlib-float.h" 1 3 4
+# 1024 "/usr/include/stdlib.h" 2 3 4
+# 1035 "/usr/include/stdlib.h" 3 4
+}
+# 76 "/usr/include/c++/11/cstdlib" 2 3
+
+# 1 "/usr/include/c++/11/bits/std_abs.h" 1 3
+# 33 "/usr/include/c++/11/bits/std_abs.h" 3
+       
+# 34 "/usr/include/c++/11/bits/std_abs.h" 3
+# 46 "/usr/include/c++/11/bits/std_abs.h" 3
+extern "C++"
+{
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+  using ::abs;
+
+
+  inline long
+  abs(long __i) { return __builtin_labs(__i); }
+
+
+
+  inline long long
+  abs(long long __x) { return __builtin_llabs (__x); }
+# 70 "/usr/include/c++/11/bits/std_abs.h" 3
+  inline constexpr double
+  abs(double __x)
+  { return __builtin_fabs(__x); }
+
+  inline constexpr float
+  abs(float __x)
+  { return __builtin_fabsf(__x); }
+
+  inline constexpr long double
+  abs(long double __x)
+  { return __builtin_fabsl(__x); }
+# 107 "/usr/include/c++/11/bits/std_abs.h" 3
+
+}
+}
+# 78 "/usr/include/c++/11/cstdlib" 2 3
+# 121 "/usr/include/c++/11/cstdlib" 3
+extern "C++"
+{
+namespace std __attribute__ ((__visibility__ ("default")))
+{
+
+
+  using ::div_t;
+  using ::ldiv_t;
+
+  using ::abort;
+
+  using ::aligned_alloc;
+
+  using ::atexit;
+
+
+  using ::at_quick_exit;
+
+
+  using ::atof;
+  using ::atoi;
+  using ::atol;
+  using ::bsearch;
+  using ::calloc;
+  using ::div;
+  using ::exit;
+  using ::free;
+  using ::getenv;
+  using ::labs;
+  using ::ldiv;
+  using ::malloc;
+
+  using ::mblen;
+  using ::mbstowcs;
+  using ::mbtowc;
+
+  using ::qsort;
+
+
+  using ::quick_exit;
+
+
+  using ::rand;
+  using ::realloc;
+  using ::srand;
+  using ::strtod;
+  using ::strtol;
+  using ::strtoul;
+  using ::system;
+
+  using ::wcstombs;
+  using ::wctomb;
+
+
+
+  inline ldiv_t
+  div(long __i, long __j) { return ldiv(__i, __j); }
+
+
+
+
+}
+# 195 "/usr/include/c++/11/cstdlib" 3
+namespace __gnu_cxx __attribute__ ((__visibility__ ("default")))
+{
+
+
+
+  using ::lldiv_t;
+
+
+
+
+
+  using ::_Exit;
+
+
+
+  using ::llabs;
+
+  inline lldiv_t
+  div(long long __n, long long __d)
+  { lldiv_t __q; __q.quot = __n / __d; __q.rem = __n % __d; return __q; }
+
+  using ::lldiv;
+# 227 "/usr/include/c++/11/cstdlib" 3
+  using ::atoll;
+  using ::strtoll;
+  using ::strtoull;
+
+  using ::strtof;
+  using ::strtold;
+
+
+}
+
+namespace std
+{
+
+  using ::__gnu_cxx::lldiv_t;
+
+  using ::__gnu_cxx::_Exit;
+
+  using ::__gnu_cxx::llabs;
+  using ::__gnu_cxx::div;
+  using ::__gnu_cxx::lldiv;
+
+  using ::__gnu_cxx::atoll;
+  using ::__gnu_cxx::strtof;
+  using ::__gnu_cxx::strtoll;
+  using ::__gnu_cxx::strtoull;
+  using ::__gnu_cxx::strtold;
+}
+
+
+
+}
+# 37 "/usr/include/c++/11/stdlib.h" 2 3
+
+using std::abort;
+using std::atexit;
+using std::exit;
+
+
+  using std::at_quick_exit;
+
+
+  using std::quick_exit;
+
+
+
+
+using std::div_t;
+using std::ldiv_t;
+
+using std::abs;
+using std::atof;
+using std::atoi;
+using std::atol;
+using std::bsearch;
+using std::calloc;
+using std::div;
+using std::free;
+using std::getenv;
+using std::labs;
+using std::ldiv;
+using std::malloc;
+
+using std::mblen;
+using std::mbstowcs;
+using std::mbtowc;
+
+using std::qsort;
+using std::rand;
+using std::realloc;
+using std::srand;
+using std::strtod;
+using std::strtol;
+using std::strtoul;
+using std::system;
+
+using std::wcstombs;
+using std::wctomb;
+# 5 "./src/TranslateToAsm.cpp" 2
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 1 3 4
+# 6 "./src/TranslateToAsm.cpp" 2
+# 1 "/usr/include/c++/11/math.h" 1 3
+# 36 "/usr/include/c++/11/math.h" 3
+# 1 "/usr/include/c++/11/cmath" 1 3
+# 39 "/usr/include/c++/11/cmath" 3
+       
+# 40 "/usr/include/c++/11/cmath" 3
+
+
 # 1 "/usr/include/c++/11/bits/cpp_type_traits.h" 1 3
 # 35 "/usr/include/c++/11/bits/cpp_type_traits.h" 3
        
@@ -5065,1412 +6706,6 @@ iseqsig (_T1 __x, _T2 __y) throw ()
 
 }
 # 46 "/usr/include/c++/11/cmath" 2 3
-
-# 1 "/usr/include/c++/11/bits/std_abs.h" 1 3
-# 33 "/usr/include/c++/11/bits/std_abs.h" 3
-       
-# 34 "/usr/include/c++/11/bits/std_abs.h" 3
-
-
-
-
-# 1 "/usr/include/stdlib.h" 1 3 4
-# 26 "/usr/include/stdlib.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
-# 27 "/usr/include/stdlib.h" 2 3 4
-
-
-
-
-
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 33 "/usr/include/stdlib.h" 2 3 4
-
-extern "C" {
-
-
-
-
-
-# 1 "/usr/include/x86_64-linux-gnu/bits/waitflags.h" 1 3 4
-# 41 "/usr/include/stdlib.h" 2 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/waitstatus.h" 1 3 4
-# 42 "/usr/include/stdlib.h" 2 3 4
-# 59 "/usr/include/stdlib.h" 3 4
-typedef struct
-  {
-    int quot;
-    int rem;
-  } div_t;
-
-
-
-typedef struct
-  {
-    long int quot;
-    long int rem;
-  } ldiv_t;
-
-
-
-
-
-__extension__ typedef struct
-  {
-    long long int quot;
-    long long int rem;
-  } lldiv_t;
-# 98 "/usr/include/stdlib.h" 3 4
-extern size_t __ctype_get_mb_cur_max (void) noexcept (true) ;
-
-
-
-extern double atof (const char *__nptr)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
-
-extern int atoi (const char *__nptr)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
-
-extern long int atol (const char *__nptr)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
-
-
-
-__extension__ extern long long int atoll (const char *__nptr)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
-
-
-
-extern double strtod (const char *__restrict __nptr,
-        char **__restrict __endptr)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-extern float strtof (const char *__restrict __nptr,
-       char **__restrict __endptr) noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-extern long double strtold (const char *__restrict __nptr,
-       char **__restrict __endptr)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-# 141 "/usr/include/stdlib.h" 3 4
-extern _Float32 strtof32 (const char *__restrict __nptr,
-     char **__restrict __endptr)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-extern _Float64 strtof64 (const char *__restrict __nptr,
-     char **__restrict __endptr)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-extern _Float128 strtof128 (const char *__restrict __nptr,
-       char **__restrict __endptr)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-extern _Float32x strtof32x (const char *__restrict __nptr,
-       char **__restrict __endptr)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-extern _Float64x strtof64x (const char *__restrict __nptr,
-       char **__restrict __endptr)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-# 177 "/usr/include/stdlib.h" 3 4
-extern long int strtol (const char *__restrict __nptr,
-   char **__restrict __endptr, int __base)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-extern unsigned long int strtoul (const char *__restrict __nptr,
-      char **__restrict __endptr, int __base)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-__extension__
-extern long long int strtoq (const char *__restrict __nptr,
-        char **__restrict __endptr, int __base)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-__extension__
-extern unsigned long long int strtouq (const char *__restrict __nptr,
-           char **__restrict __endptr, int __base)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-
-__extension__
-extern long long int strtoll (const char *__restrict __nptr,
-         char **__restrict __endptr, int __base)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-__extension__
-extern unsigned long long int strtoull (const char *__restrict __nptr,
-     char **__restrict __endptr, int __base)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-
-extern int strfromd (char *__dest, size_t __size, const char *__format,
-       double __f)
-     noexcept (true) __attribute__ ((__nonnull__ (3)));
-
-extern int strfromf (char *__dest, size_t __size, const char *__format,
-       float __f)
-     noexcept (true) __attribute__ ((__nonnull__ (3)));
-
-extern int strfroml (char *__dest, size_t __size, const char *__format,
-       long double __f)
-     noexcept (true) __attribute__ ((__nonnull__ (3)));
-# 233 "/usr/include/stdlib.h" 3 4
-extern int strfromf32 (char *__dest, size_t __size, const char * __format,
-         _Float32 __f)
-     noexcept (true) __attribute__ ((__nonnull__ (3)));
-
-
-
-extern int strfromf64 (char *__dest, size_t __size, const char * __format,
-         _Float64 __f)
-     noexcept (true) __attribute__ ((__nonnull__ (3)));
-
-
-
-extern int strfromf128 (char *__dest, size_t __size, const char * __format,
-   _Float128 __f)
-     noexcept (true) __attribute__ ((__nonnull__ (3)));
-
-
-
-extern int strfromf32x (char *__dest, size_t __size, const char * __format,
-   _Float32x __f)
-     noexcept (true) __attribute__ ((__nonnull__ (3)));
-
-
-
-extern int strfromf64x (char *__dest, size_t __size, const char * __format,
-   _Float64x __f)
-     noexcept (true) __attribute__ ((__nonnull__ (3)));
-# 273 "/usr/include/stdlib.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 1 3 4
-# 22 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h" 1 3 4
-# 27 "/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h" 3 4
-struct __locale_struct
-{
-
-  struct __locale_data *__locales[13];
-
-
-  const unsigned short int *__ctype_b;
-  const int *__ctype_tolower;
-  const int *__ctype_toupper;
-
-
-  const char *__names[13];
-};
-
-typedef struct __locale_struct *__locale_t;
-# 23 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 2 3 4
-
-typedef __locale_t locale_t;
-# 274 "/usr/include/stdlib.h" 2 3 4
-
-extern long int strtol_l (const char *__restrict __nptr,
-     char **__restrict __endptr, int __base,
-     locale_t __loc) noexcept (true) __attribute__ ((__nonnull__ (1, 4)));
-
-extern unsigned long int strtoul_l (const char *__restrict __nptr,
-        char **__restrict __endptr,
-        int __base, locale_t __loc)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 4)));
-
-__extension__
-extern long long int strtoll_l (const char *__restrict __nptr,
-    char **__restrict __endptr, int __base,
-    locale_t __loc)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 4)));
-
-__extension__
-extern unsigned long long int strtoull_l (const char *__restrict __nptr,
-       char **__restrict __endptr,
-       int __base, locale_t __loc)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 4)));
-
-extern double strtod_l (const char *__restrict __nptr,
-   char **__restrict __endptr, locale_t __loc)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
-
-extern float strtof_l (const char *__restrict __nptr,
-         char **__restrict __endptr, locale_t __loc)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
-
-extern long double strtold_l (const char *__restrict __nptr,
-         char **__restrict __endptr,
-         locale_t __loc)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
-# 317 "/usr/include/stdlib.h" 3 4
-extern _Float32 strtof32_l (const char *__restrict __nptr,
-       char **__restrict __endptr,
-       locale_t __loc)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
-
-
-
-extern _Float64 strtof64_l (const char *__restrict __nptr,
-       char **__restrict __endptr,
-       locale_t __loc)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
-
-
-
-extern _Float128 strtof128_l (const char *__restrict __nptr,
-         char **__restrict __endptr,
-         locale_t __loc)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
-
-
-
-extern _Float32x strtof32x_l (const char *__restrict __nptr,
-         char **__restrict __endptr,
-         locale_t __loc)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
-
-
-
-extern _Float64x strtof64x_l (const char *__restrict __nptr,
-         char **__restrict __endptr,
-         locale_t __loc)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 3)));
-# 386 "/usr/include/stdlib.h" 3 4
-extern char *l64a (long int __n) noexcept (true) ;
-
-
-extern long int a64l (const char *__s)
-     noexcept (true) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
-
-
-
-
-# 1 "/usr/include/x86_64-linux-gnu/sys/types.h" 1 3 4
-# 27 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
-extern "C" {
-
-
-
-
-
-typedef __u_char u_char;
-typedef __u_short u_short;
-typedef __u_int u_int;
-typedef __u_long u_long;
-typedef __quad_t quad_t;
-typedef __u_quad_t u_quad_t;
-typedef __fsid_t fsid_t;
-
-
-typedef __loff_t loff_t;
-
-
-
-
-typedef __ino_t ino_t;
-
-
-
-
-
-
-typedef __ino64_t ino64_t;
-
-
-
-
-typedef __dev_t dev_t;
-
-
-
-
-typedef __gid_t gid_t;
-
-
-
-
-typedef __mode_t mode_t;
-
-
-
-
-typedef __nlink_t nlink_t;
-
-
-
-
-typedef __uid_t uid_t;
-# 97 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
-typedef __pid_t pid_t;
-
-
-
-
-
-typedef __id_t id_t;
-# 114 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
-typedef __daddr_t daddr_t;
-typedef __caddr_t caddr_t;
-
-
-
-
-
-typedef __key_t key_t;
-
-
-
-
-# 1 "/usr/include/x86_64-linux-gnu/bits/types/clock_t.h" 1 3 4
-
-
-
-
-
-
-typedef __clock_t clock_t;
-# 127 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
-
-# 1 "/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h" 1 3 4
-
-
-
-
-
-
-typedef __clockid_t clockid_t;
-# 129 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/types/time_t.h" 1 3 4
-# 10 "/usr/include/x86_64-linux-gnu/bits/types/time_t.h" 3 4
-typedef __time_t time_t;
-# 130 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/types/timer_t.h" 1 3 4
-
-
-
-
-
-
-typedef __timer_t timer_t;
-# 131 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
-
-
-
-typedef __useconds_t useconds_t;
-
-
-
-typedef __suseconds_t suseconds_t;
-
-
-
-
-
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 145 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
-
-
-
-typedef unsigned long int ulong;
-typedef unsigned short int ushort;
-typedef unsigned int uint;
-
-
-
-
-# 1 "/usr/include/x86_64-linux-gnu/bits/stdint-intn.h" 1 3 4
-# 24 "/usr/include/x86_64-linux-gnu/bits/stdint-intn.h" 3 4
-typedef __int8_t int8_t;
-typedef __int16_t int16_t;
-typedef __int32_t int32_t;
-typedef __int64_t int64_t;
-# 156 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
-
-
-typedef __uint8_t u_int8_t;
-typedef __uint16_t u_int16_t;
-typedef __uint32_t u_int32_t;
-typedef __uint64_t u_int64_t;
-
-
-typedef int register_t __attribute__ ((__mode__ (__word__)));
-# 176 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
-# 1 "/usr/include/endian.h" 1 3 4
-# 24 "/usr/include/endian.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/endian.h" 1 3 4
-# 35 "/usr/include/x86_64-linux-gnu/bits/endian.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/endianness.h" 1 3 4
-# 36 "/usr/include/x86_64-linux-gnu/bits/endian.h" 2 3 4
-# 25 "/usr/include/endian.h" 2 3 4
-# 35 "/usr/include/endian.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 1 3 4
-# 33 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 3 4
-static __inline __uint16_t
-__bswap_16 (__uint16_t __bsx)
-{
-
-  return __builtin_bswap16 (__bsx);
-
-
-
-}
-
-
-
-
-
-
-static __inline __uint32_t
-__bswap_32 (__uint32_t __bsx)
-{
-
-  return __builtin_bswap32 (__bsx);
-
-
-
-}
-# 69 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 3 4
-__extension__ static __inline __uint64_t
-__bswap_64 (__uint64_t __bsx)
-{
-
-  return __builtin_bswap64 (__bsx);
-
-
-
-}
-# 36 "/usr/include/endian.h" 2 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/uintn-identity.h" 1 3 4
-# 32 "/usr/include/x86_64-linux-gnu/bits/uintn-identity.h" 3 4
-static __inline __uint16_t
-__uint16_identity (__uint16_t __x)
-{
-  return __x;
-}
-
-static __inline __uint32_t
-__uint32_identity (__uint32_t __x)
-{
-  return __x;
-}
-
-static __inline __uint64_t
-__uint64_identity (__uint64_t __x)
-{
-  return __x;
-}
-# 37 "/usr/include/endian.h" 2 3 4
-# 177 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
-
-
-# 1 "/usr/include/x86_64-linux-gnu/sys/select.h" 1 3 4
-# 30 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/select.h" 1 3 4
-# 31 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
-
-
-# 1 "/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h" 1 3 4
-
-
-
-# 1 "/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h" 1 3 4
-
-
-
-
-typedef struct
-{
-  unsigned long int __val[(1024 / (8 * sizeof (unsigned long int)))];
-} __sigset_t;
-# 5 "/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h" 2 3 4
-
-
-typedef __sigset_t sigset_t;
-# 34 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
-
-
-
-# 1 "/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h" 1 3 4
-
-
-
-
-
-
-
-struct timeval
-{
-
-
-
-
-  __time_t tv_sec;
-  __suseconds_t tv_usec;
-
-};
-# 38 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
-
-# 1 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 1 3 4
-# 11 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 3 4
-struct timespec
-{
-
-
-
-  __time_t tv_sec;
-
-
-
-
-  __syscall_slong_t tv_nsec;
-# 31 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 3 4
-};
-# 40 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
-# 49 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
-typedef long int __fd_mask;
-# 59 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
-typedef struct
-  {
-
-
-
-    __fd_mask fds_bits[1024 / (8 * (int) sizeof (__fd_mask))];
-
-
-
-
-
-  } fd_set;
-
-
-
-
-
-
-typedef __fd_mask fd_mask;
-# 91 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
-extern "C" {
-# 102 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
-extern int select (int __nfds, fd_set *__restrict __readfds,
-     fd_set *__restrict __writefds,
-     fd_set *__restrict __exceptfds,
-     struct timeval *__restrict __timeout);
-# 127 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
-extern int pselect (int __nfds, fd_set *__restrict __readfds,
-      fd_set *__restrict __writefds,
-      fd_set *__restrict __exceptfds,
-      const struct timespec *__restrict __timeout,
-      const __sigset_t *__restrict __sigmask);
-# 153 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
-}
-# 180 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
-
-
-
-
-
-typedef __blksize_t blksize_t;
-
-
-
-
-
-
-typedef __blkcnt_t blkcnt_t;
-
-
-
-typedef __fsblkcnt_t fsblkcnt_t;
-
-
-
-typedef __fsfilcnt_t fsfilcnt_t;
-# 219 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
-typedef __blkcnt64_t blkcnt64_t;
-typedef __fsblkcnt64_t fsblkcnt64_t;
-typedef __fsfilcnt64_t fsfilcnt64_t;
-
-
-
-
-
-# 1 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 1 3 4
-# 23 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 1 3 4
-# 44 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h" 1 3 4
-# 21 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
-# 22 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h" 2 3 4
-# 45 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 2 3 4
-
-# 1 "/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h" 1 3 4
-# 25 "/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h" 3 4
-typedef union
-{
-  __extension__ unsigned long long int __value64;
-  struct
-  {
-    unsigned int __low;
-    unsigned int __high;
-  } __value32;
-} __atomic_wide_counter;
-# 47 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 2 3 4
-
-
-
-
-typedef struct __pthread_internal_list
-{
-  struct __pthread_internal_list *__prev;
-  struct __pthread_internal_list *__next;
-} __pthread_list_t;
-
-typedef struct __pthread_internal_slist
-{
-  struct __pthread_internal_slist *__next;
-} __pthread_slist_t;
-# 76 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/struct_mutex.h" 1 3 4
-# 22 "/usr/include/x86_64-linux-gnu/bits/struct_mutex.h" 3 4
-struct __pthread_mutex_s
-{
-  int __lock;
-  unsigned int __count;
-  int __owner;
-
-  unsigned int __nusers;
-
-
-
-  int __kind;
-
-  short __spins;
-  short __elision;
-  __pthread_list_t __list;
-# 53 "/usr/include/x86_64-linux-gnu/bits/struct_mutex.h" 3 4
-};
-# 77 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 2 3 4
-# 89 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h" 1 3 4
-# 23 "/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h" 3 4
-struct __pthread_rwlock_arch_t
-{
-  unsigned int __readers;
-  unsigned int __writers;
-  unsigned int __wrphase_futex;
-  unsigned int __writers_futex;
-  unsigned int __pad3;
-  unsigned int __pad4;
-
-  int __cur_writer;
-  int __shared;
-  signed char __rwelision;
-
-
-
-
-  unsigned char __pad1[7];
-
-
-  unsigned long int __pad2;
-
-
-  unsigned int __flags;
-# 55 "/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h" 3 4
-};
-# 90 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 2 3 4
-
-
-
-
-struct __pthread_cond_s
-{
-  __atomic_wide_counter __wseq;
-  __atomic_wide_counter __g1_start;
-  unsigned int __g_refs[2] ;
-  unsigned int __g_size[2];
-  unsigned int __g1_orig_size;
-  unsigned int __wrefs;
-  unsigned int __g_signals[2];
-};
-
-typedef unsigned int __tss_t;
-typedef unsigned long int __thrd_t;
-
-typedef struct
-{
-  int __data ;
-} __once_flag;
-# 24 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 2 3 4
-
-
-
-typedef unsigned long int pthread_t;
-
-
-
-
-typedef union
-{
-  char __size[4];
-  int __align;
-} pthread_mutexattr_t;
-
-
-
-
-typedef union
-{
-  char __size[4];
-  int __align;
-} pthread_condattr_t;
-
-
-
-typedef unsigned int pthread_key_t;
-
-
-
-typedef int pthread_once_t;
-
-
-union pthread_attr_t
-{
-  char __size[56];
-  long int __align;
-};
-
-typedef union pthread_attr_t pthread_attr_t;
-
-
-
-
-typedef union
-{
-  struct __pthread_mutex_s __data;
-  char __size[40];
-  long int __align;
-} pthread_mutex_t;
-
-
-typedef union
-{
-  struct __pthread_cond_s __data;
-  char __size[48];
-  __extension__ long long int __align;
-} pthread_cond_t;
-
-
-
-
-
-typedef union
-{
-  struct __pthread_rwlock_arch_t __data;
-  char __size[56];
-  long int __align;
-} pthread_rwlock_t;
-
-typedef union
-{
-  char __size[8];
-  long int __align;
-} pthread_rwlockattr_t;
-
-
-
-
-
-typedef volatile int pthread_spinlock_t;
-
-
-
-
-typedef union
-{
-  char __size[32];
-  long int __align;
-} pthread_barrier_t;
-
-typedef union
-{
-  char __size[4];
-  int __align;
-} pthread_barrierattr_t;
-# 228 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
-
-
-}
-# 396 "/usr/include/stdlib.h" 2 3 4
-
-
-
-
-
-
-extern long int random (void) noexcept (true);
-
-
-extern void srandom (unsigned int __seed) noexcept (true);
-
-
-
-
-
-extern char *initstate (unsigned int __seed, char *__statebuf,
-   size_t __statelen) noexcept (true) __attribute__ ((__nonnull__ (2)));
-
-
-
-extern char *setstate (char *__statebuf) noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-
-
-
-
-struct random_data
-  {
-    int32_t *fptr;
-    int32_t *rptr;
-    int32_t *state;
-    int rand_type;
-    int rand_deg;
-    int rand_sep;
-    int32_t *end_ptr;
-  };
-
-extern int random_r (struct random_data *__restrict __buf,
-       int32_t *__restrict __result) noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-extern int srandom_r (unsigned int __seed, struct random_data *__buf)
-     noexcept (true) __attribute__ ((__nonnull__ (2)));
-
-extern int initstate_r (unsigned int __seed, char *__restrict __statebuf,
-   size_t __statelen,
-   struct random_data *__restrict __buf)
-     noexcept (true) __attribute__ ((__nonnull__ (2, 4)));
-
-extern int setstate_r (char *__restrict __statebuf,
-         struct random_data *__restrict __buf)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-
-
-
-
-extern int rand (void) noexcept (true);
-
-extern void srand (unsigned int __seed) noexcept (true);
-
-
-
-extern int rand_r (unsigned int *__seed) noexcept (true);
-
-
-
-
-
-
-
-extern double drand48 (void) noexcept (true);
-extern double erand48 (unsigned short int __xsubi[3]) noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-extern long int lrand48 (void) noexcept (true);
-extern long int nrand48 (unsigned short int __xsubi[3])
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-extern long int mrand48 (void) noexcept (true);
-extern long int jrand48 (unsigned short int __xsubi[3])
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-extern void srand48 (long int __seedval) noexcept (true);
-extern unsigned short int *seed48 (unsigned short int __seed16v[3])
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-extern void lcong48 (unsigned short int __param[7]) noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-
-
-struct drand48_data
-  {
-    unsigned short int __x[3];
-    unsigned short int __old_x[3];
-    unsigned short int __c;
-    unsigned short int __init;
-    __extension__ unsigned long long int __a;
-
-  };
-
-
-extern int drand48_r (struct drand48_data *__restrict __buffer,
-        double *__restrict __result) noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-extern int erand48_r (unsigned short int __xsubi[3],
-        struct drand48_data *__restrict __buffer,
-        double *__restrict __result) noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-
-extern int lrand48_r (struct drand48_data *__restrict __buffer,
-        long int *__restrict __result)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-extern int nrand48_r (unsigned short int __xsubi[3],
-        struct drand48_data *__restrict __buffer,
-        long int *__restrict __result)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-
-extern int mrand48_r (struct drand48_data *__restrict __buffer,
-        long int *__restrict __result)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-extern int jrand48_r (unsigned short int __xsubi[3],
-        struct drand48_data *__restrict __buffer,
-        long int *__restrict __result)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-
-extern int srand48_r (long int __seedval, struct drand48_data *__buffer)
-     noexcept (true) __attribute__ ((__nonnull__ (2)));
-
-extern int seed48_r (unsigned short int __seed16v[3],
-       struct drand48_data *__buffer) noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-extern int lcong48_r (unsigned short int __param[7],
-        struct drand48_data *__buffer)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2)));
-
-
-
-
-extern void *malloc (size_t __size) noexcept (true) __attribute__ ((__malloc__))
-     __attribute__ ((__alloc_size__ (1))) ;
-
-extern void *calloc (size_t __nmemb, size_t __size)
-     noexcept (true) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (1, 2))) ;
-
-
-
-
-
-
-extern void *realloc (void *__ptr, size_t __size)
-     noexcept (true) __attribute__ ((__warn_unused_result__)) __attribute__ ((__alloc_size__ (2)));
-
-
-extern void free (void *__ptr) noexcept (true);
-
-
-
-
-
-
-
-extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
-     noexcept (true) __attribute__ ((__warn_unused_result__))
-     __attribute__ ((__alloc_size__ (2, 3)))
-    __attribute__ ((__malloc__ (__builtin_free, 1)));
-
-
-extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
-     noexcept (true) __attribute__ ((__malloc__ (reallocarray, 1)));
-
-
-
-# 1 "/usr/include/alloca.h" 1 3 4
-# 24 "/usr/include/alloca.h" 3 4
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 25 "/usr/include/alloca.h" 2 3 4
-
-extern "C" {
-
-
-
-
-
-extern void *alloca (size_t __size) noexcept (true);
-
-
-
-
-
-}
-# 575 "/usr/include/stdlib.h" 2 3 4
-
-
-
-
-
-extern void *valloc (size_t __size) noexcept (true) __attribute__ ((__malloc__))
-     __attribute__ ((__alloc_size__ (1))) ;
-
-
-
-
-extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
-     noexcept (true) __attribute__ ((__nonnull__ (1))) ;
-
-
-
-
-extern void *aligned_alloc (size_t __alignment, size_t __size)
-     noexcept (true) __attribute__ ((__malloc__)) __attribute__ ((__alloc_align__ (1)))
-     __attribute__ ((__alloc_size__ (2))) ;
-
-
-
-extern void abort (void) noexcept (true) __attribute__ ((__noreturn__));
-
-
-
-extern int atexit (void (*__func) (void)) noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-
-extern "C++" int at_quick_exit (void (*__func) (void))
-     noexcept (true) __asm ("at_quick_exit") __attribute__ ((__nonnull__ (1)));
-# 617 "/usr/include/stdlib.h" 3 4
-extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-
-
-extern void exit (int __status) noexcept (true) __attribute__ ((__noreturn__));
-
-
-
-
-
-extern void quick_exit (int __status) noexcept (true) __attribute__ ((__noreturn__));
-
-
-
-
-
-extern void _Exit (int __status) noexcept (true) __attribute__ ((__noreturn__));
-
-
-
-
-extern char *getenv (const char *__name) noexcept (true) __attribute__ ((__nonnull__ (1))) ;
-
-
-
-
-extern char *secure_getenv (const char *__name)
-     noexcept (true) __attribute__ ((__nonnull__ (1))) ;
-
-
-
-
-
-
-extern int putenv (char *__string) noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-
-
-extern int setenv (const char *__name, const char *__value, int __replace)
-     noexcept (true) __attribute__ ((__nonnull__ (2)));
-
-
-extern int unsetenv (const char *__name) noexcept (true) __attribute__ ((__nonnull__ (1)));
-
-
-
-
-
-
-extern int clearenv (void) noexcept (true);
-# 682 "/usr/include/stdlib.h" 3 4
-extern char *mktemp (char *__template) noexcept (true) __attribute__ ((__nonnull__ (1)));
-# 695 "/usr/include/stdlib.h" 3 4
-extern int mkstemp (char *__template) __attribute__ ((__nonnull__ (1))) ;
-# 705 "/usr/include/stdlib.h" 3 4
-extern int mkstemp64 (char *__template) __attribute__ ((__nonnull__ (1))) ;
-# 717 "/usr/include/stdlib.h" 3 4
-extern int mkstemps (char *__template, int __suffixlen) __attribute__ ((__nonnull__ (1))) ;
-# 727 "/usr/include/stdlib.h" 3 4
-extern int mkstemps64 (char *__template, int __suffixlen)
-     __attribute__ ((__nonnull__ (1))) ;
-# 738 "/usr/include/stdlib.h" 3 4
-extern char *mkdtemp (char *__template) noexcept (true) __attribute__ ((__nonnull__ (1))) ;
-# 749 "/usr/include/stdlib.h" 3 4
-extern int mkostemp (char *__template, int __flags) __attribute__ ((__nonnull__ (1))) ;
-# 759 "/usr/include/stdlib.h" 3 4
-extern int mkostemp64 (char *__template, int __flags) __attribute__ ((__nonnull__ (1))) ;
-# 769 "/usr/include/stdlib.h" 3 4
-extern int mkostemps (char *__template, int __suffixlen, int __flags)
-     __attribute__ ((__nonnull__ (1))) ;
-# 781 "/usr/include/stdlib.h" 3 4
-extern int mkostemps64 (char *__template, int __suffixlen, int __flags)
-     __attribute__ ((__nonnull__ (1))) ;
-# 791 "/usr/include/stdlib.h" 3 4
-extern int system (const char *__command) ;
-
-
-
-
-
-extern char *canonicalize_file_name (const char *__name)
-     noexcept (true) __attribute__ ((__nonnull__ (1))) __attribute__ ((__malloc__))
-     __attribute__ ((__malloc__ (__builtin_free, 1))) ;
-# 808 "/usr/include/stdlib.h" 3 4
-extern char *realpath (const char *__restrict __name,
-         char *__restrict __resolved) noexcept (true) ;
-
-
-
-
-
-
-typedef int (*__compar_fn_t) (const void *, const void *);
-
-
-typedef __compar_fn_t comparison_fn_t;
-
-
-
-typedef int (*__compar_d_fn_t) (const void *, const void *, void *);
-
-
-
-
-extern void *bsearch (const void *__key, const void *__base,
-        size_t __nmemb, size_t __size, __compar_fn_t __compar)
-     __attribute__ ((__nonnull__ (1, 2, 5))) ;
-
-
-
-
-
-
-
-extern void qsort (void *__base, size_t __nmemb, size_t __size,
-     __compar_fn_t __compar) __attribute__ ((__nonnull__ (1, 4)));
-
-extern void qsort_r (void *__base, size_t __nmemb, size_t __size,
-       __compar_d_fn_t __compar, void *__arg)
-  __attribute__ ((__nonnull__ (1, 4)));
-
-
-
-
-extern int abs (int __x) noexcept (true) __attribute__ ((__const__)) ;
-extern long int labs (long int __x) noexcept (true) __attribute__ ((__const__)) ;
-
-
-__extension__ extern long long int llabs (long long int __x)
-     noexcept (true) __attribute__ ((__const__)) ;
-
-
-
-
-
-
-extern div_t div (int __numer, int __denom)
-     noexcept (true) __attribute__ ((__const__)) ;
-extern ldiv_t ldiv (long int __numer, long int __denom)
-     noexcept (true) __attribute__ ((__const__)) ;
-
-
-__extension__ extern lldiv_t lldiv (long long int __numer,
-        long long int __denom)
-     noexcept (true) __attribute__ ((__const__)) ;
-# 880 "/usr/include/stdlib.h" 3 4
-extern char *ecvt (double __value, int __ndigit, int *__restrict __decpt,
-     int *__restrict __sign) noexcept (true) __attribute__ ((__nonnull__ (3, 4))) ;
-
-
-
-
-extern char *fcvt (double __value, int __ndigit, int *__restrict __decpt,
-     int *__restrict __sign) noexcept (true) __attribute__ ((__nonnull__ (3, 4))) ;
-
-
-
-
-extern char *gcvt (double __value, int __ndigit, char *__buf)
-     noexcept (true) __attribute__ ((__nonnull__ (3))) ;
-
-
-
-
-extern char *qecvt (long double __value, int __ndigit,
-      int *__restrict __decpt, int *__restrict __sign)
-     noexcept (true) __attribute__ ((__nonnull__ (3, 4))) ;
-extern char *qfcvt (long double __value, int __ndigit,
-      int *__restrict __decpt, int *__restrict __sign)
-     noexcept (true) __attribute__ ((__nonnull__ (3, 4))) ;
-extern char *qgcvt (long double __value, int __ndigit, char *__buf)
-     noexcept (true) __attribute__ ((__nonnull__ (3))) ;
-
-
-
-
-extern int ecvt_r (double __value, int __ndigit, int *__restrict __decpt,
-     int *__restrict __sign, char *__restrict __buf,
-     size_t __len) noexcept (true) __attribute__ ((__nonnull__ (3, 4, 5)));
-extern int fcvt_r (double __value, int __ndigit, int *__restrict __decpt,
-     int *__restrict __sign, char *__restrict __buf,
-     size_t __len) noexcept (true) __attribute__ ((__nonnull__ (3, 4, 5)));
-
-extern int qecvt_r (long double __value, int __ndigit,
-      int *__restrict __decpt, int *__restrict __sign,
-      char *__restrict __buf, size_t __len)
-     noexcept (true) __attribute__ ((__nonnull__ (3, 4, 5)));
-extern int qfcvt_r (long double __value, int __ndigit,
-      int *__restrict __decpt, int *__restrict __sign,
-      char *__restrict __buf, size_t __len)
-     noexcept (true) __attribute__ ((__nonnull__ (3, 4, 5)));
-
-
-
-
-
-extern int mblen (const char *__s, size_t __n) noexcept (true);
-
-
-extern int mbtowc (wchar_t *__restrict __pwc,
-     const char *__restrict __s, size_t __n) noexcept (true);
-
-
-extern int wctomb (char *__s, wchar_t __wchar) noexcept (true);
-
-
-
-extern size_t mbstowcs (wchar_t *__restrict __pwcs,
-   const char *__restrict __s, size_t __n) noexcept (true)
-    __attribute__ ((__access__ (__read_only__, 2)));
-
-extern size_t wcstombs (char *__restrict __s,
-   const wchar_t *__restrict __pwcs, size_t __n)
-     noexcept (true)
-  __attribute__ ((__access__ (__write_only__, 1, 3)))
-  __attribute__ ((__access__ (__read_only__, 2)));
-
-
-
-
-
-
-extern int rpmatch (const char *__response) noexcept (true) __attribute__ ((__nonnull__ (1))) ;
-# 967 "/usr/include/stdlib.h" 3 4
-extern int getsubopt (char **__restrict __optionp,
-        char *const *__restrict __tokens,
-        char **__restrict __valuep)
-     noexcept (true) __attribute__ ((__nonnull__ (1, 2, 3))) ;
-
-
-
-
-
-
-
-extern int posix_openpt (int __oflag) ;
-
-
-
-
-
-
-
-extern int grantpt (int __fd) noexcept (true);
-
-
-
-extern int unlockpt (int __fd) noexcept (true);
-
-
-
-
-extern char *ptsname (int __fd) noexcept (true) ;
-
-
-
-
-
-
-extern int ptsname_r (int __fd, char *__buf, size_t __buflen)
-     noexcept (true) __attribute__ ((__nonnull__ (2))) __attribute__ ((__access__ (__write_only__, 2, 3)));
-
-
-extern int getpt (void);
-
-
-
-
-
-
-extern int getloadavg (double __loadavg[], int __nelem)
-     noexcept (true) __attribute__ ((__nonnull__ (1)));
-# 1023 "/usr/include/stdlib.h" 3 4
-# 1 "/usr/include/x86_64-linux-gnu/bits/stdlib-float.h" 1 3 4
-# 1024 "/usr/include/stdlib.h" 2 3 4
-# 1035 "/usr/include/stdlib.h" 3 4
-}
-# 39 "/usr/include/c++/11/bits/std_abs.h" 2 3
-
-
-
-
-
-
-
-extern "C++"
-{
-namespace std __attribute__ ((__visibility__ ("default")))
-{
-
-
-  using ::abs;
-
-
-  inline long
-  abs(long __i) { return __builtin_labs(__i); }
-
-
-
-  inline long long
-  abs(long long __x) { return __builtin_llabs (__x); }
-# 70 "/usr/include/c++/11/bits/std_abs.h" 3
-  inline constexpr double
-  abs(double __x)
-  { return __builtin_fabs(__x); }
-
-  inline constexpr float
-  abs(float __x)
-  { return __builtin_fabsf(__x); }
-
-  inline constexpr long double
-  abs(long double __x)
-  { return __builtin_fabsl(__x); }
-# 107 "/usr/include/c++/11/bits/std_abs.h" 3
-
-}
-}
-# 48 "/usr/include/c++/11/cmath" 2 3
 # 77 "/usr/include/c++/11/cmath" 3
 extern "C++"
 {
@@ -24362,7 +24597,7 @@ using std::tgamma;
 using std::trunc;
 # 183 "/usr/include/c++/11/math.h" 3
 using std::lerp;
-# 5 "./src/TranslateToAsm.cpp" 2
+# 7 "./src/TranslateToAsm.cpp" 2
 # 1 "/usr/include/time.h" 1 3 4
 # 29 "/usr/include/time.h" 3 4
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
@@ -24626,7 +24861,40 @@ extern int getdate_r (const char *__restrict __string,
 
 
 }
-# 6 "./src/TranslateToAsm.cpp" 2
+# 8 "./src/TranslateToAsm.cpp" 2
+
+# 1 "./headers/BackEndConfig.h" 1
+       
+
+
+# 3 "./headers/BackEndConfig.h"
+const int START_RAM_ADDRESS = 0;
+const int START_RAM_ADDRESS_FOR_GLOBAL_VARS = START_RAM_ADDRESS + 0;
+
+
+
+const int VARIABLES_ADDRESS_REG = 2;
+const int RETURN_VALUE_REG = 3;
+
+
+const int SOFT_CPU_PRECISION = 100;
+# 10 "./src/TranslateToAsm.cpp" 2
+# 1 "./src/AsmCtx.h" 1
+       
+
+
+
+struct AsmCtx
+    {
+    const Program* program;
+
+    NameTable* global_vars;
+    int number_of_global_vars;
+    };
+
+int AsmCtxCtor (AsmCtx* ctx, const Program* program);
+int AsmCtxDtor (AsmCtx* ctx);
+# 11 "./src/TranslateToAsm.cpp" 2
 
 # 1 "../Common/Structures/DSL.h" 1
        
@@ -24668,6 +24936,8 @@ extern int getdate_r (const char *__restrict __string,
 
 
 
+
+# 50 "/usr/include/c++/11/bits/memoryfwd.h" 3
 namespace std __attribute__ ((__visibility__ ("default")))
 {
 
@@ -24783,8 +25053,7 @@ namespace __cxx11 {
 # 36 "/usr/include/wchar.h" 2 3 4
 
 
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 1 3 4
-# 39 "/usr/include/wchar.h" 2 3 4
+
 
 # 1 "/usr/include/x86_64-linux-gnu/bits/wchar.h" 1 3 4
 # 41 "/usr/include/wchar.h" 2 3 4
@@ -31016,124 +31285,6 @@ namespace std __attribute__ ((__visibility__ ("default")))
 # 39 "/usr/include/c++/11/cstdlib" 3
        
 # 40 "/usr/include/c++/11/cstdlib" 3
-# 121 "/usr/include/c++/11/cstdlib" 3
-extern "C++"
-{
-namespace std __attribute__ ((__visibility__ ("default")))
-{
-
-
-  using ::div_t;
-  using ::ldiv_t;
-
-  using ::abort;
-
-  using ::aligned_alloc;
-
-  using ::atexit;
-
-
-  using ::at_quick_exit;
-
-
-  using ::atof;
-  using ::atoi;
-  using ::atol;
-  using ::bsearch;
-  using ::calloc;
-  using ::div;
-  using ::exit;
-  using ::free;
-  using ::getenv;
-  using ::labs;
-  using ::ldiv;
-  using ::malloc;
-
-  using ::mblen;
-  using ::mbstowcs;
-  using ::mbtowc;
-
-  using ::qsort;
-
-
-  using ::quick_exit;
-
-
-  using ::rand;
-  using ::realloc;
-  using ::srand;
-  using ::strtod;
-  using ::strtol;
-  using ::strtoul;
-  using ::system;
-
-  using ::wcstombs;
-  using ::wctomb;
-
-
-
-  inline ldiv_t
-  div(long __i, long __j) { return ldiv(__i, __j); }
-
-
-
-
-}
-# 195 "/usr/include/c++/11/cstdlib" 3
-namespace __gnu_cxx __attribute__ ((__visibility__ ("default")))
-{
-
-
-
-  using ::lldiv_t;
-
-
-
-
-
-  using ::_Exit;
-
-
-
-  using ::llabs;
-
-  inline lldiv_t
-  div(long long __n, long long __d)
-  { lldiv_t __q; __q.quot = __n / __d; __q.rem = __n % __d; return __q; }
-
-  using ::lldiv;
-# 227 "/usr/include/c++/11/cstdlib" 3
-  using ::atoll;
-  using ::strtoll;
-  using ::strtoull;
-
-  using ::strtof;
-  using ::strtold;
-
-
-}
-
-namespace std
-{
-
-  using ::__gnu_cxx::lldiv_t;
-
-  using ::__gnu_cxx::_Exit;
-
-  using ::__gnu_cxx::llabs;
-  using ::__gnu_cxx::div;
-  using ::__gnu_cxx::lldiv;
-
-  using ::__gnu_cxx::atoll;
-  using ::__gnu_cxx::strtof;
-  using ::__gnu_cxx::strtoll;
-  using ::__gnu_cxx::strtoull;
-  using ::__gnu_cxx::strtold;
-}
-
-
-
-}
 # 60 "/usr/include/c++/11/bits/stl_algo.h" 2 3
 # 1 "/usr/include/c++/11/bits/algorithmfwd.h" 1 3
 # 33 "/usr/include/c++/11/bits/algorithmfwd.h" 3
@@ -54448,8 +54599,7 @@ enum CommonErrors
 # 1 "../ATC/Utils/Utils.h" 1
        
 
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 1 3 4
-# 4 "../ATC/Utils/Utils.h" 2
+
 
 
 int MsgRet (int return_value, const char* format, ...);
@@ -54466,7 +54616,7 @@ decltype(nullptr) LogMsgNullRet(const char* format, ...);
 int SYSTEM(const char* format, ...);
 # 13 "../ATC/Logger/LogMacroses.h" 2
 # 3 "../Common/Structures/DSL.h" 2
-# 8 "./src/TranslateToAsm.cpp" 2
+# 13 "./src/TranslateToAsm.cpp" 2
 # 1 "../Common/Grammar.h" 1
        
 
@@ -54493,6 +54643,7 @@ NATIVE_FUNCTION = 11,
 PARAMETR = 12,
 
 ASSIGMENT = '=',
+SEPARATOR = ',',
 BLOCK_OPENING_BRACKET = '{',
 BLOCK_CLOSING_BRACKET = '}',
 EXPRESSION_OPENING_BRACKET = '(',
@@ -54504,11 +54655,45 @@ END_OF_STATEMENT = ';',
     UNKNOWN_TYPE = -999,
     };
 
+
 enum INSTUCTIONS_NUM { IF, ELSE, WHILE, RETURN, NUMBER_OF_INSTUCTIONS };
 const char *const INSTRUCTIONS[] = { "if", "else", "while", "return" };
 
-enum NATIVE_FUNCTIONS_NUM { FOUT, FIN, SIN, COS, NUMBER_OF_NATIVE_FUNCTIONS };
-const char *const NATIVE_FUNCTIONS[] = { "fout", "fin", "sin", "cos" };
+
+
+
+
+
+
+struct NativeFunctionStruct
+    {
+    const char* str;
+    int function;
+    int number_of_parametres;
+    };
+
+enum NATIVE_FUNCTIONS_NUM
+    {
+    FOUT,
+    FIN,
+    SIN,
+    COS,
+    POW,
+    NUMBER_OF_NATIVE_FUNCTIONS,
+    };
+
+const NativeFunctionStruct NATIVE_FUNCTIONS[] = {
+            {"fout", FOUT, 1},
+            {"fin", FIN, 1},
+            {"sin", SIN, 1},
+            {"cos", COS, 1},
+            {"pow", POW, 2},
+};
+
+const int NUMBER_OF_NATIVE_FUNCTIONS_STRUCT = sizeof(NATIVE_FUNCTIONS) / sizeof(NATIVE_FUNCTIONS[0]);
+
+static_assert(NUMBER_OF_NATIVE_FUNCTIONS_STRUCT == NUMBER_OF_NATIVE_FUNCTIONS);
+
 
 enum INITIALIZATORS_NUM { FUNCTION_INITIALIZATOR, VARIABLE_INITIALIZATOR, NUMBER_OF_INITIALIZATORS };
 const char *const INITIALIZATORS[] = {"extern", "var"};
@@ -54517,229 +54702,45 @@ const char *const INITIALIZATORS[] = {"extern", "var"};
 enum FUNCTION_RET_TYPES_NUM { DOUBLE, VOID, NUMBER_OF_FUNCTION_RET_TYPES };
 const char *const FUNCTION_RET_TYPES[] = {"double", "void"};
 
-const char OPERATORS[] = "+-/*^<<";
+const char OPERATORS[] = "+-/*<<>>";
 enum OPERATOR_NUM
     {
     ADD = '+',
     SUB = '-',
     DIV = '/',
     MUL = '*',
-    POW = '^',
+
     OUT = '<',
+    IN = '>',
+
+    BIGGER = '>',
+    LESS = '<',
     };
 
 const char COMMENT = '#';
 
 const char *const MAIN_NAME = "main";
 
-const int MAX_FUNCTION_NAME_LENGTH = 16;
-const int MAX_WORD_LENGTH = 16;
-# 9 "./src/TranslateToAsm.cpp" 2
-# 1 "../ATC/SuperStack/SuperStack.h" 1
-
-
-
-#pragma GCC diagnostic ignored "-Wconversion"
-
-
-
-# 1 "./headers/SuperStackConfig.h" 1
-
-
-
-
-# 1 "../Common/Structures/Tabels/NameTable.h" 1
-       
-
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 4 "../Common/Structures/Tabels/NameTable.h" 2
-
-struct Label
-    {
-    int type;
-    int name_id;
-
-    int number_of_vars;
-    int ret_type;
-
-    int var_number;
-    };
-
-struct NameTable
-    {
-    Label** label_arr;
-    size_t arr_size;
-
-    size_t number_of_labels;
-    };
-
-
-
-NameTable* NewNameTable();
-int CloseNameTable (NameTable* table);
-
-int AddLabel (Label* label, NameTable* table);
-int CopyLabel (Label* label, NameTable* table);
-
-Label* IsLabel (int name_id, int type, NameTable* table);
-int CompareLabels (Label* label1, Label* label2);
-# 6 "./headers/SuperStackConfig.h" 2
-
-
-
-typedef NameTable* element_t;
-# 9 "../ATC/SuperStack/SuperStack.h" 2
-# 1 "../ATC/my_safety/my_safety.h" 1
-
-
-
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 5 "../ATC/my_safety/my_safety.h" 2
-# 1 "/usr/include/inttypes.h" 1 3 4
-# 266 "/usr/include/inttypes.h" 3 4
-
-# 266 "/usr/include/inttypes.h" 3 4
-extern "C" {
-
-
-
-
-typedef struct
-  {
-    long int quot;
-    long int rem;
-  } imaxdiv_t;
-# 290 "/usr/include/inttypes.h" 3 4
-extern intmax_t imaxabs (intmax_t __n) noexcept (true) __attribute__ ((__const__));
-
-
-extern imaxdiv_t imaxdiv (intmax_t __numer, intmax_t __denom)
-      noexcept (true) __attribute__ ((__const__));
-
-
-extern intmax_t strtoimax (const char *__restrict __nptr,
-      char **__restrict __endptr, int __base) noexcept (true);
-
-
-extern uintmax_t strtoumax (const char *__restrict __nptr,
-       char ** __restrict __endptr, int __base) noexcept (true);
-
-
-extern intmax_t wcstoimax (const wchar_t *__restrict __nptr,
-      wchar_t **__restrict __endptr, int __base)
-     noexcept (true);
-
-
-extern uintmax_t wcstoumax (const wchar_t *__restrict __nptr,
-       wchar_t ** __restrict __endptr, int __base)
-     noexcept (true);
-
-}
-# 6 "../ATC/my_safety/my_safety.h" 2
-
-
-# 7 "../ATC/my_safety/my_safety.h"
-typedef long long CANARY;
-
-const int _CANARY_SIZE_ = sizeof(CANARY);
-
-const int _OPENING_CANARY_ = 0xABCDEF;
-const int _CLOSING_CANARY_ = 0xFEDCBA;
-
-
-void* canary_calloc ( size_t numbers_of_elements, size_t size_of_element);
-void* canary_realloc (void* ptr, size_t new_numbers_of_elements, size_t size_of_element);
-void canary_free (void* ptr);
-
-int generateHash(const void *start, const void *end);
-# 10 "../ATC/SuperStack/SuperStack.h" 2
-
-
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 13 "../ATC/SuperStack/SuperStack.h" 2
-# 21 "../ATC/SuperStack/SuperStack.h"
-const size_t _HEAP_MIN_CAPACITY_ = 10;
-const size_t _ELEMENT_T_SIZE_ = sizeof(element_t);
-
-enum super_stack_status
-    {
-    UNINITIALIZED,
-
-    INITIALIZATION_ERR,
-
-    DESTRUCTOR_ERR,
-    };
-
-enum SuperStackCtorErr
-    {
-    NULL_STK_PTR_CTR = -2,
-    WRONG_CAPACITY = -3,
-    INITIALIZED_STACK = -4,
-
-    ERROR_INITIALIZATION = -1,
-    SUCCESS_INITIALIZATION = 1,
-    };
-
-typedef long long CANARY;
-struct SuperStack
-    {
-
-    CANARY opening_canary;
-
-
-    element_t* heap;
-    size_t capacity;
-    ssize_t top;
-
-    int status;
-
-
-
-
-
-
-    int heapHash;
-    int hash;
-
-
-
-    CANARY closing_canary;
-
-    };
-
-int SuperStackCtor (SuperStack* stk, size_t capacity
-                     );
-
-void SuperStackDtor (SuperStack* stk
-                     );
-
-void SSpush (SuperStack* stk, element_t value
-                    );
-
-element_t SSpop (SuperStack* stk
-                    );
-
-element_t SStop (SuperStack* stk
-                    );
-
-
-ssize_t StackGetTop (SuperStack* stk);
-element_t StackLook (SuperStack* stk, ssize_t index);
-# 104 "../ATC/SuperStack/SuperStack.h"
-void SSdump (SuperStack* negoden, unsigned flag_err
-                         );
-
-unsigned MedComissionSS (SuperStack* prezyvnik);
-# 10 "./src/TranslateToAsm.cpp" 2
+const int MAX_FUNCTION_NAME_LENGTH = 256;
+const int MAX_WORD_LENGTH = 256;
+# 14 "./src/TranslateToAsm.cpp" 2
 # 1 "../Common/Utils/LangUtils.h" 1
        
 
 
 
-void PrintToken (const Token *const token, const char** string_arr);
+void PrintToken (const Token *const token, const char** string_arr = 
+# 5 "../Common/Utils/LangUtils.h" 3 4
+                                                                    __null
+# 5 "../Common/Utils/LangUtils.h"
+                                                                        );
 
-void LogToken (const Token *const token, const char* name, const char** STRING_ARR);
-# 11 "./src/TranslateToAsm.cpp" 2
+void LogToken (const Token *const token, const char* name, const char** STRING_ARR = 
+# 7 "../Common/Utils/LangUtils.h" 3 4
+                                                                                    __null
+# 7 "../Common/Utils/LangUtils.h"
+                                                                                        );
+# 15 "./src/TranslateToAsm.cpp" 2
 
 
 # 1 "../ATC/Debug/EasyDebug.h" 1
@@ -54751,67 +54752,12 @@ void LogToken (const Token *const token, const char* name, const char** STRING_A
 
 
 # 1 "/usr/include/c++/11/stdlib.h" 1 3
-# 36 "/usr/include/c++/11/stdlib.h" 3
-# 1 "/usr/include/c++/11/cstdlib" 1 3
-# 39 "/usr/include/c++/11/cstdlib" 3
-       
-# 40 "/usr/include/c++/11/cstdlib" 3
-# 37 "/usr/include/c++/11/stdlib.h" 2 3
-
-
-# 38 "/usr/include/c++/11/stdlib.h" 3
-using std::abort;
-using std::atexit;
-using std::exit;
-
-
-  using std::at_quick_exit;
-
-
-  using std::quick_exit;
-
-
-
-
-using std::div_t;
-using std::ldiv_t;
-
-using std::abs;
-using std::atof;
-using std::atoi;
-using std::atol;
-using std::bsearch;
-using std::calloc;
-using std::div;
-using std::free;
-using std::getenv;
-using std::labs;
-using std::ldiv;
-using std::malloc;
-
-using std::mblen;
-using std::mbstowcs;
-using std::mbtowc;
-
-using std::qsort;
-using std::rand;
-using std::realloc;
-using std::srand;
-using std::strtod;
-using std::strtol;
-using std::strtoul;
-using std::system;
-
-using std::wcstombs;
-using std::wctomb;
 # 5 "../ATC/Buffer/my_buffer.h" 2
 
 
 
 
 
-
-# 10 "../ATC/Buffer/my_buffer.h"
 char* GetSrcFile (const char *file_direction);
 
 
@@ -54863,7 +54809,7 @@ int BufferGetDouble (Buffer* buf, double* val);
 
 void BufferSkipCommentLine (Buffer* buf, char terminator);
 # 5 "../ATC/Debug/EasyDebug.h" 2
-# 14 "./src/TranslateToAsm.cpp" 2
+# 18 "./src/TranslateToAsm.cpp" 2
 # 1 "../ATC/RandomStuff/SomeStuff.h" 1
 
 
@@ -54873,4 +54819,1181 @@ void BufferSkipCommentLine (Buffer* buf, char terminator);
 void ShowCharInBinary(char mask);
 
 int printl (const char *line, char terminator);
-# 15 "./src/TranslateToAsm.cpp" 2
+# 19 "./src/TranslateToAsm.cpp" 2
+
+static FILE* ASM_FILE = 
+# 20 "./src/TranslateToAsm.cpp" 3 4
+                       __null
+# 20 "./src/TranslateToAsm.cpp"
+                           ;
+
+int STACK_FRAME_OFFSET = 0;
+
+static int OpenAsmFile (const char *const name);
+static void CloseAsmFile ();
+
+static int SetAsmFile (AsmCtx* ctx);
+static int AddToAsm (AsmCtx* ctx, const Token* token);
+
+static int InitGlobalVars (const AsmCtx* ctx);
+
+# 1 "./src/../src/TranslatorUtils_.ars" 1
+# 35 "./src/../src/TranslatorUtils_.ars"
+static void assprint(const char* format, ...);
+
+static void assprint (const char* format, ...)
+    {
+    va_list ptr;
+    
+# 40 "./src/../src/TranslatorUtils_.ars" 3 4
+   __builtin_va_start(
+# 40 "./src/../src/TranslatorUtils_.ars"
+   ptr
+# 40 "./src/../src/TranslatorUtils_.ars" 3 4
+   ,
+# 40 "./src/../src/TranslatorUtils_.ars"
+   format
+# 40 "./src/../src/TranslatorUtils_.ars" 3 4
+   )
+# 40 "./src/../src/TranslatorUtils_.ars"
+                        ;
+
+    vfprintf (ASM_FILE, format, ptr);
+
+    
+# 44 "./src/../src/TranslatorUtils_.ars" 3 4
+   __builtin_va_end(
+# 44 "./src/../src/TranslatorUtils_.ars"
+   ptr
+# 44 "./src/../src/TranslatorUtils_.ars" 3 4
+   )
+# 44 "./src/../src/TranslatorUtils_.ars"
+              ;
+
+    return;
+    }
+# 33 "./src/TranslateToAsm.cpp" 2
+# 1 "./src/../src/Handlers_.ars" 1
+static int VarInitialization (AsmCtx* ctx, const Token* token, int init_globals = false);
+
+static int AssigmentHandler (AsmCtx* ctx, const Token* token);
+static int ExpressionHandler (AsmCtx* ctx, const Token* token);
+
+static int NameHandler (AsmCtx* ctx, const Token* token);
+static int FunctionHandler (AsmCtx* ctx, const Token* token);
+
+static int CallHandler (AsmCtx* ctx, const Token* token);
+static int ArgumentHandler (AsmCtx* ctx, const Token* token);
+
+static int InstructionHandler (AsmCtx* ctx, const Token* token);
+static int MathOperationsHandler (AsmCtx* ctx, const Token* token);
+static int NativeFunctionHandler (AsmCtx* ctx, const Token* token);
+static int FunctionReturnHandler (AsmCtx* ctx, const Token* token);
+static int ParametrHandler (AsmCtx* ctx, const Token* token);
+static int ConstantHandler (AsmCtx* ctx, const Token* token);
+
+static int VarInitialization (AsmCtx* ctx, const Token* token, int init_globals)
+    {
+    FunctionLogger func_21 {1, __func__};
+    LogToken(token, "token" , (((ctx)->program)->string_arr));
+
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 24, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 24, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 24 "./src/../src/Handlers_.ars" 3 4
+   14
+# 24 "./src/../src/Handlers_.ars"
+   , strerror(
+# 24 "./src/../src/Handlers_.ars" 3 4
+   14
+# 24 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 24); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 25, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 25, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 25 "./src/../src/Handlers_.ars" 3 4
+   14
+# 25 "./src/../src/Handlers_.ars"
+   , strerror(
+# 25 "./src/../src/Handlers_.ars" 3 4
+   14
+# 25 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 25); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+
+    if (token->type != INITIALIZATOR)
+        {
+        do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Not a initializator token\n" ); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 30); PrintToken(token); } while(0);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 31, __func__, 31);
+        }
+
+    Token* var_name = token->left_child;
+    do { if (var_name->type != NAME) { do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Not a %s type\n" , "NAME"); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 35); PrintToken(token); } while(0); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 35, __func__, 35) ; } }while(0);
+
+    Label* label = var_name->t_label_ptr;
+
+    if (var_name->value.t_name_id != label->name_id)
+        {
+        do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Label has different name id (label '%s', name '%s')\n" , (((ctx)->program)->string_arr)[label->name_id], (((ctx)->program)->string_arr)[var_name->value.t_name_id]); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 41); PrintToken(token); } while(0);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 42, __func__, 42);
+        }
+
+    if (init_globals == false)
+        {
+        if (label->local_type == GLOBAL)
+            {
+            label->global_initialization = token;
+
+            CopyLabel(label, ((ctx)->global_vars));
+            ctx->number_of_global_vars++;
+
+            return SUCCESS;
+            }
+
+        assprint("; '%s' - local var init\n", (((ctx)->program)->string_arr)[label->name_id]);
+
+        if (token->right_child)
+            return AssigmentHandler(ctx, token);
+
+        return SUCCESS;
+
+        printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/../src/Handlers_.ars", 64, __func__, 64); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/../src/Handlers_.ars", 64, __func__, 64);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 65, __func__, 65);
+        }
+
+    if (init_globals == true)
+        {
+        if (label->local_type == LOCAL)
+            {
+            do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("NOT A GLOBAL VARIABLE\n" ); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 72); PrintToken(token); } while(0);;
+            return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 73, __func__, 73);
+            }
+
+        assprint("; '%s' - global var init\n", (((ctx)->program)->string_arr)[label->name_id]);
+
+        if (token->right_child)
+             return AssigmentHandler(ctx, token);
+
+        return SUCCESS;
+        printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/../src/Handlers_.ars", 82, __func__, 82); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/../src/Handlers_.ars", 82, __func__, 82);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 83, __func__, 83);
+
+        }
+
+    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/../src/Handlers_.ars", 87, __func__, 87); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/../src/Handlers_.ars", 87, __func__, 87);
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 88, __func__, 88);
+    }
+
+static int AssigmentHandler (AsmCtx* ctx, const Token* token)
+    {
+    FunctionLogger func_93 {1, __func__};
+    LogToken(token, "token" , (((ctx)->program)->string_arr));
+
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 96, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 96, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 96 "./src/../src/Handlers_.ars" 3 4
+   14
+# 96 "./src/../src/Handlers_.ars"
+   , strerror(
+# 96 "./src/../src/Handlers_.ars" 3 4
+   14
+# 96 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 96); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 97, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 97, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 97 "./src/../src/Handlers_.ars" 3 4
+   14
+# 97 "./src/../src/Handlers_.ars"
+   , strerror(
+# 97 "./src/../src/Handlers_.ars" 3 4
+   14
+# 97 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 97); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    if (token->type != ASSIGMENT && token->type != INITIALIZATOR)
+        {
+        do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Wrong token type for assigment\n" ); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 101); PrintToken(token); } while(0);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 102, __func__, 102);
+        }
+
+    assprint("; assigment\n");
+
+    do { if (!ExpressionHandler(ctx, token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ExpressionHandler(ctx, RIGHT(token)) == SUCCESS" " is false\n" , __func__, 107); return FAILURE ; } }while (0);;
+
+    assprint("pop ");
+
+    do { if (!NameHandler(ctx, token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "NameHandler(ctx, LEFT(token)) == SUCCESS" " is false\n" , __func__, 111); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 111, __func__, 111) ; } }while (0);;
+
+    assprint("\n");
+
+    return SUCCESS;
+    }
+
+static int ExpressionHandler (AsmCtx* ctx, const Token* token)
+    {
+    FunctionLogger func_120 {1, __func__};
+
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 122, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 122, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 122 "./src/../src/Handlers_.ars" 3 4
+   14
+# 122 "./src/../src/Handlers_.ars"
+   , strerror(
+# 122 "./src/../src/Handlers_.ars" 3 4
+   14
+# 122 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 122); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 123, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 123, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 123 "./src/../src/Handlers_.ars" 3 4
+   14
+# 123 "./src/../src/Handlers_.ars"
+   , strerror(
+# 123 "./src/../src/Handlers_.ars" 3 4
+   14
+# 123 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 123); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    LogToken(token, "token" , (((ctx)->program)->string_arr));
+
+    switch (token->type)
+        {
+        case CONSTANT:
+                return ConstantHandler(ctx, token);
+
+        case NAME:
+                assprint("push ");
+                return NameHandler(ctx, token);
+
+        case CALL:
+                do { if (!CallHandler(ctx, token) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "CallHandler(ctx, token) == SUCCESS" " is false\n" , __func__, 137); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 137, __func__, 137) ; } }while (0);;
+
+                assprint(";AAAAAAAAAAAAAAAAA\n");
+                assprint("push r%cx\n", RETURN_VALUE_REG + 'a' - 1);
+
+                return SUCCESS;
+
+        case OPERATOR:
+                return MathOperationsHandler(ctx, token);
+
+        case NATIVE_FUNCTION:
+                if (token->value.t_native_function == FIN || token->value.t_native_function == FOUT)
+                    {
+                    do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Fin and Fout can't in expression\n" ); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 150); PrintToken(token); } while(0);;
+                    return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 151, __func__, 151);
+                    }
+
+                do { if (!NativeFunctionHandler(ctx, token) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "NativeFunctionHandler(ctx, token) == SUCCESS" " is false\n" , __func__, 154); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 154, __func__, 154) ; } }while (0);;
+
+                return SUCCESS;
+
+
+        default:
+                do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Wrong type\n" ); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 160); PrintToken(token); } while(0);;
+
+                return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 162, __func__, 162);
+        }
+
+    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/../src/Handlers_.ars", 165, __func__, 165); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/../src/Handlers_.ars", 165, __func__, 165);
+
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 167, __func__, 167);
+    }
+
+
+static int NameHandler (AsmCtx* ctx, const Token* token)
+    {
+    FunctionLogger func_173 {1, __func__};
+
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 175, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 175, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 175 "./src/../src/Handlers_.ars" 3 4
+   14
+# 175 "./src/../src/Handlers_.ars"
+   , strerror(
+# 175 "./src/../src/Handlers_.ars" 3 4
+   14
+# 175 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 175); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 176, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 176, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 176 "./src/../src/Handlers_.ars" 3 4
+   14
+# 176 "./src/../src/Handlers_.ars"
+   , strerror(
+# 176 "./src/../src/Handlers_.ars" 3 4
+   14
+# 176 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 176); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    LogToken(token, "token" , (((ctx)->program)->string_arr));
+
+
+    do { if (token->type != NAME) { do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Not a %s type\n" , "NAME"); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 181); PrintToken(token); } while(0); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 181, __func__, 181) ; } }while(0);
+
+    Label* label = token->t_label_ptr;
+
+        if (label->type == FUNCTION)
+            {
+            { printf("\t%s: ", __func__); printf("Ebat! What Should I so with function label ??? \n"); printf(" (%s:%d)\n", "./src/../src/Handlers_.ars", 187); };
+            return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 188, __func__, 188);
+            }
+
+        if (label->local_type == GLOBAL)
+            {
+            assprint(" [ %d ] ", label->var_number + START_RAM_ADDRESS_FOR_GLOBAL_VARS);
+
+
+            assprint("; global var '%s' (name handler) \n", (((ctx)->program)->string_arr)[label->name_id]);
+
+            }
+
+        if (label->local_type == LOCAL)
+            {
+            assprint(" [ %d + r%cx ] ", label->var_number, VARIABLES_ADDRESS_REG + 'a' - 1);
+
+
+            assprint("; local var '%s'\n", (((ctx)->program)->string_arr)[label->name_id]);
+
+            }
+
+    return SUCCESS;
+    }
+
+static int FunctionHandler (AsmCtx* ctx, const Token* token)
+    {
+    FunctionLogger func_214 {1, __func__};
+
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 216, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 216, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 216 "./src/../src/Handlers_.ars" 3 4
+   14
+# 216 "./src/../src/Handlers_.ars"
+   , strerror(
+# 216 "./src/../src/Handlers_.ars" 3 4
+   14
+# 216 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 216); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 217, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 217, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 217 "./src/../src/Handlers_.ars" 3 4
+   14
+# 217 "./src/../src/Handlers_.ars"
+   , strerror(
+# 217 "./src/../src/Handlers_.ars" 3 4
+   14
+# 217 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 217); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    LogToken(token, "token" , (((ctx)->program)->string_arr));
+
+    do { if (token->type != FUNCTION) { do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Not a %s type\n" , "FUNCTION"); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 221); PrintToken(token); } while(0); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 221, __func__, 221) ; } }while(0);
+
+    Token* name = token->left_child;
+    Token* ret_type = name->right_child;
+
+    Label* func = name->t_label_ptr;
+
+    if (func->type != FUNCTION)
+        {
+        do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Label for function '%s' not a function label\n" , (((ctx)->program)->string_arr)[name->value.t_name_id]); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 230); PrintToken(token); } while(0);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 231, __func__, 231);
+        }
+
+    if (name->value.t_name_id != func->name_id)
+        {
+        do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Label has different name id (label '%s', name '%s')\n" , (((ctx)->program)->string_arr)[func->name_id], (((ctx)->program)->string_arr)[name->value.t_name_id]); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 236); PrintToken(token); } while(0);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 237, __func__, 237);
+        }
+
+    if (func->ret_type != ret_type->value.t_function_ret_type)
+        {
+        do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Label has different ret type '%s', (than '%s')\n" , FUNCTION_RET_TYPES[func->ret_type], FUNCTION_RET_TYPES[ret_type->value.t_function_ret_type]); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 242); PrintToken(token); } while(0);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 243, __func__, 243);
+        }
+
+    STACK_FRAME_OFFSET = func->number_of_vars;
+
+
+    assprint("\t\t: %s\n\n", (((ctx)->program)->string_arr)[name->value.t_name_id]);
+
+
+    do { if (!AddToAsm(ctx, name->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(ctx, LEFT(name)) == SUCCESS" " is false\n" , __func__, 252); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 252, __func__, 252) ; } }while (0);;
+
+
+    do { if (!AddToAsm(ctx, token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(ctx, RIGHT(token)) == SUCCESS" " is false\n" , __func__, 255); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 255, __func__, 255) ; } }while (0);;
+
+    return SUCCESS;
+    }
+
+static int CallHandler (AsmCtx* ctx, const Token* token)
+    {
+    FunctionLogger func_262 {1, __func__};
+
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 264, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 264, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 264 "./src/../src/Handlers_.ars" 3 4
+   14
+# 264 "./src/../src/Handlers_.ars"
+   , strerror(
+# 264 "./src/../src/Handlers_.ars" 3 4
+   14
+# 264 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 264); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 265, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 265, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 265 "./src/../src/Handlers_.ars" 3 4
+   14
+# 265 "./src/../src/Handlers_.ars"
+   , strerror(
+# 265 "./src/../src/Handlers_.ars" 3 4
+   14
+# 265 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 265); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    LogToken(token, "token" , (((ctx)->program)->string_arr));
+
+    do { if (token->type != CALL) { do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Not a %s type\n" , "CALL"); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 269); PrintToken(token); } while(0); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 269, __func__, 269) ; } }while(0);
+
+    Token* name = token->left_child;
+
+
+
+    if (name->t_label_ptr)
+    {
+    Label* func = name->t_label_ptr;
+
+    if (func->type != FUNCTION)
+        {
+        do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Label for function '%s' not a function label\n" , (((ctx)->program)->string_arr)[name->value.t_name_id]); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 281); PrintToken(token); } while(0);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 282, __func__, 282);
+        }
+
+    if (name->value.t_name_id != func->name_id)
+        {
+        do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Label has different name id (label '%s', name '%s')\n" , (((ctx)->program)->string_arr)[func->name_id], (((ctx)->program)->string_arr)[name->value.t_name_id]); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 287); PrintToken(token); } while(0);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 288, __func__, 288);
+        }
+    }
+
+
+    int number_of_parametrs = ArgumentHandler(ctx, name->left_child);
+    if (number_of_parametrs < 0)
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 295, __func__, 295);
+
+
+    assprint ("\n; Setting Stack Frame\n");
+    assprint ("push %d + r%cx\n", STACK_FRAME_OFFSET, VARIABLES_ADDRESS_REG + 'a' - 1);
+    assprint ("pop r%cx\n\n", VARIABLES_ADDRESS_REG + 'a' - 1);
+
+
+    assprint("call :%s\n\n", (((ctx)->program)->string_arr)[name->value.t_name_id]);
+
+
+    assprint ("; Setting Stack Frame Back\n");
+    assprint ("push %d\n", STACK_FRAME_OFFSET);
+    assprint ("push r%cx\n", VARIABLES_ADDRESS_REG + 'a' - 1);
+    assprint ("sub\n\n");
+    assprint ("pop r%cx\n\n", VARIABLES_ADDRESS_REG + 'a' - 1);
+
+
+
+
+
+
+
+    return SUCCESS;
+    }
+
+static int ArgumentHandler (AsmCtx* ctx, const Token* token)
+    {
+    FunctionLogger func_323 {1, __func__};
+
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 325, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 325, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 325 "./src/../src/Handlers_.ars" 3 4
+   14
+# 325 "./src/../src/Handlers_.ars"
+   , strerror(
+# 325 "./src/../src/Handlers_.ars" 3 4
+   14
+# 325 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 325); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    if (!token) return SUCCESS;
+
+    LogToken(token, "token" , (((ctx)->program)->string_arr));
+
+    do { if (token->type != PARAMETR) { do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Not a %s type\n" , "PARAMETR"); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 331); PrintToken(token); } while(0); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 331, __func__, 331) ; } }while(0);
+
+    if(!token->left_child)
+        {
+        do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("No arguments for parametr\n" ); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 335); PrintToken(token); } while(0);;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 336, __func__, 336);
+        }
+
+    int number_of_parametrs = 0;
+    const Token* current_param = token;
+
+    assprint(";Setting parametrs for call\n");
+
+    while (current_param)
+        {
+        do { if (!ExpressionHandler(ctx, current_param->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ExpressionHandler(ctx, LEFT(current_param)) == SUCCESS" " is false\n" , __func__, 346); return FAILURE ; } }while (0);;
+
+        assprint ("pop  [ %d + r%cx ]; %d - param pos, %d - stack frame offset\n",
+                number_of_parametrs + STACK_FRAME_OFFSET,
+                VARIABLES_ADDRESS_REG + 'a' - 1,
+                number_of_parametrs, STACK_FRAME_OFFSET);
+
+        number_of_parametrs++;
+
+        current_param = current_param->right_child;
+        }
+
+    return number_of_parametrs;
+    }
+
+static int InstructionHandler (AsmCtx* ctx, const Token* token)
+    {
+    FunctionLogger func_363 {1, __func__};
+
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 365, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 365, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 365 "./src/../src/Handlers_.ars" 3 4
+   14
+# 365 "./src/../src/Handlers_.ars"
+   , strerror(
+# 365 "./src/../src/Handlers_.ars" 3 4
+   14
+# 365 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 365); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 366, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 366, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 366 "./src/../src/Handlers_.ars" 3 4
+   14
+# 366 "./src/../src/Handlers_.ars"
+   , strerror(
+# 366 "./src/../src/Handlers_.ars" 3 4
+   14
+# 366 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 366); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    LogToken(token, "token" , (((ctx)->program)->string_arr));
+
+    do { if (token->type != INSTRUCTION) { do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Not a %s type\n" , "INSTRUCTION"); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 370); PrintToken(token); } while(0); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 370, __func__, 370) ; } }while(0);
+
+    static int number_of_instructions = 0;
+
+    int current_instruction = number_of_instructions++;
+
+    assprint("; instruction\n");
+
+    switch (token->value.t_instruction)
+        {
+        case ELSE:
+            {
+            printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/../src/Handlers_.ars", 382, __func__, 382); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/../src/Handlers_.ars", 382, __func__, 382);
+            printf("\033[96m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/../src/Handlers_.ars", 383, "to do else\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/../src/Handlers_.ars", 383, "to do else\n"); Logger::getInstance().log("to do else\n" );;
+            return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 384, __func__, 384);
+            }
+        case IF:
+            {
+            if (((token->right_child) && (token->right_child->type == INSTRUCTION) ? true : false) && token->right_child->value.t_instruction == ELSE)
+                {
+                Token* if_body = token->right_child->left_child;
+                Token* else_body = token->right_child->right_child;
+
+                assprint ("; condition for %s_%d with else \n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"), current_instruction);
+                do { if (!ExpressionHandler(ctx, token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ExpressionHandler(ctx, LEFT(token)) == SUCCESS" " is false\n" , __func__, 394); return FAILURE ; } }while (0);;
+
+                assprint("\n");
+                assprint("push %d\n", (int) floor(0 * SOFT_CPU_PRECISION));
+                assprint ("je : else_label_%d\n", current_instruction);
+
+
+                assprint("; if body\n");
+                do { if (!AddToAsm(ctx, if_body) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(ctx, if_body) == SUCCESS" " is false\n" , __func__, 402); return FAILURE ; } }while (0);;
+                assprint ("jmp : else_end_label_%d\n", current_instruction);
+
+                assprint("; else body\n");
+                assprint(": else_label_%d\n", current_instruction);
+                do { if (!AddToAsm(ctx, else_body) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(ctx, else_body) == SUCCESS" " is false\n" , __func__, 407); return FAILURE ; } }while (0);;
+
+                assprint (": else_end_label_%d\n", current_instruction);
+                }
+            else
+                {
+                assprint ("; condition for %s_%d\n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"), current_instruction);
+                do { if (!ExpressionHandler(ctx, token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ExpressionHandler(ctx, LEFT(token)) == SUCCESS" " is false\n" , __func__, 414); return FAILURE ; } }while (0);;
+
+                assprint("\n");
+                assprint("push %d\n", (int) floor(0 * SOFT_CPU_PRECISION));
+                assprint ("je : %s_end_label_%d\n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"), current_instruction);
+                assprint ("; end of condition\n\n");
+
+                assprint("; %s body\n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"));
+                do { if (!AddToAsm(ctx, token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(ctx, RIGHT(token)) == SUCCESS" " is false\n" , __func__, 422); return FAILURE ; } }while (0);;
+                assprint (": %s_end_label_%d\n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"), current_instruction);
+                }
+
+            break;
+            }
+        case WHILE:
+            {
+            assprint ("; condition for %s_%d\n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"), current_instruction);
+            do { if (!AddToAsm(ctx, token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(ctx, LEFT(token)) == SUCCESS" " is false\n" , __func__, 431); return FAILURE ; } }while (0);;
+
+            assprint("\n");
+            assprint("push %d\n", (int) floor(0 * SOFT_CPU_PRECISION));
+            assprint ("je : %s_end_label_%d\n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"), current_instruction);
+            assprint ("; end of condition\n\n");
+
+            assprint("; %s body\n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"));
+            do { if (!AddToAsm(ctx, token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(ctx, RIGHT(token)) == SUCCESS" " is false\n" , __func__, 439); return FAILURE ; } }while (0);;
+            assprint (": %s_end_label_%d\n", (((token) && (token->type == INSTRUCTION) ? true : false) ? INSTRUCTIONS[token->value.t_instruction] : "NOT A INSTRUCTION"), current_instruction);
+
+            break;
+            }
+
+        default:
+            printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/../src/Handlers_.ars", 446, __func__, 446); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/../src/Handlers_.ars", 446, __func__, 446);
+            printf("\033[96m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/../src/Handlers_.ars", 447, "to do instructions default\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/../src/Handlers_.ars", 447, "to do instructions default\n"); Logger::getInstance().log("to do instructions default\n" );;
+            return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 448, __func__, 448);
+        }
+
+    assprint("\n");
+
+    return SUCCESS;
+    }
+
+static int MathOperationsHandler (AsmCtx* ctx, const Token* token)
+    {
+    FunctionLogger func_458 {1, __func__};
+
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 460, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 460, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 460 "./src/../src/Handlers_.ars" 3 4
+   14
+# 460 "./src/../src/Handlers_.ars"
+   , strerror(
+# 460 "./src/../src/Handlers_.ars" 3 4
+   14
+# 460 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 460); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 461, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 461, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 461 "./src/../src/Handlers_.ars" 3 4
+   14
+# 461 "./src/../src/Handlers_.ars"
+   , strerror(
+# 461 "./src/../src/Handlers_.ars" 3 4
+   14
+# 461 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 461); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    LogToken(token, "token" , (((ctx)->program)->string_arr));
+
+    do { if (token->type != OPERATOR) { do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Not a %s type\n" , "OPERATOR"); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 465); PrintToken(token); } while(0); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 465, __func__, 465) ; } }while(0);
+
+    switch (token->value.t_operator)
+        {
+        case ADD:
+        case SUB:
+        case MUL:
+        case DIV:
+
+            do { if (!ExpressionHandler (ctx, token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ExpressionHandler (ctx, RIGHT(token)) == SUCCESS" " is false\n" , __func__, 474); return FAILURE ; } }while (0);;
+            do { if (!ExpressionHandler (ctx, token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ExpressionHandler (ctx, LEFT(token)) == SUCCESS" " is false\n" , __func__, 475); return FAILURE ; } }while (0);;
+            switch (token->value.t_operator) { case ADD: assprint("ADD\n"); break; case SUB: assprint("SUB\n"); break; case DIV: assprint("FDIV\n"); break; case MUL: assprint("FMUL\n"); break; case POW: assprint("POW\n"); break; default: break; };
+
+            return SUCCESS;
+
+        case BIGGER:
+        case LESS:
+
+             do { if (!ExpressionHandler (ctx, token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ExpressionHandler (ctx, RIGHT(token)) == SUCCESS" " is false\n" , __func__, 483); return FAILURE ; } }while (0);;
+             do { if (!ExpressionHandler (ctx, token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ExpressionHandler (ctx, LEFT(token)) == SUCCESS" " is false\n" , __func__, 484); return FAILURE ; } }while (0);;
+
+            static int bool_cnt = 0;
+
+            assprint ("j%c : true_%d", token->value.t_operator == BIGGER ? 'a' : 'b', bool_cnt);
+            assprint ("\npush 0\n");
+            assprint ("jmp :true_end_%d\n", bool_cnt);
+            assprint (": true_%d\n", bool_cnt);
+            assprint ("push %d\n", 1 * SOFT_CPU_PRECISION);
+            assprint (": true_end_%d\n", bool_cnt);
+
+            bool_cnt++;
+
+            return SUCCESS;
+        default:
+            printf("Wrong operator %c\n", token->value.t_operator);
+            printf("\033[96m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/../src/Handlers_.ars", 500, "nill ptr\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/../src/Handlers_.ars", 500, "nill ptr\n"); Logger::getInstance().log("nill ptr\n" );;
+            PrintToken(token, 
+# 501 "./src/../src/Handlers_.ars" 3 4
+                             __null
+# 501 "./src/../src/Handlers_.ars"
+                                 );
+
+            return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 503, __func__, 503);
+        }
+
+    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/../src/Handlers_.ars", 506, __func__, 506); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/../src/Handlers_.ars", 506, __func__, 506);
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 507, __func__, 507);
+    }
+
+static int NativeFunctionHandler (AsmCtx* ctx, const Token* token)
+    {
+    FunctionLogger func_512 {1, __func__};
+
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 514, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 514, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 514 "./src/../src/Handlers_.ars" 3 4
+   14
+# 514 "./src/../src/Handlers_.ars"
+   , strerror(
+# 514 "./src/../src/Handlers_.ars" 3 4
+   14
+# 514 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 514); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 515, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 515, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 515 "./src/../src/Handlers_.ars" 3 4
+   14
+# 515 "./src/../src/Handlers_.ars"
+   , strerror(
+# 515 "./src/../src/Handlers_.ars" 3 4
+   14
+# 515 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 515); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    LogToken(token, "token" , (((ctx)->program)->string_arr));
+
+    do { if (token->type != NATIVE_FUNCTION) { do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Not a %s type\n" , "NATIVE_FUNCTION"); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 519); PrintToken(token); } while(0); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 519, __func__, 519) ; } }while(0);
+
+    switch (token->value.t_native_function)
+        {
+        case FOUT:
+            {
+            if (token->left_child)
+                do { if (!ParametrHandler(ctx, token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ParametrHandler(ctx, LEFT(token)) == SUCCESS" " is false\n" , __func__, 526); return FAILURE ; } }while (0);;
+
+
+            assprint("FOUT\n");
+
+            return SUCCESS;
+            }
+
+        case FIN:
+            {
+            assprint("FIN\n");
+
+            Token* var = token->left_child->left_child;
+
+            if (token->left_child->right_child)
+                {
+                { printf("\t%s: ", __func__); printf("FIN USES ONLY ONE PARAMETR !!!!\n"); printf(" (%s:%d)\n", "./src/../src/Handlers_.ars", 542); };
+                }
+
+            assprint("; BBBBBBBBBBBBBBBBBBBBBB\n");
+            assprint("pop ");
+            do { if (!NameHandler(ctx, var) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "NameHandler(ctx, var) == SUCCESS" " is false\n" , __func__, 547); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 547, __func__, 547) ; } }while (0);;
+
+
+
+
+
+
+            return SUCCESS;
+            }
+        case SIN:
+        case COS:
+            do { if (!ParametrHandler(ctx, token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ParametrHandler(ctx, LEFT(token)) == SUCCESS" " is false\n" , __func__, 558); return FAILURE ; } }while (0);;
+
+            assprint ("%s\n", token->value.t_native_function == SIN ? "sin" : "cos");
+
+            return SUCCESS;
+
+        case POW:
+
+            do { if (!ParametrHandler(ctx, token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ParametrHandler(ctx, LEFT(token)) == SUCCESS" " is false\n" , __func__, 566); return FAILURE ; } }while (0);;
+
+            assprint ("pow\n", token->value.t_native_function == SIN ? "sin" : "cos");
+
+            return SUCCESS;
+
+        default:
+            printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/../src/Handlers_.ars", 573, __func__, 573); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/../src/Handlers_.ars", 573, __func__, 573);
+            printf("\033[96m" "#TODO Check this place to improve it (%s:%d)\n%s" "\033[0m" , "./src/../src/Handlers_.ars", 574, "to do native functions default\n"); Logger::getInstance().log("#TODO Check this place to improve it (%s:%d)\n%s" , "./src/../src/Handlers_.ars", 574, "to do native functions default\n"); Logger::getInstance().log("to do native functions default\n" );;
+            return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 575, __func__, 575);
+        }
+
+    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/../src/Handlers_.ars", 578, __func__, 578); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/../src/Handlers_.ars", 578, __func__, 578);
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 579, __func__, 579);
+    }
+
+static int FunctionReturnHandler (AsmCtx* ctx, const Token* token)
+    {
+    FunctionLogger func_584 {1, __func__};
+
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 586, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 586, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 586 "./src/../src/Handlers_.ars" 3 4
+   14
+# 586 "./src/../src/Handlers_.ars"
+   , strerror(
+# 586 "./src/../src/Handlers_.ars" 3 4
+   14
+# 586 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 586); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 587, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 587, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 587 "./src/../src/Handlers_.ars" 3 4
+   14
+# 587 "./src/../src/Handlers_.ars"
+   , strerror(
+# 587 "./src/../src/Handlers_.ars" 3 4
+   14
+# 587 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 587); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    LogToken(token, "token" , (((ctx)->program)->string_arr));
+
+    do { if (token->type != FUNCTION_RET_TYPE) { do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Not a %s type\n" , "FUNCTION_RET_TYPE"); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 591); PrintToken(token); } while(0); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 591, __func__, 591) ; } }while(0);
+
+    assprint("\n; return ;\n");
+
+    if (!token->left_child)
+        assprint("push %d\n", (int) floor(0 * SOFT_CPU_PRECISION));
+    else
+        {
+        if (token->left_child->type == NAME)
+            assprint ("push ");
+
+        do { if (!AddToAsm(ctx, token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(ctx, LEFT(token)) == SUCCESS" " is false\n" , __func__, 602); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 602, __func__, 602) ; } }while (0);
+        }
+
+    assprint("\npop r%cx ;ret reg\n", RETURN_VALUE_REG + 'a' -1);
+    assprint("ret\n\n");
+
+    assprint(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n");
+
+
+    return SUCCESS;
+    }
+
+static int ParametrHandler (AsmCtx* ctx, const Token* token)
+    {
+    FunctionLogger func_616 {1, __func__};
+
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 618, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 618, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 618 "./src/../src/Handlers_.ars" 3 4
+   14
+# 618 "./src/../src/Handlers_.ars"
+   , strerror(
+# 618 "./src/../src/Handlers_.ars" 3 4
+   14
+# 618 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 618); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 619, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 619, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 619 "./src/../src/Handlers_.ars" 3 4
+   14
+# 619 "./src/../src/Handlers_.ars"
+   , strerror(
+# 619 "./src/../src/Handlers_.ars" 3 4
+   14
+# 619 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 619); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    LogToken(token, "token" , (((ctx)->program)->string_arr));
+
+    do { if (token->type != PARAMETR) { do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Not a %s type\n" , "PARAMETR"); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 623); PrintToken(token); } while(0); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 623, __func__, 623) ; } }while(0);
+
+
+
+
+    if (token->left_child->type != INITIALIZATOR)
+        do { if (!ExpressionHandler(ctx, token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ExpressionHandler(ctx, LEFT(token)) == SUCCESS" " is false\n" , __func__, 629); return FAILURE ; } }while (0);;
+
+    if (token->right_child && token->right_child->type != INITIALIZATOR)
+        do { if (!ParametrHandler(ctx, token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "ParametrHandler(ctx, RIGHT(token)) == SUCCESS" " is false\n" , __func__, 632); return FAILURE ; } }while (0);;
+
+    return SUCCESS;
+    }
+
+static int ConstantHandler (AsmCtx* ctx, const Token* token)
+    {
+    FunctionLogger func_639 {1, __func__};
+
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 641, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 641, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 641 "./src/../src/Handlers_.ars" 3 4
+   14
+# 641 "./src/../src/Handlers_.ars"
+   , strerror(
+# 641 "./src/../src/Handlers_.ars" 3 4
+   14
+# 641 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 641); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+    do { if (!(token)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "token"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "token"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 642, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/../src/Handlers_.ars", 642, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 642 "./src/../src/Handlers_.ars" 3 4
+   14
+# 642 "./src/../src/Handlers_.ars"
+   , strerror(
+# 642 "./src/../src/Handlers_.ars" 3 4
+   14
+# 642 "./src/../src/Handlers_.ars"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 642); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    LogToken(token, "token" , (((ctx)->program)->string_arr));
+
+    do { if (token->type != CONSTANT) { do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Not a %s type\n" , "CONSTANT"); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/../src/Handlers_.ars", 646); PrintToken(token); } while(0); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/../src/Handlers_.ars", 646, __func__, 646) ; } }while(0);
+
+    assprint("push %d\n", (int) floor(token->value.t_constant * SOFT_CPU_PRECISION));
+
+    return SUCCESS;
+    }
+# 34 "./src/TranslateToAsm.cpp" 2
+
+int TranslateToAsm (const Program *const program, const char *const name)
+    {
+    FunctionLogger func_37 {1, __func__};
+    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/TranslateToAsm.cpp", 38, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/TranslateToAsm.cpp", 38, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 38 "./src/TranslateToAsm.cpp" 3 4
+   14
+# 38 "./src/TranslateToAsm.cpp"
+   , strerror(
+# 38 "./src/TranslateToAsm.cpp" 3 4
+   14
+# 38 "./src/TranslateToAsm.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 38); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 38, __func__, 38); } } while (0);;
+    do { if (!(name)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "name"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "name"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/TranslateToAsm.cpp", 39, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/TranslateToAsm.cpp", 39, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 39 "./src/TranslateToAsm.cpp" 3 4
+   14
+# 39 "./src/TranslateToAsm.cpp"
+   , strerror(
+# 39 "./src/TranslateToAsm.cpp" 3 4
+   14
+# 39 "./src/TranslateToAsm.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 39); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 39, __func__, 39); } } while (0);;
+
+
+
+    if (!program->root)
+        {
+        { printf("\t%s: ", __func__); printf("Program root can't be NULL, %p\n", (void*) program->root); printf(" (%s:%d)\n", "./src/TranslateToAsm.cpp", 45); };
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 46, __func__, 46);
+        }
+
+    if (!program->string_arr)
+        {
+        { printf("\t%s: ", __func__); printf("Program must have string arr to work properly\n"); printf(" (%s:%d)\n", "./src/TranslateToAsm.cpp", 51); };
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 52, __func__, 52);
+        }
+
+    if (OpenAsmFile(name) != SUCCESS)
+        {
+        { printf("\t%s: ", __func__); printf("Couldn't open %s for ASM file\n", name); printf(" (%s:%d)\n", "./src/TranslateToAsm.cpp", 57); };
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 58, __func__, 58);
+        }
+
+    AsmCtx ctx_{};
+    AsmCtx* ctx = &ctx_;
+
+    if (AsmCtxCtor(ctx, program) != SUCCESS)
+        return FAILURE;
+
+
+
+
+    if (SetAsmFile(ctx) != SUCCESS)
+        goto FAILURE_EXIT;
+
+    if (AddToAsm(ctx, program->root) != SUCCESS)
+        goto FAILURE_EXIT;
+
+    if (ctx->number_of_global_vars != ((program)->number_of_global_vars))
+        {
+        { printf("\t%s: ", __func__); printf("Number of global variables from program and from ctx differs (ctx: %d, program: %d)\n", ctx->number_of_global_vars, ((program)->number_of_global_vars)); printf(" (%s:%d)\n", "./src/TranslateToAsm.cpp", 78); }
+        goto FAILURE_EXIT;
+        }
+
+    if (InitGlobalVars(ctx) != SUCCESS)
+        goto FAILURE_EXIT;
+
+    CloseAsmFile();
+    AsmCtxDtor(ctx);
+
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (SUCCESS, "%s:%d returned SUCCESS " , __func__, 88);
+
+    FAILURE_EXIT:
+
+    CloseAsmFile();
+    AsmCtxDtor(ctx);
+
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 95, __func__, 95);
+    }
+
+static int AddToAsm (AsmCtx* ctx, const Token *const token)
+    {
+    FunctionLogger func_100 {3, __func__};
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/TranslateToAsm.cpp", 101, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/TranslateToAsm.cpp", 101, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 101 "./src/TranslateToAsm.cpp" 3 4
+   14
+# 101 "./src/TranslateToAsm.cpp"
+   , strerror(
+# 101 "./src/TranslateToAsm.cpp" 3 4
+   14
+# 101 "./src/TranslateToAsm.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 101); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 101, __func__, 101); } } while (0);;
+
+    if (!token)
+        return SUCCESS;
+
+    LogToken(token, "token" , (((ctx)->program)->string_arr));
+
+
+    switch (token->type)
+        {
+        case NAME: return NameHandler(ctx, token);
+        case INITIALIZATOR: return VarInitialization(ctx, token);
+        case FUNCTION: return FunctionHandler(ctx, token);
+        case CALL: return CallHandler(ctx, token);
+        case CONSTANT: return ConstantHandler(ctx, token);
+        case INSTRUCTION: return InstructionHandler (ctx, token);
+        case OPERATOR: return MathOperationsHandler (ctx, token);
+        case NATIVE_FUNCTION: return NativeFunctionHandler(ctx, token);
+        case FUNCTION_RET_TYPE: return FunctionReturnHandler(ctx, token);
+        case PARAMETR: return ParametrHandler(ctx, token);
+        case ASSIGMENT:
+            {
+            return AssigmentHandler(ctx, token);
+# 133 "./src/TranslateToAsm.cpp"
+            return SUCCESS;
+            }
+        case STATEMENT:
+            {
+            do { if (!AddToAsm(ctx, token->left_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(ctx, LEFT(token)) == SUCCESS" " is false\n" , __func__, 137); return FAILURE ; } }while (0);;
+
+            if (token->right_child)
+                 do { if (!AddToAsm(ctx, token->right_child) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "AddToAsm(ctx, RIGHT(token)) == SUCCESS" " is false\n" , __func__, 140); return FAILURE ; } }while (0);;
+
+            return SUCCESS;
+            }
+        default:
+            do { printf("\033[91m" "Report translator ERORR\n" "\033[93m"); Logger::getInstance().log("Translator ERROR\n" ); Logger::getInstance().log("" ); Logger::getInstance().log_dup_console("Wrong token type\n" ); printf("In: " "\033[95m"); printf("\033[0m" "\n"); printf("%s:%d\n", "./src/TranslateToAsm.cpp", 145); PrintToken(token); } while(0);;
+            return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 146, __func__, 146);
+        }
+
+    printf("\033[95m" "You shouldn't be able to reach this place %s:%d (%s::%d)\n" "\033[0m" , "./src/TranslateToAsm.cpp", 149, __func__, 149); Logger::getInstance().log("You shouldn't be able to reach this place %s:%d (%s::%d)\n" , "./src/TranslateToAsm.cpp", 149, __func__, 149);
+    PrintToken(token, (((ctx)->program)->string_arr));
+
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 152, __func__, 152);
+    }
+
+static int InitGlobalVars (const AsmCtx* ctx)
+    {
+    FunctionLogger func_157 {1, __func__};
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/TranslateToAsm.cpp", 158, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/TranslateToAsm.cpp", 158, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 158 "./src/TranslateToAsm.cpp" 3 4
+   14
+# 158 "./src/TranslateToAsm.cpp"
+   , strerror(
+# 158 "./src/TranslateToAsm.cpp" 3 4
+   14
+# 158 "./src/TranslateToAsm.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 158); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+
+
+    STACK_FRAME_OFFSET = ctx->number_of_global_vars;
+
+    assprint(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n");
+    assprint("\t\t: InitGlobalVars\n\n");
+
+    int var_init_cnt = 0;
+    while(var_init_cnt < ctx->number_of_global_vars)
+        {
+        Label* global_var = ctx->global_vars->label_arr[var_init_cnt];
+
+#pragma GCC diagnostic ignored "-Wcast-qual"
+
+
+        do { if (!VarInitialization((AsmCtx*) ctx, global_var->global_initialization, true) == SUCCESS) { Logger::getInstance().log("%s:%d::CHECK: " "VarInitialization((AsmCtx*) ctx, global_var->global_initialization, true) == SUCCESS" " is false\n" , __func__, 175); return FAILURE ; } }while (0);;
+
+        var_init_cnt++;
+        }
+
+    if (var_init_cnt != ctx->number_of_global_vars)
+        {
+        { printf("\t%s: ", __func__); printf("Number of initialized global var doesn't match with number of ctx number of global vars (var_cnt: %d, ctx: %d)\n", var_init_cnt, ctx->number_of_global_vars); printf(" (%s:%d)\n", "./src/TranslateToAsm.cpp", 182); }
+                                                                 ;
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 184, __func__, 184);
+        }
+
+    assprint("ret\n\n");
+
+    assprint(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n");
+
+    return SUCCESS;
+    }
+
+
+static int OpenAsmFile (const char *const name)
+    {
+    if (!name) return 
+# 197 "./src/TranslateToAsm.cpp" 3 4
+                      __null
+# 197 "./src/TranslateToAsm.cpp"
+                          ;
+
+    ASM_FILE = fopen (name, "wb");
+    if (!ASM_FILE)
+        {
+          Logger::getInstance().log("Couldn't create ASM_FILE %s" , name);
+        printf("Couldn't create ASM_FILE %s", name);
+        return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "./src/TranslateToAsm.cpp", 204, __func__, 204);
+        }
+
+    setvbuf(ASM_FILE, 
+# 207 "./src/TranslateToAsm.cpp" 3 4
+                     __null
+# 207 "./src/TranslateToAsm.cpp"
+                         , 
+# 207 "./src/TranslateToAsm.cpp" 3 4
+                           2
+# 207 "./src/TranslateToAsm.cpp"
+                                 , 0);
+
+    time_t NewYorkTime = time(
+# 209 "./src/TranslateToAsm.cpp" 3 4
+                             __null
+# 209 "./src/TranslateToAsm.cpp"
+                                 );
+    assprint (";%s\n", ctime(&NewYorkTime));
+
+    return Logger::getInstance().Logger::getInstance().LogMsgRet (SUCCESS, "%s:%d returned SUCCESS " , __func__, 212);
+    }
+
+void CloseAsmFile()
+    {
+    if (!ASM_FILE)
+        return;
+
+    assprint("\n;end {document}\n");
+    fflush (ASM_FILE);
+
+    fclose (ASM_FILE);
+
+    ASM_FILE = 
+# 225 "./src/TranslateToAsm.cpp" 3 4
+              __null
+# 225 "./src/TranslateToAsm.cpp"
+                  ;
+
+    return;
+    }
+
+static int SetAsmFile (AsmCtx* ctx)
+    {
+    do { if (!(ctx)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "ctx"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "ctx"); Logger::getInstance().log("\t%s:%d, function: %s\n", "./src/TranslateToAsm.cpp", 232, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "./src/TranslateToAsm.cpp", 232, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 232 "./src/TranslateToAsm.cpp" 3 4
+   14
+# 232 "./src/TranslateToAsm.cpp"
+   , strerror(
+# 232 "./src/TranslateToAsm.cpp" 3 4
+   14
+# 232 "./src/TranslateToAsm.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 232); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+
+    assprint("call : InitGlobalVars\n");
+
+    STACK_FRAME_OFFSET = ((((ctx)->program))->number_of_global_vars);
+
+    assprint("\n;Setting Stack Frame\n");
+    assprint("push %d\n", STACK_FRAME_OFFSET + START_RAM_ADDRESS_FOR_GLOBAL_VARS);
+    assprint("pop r%cx\n", VARIABLES_ADDRESS_REG + 'a' - 1);
+
+    assprint("\ncall : main\n");
+    assprint("\nhlt\n\n");
+
+    assprint(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n");
+
+    return SUCCESS;
+    }

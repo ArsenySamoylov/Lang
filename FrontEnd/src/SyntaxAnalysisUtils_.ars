@@ -1,8 +1,14 @@
 // UTILS
+#pragma GCC diagnostic ignored "-Wignored-qualifiers"
+Token *const NO_FUNC_ARGUMENTS = (Token *const) 0x13;
+
+// '(' is taken by Make FuncLable
+static Token* GetFunctionParametrs (SyntacticCtx* ctx, int* number_of_parametr);
+
 static Token* VarInitialization (SyntacticCtx* ctx);
 static int   FuncInitialization (SyntacticCtx* ctx);
 
-#pragma GCC diagnostic ignored "-Wformat="
+// #pragma GCC diagnostic ignored "-Wformat="
 
 static int MakeFuncLabel (SyntacticCtx* ctx, Token** func_head = NULL);
 // static VarLabel*  MakeVarLabel  (SyntacticCtx* ctx);
@@ -28,7 +34,7 @@ static int DefineName(SyntacticCtx* ctx)
         TYPE(token) = FUNCTION;
         return FUNCTION;
         }
-
+    
     if (GetVarLabel (NAME_ID(token), VAR_TABELS_STK(ctx)))
         {
         TYPE(token) = VARIABLE;
@@ -62,26 +68,15 @@ static int MakeFuncLabel(SyntacticCtx* ctx, Token** func_head)
     Token* name = token;
     POSITION(ctx)++;
             
-    // argument
+    
     if(TYPE(token) != EXPRESSION_OPENING_BRACKET)
         {
         report_syntax_error("Missing '(' in function head\n");
-        return FAILURE;
+        return LFAILURE;
         }
-    POSITION(ctx)++;
-    // TO_DO
 
-    if(TYPE(token) != EXPRESSION_CLOSING_BRACKET)
-       {
-       report_syntax_error("Missing ')' in function head\n");
-       return FAILURE;
-       }
-    
     Token* function = token; // for head
-    POSITION(ctx)++;
-
-    // ADD PARAMETRS
-    //
+    // POSITION(ctx)++;
 
     FuncLabel* label = NewFuncLabel (NAME_ID(name), RET_TYPE(ret_type));
     if (!label)
@@ -100,12 +95,11 @@ static int MakeFuncLabel(SyntacticCtx* ctx, Token** func_head)
 
     // check for previous declaration
     int prev_decl_pos = IsFuncLabel(NAME_ID(name), FUNC_TABEL(ctx));
-    
-    if (prev_decl_pos == NOT_A_LABEL && func_head)
+    if (prev_decl_pos == NOT_A_LABEL && func_head && strcmp(MAIN_NAME, STRING_ARR(ctx)[NAME_ID(name)]))
         {
         printf(purplecolor "Warning, no prototype for function '%s'\n", STRING_ARR(ctx)[label->name]);
-        printf("To do, add warning system\n");
-
+        printf("%s:%d:%d\n", PROGRAM(ctx)-> path_to_src_file, ret_type->line, ret_type->indent);
+        func_message("To do, add warning system\n\n" resetconsole);
         }
         
     if (prev_decl_pos != NOT_A_LABEL)
@@ -149,3 +143,79 @@ static int MakeFuncLabel(SyntacticCtx* ctx, Token** func_head)
     $li(position)
     return position;
     } 
+
+// '(' is taken by Make FuncLable
+static Token* GetFunctionParametrs (SyntacticCtx* ctx, int* number_of_parametrs)
+    {
+    assertlog(ctx, EFAULT, return LNULL)
+
+    if(OP(token) != EXPRESSION_OPENING_BRACKET)
+        {
+        report_syntax_error("Missing '(' in function head\n");
+        return LNULL;
+        }
+    POSITION(ctx)++;
+    
+    if (TYPE(token) == EXPRESSION_CLOSING_BRACKET)
+        {
+        POSITION(ctx)++;
+        
+        *number_of_parametrs = 0;
+
+        return NO_FUNC_ARGUMENTS;
+        }
+
+    Token* first_parametr = ParametrInitialization(ctx);
+    if (!first_parametr)  
+        return LNULL;
+
+    if (TYPE(token) == ASSIGMENT)
+        {
+        report_syntax_error("Assigment forbiden in function head!\n");
+        return LNULL;
+        }
+
+    if (TYPE(token) != SEPARATOR && TYPE(token) != EXPRESSION_CLOSING_BRACKET)
+        {
+        report_syntax_error("No separator between arguments in function '%s'\n", STRING_ARR(ctx)[NAME_ID(token)]);
+        return LNULL;
+        }
+
+    Token* root = token;
+    
+    TYPE(root) = PARAMETR;
+    LEFT(root) = first_parametr;
+
+    (*number_of_parametrs)++;
+
+    Token* current_param = root;
+    while (OP(token) != EXPRESSION_CLOSING_BRACKET)
+        {
+        POSITION(ctx)++;
+
+        Token* parametr_init = ParametrInitialization(ctx); 
+
+        if (!parametr_init)
+            return LNULL;
+
+        if (TYPE(token) != SEPARATOR && TYPE(token) != EXPRESSION_CLOSING_BRACKET)
+            {
+            report_syntax_error("No separator between arguments in function '%s'\n", STRING_ARR(ctx)[NAME_ID(token)]);
+            return LNULL;
+            }
+
+        Token* param = token;
+
+        TYPE(param) = PARAMETR;
+        LEFT(param) = parametr_init;
+        
+        RIGHT(current_param) = param;
+        current_param = RIGHT(current_param);  
+
+        (*number_of_parametrs)++;   
+        }
+
+    POSITION(ctx)++;
+
+    return root;
+    }

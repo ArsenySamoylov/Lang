@@ -1,0 +1,65 @@
+;Mon Dec 19 23:54:50 2022
+
+call : InitGlobalVars
+
+;Setting Stack Frame
+push 2
+pop rbx
+
+call : main
+
+hlt
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		: main
+
+;assigment
+push 5600
+pop [0] ; global var 'x' (name handler) 
+
+push [0] ; global var 'x' (name handler) 
+FOUT
+
+; Setting Stack Frame
+push rbx + 0
+pop rbx
+
+call :helloworld
+
+; Setting Stack Frame Back
+push rbx - 0
+pop rbx
+
+; return ;
+push 0
+pop rcx ;ret value
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		: helloworld
+
+push 400
+FOUT
+
+; return ;
+push 0
+pop rcx ;ret value
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		: InitGlobalVars
+
+; 'x' - global var init
+push 300
+push 500
+FMUL
+pop  [0] ; global var 'x' (name handler) 
+; 'y' - global var init
+push 400
+pop  [1] ; global var 'y' (name handler) 
+ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;end {document}

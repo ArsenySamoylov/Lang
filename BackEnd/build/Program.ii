@@ -13,6 +13,88 @@
 
 #pragma GCC diagnostic ignored "-Wlarger-than="
 
+# 1 "../Common/Structures/Tabels/NameTable.h" 1
+       
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long int ptrdiff_t;
+# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long unsigned int size_t;
+# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef struct {
+  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
+  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
+# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+} max_align_t;
+
+
+
+
+
+
+  typedef decltype(nullptr) nullptr_t;
+# 4 "../Common/Structures/Tabels/NameTable.h" 2
+
+
+# 5 "../Common/Structures/Tabels/NameTable.h"
+enum LOCALITY_NUM
+    {
+    GLOBAL,
+    LOCAL,
+    };
+
+struct Token;
+
+struct Label
+    {
+    int type;
+    int name_id;
+
+    int number_of_vars;
+    int ret_type;
+
+    int var_number;
+    int local_type;
+
+    const Token* global_initialization;
+    };
+
+struct NameTable
+    {
+    Label** label_arr;
+    size_t arr_size;
+
+    size_t number_of_labels;
+    };
+
+struct NameTableArr
+    {
+    NameTable** arr;
+
+    int size_of_tables_arr;
+    int number_of_tables;
+    };
+
+NameTable* NewNameTable();
+int CloseNameTable (NameTable* table);
+
+int AddLabel (Label* label, NameTable* table);
+Label* CopyLabel (Label* label, NameTable* table);
+
+Label* IsLabel (int name_id, int type, NameTable* table);
+int CompareLabels (Label* label1, Label* label2);
+
+
+NameTableArr* NewNameTableArr (int start_size);
+int DeleteNameTableArr (NameTableArr* table_arr);
+
+
+NameTable* AddTable (NameTableArr* table_arr);
+# 6 "../Common/Structures/Token/Token.h" 2
+
 union TokenValue
     {
     int t_instruction;
@@ -37,6 +119,8 @@ struct Token
 
     TokenValue value;
 
+    Label* t_label_ptr;
+
 
     const char* ptr_to_src_code;
 
@@ -57,29 +141,8 @@ int DeleteBranch (Token* def_node);
 
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-
-# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef long int ptrdiff_t;
-# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef long unsigned int size_t;
-# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-typedef struct {
-  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
-  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
-# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
-} max_align_t;
-
-
-
-
-
-
-  typedef decltype(nullptr) nullptr_t;
 # 6 "../Common/Structures/Tabels/Tabels.h" 2
 
-
-# 7 "../Common/Structures/Tabels/Tabels.h"
 const int NOT_DECLARED = - 111;
 const int NOT_A_LABEL = -9;
 
@@ -118,9 +181,8 @@ struct FuncLabel
 
     int number_of_return;
 
-
-
     size_t number_of_local_variables;
+    int number_of_parametrs;
     };
 
 struct FuncTabel
@@ -162,6 +224,7 @@ int AddVarLabel (VarLabel* label, VarTabel* tabel);
 int AddVarLabel (int name_id, VarTabel* tabel);
 # 5 "../Common/Structures/Program/Program.h" 2
 
+
 struct Program
     {
     Token* token_arr;
@@ -173,6 +236,12 @@ struct Program
     int number_of_strings;
 
     const char* path_to_src_file;
+
+
+    NameTableArr* name_table_arr;
+    int number_of_global_vars;
+
+
     };
 
 int ProgramCtor(Program* program, const char* path_to_src_file);
@@ -44384,15 +44453,16 @@ int ProgramCtor(Program* program, const char* path_to_src_file)
 
 int ProgramDtor(Program* program)
     {
-    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 24, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 24, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 24 "../Common/Structures/Program/Program.cpp" 3 4
+    FunctionLogger func_24 {1, __func__};
+    do { if (!(program)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "program"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "program"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 25, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 25, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 25 "../Common/Structures/Program/Program.cpp" 3 4
    14
-# 24 "../Common/Structures/Program/Program.cpp"
+# 25 "../Common/Structures/Program/Program.cpp"
    , strerror(
-# 24 "../Common/Structures/Program/Program.cpp" 3 4
+# 25 "../Common/Structures/Program/Program.cpp" 3 4
    14
-# 24 "../Common/Structures/Program/Program.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 24); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
+# 25 "../Common/Structures/Program/Program.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 25); system("echo LOX\n"); return BAD_ARGUMENT; } } while (0);;
 
     if (program->string_arr)
         {
@@ -44401,12 +44471,17 @@ int ProgramDtor(Program* program)
             return FAILURE;
 
 
-        Logger::getInstance().FREE_LOG (program->string_arr, "../Common/Structures/Program/Program.cpp", __func__, 33);;
+        Logger::getInstance().FREE_LOG (program->string_arr, "../Common/Structures/Program/Program.cpp", __func__, 34);;
         }
 
     if (program->token_arr)
         {
-        Logger::getInstance().FREE_LOG (program->token_arr, "../Common/Structures/Program/Program.cpp", __func__, 38);;
+        Logger::getInstance().FREE_LOG (program->token_arr, "../Common/Structures/Program/Program.cpp", __func__, 39);;
+        }
+
+    if (program->name_table_arr)
+        {
+        DeleteNameTableArr(program->name_table_arr);
         }
 
     return SUCCESS;
@@ -44416,25 +44491,25 @@ int ProgramDtor(Program* program)
 
 int CleanStringArr(const char** string_arr, int number_of_strings)
     {
-    do { if (!(string_arr)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "string_arr"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "string_arr"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 48, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 48, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
-# 48 "../Common/Structures/Program/Program.cpp" 3 4
+    do { if (!(string_arr)) { Logger::getInstance().log("ASSERTLOG:: Condition (%s) is false\n", "string_arr"); printf("\033[93m" "ASSERTLOG:: " "\033[0m" "Condition" "\033[95m" " (%s) " "\033[0m" "is " "\033[91m" "false\n" "\033[0m", "string_arr"); Logger::getInstance().log("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 54, __PRETTY_FUNCTION__); printf("\t%s:%d, function: %s\n", "../Common/Structures/Program/Program.cpp", 54, __PRETTY_FUNCTION__); Logger::getInstance().log("It matches to error: (code %d) %s\n\n", 
+# 54 "../Common/Structures/Program/Program.cpp" 3 4
    14
-# 48 "../Common/Structures/Program/Program.cpp"
+# 54 "../Common/Structures/Program/Program.cpp"
    , strerror(
-# 48 "../Common/Structures/Program/Program.cpp" 3 4
+# 54 "../Common/Structures/Program/Program.cpp" 3 4
    14
-# 48 "../Common/Structures/Program/Program.cpp"
-   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 48); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (MsgRet(FAILURE, "\033[91m" "Failed %s:%d (%s:%d)\n" "\033[0m", "../Common/Structures/Program/Program.cpp", 48, __func__, 48), "Failed (%s:%d, %s:%d)" , "../Common/Structures/Program/Program.cpp", 48, __func__, 48); } } while (0);;
+# 54 "../Common/Structures/Program/Program.cpp"
+   )); Logger::getInstance().log("Shutting down the system (%s:%d)", __func__, 54); system("echo LOX\n"); return Logger::getInstance().Logger::getInstance().LogMsgRet (FAILURE, "Failed (%s:%d, %s:%d)" , "../Common/Structures/Program/Program.cpp", 54, __func__, 54); } } while (0);;
 
     for (int i = 0; i < number_of_strings; i++)
         {
         if (!(string_arr[i]))
             {
-            { printf("\t%s: ", __func__); printf("Ebat, null pointer in string arr, position %d\n", i); printf(" (%s:%d)\n", "../Common/Structures/Program/Program.cpp", 54); };
+            { printf("\t%s: ", __func__); printf("Ebat, null pointer in string arr, position %d\n", i); printf(" (%s:%d)\n", "../Common/Structures/Program/Program.cpp", 60); };
             return FAILURE;
             }
 
-        Logger::getInstance().FREE_LOG ((void*) string_arr[i], "../Common/Structures/Program/Program.cpp", __func__, 58);;
+        Logger::getInstance().FREE_LOG ((void*) string_arr[i], "../Common/Structures/Program/Program.cpp", __func__, 64);;
         }
 
     return SUCCESS;

@@ -10,23 +10,11 @@
 #include "LogMacroses.h"
 #include "EasyDebug.h"
 
-enum LOCALITY_NUM
-    {
-    GLOBAL_SCOPE,
-    LOCAL_SCOPE,
-    };
-
-enum VAR_TYPES
-    {
-    GLOBAL,
-    LOCAL,
-    };
-
 struct Ctx
     {
     const Program* program;
 
-    NameTable* global_name_table;
+    NameTableArr* name_tables_arr;
 
     int var_counter;
     int locality;
@@ -36,37 +24,55 @@ struct Ctx
 
 const int START_NUMBER_OF_NAME_TABELS_STK = 5;
 
-static int CtxCtor (Ctx* ctx, const Program* program);
-static int CtxDtor (Ctx* ctx);
+static int CtxCtor     (Ctx* ctx, const Program* program);
+static int CtxFailDtor (Ctx* ctx);
+static int CtxDtor     (Ctx* ctx);
 
 static int     SetToken    (Token* token, Ctx* ctx);
 static Label*  GetLabel (int name_id, int type, SuperStack* name_tables_stk); 
 
-#define PROGRAM(CTX)   (CTX->program)
-
+#define PROGRAM(CTX)          ((CTX)->program)
+#define TABLE_ARR(CTX)        ((CTX)->name_tables_arr->arr)
 #define NAME_TABLES_STK(CTX)  ((CTX)->name_tables_stk)
+
 #define TOP_TABLE(CTX)        (StackTop(NAME_TABLES_STK(CTX)))
-#define GLOBAL_TABLE(CTX)     ((CTX)->global_name_table)
+#define GLOBAL_TABLE(CTX)     (TABLE_ARR(CTX)[0])
 #define STRING_ARR(CTX)       (PROGRAM(CTX)->string_arr)
 
-NameTable* SetTokenTree (const Program* program)
+int SetTokenTree (Program* program)
     {
-    assertlog(program, EFAULT, return LNULL);
+    assertlog(program, EFAULT, return LFAILURE);
 
-    Ctx ctx{};
+    Ctx  ctx_{};
+    Ctx* ctx = &ctx_;
 
-    if (CtxCtor(&ctx, program) != SUCCESS)
-        return LNULL;
+    if (CtxCtor(ctx, program) != SUCCESS)
+        return LFAILURE;
 
-    if (SetToken(program->root, &ctx) != SUCCESS)
-        {
-        CtxDtor(&ctx);
-        return LNULL;
-        }
+    if (SetToken(program->root, ctx) != SUCCESS)
+        goto FAILURE_EXIT;
+       
+    // $p(ctx->name_tables_arr)
     
-    CtxDtor(&ctx);
 
-    return GLOBAL_TABLE(ctx);
+    // // $p(ctx->program)
+    // $p(program)
+
+    // $p(program->name_table_arr)
+    
+    program->name_table_arr        = ctx->name_tables_arr; 
+    program->number_of_global_vars = ctx->var_counter;
+
+    // $i(program->number_of_global_vars)
+    
+    CtxDtor(ctx);
+
+    return SUCCESS;
+
+    FAILURE_EXIT:
+
+    CtxFailDtor(ctx);
+    return LFAILURE;
     }
     
 static int SetToken (Token* token, Ctx* ctx)
@@ -77,7 +83,11 @@ static int SetToken (Token* token, Ctx* ctx)
     if (!token)
         return SUCCESS;
 
-    // TODO: check for redeclarartion
+    // CHANGE To:
+    // first of all: look for Label, if you found one, than work with it
+    //     secondly: if call have uncknown label. than make new one
+    //                    an maybe look for declaration
+    //      thirdly: turn on checking in Translate to Asm
     if (TYPE(token) == FUNCTION)
         {
         Label func_label{FUNCTION};
@@ -92,11 +102,14 @@ static int SetToken (Token* token, Ctx* ctx)
         ctx->var_counter = 0;
 
         // NEW TABEL;
-        NameTable* local_table = NewNameTable();
+        NameTable* local_table = AddTable (ctx->name_tables_arr);
+        if (!local_table)
+            goto FAILURE_EXIT;
+
         StackPush (NAME_TABLES_STK(ctx), local_table);
 
         // CHANGE LOCALITY
-        ctx->locality = LOCAL_SCOPE;
+        ctx->locality = LOCAL;
 
         // PUT CODE
         if (SetToken(LEFT(func_name), ctx) != SUCCESS)
@@ -118,19 +131,17 @@ static int SetToken (Token* token, Ctx* ctx)
             goto FAILURE_EXIT;
             }
 
-        // KILL NEW TABLE
-        if (CloseNameTable(local_table) != SUCCESS)
-            return FAILURE;
-
         // RETURN LOCALITY
-        ctx->locality = GLOBAL_SCOPE;
+        ctx->locality = GLOBAL;
 
-        return CopyLabel(&func_label, GLOBAL_TABLE(ctx));
+        LABEL_PTR(func_name) = CopyLabel(&func_label, GLOBAL_TABLE(ctx));
+        if (!LABEL_PTR(func_name)) // COPY label checks for redeclaration
+            goto FAILURE_EXIT;
+
+        return SUCCESS;  
 
         FAILURE_EXIT:
-
-        CloseNameTable(local_table);
-        return FAILURE;
+        return LFAILURE;
         }
 
     if (TYPE(token) == INITIALIZATOR)
@@ -142,7 +153,7 @@ static int SetToken (Token* token, Ctx* ctx)
         if (TYPE(var_name) != NAME)
             {
             func_message("Not a name token\n")
-            return FAILURE;
+            return LFAILURE;
             }
 
         var_label.name_id    = NAME_ID(var_name);
@@ -154,8 +165,7 @@ static int SetToken (Token* token, Ctx* ctx)
         $lp(var_name)
         $lp(STRING_ARR(ctx))
 
-
-        if (CopyLabel(&var_label, TOP_TABLE(ctx)) != SUCCESS)
+        if (!CopyLabel(&var_label, TOP_TABLE(ctx)))
             {
             func_message("Couldn't add label, ('%s') to TOP_TABLE\n", STRING_ARR(ctx)[var_label.name_id]);
             return LFAILURE;
@@ -168,51 +178,106 @@ static int SetToken (Token* token, Ctx* ctx)
         if (!var_label)
             {
             func_message("No label for '%s'\n", STRING_ARR(ctx)[NAME_ID(token)]);
-            return FAILURE;
+            return LFAILURE;
             }
 
-        TYPE(token) = VARIABLE;
-        VAR_NUMBER(token) = var_label->var_number;
+            //  TYPE(token) = VARIABLE;
+        LABEL_PTR(token) = var_label; 
         }
 
+    if (TYPE(token) == CALL)
+        {
+        Token* func_name = LEFT(token);
+
+        if (TYPE(func_name) != NATIVE_FUNCTION)
+            {
+            if (TYPE(func_name) != NAME && TYPE(func_name))
+                {
+                func_message ("No func_name to call\n");
+                return LFAILURE;
+                }
+
+            Label* func_label = IsLabel(NAME_ID(func_name), FUNCTION, GLOBAL_TABLE(ctx));  //GetLabel(NAME_ID(func_name), FUNCTION, NAME_TABLES_STK(ctx));
+            /* BECAUSE PROTOTYPES !!! 
+            if (!func_label)
+                {
+                func_message("No label for '%s'\n", STRING_ARR(ctx)[NAME_ID(token)]);
+                return LFAILURE;
+                }
+            */
+                // TYPE(token)  = FUNCTION;
+            LABEL_PTR(token) = func_label; 
+
+            return SetToken(LEFT(func_name), ctx); // remove it after dealing with prototypes
+            }
+        }
+
+
     if (SetToken( LEFT(token), ctx) != SUCCESS)
-        return FAILURE;
+        return LFAILURE;
 
     if (SetToken(RIGHT(token), ctx) != SUCCESS)
-        return FAILURE;
+        return LFAILURE;
 
-    return SUCCESS;
+    return SUCCESS; 
     }
 
+// CHANGE OWNERSHIP OF TABLEARR TO PROGRAM
 static int CtxCtor (Ctx* ctx, const Program* program)
     {
     assertlog(ctx,     EFAULT, return BAD_ARGUMENT);
     assertlog(program, EFAULT, return BAD_ARGUMENT);
+    
+    SuperStack*   name_tables_stk   = NULL;
+    NameTableArr* table_arr         = NULL;
+    NameTable*    global_name_table = NULL;
 
-    SuperStack* name_tables_stk = (SuperStack*) CALLOC (1, sizeof(name_tables_stk[0]));
+    // TABLES STK
+    name_tables_stk = (SuperStack*) CALLOC (1, sizeof(name_tables_stk[0]));
     if (!name_tables_stk)
-        return FAILURE;
+        goto FAILURE_EXIT;
 
     StackCtor(name_tables_stk, START_NUMBER_OF_NAME_TABELS_STK);
 
-    NameTable* global_name_table = NewNameTable();
+    // TABLES ARRAY
+    table_arr = NewNameTableArr (START_NUMBER_OF_NAME_TABLES);
+    if (!table_arr)
+        goto FAILURE_EXIT; 
+
+    // GLOBAL TABLE
+    global_name_table = AddTable(table_arr);
     if (!global_name_table)
-        {
-        StackDtor(name_tables_stk);
-        KILL(name_tables_stk);
+        goto FAILURE_EXIT;  // TABLES STK
+    name_tables_stk = (SuperStack*) CALLOC (1, sizeof(name_tables_stk[0]));
+    if (!name_tables_stk)
+        goto FAILURE_EXIT;
 
-        return FAILURE;
-        }
-
+    // SET EVERYTHING
     StackPush(name_tables_stk, global_name_table);
+    
+    if (!AddTable(table_arr))
+        goto FAILURE_EXIT;
 
     ctx->program           = program;
-    ctx->global_name_table = global_name_table;
+    
+    ctx->name_tables_arr   = table_arr;
+
+    ctx->var_counter  = 0;
+    ctx->locality     = GLOBAL;
+
     ctx->name_tables_stk   = name_tables_stk;
 
-    ctx->locality = GLOBAL_SCOPE;
-
     return SUCCESS;
+
+    FAILURE_EXIT:
+
+    if  (name_tables_stk)
+        KILL(name_tables_stk)
+
+    if (table_arr)
+        DeleteNameTableArr(table_arr);
+
+    return LFAILURE;
     }
 
 static int CtxDtor (Ctx* ctx)
@@ -222,7 +287,21 @@ static int CtxDtor (Ctx* ctx)
     StackDtor(ctx->name_tables_stk);
     KILL(ctx->name_tables_stk);
 
-    // CloseNameTable (ctx->global_name_table);
+    return SUCCESS;
+    }
+
+static int CtxFailDtor (Ctx* ctx)
+    {
+    assertlog(ctx, EFAULT, return BAD_ARGUMENT);
+
+    if (ctx->name_tables_stk)
+        {
+        StackDtor(ctx->name_tables_stk);
+        KILL(ctx->name_tables_stk);
+        }
+
+    if (ctx->name_tables_arr)
+        DeleteNameTableArr(ctx->name_tables_arr);
 
     return SUCCESS;
     }

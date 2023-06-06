@@ -22,6 +22,9 @@ int main(int argc, const char* argv[])
 		}
 
     const char* path_to_src_file = argv[1];
+    
+    // #include <stdlib.h>
+    // printf("Tests: %s\n", tmpnam(NULL));
 
     char* src_code = GetSrcFile (path_to_src_file);
     if (!src_code)

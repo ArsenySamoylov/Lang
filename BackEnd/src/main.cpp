@@ -1,6 +1,8 @@
 #include "TranslateToAsm.h"
 
+#define BACK_END
 #include "Program.h"
+#undef BACK_ENF
 
 #include "StandartAWP.h"
 #include "SetTokenTree.h"
@@ -32,8 +34,6 @@ int main(int argc, const char* argv[])
   Program program{};
   ProgramCtor(&program, path_to_awp_file);
   
-  NameTable* global_name_table = NULL;
-  
   /////////////////////////////////////////////////////////////////////
   int run_time_status = GetProgramFromStdAwp(&program, path_to_awp_file);
   if (run_time_status != SUCCESS)
@@ -42,12 +42,13 @@ int main(int argc, const char* argv[])
   MakeImg("kek_back_End", &program); 
   
   /////////////////////////////////////////////////////////////////////
-  global_name_table = SetTokenTree(&program);
-  if (!global_name_table)
+  // don't kill name tables, store pointer to label in token
+  run_time_status = SetTokenTree(&program);
+  if (run_time_status != SUCCESS)
       goto FAILURE_EXIT; 
-
+  
   /////////////////////////////////////////////////////////////////////
-  run_time_status |= TranslateToAsm (&program, global_name_table, path_to_asm_file);
+  run_time_status |= TranslateToAsm (&program, path_to_asm_file);
   if (run_time_status != SUCCESS)
       goto FAILURE_EXIT;
   
@@ -57,9 +58,6 @@ int main(int argc, const char* argv[])
 
   /////////////////////////////////////////////////////////////////////
   FAILURE_EXIT:
-
-  if (global_name_table)
-    CloseNameTable(global_name_table);
 
   ProgramDtor(&program);
 
