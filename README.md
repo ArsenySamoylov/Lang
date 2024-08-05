@@ -1,4 +1,10 @@
+# Disclaimer
 
+This project is intended for educational purposes only. It is a study project and not intended for production use. 
+
+Please use it responsibly and at your own risk =).
+
+# Intro
 Эта директория посвящена последнему проекту первого семестра по программированию на ФизТехе - "Создание собственного языка программирования".
 
 <p align="center">
